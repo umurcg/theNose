@@ -1,0 +1,37 @@
+These scripts controls the subtitles.
+
+_ClickSubtitle.cs
+_Dependent on: _SubtitleController
+
+This script starts subtitle with calling _SubtitleController script that is attached to same object.
+
+_dotdotdot.cs
+_Dependent on: _Text
+
+This script changes text of conversation baloon of characters.
+
+_SetSubtitleTimes:
+_Dependent on: Cinema Suit
+
+This script sets subtitle firetimes according to their string lengths.
+
+_SubtitleController.cs
+_Dependent on: _PlayerComponentController
+
+This controls CharacterSubtitle object's text. 
+While this scripts goes into if statements character stops.
+
+_SubtitleEnterTrigger.cs
+_Dependent on: 
+
+This script trigger _SubtitleController.cs script of parent object when player enter into parent object's collider.
+
+_SubtitleFade.cs
+_Dependent on: RawImage, Text
+
+This script controls fade in and out propert of background of parent object(subtitle object).
+
+_WhoIsTalking.cs
+_Dependent on:
+
+This scripts gets which character is talking and sets position of dotdotdot image to that character.
