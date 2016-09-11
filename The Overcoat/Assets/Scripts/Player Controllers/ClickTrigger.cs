@@ -10,9 +10,10 @@ public class ClickTrigger: MonoBehaviour {
 
     bool isInTrigger = false;
     bool isMoving = false;
-
+	CharacterMouseLook mouseLookScript;
     // public static bool isTriggersActive = true;
 
+	public float radius=5f;
 
    
 
@@ -27,13 +28,33 @@ public class ClickTrigger: MonoBehaviour {
 
         player = GameObject.FindGameObjectWithTag("Player");
         agent = player.GetComponent<NavMeshAgent>();
- 
+    
+		mouseLookScript = player.GetComponent<CharacterMouseLook> ();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+		if (Vector3.Distance (player.transform.position, transform.position)<radius) {
+			if (isMoving) {
+
+				agent.Stop();
+
+
+				mouseLookScript.LookTo (transform.position, 1f);
+				isMoving = false;
+
+
+
+				IClickAction iclick = GetComponent<IClickAction> ();
+				iclick.Action ();
+			}
+
+			isInTrigger = true;
+		}
+
 
 
         if (Input.GetMouseButtonUp(0))
@@ -48,15 +69,14 @@ public class ClickTrigger: MonoBehaviour {
 
                     if (isInTrigger)
                     {
-                        if (gameObject.GetComponent<SubtitleController>() != null)
-                        {
+                            
 							  
 							IClickAction iclick = GetComponent<IClickAction> ();
 							iclick.Action ();
 //                            gameObject.GetComponent<SubtitleController>().startSubtitle();
 //                            if (ifDesroyItself)
 //								Destroy(this);
-                        }
+                        	
 
                     } else if (!isInTrigger)
                     {
@@ -76,21 +96,23 @@ public class ClickTrigger: MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        
 
         if (isMoving)
         {
            
             agent.Stop();
+
+
+			mouseLookScript.LookTo (transform.position, 1f);
+
             isMoving = false;
-            if (gameObject.GetComponent<SubtitleController>() != null)
-            {
+
 				IClickAction iclick = GetComponent<IClickAction> ();
 				iclick.Action ();
 //                gameObject.GetComponent<SubtitleController>().startSubtitle();
 //                if (ifDesroyItself)
 //                    Destroy(gameObject.GetComponent<ScriptClickTrigger>());
-            }
+            
 
         }
         isInTrigger = true;

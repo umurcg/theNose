@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerComponentController : MonoBehaviour {
 	MoveTo moveto;
 	CharacterControllerKeyboard cck;
-	CharacterLook cl;
+	CharacterMouseLook cl;
 
 	public void StopToWalk(){
 		moveto.Stop ();
@@ -24,7 +24,7 @@ public class PlayerComponentController : MonoBehaviour {
 	void Start () {
 		moveto = GetComponent<MoveTo>();
 		cck = GetComponent<CharacterControllerKeyboard>();
-		cl = GetComponent<CharacterLook> ();
+		cl = GetComponent<CharacterMouseLook> ();
 		}
 	
 	// Update is called once per frame

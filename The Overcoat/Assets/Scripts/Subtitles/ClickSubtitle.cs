@@ -14,9 +14,12 @@ public class ClickSubtitle : MonoBehaviour, IClickAction {
 	}
 
 	public void Action(){     
+		if (gameObject.GetComponent<SubtitleController>() != null)
+		{
 		gameObject.GetComponent<SubtitleController>().startSubtitle();
 		if (ifDesroyItself)
 			Destroy(this);
 
 		}
 		}
+}
