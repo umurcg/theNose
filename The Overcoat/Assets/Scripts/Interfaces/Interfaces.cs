@@ -8,3 +8,9 @@ public interface IClickAction{
 	void Action();
 
 }
+
+public interface IEnterTrigger{
+
+	void TriggerAction(Collider  col);
+
+}

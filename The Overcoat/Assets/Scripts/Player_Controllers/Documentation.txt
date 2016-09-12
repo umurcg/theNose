@@ -1,0 +1,37 @@
+Player_Controllers
+These scripts controls main player object's movement, rotations and scripts.
+
+_CharacterControllerKeyboard.cs
+_Dependent to:
+
+This script enable player to control main player's movement and rotations with keyboard buttons.
+
+_CharacterLook.cs
+_Dependent to: NevMeshAgent
+
+This script rotates main player object towards to mouse when object doesnt translates.
+
+_ClickTrigger.cs
+_Dependent to: NevMeshAgent
+
+This script sets player object movement when player clicks to parent object.
+If player is in nearby(radius parameter specifies that) of parent object Action function of IClickAction interface is called.
+Else player start to move towards to parent object and then Action function is called.
+
+
+_PlayerComponentController.cs
+_Depentent to: _CharacterControllerKeyboard.cs, _CharacterLook.cs, _MoveTo.cs
+
+This script controlles main player object's scripts for disabling and enabling movement of object.
+
+_MoveTo.cs
+_Dependent to: NavMeshAgent
+
+This script enable player to move player object with mouse clicks.
+It uses NavMeshAgent for movements.
+
+_OnEnterTrigger.cs
+_Dependent to:
+
+This script calls TriggerAction from IClickTrigger interface when player object enter parent collider.
+

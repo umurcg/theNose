@@ -1,0 +1,155 @@
+Animation_Controllers
+These scripts control animations of objects
+
+_BasicCharAnimation.cs
+_Dependent to: 
+
+This script controls animations of player character.
+It adjust walking animation according to speed of object.
+It triggers idle animation when object doesnt move.
+
+_StopAndStartTrigger.cs
+_Depentent to: _PlayerComponentController, AnimationController
+
+This script stops character movements and triggers an animation of character when one of the Action methods are called.
+It stops main character with using _PlayerComponentController.
+If you add MoveToHere script to same gameObject then it moves the player (or object that owner of entered collider) specified position.
+If you check one time use boolean then it will disable its functionality when it is used first time.
+
+Camera_Controllers
+These scripts control camera movement and rotations.
+
+_Camera Follower
+_Dependent to:
+
+This script makes camera to follow the target object.
+
+Collectable_Objects
+These scripts makes objects collectable by player.
+
+_CollectableObject.cs
+_Dependent to: 
+
+This script enable player to collect parent object with mouse click.
+Collected objects saved to a static List of this class.
+If "Hand On" is enabled then collected object attached to hands of player.
+
+
+_ObjectUncollectTrigger.cs
+_Dependent to: _CollectableObject.cs
+
+This script enable playter to uncollect game object (added to script in editor) that is saved to List of collected objects.
+
+Image _Controllers
+These scripts controls 2d images that is appear on screen.
+
+_changeTransparency.cs
+_Dependent to: 
+This script changes transperency of 2d image. 
+It is written for controlling 2d image from Cinema Suit
+
+_CursorIamgeScript.cs
+_Dependent to:
+This script changes mouse image according to hitted object. 
+If object is note an active object, default image will be shown.
+
+_MouseTexture.cs
+_Dependent to:
+
+This holds mouse textures in active objects.
+
+Mesh_Modifier
+These scripts modifies meshes in runtime.
+
+RemoveSquares.cs
+_Dependent to:
+_To do: Split functionalities to different scripts.
+
+This script enables player to remove squares from mesh of object with clicks.
+It also adds a texture on mesh randomely.
+When all squares deleted it calls a cinema director cutscene.
+
+Player_Controllers
+These scripts controls main player object's movement, rotations and scripts.
+
+_CharacterControllerKeyboard.cs
+_Dependent to:
+
+This script enable player to control main player's movement and rotations with keyboard buttons.
+
+_CharacterLook.cs
+_Dependent to: NevMeshAgent
+
+This script rotates main player object towards to mouse when object doesnt translates.
+
+_ClickTrigger.cs
+_Dependent to: NevMeshAgent
+
+This script sets player object movement when player clicks to parent object.
+If player is in nearby(radius parameter specifies that) of parent object Action function of IClickAction interface is called.
+Else player start to move towards to parent object and then Action function is called.
+
+
+_PlayerComponentController.cs
+_Depentent to: _CharacterControllerKeyboard.cs, _CharacterLook.cs, _MoveTo.cs
+
+This script controlles main player object's scripts for disabling and enabling movement of object.
+
+_MoveTo.cs
+_Dependent to: NavMeshAgent
+
+This script enable player to move player object with mouse clicks.
+It uses NavMeshAgent for movements.
+
+_OnEnterTrigger.cs
+_Dependent to:
+
+This script calls TriggerAction from IClickTrigger interface when player object enter parent collider.
+
+Random_Object_Movement
+_randomMovement.cs
+_Dependent to:
+
+This scripts moves child objects randomly in collider of parent object.
+
+Rotate_Object
+
+Subtitles
+These scripts controls the subtitles.
+
+_ClickSubtitle.cs
+_Dependent on: _SubtitleController
+
+This script starts subtitle with calling _SubtitleController script that is attached to same object.
+
+_dotdotdot.cs
+_Dependent on: _Text
+
+This script changes text of conversation baloon of characters.
+
+_SetSubtitleTimes:
+_Dependent on: Cinema Suit
+
+This script sets subtitle firetimes according to their string lengths.
+
+_SubtitleController.cs
+_Dependent on: _PlayerComponentController
+
+This controls CharacterSubtitle object's text. 
+While this scripts goes into if statements character stops.
+
+_SubtitleEnterTrigger.cs
+_Dependent on: 
+
+This script trigger _SubtitleController.cs script of parent object when player enter into parent object's collider.
+
+_SubtitleFade.cs
+_Dependent on: RawImage, Text
+
+This script controls fade in and out propert of background of parent object(subtitle object).
+
+_WhoIsTalking.cs
+_Dependent on:
+
+This scripts gets which character is talking and sets position of dotdotdot image to that character.
+
