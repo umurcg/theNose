@@ -8,6 +8,8 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 	float timer;
     public string animBool;
 
+	public Vector3 offset_MoveToHere;
+
 
 	bool clickable=true;
 	public bool oneTimeUse=false;
@@ -70,7 +72,7 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 		MoveToHere mth = GetComponent<MoveToHere> ();
 		if (mth != null) {
 			GameObject player = GameObject.FindGameObjectWithTag ("Player");
-			mth.Move (new Vector3 (0, 20, 0), player);
+			mth.Move (offset_MoveToHere, player);
 		}
 
 

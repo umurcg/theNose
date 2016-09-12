@@ -16,6 +16,6 @@ public class MoveToHere : MonoBehaviour {
 
 	public void Move(Vector3 offset,GameObject obj){
 		obj.transform.position = this.transform.position + offset; 
-
+		obj.transform.rotation = this.transform.rotation;
 	}
 }
