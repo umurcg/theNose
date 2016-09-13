@@ -14,6 +14,8 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 
 	public bool canBeCollectedAgain=false;
 
+	public Vector3 unCollectPositionOffset;
+
 
 	Transform parent;
 
@@ -43,17 +45,17 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 				
 				transform.parent = rightHand;
 
-				transform.localPosition = new Vector3 (-0.60f, 0, 0);
+				transform.localPosition = unCollectPositionOffset;
 			} else if (leftHand.childCount == 0) {
 				transform.parent = leftHand;
 
-				transform.localPosition = new Vector3 (-0.60f, 0, 0);
+				transform.localPosition =unCollectPositionOffset;
 
 			} else {
 
 				rightHand.GetChild (0).gameObject.active = false;
 				transform.parent = rightHand;
-				transform.localPosition = new Vector3 (-0.60f, 0, 0);
+				transform.localPosition = unCollectPositionOffset;
 
 			}
 

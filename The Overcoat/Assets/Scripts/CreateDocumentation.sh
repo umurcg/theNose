@@ -8,4 +8,4 @@ for d in */ ; do
 done
 
 echo "done"
-
+sleep 2

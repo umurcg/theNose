@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BreadSplitter : MonoBehaviour {
+public class ChangeKeyShapesWithMouse : MonoBehaviour {
 
 	SkinnedMeshRenderer smr;
 	float blend=0;
-	public float speed=1;
+	public float speed=200;
 	// Use this for initialization
 	void Start () {
 		smr = GetComponent<SkinnedMeshRenderer> ();

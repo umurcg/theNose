@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class rotateObjectRightClick : MonoBehaviour {
-	public float speed=1;
+	public float speed=150;
 	// Use this for initialization
 	void Start () {
 	
