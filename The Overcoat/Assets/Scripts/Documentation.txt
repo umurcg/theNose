@@ -77,7 +77,7 @@ This script enables player to remove squares from mesh of object with clicks.
 It also adds a texture on mesh randomely.
 When all squares deleted it calls a cinema director cutscene.
 
-_BreadSplitter
+_ChangeKeyShapesWithMouse
 _Dependent to: SkinnedMeshRenderer
 
 This script enables player to change blend key of object with mouse position.
@@ -87,7 +87,18 @@ This script enables player to change blend key of object with mouse position.
  _Doesn't Work!
 
  This script force object to follow nearest vertex from parent object.
-Player_Controllers
+_ObjectController_
+These scripts controls generic game objects.
+
+_ClickAndDrag.cs
+_Dependent to:
+
+This script enable player to drag object with mouse.
+
+_FollowCamera.cs
+_Dependent to: Main Camera
+
+This script force a generic game object to follow camera translation.  If initial camera position isn't Vector3(0,0,0) then it uses Main Camera position for finding reference. Player_Controllers
 These scripts controls main player object's movement, rotations and scripts.
 
 _CharacterControllerKeyboard.cs
@@ -132,7 +143,17 @@ This scripts moves child objects randomly in collider of parent object.
 
 Rotate_Object
 
-Subtitles
+_Special_Controllers_
+These scripts controls specific tasks. Generally they are used only one time. They can be dependent a lot of think, therefore also can be very fragile.
+
+_IvanHouseBreadCameraEnabler.cs
+_Dependent to: _CollectableObject, _StopAndStartAnimation
+This script check required conditions. If conditions are ensured it enables BreadCamera object.
+After it enables it script is disabled.
+
+_NoseClickAndDrag.cs
+_Dependent to: _ClickAndDrag.cs, Bread(sibling object), _ChangeKeyShapesWithMouse, SkinnedMeshRenderer, MeshFilter
+This script is subclass of ClickAndDrag class. It is modifies drag method for Nose extract game.Subtitles
 These scripts controls the subtitles.
 
 _ClickSubtitle.cs

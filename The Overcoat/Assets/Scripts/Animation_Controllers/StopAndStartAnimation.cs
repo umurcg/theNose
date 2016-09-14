@@ -10,6 +10,7 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 
 	public Vector3 offset_MoveToHere;
 
+	bool onStop=false;
 
 	bool clickable=true;
 	public bool oneTimeUse=false;
@@ -28,6 +29,21 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 
 		} 
 
+		if (getUpTime==0&&onStop) {
+			if (Input.GetAxis ("Vertical") != 0 || Input.GetAxis ("Horizontal") != 0) {
+				getUp ();
+			} else if (Input.GetMouseButton (0)) {
+
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				RaycastHit hit;
+
+				if (Physics.Raycast (ray, out hit)) {
+					if (hit.transform.tag == "Floor")
+						getUp ();
+				}
+
+			}
+		}
 
 
 
@@ -67,6 +83,7 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 	}
 
 	void StopToWalk(){
+		onStop = true;
 		pcc.StopToWalk ();
 
 		MoveToHere mth = GetComponent<MoveToHere> ();
@@ -78,6 +95,7 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 
 	}
 	void ContinueToWalk(){
+		onStop = false;
 		pcc.ContinueToWalk();
 		clickable = !oneTimeUse;
 
@@ -90,7 +108,7 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 	
 
 			objAnim.SetTrigger(animBool);
-			Invoke("ContinueToWalk",0.5f);
+			Invoke("ContinueToWalk",1f);
 
 
 		}

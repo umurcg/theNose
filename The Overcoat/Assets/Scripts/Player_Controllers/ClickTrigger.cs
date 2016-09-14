@@ -10,11 +10,13 @@ public class ClickTrigger: MonoBehaviour {
 
     bool isInTrigger = false;
     bool isMoving = false;
+
+
 	CharacterMouseLook mouseLookScript;
     // public static bool isTriggersActive = true;
 
 	public float radius=5f;
-
+	IClickAction iclick;
    
 
     // Use this for initialization
@@ -30,6 +32,8 @@ public class ClickTrigger: MonoBehaviour {
         agent = player.GetComponent<NavMeshAgent>();
     
 		mouseLookScript = player.GetComponent<CharacterMouseLook> ();
+
+		iclick = GetComponent<IClickAction> ();
 
     }
 
@@ -48,7 +52,7 @@ public class ClickTrigger: MonoBehaviour {
 
 
 
-				IClickAction iclick = GetComponent<IClickAction> ();
+				if(iclick!=null)
 				iclick.Action ();
 			}
 
@@ -71,7 +75,8 @@ public class ClickTrigger: MonoBehaviour {
                     {
                             
 							  
-							IClickAction iclick = GetComponent<IClickAction> ();
+
+						if(iclick!=null)
 							iclick.Action ();
 //                            gameObject.GetComponent<SubtitleController>().startSubtitle();
 //                            if (ifDesroyItself)
@@ -107,7 +112,8 @@ public class ClickTrigger: MonoBehaviour {
 
             isMoving = false;
 
-				IClickAction iclick = GetComponent<IClickAction> ();
+
+			if(iclick!=null)
 				iclick.Action ();
 //                gameObject.GetComponent<SubtitleController>().startSubtitle();
 //                if (ifDesroyItself)

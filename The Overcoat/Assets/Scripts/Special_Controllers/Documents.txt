@@ -1,8 +1,11 @@
 _Special_Controllers_
 These scripts controls specific tasks. Generally they are used only one time. They can be dependent a lot of think, therefore also can be very fragile.
 
-_IvanHouseBreadCameraEnabler
+_IvanHouseBreadCameraEnabler.cs
 _Dependent to: _CollectableObject, _StopAndStartAnimation
 This script check required conditions. If conditions are ensured it enables BreadCamera object.
 After it enables it script is disabled.
 
+_NoseClickAndDrag.cs
+_Dependent to: _ClickAndDrag.cs, Bread(sibling object), _ChangeKeyShapesWithMouse, SkinnedMeshRenderer, MeshFilter
+This script is subclass of ClickAndDrag class. It is modifies drag method for Nose extract game.

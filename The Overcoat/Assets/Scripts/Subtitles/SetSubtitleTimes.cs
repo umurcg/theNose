@@ -13,6 +13,8 @@ public class SetSubtitleTimes : MonoBehaviour {
 		public float Duration=0;
 		public float minTime=2;
 
+		public bool isNarrator = false;
+
 	void Start () {
 	 
 	
@@ -39,9 +41,16 @@ public class SetSubtitleTimes : MonoBehaviour {
 						TextGenerationEvent tgePrevious = transform.GetChild (i - 1).GetComponent<TextGenerationEvent> ();
 
 						if (tge.lockTime == false) {
-							int index =	tgePrevious.textValue.IndexOf (":");
-							print (index);
-							float time =  TextToTimes(tgePrevious.textValue.Substring (index, tgePrevious.textValue.Length - index - 1));
+							float time = 0;
+							if (isNarrator) {
+								time = TextToTimes (tgePrevious.textValue);
+							} else {
+
+								int index =	tgePrevious.textValue.IndexOf (":");
+						
+								time = TextToTimes (tgePrevious.textValue.Substring (index, tgePrevious.textValue.Length - index - 1));
+							}
+
 							if (time > minTime) {
 
 								tge.Firetime = tgePrevious.Firetime + time;

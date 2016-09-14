@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+namespace CinemaDirector
+{
 public class IvanHouseBreadCameraEnabler : MonoBehaviour {
 	public bool sit=false;
 	public bool bread = false;
 
-
+	public Cutscene Narrator;
+	
 	public GameObject chair;
 	public GameObject BreadCamera;
 	public GameObject player;
 	public GameObject breadPH;
+
+
 
 	CollectableObject co;
 	StopAndStartAnimation sasa;
@@ -17,6 +21,7 @@ public class IvanHouseBreadCameraEnabler : MonoBehaviour {
 	void Start () {
 		co = GetComponent<CollectableObject> ();
 		sasa = chair.GetComponent<StopAndStartAnimation> ();
+
 	}
 	
 	// Update is called once per frame
@@ -32,17 +37,34 @@ public class IvanHouseBreadCameraEnabler : MonoBehaviour {
 		if (sitDist<=1)
 			sit = true;
 
-		if (sit && bread)
-			Invoke ("activateBread", 2);
+	
+		    
 
+		if (sit && bread) {
+				
+			player.GetComponent<Animator> ().SetTrigger ("SitTriggerHands");
+
+				chair.GetComponent<StopAndStartAnimation> ().enabled = false;
+				if(Narrator.State!=Cutscene.CutsceneState.Playing)
+					Narrator.Play ();
+				
+				//Narrator.Invoke ("activateBread", 37.2f);
+				this.enabled = false;
+		}
 
 
 	}
 
-
+	
+	
 	void activateBread(){
+       
 		BreadCamera.SetActive (true);
-		this.enabled = false;
+	
 	}
 
+
+
+
+}
 }

@@ -8,7 +8,11 @@ public class FollowCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		cam = Camera.main;
+		if(initialCamPosition!=Vector3.zero){
 		reference = transform.position - initialCamPosition;
+		}else{
+			reference = transform.position - cam.transform.position;
+		}
 	}
 	
 	// Update is called once per frame
