@@ -32,7 +32,7 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 		if (getUpTime==0&&onStop) {
 			if (Input.GetAxis ("Vertical") != 0 || Input.GetAxis ("Horizontal") != 0) {
 				getUp ();
-			} else if (Input.GetMouseButton (0)) {
+			} else if (Input.GetMouseButtonDown (0)) {
 
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				RaycastHit hit;
@@ -108,7 +108,7 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 	
 
 			objAnim.SetTrigger(animBool);
-			Invoke("ContinueToWalk",1f);
+			Invoke("ContinueToWalk",0.3f);
 
 
 		}

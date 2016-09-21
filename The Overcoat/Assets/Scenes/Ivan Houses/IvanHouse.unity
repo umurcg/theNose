@@ -245,6 +245,86 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22474428, guid: 7a4e7dd9c01e8c04cb575213c9699112,
     type: 2}
   m_PrefabInternal: {fileID: 1712255704}
+--- !u!1 &39768645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 39768646}
+  - 114: {fileID: 39768648}
+  - 114: {fileID: 39768647}
+  m_Layer: 0
+  m_Name: Actor Track
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &39768646
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 39768645}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1687451997}
+  - {fileID: 70004141}
+  - {fileID: 1164082768}
+  - {fileID: 1727007617}
+  - {fileID: 989549674}
+  - {fileID: 971971596}
+  - {fileID: 523735242}
+  - {fileID: 787367738}
+  - {fileID: 941056008}
+  - {fileID: 540068294}
+  - {fileID: 1903694344}
+  - {fileID: 282118116}
+  - {fileID: 1583463461}
+  - {fileID: 1917701232}
+  - {fileID: 1997556012}
+  - {fileID: 1169403404}
+  - {fileID: 343351037}
+  - {fileID: 511933302}
+  - {fileID: 57032425}
+  - {fileID: 791664479}
+  m_Father: {fileID: 1410876488}
+  m_RootOrder: 0
+--- !u!114 &39768647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 39768645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa63d52df9e1f7341a479dc9cb914ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeFactor: 10
+  Duration: 1
+  minTime: 2
+  isNarrator: 0
+--- !u!114 &39768648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 39768645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ba75415c29e8f498b4259e5bba527f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedStatus: 0
+  ordinal: 0
+  canOptimize: 1
+  PlaybackMode: 3
 --- !u!1 &43038806
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +519,53 @@ MonoBehaviour:
   Behaviour: {fileID: 553012566}
   editorRevertMode: 0
   runtimeRevertMode: 1
+--- !u!1 &57032424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 57032425}
+  - 114: {fileID: 57032426}
+  m_Layer: 0
+  m_Name: Text Generator 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &57032425
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 57032424}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 18
+--- !u!114 &57032426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 57032424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 100.4
+  duration: 1
+  lockTime: 0
+  textValue: "Ivan: Polisler \u015Fimdi gelse direkt beni su\xE7layacaklar. Ne yapar\u0131m
+    o zaman? Ne derim? Beni dinlemezler ki. Herkes biliyor ne kadar sakar oldu\u011Fumu. "
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &65138568
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +610,52 @@ MonoBehaviour:
   duration: 0
   lockTime: 0
   textValue: "Bu nedenle perspektifini bir ka\xE7 saniyeli\u011Fine de\u011Fi\u015Ftirece\u011Fim."
+  editorRevertMode: 0
+  runtimeRevertMode: 0
+--- !u!1 &70004140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 70004141}
+  - 114: {fileID: 70004142}
+  m_Layer: 0
+  m_Name: Text Generator 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &70004141
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70004140}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 1
+--- !u!114 &70004142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70004140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 2
+  duration: 1
+  lockTime: 0
+  textValue: "Praskovaya Osipovna: TANRI A\u015EKINA!!!!!"
   editorRevertMode: 0
   runtimeRevertMode: 0
 --- !u!1001 &77662841
@@ -634,7 +807,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 180616997}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.7, y: 1.81, z: -4.03}
+  m_LocalPosition: {x: -2.366, y: 1.81, z: -4.801}
   m_LocalScale: {x: 1.5054721, y: 0.3959108, z: 1.5054717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -816,7 +989,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 205034745}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.05, y: 1.81, z: -4.03}
+  m_LocalPosition: {x: -2.05, y: 1.81, z: -4.726}
   m_LocalScale: {x: 1.5054721, y: 0.3959108, z: 1.5054717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -864,6 +1037,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firetime: 29.5
   Name: GetOffContinue
+--- !u!1 &282118115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 282118116}
+  - 114: {fileID: 282118117}
+  m_Layer: 0
+  m_Name: Text Generator 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &282118116
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282118115}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 11
+--- !u!114 &282118117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282118115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 53.5
+  duration: 1
+  lockTime: 0
+  textValue: "Praskovaya Osipovna: Hayatta olmaz! Ayya\u015F Herif! Sen beni polislik
+    mi yapacaks\u0131n? Senin y\xFCz\xFCnden hayat\u0131m\u0131 s\xFCrg\xFCnlerde
+    mi ge\xE7irece\u011Fim?"
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &317319895
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +1176,53 @@ MonoBehaviour:
   duration: 0
   lockTime: 0
   textValue: "\u015Euan Ivan'\u0131n g\xF6z\xFCnden kahvalt\u0131n\u0131 ediyorsun. "
+  editorRevertMode: 0
+  runtimeRevertMode: 0
+--- !u!1 &343351036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 343351037}
+  - 114: {fileID: 343351038}
+  m_Layer: 0
+  m_Name: Text Generator 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &343351037
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 343351036}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 16
+--- !u!114 &343351038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 343351036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 89.5
+  duration: 1
+  lockTime: 0
+  textValue: "Ivan: Ekmek pi\u015Fen bir \u015Fey. Halbuki burun \xF6yle mi? Nas\u0131l
+    i\xE7inden..."
   editorRevertMode: 0
   runtimeRevertMode: 0
 --- !u!1 &344836738
@@ -1290,6 +1558,52 @@ MonoBehaviour:
   ordinal: 2
   canOptimize: 1
   PlaybackMode: 3
+--- !u!1 &511933301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 511933302}
+  - 114: {fileID: 511933303}
+  m_Layer: 0
+  m_Name: Text Generator 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &511933302
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 511933301}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 17
+--- !u!114 &511933303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 511933301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 95.6
+  duration: 1
+  lockTime: 0
+  textValue: "Ivan: Allah Allah! Allah Allah! \u0130mkans\u0131z, nas\u0131l olur?"
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1001 &513077814
 Prefab:
   m_ObjectHideFlags: 0
@@ -1407,6 +1721,52 @@ MonoBehaviour:
     ara ya\u015Fayacaks\u0131n."
   editorRevertMode: 0
   runtimeRevertMode: 0
+--- !u!1 &523735241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 523735242}
+  - 114: {fileID: 523735243}
+  m_Layer: 0
+  m_Name: Text Generator 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &523735242
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 523735241}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 6
+--- !u!114 &523735243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 523735241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 16
+  duration: 1
+  lockTime: 0
+  textValue: "Ivan: Sus ve sakin ol kad\u0131n!"
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &524266766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,6 +1857,52 @@ MonoBehaviour:
   firetime: 0
   BoolName: Hands
   Value: 1
+--- !u!1 &540068293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 540068294}
+  - 114: {fileID: 540068295}
+  m_Layer: 0
+  m_Name: Text Generator 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &540068294
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540068293}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 9
+--- !u!114 &540068295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540068293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 34.3
+  duration: 1
+  lockTime: 0
+  textValue: "Praskovaya Osipovna: S\xF6yle kimin burnu bu?"
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &542546333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,7 +1984,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 553012562}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Speed: 3
   m_Acceleration: 25
@@ -1904,6 +2310,52 @@ MonoBehaviour:
   textValue: "Praskovaya Osipovna: P\u015F\u015F\u015Ft! Uyan sarho\u015F herif."
   editorRevertMode: 0
   runtimeRevertMode: 0
+--- !u!1 &578839338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 578839339}
+  - 114: {fileID: 578839340}
+  m_Layer: 0
+  m_Name: Component Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &578839339
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578839338}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 802459925}
+  - {fileID: 1490245897}
+  m_Father: {fileID: 1799693485}
+  m_RootOrder: 1
+--- !u!114 &578839340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578839338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ba75415c29e8f498b4259e5bba527f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedStatus: 0
+  ordinal: 1
+  canOptimize: 1
+  PlaybackMode: 3
 --- !u!1 &624512236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,7 +2704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getUpTime: 0
   animBool: SitTrigger
-  offset_MoveToHere: {x: 0, y: -0.37, z: -0.25}
+  offset_MoveToHere: {x: 0, y: -0.37, z: 0}
   oneTimeUse: 0
 --- !u!114 &725893115
 MonoBehaviour:
@@ -2294,7 +2746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartMethod: 0
-  Cutscene: {fileID: 1131804013}
+  Cutscene: {fileID: 787161581}
   TriggerObject: {fileID: 0}
   SkipButtonName: Jump
   TriggerButtonName: Fire1
@@ -2371,6 +2823,50 @@ MonoBehaviour:
   ordinal: 0
   canOptimize: 1
   PlaybackMode: 3
+--- !u!1 &761975178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 761975179}
+  - 114: {fileID: 761975180}
+  m_Layer: 0
+  m_Name: Animations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &761975179
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 761975178}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1799693485}
+  m_RootOrder: 0
+--- !u!114 &761975180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 761975178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ba75415c29e8f498b4259e5bba527f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedStatus: 0
+  ordinal: 0
+  canOptimize: 1
+  PlaybackMode: 3
 --- !u!1 &787161580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,7 +2894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea88cf454d6b69408653729ea66ec34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 30
+  duration: 116.6
   playbackSpeed: 1
   isSkippable: 0
   isLooping: 0
@@ -2415,8 +2911,103 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1899882440}
+  - {fileID: 1799693485}
+  - {fileID: 1410876488}
+  - {fileID: 1823915500}
   m_Father: {fileID: 0}
   m_RootOrder: 18
+--- !u!1 &787367737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 787367738}
+  - 114: {fileID: 787367739}
+  m_Layer: 0
+  m_Name: Text Generator 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &787367738
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 787367737}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 7
+--- !u!114 &787367739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 787367737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 18.3
+  duration: 1
+  lockTime: 0
+  textValue: "Praskovaya Osipovna: Kasap herif sonunda yapt\u0131n yap\u0131ca\u011F\u0131n\u0131."
+  editorRevertMode: 0
+  runtimeRevertMode: 0
+--- !u!1 &791664478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 791664479}
+  - 114: {fileID: 791664480}
+  m_Layer: 0
+  m_Name: Text Generator 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &791664479
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 791664478}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 19
+--- !u!114 &791664480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 791664478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 114.4
+  duration: 1
+  lockTime: 0
+  textValue: "Ivan: Hemen bundan kurtulmam laz\u0131m. Hemen bu i\u015Fi \xE7\xF6zmeliyim."
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &799844266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2464,7 +3055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.0010834336}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2484,6 +3075,50 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 799844266}
+--- !u!1 &802459924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 802459925}
+  - 114: {fileID: 802459926}
+  m_Layer: 0
+  m_Name: Enable Behaviour
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &802459925
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802459924}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 578839339}
+  m_RootOrder: 0
+--- !u!114 &802459926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802459924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937b9eb698794dd4bba21a2b0979a901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 1.1956772
+  Behaviour: {fileID: 553012568}
+  editorRevertMode: 0
+  runtimeRevertMode: 1
 --- !u!1 &808375014 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 15efd1b81431ecb499fb849faaadbbbc, type: 3}
@@ -2522,6 +3157,7 @@ MonoBehaviour:
   - {fileID: 180616997}
   canBeCollectedAgain: 0
   unCollectPositionOffset: {x: -0.6, y: 0, z: 0}
+  scale: {x: 1, y: 1, z: 1}
 --- !u!136 &808375019
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2575,6 +3211,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
+--- !u!1 &861183947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 861183948}
+  - 114: {fileID: 861183949}
+  m_Layer: 0
+  m_Name: Look At
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &861183948
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 861183947}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1132016650}
+  m_RootOrder: 1
+--- !u!114 &861183949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 861183947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a67ca75c46868e47adbc4d11cef9706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 3.9535995
+  duration: 0.46821833
+  LookAtTarget: {fileID: 1213410981}
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &934206687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,6 +3300,54 @@ MonoBehaviour:
   duration: 0
   lockTime: 0
   textValue: "Ivan: Tamam tamam kalkt\u0131m."
+  editorRevertMode: 0
+  runtimeRevertMode: 0
+--- !u!1 &941056007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 941056008}
+  - 114: {fileID: 941056009}
+  m_Layer: 0
+  m_Name: Text Generator 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &941056008
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 941056007}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 8
+--- !u!114 &941056009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 941056007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 22.199999
+  duration: 1
+  lockTime: 0
+  textValue: "Praskovaya Osipovna:  \u015Eu ana kadar 3 ki\u015Fi geldi \u015Fikayet
+    i\xE7in. Hayvan gibi t\u0131ra\u015F ediyormu\u015Fsun. Burunlar\u0131n\u0131
+    koparacak kadar \xE7eki\u015Ftiriyormu\u015Fsun."
   editorRevertMode: 0
   runtimeRevertMode: 0
 --- !u!1001 &954897211
@@ -2720,6 +3449,10 @@ Prefab:
       propertyPath: m_Name
       value: Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 15efd1b81431ecb499fb849faaadbbbc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c645fb18e53558d489df507a08f49c35, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15efd1b81431ecb499fb849faaadbbbc, type: 3}
   m_IsPrefabParent: 0
@@ -2767,6 +3500,99 @@ MonoBehaviour:
   Behaviour: {fileID: 553012568}
   editorRevertMode: 0
   runtimeRevertMode: 1
+--- !u!1 &971971595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 971971596}
+  - 114: {fileID: 971971597}
+  m_Layer: 0
+  m_Name: Text Generator 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &971971596
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 971971595}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 5
+--- !u!114 &971971597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 971971595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 11.4
+  duration: 1
+  lockTime: 0
+  textValue: "Praskovaya Osipovna: Ayya\u015F! Ahlaks\u0131z! Hemen polisi ar\u0131yorum
+    \u015Fimdi."
+  editorRevertMode: 0
+  runtimeRevertMode: 0
+--- !u!1 &989549673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 989549674}
+  - 114: {fileID: 989549675}
+  m_Layer: 0
+  m_Name: Text Generator 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &989549674
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 989549673}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 4
+--- !u!114 &989549675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 989549673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 8
+  duration: 1
+  lockTime: 0
+  textValue: 'Praskovaya Osipovna: Kimden kestin bunu canavar herif?'
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &998457929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,6 +3825,145 @@ Transform:
   - {fileID: 182361643}
   m_Father: {fileID: 0}
   m_RootOrder: 15
+--- !u!1 &1132016649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1132016650}
+  - 114: {fileID: 1132016651}
+  m_Layer: 0
+  m_Name: NevMeshController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1132016650
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1132016649}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1617629267}
+  - {fileID: 861183948}
+  m_Father: {fileID: 1823915500}
+  m_RootOrder: 0
+--- !u!114 &1132016651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1132016649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ba75415c29e8f498b4259e5bba527f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedStatus: 0
+  ordinal: 0
+  canOptimize: 1
+  PlaybackMode: 3
+--- !u!1 &1164082767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1164082768}
+  - 114: {fileID: 1164082769}
+  m_Layer: 0
+  m_Name: Text Generator 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1164082768
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1164082767}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 2
+--- !u!114 &1164082769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1164082767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 4
+  duration: 1
+  lockTime: 0
+  textValue: 'Ivan: Bu bir...'
+  editorRevertMode: 0
+  runtimeRevertMode: 0
+--- !u!1 &1169403403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1169403404}
+  - 114: {fileID: 1169403405}
+  m_Layer: 0
+  m_Name: Text Generator 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1169403404
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169403403}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 15
+--- !u!114 &1169403405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169403403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 84.3
+  duration: 1
+  lockTime: 0
+  textValue: "Ivan: D\xFCn sarho\u015F geldim eve ama bu da mant\u0131\u011Fa uymuyor
+    ki."
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &1177430661 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 132034, guid: 1754a1dfc9fa04047a9ac721304092e1, type: 2}
@@ -3029,6 +3994,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultTexture: {fileID: 2800000, guid: 0de625f98a4fe7d4a9f394b9ef25952f, type: 3}
+--- !u!114 &1177430670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1177430661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf714e482887b54dbed390b5d7e3366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: c645fb18e53558d489df507a08f49c35, type: 2}
+  speed: 1
+  matPropert: _Glossiness
 --- !u!1 &1199551209
 GameObject:
   m_ObjectHideFlags: 0
@@ -3209,14 +4188,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1213410981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88e231455c17a0f4b970b1b3295cf45f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1df53f8d39e61e4448cd7421499b9285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
-  initialVel: {x: 0, y: 0, z: 0}
-  gravity: 0
-  mass: 0
-  initialPos: {x: 0, y: 0, z: 0}
+  onHand: 1
+  placeholders: []
+  canBeCollectedAgain: 0
+  unCollectPositionOffset: {x: 0, y: 0, z: 0}
+  scale: {x: 0, y: 0, z: 0}
 --- !u!114 &1213410989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3229,6 +4208,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: {x: -2, y: 2.1, z: 3.1}
+--- !u!136 &1213410990
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1213410981}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3.24
+  m_Height: 2.1956162
+  m_Direction: 1
+  m_Center: {x: -0.15440506, y: 9.019967e-10, z: -0.06206906}
+--- !u!114 &1213410991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1213410981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcaaadf11a1806048b156d4ba7ccdbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
 --- !u!1 &1260042200
 GameObject:
   m_ObjectHideFlags: 0
@@ -3546,6 +4550,50 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1754a1dfc9fa04047a9ac721304092e1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1410876487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1410876488}
+  - 114: {fileID: 1410876489}
+  m_Layer: 0
+  m_Name: CharacterSubtitle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1410876488
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1410876487}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 39768646}
+  m_Father: {fileID: 787161582}
+  m_RootOrder: 2
+--- !u!114 &1410876489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1410876487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f721a7f4a938be4196ba9be816a39d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ordinal: 2
+  canOptimize: 1
+  actor: {fileID: 642679431}
 --- !u!1 &1419064775
 GameObject:
   m_ObjectHideFlags: 0
@@ -3725,6 +4773,50 @@ MonoBehaviour:
   Duration: 0
   minTime: 2
   isNarrator: 1
+--- !u!1 &1490245896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1490245897}
+  - 114: {fileID: 1490245898}
+  m_Layer: 0
+  m_Name: Enable Behaviour
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1490245897
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1490245896}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 578839339}
+  m_RootOrder: 1
+--- !u!114 &1490245898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1490245896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937b9eb698794dd4bba21a2b0979a901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 1.1913134
+  Behaviour: {fileID: 553012565}
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &1493020331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3819,6 +4911,53 @@ MonoBehaviour:
   duration: 0
   lockTime: 0
   textValue: 
+  editorRevertMode: 0
+  runtimeRevertMode: 0
+--- !u!1 &1583463460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1583463461}
+  - 114: {fileID: 1583463462}
+  m_Layer: 0
+  m_Name: Text Generator 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1583463461
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1583463460}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 12
+--- !u!114 &1583463462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1583463460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 64.8
+  duration: 1
+  lockTime: 0
+  textValue: "Praskovaya Osipovna: Al \u015Fu pis burunu ve defol git bu evden. Bu
+    i\u015Fi halletmedende geri d\xF6nme."
   editorRevertMode: 0
   runtimeRevertMode: 0
 --- !u!1 &1612823084
@@ -3969,6 +5108,90 @@ MonoBehaviour:
       m_RotationOrder: 4
   editorRevertMode: 0
   runtimeRevertMode: 0
+--- !u!1 &1614393228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1614393229}
+  - 114: {fileID: 1614393230}
+  m_Layer: 0
+  m_Name: Set Destination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1614393229
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614393228}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1752440893}
+  m_RootOrder: 0
+--- !u!114 &1614393230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614393228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda6033a0d7d81943b6ed92293d137a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 1.3091397
+  target: {x: -2.48, y: 0.16, z: 0.4}
+--- !u!1 &1617629266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1617629267}
+  - 114: {fileID: 1617629268}
+  m_Layer: 0
+  m_Name: Set Destination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1617629267
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1617629266}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1132016650}
+  m_RootOrder: 0
+--- !u!114 &1617629268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1617629266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda6033a0d7d81943b6ed92293d137a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 1.3440493
+  target: {x: -2.48, y: 0.16, z: 2.81}
 --- !u!1 &1632904377
 GameObject:
   m_ObjectHideFlags: 0
@@ -4213,7 +5436,7 @@ Prefab:
     - target: {fileID: 2300000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+      objectReference: {fileID: 2100000, guid: c645fb18e53558d489df507a08f49c35, type: 2}
     - target: {fileID: 100000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
       propertyPath: m_Name
       value: Nose
@@ -4226,9 +5449,59 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1687451996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1687451997}
+  - 114: {fileID: 1687451998}
+  m_Layer: 0
+  m_Name: Text Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687451997
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1687451996}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 0
+--- !u!114 &1687451998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1687451996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 0.11345869
+  duration: 1
+  lockTime: 0
+  textValue: 'Ivan: ???'
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1001 &1712255704
 Prefab:
   m_ObjectHideFlags: 0
@@ -4329,6 +5602,23 @@ RectTransform:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 31f1d2411139a874fb57d2b92f5032e2, type: 3}
   m_PrefabInternal: {fileID: 513077814}
+--- !u!143 &1720070767
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1720070766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1720070768 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 31f1d2411139a874fb57d2b92f5032e2, type: 3}
@@ -4345,22 +5635,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0
-  speedFactor: 1
---- !u!54 &1720070770
-Rigidbody:
+  speedFactor: 0.5
+--- !u!195 &1720070770
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1720070766}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Speed: 3
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!1 &1727007616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1727007617}
+  - 114: {fileID: 1727007618}
+  m_Layer: 0
+  m_Name: Text Generator 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1727007617
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727007616}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 3
+--- !u!114 &1727007618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727007616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 6
+  duration: 1
+  lockTime: 0
+  textValue: 'Ivan: burun?'
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &1744973385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4474,6 +5815,51 @@ MonoBehaviour:
       m_RotationOrder: 4
   editorRevertMode: 0
   runtimeRevertMode: 0
+--- !u!1 &1752440892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1752440893}
+  - 114: {fileID: 1752440894}
+  m_Layer: 0
+  m_Name: Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1752440893
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1752440892}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1614393229}
+  m_Father: {fileID: 1799693485}
+  m_RootOrder: 2
+--- !u!114 &1752440894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1752440892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ba75415c29e8f498b4259e5bba527f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedStatus: 0
+  ordinal: 2
+  canOptimize: 1
+  PlaybackMode: 3
 --- !u!1001 &1757176892
 Prefab:
   m_ObjectHideFlags: 0
@@ -4623,9 +6009,71 @@ Prefab:
       propertyPath: m_Name
       value: Rest
       objectReference: {fileID: 0}
+    - target: {fileID: 2300004, guid: c0ee99e1f1fca1b468322987afc7dc17, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c645fb18e53558d489df507a08f49c35, type: 2}
+    - target: {fileID: 400004, guid: c0ee99e1f1fca1b468322987afc7dc17, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: c0ee99e1f1fca1b468322987afc7dc17, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: c0ee99e1f1fca1b468322987afc7dc17, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0ee99e1f1fca1b468322987afc7dc17, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1799693484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1799693485}
+  - 114: {fileID: 1799693486}
+  m_Layer: 0
+  m_Name: Ivan
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1799693485
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1799693484}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 761975179}
+  - {fileID: 578839339}
+  - {fileID: 1752440893}
+  m_Father: {fileID: 787161582}
+  m_RootOrder: 1
+--- !u!114 &1799693486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1799693484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f721a7f4a938be4196ba9be816a39d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ordinal: 1
+  canOptimize: 1
+  actor: {fileID: 553012570}
 --- !u!1 &1804396276
 GameObject:
   m_ObjectHideFlags: 0
@@ -4721,6 +6169,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1823915499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1823915500}
+  - 114: {fileID: 1823915501}
+  m_Layer: 0
+  m_Name: Praskovaya
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1823915500
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1823915499}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1132016650}
+  m_Father: {fileID: 787161582}
+  m_RootOrder: 3
+--- !u!114 &1823915501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1823915499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f721a7f4a938be4196ba9be816a39d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ordinal: 3
+  canOptimize: 1
+  actor: {fileID: 1720070768}
 --- !u!1 &1867200129 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: a33e024070ba65b47a91723f02c63d3d, type: 3}
@@ -4753,6 +6245,7 @@ MonoBehaviour:
   - {fileID: 205034745}
   canBeCollectedAgain: 0
   unCollectPositionOffset: {x: 0, y: 0, z: 0}
+  scale: {x: 1, y: 1, z: 1}
 --- !u!114 &1867200136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4841,6 +6334,101 @@ MonoBehaviour:
   ordinal: 0
   canOptimize: 1
   actor: {fileID: 1213410982}
+--- !u!1 &1903694343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1903694344}
+  - 114: {fileID: 1903694345}
+  m_Layer: 0
+  m_Name: Text Generator 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1903694344
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1903694343}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 10
+--- !u!114 &1903694345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1903694343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 36.5
+  duration: 1
+  lockTime: 0
+  textValue: "Ivan: Hmm... bu kemerli burun Bay Kovalevinkini annd\u0131r\u0131yor.
+    Sus sen Paskovya. Bunu hemen bir beze sar\u0131p sakl\u0131yaca\u011F\u0131m.
+    Bir ka\xE7 g\xFCn evde kals\u0131n, daha sonra i\u015Fin icab\u0131na bakar\u0131m."
+  editorRevertMode: 0
+  runtimeRevertMode: 0
+--- !u!1 &1917701231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1917701232}
+  - 114: {fileID: 1917701233}
+  m_Layer: 0
+  m_Name: Text Generator 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1917701232
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1917701231}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 13
+--- !u!114 &1917701233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1917701231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 72.100006
+  duration: 1
+  lockTime: 0
+  textValue: "Praskovaya Osipovna: Umar\u0131m bir polis seni yakalar da ben de bu
+    ba\u015F a\u011Fr\u0131s\u0131ndan kurtulurum."
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &1924636762
 GameObject:
   m_ObjectHideFlags: 0
@@ -5014,6 +6602,52 @@ MonoBehaviour:
   firetime: 37.25008
   editorRevertMode: 0
   runtimeRevertMode: 1
+--- !u!1 &1997556011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1997556012}
+  - 114: {fileID: 1997556013}
+  m_Layer: 0
+  m_Name: Text Generator 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1997556012
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1997556011}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 39768646}
+  m_RootOrder: 14
+--- !u!114 &1997556013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1997556011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1f28727c36d2845afef267781d9730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firetime: 79.100006
+  duration: 1
+  lockTime: 0
+  textValue: "Ivan: Allah Allah! Nas\u0131l olmu\u015F olabilir ki b\xF6yle bir \u015Fey?"
+  editorRevertMode: 0
+  runtimeRevertMode: 0
 --- !u!1 &2071227635
 GameObject:
   m_ObjectHideFlags: 0
@@ -5155,7 +6789,7 @@ GameObject:
   - 4: {fileID: 2079856791}
   - 114: {fileID: 2079856792}
   m_Layer: 0
-  m_Name: Actor Track
+  m_Name: Enable Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

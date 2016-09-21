@@ -8,6 +8,8 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 	Transform rightHand;
 	Transform leftHand;
 
+
+
 	Transform player;
 
 	public GameObject[] placeholders;
@@ -16,10 +18,24 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 
 	public Vector3 unCollectPositionOffset;
 
+	public Vector3 scale =new Vector3(0,0,0);
+
+	Vector3 originalScale;
 
 	Transform parent;
 
+	MeshCollider mc;
+	Rigidbody rb;
+
+	void Awake(){
+
+	}
+
 	void Start () {
+		mc = GetComponent<MeshCollider> ();
+		rb = GetComponent<Rigidbody> ();
+
+		originalScale = transform.localScale;
 		if (CollectableObject.collected == null)
 			CollectableObject.collected = new List<GameObject> ();
 		parent = transform.parent;
@@ -41,6 +57,8 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 			gameObject.active = false;
 		} else {
 
+			enableMeshCollider (false);
+
 			if (rightHand.childCount == 0) {
 				
 				transform.parent = rightHand;
@@ -58,8 +76,9 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 				transform.localPosition = unCollectPositionOffset;
 
 			}
-
-
+			 
+			transform.localScale =originalScale+ scale;
+		
 
 		}
 
@@ -70,6 +89,7 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 	}
 
 	public void UnCollect(Vector3 position){
+		enableMeshCollider (true);
 		transform.parent = parent;
 		collected.Remove (gameObject);
 		transform.position = position;
@@ -83,12 +103,28 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 			this.enabled = false;
 		}
 
+		transform.localScale = originalScale;
+
 	}
 
 	public void Action(){
 		
 		Collect ();
 	}
+
+	public void enableMeshCollider(bool b){
+
+		if (mc != null) {
+			mc.enabled = b;
+		}
+		if(rb!=null){
+			rb.useGravity=b;
+		}
+
+	}
+
+
+
 
 	void Update () {
 

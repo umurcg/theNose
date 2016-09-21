@@ -30,13 +30,14 @@ public class WhoIsTalking : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (text.text == "")
-        {
-            baloon.SetActive(false);
+		if (text.text == "") {
+			baloon.SetActive (false);
 
-        }
-        else
+		} else if (text.text == "???") {
+			//TO DO ???
+		} else
         {
+			
             baloon.SetActive(true);
             Vector2 ActualPosition =  camera.WorldToScreenPoint(gameObjects[text.text[0]].transform.position);
             Vector2 newPosition = new Vector2(ActualPosition.x + Screen.width / 32, ActualPosition.y + Screen.height / 16);
