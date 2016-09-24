@@ -4,3 +4,4 @@ This project is a game adapted from a short story that is written by Nikolay Vas
 
 The game's perspective is isometric. While game is story drivven there are not so much playable content. Instead it is kind of a interactive novel which allows to player join story more deeply with small games and with forcing them to explore the world of story themselfs. 
 
+[[https://github.com/umurcg/theNose/blob/master/Images/City.png|alt=octocat]]
