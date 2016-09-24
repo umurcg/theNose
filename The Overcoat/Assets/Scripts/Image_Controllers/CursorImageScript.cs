@@ -16,7 +16,7 @@ public class CursorImageScript : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		player = GameObject.FindGameObjectWithTag ("Player");
-		mt = GetComponent < MoveTo> ();
+		mt = player.GetComponent < MoveTo> ();
 	}
 	
 	// Update is called once per frame
@@ -29,12 +29,13 @@ public class CursorImageScript : MonoBehaviour {
         if (Physics.Raycast(ray, out hit))
         {
 			
-			if (!checkAvaiblity) {
+			if (!checkAvaiblity()) {
 				Cursor.SetCursor(disabled, Vector2.zero, CursorMode.Auto);
 			}
 
  
-			if (hit.transform.tag == "ActiveObject") {
+			if (hit.transform.tag == "ActiveObject"&&hit.transform.GetComponent<MouseTexture> ().texture!=null) {
+				
 				Cursor.SetCursor (hit.transform.GetComponent<MouseTexture> ().texture, Vector2.zero, CursorMode.Auto);
 
 			}  else

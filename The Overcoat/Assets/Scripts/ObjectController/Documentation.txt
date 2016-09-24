@@ -10,3 +10,29 @@ _FollowCamera.cs
 _Dependent to: Main Camera
 
 This script force a generic game object to follow camera translation.  If initial camera position isn't Vector3(0,0,0) then it uses Main Camera position for finding reference. 
+
+_ChangeKeyShapesWithMouse
+_Dependent to: SkinnedMeshRenderer
+
+This script enables player to change blend key of object with mouse position.
+
+_ChangeMaterial
+_Dependent to: Material, Renderer
+
+This script changes material of object. It gets the new material from public list. It basically changes to next material from List. If current material is last one then it turns to first Material of List.
+
+_KeySliderCompeletly
+_Dependent to: SkinnedMeshRenederer,
+
+This script increases blend key to 100 or decreases to 0.
+
+_MaterialPropertyAutomaticSlider
+_Dependent to: Material
+
+This script increases and decreases a porperty of material contionusly.
+
+_Throw
+_Dependent to: RigidBody
+_param Vector3 force: Force that will be applied.
+
+This script aplies uncontionus force on object.
