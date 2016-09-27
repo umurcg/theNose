@@ -12,7 +12,7 @@ public class SpaceTrigger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Input.GetKeyDown(KeyCode.Space)
-		if (Input.GetAxis("Interaction")==1) {
+		if (Input.GetAxis("Interaction")==1&&colliding) {
 			iclick.Action ();
 		}
 	}

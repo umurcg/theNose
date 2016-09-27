@@ -8,7 +8,7 @@ public class ClickTrigger: MonoBehaviour {
     GameObject player;
     NavMeshAgent agent;
 
-    bool isInTrigger = false;
+    public bool isInTrigger = false;
     bool isMoving = false;
 
 
@@ -41,10 +41,14 @@ public class ClickTrigger: MonoBehaviour {
     void Update()
     {
 
-		if (Vector3.Distance (player.transform.position, transform.position)<radius) {
+		if (Input.anyKeyDown && isMoving) {
+			isMoving = false;
+		}
+
+		if (Vector3.Distance (player.transform.position, transform.position) < radius) {
 			if (isMoving) {
 
-				agent.Stop();
+				agent.Stop ();
 
 
 				mouseLookScript.LookTo (transform.position, 1f);
@@ -52,11 +56,13 @@ public class ClickTrigger: MonoBehaviour {
 
 
 
-				if(iclick!=null)
-				iclick.Action ();
+				if (iclick != null)
+					iclick.Action ();
 			}
 
 			isInTrigger = true;
+		} else {
+			isInTrigger = false;
 		}
 
 
@@ -73,11 +79,12 @@ public class ClickTrigger: MonoBehaviour {
 
                     if (isInTrigger)
                     {
-                            
+						print ("is in treifereknmjfoanfoa");       
 							  
 
 						if(iclick!=null)
 							iclick.Action ();
+						print (transform.name);
 //                            gameObject.GetComponent<SubtitleController>().startSubtitle();
 //                            if (ifDesroyItself)
 //								Destroy(this);
@@ -129,7 +136,7 @@ public class ClickTrigger: MonoBehaviour {
     void OnTriggerExit(Collider other)
     {
         isInTrigger = false;
-		print ("Trigger "+transform.name+" exit");
+		print ("Trigger "+transform.name+" exit ");
     }
 
 
