@@ -129,14 +129,14 @@ public class ClickTrigger: MonoBehaviour {
 
         }
         isInTrigger = true;
-		print ("Trigger "+transform.name+" entered");
+		//print ("Trigger "+transform.name+" entered");
 
     }
 
     void OnTriggerExit(Collider other)
     {
         isInTrigger = false;
-		print ("Trigger "+transform.name+" exit ");
+		//print ("Trigger "+transform.name+" exit ");
     }
 
 

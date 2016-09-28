@@ -1013,6 +1013,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 36763b5e11262b14ba37456ebb49d848, type: 3}
+  factor: 5
+  size: {x: 10, y: 10}
+  way: 0
+  debugShow: 0
 --- !u!114 &273419093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,7 +1632,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
     - target: {fileID: 100000, guid: 6b366ee85be40e4408b4412b232b7d20, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: ActiveObject
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 6b366ee85be40e4408b4412b232b7d20, type: 3}
       propertyPath: m_Name
@@ -2907,6 +2911,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 91b2381d4fec04f409bd811cc1fdfd77, type: 3}
+  factor: 2
+  size: {x: 20, y: 20}
+  way: 1
+  debugShow: 0
 --- !u!1 &734973744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3373,6 +3381,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 36763b5e11262b14ba37456ebb49d848, type: 3}
+  factor: 3
+  size: {x: 15, y: 15}
+  way: 2
+  debugShow: 0
 --- !u!114 &808375021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4368,6 +4380,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 36763b5e11262b14ba37456ebb49d848, type: 3}
+  factor: 5
+  size: {x: 10, y: 10}
+  way: 0
+  debugShow: 0
 --- !u!54 &1213410986
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5099,6 +5115,73 @@ MonoBehaviour:
   ordinal: 2
   canOptimize: 1
   PlaybackMode: 3
+--- !u!1 &1538741881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1538741882}
+  - 222: {fileID: 1538741884}
+  - 114: {fileID: 1538741883}
+  m_Layer: 5
+  m_Name: RawImage
+  m_TagString: ObjectIcon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1538741882
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1538741881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1804396280}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1538741883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1538741881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1538741884
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1538741881}
 --- !u!1 &1546392694
 GameObject:
   m_ObjectHideFlags: 0
@@ -5269,6 +5352,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 343d433117a801c40a793ebb07787e52, type: 3}
+  factor: 4
+  size: {x: 25, y: 25}
+  way: 6
+  debugShow: 0
 --- !u!1 &1612823084
 GameObject:
   m_ObjectHideFlags: 0
@@ -6471,6 +6558,7 @@ RectTransform:
   - {fileID: 1400859838}
   - {fileID: 1712255705}
   - {fileID: 799844267}
+  - {fileID: 1538741882}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_AnchorMin: {x: 0, y: 0}
