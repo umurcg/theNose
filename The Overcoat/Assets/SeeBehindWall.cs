@@ -13,6 +13,10 @@ public class SeeBehindWall : MonoBehaviour {
 	public GameObject[] targetObjects;
 
 
+
+	bool makeTransparentBool=false;
+
+
 	Color color;
 	// Use this for initialization
 
@@ -57,7 +61,13 @@ public class SeeBehindWall : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		rayCast ();
+		if(rayCast() || rayCastTargets()){
+			makeTransparent ();
+		}
+		else{
+			makeSolid ();
+		}
+		
       
 		if (targetObjects.Length > 0)
 			rayCastTargets();
@@ -85,9 +95,9 @@ public class SeeBehindWall : MonoBehaviour {
 
 	}
 
-	void rayCastTargets(){
+	bool rayCastTargets(){
 
-
+		bool b=false;
 		for (int i = 0; i < targetObjects.Length ; i++) {
 
 			RaycastHit hitPoint;
@@ -97,19 +107,17 @@ public class SeeBehindWall : MonoBehaviour {
 				
 				if (hitPoint.transform == transform) {
 					
-					makeTransparent ();
-				} else {
-					makeSolid ();
-				}
-
+					b = true;
+				} 
 			}
 
 		}
+		return b;
 	}
 
 
 
-	void rayCast(){
+	bool rayCast(){
 		
 		RaycastHit hitPoint;
         
@@ -118,12 +126,13 @@ public class SeeBehindWall : MonoBehaviour {
 
 			if (hitPoint.transform == transform) {
 								
-				makeTransparent ();
+				return true;
 			} else {
-				makeSolid ();
+				return false;
 			}
 
 		}
+		return false;
 
 	
   }

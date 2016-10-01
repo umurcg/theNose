@@ -38,15 +38,15 @@ public class BasicCharAnimations : MonoBehaviour {
         float speed =speedFactor* dist / Time.deltaTime;
 
         float rotation = Quaternion.Angle(transform.rotation, lastRotate);
+		//float rotSpeed=speedFactor* rotation / Time.deltaTime;
        // print(rotation);
 
-        if (dist > threshold)
-        {
-            anim.speed = speed;
-            anim.SetBool("Walk", dist > threshold);
+		if (dist > threshold) {
+			anim.speed = speed;
+			anim.SetBool ("Walk", dist > threshold);
             
-            //anim.SetFloat("Blend", 0.5f + rotation);
-        }
+			//anim.SetFloat("Blend", 0.5f + rotation);
+		} 
         else
         {
             anim.SetBool("Walk", false);
@@ -54,6 +54,10 @@ public class BasicCharAnimations : MonoBehaviour {
         }
 
      
+//		else if (rotation > threshold) {
+//			anim.speed = rotSpeed;
+//			anim.SetBool ("Walk", rotation > threshold);
+//		}
 
         lastPosition = transform.position;
         lastRotate = transform.rotation;

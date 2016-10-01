@@ -41,8 +41,17 @@ public class ClickTrigger: MonoBehaviour {
     void Update()
     {
 
+
+
+
+
 		if (Input.anyKeyDown && isMoving) {
 			isMoving = false;
+		} else if (isMoving) {
+			if (agent.destination != transform.position) {
+				agent.destination = transform.position;
+			}
+
 		}
 
 		if (Vector3.Distance (player.transform.position, transform.position) < radius) {
@@ -64,6 +73,8 @@ public class ClickTrigger: MonoBehaviour {
 		} else {
 			isInTrigger = false;
 		}
+
+
 
 
 

@@ -35,6 +35,7 @@ public class RandomWalkBot : MonoBehaviour {
 
 	void WalkIfNotWalking(){
 		if (checkIsMoving () == false) {
+			if (nma.isOnNavMesh)
 			nma.destination = GetARandomTreePos ();
 			timer = waitBetweenWalks;
 		}

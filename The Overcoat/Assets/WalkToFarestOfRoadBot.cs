@@ -42,7 +42,9 @@ public class WalkToFarestOfRoadBot : MonoBehaviour {
 	void WalkToOtherEdge(){
 		if (checkIsMoving () == false) {
 			isMax = !isMax;
-			nma.destination = FarestPoint ();
+			if (nma.isOnNavMesh) {
+				nma.destination = FarestPoint ();
+			}
 			timer = waitBetweenWalks;
 		}
 	}

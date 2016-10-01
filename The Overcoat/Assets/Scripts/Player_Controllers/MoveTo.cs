@@ -24,8 +24,10 @@ public class MoveTo : MonoBehaviour
     void Update()
     {
 
+
         if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.A)|| Input.GetKeyDown(KeyCode.D)|| Input.GetKeyDown(KeyCode.S))
         {
+			if(agent.isOnNavMesh)
             agent.Stop();
         }
 
@@ -33,15 +35,19 @@ public class MoveTo : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
 
-                RaycastHit hit;
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
-                {
-                   
+		
+			RaycastHit[] hits = Physics.RaycastAll (Camera.main.ScreenPointToRay (Input.mousePosition));
+
+			foreach(RaycastHit hit in hits){
+
+
+
                     if (hit.transform.CompareTag("Floor"))
                     {
-                    agent.Resume();
+					
+					agent.Resume();
 
-
+					if(agent.isOnNavMesh)
                     agent.destination = hit.point;
                 
                 }
