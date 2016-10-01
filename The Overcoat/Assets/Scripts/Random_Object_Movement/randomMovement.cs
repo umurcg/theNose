@@ -3,18 +3,18 @@ using System.Collections;
 
 public class randomMovement : MonoBehaviour {
     public float speed;
-    SphereCollider sc;
     Vector3 destination;
     Quaternion targetRotation;
     // Use this for initialization
     bool changeDirection;
     Vector3 tempPosition;
     float timer;
+	SphereCollider sc;
 
 	void Awake () {
-        sc = GetComponentInParent<SphereCollider>();
+
         changeDirection = true;
-        
+		sc = transform.parent.GetComponent<SphereCollider> ();
     }
 	
 	// Update is called once per frame
@@ -24,7 +24,7 @@ public class randomMovement : MonoBehaviour {
         {
             timer = 0;
             tempPosition = transform.position;
-            destination = Random.insideUnitSphere * sc.radius + sc.gameObject.transform.position;
+			destination = Random.insideUnitSphere * sc.radius*2+ transform.parent.position;
             targetRotation = Quaternion.LookRotation(destination - transform.position);
             changeDirection = false;
         }

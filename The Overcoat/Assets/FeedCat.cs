@@ -24,7 +24,8 @@ public class FeedCat : MonoBehaviour, IClickAction {
 	}
 
 	public void Action(){
-		
+
+
 		playerNose.SetActive (false);
 		nose.SetActive (true);
 		rwb.enabled = false;

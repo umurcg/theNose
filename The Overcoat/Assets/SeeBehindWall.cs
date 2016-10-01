@@ -11,10 +11,10 @@ public class SeeBehindWall : MonoBehaviour {
 	Renderer rend;
 	public float speed=0.01f;
 	public GameObject[] targetObjects;
-
-
-
 	bool makeTransparentBool=false;
+
+
+
 
 
 	Color color;
