@@ -3,13 +3,18 @@ using System.Collections;
 
 public class LerpToPosition : MonoBehaviour {
 
-	bool lerp=false;
+
 	public Transform aim;
 	public float speed = 1;
+	public float middleHeight=0;
+	public float tolerance=0.5f;
 	Vector3 initialPosition;
+
 	float ratio=0;
 	//TODO
 	public bool rotate;
+	public float rotateSpeed=30f;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -18,23 +23,53 @@ public class LerpToPosition : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	 
-		if (lerp) {
-
-			ratio += Time.deltaTime*speed;
-			transform.position = Vector3.Lerp (initialPosition, aim.position, ratio);
-			print (ratio);
-			if (ratio>=1) {
-				ratio = 0;
-				lerp = false;
-
-			}
-		}
+//		if (lerp) {
+//
+//			ratio += Time.deltaTime*speed;
+//			transform.position = Vector3.Lerp (initialPosition, aim.position, ratio);
+//           
+//			if (middleHeight > 0) {
+//				if(ratio<0.5f){
+//					transform.position = new Vector3(transform.position.x, Mathf.Lerp (initialPosition.y, middleHeight, ratio * 2),transform.position.z);
+//				}else{
+//					transform.position = new Vector3(transform.position.x, Mathf.Lerp (initialPosition.y, middleHeight, 2-2*ratio),transform.position.z);
+//				}
+//			}
+//
+//			if (ratio>=1) {
+//				ratio = 0;
+//				lerp = false;
+//				transform.position = aim.position;
+//
+//			}
+//		}
 	}
 
-	public void Lerp(){
+	public IEnumerator Lerp(){
+		
 		initialPosition = transform.position;
-		lerp = true;
+		print (initialPosition.y);
 		ratio = 0;
+
+		while (Vector3.Distance (transform.position, aim.transform.position)>tolerance) {
+			ratio += Time.deltaTime * speed;
+
+			transform.position = Vector3.Lerp (initialPosition, aim.transform.position, ratio);
+			if (middleHeight != 0) {
+				if (ratio < 0.5f) {
+					transform.position = new Vector3 (transform.position.x, initialPosition.y+Mathf.Sin (Mathf.Lerp (0, Mathf.PI/2, ratio * 2)) * middleHeight, transform.position.z);
+
+									} else {
+					transform.position = new Vector3 (transform.position.x,initialPosition.y+ Mathf.Sin (Mathf.Lerp (0, Mathf.PI/2, 2-2*ratio)) * middleHeight, transform.position.z);
+				}
+			}
+
+			if (rotate)
+				transform.Rotate (new Vector3 ( Time.deltaTime*rotateSpeed, Time.deltaTime*rotateSpeed,  Time.deltaTime*rotateSpeed));
+	//		print (Vector3.Distance (transform.position, aim.transform.position));
+			yield return null;
+
+		}
 
 	}
 }

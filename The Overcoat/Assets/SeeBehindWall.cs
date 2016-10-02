@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 
 public class SeeBehindWall : MonoBehaviour {
-	Material originalMat;
-	public Material transparent;
+	public Material originalMat;
+	public Material globalTrans;
+	Material transparent;
 	GameObject player;
 	bool isTransparent=false;
 	Renderer rend;
@@ -21,22 +22,37 @@ public class SeeBehindWall : MonoBehaviour {
 	// Use this for initialization
 
 
-	void Start () {
+	void Awake () {
 
 
 		player = GameObject.FindGameObjectWithTag ("Player");
+	    rend = GetComponent<Renderer> ();
+		rend.material = globalTrans;
+		createTransparent ();
 
 
-		rend = GetComponent<Renderer> ();
-		originalMat = rend.material;
 		color.r = 1;
 		color.g = 1;
 		color.b = 1;
 	}
 
+
+	void createTransparent(){
+
+
+		transparent = rend.material;
+//		transparent = rend.material;
+//		transparent.SetFloat("_Mode", 3);
+//		transparent.EnableKeyword ("_NORMALMAP");
+//		transparent.EnableKeyword ("_ALPHAPREMULTIPLY_ON");
+	
+	
+	}
+
 	void makeTransparent(){
 		if (isTransparent == false) {
 			isTransparent = true;
+
 
 
 			color.a = 1;
@@ -67,11 +83,7 @@ public class SeeBehindWall : MonoBehaviour {
 		else{
 			makeSolid ();
 		}
-		
-      
-		if (targetObjects.Length > 0)
-			rayCastTargets();
-			
+					
 
 		if (isTransparent && color.a != 0) {
 			color.a -= Time.deltaTime * speed;
@@ -95,44 +107,58 @@ public class SeeBehindWall : MonoBehaviour {
 
 	}
 
+    
+	bool isWallBetweenCameraAndTarget(Transform target){
+		RaycastHit[] hits = Physics.RaycastAll (Camera.main.transform.position, target.transform.position - Camera.main.transform.position);
+		for (int i = 0; i < hits.Length; i++) {
+			if (hits [i].transform == transform)
+				return true;
+		}
+		return false;
+
+	}
+
 	bool rayCastTargets(){
 
-		bool b=false;
 		for (int i = 0; i < targetObjects.Length ; i++) {
 
-			RaycastHit hitPoint;
-	
+//			RaycastHit hitPoint;
+//	
+//
+//			if (Physics.Raycast (Camera.main.transform.position, targetObjects[i].transform.position - Camera.main.transform.position, out hitPoint)) {
+//				
+//				if (hitPoint.transform == transform) {
+//					
+//					b = true;
+//				} 
+//			}
 
-			if (Physics.Raycast (Camera.main.transform.position, targetObjects[i].transform.position - Camera.main.transform.position, out hitPoint)) {
-				
-				if (hitPoint.transform == transform) {
-					
-					b = true;
-				} 
-			}
+			if (isWallBetweenCameraAndTarget (targetObjects [i].transform))
+				return true;
 
 		}
-		return b;
+		return false;
 	}
 
 
 
 	bool rayCast(){
 		
-		RaycastHit hitPoint;
-        
-	
-		if (Physics.Raycast (Camera.main.transform.position, player.transform.position - Camera.main.transform.position, out hitPoint)) {
-
-			if (hitPoint.transform == transform) {
-								
-				return true;
-			} else {
-				return false;
-			}
-
-		}
-		return false;
+//		RaycastHit hitPoint;
+//        
+//	
+//		if (Physics.Raycast (Camera.main.transform.position, player.transform.position - Camera.main.transform.position, out hitPoint)) {
+//
+//			if (hitPoint.transform == transform) {
+//								
+//				return true;
+//			} else {
+//				return false;
+//			}
+//
+//		}
+//		return false;
+		return isWallBetweenCameraAndTarget(player.transform);
 
 	
   }
