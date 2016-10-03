@@ -18,6 +18,7 @@ namespace CinemaDirector{
 		public void Action(){
 			if (cs != null) {
 				cs.Play ();
+		
 			}
 		}
 	

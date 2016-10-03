@@ -8,9 +8,11 @@ namespace CinemaDirector
     /// </summary>
     [CutsceneItemAttribute("Navigation", "Set Destination", CutsceneItemGenre.ActorItem)]
     public class SetDestinationEvent : CinemaActorEvent
+
     {
         // The destination target
         public Vector3 target;
+		public GameObject AimObject;
 
         /// <summary>
         /// Trigger this event and set a new destination.
@@ -21,7 +23,11 @@ namespace CinemaDirector
             NavMeshAgent agent = actor.GetComponent<NavMeshAgent>();
             if (agent != null)
             {
-                agent.SetDestination(target);
+				if (AimObject != null) {
+					agent.SetDestination (AimObject.transform.position);
+				} else {
+					agent.SetDestination (target);
+				}
             }
         }
     }

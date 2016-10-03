@@ -11,10 +11,11 @@ namespace CinemaDirector
         public GameObject parent;
         public override void Trigger(GameObject actor)
         {
-            if (actor != null && parent != null)
-            {                
-                actor.transform.parent = parent.transform;                
-            }
+			if (actor != null && parent != null) {                
+				actor.transform.parent = parent.transform;                
+			} else if (actor!=null&&parent == null) {
+				actor.transform.parent = null;
+			}
         }
 
         public override void Reverse(GameObject actor)

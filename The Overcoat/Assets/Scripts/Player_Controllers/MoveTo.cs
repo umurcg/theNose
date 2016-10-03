@@ -6,6 +6,10 @@ public class MoveTo : MonoBehaviour
 {
     //public GameObject prefab;
     NavMeshAgent agent;
+	public GameObject[] aims;
+	public bool keyListen=true;
+
+	public bool debug;
 
     
     void Awake()
@@ -21,40 +25,53 @@ public class MoveTo : MonoBehaviour
 	public void Stop(){
 		agent.Stop ();
 	}
+
+
+	public void setDestination(int aim){
+
+		agent.Resume ();
+		agent.destination = aims[aim].transform.position;
+
+	}
+
     void Update()
-    {
+	{
 
+		if (debug) {
+			setDestination (0);
+			debug = false;
+		}
 
-        if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.A)|| Input.GetKeyDown(KeyCode.D)|| Input.GetKeyDown(KeyCode.S))
-        {
-			if(agent.isOnNavMesh)
-            agent.Stop();
-        }
+		if(keyListen){
+		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.S)) {
+			if (agent.isOnNavMesh)
+				agent.Stop ();
+		}
 
     
-            if (Input.GetMouseButtonDown(0))
-            {
+		if (Input.GetMouseButtonDown (0)) {
 
 		
 			RaycastHit[] hits = Physics.RaycastAll (Camera.main.ScreenPointToRay (Input.mousePosition));
 
-			foreach(RaycastHit hit in hits){
+			foreach (RaycastHit hit in hits) {
 
 
 
-                    if (hit.transform.CompareTag("Floor"))
-                    {
+				if (hit.transform.CompareTag ("Floor")) {
 					
-					agent.Resume();
+					agent.Resume ();
 
-					if(agent.isOnNavMesh)
-                    agent.destination = hit.point;
+					if (agent.isOnNavMesh)
+						agent.destination = hit.point;
                 
-                }
-                    //       Instantiate(prefab, hit.transform.position, Quaternion.identity);
+				}
+				//       Instantiate(prefab, hit.transform.position, Quaternion.identity);
 
     
-            }
-        }
-    }
+			}
+		}
+    
+	}
+	}
 }

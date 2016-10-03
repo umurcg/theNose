@@ -9,17 +9,17 @@ public class PlayerComponentController : MonoBehaviour {
 	NavMeshAgent nma;
 	public void StopToWalk(){
 		moveto.Stop ();
-		moveto.enabled = false;
+		moveto.keyListen = false;
 		cck.enabled = false;
 		cl.enabled = false;
 		cc.enabled = false;
-		nma.enabled = false;
+		//nma.enabled = false;
 
 	}
 
 	public void ContinueToWalk(){
-		nma.enabled = true;
-		moveto.enabled = true;
+		//nma.enabled = true;
+		moveto.keyListen = true;
 		cck.enabled = true;
 		cl.enabled = true;
 
