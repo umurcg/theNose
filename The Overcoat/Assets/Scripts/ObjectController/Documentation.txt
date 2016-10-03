@@ -36,3 +36,60 @@ _Dependent to: RigidBody
 _param Vector3 force: Force that will be applied.
 
 This script aplies uncontionus force on object.
+
+_CollectableObject.cs
+_Dependent to: 
+
+This script enable player to collect parent object with mouse click.
+Collected objects saved to a static List of this class.
+If "Hand On" is enabled then collected object attached to hands of player.
+
+
+_ObjectUncollectTrigger.cs
+_Dependent to: _CollectableObject.cs
+
+This script enable playter to uncollect game object (added to script in editor) that is saved to List of collected objects.
+
+_EnableAndDisableRigidBody
+Dependent to: _Rigidbody
+
+This scripts enables and disables rb. It has public methods enable and disable.
+
+_LerpToPosition: aim
+
+This scripts moves object to aim gameObject position. It can rotate object and can make projectile movement.
+
+_ObjectChildSpawn: prefabObj
+
+This scripts instantiates prefabObj as a child of owner obj.	
+
+_RandomWalkBot.cs
+Dependent to: RoadObject, NavMeshAgent
+
+This script makes object randomly walk on RoadObject. It generates random position on road and set agent destination to that position when object finish its path. WaitbetweenWalks makes object wait when it finish its path before starting to new path. Tolerance affects finish condition of obj.
+Also interruptAndWaşlAgain can be called outside to change destination of object from outside.
+
+_SeeBehindWall.cs
+Dependent to: Renderer, Material
+This scripts makes transparent objects that are between camera and target object or player. For usage originalMaterial and tranparent material must be assigned. Also target objects must assign too.
+
+_SpawnBotsOnTheRoad.cs
+Dependent to: NavMeshAgent
+
+This scripts spawns assigned prefabs randomly in random position. Number of spawn can be assigned with spawnNumber parameter. Also if prefab includes NavMeshAgent it arrange its speed randomly between min and max speed.
+
+_SpawnObjectInSphere.cs
+Dependent to: SphereCollider, randomMovement
+
+This script spawns prefab with a numberOfSpawn times in sphere collider in random position. If child has randomMovement script it adjust its speed with speed parameter.
+
+_SplashWhenHitSomehing
+Dependent to: ParticleSystemObject, ParticleSystem
+
+This scripts gets collision points when an object collides with it and moves particleSystem to that point. After movement it plays particle system one time.
+
+_WalkToFarestOfRoadBot
+Dependent to: NavMeshAgent, RoadObject
+
+This scripts moves obj on road in one axis from end to end. It is similar to RandomWalkBot script.
+
