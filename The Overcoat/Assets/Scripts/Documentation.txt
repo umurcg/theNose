@@ -16,7 +16,10 @@ It stops main character with using _PlayerComponentController.
 If you add MoveToHere script to same gameObject then it moves the player (or object that owner of entered collider) specified position.
 If you check one time use boolean then it will disable its functionality when it is used first time.
 
-Audio
+_RotationAnimation.cs 
+_Dependent to: Animator
+
+This script trigger set Rotation float of AC according to rotation of object.Audio
 These scripts controles audio of game.
 
 _MumbleWhileSpeaking
@@ -32,23 +35,12 @@ _Dependent to:
 
 This script makes camera to follow the target object.
 
-Collectable_Objects
-These scripts makes objects collectable by player.
+Cutscene_Scripts
 
-_CollectableObject.cs
-_Dependent to: 
+_CutsceneTriggerViaAction
+_Dependent to: _IClickAction.cs
 
-This script enable player to collect parent object with mouse click.
-Collected objects saved to a static List of this class.
-If "Hand On" is enabled then collected object attached to hands of player.
-
-
-_ObjectUncollectTrigger.cs
-_Dependent to: _CollectableObject.cs
-
-This script enable playter to uncollect game object (added to script in editor) that is saved to List of collected objects.
-
-Image _Controllers
+This script activates Cutscene cs when Action function called.Image _Controllers
 These scripts controls 2d images that is appear on screen.
 
 _changeTransparency.cs
@@ -57,13 +49,14 @@ This script changes transperency of 2d image.
 It is written for controlling 2d image from Cinema Suit
 
 _CursorIamgeScript.cs
-_Dependent to:
+_Dependent to: Player(Owner)
 This script changes mouse image according to hitted object. 
 If object is note an active object, default image will be shown.
 
 _MouseTexture.cs
 _Dependent to:
 
+(For now this script in texture folder due to easiness.)
 This holds mouse textures in active objects.
 
 Mesh_Modifier
@@ -76,11 +69,6 @@ _To do: Split functionalities to different scripts.
 This script enables player to remove squares from mesh of object with clicks.
 It also adds a texture on mesh randomely.
 When all squares deleted it calls a cinema director cutscene.
-
-_ChangeKeyShapesWithMouse
-_Dependent to: SkinnedMeshRenderer
-
-This script enables player to change blend key of object with mouse position.
 
  _VertexFollower
  _Dependent to: MeshFilter
@@ -98,7 +86,91 @@ This script enable player to drag object with mouse.
 _FollowCamera.cs
 _Dependent to: Main Camera
 
-This script force a generic game object to follow camera translation.  If initial camera position isn't Vector3(0,0,0) then it uses Main Camera position for finding reference. Player_Controllers
+This script force a generic game object to follow camera translation.  If initial camera position isn't Vector3(0,0,0) then it uses Main Camera position for finding reference. 
+
+_ChangeKeyShapesWithMouse
+_Dependent to: SkinnedMeshRenderer
+
+This script enables player to change blend key of object with mouse position.
+
+_ChangeMaterial
+_Dependent to: Material, Renderer
+
+This script changes material of object. It gets the new material from public list. It basically changes to next material from List. If current material is last one then it turns to first Material of List.
+
+_KeySliderCompeletly
+_Dependent to: SkinnedMeshRenederer,
+
+This script increases blend key to 100 or decreases to 0.
+
+_MaterialPropertyAutomaticSlider
+_Dependent to: Material
+
+This script increases and decreases a porperty of material contionusly.
+
+_Throw
+_Dependent to: RigidBody
+_param Vector3 force: Force that will be applied.
+
+This script aplies uncontionus force on object.
+
+_CollectableObject.cs
+_Dependent to: 
+
+This script enable player to collect parent object with mouse click.
+Collected objects saved to a static List of this class.
+If "Hand On" is enabled then collected object attached to hands of player.
+
+
+_ObjectUncollectTrigger.cs
+_Dependent to: _CollectableObject.cs
+
+This script enable playter to uncollect game object (added to script in editor) that is saved to List of collected objects.
+
+_EnableAndDisableRigidBody
+Dependent to: _Rigidbody
+
+This scripts enables and disables rb. It has public methods enable and disable.
+
+_LerpToPosition: aim
+
+This scripts moves object to aim gameObject position. It can rotate object and can make projectile movement.
+
+_ObjectChildSpawn: prefabObj
+
+This scripts instantiates prefabObj as a child of owner obj.	
+
+_RandomWalkBot.cs
+Dependent to: RoadObject, NavMeshAgent
+
+This script makes object randomly walk on RoadObject. It generates random position on road and set agent destination to that position when object finish its path. WaitbetweenWalks makes object wait when it finish its path before starting to new path. Tolerance affects finish condition of obj.
+Also interruptAndWaşlAgain can be called outside to change destination of object from outside.
+
+_SeeBehindWall.cs
+Dependent to: Renderer, Material
+This scripts makes transparent objects that are between camera and target object or player. For usage originalMaterial and tranparent material must be assigned. Also target objects must assign too.
+
+_SpawnBotsOnTheRoad.cs
+Dependent to: NavMeshAgent
+
+This scripts spawns assigned prefabs randomly in random position. Number of spawn can be assigned with spawnNumber parameter. Also if prefab includes NavMeshAgent it arrange its speed randomly between min and max speed.
+
+_SpawnObjectInSphere.cs
+Dependent to: SphereCollider, randomMovement
+
+This script spawns prefab with a numberOfSpawn times in sphere collider in random position. If child has randomMovement script it adjust its speed with speed parameter.
+
+_SplashWhenHitSomehing
+Dependent to: ParticleSystemObject, ParticleSystem
+
+This scripts gets collision points when an object collides with it and moves particleSystem to that point. After movement it plays particle system one time.
+
+_WalkToFarestOfRoadBot
+Dependent to: NavMeshAgent, RoadObject
+
+This scripts moves obj on road in one axis from end to end. It is similar to RandomWalkBot script.
+
+Player_Controllers
 These scripts controls main player object's movement, rotations and scripts.
 
 _CharacterControllerKeyboard.cs
@@ -135,7 +207,10 @@ _Dependent to:
 
 This script calls TriggerAction from IClickTrigger interface when player object enter parent collider.
 
-Random_Object_Movement
+_SpaceTrigger.cs
+_Dependet to: IClickAcrion.cs, Collider
+
+This scripts call Action function of iclikcAction interface when player fires Interaction axis while player is in collider.Random_Object_Movement
 _randomMovement.cs
 _Dependent to:
 
@@ -153,7 +228,24 @@ After it enables it script is disabled.
 
 _NoseClickAndDrag.cs
 _Dependent to: _ClickAndDrag.cs, Bread(sibling object), _ChangeKeyShapesWithMouse, SkinnedMeshRenderer, MeshFilter
-This script is subclass of ClickAndDrag class. It is modifies drag method for Nose extract game.Subtitles
+This script is subclass of ClickAndDrag class. It is modifies drag method for Nose extract game.
+
+_ChangeSceneFromDoor.cs
+_Dependent to: _ChangeScene, Collider, _Door
+This script loads another scene when sibling objects key is 100 and object's collider is entered.
+
+_CatAttackToPlayer.cs
+_Dependentto: Player
+This script controls cat attack game. 	It has jump and looktoPLayer methods that transforms cat dynamically during runtime.
+
+_DrawerScript.cs
+Dependent to: Player, Player Animator Controller, _PCC, Door, _ObjectChildSpawn
+This script controls drawer in IvanHouse scene. When clicked nose is packaged and door is activated.
+
+_FruitStandGame.cs
+//TODO
+
+Subtitles
 These scripts controls the subtitles.
 
 _ClickSubtitle.cs

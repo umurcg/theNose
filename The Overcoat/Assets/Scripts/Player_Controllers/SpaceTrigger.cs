@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpaceTrigger : MonoBehaviour {
 	IClickAction iclick;
-	bool colliding;
+	public bool colliding;
 	// Use this for initialization
 	void Start () {
 		iclick = GetComponent<IClickAction> ();
