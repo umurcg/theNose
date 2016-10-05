@@ -8,3 +8,7 @@ Some ScreenShot from development:
 ![alt tag](https://github.com/umurcg/theNose/blob/master/Images/City.png)
 ![alt tag](https://github.com/umurcg/theNose/blob/master/Images/IvanHouseSS.png)
 ![alt tag](https://github.com/umurcg/theNose/blob/master/Images/Scene1SS.png)
+![alt tag](https://github.com/umurcg/theNose/blob/master/Images/bridgeSS.png)
+![alt tag](https://github.com/umurcg/theNose/blob/master/Images/characters.png)
+![alt tag](https://github.com/umurcg/theNose/blob/master/Images/icon.png)
+![alt tag](https://github.com/umurcg/theNose/blob/master/Images/policeman.png)
