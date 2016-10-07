@@ -2,6 +2,11 @@
 using System.Collections;
 using UnityEngine.UI;
 
+
+//Dependent to: Player(Owner)
+//This script changes mouse image according to hitted object. 
+//If object is note an active object, default image will be shown.
+
 public class CursorImageScript : MonoBehaviour {
 
     //public float xOffset, yOffset = 10;
@@ -50,6 +55,9 @@ public class CursorImageScript : MonoBehaviour {
 
 
     }
+
+    
+
 
 	bool checkAvaiblity(){
 	 return	mt.enabled;

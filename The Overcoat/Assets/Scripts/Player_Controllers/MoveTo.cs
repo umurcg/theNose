@@ -51,25 +51,27 @@ public class MoveTo : MonoBehaviour
     
 		if (Input.GetMouseButtonDown (0)) {
 
-		
-			RaycastHit[] hits = Physics.RaycastAll (Camera.main.ScreenPointToRay (Input.mousePosition));
 
-			foreach (RaycastHit hit in hits) {
+                //RaycastHit[] hits = Physics.RaycastAll (Camera.main.ScreenPointToRay (Input.mousePosition));
 
 
+                //	foreach (RaycastHit hit in hits) {
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+                {
 
-				if (hit.transform.CompareTag ("Floor")) {
-					
-					agent.Resume ();
+                    if (hit.transform.CompareTag("Floor"))
+                    {
 
-					if (agent.isOnNavMesh)
-						agent.destination = hit.point;
-                
-				}
-				//       Instantiate(prefab, hit.transform.position, Quaternion.identity);
+                        agent.Resume();
 
+                        if (agent.isOnNavMesh)
+                            agent.destination = hit.point;
+
+                    }
+                    //       Instantiate(prefab, hit.transform.position, Quaternion.identity);
+                }
     
-			}
 		}
     
 	}

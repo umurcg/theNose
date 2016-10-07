@@ -20,6 +20,7 @@ namespace CinemaDirector
             if (cutscene != null)
             {
                 cutscene.Pause();
+                
             }
         }
     }

@@ -26,7 +26,7 @@ public class PauseCSWhileWalking : MonoBehaviour {
 				prevLocation = transform.position;
 				yield return null;
 			}
-			print ("fuck");
+
 			cs.Play ();
 	}
 }

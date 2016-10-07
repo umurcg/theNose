@@ -18,7 +18,7 @@ public class SeeBehindWallver2 : MonoBehaviour {
 	public float speed=0.01f;
 	public GameObject[] targetObjects;
 	bool makeTransparentBool=false;
-
+    
 
 
 
@@ -29,7 +29,7 @@ public class SeeBehindWallver2 : MonoBehaviour {
 
 	void Start () {
 
-
+        
 		player = GameObject.FindGameObjectWithTag ("Player");
 
 

@@ -3,22 +3,27 @@ using System.Collections;
 using UnityEditor;
 using CinemaDirector.Helpers;
 
-namespace CinemaDirector{
-[CustomEditor (typeof(createAndAddSubtitles))]
-public class CreateSubtitleEditor : Editor {
+namespace CinemaDirector
+{
+    [CustomEditor(typeof(DivideSubtitles))]
+    public class CreateSubtitleEditor : Editor
+    {
 
-	// Use this for initialization
-	public override void OnInspectorGUI(){
-		DrawDefaultInspector ();
+        // Use this for initialization
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
 
-		createAndAddSubtitles script = (createAndAddSubtitles)target;
+            DivideSubtitles script = (DivideSubtitles)target;
 
-		if(GUILayout.Button("Create and Add Subtitles")){
-			script.createAndAdd();
-		}
+            if (GUILayout.Button("Divide"))
+            {
+                script.Divide();
+            }
 
-	
 
 
-	}
-	}}
+
+        }
+    }
+}
