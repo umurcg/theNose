@@ -1041,6 +1041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2427471405521784eb014e1a2e7c2a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliding: 0
 --- !u!114 &273419095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2203,6 +2204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15e71be475a54a4aae9fe9d52bc64d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aims: []
+  debug: 0
 --- !u!143 &553012568
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3409,6 +3412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2427471405521784eb014e1a2e7c2a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliding: 0
 --- !u!1 &829878935 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100004, guid: 7c6e1180ec3c29e48aedd5a438c3ab01, type: 3}
@@ -4477,6 +4481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1000011761002840, guid: 84269040cee05324a9f3e17dfacbc7a2, type: 2}
+  localPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1260042200
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,7 +4938,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ShadowRadius: 0
@@ -4944,10 +4949,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467346527}
-  m_LocalRotation: {x: 0.42560798, y: 0.04407666, z: 0.27566856, w: 0.86076826}
-  m_LocalPosition: {x: 2.53, y: 11.86, z: -4.38}
+  m_LocalRotation: {x: 0.39275196, y: 0.0929136, z: 0.22234784, w: 0.8875102}
+  m_LocalPosition: {x: -14.89, y: 13.12, z: -11.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40.979, y: 26.621002, z: 38.547}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
@@ -5290,6 +5295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2427471405521784eb014e1a2e7c2a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliding: 0
 --- !u!114 &1605889006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5546,6 +5552,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firetime: 1.3091397
   target: {x: -2.48, y: 0.16, z: 0.4}
+  AimObject: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1617629266
 GameObject:
   m_ObjectHideFlags: 0
@@ -5588,6 +5596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firetime: 1.3440493
   target: {x: -2.48, y: 0.16, z: 2.81}
+  AimObject: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1632904377
 GameObject:
   m_ObjectHideFlags: 0
