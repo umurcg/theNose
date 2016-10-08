@@ -27,6 +27,7 @@ public class PauseCSWhileWalking : MonoBehaviour {
 				yield return null;
 			}
 
+      
 			cs.Play ();
 	}
 }

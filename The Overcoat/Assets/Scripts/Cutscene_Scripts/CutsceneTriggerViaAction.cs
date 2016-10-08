@@ -4,6 +4,7 @@ using System.Collections;
 namespace CinemaDirector{
    public class CutsceneTriggerViaAction : MonoBehaviour, IClickAction {
 		public Cutscene cs;
+  
 
 	// Use this for initialization
 	    void Start () {
@@ -18,7 +19,8 @@ namespace CinemaDirector{
 		public void Action(){
 			if (cs != null) {
 				cs.Play ();
-		
+                transform.parent.gameObject.SetActive(false);
+                Destroy(this);
 			}
 		}
 	

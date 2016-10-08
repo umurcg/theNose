@@ -7,7 +7,7 @@ public class MoveTo : MonoBehaviour
     //public GameObject prefab;
     NavMeshAgent agent;
 	public GameObject[] aims;
-	public bool keyListen=true;
+
 
 	public bool debug;
 
@@ -42,11 +42,11 @@ public class MoveTo : MonoBehaviour
 			debug = false;
 		}
 
-		if(keyListen){
+	
 		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.S)) {
 			if (agent.isOnNavMesh)
 				agent.Stop ();
-		}
+		
 
     
 		if (Input.GetMouseButtonDown (0)) {

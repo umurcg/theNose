@@ -13,6 +13,7 @@ namespace CinemaDirector
         // The destination target
         public Vector3 target;
 		public GameObject AimObject;
+        public Vector3 offset;
 
         /// <summary>
         /// Trigger this event and set a new destination.
@@ -24,7 +25,7 @@ namespace CinemaDirector
             if (agent != null)
             {
 				if (AimObject != null) {
-					agent.SetDestination (AimObject.transform.position);
+					agent.SetDestination (AimObject.transform.position-offset);
 				} else {
 					agent.SetDestination (target);
 				}

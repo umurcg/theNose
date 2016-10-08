@@ -2,10 +2,14 @@
 using System.Collections;
 using UnityEngine.UI;
 
+
 public class SubtitleController : MonoBehaviour {
     public string[] subtitleTexts;
+    public string AllSubtitles;
+
     public GameObject subtitle;
     Text text;
+    
 
 	PlayerComponentController pcc;
 
@@ -16,14 +20,43 @@ public class SubtitleController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         text = subtitle.GetComponent<Text>();
+        if (text == null)
+        {
+            print("PUT THE SUBTITLE YOU FAGGOT");
+        }
         index = -1;
 
 		pcc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerComponentController>();
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void AllToArray()
+    {
+        string[] subts = AllSubtitles.Split('\n');
+
+        string[] z = new string[subtitleTexts.Length+subts.Length];
+        subtitleTexts.CopyTo(z, 0);
+        subts.CopyTo(z, subtitleTexts.Length);
+        subtitleTexts = z;
+        
+
+
+    }
+
+    public void ArrayToAll()
+    {
+
+        foreach (string s in subtitleTexts)
+        {
+            AllSubtitles = AllSubtitles + s + "\n";
+
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+      //  print("index: "+index+"array: "+subtitleTexts.Length);
 
         if (index != -1)
         {
@@ -32,15 +65,24 @@ public class SubtitleController : MonoBehaviour {
                 if (Input.GetMouseButtonDown(0))
                 {
                     index++;
+                    
                    
                     if (index < subtitleTexts.Length)
                         text.text = subtitleTexts[index];
                 }
             }
+            
             else
             {
                 text.text = "";
 				pcc.ContinueToWalk ();
+
+                ISubtitleFinishFunction sff = GetComponent<ISubtitleFinishFunction>();
+                if (sff != null)
+                {
+                    sff.finishFunction();
+                }
+                    
 
                 if (ifDesroyItself)
                 {
@@ -52,6 +94,7 @@ public class SubtitleController : MonoBehaviour {
 
 	}
 
+
    public void startSubtitle()
     {
  
@@ -60,4 +103,6 @@ public class SubtitleController : MonoBehaviour {
 		pcc.StopToWalk ();
 
     }
+
+
 }

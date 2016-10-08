@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11488796}
   - 114: {fileID: 11441660}
   - 222: {fileID: 22272566}
-  - 114: {fileID: 11443390}
+  - 114: {fileID: 114000014207623770}
   m_Layer: 0
   m_Name: Model
   m_TagString: ActiveObject
@@ -32,17 +32,20 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 96a77aed599a54d4aab2be5c0951473c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -87,20 +90,9 @@ MonoBehaviour:
   subtitleTexts:
   - 'Ivan: Naber'
   - 'Ivan: Selam'
+  AllSubtitles: 
   subtitle: {fileID: 0}
   ifDesroyItself: 1
---- !u!114 &11443390
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 105954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7829894525938df43a6418f47c9d004a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: 69bca295b21fce74a9b100d74bece294, type: 3}
 --- !u!114 &11488796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,7 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcaaadf11a1806048b156d4ba7ccdbd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ifDesroyItself: 1
+  isInTrigger: 0
+  radius: 5
 --- !u!135 &13576580
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -140,6 +133,7 @@ RectTransform:
   m_LocalRotation: {x: 0.000000115202326, y: 0.7071067, z: 0.7071068, w: -0.00000011520231}
   m_LocalPosition: {x: 0, y: 0, z: 3.63}
   m_LocalScale: {x: 0.41702121, y: 0.41702121, z: 0.41702121}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -159,3 +153,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 105954}
   m_IsPrefabParent: 1
+--- !u!114 &114000014207623770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

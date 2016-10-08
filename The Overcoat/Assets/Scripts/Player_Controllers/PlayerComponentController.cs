@@ -8,8 +8,8 @@ public class PlayerComponentController : MonoBehaviour {
 	CharacterController cc;
 	NavMeshAgent nma;
 	public void StopToWalk(){
-		moveto.Stop ();
-		moveto.keyListen = false;
+        moveto.enabled = false;
+
 		cck.enabled = false;
 		cl.enabled = false;
 		cc.enabled = false;
@@ -18,8 +18,8 @@ public class PlayerComponentController : MonoBehaviour {
 	}
 
 	public void ContinueToWalk(){
-		//nma.enabled = true;
-		moveto.keyListen = true;
+        //nma.enabled = true;
+        moveto.enabled = true;
 		cck.enabled = true;
 		cl.enabled = true;
 

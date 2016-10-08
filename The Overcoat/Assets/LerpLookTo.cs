@@ -11,7 +11,7 @@ public class LerpLookTo : MonoBehaviour {
 	Quaternion aimRot;
 	float ratio;
 
-	public bool debug=false;
+	//public bool debug=false;
 
 	// Use this for initialization
 	void Start () {
@@ -20,10 +20,10 @@ public class LerpLookTo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (debug) {
-			StartCoroutine ("LookToLerp");
-			debug = false;
-		}
+	//	if (debug) {
+	//		StartCoroutine ("LookToLerp");
+	//		debug = false;
+	//	}
 	}
 
 	public IEnumerator LookToLerp(){

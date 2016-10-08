@@ -2,7 +2,7 @@
 using System.Collections;
 namespace CinemaDirector
 {
-    public class PausePlayCS : MonoBehaviour
+    public class PausePlayCS : MonoBehaviour, ISubtitleFinishFunction
     {
         public Cutscene cs;
         // Use this for initialization
@@ -25,13 +25,27 @@ namespace CinemaDirector
         
         }
 
-        public void Play()
+        //This method is for subtitles. When a subtitle controller finishes his job, it calls this function. 
+        //This function enables cutscene to continue when subtitle is finished.
+        public void finishFunction()
         {
-       
-        if(cs!=null)
-         cs.Play();
+            
+            Play();
 
         }
+
+        public void Play()
+        {
+
+            if (cs != null)
+            {
+                cs.Play();
+            }else
+            {
+                print("PUT THE CUTSCENE FAGGOT!");
+            }
+
+        } 
 
 
     }

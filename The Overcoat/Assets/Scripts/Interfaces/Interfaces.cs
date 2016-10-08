@@ -14,3 +14,21 @@ public interface IEnterTrigger{
 	void TriggerAction(Collider  col);
 
 }
+
+public interface ISubtitleTrigger
+{
+
+    void callSubtitleWithIndex(int index);
+    void callSubtitle();
+
+}
+
+
+
+public interface ISubtitleFinishFunction
+{
+
+    //This method called when subtitle finishes its job.
+    void finishFunction();
+
+}

@@ -19,9 +19,11 @@ namespace CinemaDirector
         {
             if (cutscene != null)
             {
+                print("STOP");
                 cutscene.Pause();
                 
             }
+     
         }
     }
 }

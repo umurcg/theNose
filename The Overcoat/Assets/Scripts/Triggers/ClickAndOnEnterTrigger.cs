@@ -61,8 +61,9 @@ public class ClickAndOnEnterTrigger : MonoBehaviour {
             {
                 if (go.tag == "Player")
                 {
-                    
                     ic.Action();
+                    this.enabled = false;
+                
 
                 }
 

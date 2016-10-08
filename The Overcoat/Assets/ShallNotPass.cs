@@ -1,15 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+
+
+//This script force to player to turn and go back.
+//It is an obstacle for player to prevent it to reach disabled areas.
+//While it turns back it also provide a subtitle.
+
+
 public class ShallNotPass : MonoBehaviour
 {
+
 
     public string message;
     public GameObject subtitle;
     public float duration = 10;
     public float speed = 1;
     public float subtitleWait = 3;
+    public float waitBeforeMove = 3;
     bool hasStartedCouretine= false;
+
     // Use this for initialization
     void Start()
     {
@@ -32,6 +42,7 @@ public class ShallNotPass : MonoBehaviour
                 StartCoroutine(InvokeSubtitle(subtitle,message));
 
             }
+           
             StartCoroutine(Rotate(col.gameObject,180f));
 
             //deneme(col.gameObject);
@@ -53,12 +64,24 @@ public class ShallNotPass : MonoBehaviour
         t.text = "";
     }
 
+    
+
     IEnumerator Rotate(GameObject go,float angle)
     {
         PlayerComponentController pcc = go.GetComponent<PlayerComponentController>();
         CharacterController rb = go.GetComponent<CharacterController>();
+        
+
         if (pcc != null)
             pcc.StopToWalk();
+
+        //Wait
+        while (waitBeforeMove > 0)
+        {
+            waitBeforeMove -= Time.deltaTime;
+            yield return null;
+        }
+
         float ratio = 0;
         Vector3 initialRot = go.transform.eulerAngles;
         while (ratio < 1)
