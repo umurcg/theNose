@@ -15,6 +15,9 @@ public interface IEnterTrigger{
 
 }
 
+
+
+
 public interface ISubtitleTrigger
 {
 

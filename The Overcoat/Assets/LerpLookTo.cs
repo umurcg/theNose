@@ -27,13 +27,15 @@ public class LerpLookTo : MonoBehaviour {
 	}
 
 	public IEnumerator LookToLerp(){
-		Vector3 localAim = aim;
+		Vector3 localAim = transform.position+aim;
 		if (aimObject != null) {
 			localAim = aimObject.transform.position;
 		}
-	
+        localAim.y = transform.position.y;
+
+
 		initialRot = transform.rotation;
-		aimRot = Quaternion.LookRotation (localAim);
+		aimRot = Quaternion.LookRotation (localAim-transform.position);
 		ratio = 0;
 	
 	
@@ -45,6 +47,6 @@ public class LerpLookTo : MonoBehaviour {
 			yield return null;
 		}
 		transform.rotation = aimRot;
-	
+	    
 	}
 }

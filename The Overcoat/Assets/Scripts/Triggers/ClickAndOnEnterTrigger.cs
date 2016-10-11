@@ -62,8 +62,8 @@ public class ClickAndOnEnterTrigger : MonoBehaviour {
                 if (go.tag == "Player")
                 {
                     ic.Action();
-                    this.enabled = false;
-                
+                    //this.enabled = false;
+                    Destroy(this.gameObject);
 
                 }
 

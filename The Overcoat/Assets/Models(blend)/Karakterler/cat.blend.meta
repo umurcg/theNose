@@ -60,6 +60,7 @@ ModelImporter:
     7400006: TurnLeft
     7400008: Walking_001
     7400010: Walking_002
+    7400012: Smell
     9500000: //RootNode
     13700000: Cylinder_001
   materials:
@@ -84,10 +85,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Default Take
-      takeName: Default Take
+      name: Smell
+      takeName: Smell
       firstFrame: 0
-      lastFrame: 249
+      lastFrame: 146
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -106,7 +107,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.7853395
+        functionName: Lerp
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.81826705
+        functionName: Play
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

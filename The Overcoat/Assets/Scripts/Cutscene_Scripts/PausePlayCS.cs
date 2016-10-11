@@ -29,7 +29,7 @@ namespace CinemaDirector
         //This function enables cutscene to continue when subtitle is finished.
         public void finishFunction()
         {
-            
+          //  print("finish");
             Play();
 
         }

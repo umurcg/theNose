@@ -80,6 +80,7 @@ public class SubtitleController : MonoBehaviour {
                 ISubtitleFinishFunction sff = GetComponent<ISubtitleFinishFunction>();
                 if (sff != null)
                 {
+                    //print("finishFunct");
                     sff.finishFunction();
                 }
                     

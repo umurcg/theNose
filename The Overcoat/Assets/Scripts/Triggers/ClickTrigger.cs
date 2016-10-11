@@ -95,7 +95,7 @@ public class ClickTrigger: MonoBehaviour {
 
 						if(iclick!=null)
 							iclick.Action ();
-						print (transform.name);
+			//			print (transform.name);
 //                            gameObject.GetComponent<SubtitleController>().startSubtitle();
 //                            if (ifDesroyItself)
 //								Destroy(this);

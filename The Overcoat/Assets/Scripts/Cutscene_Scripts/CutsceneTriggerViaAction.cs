@@ -18,8 +18,9 @@ namespace CinemaDirector{
       
 		public void Action(){
 			if (cs != null) {
+                print("ACTİON");
 				cs.Play ();
-                transform.parent.gameObject.SetActive(false);
+              //  transform.parent.gameObject.SetActive(false);
                 Destroy(this);
 			}
 		}

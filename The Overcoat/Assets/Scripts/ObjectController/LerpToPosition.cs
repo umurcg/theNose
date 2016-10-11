@@ -10,6 +10,9 @@ public class LerpToPosition : MonoBehaviour {
 	public float tolerance=0.5f;
 	Vector3 initialPosition;
 
+    public float forward;
+    public float right;
+
 	float ratio=0;
 	//TODO
 	public bool rotate;
@@ -48,13 +51,15 @@ public class LerpToPosition : MonoBehaviour {
 	public IEnumerator Lerp(){
 		
 		initialPosition = transform.position;
-		print (initialPosition.y);
+	//	print (initialPosition.y);
 		ratio = 0;
 
-		while (Vector3.Distance (transform.position, aim.transform.position)>tolerance) {
+        Vector3 aimPos = aim.transform.position + aim.transform.forward*forward + aim.transform.right*right;
+
+		while (Vector3.Distance (transform.position, aimPos)>tolerance) {
 			ratio += Time.deltaTime * speed;
 
-			transform.position = Vector3.Lerp (initialPosition, aim.transform.position, ratio);
+			transform.position = Vector3.Lerp (initialPosition, aimPos, ratio);
 			if (middleHeight != 0) {
 				if (ratio < 0.5f) {
 					transform.position = new Vector3 (transform.position.x, initialPosition.y+Mathf.Sin (Mathf.Lerp (0, Mathf.PI/2, ratio * 2)) * middleHeight, transform.position.z);

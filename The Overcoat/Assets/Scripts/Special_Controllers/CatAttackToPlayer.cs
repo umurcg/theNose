@@ -47,20 +47,5 @@ public class CatAttackToPlayer : MonoBehaviour {
 
 	}
 
-	public  IEnumerator LookToPlayer(){
-
-		initialRot = transform.rotation;
-		aimRot = Quaternion.LookRotation (player.transform.position-transform.position);
-		ratio = 0;
-		ratio += Time.deltaTime*speed;
-
-		while (Vector3.Distance (transform.rotation.eulerAngles, aimRot.eulerAngles) > rotTolerance) {
-
-
-			transform.rotation = Quaternion.Lerp (initialRot, aimRot, ratio);
-			yield return null;
-		}
-			
-	}
 
 }
