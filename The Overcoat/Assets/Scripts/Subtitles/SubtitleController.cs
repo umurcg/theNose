@@ -74,8 +74,12 @@ public class SubtitleController : MonoBehaviour {
             
             else
             {
+                ClickTrigger.disabled = false;
+    
                 text.text = "";
 				pcc.ContinueToWalk ();
+
+
 
                 ISubtitleFinishFunction sff = GetComponent<ISubtitleFinishFunction>();
                 if (sff != null)
@@ -103,6 +107,7 @@ public class SubtitleController : MonoBehaviour {
         index = 0;
 		pcc.StopToWalk ();
 
+        ClickTrigger.disabled = true;
     }
 
 

@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//_Camera Follower
+//_Dependent to:
+
+//This script makes camera to follow the target object.
+
+
+
 public class CameraFollower : MonoBehaviour {
     public GameObject target;
     public float lookSpeed=3f;

@@ -2,6 +2,13 @@
 using System.Collections;
 
 
+
+//_changeTransparency.cs
+//_Dependent to: 
+//This script changes transperency of 2d image.
+//It is written for controlling 2d image from Cinema Suit
+
+
 public class changeTranparency : MonoBehaviour {
     public float t=1;
     Renderer r;

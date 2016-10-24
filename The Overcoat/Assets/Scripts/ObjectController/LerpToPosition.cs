@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//This script lerp to position.
+
 public class LerpToPosition : MonoBehaviour {
 
 
@@ -12,6 +14,7 @@ public class LerpToPosition : MonoBehaviour {
 
     public float forward;
     public float right;
+    public float up;
 
 	float ratio=0;
 	//TODO
@@ -54,7 +57,7 @@ public class LerpToPosition : MonoBehaviour {
 	//	print (initialPosition.y);
 		ratio = 0;
 
-        Vector3 aimPos = aim.transform.position + aim.transform.forward*forward + aim.transform.right*right;
+        Vector3 aimPos = aim.transform.position + aim.transform.forward*forward + aim.transform.right*right+aim.transform.up*up;
 
 		while (Vector3.Distance (transform.position, aimPos)>tolerance) {
 			ratio += Time.deltaTime * speed;

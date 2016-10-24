@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//This script changes material to another material from list.
+
+
 public class ChangeMaterial : MonoBehaviour {
 	Material originalMat;
 
 	Renderer rend;
 	public List<Material> matList;
-	int index;
+	public int index;
 
 
 	// Use this for initialization
@@ -15,7 +18,7 @@ public class ChangeMaterial : MonoBehaviour {
 		rend = GetComponent<Renderer> ();
 
 		originalMat = rend.material;
-		matList.Add (originalMat);
+		matList.Insert (0,originalMat);
 
 	
 	}
@@ -26,7 +29,7 @@ public class ChangeMaterial : MonoBehaviour {
 	}
 
 	public void change(){
-		if (index < matList.Count) {
+		if (index < matList.Count-1) {
 			index++;
 		} else {
 			index = 0;

@@ -2,6 +2,8 @@
 using System.Collections;
 
 
+//This scripts Divide subtitles and create text generator items under owner object.
+
 namespace CinemaDirector
 {
     public class DivideSubtitles : MonoBehaviour

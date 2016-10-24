@@ -9,14 +9,31 @@ public interface IClickAction{
 
 }
 
+
+public interface ICollectableObjectAction
+{
+    void startingToCollecting();
+    void startingToUncollecting();
+    void finishedToUncollecting();
+}
+
 public interface IEnterTrigger{
 
 	void TriggerAction(Collider  col);
 
 }
 
+//This interface is used to detect is player trying to move.
+public interface ITryingTomove
+{
+    void trying();
 
+}
 
+public interface INearObjectAciton
+{
+    void noAction();
+}
 
 public interface ISubtitleTrigger
 {

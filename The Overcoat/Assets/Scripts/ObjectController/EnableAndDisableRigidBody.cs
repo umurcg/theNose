@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//This script enables and disables rigidbody
+
+
 public class EnableAndDisableRigidBody : MonoBehaviour {
 	Rigidbody rb;
 	public bool gravity;
@@ -25,7 +28,8 @@ public class EnableAndDisableRigidBody : MonoBehaviour {
 	}
 
 	public void disable(){
-		rb.isKinematic = true;
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
 	}
 
 }

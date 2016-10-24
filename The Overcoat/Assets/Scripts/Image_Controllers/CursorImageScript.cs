@@ -12,6 +12,7 @@ public class CursorImageScript : MonoBehaviour {
     //public float xOffset, yOffset = 10;
     public Texture2D defaultTexture;
 	public Texture2D disabled;
+    public Texture2D floor;
 
     RaycastHit lastHit;
 
@@ -22,6 +23,7 @@ public class CursorImageScript : MonoBehaviour {
 	void Awake () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		mt = player.GetComponent < MoveTo> ();
+
 	}
 	
 	// Update is called once per frame
@@ -38,12 +40,19 @@ public class CursorImageScript : MonoBehaviour {
 				Cursor.SetCursor(disabled, Vector2.zero, CursorMode.Auto);
 			}
 
- 
+           if(hit.transform.GetComponent<MouseTexture>()!=null)
 			if (hit.transform.tag == "ActiveObject"&&hit.transform.GetComponent<MouseTexture> ().texture!=null) {
 				
 				Cursor.SetCursor (hit.transform.GetComponent<MouseTexture> ().texture, Vector2.zero, CursorMode.Auto);
 
-			}  else
+			} else if (hit.transform.tag == "Floor")
+            {
+
+                Cursor.SetCursor(floor, Vector2.zero, CursorMode.Auto);
+
+            }
+
+            else
             {
                                 
                 Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
@@ -60,6 +69,7 @@ public class CursorImageScript : MonoBehaviour {
 
 
 	bool checkAvaiblity(){
+     
 	 return	mt.enabled;
 	}
 

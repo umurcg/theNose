@@ -2,8 +2,13 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+//This script change scene to sceneName.
+//Also it is an enter trigger.
+//But dont use it again.
+
 public class ChangeSceneTrigger : MonoBehaviour {
 	public  string sceneName;
+    public int index;
 
 	// Use this for initialization
 	void Start () {
@@ -17,8 +22,20 @@ public class ChangeSceneTrigger : MonoBehaviour {
 
 	public void changeScene(){
 		Debug.Log ("Scene changed.");
-		SceneManager.LoadScene (sceneName);
+
+        if (sceneName != "")
+        {
+            SceneManager.LoadScene(sceneName);
+        }else
+        {
+            changeSceneIndex();
+        }
 	}
+
+    public void changeSceneIndex()
+    {
+        SceneManager.LoadScene(index);
+    }
 
 	public virtual void OnEnterTrigger(){
 		changeScene();

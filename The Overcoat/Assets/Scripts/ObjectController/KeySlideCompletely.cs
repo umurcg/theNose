@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//_KeySliderCompeletly
+//_Dependent to: SkinnedMeshRenederer,
+
+//This script increases blend key to 100 or decreases to 0.
+
+
 public class KeySlideCompletely : MonoBehaviour, IClickAction {
 	public float speed=1;
 	SkinnedMeshRenderer smr;

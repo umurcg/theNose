@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//_ChangeKeyShapesWithMouse
+//_Dependent to: SkinnedMeshRenderer
+
+//This script enables player to change blend key of object with mouse position.
+
 public class ChangeKeyShapesWithMouse : MonoBehaviour {
 
 	SkinnedMeshRenderer smr;

@@ -6,8 +6,11 @@ public class SubtitleFade : MonoBehaviour {
     bool fadedIn=false;
     Color color;
     RawImage ri;
-    float t = 0;
+    public float t = 0;
     public float fadeSpeed=3;
+
+    public float maxTransparency = 0.5f;
+
 	// Use this for initialization
 	void Awake () {
         subt = GetComponentInChildren<Text>();
@@ -18,27 +21,67 @@ public class SubtitleFade : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (subt.text !="" && !fadedIn)
+
+
+        if (subt.text != ""&&color.a!=maxTransparency)
         {
-            t = fadeSpeed * Time.deltaTime;
-            color.a+=Mathf.Lerp(0,0.5f,t);
-         
-            ri.color = color;
-            if (color.a>=0.5)
+            if (color.a > maxTransparency)
             {
-                color.a = 0.5f;
-                fadedIn = true;
+                color.a = maxTransparency;
+                t = 1;
+            }else
+            {
+                t += fadeSpeed * Time.deltaTime;
+                color.a = Mathf.Lerp(0, maxTransparency, t);
             }
-        }  else if (subt.text == "" && fadedIn)
+
+        } else if (subt.text == "" && color.a != 0)
         {
-            t = fadeSpeed * Time.deltaTime;
-            color.a -= Mathf.Lerp(0, 0.5f, t);
-            ri.color = color;
-            if (color.a <=0)
+            if (color.a <0)
             {
                 color.a = 0;
-                fadedIn = false;
+                t = 0;
             }
-        } 
+            else
+            {
+                t -= fadeSpeed * Time.deltaTime;
+                color.a = Mathf.Lerp(0, maxTransparency, t);
+                print(color.a);
+            }
+
+        }
+
+        ri.color = color;
+
+        //if (subt.text !="" && !fadedIn)
+        //{
+        //    t = fadeSpeed * Time.deltaTime;
+        //    color.a+=Mathf.Lerp(0,0.5f,t);
+         
+        //    ri.color = color;
+        //    if (color.a>=0.5)
+        //    {
+        //        color.a = 0.5f;
+        //        fadedIn = true;
+        //    }
+        //}  else if (subt.text == "" && fadedIn)
+        //{
+        //    t = fadeSpeed * Time.deltaTime;
+        //    color.a -= Mathf.Lerp(0, 0.5f, t);
+        //    ri.color = color;
+        //    if (color.a <=0)
+        //    {
+        //        color.a = 0;
+        //        fadedIn = false;
+        //    }
+        //}  else if (subt.text != "" && !fadedIn)
+        //{
+
+
+        //}
+        
+        
+        
+         
 	}
 }

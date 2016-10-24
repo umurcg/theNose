@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//_RotationAnimation.cs
+//_Dependent to: Animator
+
+//This script trigger set Rotation float of AC according to rotation of object.
+
 public class RotationAnimation : MonoBehaviour {
 	Animator ac;
 	Vector3 prevRot;

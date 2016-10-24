@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//_ObjectUncollectTrigger.cs
+//_Dependent to: _CollectableObject.cs
+
+//This script enable playter to uncollect game object (added to script in editor) that is saved to List of collected objects.
+
+
 public class ObjectUncollectTrigger : MonoBehaviour, IClickAction {
 	CollectableObject co;
 	public GameObject obj;

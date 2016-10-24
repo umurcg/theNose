@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+//_SeeBehindWall.cs
+//Dependent to: Renderer, Material
+//This scripts makes transparent objects that are between camera and target object or player.For usage originalMaterial and tranparent material must be assigned.Also target objects must assign too.
 
 public class SeeBehindWall : MonoBehaviour {
 	public Material originalMat;

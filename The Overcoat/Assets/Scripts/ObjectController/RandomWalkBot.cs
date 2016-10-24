@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//_RandomWalkBot.cs
+//Dependent to: RoadObject, NavMeshAgent
+
+//This script makes object randomly walk on RoadObject.It generates random position on road and set agent destination to that position when object finish its path.WaitbetweenWalks makes object wait when it finish its path before starting to new path.Tolerance affects finish condition of obj.
+//Also interruptAndWaşlAgain can be called outside to change destination of object from outside.
+
 public class RandomWalkBot : MonoBehaviour {
 	public GameObject obj;
-	NavMeshAgent nma;
-	Vector3 lastCheckedPos;
-	float timer=0;
+
+	protected NavMeshAgent nma;
+	protected Vector3 lastCheckedPos;
+	protected float timer=0;
+
 	public float waitBetweenWalks;
 	public float tolerance;
 	// Use this for initialization
@@ -15,7 +23,7 @@ public class RandomWalkBot : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 
 		if (timer <= 0) {
 			timer = 0;
@@ -28,12 +36,12 @@ public class RandomWalkBot : MonoBehaviour {
 
 	}
 
-	public void interruptAndWalkAgain(){
+	public virtual void interruptAndWalkAgain(){
 		nma.Stop();
 		WalkIfNotWalking ();
 	}
 
-	void WalkIfNotWalking(){
+	public void WalkIfNotWalking(){
 		if (checkIsMoving () == false) {
 			if (nma.isOnNavMesh)
 			nma.destination = GetARandomTreePos ();
@@ -42,7 +50,7 @@ public class RandomWalkBot : MonoBehaviour {
 	}
 
 
-	bool checkIsMoving(){
+	protected bool checkIsMoving(){
 		if (lastCheckedPos == null) {
 			lastCheckedPos = transform.position;
 			return false;
@@ -57,7 +65,7 @@ public class RandomWalkBot : MonoBehaviour {
 
 	}
 
-    Vector3 GetARandomTreePos(){
+   protected Vector3 GetARandomTreePos(){
 
 		Mesh planeMesh = obj.GetComponent<MeshFilter>().mesh;
 		Bounds bounds = planeMesh.bounds;

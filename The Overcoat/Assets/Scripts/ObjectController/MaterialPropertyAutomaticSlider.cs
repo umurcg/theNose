@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
+//_MaterialPropertyAutomaticSlider
+//_Dependent to: Material
+
+//This script increases and decreases a porperty of material contionusly.
+
 public class MaterialPropertyAutomaticSlider : MonoBehaviour {
 	public Material mat;
 	public float speed=1;

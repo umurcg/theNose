@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+
+//This scripts pause and play cutscene.
+//It can be called from lots of interface. So becareful!!!!
+
 namespace CinemaDirector
 {
-    public class PausePlayCS : MonoBehaviour, ISubtitleFinishFunction
+    public class PausePlayCS : MonoBehaviour, ISubtitleFinishFunction, ITryingTomove, INearObjectAciton
     {
         public Cutscene cs;
         // Use this for initialization
@@ -32,6 +36,16 @@ namespace CinemaDirector
           //  print("finish");
             Play();
 
+        }
+
+       public void noAction()
+        {
+            Play();
+        }
+
+        public void trying()
+        {
+            Play();
         }
 
         public void Play()

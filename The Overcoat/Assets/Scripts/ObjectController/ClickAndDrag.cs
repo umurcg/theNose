@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//_ClickAndDrag.cs
+//_Dependent to:
+
+//This script enable player to drag object with mouse.
+
 public class ClickAndDrag : MonoBehaviour {
 
 	bool touched=false;

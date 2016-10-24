@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//_ObjectChildSpawn: prefabObj
+
+//This scripts instantiates prefabObj as a child of owner obj.
+
 public class ObjectChildSpawn : MonoBehaviour {
 	public Object obj;
 	GameObject spawnedObj;

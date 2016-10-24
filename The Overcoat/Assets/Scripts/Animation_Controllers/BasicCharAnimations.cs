@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//_BasicCharAnimation.cs
+//_Dependent to: 
+
+//This script controls animations of player character.
+//It adjust walking animation according to speed of object.
+//It triggers idle animation when object doesnt move.
+
+
 public class BasicCharAnimations : MonoBehaviour {
-    public float threshold=0.1f;
+    public float threshold=0f;
     Vector3 lastPosition;
     Animator anim;
     AnimationClip walk;
-    public float speedFactor = 1;
+    public float speedFactor = 0.5f;
 
     float angle;
     Quaternion lastRotate;

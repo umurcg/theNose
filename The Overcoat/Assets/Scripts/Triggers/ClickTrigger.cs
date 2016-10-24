@@ -16,8 +16,9 @@ public class ClickTrigger: MonoBehaviour {
     // public static bool isTriggersActive = true;
 
 	public float radius=5f;
-	IClickAction iclick;
-   
+	IClickAction[] iclicks;
+
+    public static bool disabled = false;
 
     // Use this for initialization
     void Start () {
@@ -33,7 +34,7 @@ public class ClickTrigger: MonoBehaviour {
     
 		mouseLookScript = player.GetComponent<CharacterMouseLook> ();
 
-		iclick = GetComponent<IClickAction> ();
+		iclicks = GetComponents<IClickAction> ();
 
     }
 
@@ -41,6 +42,13 @@ public class ClickTrigger: MonoBehaviour {
     void Update()
     {
 
+        //if (disabled&&this.enabled==true)
+        //{
+        //    this.enabled = false;
+        //} else if (disabled ==false&& this.enabled == false)
+        //{
+        //    this.enabled = true;
+        //}
 
 
 
@@ -64,10 +72,8 @@ public class ClickTrigger: MonoBehaviour {
 				isMoving = false;
 
 
-
-				if (iclick != null)
-					iclick.Action ();
-			}
+                callAction();
+            }
 
 			isInTrigger = true;
 		} else {
@@ -90,16 +96,16 @@ public class ClickTrigger: MonoBehaviour {
 
                     if (isInTrigger)
                     {
-						print ("is in treifereknmjfoanfoa");       
-							  
+                        //			print ("is in treifereknmjfoanfoa");       
 
-						if(iclick!=null)
-							iclick.Action ();
-			//			print (transform.name);
-//                            gameObject.GetComponent<SubtitleController>().startSubtitle();
-//                            if (ifDesroyItself)
-//								Destroy(this);
-                        	
+                        callAction();
+
+                        //iclick.Action ();
+                        //			print (transform.name);
+                        //                            gameObject.GetComponent<SubtitleController>().startSubtitle();
+                        //                            if (ifDesroyItself)
+                        //								Destroy(this);
+
 
                     } else if (!isInTrigger)
                     {
@@ -131,12 +137,11 @@ public class ClickTrigger: MonoBehaviour {
             isMoving = false;
 
 
-			if(iclick!=null)
-				iclick.Action ();
-//                gameObject.GetComponent<SubtitleController>().startSubtitle();
-//                if (ifDesroyItself)
-//                    Destroy(gameObject.GetComponent<ScriptClickTrigger>());
-            
+            callAction();
+            //                gameObject.GetComponent<SubtitleController>().startSubtitle();
+            //                if (ifDesroyItself)
+            //                    Destroy(gameObject.GetComponent<ScriptClickTrigger>());
+
 
         }
         isInTrigger = true;
@@ -150,5 +155,24 @@ public class ClickTrigger: MonoBehaviour {
 		//print ("Trigger "+transform.name+" exit ");
     }
 
+
+    void callAction()
+    {
+
+        //if(iclick!=null)
+        //	iclick.Action ();
+
+        if (iclicks != null)
+            foreach (IClickAction ic in iclicks)
+                ic.Action();
+
+        ISubtitleTrigger ist = GetComponent<ISubtitleTrigger>();
+        if (ist != null)
+        {
+            ist.callSubtitle();
+        }
+        
+
+    }
 
 }

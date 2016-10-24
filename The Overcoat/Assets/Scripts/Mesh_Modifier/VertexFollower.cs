@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//_VertexFollower
+//_Dependent to: MeshFilter
+//_Doesn't Work!
+
+// This script force object to follow nearest vertex from parent object.
+
+
 public class VertexFollower : MonoBehaviour {
 
 	int nearestVertex;

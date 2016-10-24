@@ -7,7 +7,7 @@ public class CharacterControllerKeyboard : MonoBehaviour {
 
     public float speed = 3f;
     Vector3 move;
-    public float rotateSpeed = 0.5f;
+    public float rotateSpeed = 3f;
 
 
     void Awake()

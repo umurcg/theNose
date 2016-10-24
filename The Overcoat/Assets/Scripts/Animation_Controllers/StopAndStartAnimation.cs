@@ -1,6 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
+//_StopAndStartTrigger.cs
+//_Depentent to: _PlayerComponentController, AnimationController
+
+//This script stops character movements and triggers an animation of character when one of the Action methods are called.
+//It stops main character with using _PlayerComponentController.
+//If you add MoveToHere script to same gameObject then it moves the player(or object that owner of entered collider) specified position.
+//If you check one time use boolean then it will disable its functionality when it is used first time.
+
+
 public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 	public float getUpTime;
 	Animator objAnim;

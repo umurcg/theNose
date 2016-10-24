@@ -3,6 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+//_RemoveSquares.cs
+//_Dependent to:
+//_To do: Split functionalities to different scripts.
+
+//This script enables player to remove squares from mesh of object with clicks.
+//It also adds a texture on mesh randomely.
+//When all squares deleted it calls a cinema director cutscene.
+
+
+
 namespace CinemaDirector
 {
     

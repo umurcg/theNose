@@ -2,6 +2,13 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//_MumbleWhileSpeaking
+//Dependent To: CharacterSubtitle
+//This script chooses random audio clip from array and play it.
+//It select audio randomly everytime when talking character changes.
+//It uses same logic whit _WhoIsTalking script
+//Therefore it should be attached to CharacterSubtitle object
+
 public class MumbleWhileSpeaking : MonoBehaviour {
 
 	public AudioClip[] mumbles;

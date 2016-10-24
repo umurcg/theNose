@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//_CutsceneTriggerViaAction
+//_Dependent to: _IClickAction.cs
+
+//This script activates Cutscene cs when Action function called.
+
 namespace CinemaDirector{
    public class CutsceneTriggerViaAction : MonoBehaviour, IClickAction {
 		public Cutscene cs;
-  
+        public bool useAgain = false;
+        bool disabled = false;
+        
 
 	// Use this for initialization
 	    void Start () {
@@ -17,13 +25,20 @@ namespace CinemaDirector{
 	    }
       
 		public void Action(){
-			if (cs != null) {
+			if (cs != null && disabled==false) {
                 print("ACTİON");
 				cs.Play ();
               //  transform.parent.gameObject.SetActive(false);
-                Destroy(this);
+                if(useAgain)
+                    disabled=true;
 			}
 		}
+
+        public void enableCS()
+        {
+            disabled = false;
+
+        }
 	
 	}
 }

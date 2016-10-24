@@ -1,6 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
+
+//_CollectableObject.cs
+//_Dependent to: 
+
+//This script enable player to collect parent object with mouse click.
+//Collected objects saved to a static List of this class.
+//If "Hand On" is enabled then collected object attached to hands of player.
+
+
 public class CollectableObject : MonoBehaviour, IClickAction {
 	public static List<GameObject> collected;
 	// Use this for initialization
@@ -86,6 +96,14 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 			placeholder.active =true;
 		}
 
+        //Disable texture
+        transform.tag = "Untagged";
+        MouseTexture mt = GetComponent<MouseTexture>();
+        if (mt != null)
+            mt.checkTag();
+
+        
+
 	}
 
 	public void UnCollect(Vector3 position){
@@ -105,6 +123,11 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 
 		transform.localScale = originalScale;
 
+        if (canBeCollectedAgain == true)
+        {
+            transform.tag = "ActiveObject";
+        }
+            
 	}
 
 	public void Action(){

@@ -62,7 +62,7 @@ public class MoveTo : MonoBehaviour
             RaycastHit hit;
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
                 {
-                //print(hit.transform.name);
+               // print(hit.transform.tag);
                 if (hit.transform.CompareTag("Floor"))
                     {
                     

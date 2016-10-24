@@ -77,10 +77,22 @@ public class MouseTexture : MonoBehaviour {
 
 			active = b;
 
-		}
+        }else
+        {
+            oi.SetActive(false);
+        }
 
 
 	}
+     
+    public void checkTag()
+    {
+        if (this.tag != "ActiveObject")
+        {
+  
+            showIcon(false);
+        }
+    }
 
 	void OnTriggerEnter(Collider col)
 	{

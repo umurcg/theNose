@@ -35,10 +35,15 @@ public class DrawerScript : MonoBehaviour, IClickAction {
 
 				ocs.Spawn ();
 		pcc.ContinueToWalk();
-	
-		door.GetComponent<ChangeMaterial> ().change();
-		door.GetComponent<KeySlideCompletely> ().enabled = true;
-		door.transform.tag = "ActiveObject";
+
+        ActivateAnotherObject.Activate(door);
+        ActivateAnotherObject.Disable(gameObject);
+		//door.GetComponent<ChangeMaterial> ().change();
+		//door.GetComponent<KeySlideCompletely> ().enabled = true;
+  //      door.GetComponent<MouseTexture>().enabled = true;
+  //      door.GetComponent<SpaceTrigger>().enabled = true;
+  //      door.GetComponent<ClickTrigger>().enabled = true;
+		//door.transform.tag = "ActiveObject";
 	    
 	}
 
