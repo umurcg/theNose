@@ -63,6 +63,18 @@ public class SwitchObjects : MonoBehaviour, IClickAction {
 
         if (pcc != null)
             pcc.ContinueToWalk();
+
+        finished();
+    }
+
+    void finished()
+    {
+        //This methods are interface methods. So finished function includes special case methods.
+      IFinishedSwitching[] ifss=  GetComponents<IFinishedSwitching>();
+      foreach (IFinishedSwitching iff in ifss)
+        {
+            iff.finishedSwitching();
+        }
     }
 
 

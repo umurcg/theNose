@@ -2,8 +2,10 @@
 using System.Collections;
 
 //This script sets animation parameter.
+//This script triggers colliding  object's animation.
 
-public class TriggerAnimation : MonoBehaviour , IEnterTrigger{
+
+public class TriggerAnimationColliding : MonoBehaviour , IEnterTrigger{
 
     public enum AnimParameter { Boolean, Trigger};
     public AnimParameter animationParameter;
@@ -12,12 +14,13 @@ public class TriggerAnimation : MonoBehaviour , IEnterTrigger{
     float timer;
 
     bool oneTimeUse = false;
+    
 
     Animator animGlobal;
 
     // Use this for initialization
     void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -76,6 +79,10 @@ public class TriggerAnimation : MonoBehaviour , IEnterTrigger{
         timer = secondTriggerTime;
 
     }
-    
+    public void exitTriggerAction(Collider col)
+    {
+
+    }
+
 
 }

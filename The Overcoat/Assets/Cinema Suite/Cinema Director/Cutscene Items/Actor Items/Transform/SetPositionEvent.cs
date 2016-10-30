@@ -13,6 +13,7 @@ namespace CinemaDirector
     {
         public Vector3 Position;
         public Vector3 InitialPosition;
+        public bool setLocalPosition = false;
 
         [SerializeField]
         private RevertMode editorRevertMode = RevertMode.Revert;
@@ -39,7 +40,14 @@ namespace CinemaDirector
             if (actor != null)
             {
                 InitialPosition = actor.transform.position;
-                actor.transform.position = Position;
+                if (setLocalPosition)
+                {
+                    actor.transform.localPosition = Position;
+                }
+                else
+                {
+                    actor.transform.position = Position;
+                }
             }
         }
 

@@ -44,8 +44,11 @@ public class ObstacleObjectCollectableActionScript : MonoBehaviour, ICollectable
     {
 
         StartCoroutine(DisableAndEnableKinematic());
-
-
+        GameObject player=GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            player.GetComponent<ClickTriggerSingleton>().removeMe(gameObject);
+        }
 
     }
 

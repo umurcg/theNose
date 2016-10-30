@@ -4,9 +4,9 @@ using System.Collections;
 //This script activates another object.
 //It basically enables all the scripts of an object and changes tag to ActiveObbject.
 //It triggered with click or space trigger scripts.
+//Also it changes material if its have changeMaterial script.
 
-
-public class ActivateAnotherObject : MonoBehaviour, IClickAction {
+public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching {
 
     public GameObject go;
 
@@ -27,7 +27,17 @@ public class ActivateAnotherObject : MonoBehaviour, IClickAction {
 
         foreach (MonoBehaviour script in scripts)
         {
+
             script.enabled = false;
+
+
+            if (script is CinemaDirector.CutsceneTriggerViaAction)
+            {
+                CinemaDirector.CutsceneTriggerViaAction ctv = (CinemaDirector.CutsceneTriggerViaAction)(script);
+                ctv.enabledAction = false;
+            }
+
+
 
             if (script is ChangeMaterial)
             {
@@ -50,6 +60,12 @@ public class ActivateAnotherObject : MonoBehaviour, IClickAction {
         {
             script.enabled = true;
 
+            if(script is CinemaDirector.CutsceneTriggerViaAction)
+            {
+                CinemaDirector.CutsceneTriggerViaAction ctv = (CinemaDirector.CutsceneTriggerViaAction)(script);
+                ctv.enabledAction = true;
+            }
+
             if (script is ChangeMaterial)
             {
                 ChangeMaterial cm = (ChangeMaterial)(script);
@@ -66,28 +82,46 @@ public class ActivateAnotherObject : MonoBehaviour, IClickAction {
 
     }
 
-    public void Action()
+    public void ActivateItself()
     {
-        print("activated");
-
-        MonoBehaviour[] scripts = go.GetComponents<MonoBehaviour>();
-
-        foreach(MonoBehaviour script in scripts)
-        {
-            script.enabled = true;
-
-            if(script is ChangeMaterial)
-            {
-                ChangeMaterial cm = (ChangeMaterial)(script);
-                cm.change();
-            }
-
-        }
-
-
-
-        go.transform.tag = "ActiveObject";
-
+        Activate(gameObject);
 
     }
+
+    public void DisableItself()
+    {
+        Disable(gameObject);
+    }
+
+
+    public void finishedSwitching()
+    {
+        DisableItself();
+    }
+
+
+    //public void Action()
+    //{
+    //    print("activated");
+
+    //    MonoBehaviour[] scripts = go.GetComponents<MonoBehaviour>();
+
+    //    foreach(MonoBehaviour script in scripts)
+    //    {
+    //        script.enabled = true;
+
+    //        if(script is ChangeMaterial)
+    //        {
+    //            ChangeMaterial cm = (ChangeMaterial)(script);
+    //            cm.change();
+    //        }
+
+    //    }
+
+
+
+    //    go.transform.tag = "ActiveObject";
+
+
+    //}
 }

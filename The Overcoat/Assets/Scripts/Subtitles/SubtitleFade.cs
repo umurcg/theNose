@@ -46,7 +46,7 @@ public class SubtitleFade : MonoBehaviour {
             {
                 t -= fadeSpeed * Time.deltaTime;
                 color.a = Mathf.Lerp(0, maxTransparency, t);
-                print(color.a);
+           //     print(color.a);
             }
 
         }

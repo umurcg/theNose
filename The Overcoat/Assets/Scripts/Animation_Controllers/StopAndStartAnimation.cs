@@ -93,6 +93,11 @@ public class StopAndStartAnimation : MonoBehaviour , IEnterTrigger,IClickAction{
 
 	}
 
+    public void exitTriggerAction(Collider col)
+    {
+
+    }
+
 	void StopToWalk(){
 		onStop = true;
 		pcc.StopToWalk ();

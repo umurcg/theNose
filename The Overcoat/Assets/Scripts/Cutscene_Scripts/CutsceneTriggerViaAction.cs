@@ -11,27 +11,30 @@ namespace CinemaDirector{
    public class CutsceneTriggerViaAction : MonoBehaviour, IClickAction {
 		public Cutscene cs;
         public bool useAgain = false;
+        public bool enabledAction=true;
         bool disabled = false;
+
         
 
-	// Use this for initialization
-	    void Start () {
-	
-	   }
-	
-	// Update is called once per frame
-	    void Update () {
-	
-	    }
+
       
 		public void Action(){
-			if (cs != null && disabled==false) {
-                print("ACTİON");
-				cs.Play ();
-              //  transform.parent.gameObject.SetActive(false);
-                if(useAgain)
-                    disabled=true;
-			}
+            if (enabledAction)
+            {
+                if (cs != null && disabled == false)
+                {
+                    print("ACTİON");
+                    cs.Play();
+                    //  transform.parent.gameObject.SetActive(false);
+                    if (useAgain)
+                        disabled = true;
+
+
+                    finishedAction();
+                }
+              
+            }
+
 		}
 
         public void enableCS()
@@ -39,6 +42,13 @@ namespace CinemaDirector{
             disabled = false;
 
         }
+
+        public void finishedAction()
+        {
+
+        }
+
+
 	
 	}
 }

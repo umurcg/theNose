@@ -726,7 +726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &205034747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,19 +996,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliding: 0
---- !u!114 &273419095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 273419087}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcaaadf11a1806048b156d4ba7ccdbd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInTrigger: 0
-  radius: 0
 --- !u!64 &273419096
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1981,18 +1968,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
---- !u!64 &553012564
-MeshCollider:
+--- !u!135 &553012564
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 553012562}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 0}
+  m_Radius: 1.3
+  m_Center: {x: 0, y: 0.96, z: 0}
 --- !u!195 &553012565
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2133,6 +2120,19 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 1}
   speed: 2
   rotTolerance: 0
+--- !u!114 &553012575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 553012562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f62fc923a4a78b4ebff21a01cc73694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - ActiveObject
 --- !u!1001 &555600167
 Prefab:
   m_ObjectHideFlags: 0
@@ -3013,19 +3013,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cs: {fileID: 1293160933}
   useAgain: 1
---- !u!114 &725893110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 725893108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcaaadf11a1806048b156d4ba7ccdbd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInTrigger: 0
-  radius: 0
 --- !u!136 &725893111
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3680,19 +3667,6 @@ MonoBehaviour:
   size: {x: 15, y: 15}
   way: 2
   debugShow: 0
---- !u!114 &808375021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 808375014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcaaadf11a1806048b156d4ba7ccdbd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInTrigger: 0
-  radius: 2.5
 --- !u!114 &808375023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5067,19 +5041,6 @@ CapsuleCollider:
   m_Height: 2.1956162
   m_Direction: 1
   m_Center: {x: -0.15440506, y: 9.019967e-10, z: -0.06206906}
---- !u!114 &1213410991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1213410981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcaaadf11a1806048b156d4ba7ccdbd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInTrigger: 0
-  radius: 5
 --- !u!114 &1213410992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6655,7 +6616,7 @@ MonoBehaviour:
   firetime: 9.842163
   Behaviour: {fileID: 553012565}
   editorRevertMode: 0
-  runtimeRevertMode: 0
+  runtimeRevertMode: 1
 --- !u!1 &1605889003 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 6b366ee85be40e4408b4412b232b7d20, type: 3}
@@ -6672,19 +6633,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliding: 0
---- !u!114 &1605889006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1605889003}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcaaadf11a1806048b156d4ba7ccdbd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInTrigger: 0
-  radius: 2
 --- !u!114 &1605889007
 MonoBehaviour:
   m_ObjectHideFlags: 0

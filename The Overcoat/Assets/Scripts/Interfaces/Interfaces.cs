@@ -8,7 +8,10 @@ public interface IClickAction{
 	void Action();
 
 }
-
+public interface IFinishedSwitching
+{
+    void finishedSwitching();
+}
 
 public interface ICollectableObjectAction
 {
@@ -20,6 +23,7 @@ public interface ICollectableObjectAction
 public interface IEnterTrigger{
 
 	void TriggerAction(Collider  col);
+    void exitTriggerAction(Collider col);
 
 }
 

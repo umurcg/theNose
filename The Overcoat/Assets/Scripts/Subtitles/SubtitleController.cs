@@ -77,7 +77,8 @@ public class SubtitleController : MonoBehaviour {
                 ClickTrigger.disabled = false;
     
                 text.text = "";
-				pcc.ContinueToWalk ();
+                if(pcc!=null)
+                pcc.ContinueToWalk ();
 
 
 
@@ -105,7 +106,8 @@ public class SubtitleController : MonoBehaviour {
  
         text.text = subtitleTexts[0];
         index = 0;
-		pcc.StopToWalk ();
+        if (pcc != null)
+            pcc.StopToWalk ();
 
         ClickTrigger.disabled = true;
     }

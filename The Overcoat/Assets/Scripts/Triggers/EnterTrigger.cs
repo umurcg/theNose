@@ -16,25 +16,33 @@ public class EnterTrigger : MonoBehaviour {
 
     void OnTriggerStay(Collider col)
     {
-       // print("staaay");
+     
     }
 
     void OnTriggerEnter(Collider col)
     {
-        print("triggerEnter");
 
-        IClickAction ic=  GetComponent<IClickAction>();
-        if (ic != null)
-        {
-            ic.Action();
-        }
-        else
-        {
+
+        //IClickAction ic=  GetComponent<IClickAction>();
+        //if(ic!=null)
+        //ic.Action();
+        
             
-            IEnterTrigger iet = GetComponent<IEnterTrigger>();
-            iet.TriggerAction(col);
+        IEnterTrigger iet = GetComponent<IEnterTrigger>();
+        if(iet!=null)
+        iet.TriggerAction(col);
 
-        }
+        
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+
+        IEnterTrigger iet = GetComponent<IEnterTrigger>();
+        if (iet != null)
+        iet.exitTriggerAction(col);
+
+
     }
 
 }

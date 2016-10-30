@@ -58,7 +58,7 @@ public class CollectObjectAndDropAnywhere : MonoBehaviour, IClickAction{
 
         if (next == gameObject)
         {
-            print(gameObject.name);
+          //  print(gameObject.name);
             if (Input.GetMouseButtonUp(1) && collected)
             {
                 //   UnCollect(player.transform.position + player.transform.forward * 2);

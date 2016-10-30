@@ -7,8 +7,9 @@ using System.Collections;
 //This script increases blend key to 100 or decreases to 0.
 
 
-public class KeySlideCompletely : MonoBehaviour, IClickAction {
+public class KeySlideCompletely : MonoBehaviour, IClickAction, IEnterTrigger {
 	public float speed=1;
+    public bool withoutClicking = false;
 	SkinnedMeshRenderer smr;
 	float key=0;
 	bool increasing;
@@ -19,6 +20,11 @@ public class KeySlideCompletely : MonoBehaviour, IClickAction {
 		key = smr.GetBlendShapeWeight (0);
 	}
 	
+    public void disableWC()
+    {
+        withoutClicking = false;
+    }
+
 	// Update is called once per frame
 	void Update () {
 		if (increasing) {
@@ -60,6 +66,31 @@ public class KeySlideCompletely : MonoBehaviour, IClickAction {
 	}
 
 	public void Action(){
+     
+        if(!withoutClicking)
 		Slide ();
 	}
+
+   public void Increase()
+    {
+        increasing = true;
+    }
+
+    public void Decrease()
+    {
+        decreasing = true;
+    }
+    
+    public void TriggerAction(Collider col)
+    {
+        if(withoutClicking)
+        Increase();
+    }
+
+    public void exitTriggerAction(Collider col)
+    {
+        if (withoutClicking)
+        Decrease();
+    }
+
 }
