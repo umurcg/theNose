@@ -11,6 +11,7 @@ using System.Collections;
 
 public class BasicCharAnimations : MonoBehaviour {
     public float threshold=0f;
+    public string animName="Walk";
     Vector3 lastPosition;
     Animator anim;
     AnimationClip walk;
@@ -24,12 +25,7 @@ public class BasicCharAnimations : MonoBehaviour {
         anim = GetComponent<Animator>();
         lastPosition = transform.position;
         lastRotate = transform.rotation;
-        //RuntimeAnimatorController ac = anim.runtimeAnimatorController;
-        //for(int i; i < ac.animationClips.Length; i++)
-        //{
-        //    if (ac.animationClips[i].name == "Walk")
-        //        walk = ac.animationClips[i];
-        //}
+
         
         
 
@@ -38,34 +34,25 @@ public class BasicCharAnimations : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-
-
-        
+          
 
         float dist = Vector3.Distance(transform.position, lastPosition);
         float speed =speedFactor* dist / Time.deltaTime;
 
         float rotation = Quaternion.Angle(transform.rotation, lastRotate);
-		//float rotSpeed=speedFactor* rotation / Time.deltaTime;
-       // print(rotation);
+
 
 		if (dist > threshold) {
 			anim.speed = speed;
-			anim.SetBool ("Walk", dist > threshold);
-            
-			//anim.SetFloat("Blend", 0.5f + rotation);
+			anim.SetBool (animName, dist > threshold);
+ 
 		} 
         else
         {
-            anim.SetBool("Walk", false);
+            anim.SetBool(animName, false);
             anim.speed = 1;
         }
 
-     
-//		else if (rotation > threshold) {
-//			anim.speed = rotSpeed;
-//			anim.SetBool ("Walk", rotation > threshold);
-//		}
 
         lastPosition = transform.position;
         lastRotate = transform.rotation;
