@@ -46,7 +46,7 @@ public class CharacterMouseLook : MonoBehaviour {
             RaycastHit hit;
              //   print(nma.velocity );
                 if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && nma.velocity.magnitude<0.001 )
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit,Mathf.Infinity,~(1<<8)))
                 {
 
 

@@ -15,7 +15,7 @@ public class SeeBehindWall : MonoBehaviour {
 	public float speed=0.01f;
 	public GameObject[] targetObjects;
 	bool makeTransparentBool=false;
-
+    bool mouseIsOver = false;
 
 
 
@@ -79,7 +79,7 @@ public class SeeBehindWall : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(rayCast() || rayCastTargets()){
+		if(rayCastTargets()||mouseIsOver){
 			makeTransparent ();
 		}
 		else{
@@ -124,17 +124,6 @@ public class SeeBehindWall : MonoBehaviour {
 
 		for (int i = 0; i < targetObjects.Length ; i++) {
 
-//			RaycastHit hitPoint;
-//	
-//
-//			if (Physics.Raycast (Camera.main.transform.position, targetObjects[i].transform.position - Camera.main.transform.position, out hitPoint)) {
-//				
-//				if (hitPoint.transform == transform) {
-//					
-//					b = true;
-//				} 
-//			}
-
 			if (isWallBetweenCameraAndTarget (targetObjects [i].transform))
 				return true;
 
@@ -146,23 +135,21 @@ public class SeeBehindWall : MonoBehaviour {
 
 	bool rayCast(){
 		
-//		RaycastHit hitPoint;
-//        
-//	
-//		if (Physics.Raycast (Camera.main.transform.position, player.transform.position - Camera.main.transform.position, out hitPoint)) {
-//
-//			if (hitPoint.transform == transform) {
-//								
-//				return true;
-//			} else {
-//				return false;
-//			}
-//
-//		}
-//		return false;
 		return isWallBetweenCameraAndTarget(player.transform);
-
-	
+        	
   }
+
+   void OnMouseEnter()
+    {
+        if (!mouseIsOver)
+            mouseIsOver = true;
+    }
+
+    void OnMouseExit()
+    {
+        if (mouseIsOver)
+            mouseIsOver = false;
+    }
+
 
 }

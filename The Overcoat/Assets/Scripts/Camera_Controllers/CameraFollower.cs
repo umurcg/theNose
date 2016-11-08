@@ -22,7 +22,8 @@ public class CameraFollower : MonoBehaviour {
 	void Update () {
         if (target)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * lookSpeed);
+           transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * lookSpeed);
+           // transform.rotation = Quaternion.LookRotation(target.transform.position);
             transform.position = Vector3.Lerp(transform.position, relativePosition+ target.transform.position, Time.deltaTime * transformSpeed);
         }
         }

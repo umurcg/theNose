@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace CinemaDirector
 {
-    public class PausePlayCS : MonoBehaviour, ISubtitleFinishFunction, ITryingTomove, INearObjectAciton, IFinishedSwitching
+    public class PausePlayCS : MonoBehaviour, ISubtitleFinishFunction, ITryingTomove, INearObjectAciton, IFinishedSwitching ,IEnterTrigger
     {
         public Cutscene cs;
 
@@ -31,6 +31,19 @@ namespace CinemaDirector
             cs.Pause();
         
         }
+
+        public void TriggerAction(Collider col)
+        {
+            Play();
+
+        }
+
+        public void exitTriggerAction(Collider col)
+        {
+
+
+        }
+
 
         //This script called when switchObject funstion finishes its job
         public void finishedSwitching()

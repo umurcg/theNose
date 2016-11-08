@@ -4,7 +4,7 @@ using System.Collections;
 
 public class MoveTo : MonoBehaviour
 {
-    //public GameObject prefab;
+   public GameObject prefab;
     NavMeshAgent agent;
 	public GameObject[] aims;
 
@@ -60,21 +60,22 @@ public class MoveTo : MonoBehaviour
             //	foreach (RaycastHit hit in hits) {
 
             RaycastHit hit;
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit,Mathf.Infinity, ~(1<<8)))
+         
                 {
-               // print(hit.transform.tag);
+                print(hit.transform.name);
                 if (hit.transform.CompareTag("Floor"))
                     {
-                    
 
-
-                    agent.Resume();
+                        agent.Resume();
 
                         if (agent.isOnNavMesh)
                             agent.destination = hit.point;
 
                     }
-                    //       Instantiate(prefab, hit.transform.position, Quaternion.identity);
+            //     Instantiate(prefab, hit.point, Quaternion.identity);
                 }
     
 		}
