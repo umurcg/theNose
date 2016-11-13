@@ -26,12 +26,12 @@ public class EnterTrigger : MonoBehaviour {
         //IClickAction ic=  GetComponent<IClickAction>();
         //if(ic!=null)
         //ic.Action();
-        
-            
-        IEnterTrigger iet = GetComponent<IEnterTrigger>();
-        if(iet!=null)
-        iet.TriggerAction(col);
 
+        if (col.tag == "Player"){
+            IEnterTrigger iet = GetComponent<IEnterTrigger>();
+            if (iet != null)
+                iet.TriggerAction(col);
+        }
         
     }
 

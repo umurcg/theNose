@@ -8,6 +8,12 @@ public interface IClickAction{
 	void Action();
 
 }
+
+public interface IFinishGirlGame
+{
+    void finished();
+
+}
 public interface IFinishedSwitching
 {
     void finishedSwitching();

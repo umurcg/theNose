@@ -65,7 +65,7 @@ public class MoveTo : MonoBehaviour
             if (Physics.Raycast(ray, out hit,Mathf.Infinity, ~(1<<8)))
          
                 {
-                print(hit.transform.name);
+                //print(hit.transform.name);
                 if (hit.transform.CompareTag("Floor"))
                     {
 

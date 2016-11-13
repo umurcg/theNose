@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using CinemaDirector;
 
 //This scripts makes functionality of running from a game object.
 //Normally owner of scripts randomly moves in a circle.
@@ -9,7 +10,7 @@ using System.Collections.Generic;
 //After that change of circle character's speed becomes 5 for 4 seconds.
 
 
-public class RunRandomlyFromObject :RandomWalkBot {
+public class RunRandomlyFromObject: MonoBehaviour {
 
     public GameObject road;
     public GameObject chaser;
@@ -19,16 +20,19 @@ public class RunRandomlyFromObject :RandomWalkBot {
     public float minDist;
     public float newCirclePositionMinDistance;
     public float newCirclePositionMaxDistance;
-
+    public float tolerance = 0.001f;
 
     public float waitForRunFromCircle=2f;
     float timer2;
 
     Vector3 center;
 
+    public float stuckTime = 5f;
     public bool stuck = false;
     float stuckTimer;
-
+    NavMeshAgent nma;
+    float timer;
+    Vector3 lastPos;
 
     bool moving = false;
 
@@ -51,25 +55,64 @@ public class RunRandomlyFromObject :RandomWalkBot {
     }
 
 
-	
-	// Update is called once per frame
-	public override void Update () {
-        moving = checkIsMoving();
+    protected bool checkIsMoving()
+    {
+        if (lastPos == null)
+        {
+            lastPos = transform.position;
+            return false;
+        }
+        else
+        {
+            if (Vector3.Distance(transform.position, lastPos) > tolerance)
+            {
+                lastPos = transform.position;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
+    }
+
+
+    // Update is called once per frame
+    public void Update () {
+        moving = checkIsMoving();
+        //print(moving);
         if (!moving&&!stuck)
         {
             stuck = true;
-            stuckTimer = 2.5f;
+            stuckTimer = stuckTime;
         }
-        if (stuckTimer > 0)
+
+
+        if (stuckTimer > 0&&stuck)
         {
+
+            //print(stuckTimer);
             stuckTimer -= Time.deltaTime;
-            if (stuckTimer <= 0)
+            moving = checkIsMoving();
+
+            if (moving)
             {
                 stuckTimer = 0;
                 stuck = false;
             }
+
+
+            if (stuckTimer <= 0)
+            {
+               
+                    CinemaDirector.PausePlayCS ppcs = GetComponent<CinemaDirector.PausePlayCS>();
+                    if (ppcs)
+                        ppcs.Play();
+                                                   
+            }
         }
+
 
 
         
@@ -96,19 +139,11 @@ public class RunRandomlyFromObject :RandomWalkBot {
             }
         }
 
-        if (timer <= 0)
-        {
-         
-            timer = 0;
-            WalkAroundCenterIfNotWalking();
-        }
-        else
-        {
-            timer -= Time.deltaTime;
-        }
+        WalkAroundCenterIfNotWalking();
 
 
 
+        lastPos = transform.position;
     }
 
 
@@ -133,7 +168,6 @@ public class RunRandomlyFromObject :RandomWalkBot {
                 {
            
                 nma.destination = position;
-                timer = waitBetweenWalks;
                 }
             }
             }
