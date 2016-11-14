@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using MovementEffects;
 
 public class GirlGameController : MonoBehaviour {
 
@@ -79,10 +81,10 @@ public class GirlGameController : MonoBehaviour {
             obstacleTimer = aimObjectTime;
         }
 
-        if (scoreValue < 0)
-        {
-            finish();
-        }
+        //if (scoreValue < 0)
+        //{
+        //    finish();
+        //}
         checkObjInScreen(playerObject);
 
 
@@ -95,7 +97,7 @@ public class GirlGameController : MonoBehaviour {
 
         float width = Vector3.Distance(rightLimit, leftLimit);
 
-        print((Vector3.Distance(leftLimit, obj.transform.position) +" "+ width));
+        //print((Vector3.Distance(leftLimit, obj.transform.position) +" "+ width));
 
         if (Vector3.Distance(leftLimit, obj.transform.position) > width)
         {
@@ -116,8 +118,14 @@ public class GirlGameController : MonoBehaviour {
         score.text = scoreValue.ToString();
     }
 
-    void finish()
+    public IEnumerator<float> _finish(float seconds)
     {
+        while (seconds > 0)
+        {
+            seconds -= Time.deltaTime;
+            yield return 0;
+        }
+
         transform.parent.gameObject.SetActive(false);
     }
 }

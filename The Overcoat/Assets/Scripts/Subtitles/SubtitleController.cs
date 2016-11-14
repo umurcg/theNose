@@ -26,7 +26,10 @@ public class SubtitleController : MonoBehaviour {
         }
         index = -1;
 
-		pcc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerComponentController>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if(player!=null)
+        pcc = player.GetComponent<PlayerComponentController>();
 
     }
 

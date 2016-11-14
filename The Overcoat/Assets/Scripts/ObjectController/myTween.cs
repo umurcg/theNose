@@ -15,7 +15,7 @@ public class myTween : MonoBehaviour {
     //Test
     public GameObject testObject;
     public float s;
-    public bool test = false;
+    //public bool test = false;
     public bool reverse = false;
     public bool mec = false;
     void Awake()
@@ -35,17 +35,17 @@ public class myTween : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (reverse)
-        {
-            reverseChildren();
-            reverse = false;
-        }
-        if (test)
-        {
-            test = false;
-            StartCoroutine(tween(testObject, s));
+        //if (reverse)
+        //{
+        //    reverseChildren();
+        //    reverse = false;
+        //}
+        //if (test)
+        //{
+        //    test = false;
+        //    StartCoroutine(tween(testObject, s));
 
-        }
+        //}
 
         if (mec)
         {
@@ -65,68 +65,114 @@ public class myTween : MonoBehaviour {
     {
 
 
-        if (children.Count == 0)
+        GameObject[] childrenArray;
+
+        if (reverse)
+        {
+            children.Reverse();
+            childrenArray = children.ToArray();
+            children.Reverse();
+        }
+        else
+        {
+            childrenArray = children.ToArray();
+        }
+        float t;
+
+        if (childrenArray.Length == 0)
             yield break;
         int index = 0;
         float ratio = 0;
         Vector3 initialPosition = subject.transform.position;
-        Vector3 aimPosition = children[index].transform.position;
-
+        Vector3 aimPosition = childrenArray[index].transform.position;
+        t = speed / Vector3.Distance(initialPosition, aimPosition);
+        Timing.RunCoroutine(_rotateToPosition(subject, aimPosition, speed, true));
         while (true)
         {
-            ratio += Time.deltaTime * speed;
+            ratio += Time.deltaTime * t;
             subject.transform.position = Vector3.Lerp(initialPosition, aimPosition, ratio);
             if (ratio >= 1)
             {
                 ratio = 0;
                 index++;
                 if (!(index < children.Count))
+                {
+                    Timing.RunCoroutine(_rotateToPosition(subject, childrenArray[index - 1].transform.position + childrenArray[index - 1].transform.forward, t, true));
                     yield break;
+                }
                 subject.transform.position = aimPosition;
                 initialPosition = subject.transform.position;
-                aimPosition = children[index].transform.position;
-
+                aimPosition = childrenArray[index].transform.position;
+                t = speed / Vector3.Distance(initialPosition, aimPosition);
+                Timing.RunCoroutine(_rotateToPosition(subject, aimPosition, t, true));
             }
             yield return 0;
         }
 
 
+
     }
 
 
 
 
-    public IEnumerator tween(GameObject subject, float speed)
+    public IEnumerator<float> _rotateToPosition(GameObject subject, Vector3 aim, float time, bool horizontal)
     {
 
-    
-        if (children.Count == 0)
-            yield break;
-        int index = 0;
+        if (horizontal)
+            aim.y = subject.transform.position.y;
+
+
+        Quaternion initialRot = subject.transform.rotation;
+        Quaternion aimRot = Quaternion.LookRotation(aim - subject.transform.position);
         float ratio = 0;
-        Vector3 initialPosition = subject.transform.position;
-        Vector3 aimPosition = children[index].transform.position;
 
-        while (true)
+
+        while (ratio < 1)
         {
-            ratio += Time.deltaTime * speed;
-            subject.transform.position = Vector3.Lerp(initialPosition, aimPosition, ratio);
-            if (ratio >= 1)
-            {
-                ratio = 0;
-                index++;
-                if (!(index < children.Count))
-                    yield break;
-                subject.transform.position = aimPosition;
-                initialPosition = subject.transform.position;
-                aimPosition = children[index].transform.position;
 
-            }
-            yield return null;
+            ratio += Time.deltaTime * time;
+            subject.transform.rotation = Quaternion.Lerp(initialRot, aimRot, ratio);
+
+            yield return 0;
         }
-
+        subject.transform.rotation = aimRot;
 
     }
+
+
+    //public IEnumerator tween(GameObject subject, float speed)
+    //{
+    //    float s;
+    
+    //    if (children.Count == 0)
+    //        yield break;
+    //    int index = 0;
+    //    float ratio = 0;
+    //    Vector3 initialPosition = subject.transform.position;
+    //    Vector3 aimPosition = children[index].transform.position;
+    //    s = Vector3.Distance(initialPosition, aimPosition) * speed;
+    //    while (true)
+    //    {
+    //        ratio += Time.deltaTime * s;
+    //        subject.transform.position = Vector3.Lerp(initialPosition, aimPosition, ratio);
+    //        if (ratio >= 1)
+    //        {
+    //            ratio = 0;
+    //            index++;
+    //            if (!(index < children.Count))
+    //                yield break;
+    //            subject.transform.position = aimPosition;
+    //            initialPosition = subject.transform.position;
+    //            aimPosition = children[index].transform.position;
+    //            s = Vector3.Distance(initialPosition, aimPosition) * speed;
+
+    //        }
+    //        yield return null;
+    //    }
+
+
+    //}
 
 
 
