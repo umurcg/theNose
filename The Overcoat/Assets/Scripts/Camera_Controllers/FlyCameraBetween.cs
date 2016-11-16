@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using MovementEffects;
 
 //This script is based on LerpThroughObjects algorithms.
 //It lerps through objects to last objects of aim.
@@ -80,11 +82,12 @@ public class FlyCameraBetween : MonoBehaviour {
 
            
         index = reversed ? index-1 : index+1;
-        if (index == Aims.Length || index < 0)
+        if (index >= Aims.Length || index < 0)
         {
+            //print("dailed to find next index");
             return false;
         }
-
+        //print("index is: "+index + " length: " + Aims.Length);
         aimedPosition = Aims[index].transform.position;
         initialPosition = transform.position;
         ratio = 0;
@@ -104,7 +107,7 @@ public class FlyCameraBetween : MonoBehaviour {
     }
 
 
-    public IEnumerator LerpThrough(bool reversed)
+    public IEnumerator<float> LerpThrough(bool reversed)
     {
         //Rotation declare
 
@@ -171,6 +174,7 @@ public class FlyCameraBetween : MonoBehaviour {
             if (Vector3.Distance(transform.position, aimedPosition) < tolerance)
             {
                 transform.position = aimedPosition;
+                //print("Find next position");
                 if (findNextAim(reversed) == false)
                 {
 
@@ -181,13 +185,13 @@ public class FlyCameraBetween : MonoBehaviour {
                         if (cf)
                             cf.enabled = true;
                     }
-                    print("finished");
+                    //print("finished");
                     yield break;
                 }
 
             }
            
-            yield return null;
+            yield return 0;
 
         }
         
@@ -199,7 +203,8 @@ public class FlyCameraBetween : MonoBehaviour {
 
         if (cf)
             cf.enabled = false;
-        StartCoroutine(LerpThrough(false));
+        Timing.RunCoroutine(LerpThrough(false));
+    ;
 
     }
 
@@ -208,8 +213,8 @@ public class FlyCameraBetween : MonoBehaviour {
 
         if (cf)
             cf.enabled = enabled;
-        print("reversefd");
-        StartCoroutine(LerpThrough(true));
+        //print("reversefd");
+        Timing.RunCoroutine(LerpThrough(true));
 
     }
 

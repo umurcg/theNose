@@ -17,6 +17,18 @@ public class AreThereAnyObjectInPath : MonoBehaviour {
         //if (debugObject != null)
         //    print(AreThereAny(transform, debugObject.transform.position));
 	}
+    static public bool AreThere(Transform tr,Vector3 pos, float capsuleRadius,string tag)
+    {
+        bool result = false;
+        Collider[] cols = Physics.OverlapCapsule(pos, tr.position, capsuleRadius);
+
+        foreach (Collider col in cols)
+        {
+            result = result || col.tag == tag;
+        }
+
+        return result;
+    }
 
     public bool AreThereAny(Transform tr, Vector3 pos)
     {
