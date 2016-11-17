@@ -118,9 +118,10 @@ public class RunRandomlyFromObject: MonoBehaviour {
         if (IsAreaIncludesObject.howManyObjectsInSphere(transform.position, randomCircleRadius, finishObjectTag) == maxNumber)
         {
 
-            CinemaDirector.PausePlayCS ppcs = GetComponent<CinemaDirector.PausePlayCS>();
-            if (ppcs)
-                ppcs.Play();
+            //CinemaDirector.PausePlayCS ppcs = GetComponent<CinemaDirector.PausePlayCS>();
+            //if (ppcs)
+            //    ppcs.Play();
+            print("catched");
             this.enabled = false;
         }
 
@@ -134,7 +135,9 @@ public class RunRandomlyFromObject: MonoBehaviour {
             nma.Stop();
             nma.Resume();
             nma.speed = 8f;
-            WalkAroundCenterIfNotWalking();
+            nma.SetDestination(center);
+            //WalkAroundCenterIfNotWalking();
+
 
             timer2 = waitForRunFromCircle;
         }
@@ -149,7 +152,7 @@ public class RunRandomlyFromObject: MonoBehaviour {
             }
         }
 
-        WalkAroundCenterIfNotWalking();
+        //WalkAroundCenterIfNotWalking();
 
 
 

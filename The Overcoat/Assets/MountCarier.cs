@@ -57,7 +57,7 @@ public class MountCarier : MonoBehaviour {
         Timing.RunCoroutine(_unmount());
     }
 
-    IEnumerator<float> _mount()
+    public IEnumerator<float> _mount()
     {
 
 

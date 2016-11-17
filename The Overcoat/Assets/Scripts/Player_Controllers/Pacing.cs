@@ -105,7 +105,7 @@ public class Pacing : MonoBehaviour {
         return true;
     }
 
-    void finishPacing()
+    public void finishPacing()
     {
         if(pcc!=null)
         pcc.ContinueToWalk();

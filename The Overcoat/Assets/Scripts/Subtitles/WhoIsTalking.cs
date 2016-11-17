@@ -46,11 +46,18 @@ public class WhoIsTalking : MonoBehaviour {
 			//TO DO ???
 		} else
         {
-			
-            baloon.SetActive(true);
-            Vector2 ActualPosition =  camera.WorldToScreenPoint(gameObjects[text.text.Split(':')[0].Replace(" ",string.Empty).Replace("-",string.Empty)].transform.position);
-            Vector2 newPosition = new Vector2(ActualPosition.x + Screen.width / 32, ActualPosition.y + Screen.height / 16);
-            baloon.transform.position =newPosition;
+            string key = text.text.Split(':')[0].Replace(" ", string.Empty).Replace("-", string.Empty);
+
+            if (gameObjects.ContainsKey(key)) {
+                baloon.SetActive(true);
+                Vector2 ActualPosition = camera.WorldToScreenPoint(gameObjects[key].transform.position);
+                Vector2 newPosition = new Vector2(ActualPosition.x + Screen.width / 32, ActualPosition.y + Screen.height / 16);
+                baloon.transform.position = newPosition;
+            }
+            else
+            {
+                print(key + " isn't included in dictionary.");
+            }
         }
 
 	}
