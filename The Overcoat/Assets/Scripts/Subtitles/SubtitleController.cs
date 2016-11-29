@@ -14,11 +14,13 @@ public class SubtitleController : MonoBehaviour {
 	PlayerComponentController pcc;
 
     public bool ifDesroyItself = true;
+    public bool releaseAfterSub = true;
     int index;
 
 
     // Use this for initialization
     void Start () {
+
         text = subtitle.GetComponent<Text>();
         if (text == null)
         {
@@ -67,6 +69,7 @@ public class SubtitleController : MonoBehaviour {
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+
                     index++;
                     
                    
@@ -80,7 +83,7 @@ public class SubtitleController : MonoBehaviour {
                 ClickTrigger.disabled = false;
     
                 text.text = "";
-                if(pcc!=null)
+                if(pcc!=null&&releaseAfterSub)
                 pcc.ContinueToWalk ();
 
 

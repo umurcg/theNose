@@ -18,7 +18,7 @@ public class HideWhileTransforming : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print(Vector3.Distance(subject.transform.position, pos));
+        //print(Vector3.Distance(subject.transform.position, pos));
         if (Vector3.Distance(subject.transform.position, pos) > tolerance)
         {
             if (enable)

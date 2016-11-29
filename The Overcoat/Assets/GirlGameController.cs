@@ -15,7 +15,8 @@ public class GirlGameController : MonoBehaviour {
     public GameObject obstacle;
     public GameObject aimObject;
     public GameObject scoreObj;
-    
+    public GameObject city2GameController;
+
     public float obstacleDelay=5f;
     RectTransform rt;
     Text score;
@@ -29,7 +30,7 @@ public class GirlGameController : MonoBehaviour {
         score = scoreObj.GetComponent<Text>();
         rt = GetComponent<RectTransform>();
         playerObject = transform.GetChild(0).gameObject;
-        playerObject.transform.position= Camera.main.ScreenToWorldPoint(new Vector3(30, 0, 0));
+        //playerObject.transform.position= Camera.main.ScreenToWorldPoint(new Vector3(300, 0, 0));
 
     }
 	
@@ -126,6 +127,16 @@ public class GirlGameController : MonoBehaviour {
             yield return 0;
         }
 
+        City2GameController c2gc = city2GameController.GetComponent<City2GameController>();
+        Timing.RunCoroutine(c2gc._noseGoneLost());
+
         transform.parent.gameObject.SetActive(false);
     }
+
+
+    public void setKovalevPositionToInitialPosition()
+    {
+
+    }
+
 }

@@ -15,8 +15,15 @@ public class CameraFollower : MonoBehaviour {
     Vector3 relativePosition;
 	// Use this for initialization
 	void Awake () {
+    
+        if (target == null)
+        {
+            //myValue = anyFloat > 0 ? 1f : 2f;
+            target= (gameObject== transform.parent.GetChild(0).gameObject) ? transform.parent.GetChild(1).gameObject: transform.parent.GetChild(0).gameObject;
+        }
         relativePosition = transform.position - target.transform.position;
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

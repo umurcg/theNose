@@ -45,8 +45,10 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         //    currentIndex++;
         //}
         SubtitleController scs = GetComponent<SubtitleController>();
-        scs.startSubtitle();
-
+        if (scs)
+        {
+            scs.startSubtitle();
+        }
     }
 
 

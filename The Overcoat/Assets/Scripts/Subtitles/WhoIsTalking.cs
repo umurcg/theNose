@@ -56,7 +56,13 @@ public class WhoIsTalking : MonoBehaviour {
             }
             else
             {
-                print(key + " isn't included in dictionary.");
+                print(key + " isn't included in dictionary.\n Current key are followings:");
+
+                foreach (KeyValuePair<string, GameObject> entry in gameObjects)
+                {
+                    print(entry.Key);
+                }
+
             }
         }
 

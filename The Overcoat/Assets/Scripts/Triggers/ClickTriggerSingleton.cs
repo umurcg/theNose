@@ -124,10 +124,18 @@ public class ClickTriggerSingleton : MonoBehaviour {
             callAction(aim);
             yield break;
         }
-        
-  
-        walkToTarget(aim.transform.position);
 
+
+        IClickActionDifferentPos icadp = aim.GetComponent<IClickActionDifferentPos>();
+        if (icadp!=null)
+        {
+            walkToTarget(icadp.giveMePosition());
+        }
+        else
+        {
+
+            walkToTarget(aim.transform.position);
+        }
         //Here is walking
         while (checkIsColliding(aim) == false)
         {

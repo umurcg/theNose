@@ -77,7 +77,7 @@ public class HeartGameObject : MonoBehaviour {
     {
         while (Quaternion.Angle(target, transform.rotation) > 6)
         {
-            print(Quaternion.Angle(target, transform.rotation));
+            //print(Quaternion.Angle(target, transform.rotation));
             transform.Rotate(Vector3.forward * speed * Time.deltaTime);
             yield return 0;
         }

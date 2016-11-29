@@ -10,7 +10,10 @@ public class MovementWithKeyboard2D : MonoBehaviour {
     public float rotateSpeed = 1f;
     public float jumpHeight = 2f;
     public float jumpSpeed = 1f;
-   
+
+    //For controlling from script
+    public float scriptInput;
+
     Vector3 forward;
     Vector3 right;
     float ratio;
@@ -23,17 +26,23 @@ public class MovementWithKeyboard2D : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-       forward = transform.forward;
-        right = transform.right;
+       forward = Camera.main.gameObject.transform.forward;
+        right = Camera.main.gameObject.transform.right;
         prevHorInputState = Input.GetAxis("Horizontal");
-       y = transform.position.y;
+       y = Camera.main.ScreenToWorldPoint(new Vector3(0, -5, 0)).y;
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-        
-        float horInput = Input.GetAxis("Horizontal");
+        float horInput;
+        if (scriptInput == 0)
+        {
+            horInput = Input.GetAxis("Horizontal");
+        }else
+        {
+             horInput = scriptInput;
+        }
 
         if (horInput != prevHorInputState)
         {

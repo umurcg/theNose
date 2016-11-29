@@ -3,6 +3,11 @@ using System.Collections;
 
 public class EnterTrigger : MonoBehaviour {
     public bool enter=false;
+
+    //Use this variables if you want to send message when trigger is activated.
+    public GameObject messageReciever;
+    public string message;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -33,6 +38,14 @@ public class EnterTrigger : MonoBehaviour {
             IEnterTrigger iet = GetComponent<IEnterTrigger>();
             if (iet != null)
                 iet.TriggerAction(col);
+
+            //Sending message
+            if (messageReciever != null && message != "")
+            {
+                messageReciever.SendMessage(message);
+
+            }
+
         }
         
     }

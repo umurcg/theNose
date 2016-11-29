@@ -9,6 +9,11 @@ public interface IClickAction{
 
 }
 
+public interface IClickActionDifferentPos
+{
+    Vector3 giveMePosition();
+}
+
 public interface IFinishGirlGame
 {
     void finished();

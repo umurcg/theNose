@@ -38,6 +38,8 @@ public class RunRandomlyFromObject: MonoBehaviour {
 
     bool moving = false;
 
+    public bool catched = false;
+
 
     //if (timer <= 0)
     //{
@@ -121,14 +123,14 @@ public class RunRandomlyFromObject: MonoBehaviour {
             //CinemaDirector.PausePlayCS ppcs = GetComponent<CinemaDirector.PausePlayCS>();
             //if (ppcs)
             //    ppcs.Play();
-            print("catched");
+            catched = true;
             this.enabled = false;
         }
 
         if (Vector3.Distance(transform.position, chaser.transform.position) < minDist && timer2<=0)
         {
             
-
+            
             center = getRandomPositionInBox(box); /*GetARandomPositionInTorus(chaser.transform.position);*/
             center = new Vector3(center.x, transform.position.y, center.z);
 
@@ -187,7 +189,7 @@ public class RunRandomlyFromObject: MonoBehaviour {
     }
 
 
-    static Vector3 getRandomPositionInBox(GameObject box)
+    public static Vector3 getRandomPositionInBox(GameObject box)
     {
         //BoxCollider bc = box.GetComponent<BoxCollider>;
         float width = box.transform.lossyScale.x;
