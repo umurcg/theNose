@@ -64,6 +64,7 @@ public class SwitchObjects : MonoBehaviour, IClickAction {
         if (pcc != null)
             pcc.ContinueToWalk();
 
+        
         finished();
     }
 

@@ -6,7 +6,7 @@ public class MouseDrag : MonoBehaviour
 
     bool touched = false;
     public float speed = 10f;
-
+    public bool invertMouse=false;
     //public Vector3 offset ;
 
 
@@ -22,8 +22,14 @@ public class MouseDrag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0, Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * Time.deltaTime * speed;
-
+        if (invertMouse)
+        {
+            transform.position += new Vector3(0, Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X")) * Time.deltaTime * speed;
+        }
+        else
+        {
+            transform.position += new Vector3(0, Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * Time.deltaTime * speed;
+        }
     }
 
 

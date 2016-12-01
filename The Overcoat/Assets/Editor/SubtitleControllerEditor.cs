@@ -37,8 +37,16 @@ public class SubtitleControllerEditor : Editor {
 
         }
 
+        if (GUILayout.Button("Set Character Subtitle"))
+        {
+            script.setCharSubtitle();
 
+        }
 
+        if (GUILayout.Button("Set Narrator Subtitle"))
+        {
+            script.setNarSubtitle();
 
+        }
     }
 }

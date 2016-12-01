@@ -33,6 +33,8 @@ public class SubtitleController : MonoBehaviour {
         if(player!=null)
         pcc = player.GetComponent<PlayerComponentController>();
 
+        this.enabled = false;
+
     }
 
     public void AllToArray()
@@ -65,14 +67,14 @@ public class SubtitleController : MonoBehaviour {
 
         if (index != -1)
         {
+            
             if (index < subtitleTexts.Length)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
 
                     index++;
-                    
-                   
+                                    
                     if (index < subtitleTexts.Length)
                         text.text = subtitleTexts[index];
                 }
@@ -81,8 +83,9 @@ public class SubtitleController : MonoBehaviour {
             else
             {
                 ClickTrigger.disabled = false;
-    
+
                 text.text = "";
+
                 if(pcc!=null&&releaseAfterSub)
                 pcc.ContinueToWalk ();
 
@@ -101,6 +104,7 @@ public class SubtitleController : MonoBehaviour {
                     Destroy(gameObject.GetComponent<SubtitleController>());
      
                 }
+                this.enabled = false;
             }
         }
 
@@ -116,7 +120,20 @@ public class SubtitleController : MonoBehaviour {
             pcc.StopToWalk ();
 
         ClickTrigger.disabled = true;
+        this.enabled = true;
     }
 
+
+    public void setCharSubtitle()
+    {
+        subtitle = GameObject.FindGameObjectWithTag("CharacterSubtitle");
+
+    }
+
+    public void setNarSubtitle()
+    {
+        subtitle = GameObject.FindGameObjectWithTag("NarratorSubtitle");
+
+    }
 
 }

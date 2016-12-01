@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using MovementEffects;
 
 //This script replacement for ClickTrigger script
 //It makes same think with only one instance of class.
@@ -147,8 +148,12 @@ public class ClickTriggerSingleton : MonoBehaviour {
             }
             yield return null;
         }
+        
+        
 
         stopToWalk();
+        Timing.RunCoroutine(Vckrs._lookTo(gameObject, aim.transform.position, 1f));
+
         callAction(aim);
         yield break;
     }

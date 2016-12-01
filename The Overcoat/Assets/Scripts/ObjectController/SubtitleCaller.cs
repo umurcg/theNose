@@ -31,19 +31,13 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
             scs[index].startSubtitle();
             //currentIndex = index;
         }
-        }
+     }
 
 
     public void callSubtitle()
     {
 
-        // SubtitleController[] scs = GetComponents<SubtitleController>();
-        //print(scs.Length);
-        //if (currentIndex < scs.Length)
-        //{
-        //    scs[currentIndex].startSubtitle();
-        //    currentIndex++;
-        //}
+
         SubtitleController scs = GetComponent<SubtitleController>();
         if (scs)
         {

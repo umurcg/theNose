@@ -8,19 +8,7 @@ using MovementEffects;
 public class Vckrs : MonoBehaviour
 {
 
-    //Tween test
-    //public bool tweenTest;
-    //public Vector3 aim;
-
-    //void Update()
-    //{
-    //    if (tweenTest)
-    //    {
-    //        tweenTest = false;
-    //        Timing.RunCoroutine(Vckrs._Tween(gameObject, aim, 3f));
-    //    }
-    //}
-
+ 
     public static IEnumerator<float> _setLightIntensity(GameObject light, float speed,float intensity)
     {
         Light l = light.GetComponent<Light>();
@@ -102,5 +90,91 @@ public class Vckrs : MonoBehaviour
         go.transform.rotation = aimRot;
 
     }
+
+
+    //This method pace object between two position.
+    //It uses nav mesh.
+    static public IEnumerator<float> _pace(GameObject obj, Vector3 aim1, Vector3 aim2)
+    {
+        NavMeshAgent nav = obj.GetComponent<NavMeshAgent>();
+        nav.enabled = true;
+        nav.Resume();
+        nav.SetDestination(aim1);
+        IEnumerator<float> handler=Timing.RunCoroutine(Vckrs.waitUntilStop(obj, 0.0001f));
+
+        yield return Timing.WaitUntilDone(handler);
+
+        
+        Vector3 aim = aim2; 
+        while (true)
+        {
+            //print("while");
+            nav.SetDestination(aim);
+            handler = Timing.RunCoroutine(Vckrs.waitUntilStop(obj, 0.0001f));
+
+            //print("waiting");
+            yield return Timing.WaitUntilDone(handler);
+
+            //print("waiting finished");
+
+            if (aim == aim1)
+            {
+                aim = aim2;
+            }else
+            {
+                aim = aim1;
+            }
+
+            
+        }
+        
+    }
+
+
+    //This method activates all scripts in an object.
+    //Alsa it change its tag to ActiveObject
+    static public void ActivateAnotherObject(GameObject obj)
+    {
+        obj.SetActive(true);
+        MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
+
+        foreach (MonoBehaviour script in scripts)
+        {
+            script.enabled = true;
+
+            if (script is ChangeMaterial)
+            {
+                ChangeMaterial cm = (ChangeMaterial)(script);
+                cm.change();
+            }
+        }
+        
+        obj.transform.tag = "ActiveObject";
+
+    }
+
+    public static void DisableAnotherObject(GameObject go)
+    {
+        MonoBehaviour[] scripts = go.GetComponents<MonoBehaviour>();
+
+        foreach (MonoBehaviour script in scripts)
+        {
+
+            script.enabled = false;
+
+
+            if (script is ChangeMaterial)
+            {
+                ChangeMaterial cm = (ChangeMaterial)(script);
+                cm.change();
+            }
+        }
+
+
+
+        go.transform.tag = "Untagged";
+
+    }
+
 
 }

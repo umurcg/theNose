@@ -11,7 +11,10 @@ public class ClickExternalCallSubtitle : MonoBehaviour, IClickAction,IClickActio
     public int index=-1;
     public bool destroyItself;
     bool destroyed=false;
-    public Vector3 walkOffset;
+    public Vector3 walkOffsetVector;
+    public float offsetForward;
+    public float offsetRigth;
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +29,7 @@ public class ClickExternalCallSubtitle : MonoBehaviour, IClickAction,IClickActio
 
     public Vector3 giveMePosition()
     {
-        return transform.position+ walkOffset;
+        return transform.position+ walkOffsetVector+offsetForward*transform.forward+offsetRigth*transform.right;
     }
 
     public void Destroy()
