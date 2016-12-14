@@ -23,7 +23,14 @@ public class BridgeGameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = CharGameController.getActiveCharacter();
-        bc=GetComponent<BoxCollider>();
+        if (player.name != "Ivan")
+        {
+            this.enabled = false;
+            return;
+        }
+
+
+        bc =GetComponent<BoxCollider>();
         playerNma = player.GetComponent<NavMeshAgent>();
         anim = player.GetComponent<Animator>();
         sc = GetComponent<SubtitleCaller>();
@@ -31,7 +38,7 @@ public class BridgeGameController : MonoBehaviour {
         pcc = player.GetComponent<PlayerComponentController>();
         policeNma = police.GetComponent<NavMeshAgent>();
 
-        Vckrs.testPosition(new Vector3(bc.bounds.center.x, player.transform.position.y, player.transform.position.z + 5));
+        //Vckrs.testPosition(new Vector3(bc.bounds.center.x, player.transform.position.y, player.transform.position.z + 5));
 
 
     }
@@ -43,16 +50,18 @@ public class BridgeGameController : MonoBehaviour {
 
     public void throwNose()
     {
-        //print("hi");
-        if (player.transform.name != "Ivan")
+
+        if (player.name != "Ivan")
         {
+            this.enabled = false;
             return;
         }
 
-        nose = player.transform.Find("ivan/Armature/Torso/Chest/Arm_L/Hand_L/nosePackage").gameObject;
-        noseRB = nose.GetComponent<Rigidbody>();
         if (onBridge && nose != null)
         {
+            nose = player.transform.Find("ivan/Armature/Torso/Chest/Arm_L/Hand_L/nosePackage").gameObject;
+            noseRB = nose.GetComponent<Rigidbody>();
+
             Timing.RunCoroutine(_throwNose());
         }
         //if (nose == null)
@@ -67,9 +76,9 @@ public class BridgeGameController : MonoBehaviour {
     IEnumerator<float> _throwNose()
     {
 
-        
 
-        trigger.SetActive(false);
+
+        trigger.GetComponent<DirectClickScript>().enabled = false;
         //print("throwiiiiiiiiiiiing");
         IEnumerator<float> handler;
 

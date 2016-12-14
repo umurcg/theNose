@@ -12,7 +12,7 @@ using CinemaDirector;
 
 public class RunRandomlyFromObject: MonoBehaviour {
 
-    public GameObject road;
+   
     public GameObject chaser;
     
     public float randomCircleRadius;
@@ -55,6 +55,10 @@ public class RunRandomlyFromObject: MonoBehaviour {
     {
          nma= GetComponent<NavMeshAgent>();
         center = transform.position;
+        if (chaser == null)
+        {
+            chaser=CharGameController.getActiveCharacter();
+        }
   
     }
 
@@ -196,7 +200,7 @@ public class RunRandomlyFromObject: MonoBehaviour {
         float depth = box.transform.lossyScale.z;
         float height = box.transform.lossyScale.y;
         Vector3 pos = box.transform.position;
-        print(width+" "+ depth);
+        //print(width+" "+ depth);
         float x = Random.Range(pos.x - width / 2, pos.x + width / 2);
         float z = Random.Range(pos.z - depth / 2, pos.z + depth / 2);
         float y = Random.Range(pos.y - height / 2, pos.y + height / 2);

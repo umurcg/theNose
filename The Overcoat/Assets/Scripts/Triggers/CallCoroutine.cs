@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, IDirectClick
 {
-    public enum interFaceTpyes{ClickAction,DirectClick,Switch,NoInterface};
+    public enum interFaceTpyes{ClickAction,DirectClick,Switch,/*EnterTrigger*/NoInterface};
     public interFaceTpyes InterfaceType;
 
 
@@ -12,7 +12,7 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
 
     public void call()
     {
-        print("call");
+        //print("call");
         owner.SendMessage(methodName);
     }
 
@@ -29,6 +29,12 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
         call();
     }
     
+    //public  void TriggerAction()
+    //{
+    //    if (InterfaceType == interFaceTpyes.EnterTrigger)
+    //        call();
+    //}
+
     public void directClick()
     {
         if (InterfaceType == interFaceTpyes.DirectClick)

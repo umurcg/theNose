@@ -127,7 +127,7 @@ public class GirlGameController : MonoBehaviour {
             yield return 0;
         }
 
-        City2GameController c2gc = city2GameController.GetComponent<City2GameController>();
+        NoseEncounterGameController c2gc = city2GameController.GetComponent<NoseEncounterGameController>();
         Timing.RunCoroutine(c2gc._noseGoneLost());
 
         transform.parent.gameObject.SetActive(false);

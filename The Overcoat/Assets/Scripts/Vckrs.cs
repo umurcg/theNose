@@ -193,6 +193,9 @@ public class Vckrs : MonoBehaviour
         }
     }
 
+   
+
+
     public static IEnumerator<float> _cameraSize(Camera cam,float size,float speed)
     {
        
