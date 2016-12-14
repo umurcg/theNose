@@ -1,0 +1,347 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000014022124728}
+  m_IsPrefabParent: 1
+--- !u!1 &1000012663546044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011879825610}
+  - 33: {fileID: 33000011742587622}
+  - 65: {fileID: 65000010118901430}
+  - 114: {fileID: 114000011333507410}
+  - 114: {fileID: 114000012083065632}
+  - 114: {fileID: 114000013978007502}
+  m_Layer: 0
+  m_Name: Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000014022124728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014017562768}
+  - 33: {fileID: 33000013501844336}
+  - 23: {fileID: 23000011189101578}
+  - 95: {fileID: 95000011247396850}
+  - 65: {fileID: 65000012633136248}
+  - 114: {fileID: 114000013789432066}
+  - 114: {fileID: 114000011463256896}
+  - 114: {fileID: 114000010412638302}
+  - 114: {fileID: 114000013141673056}
+  - 114: {fileID: 114000011835557698}
+  - 114: {fileID: 114000013464344344}
+  m_Layer: 0
+  m_Name: Bridge
+  m_TagString: Floor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &4000011879825610
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012663546044}
+  m_LocalRotation: {x: 0.4999171, y: -0.5000829, z: -0.4999171, w: 0.5000829}
+  m_LocalPosition: {x: 0.083209716, y: -9.507591, z: 18.523672}
+  m_LocalScale: {x: 113.17317, y: 11.012393, z: 2.02129}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000014017562768}
+  m_RootOrder: 0
+--- !u!4 &4000014017562768
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_LocalRotation: {x: -0.4999171, y: 0.5000829, z: 0.4999171, w: 0.5000829}
+  m_LocalPosition: {x: -54, y: 18.4, z: 72.399994}
+  m_LocalScale: {x: 14.595749, y: 4.078294, z: 0.20380956}
+  m_LocalEulerAnglesHint: {x: -89.981, y: 90, z: 0}
+  m_Children:
+  - {fileID: 4000011879825610}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!23 &23000011189101578
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &33000011742587622
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012663546044}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33000013501844336
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Mesh: {fileID: 4300000, guid: d4be1bda81c7126428d240bb09f92abe, type: 3}
+--- !u!65 &65000010118901430
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012663546044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -1.26, z: 0}
+--- !u!65 &65000012633136248
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.075576, y: 2.33, z: 25.965683}
+  m_Center: {x: 0.0014550091, y: 0, z: 3.9263248}
+--- !u!95 &95000011247396850
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d4be1bda81c7126428d240bb09f92abe, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010412638302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "-Ivan: Elveda lanet olas\u0131ca \u015Fey."
+  - "-Ivan: Umar\u0131m neva nehrinin bal\u0131klar\u0131na yem olursun."
+  AllSubtitles: "-Ivan: Elveda lanet olas\u0131ca \u015Fey.\n-Ivan: Umar\u0131m neva
+    nehrinin bal\u0131klar\u0131na yem olursun."
+  subtitle: {fileID: 0}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+--- !u!114 &114000011333507410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012663546044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5225b783e7f58f44ac15bead4838d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splash: {fileID: 0}
+  destroyInSeconds: 5
+--- !u!114 &114000011463256896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000011835557698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "Ivan: G\xFCnayd\u0131n efendim. Ne kadar g\xFCzel bir g\xFCn."
+  - "Polis: Hay\u0131r, hay\u0131r. Efendim diye bir \u015Fey yok. S\xF6yle bakal\u0131m
+    sen orada ne yap\u0131yordun."
+  - "Ivan: Ne yapca\u011F\u0131m efendim. "
+  - "Ivan: Yolda y\xFCr\xFCyordum ve suyun ak\u0131\u015F\u0131n\u0131 izlemek ve
+    belki de \u015Fansl\u0131ysam bir ka\xE7 bal\u0131k g\xF6rmek i\xE7in duraksa\u0131dm."
+  - "Ivan: Biliyorsunuz bazen \u015Fehrin ve kalab\u0131l\u0131\u011F\u0131n verdi\u011Fi
+    yorgunlu\u011Fu, gene \u015Fehrin kendisini izleyerek at\u0131yor insan."
+  - "Polis: Ne z\u0131rval\u0131yorsun sen ahbap? Orada bir \u015Fey att\u0131n g\xF6rd\xFCm."
+  - "Ivan: Hi\xE7 bir \u015Fey atmad\u0131m efendim... "
+  - "Ivan: Eminim sizin gibi g\xFCzel ve bak\u0131ml\u0131 bir insan\u0131n bir berebere
+    ihtiyac\u0131 vard\u0131r."
+  - "Ivan: Ben onurla sizi her sabah kendi berber d\xFCkkan\u0131mda t\u0131ra\u015F
+    etmeye haz\u0131r\u0131m."
+  - "Polis: Senin pis r\xFC\u015Fvetine ihtiyac\u0131m yok. Bir s\xFCr\xFC berberim
+    var zaten bana onurla hizmet veren."
+  - "Polis: \u015Eimdi do\u011Fru s\xF6yle bakal\u0131m. Bundan b\xF6yle kolay kurtulamazs\u0131n."
+  - 'Ivan: ...'
+  - "Polis: Neyse anla\u015F\u0131ld\u0131. Gel benimle bunlar\u0131 karakolda konu\u015Fucaz."
+  AllSubtitles: "Ivan: G\xFCnayd\u0131n efendim. Ne kadar g\xFCzel bir g\xFCn.\nPolis:
+    Hay\u0131r, hay\u0131r. Efendim diye bir \u015Fey yok. S\xF6yle bakal\u0131m sen
+    orada ne yap\u0131yordun.\nIvan: Ne yapca\u011F\u0131m efendim. \nIvan: Yolda
+    y\xFCr\xFCyordum ve suyun ak\u0131\u015F\u0131n\u0131 izlemek ve belki de \u015Fansl\u0131ysam
+    bir ka\xE7 bal\u0131k g\xF6rmek i\xE7in duraksa\u0131dm.\nIvan: Biliyorsunuz bazen
+    \u015Fehrin ve kalab\u0131l\u0131\u011F\u0131n verdi\u011Fi yorgunlu\u011Fu, gene
+    \u015Fehrin kendisini izleyerek at\u0131yor insan.\nPolis: Ne z\u0131rval\u0131yorsun
+    sen ahbap? Orada bir \u015Fey att\u0131n g\xF6rd\xFCm.\nIvan: Hi\xE7 bir \u015Fey
+    atmad\u0131m efendim... \nIvan: Eminim sizin gibi g\xFCzel ve bak\u0131ml\u0131
+    bir insan\u0131n bir berebere ihtiyac\u0131 vard\u0131r.\nIvan: Ben onurla sizi
+    her sabah kendi berber d\xFCkkan\u0131mda t\u0131ra\u015F etmeye haz\u0131r\u0131m.\nPolis:
+    Senin pis r\xFC\u015Fvetine ihtiyac\u0131m yok. Bir s\xFCr\xFC berberim var zaten
+    bana onurla hizmet veren.\nPolis: \u015Eimdi do\u011Fru s\xF6yle bakal\u0131m.
+    Bundan b\xF6yle kolay kurtulamazs\u0131n.\nIvan: ...\nPolis: Neyse anla\u015F\u0131ld\u0131.
+    Gel benimle bunlar\u0131 karakolda konu\u015Fucaz."
+  subtitle: {fileID: 0}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+--- !u!114 &114000012083065632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012663546044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42681b2798a7f4418a506cdf5e2f223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InterfaceType: 1
+  owner: {fileID: 1000014022124728}
+  methodName: throwNose
+--- !u!114 &114000013141673056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - 'Polis: Hey!'
+  - 'Polis: Sen! Buraya gel.'
+  AllSubtitles: 'Polis: Sen! Buraya gel.
+
+'
+  subtitle: {fileID: 0}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+--- !u!114 &114000013464344344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "-Narrator: \u0130\u015Fte say\u0131n oyuncu,  tam burada hikayemiz birden kesilir."
+  - "-Narrator: \u0130nsani ger\xE7ekten merak i\xE7inde b\u0131raksa da..."
+  - "-Narrator: Ivan'\u0131n bundan sonra ba\u015F\u0131na gelicekler herkes i\xE7in
+    muammada kal\u0131cakt\u0131r."
+  AllSubtitles: "\u0130\u015Fte say\u0131n oyuncu,  tam burada hikayemiz birden kesilir.\n\u0130nsani
+    ger\xE7ekten merak i\xE7inde b\u0131raksa da...\nIvan'\u0131n bundan sonra ba\u015F\u0131na
+    gelicekler herkes i\xE7in muammada kal\u0131cakt\u0131r."
+  subtitle: {fileID: 0}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+  manualTimerArray:
+  - 1
+  - 1
+  TimeMode: 0
+  timeInhibator: 13
+--- !u!114 &114000013789432066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014022124728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4a4b3e425b6e54db67786b133264e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  police: {fileID: 0}
+  trigger: {fileID: 1000012663546044}
+  blackScreen: {fileID: 0}
+--- !u!114 &114000013978007502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012663546044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f7ef854da33fa84a9b06b0249d4ecb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

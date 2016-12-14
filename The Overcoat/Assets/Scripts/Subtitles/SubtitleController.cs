@@ -8,18 +8,18 @@ public class SubtitleController : MonoBehaviour {
     public string AllSubtitles;
 
     public GameObject subtitle;
-    Text text;
+    protected Text text;
     
 
 	PlayerComponentController pcc;
 
     public bool ifDesroyItself = true;
     public bool releaseAfterSub = true;
-    int index;
+    protected int index;
 
 
     // Use this for initialization
-    void Start () {
+    public virtual void Start () {
 
         text = subtitle.GetComponent<Text>();
         if (text == null)
@@ -62,7 +62,7 @@ public class SubtitleController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    protected virtual void Update () {
       //  print("index: "+index+"array: "+subtitleTexts.Length);
 
         if (index != -1)
@@ -111,7 +111,7 @@ public class SubtitleController : MonoBehaviour {
 	}
 
 
-   public void startSubtitle()
+   public virtual void startSubtitle()
     {
  
         text.text = subtitleTexts[0];

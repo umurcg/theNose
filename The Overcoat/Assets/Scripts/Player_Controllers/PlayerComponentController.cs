@@ -27,7 +27,7 @@ public class PlayerComponentController : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		moveto = GetComponent<MoveTo>();
 		cck = GetComponent<CharacterControllerKeyboard>();
 		cl = GetComponent<CharacterMouseLook> ();

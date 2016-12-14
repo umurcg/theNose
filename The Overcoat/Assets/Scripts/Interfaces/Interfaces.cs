@@ -14,6 +14,11 @@ public interface IClickActionDifferentPos
     Vector3 giveMePosition();
 }
 
+public interface IDirectClick
+{
+    void directClick();
+}
+
 public interface IFinishGirlGame
 {
     void finished();

@@ -27,8 +27,9 @@ public class CharacterControllerKeyboard : MonoBehaviour {
             move = transform.forward * Input.GetAxis("Vertical");
         }
         else { move = Vector3.zero; }
-        transform.RotateAround(transform.position, transform.up, rotateSpeed * Input.GetAxis("Horizontal")); 
-        cc.Move(move * speed * Time.deltaTime);
+        transform.RotateAround(transform.position, transform.up, rotateSpeed * Input.GetAxis("Horizontal"));
+        if(cc.enabled==true)
+         cc.Move(move * speed * Time.deltaTime);
 
     }
 }

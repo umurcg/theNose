@@ -45,5 +45,31 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         }
     }
 
+    public void callSubtitleWithIndexTime(int index)
+    {
+     
+        SubtitleControllerTime[] scs = GetComponents<SubtitleControllerTime>();
+    
+        if (index <= scs.Length)
+        {
+            scs[index].startSubtitle();
+
+            //print(scs.Length);
+            //currentIndex = index;
+        }
+    }
+
+
+    public void callSubtitleTime()
+    {
+
+
+        SubtitleControllerTime scs = GetComponent<SubtitleControllerTime>();
+        if (scs)
+        {
+            scs.startSubtitle();
+        }
+    }
+
 
 }

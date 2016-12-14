@@ -123,9 +123,11 @@ public class SeeBehindWall : MonoBehaviour {
 	bool rayCastTargets(){
 
 		for (int i = 0; i < targetObjects.Length ; i++) {
-
-			if (isWallBetweenCameraAndTarget (targetObjects [i].transform))
-				return true;
+            if (targetObjects[i] != null)
+            {
+                if (isWallBetweenCameraAndTarget(targetObjects[i].transform))
+                    return true;
+            }
 
 		}
 		return false;

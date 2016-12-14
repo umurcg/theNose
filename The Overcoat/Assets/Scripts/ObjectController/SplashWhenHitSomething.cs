@@ -24,10 +24,13 @@ public class SplashWhenHitSomething : MonoBehaviour {
 		}
 	}
 
+    void OnTriggerEnter()
+    {
 
+    }
 
 	void OnCollisionEnter(Collision col){
-
+       
 		col.transform.GetComponent<Collider> ().isTrigger = true;
 		col.transform.gameObject.SetActive (false);
 			

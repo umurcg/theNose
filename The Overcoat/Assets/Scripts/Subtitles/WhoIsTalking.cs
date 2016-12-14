@@ -11,6 +11,7 @@ public class WhoIsTalking : MonoBehaviour {
     public GameObject[] gameobjectsArray;
     Text text;
     GameObject baloon;
+    public bool printLog = false;
    // public GameObject cameraGo;
     Camera camera;
 
@@ -56,11 +57,14 @@ public class WhoIsTalking : MonoBehaviour {
             }
             else
             {
-                print(key + " isn't included in dictionary.\n Current key are followings:");
-
-                foreach (KeyValuePair<string, GameObject> entry in gameObjects)
+                if (printLog)
                 {
-                    print(entry.Key);
+                    print(key + " isn't included in dictionary.\n Current key are followings:");
+
+                    foreach (KeyValuePair<string, GameObject> entry in gameObjects)
+                    {
+                        print(entry.Key);
+                    }
                 }
 
             }

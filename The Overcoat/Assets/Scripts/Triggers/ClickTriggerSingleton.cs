@@ -43,8 +43,9 @@ public class ClickTriggerSingleton : MonoBehaviour {
             object obj = raycastFirst();
             if (obj != null)
             {
-
+                
                 hit = (RaycastHit)obj;
+                //print(hit.transform.name);
                 if (tags.Contains(hit.transform.tag)) { 
                 StopCoroutine("setAim");
                 StartCoroutine(setAim(hit.transform.gameObject));
@@ -127,30 +128,24 @@ public class ClickTriggerSingleton : MonoBehaviour {
         }
 
 
-        IClickActionDifferentPos icadp = aim.GetComponent<IClickActionDifferentPos>();
-        if (icadp!=null)
-        {
-            walkToTarget(icadp.giveMePosition());
-        }
-        else
-        {
+    
+        IEnumerator<float> handler= Timing.RunCoroutine(walkToTarget(aim));
 
-            walkToTarget(aim.transform.position);
-        }
         //Here is walking
         while (checkIsColliding(aim) == false)
         {
        
             if (Input.anyKeyDown)
             {
+                Timing.KillCoroutines(handler);
                 stopToWalk();
                 yield break;
             }
             yield return null;
         }
-        
-        
 
+
+        Timing.KillCoroutines(handler);
         stopToWalk();
         Timing.RunCoroutine(Vckrs._lookTo(gameObject, aim.transform.position, 1f));
 
@@ -163,12 +158,28 @@ public class ClickTriggerSingleton : MonoBehaviour {
         agent.Stop();
     }
 
-    void walkToTarget(Vector3 position)
+    IEnumerator<float> walkToTarget(GameObject aim)
     {
-     
-        agent.Resume();
-        agent.SetDestination(position);
 
+        IClickActionDifferentPos icadp = aim.GetComponent<IClickActionDifferentPos>();
+
+        agent.Resume();
+        Vector3 position;
+        while (true)
+        {   
+            if (icadp != null)
+            {
+                position=icadp.giveMePosition();
+            }
+            else
+            {
+
+               position=aim.transform.position;
+            }
+            //print("aiming");
+            agent.SetDestination(position);
+            yield return 0;
+        }
     }
 
     bool checkIsColliding(GameObject obj)
@@ -198,6 +209,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
     void callAction(GameObject go)
     {
+        //print("callAction");
         IClickAction[] icas = go.GetComponents<IClickAction>();
         foreach(IClickAction ica in icas)
         {

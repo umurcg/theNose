@@ -34,6 +34,7 @@ public class EnterTrigger : MonoBehaviour {
         
 
         if (col.tag == "Player"){
+            //print("hello");
             enter = true;
             IEnterTrigger iet = GetComponent<IEnterTrigger>();
             if (iet != null)

@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 public class SubtitleFade : MonoBehaviour {
+
+    public static Dictionary<string, Text> subtitles;
+
     Text subt;
     bool fadedIn=false;
     Color color;
@@ -13,7 +17,14 @@ public class SubtitleFade : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+
+        if (subtitles == null)
+        {
+            subtitles = new Dictionary<string, Text>();
+        }
+       
         subt = GetComponentInChildren<Text>();
+        subtitles.Add(gameObject.name, subt);
         ri = GetComponent<RawImage>();
         color = ri.color;
         subt.text = "";

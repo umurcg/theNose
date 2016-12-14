@@ -19,12 +19,16 @@ public class MouseTexture : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (oi == null) {
-			oi = GameObject.FindGameObjectWithTag ("ObjectIcon");
+            this.enabled = false;
+            //oi = GameObject.FindGameObjectWithTag ("ObjectIcon");
+            
 		}
-		ri = oi.GetComponent<RawImage> ();
-		rt = oi.GetComponent<RectTransform> ();
-		oi.SetActive (false);
-
+        if (oi != null)
+        {
+            ri = oi.GetComponent<RawImage>();
+            rt = oi.GetComponent<RectTransform>();
+            oi.SetActive(false);
+        }
 
 	}
 	
@@ -79,6 +83,7 @@ public class MouseTexture : MonoBehaviour {
 
         }else
         {
+            if(oi!=null)
             oi.SetActive(false);
         }
 

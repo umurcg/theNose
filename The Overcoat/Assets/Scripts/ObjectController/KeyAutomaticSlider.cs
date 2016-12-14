@@ -7,7 +7,7 @@ using System.Collections;
 public class KeyAutomaticSlider : MonoBehaviour {
     
     public float speed = 1;
-    bool increasing = true;
+    bool open = true;
     SkinnedMeshRenderer smr;
     float value;
     // Use this for initialization
@@ -18,12 +18,12 @@ public class KeyAutomaticSlider : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (increasing)
+        if (open)
         {
            value = Mathf.Clamp(value+ Time.deltaTime * speed, 0, 100);
 
             if (value == 100)
-                increasing = false;
+                open = false;
 
         }
         else
@@ -32,7 +32,7 @@ public class KeyAutomaticSlider : MonoBehaviour {
 
 
             if (value == 0)
-                increasing = true;
+                open = true;
         }
 
         smr.SetBlendShapeWeight(0, value);

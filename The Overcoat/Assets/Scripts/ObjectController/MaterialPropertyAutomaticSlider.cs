@@ -12,7 +12,7 @@ public class MaterialPropertyAutomaticSlider : MonoBehaviour {
 	public Material mat;
 	public float speed=1;
 	float brightness=0;
-	bool increasing=true;
+	bool open=true;
 	public string matPropert = "_Glossiness";
 
 	// Use this for initialization
@@ -22,18 +22,18 @@ public class MaterialPropertyAutomaticSlider : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (increasing) {
+		if (open) {
 			brightness= Mathf.Clamp (brightness + Time.deltaTime*speed, 0, 1);
 
 			if (brightness == 1)
-				increasing = false;
+				open = false;
 
 		} else {
 			brightness= Mathf.Clamp (brightness - Time.deltaTime*speed, 0, 1);
 	
 
 			if (brightness == 0)
-				increasing = true;
+				open = true;
 		}
 
 

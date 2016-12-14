@@ -14,8 +14,9 @@ public class CameraFollower : MonoBehaviour {
     public float transformSpeed=3f;
     Vector3 relativePosition;
 	// Use this for initialization
-	void Awake () {
-    
+	void Start () {
+        target = CharGameController.getActiveCharacter();
+
         if (target == null)
         {
             //myValue = anyFloat > 0 ? 1f : 2f;

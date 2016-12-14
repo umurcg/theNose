@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEditor;
 
 
-[CustomEditor (typeof(SubtitleController))]
+[CustomEditor (typeof(SubtitleController),true)]
 public class SubtitleControllerEditor : Editor {
 
     // Use this for initialization

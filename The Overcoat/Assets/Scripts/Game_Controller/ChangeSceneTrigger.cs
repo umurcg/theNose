@@ -37,8 +37,10 @@ public class ChangeSceneTrigger : MonoBehaviour {
         SceneManager.LoadScene(index);
     }
 
-	public virtual void OnEnterTrigger(){
-		changeScene();
+	public void OnEnterTrigger(){
+        print("entered");
+        changeScene();
+        
 	
 	}
 
