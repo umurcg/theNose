@@ -73,8 +73,9 @@ public class HorseScript : MonoBehaviour, IClickAction {
         hf.freeze();
         if (passenger == null)
         {
-            print("Passenfer is null");
-            yield break;
+            passenger = CharGameController.getActiveCharacter();
+            //print("Passenfer is null");
+            //yield break;
         }
 
 
@@ -109,8 +110,9 @@ public class HorseScript : MonoBehaviour, IClickAction {
     {
          if (passenger == null)
         {
-            print("Passenfer is null");
-            yield break;
+            passenger = CharGameController.getActiveCharacter();
+            //print("Passenfer is null");
+            //yield break;
         }
 
 
