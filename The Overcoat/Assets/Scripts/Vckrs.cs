@@ -41,7 +41,7 @@ public class Vckrs : MonoBehaviour
 
     }
 
-
+    
 
     public static IEnumerator<float> _Tween(GameObject go, Vector3 aim, float speed)
     {
@@ -49,20 +49,19 @@ public class Vckrs : MonoBehaviour
         Vector3 initialPosition = go.transform.position;
 
         float ratio = 0;
+        float timer = 0;
 
 
         while (ratio < 1)
         {
             ratio += Time.deltaTime * speed;
+            timer += Time.deltaTime;
 
             go.transform.position = Vector3.Lerp(initialPosition, aim, ratio);
-
-
-
             yield return 0;
 
         }
-
+        print(timer);
 
     }
 

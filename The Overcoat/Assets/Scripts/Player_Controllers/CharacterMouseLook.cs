@@ -5,15 +5,23 @@ public class CharacterMouseLook : MonoBehaviour {
     public float speed=3f;
     NavMeshAgent nma;
 
+    public enum Mode{withAgent,withoutAgent };
+    public Mode mode = Mode.withAgent;
 
 	float timer=0;
 	Vector3 forcedTarget;
 
-   
+    //For without agent mode
+    Vector3 prevPos;
 
 	// Use this for initialization
 	void Start () {
+        if(mode==Mode.withAgent)
         nma = GetComponent<NavMeshAgent>();
+
+        if (mode == Mode.withoutAgent)
+            prevPos = transform.position;
+
 	}
 
 
@@ -44,19 +52,30 @@ public class CharacterMouseLook : MonoBehaviour {
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-             //   print(nma.velocity );
-                if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && nma.velocity.magnitude<0.001 )
-                if (Physics.Raycast(ray, out hit,Mathf.Infinity,~(1<<8)))
+                //   print(nma.velocity );
+                float velocity = 0;
+                if (mode == Mode.withAgent)
                 {
-
-
-
-                    Vector3 target = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target - transform.position), Time.deltaTime * speed);
-
+                    velocity = nma.velocity.magnitude;
                 }
-                      }
+                else
+                {
+                    velocity = Vector3.Distance(transform.position, prevPos);   
+                }
+                if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && (velocity < 0.001 ))
+
+                    
+                        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
+                        {
+                            Vector3 target = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target - transform.position), Time.deltaTime * speed);
+
+                        }
+
+                    
+                }
 
             }
-        }
+        prevPos = transform.position;
+    }
 }

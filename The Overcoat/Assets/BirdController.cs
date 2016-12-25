@@ -7,21 +7,28 @@ public class BirdController : MonoBehaviour {
     public float rotateSpeed=1f;
     public float speed=0.25f;
     public float elevSpeed = 0.5f;
-    public float maxHeight = 70f;
-    public float minHeight = 0f;
+    public float maxHeight,maxX,maxZ = 70f;
+    public float minHeight,minX,minZ = 0f;
+    public float camSizeFactor=1; //One height -> x Size
+    public float camSizeChangeLimit = 10f;
     
-    //TODO
-    public enum direction {posFor,negFor,posRigh,negRigh,posUp,negUp };
-    public direction forward;
-    public direction up;
-    public direction right;
 
+    float firstCamSize;
+    Camera cam;
+    ////TODO
+    //public enum direction {posFor,negFor,posRigh,negRigh,posUp,negUp };
+    //public direction forward;
+    //public direction up;
+    //public direction right;
+
+    //const float degreeLimit = 5f;
     
 
 	// Use this for initialization
 	void Start () {
         cc = GetComponent<CharacterController>();
- 
+        cam = Camera.main;
+        firstCamSize = cam.orthographicSize;
 	}
 	
 	// Update is called once per frame
@@ -31,27 +38,45 @@ public class BirdController : MonoBehaviour {
         float ver = Input.GetAxis("Vertical");
         float elev = Input.GetAxis("Elevation");
         float xAngle = transform.rotation.eulerAngles.x;
+        float zAngle = transform.rotation.eulerAngles.z;
 
-        bool eliminateHeight = false;
-        if ((xAngle > 0 && xAngle<180 && transform.position.y < minHeight) || (xAngle < 360 && xAngle > 180 && transform.position.y > maxHeight))
+        //Prevent backward movement
+        if (ver < 0)
+            ver = 0;
+
+        //Move
+        cc.Move(transform.forward * ver * speed);
+
+        //Rotate around up axis
+        transform.Rotate(Vector3.up * hor, Space.World);
+
+        //Set camera zoom
+        float calculatedSize = calculateCamSize(transform.position.y);
+        if (cam.orthographicSize != calculatedSize)
         {
-            eliminateHeight = true;
+            cam.orthographicSize = calculatedSize;
         }
+        
+        //Check rotation glitch
+        preserveRotationZ(zAngle);
 
-        //print(eliminateHeight);
+        //Limit height
+        //float prevHeight = transform.position.y;
+        //if (shouldLockElevation(xAngle))
+        //{
+        //    transform.position =new Vector3(transform.position.x, prevHeight , transform.position.z);
+        //}
 
-        float prevHeight = transform.position.y;
-        cc.Move( -transform.forward*ver*speed);
+        //Limits
+        float x = transform.position.x;
+        float y = transform.position.y;
+        float z = transform.position.z;
+        if (x > maxX) { x = maxX; } else if (x < minX) { x = minX; }
+        if (y > maxHeight) { y = maxHeight; } else if (y < minHeight) { y = minHeight; }
+        if (z> maxZ){z = maxZ;}  else if (z < minZ) {z = minZ;}
+        transform.position = new Vector3(x, y, z);
 
-        if (eliminateHeight)
-        {
-            transform.position =new Vector3(transform.position.x, prevHeight , transform.position.z);
-        }
-
-        transform.Rotate(Vector3.up*hor,Space.World);
-
-  
-
+        //Change head angle for elevation
         if (elev == 0)
         {
             if (xAngle < 180f)
@@ -86,7 +111,35 @@ public class BirdController : MonoBehaviour {
         }
         
 
-
-
 	}
+
+    //xAngle is value of angle of head. It sepcify wether or not object is trying to elevate.
+    bool shouldLockElevation(float xAngle)
+    {
+        if ((xAngle > 180 && transform.position.y < minHeight) || (xAngle > 0 && xAngle < 180 && transform.position.y > maxHeight))
+        {
+            //print(xAngle);
+            return true;
+        }        
+        return false;
+        
+    }
+
+    float calculateCamSize(float height)
+    {
+        if (height > camSizeChangeLimit) 
+            return firstCamSize + (height-camSizeChangeLimit) * camSizeFactor;
+        return firstCamSize;
+    }
+
+    void preserveRotationZ(float zAngle)
+    {
+        //print(zAngle);
+        if (zAngle != 0)
+        {
+
+            transform.Rotate(new Vector3(0, 0, -zAngle));
+        }
+    }
+
 }
