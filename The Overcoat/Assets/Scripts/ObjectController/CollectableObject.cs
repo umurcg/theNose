@@ -17,24 +17,15 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 	public bool onHand=false;
 	Transform rightHand;
 	Transform leftHand;
-
-
-
+    
 	Transform player;
-
 	public GameObject[] placeholders;
-
-	public bool canBeCollectedAgain=false;
-
-	public Vector3 unCollectPositionOffset;
-
-	public Vector3 scale =new Vector3(0,0,0);
-
-	Vector3 originalScale;
-
-	Transform parent;
-
-	MeshCollider mc;
+    public bool canBeCollectedAgain=false;
+    public Vector3 unCollectPositionOffset;
+    public Vector3 scale =new Vector3(0,0,0);
+    Vector3 originalScale;
+    Transform parent;
+    MeshCollider mc;
 	Rigidbody rb;
 
 	void Awake(){
@@ -50,21 +41,41 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 			CollectableObject.collected = new List<GameObject> ();
 		parent = transform.parent;
 
-		player = GameObject.FindGameObjectWithTag ("Player").transform;
-		rightHand = player.Find ("Armature/Torso/Chest/Arm_R/Hand_R");
-		leftHand = player.Find ("Armature/Torso/Chest/Arm_L/Hand_L");
+        player = CharGameController.getActiveCharacter().transform;
+
+
+
+        List<Transform> children = Vckrs.getAllChildren(player);
+
+        foreach (Transform c in children)
+        {
+            if (c.name == "Hand_R")
+            {
+                rightHand = c;
+            }
+            else if (c.name == "Hand_L")
+            {
+                leftHand = c;
+            }
+
+
+        }
+
+        
+        
 
 		foreach (GameObject placeholder in placeholders){
-			placeholder.active =false;
+			placeholder.SetActive(true);
 		}
-	}
+
+    }
 	
 	// Update is called once per frame
 
 	void Collect(){
 		CollectableObject.collected.Add (gameObject);
 		if (onHand == false) {
-			gameObject.active = false;
+			gameObject.SetActive(false);
 		} else {
 
 			enableMeshCollider (false);
@@ -81,7 +92,7 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 
 			} else {
 
-				rightHand.GetChild (0).gameObject.active = false;
+				rightHand.GetChild (0).gameObject.SetActive(false);
 				transform.parent = rightHand;
 				transform.localPosition = unCollectPositionOffset;
 
@@ -93,8 +104,8 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 		}
 
 		foreach (GameObject placeholder in placeholders){
-			placeholder.active =true;
-		}
+            gameObject.SetActive(true);
+        }
 
         //Disable texture
         transform.tag = "Untagged";
@@ -111,13 +122,13 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 		transform.parent = parent;
 		collected.Remove (gameObject);
 		transform.position = position;
-		gameObject.active = true;
-		foreach (GameObject placeholder in placeholders){
-			placeholder.active =false;
-		}
+        gameObject.SetActive(true);
+        foreach (GameObject placeholder in placeholders){
+            //gameObject.SetActive(false);
+        }
 
 		if (canBeCollectedAgain == false) {
-			gameObject.GetComponent<ClickTrigger> ().enabled = false;
+            Destroy(this);
 			this.enabled = false;
 		}
 
@@ -152,6 +163,7 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 	void Update () {
 
 
+
 //		if (Input.GetMouseButtonUp (0)) {
 //			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 //			RaycastHit hit;
@@ -167,4 +179,8 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 //	
 //		}
 	}
+
+
+   
+
 }

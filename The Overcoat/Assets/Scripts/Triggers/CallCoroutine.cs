@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, IDirectClick
+public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, IDirectClick, IWalkLookAnim
 {
-    public enum interFaceTpyes{ClickAction,DirectClick,Switch,/*EnterTrigger*/NoInterface};
+    public enum interFaceTpyes{ClickAction,DirectClick,Switch,/*EnterTrigger*/NoInterface,WalkLookAnim};
     public interFaceTpyes InterfaceType;
 
 
@@ -22,6 +22,8 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
             call();
     }
 
+    
+
     public void Action()
     {
         print("action");
@@ -38,6 +40,12 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
     public void directClick()
     {
         if (InterfaceType == interFaceTpyes.DirectClick)
+            call();
+    }
+
+    public void finishedIWLA()
+    {
+        if (InterfaceType == interFaceTpyes.WalkLookAnim)
             call();
     }
 

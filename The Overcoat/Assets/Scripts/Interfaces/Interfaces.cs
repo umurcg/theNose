@@ -24,6 +24,12 @@ public interface IFinishGirlGame
     void finished();
 
 }
+
+public interface IWalkLookAnim
+{
+    void finishedIWLA();
+}
+
 public interface IFinishedSwitching
 {
     void finishedSwitching();

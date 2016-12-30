@@ -21,6 +21,16 @@ public class SubtitleController : MonoBehaviour {
     // Use this for initialization
     public virtual void Start () {
 
+
+        //if (SubtitleFade.subtitles == null)
+        //{
+        //    print("NULLLLLLLLLL");
+        //}
+        //else
+        //{
+        //    print("Length of dcit: " + SubtitleFade.subtitles.Count);
+        //}
+
         text = subtitle.GetComponent<Text>();
         if (text == null)
         {

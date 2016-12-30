@@ -4,6 +4,7 @@ using System.Collections;
 // This script make subject object walk to owner object position, then rotates subject to forward vector of owner object and lastly it triggers or bools animation of it.
 //Important! This uses nav mesh agent.
 //i.e. Sitting animation.
+//If subject is null, it assigns it as player
 
 //To do 
 //Match Target!!!!
@@ -24,7 +25,10 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
 
 	// Use this for initialization
 	void Start () {
-	
+        if (subject == null)
+        {
+            subject = CharGameController.getActiveCharacter();
+        }
 	}
 	
 	// Update is called once per frame
@@ -35,6 +39,10 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
     public IEnumerator start()
     {
 
+        ////Disable collider
+        //Collider col = GetComponent<Collider>();
+        //col.enabled = false;
+        
         NavMeshAgent nma = subject.GetComponent<NavMeshAgent>();
         if (nma != null)
         {
@@ -44,9 +52,11 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         {
             yield break;
         }
+
+        
         while (Vector3.Distance(transform.position, subject.transform.position) > tol)
         {
-            //print(Vector3.Distance(transform.position, subject.transform.position));
+            print(Vector3.Distance(transform.position, subject.transform.position));
 
             yield return null;
         }
@@ -83,19 +93,23 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
             default:
                 break;
         }
+
+        GetComponent<IWalkLookAnim>().finishedIWLA();
+
    //     anim.MatchTarget(transform.GetChild(0).position, transform.GetChild(0).rotation, AvatarTarget.Root,
                                                    //    new MatchTargetWeightMask(Vector3.one, 100f), 0.1f, 0.9f);
     
 
     }
 
+
+
     public void Action()
     {
      
         StartCoroutine(start());
     }
-
-    
+        
 
 
     

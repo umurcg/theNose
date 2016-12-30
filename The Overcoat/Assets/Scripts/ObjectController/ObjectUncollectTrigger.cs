@@ -16,6 +16,7 @@ public class ObjectUncollectTrigger : MonoBehaviour, IClickAction {
 	// Use this for initialization
 	void Awake () {
 
+        
 		co=obj.GetComponent<CollectableObject> ();
 
 	}
@@ -25,10 +26,7 @@ public class ObjectUncollectTrigger : MonoBehaviour, IClickAction {
 			if(CollectableObject.collected.Contains(obj)){
 					
 				co.UnCollect (transform.position);
-		
-		
-								
-							
+																	
 				}
 	}
 	// Update is called once per frame

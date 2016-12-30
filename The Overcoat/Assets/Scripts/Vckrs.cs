@@ -92,6 +92,34 @@ public class Vckrs : MonoBehaviour
     }
 
 
+    static public IEnumerator<float> _lookTo(GameObject go, GameObject aim, float speed)
+    {
+
+        Vector3 localAim = aim.transform.position;
+
+
+        localAim.y = go.transform.position.y;
+
+
+        Quaternion initialRot = go.transform.rotation;
+        Quaternion aimRot = Quaternion.LookRotation(localAim - go.transform.position);
+        float ratio = 0;
+
+
+        while (ratio < 1)
+        {
+
+            ratio += Time.deltaTime * speed;
+            go.transform.rotation = Quaternion.Lerp(initialRot, aimRot, ratio);
+
+            yield return 0;
+        }
+        go.transform.rotation = aimRot;
+
+    }
+
+
+
     //This method pace object between two position.
     //It uses nav mesh.
     static public IEnumerator<float> _pace(GameObject obj, Vector3 aim1, Vector3 aim2)
@@ -256,6 +284,26 @@ public class Vckrs : MonoBehaviour
 
         }
         
+    }
+
+    //Returns a list holding all children objects.
+    public static List<Transform> getAllChildren(Transform parent)
+    {
+        List<Transform> children = new List<Transform>();
+        foreach (Transform child in parent)
+        {
+
+            children.Add(child);
+
+            if (child.childCount > 0)
+            {
+                children.AddRange(getAllChildren(child));
+            }
+
+        }
+
+        return children;
+
     }
 
 
