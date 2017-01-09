@@ -23,6 +23,21 @@ public class BridgeGameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = CharGameController.getActiveCharacter();
+
+
+        if (player == null)
+        {
+            this.enabled = false;
+            return;
+        }
+
+
+        if (player.name == null)
+        {
+            this.enabled = false;
+            return;
+        }
+
         if (player.name != "Ivan")
         {
             this.enabled = false;
@@ -50,6 +65,11 @@ public class BridgeGameController : MonoBehaviour {
 
     public void throwNose()
     {
+
+        if (player == null)
+        {
+            return;
+        }
 
         if (player.name != "Ivan")
         {

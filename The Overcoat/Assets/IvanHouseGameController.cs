@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MovementEffects;
 
 public class IvanHouseGameController : GameController {
-    public GameObject Praskovaya, blackScreen, Bread, Nose;
+    public GameObject Praskovaya, blackScreen, Bread, Nose, NosePackage;
 
     Animator praskovayaAnim;
     NavMeshAgent praskovayaNma;
@@ -13,15 +13,19 @@ public class IvanHouseGameController : GameController {
 	// Use this for initialization
 	public override void Start () {
         base.Start();
-
+        playerNma.enabled = false;
         praskovayaAnim = Praskovaya.GetComponent<Animator>();
         praskovayaNma = Praskovaya.GetComponent<NavMeshAgent>();
 
-        //Timing.RunCoroutine(_wakeUpScene());
+        Timing.RunCoroutine(_wakeUpScene());
+
+
+
         //Timing.RunCoroutine(_startBreadGame());
-        Timing.RunCoroutine(_noseDrop());
+        //Timing.RunCoroutine(_noseDrop());
     }
 	
+ 
 	// Update is called once per frame
 	void Update () {
 	   
@@ -87,11 +91,12 @@ public class IvanHouseGameController : GameController {
 
     IEnumerator<float> _startBreadGame()
     {
+       
         if (CollectableObject.collected.Count == 0)
         {
             yield break;
         }
-
+        pcc.StopToWalk();
         GameObject smallBread = CollectableObject.collected[0];
         CollectableObject co = smallBread.GetComponent<CollectableObject>();
         co.UnCollect(player.transform.position + player.transform.forward * 1+player.transform.up*2);
@@ -109,9 +114,14 @@ public class IvanHouseGameController : GameController {
 
     }
 
+    public void noseDrop()
+    {
+        Timing.RunCoroutine(_noseDrop());
+    }
 
     IEnumerator<float> _noseDrop()
     {
+        pcc.ContinueToWalk();
         Nose.SetActive(true);
         Rigidbody rb = Nose.GetComponent<Rigidbody>();
         rb.AddForce(Vector3.right*2, ForceMode.Impulse);

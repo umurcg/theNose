@@ -20,8 +20,8 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
 
     public float rotSpeed = 3f;
 
-    
-
+    bool sitting = false;
+    Vector3 prevPos=Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
@@ -33,7 +33,38 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        //call animation while getting up
+        if (sitting)
+        {
+            if (prevPos == Vector3.zero)
+            {
+                prevPos = subject.transform.position;
+            }else
+            {
+                //print(Vector3.Distance(prevPos, subject.transform.position));
+                if (Vector3.Distance(prevPos, subject.transform.position) > 0.01f)
+                {
+
+                    Animator anim = subject.GetComponent<Animator>();
+                    if (anim != null)
+                        switch (animParameter)
+                        {
+                            case AnimType.Boolean:
+                                anim.SetBool(animationName, false);
+                                break;
+                            case AnimType.Trigger:
+                                anim.SetTrigger(animationName);
+                                break;
+                            default:
+                                break;
+                        }
+
+                    sitting = false;
+                }
+                prevPos = subject.transform.position;
+            }
+        }
 	}
 
     public IEnumerator start()
@@ -56,7 +87,7 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         
         while (Vector3.Distance(transform.position, subject.transform.position) > tol)
         {
-            print(Vector3.Distance(transform.position, subject.transform.position));
+            //print(Vector3.Distance(transform.position, subject.transform.position));
 
             yield return null;
         }
@@ -93,7 +124,7 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
             default:
                 break;
         }
-
+        sitting = true;
         GetComponent<IWalkLookAnim>().finishedIWLA();
 
    //     anim.MatchTarget(transform.GetChild(0).position, transform.GetChild(0).rotation, AvatarTarget.Root,

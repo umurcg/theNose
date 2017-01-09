@@ -212,19 +212,6 @@ MonoBehaviour:
   size: {x: 10, y: 10}
   way: 0
   debugShow: 0
---- !u!114 &273419093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 273419087}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032b66bb67087e04cbc7a310da3f5a36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdTime: 5
-  door: {fileID: 0}
 --- !u!114 &273419094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +266,20 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 7c6e1180ec3c29e48aedd5a438c3ab01, type: 3}
   m_PrefabInternal: {fileID: 555600167}
+--- !u!114 &356598633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356598632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42681b2798a7f4418a506cdf5e2f223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InterfaceType: 3
+  owner: {fileID: 366735882}
+  methodName: noseDrop
 --- !u!114 &356598634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,8 +317,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  chair: {fileID: 725893108}
-  NoseThrow: {fileID: 0}
 --- !u!33 &356598638
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -362,6 +361,7 @@ MonoBehaviour:
   blackScreen: {fileID: 799844266}
   Bread: {fileID: 1874209628}
   Nose: {fileID: 1213410981}
+  NosePackage: {fileID: 0}
 --- !u!4 &366735884
 Transform:
   m_ObjectHideFlags: 0
@@ -2086,7 +2086,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
       propertyPath: m_Enabled

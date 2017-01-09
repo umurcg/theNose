@@ -1,26 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace CinemaDirector{
+
 public class NoseClickAndDrag: ClickAndDrag {
 
 	ChangeKeyShapesWithMouse ckswm;
 	Transform bread;
 	SkinnedMeshRenderer smr;
-	public GameObject chair;
-
-
-	
-		public Cutscene NoseThrow;
-
 	int dragged;
 	StopAndStartAnimation sasa;
-
-	
 
 
 	new void Start(){
 	
-		sasa = chair.GetComponent<StopAndStartAnimation> ();
 		base.Start ();
 		for(int i=0;i<transform.parent.childCount;i++) {
 
@@ -71,10 +62,10 @@ public class NoseClickAndDrag: ClickAndDrag {
 
 
 	void dropTheNose(){
-			transform.parent.gameObject.active = false;
-			NoseThrow.Play ();
+        transform.parent.gameObject.SetActive(false);
+        CallCoroutine cc = GetComponent<CallCoroutine>();
+        cc.call();
 	}
 
 }
 
-}

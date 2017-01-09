@@ -4,8 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class CharGameController : MonoBehaviour {
     static CharGameController cgc;
+   
 
     static int lastDoorId;
+     
 
     //public GameObject go;
 
@@ -83,7 +85,8 @@ public class CharGameController : MonoBehaviour {
 
         if (cgc == null)
         {
-            print("There is no characte game controller instance");
+            Debug.Log("There is no characte game controller instance");
+            return null;
         }
         int childCount = cgc.transform.childCount;
         for (int i = 0; i < childCount; i++)

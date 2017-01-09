@@ -13,11 +13,12 @@ using System.Linq;
 
 
 
-namespace CinemaDirector
-{
     
     public class RemoveSquares : MonoBehaviour {
-    
+
+
+  
+
     Mesh mesh;
     List<int> indices;
     public Object scar;
@@ -27,13 +28,13 @@ namespace CinemaDirector
     int triNumber;
     
     List<int> removedInd;
+    public GameObject camObj;
+    Camera cam;
 
-
-    public Cutscene Cutscene;
     // Use this for initialization
     void Start()
     {
-
+        cam = camObj.GetComponent<Camera>();
         removedInd = new List<int>();
 
         Vector3 pos = transform.position;
@@ -58,8 +59,8 @@ namespace CinemaDirector
         if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo = new RaycastHit();
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo) && hitInfo.transform.tag == "RemovableMesh")
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hitInfo) && hitInfo.transform.tag == "RemovableMesh")
             {
 
                 //these are for spawning
@@ -324,10 +325,10 @@ namespace CinemaDirector
 
     void finish()
     {
-        Cutscene.Play();
+        CallCoroutine cc = GetComponent<CallCoroutine>();
+        cc.call(); 
         Destroy(transform.parent.gameObject);
 
-        }
+    }
 
-}
 }

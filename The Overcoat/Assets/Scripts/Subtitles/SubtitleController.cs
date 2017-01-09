@@ -31,10 +31,17 @@ public class SubtitleController : MonoBehaviour {
         //    print("Length of dcit: " + SubtitleFade.subtitles.Count);
         //}
 
+        if (subtitle == null)
+        {
+       
+            this.enabled = false;
+        }
+
         text = subtitle.GetComponent<Text>();
         if (text == null)
         {
             print("PUT THE SUBTITLE YOU FAGGOT");
+         
         }
         index = -1;
 
@@ -43,6 +50,7 @@ public class SubtitleController : MonoBehaviour {
         if(player!=null)
         pcc = player.GetComponent<PlayerComponentController>();
 
+        //idunow
         this.enabled = false;
 
     }

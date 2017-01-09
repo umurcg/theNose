@@ -35,6 +35,13 @@ public class NoseEncounterGameController : MonoBehaviour {
     void Start () {
         Player = CharGameController.getActiveCharacter();
 
+        if (Player == null)
+        {
+            gameObject.SetActive(false);
+            this.enabled = false;
+            return;
+        }
+
         if (Player.name != "Kovalev")
         {
             gameObject.SetActive(false);

@@ -2,6 +2,10 @@
 using System.Collections;
 
 public class EnterTrigger : MonoBehaviour {
+
+    public enum sendMessage { inExit,inEnter};
+    public sendMessage SendMessage = sendMessage.inEnter;
+
     public bool enter=false;
 
     //Use this variables if you want to send message when trigger is activated.
@@ -40,13 +44,15 @@ public class EnterTrigger : MonoBehaviour {
             if (iet != null)
                 iet.TriggerAction(col);
 
-            //Sending message
-            if (messageReciever != null && message != "")
+            if (SendMessage == sendMessage.inEnter)
             {
-                messageReciever.SendMessage(message);
+                //Sending message
+                if (messageReciever != null && message != "")
+                {
+                    messageReciever.SendMessage(message);
 
+                }
             }
-
         }
         
     }
@@ -59,6 +65,18 @@ public class EnterTrigger : MonoBehaviour {
             IEnterTrigger iet = GetComponent<IEnterTrigger>();
             if (iet != null)
                 iet.exitTriggerAction(col);
+
+
+            if (SendMessage == sendMessage.inExit)
+            {
+                //Sending message
+                if (messageReciever != null && message != "")
+                {
+                    messageReciever.SendMessage(message);
+
+                }
+            }
+
         }
 
     }

@@ -25,7 +25,10 @@ public class SeeBehindWall : MonoBehaviour {
 
 
 	void Awake () {
-
+        if (Camera.main == null)
+        {
+            this.enabled = false;
+        }
 
 		player = GameObject.FindGameObjectWithTag ("Player");
 	    rend = GetComponent<Renderer> ();

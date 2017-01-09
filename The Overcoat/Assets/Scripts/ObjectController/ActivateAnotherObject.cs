@@ -12,7 +12,7 @@ public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching {
 
 	// Use this for initialization
 	void Start () {
-	
+        //Activate(go);
 	}
 	
 	// Update is called once per frame
@@ -29,14 +29,6 @@ public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching {
         {
 
             script.enabled = false;
-
-
-            if (script is CinemaDirector.CutsceneTriggerViaAction)
-            {
-                CinemaDirector.CutsceneTriggerViaAction ctv = (CinemaDirector.CutsceneTriggerViaAction)(script);
-                ctv.enabledAction = false;
-            }
-
 
 
             if (script is ChangeMaterial)
@@ -59,12 +51,6 @@ public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching {
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = true;
-
-            if(script is CinemaDirector.CutsceneTriggerViaAction)
-            {
-                CinemaDirector.CutsceneTriggerViaAction ctv = (CinemaDirector.CutsceneTriggerViaAction)(script);
-                ctv.enabledAction = true;
-            }
 
             if (script is ChangeMaterial)
             {

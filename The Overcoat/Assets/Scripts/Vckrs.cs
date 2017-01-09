@@ -229,11 +229,12 @@ public class Vckrs : MonoBehaviour
         if (cam.orthographicSize > size)
         {
             
-            while (cam.fieldOfView > size)
+            while (cam.orthographicSize > size)
             {
                 cam.orthographicSize -= Time.deltaTime * speed;
                 yield return 0;
             }
+            cam.orthographicSize = size;
 
         }
         else
@@ -245,9 +246,46 @@ public class Vckrs : MonoBehaviour
                 cam.orthographicSize += Time.deltaTime * speed;
                 yield return 0;
             }
+            cam.orthographicSize = size;
         }
     }
 
+
+    public static IEnumerator<float> _fadeObject(GameObject obj,float speed)
+    {
+        Renderer rend = obj.GetComponent<Renderer>();
+        Color textureColor = rend.material.color;
+        float a = textureColor.a;
+
+
+
+        if (a == 0)
+        {
+            while (a < 1)
+            {
+                a += Time.deltaTime * speed;
+                textureColor.a = a;
+                rend.material.color = textureColor;
+                yield return 0;
+            }
+            textureColor.a = 1;
+            rend.material.color = textureColor;
+
+        }
+        else
+        {
+            while (a > 0)
+            {
+                a -= Time.deltaTime * speed;
+                textureColor.a = a;
+                rend.material.color = textureColor;
+                yield return 0;
+            }
+            textureColor.a = 0;
+            rend.material.color = textureColor;
+
+        }
+    }
 
     public static IEnumerator<float> _fadeInfadeOut(GameObject black,float speed)
     {
