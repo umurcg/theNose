@@ -134,7 +134,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
         //Here is walking
         while (checkIsColliding(aim) == false)
         {
-       
+            //print("walking");
             if (Input.anyKeyDown)
             {
                 Timing.KillCoroutines(handler);
@@ -158,15 +158,20 @@ public class ClickTriggerSingleton : MonoBehaviour {
         agent.Stop();
     }
 
+   
     IEnumerator<float> walkToTarget(GameObject aim)
     {
+
+        
 
         IClickActionDifferentPos icadp = aim.GetComponent<IClickActionDifferentPos>();
 
         agent.Resume();
+
         Vector3 position;
         while (true)
-        {   
+        {
+               
             if (icadp != null)
             {
                 position=icadp.giveMePosition();
@@ -176,10 +181,17 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
                position=aim.transform.position;
             }
+            //print(position);
             //print("aiming");
             agent.SetDestination(position);
+            if (aim.isStatic)
+            {
+                yield break;
+            }
             yield return 0;
         }
+
+
     }
 
     bool checkIsColliding(GameObject obj)

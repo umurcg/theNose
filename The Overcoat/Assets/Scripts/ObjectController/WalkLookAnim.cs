@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using MovementEffects;
 
-// This script make subject object walk to owner object position, then rotates subject to forward vector of owner object and lastly it triggers or bools animation of it.
-//Important! This uses nav mesh agent.
+//This script make subject object walk to owner object position, then rotates subject to forward vector of owner object and lastly it triggers or bools animation of it.
+//Important! This doesn't use nav mesh agent
 //i.e. Sitting animation.
 //If subject is null, it assigns it as player
+//Add child object for specifying exact position
 
 //To do 
 //Match Target!!!!
@@ -12,107 +15,114 @@ using System.Collections;
 public class WalkLookAnim : MonoBehaviour, IClickAction {
     public GameObject subject;
     public string animationName;
-    public float tol = 0.1f;
-    
-    public enum AnimType {Trigger,Boolean};
-    public AnimType animParameter;
-
-
+    public float speed = 1f;
     public float rotSpeed = 3f;
+    public Vector3 lookDirection = Vector3.forward;
+
+    //Locks sitting
+    public bool lockSit;
+
+    public enum AnimType { Trigger, Boolean };
+    public AnimType animParameter;
 
     bool sitting = false;
     Vector3 prevPos=Vector3.zero;
+    GameObject childObject;
 
-	// Use this for initialization
-	void Start () {
+    Collider col;
+    IEnumerator<float> handler;
+    Animator anim;
+
+    //public bool getup;
+    // Use this for initialization
+    void Start () {
         if (subject == null)
         {
             subject = CharGameController.getActiveCharacter();
         }
-	}
+
+        col = GetComponent<Collider>();
+        anim = subject.GetComponent<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
-        //call animation while getting up
-        if (sitting)
+        if (sitting&&!lockSit)
         {
-            if (prevPos == Vector3.zero)
+            //If trying to move
+            if(Input.GetAxis("Horizontal")!=0|| Input.GetAxis("Vertical") != 0) Timing.RunCoroutine(_getUp());
+
+                        
+            if (Input.GetMouseButton(0))
             {
-                prevPos = subject.transform.position;
-            }else
-            {
-                //print(Vector3.Distance(prevPos, subject.transform.position));
-                if (Vector3.Distance(prevPos, subject.transform.position) > 0.01f)
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
+
                 {
+                    if (hit.transform.tag == "Floor")
+                    {
 
-                    Animator anim = subject.GetComponent<Animator>();
-                    if (anim != null)
-                        switch (animParameter)
-                        {
-                            case AnimType.Boolean:
-                                anim.SetBool(animationName, false);
-                                break;
-                            case AnimType.Trigger:
-                                anim.SetTrigger(animationName);
-                                break;
-                            default:
-                                break;
-                        }
+                        Timing.RunCoroutine(_getUp());
 
-                    sitting = false;
+                    }
                 }
-                prevPos = subject.transform.position;
+
+                
             }
+  
         }
+
+
+
+
 	}
 
-    public IEnumerator start()
+
+    public void start()
     {
+        Timing.RunCoroutine(_sit());
+    }
 
-        ////Disable collider
-        //Collider col = GetComponent<Collider>();
-        //col.enabled = false;
+    IEnumerator<float> _sit()
+    {
+      
+        //Validate is not sitting
+        if (sitting)  yield break;
+
+        //Disable collider
+        col.enabled = false;
+
+        //Set player components
+        disablePlayer(true);
+
+        //Looking for child
+        if (transform.childCount > 0)
+        {
+            childObject = transform.GetChild(0).gameObject;
+        }
+
+        Vector3 aim = (childObject != null) ? childObject.transform.position : transform.position;
+
+        //Prevent y change while walking.
+        float y = aim.y;
+        aim = new Vector3(aim.x, aim.y, aim.z);
+
+        //Tween to position
+        handler = Timing.RunCoroutine(Vckrs._Tween(subject,aim,speed));
+        yield return Timing.WaitUntilDone(handler);
+
+        //Rotate to forward
+        handler = Timing.RunCoroutine(Vckrs._lookTo(subject, lookDirection, rotSpeed));
+
+        ////Set y while sitting
+        //Vector3 aimWithY = new Vector3(subject.transform.position.x, y, subject.transform.position.z);
+        //IEnumerator<float> handler2 = Timing.RunCoroutine(Vckrs._Tween(subject, aimWithY, speed));
+        //yield return Timing.WaitUntilDone(handler2);
         
-        NavMeshAgent nma = subject.GetComponent<NavMeshAgent>();
-        if (nma != null)
-        {
-            nma.Resume();
-            nma.destination = transform.position;
-        } else
-        {
-            yield break;
-        }
-
+        yield return Timing.WaitUntilDone(handler);
         
-        while (Vector3.Distance(transform.position, subject.transform.position) > tol)
-        {
-            //print(Vector3.Distance(transform.position, subject.transform.position));
-
-            yield return null;
-        }
-
-        nma.Stop();
-
-        Vector3 localAim = transform.position + transform.forward;
-
-
-        Quaternion initialRot = subject.transform.rotation;
-        Quaternion aimRot = Quaternion.LookRotation(localAim - transform.position);
-    
-        float ratio = 0;
-
-        while (ratio < 1)
-        {
-
-            // print(Vector3.Distance(transform.rotation.eulerAngles, aimRot.eulerAngles));
-            ratio += Time.deltaTime * rotSpeed;
-            subject.transform.rotation = Quaternion.Lerp(initialRot, aimRot, ratio);
-
-            yield return null;
-        }
-
-        Animator anim = subject.GetComponent<Animator>();
+        //Animation according to enum value
         if(anim!=null)
         switch (animParameter) {
             case AnimType.Boolean:
@@ -124,24 +134,80 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
             default:
                 break;
         }
-        sitting = true;
-        GetComponent<IWalkLookAnim>().finishedIWLA();
 
-   //     anim.MatchTarget(transform.GetChild(0).position, transform.GetChild(0).rotation, AvatarTarget.Root,
-                                                   //    new MatchTargetWeightMask(Vector3.one, 100f), 0.1f, 0.9f);
+        
+        //set sittin boolean
+        sitting = true;
+
+        //Call interface method
+        IWalkLookAnim iwla = GetComponent<IWalkLookAnim>();
+        if (iwla!=null)  iwla.finishedIWLA();
+        
+    }
+
+
+    IEnumerator<float> _getUp()
+    {
+        if (!sitting) yield break;
     
+
+        //Animation according to enum value
+        if (anim != null)
+            switch (animParameter)
+            {
+                case AnimType.Boolean:
+                    anim.SetBool(animationName, false);
+
+                    break;
+                case AnimType.Trigger:
+                    anim.SetTrigger(animationName);
+                    break;
+                default:
+                    break;
+            }
+
+        handler = Timing.RunCoroutine(Vckrs._Tween(subject, subject.transform.position+subject.transform.forward , speed));
+        yield return Timing.WaitUntilDone(handler);
+
+        disablePlayer(false);
+
+        col.enabled = true;
+        sitting = false;
 
     }
 
+    public void disablePlayer(bool disable)
+    {
+        //Check for pcc
+        PlayerComponentController pcc = subject.GetComponent<PlayerComponentController>();
+        NavMeshAgent nma = subject.GetComponent<NavMeshAgent>();
+        
+        if (!pcc||!nma) return;
+
+        if (disable)
+        {
+            pcc.StopToWalk();
+            nma.enabled = false;
+        }
+        else
+        {
+            pcc.ContinueToWalk();
+            nma.enabled = true;
+        }
+
+    }
 
 
     public void Action()
     {
      
-        StartCoroutine(start());
+        start();
     }
         
-
+    public bool isSitting()
+    {
+        return sitting;
+    }
 
     
 }

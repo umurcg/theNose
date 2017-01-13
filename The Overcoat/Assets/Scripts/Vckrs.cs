@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 using UnityEngine.UI;
-//This is a module for generic methods.
+//This is a module for generic methods, classes, enums and some other things.
+
+
+//Animation type enum. Use this enum for taking actions according to animation parameter type.
+public enum AnimType { Trigger, Boolean, Int,Float };
 
 
 public class Vckrs : MonoBehaviour
@@ -61,7 +65,7 @@ public class Vckrs : MonoBehaviour
             yield return 0;
 
         }
-        print(timer);
+        //print(timer);
 
     }
 
@@ -342,6 +346,29 @@ public class Vckrs : MonoBehaviour
 
         return children;
 
+    }
+
+   
+
+
+
+}
+
+
+//Class for holding basic components of characters
+//It is for shortcut
+public class characterComponents
+{
+    public GameObject player;
+    public Animator animator;
+    public NavMeshAgent navmashagent;
+
+
+    public characterComponents(GameObject p)
+    {
+        player = p;
+        animator = p.GetComponent<Animator>();
+        navmashagent = p.GetComponent<NavMeshAgent>();
     }
 
 

@@ -4,7 +4,9 @@ using System.Collections;
 public class EnterTrigger : MonoBehaviour {
 
     public enum sendMessage { inExit,inEnter};
-    public sendMessage SendMessage = sendMessage.inEnter;
+    public sendMessage sm = sendMessage.inEnter;
+    public bool deleteAfterSendMessage = false;
+
 
     public bool enter=false;
 
@@ -28,6 +30,16 @@ public class EnterTrigger : MonoBehaviour {
      
     }
 
+    void send()
+    {
+        //Sending message
+        if (messageReciever != null && message != "")
+        {
+            messageReciever.SendMessage(message);
+            if (deleteAfterSendMessage) Destroy(this);
+        }
+    }
+
     void OnTriggerEnter(Collider col)
     {
 
@@ -44,15 +56,8 @@ public class EnterTrigger : MonoBehaviour {
             if (iet != null)
                 iet.TriggerAction(col);
 
-            if (SendMessage == sendMessage.inEnter)
-            {
-                //Sending message
-                if (messageReciever != null && message != "")
-                {
-                    messageReciever.SendMessage(message);
-
-                }
-            }
+            if (sm == sendMessage.inEnter)   send();
+            
         }
         
     }
@@ -63,19 +68,9 @@ public class EnterTrigger : MonoBehaviour {
         {
             enter = false;
             IEnterTrigger iet = GetComponent<IEnterTrigger>();
-            if (iet != null)
-                iet.exitTriggerAction(col);
+            if (iet != null)   iet.exitTriggerAction(col);
 
-
-            if (SendMessage == sendMessage.inExit)
-            {
-                //Sending message
-                if (messageReciever != null && message != "")
-                {
-                    messageReciever.SendMessage(message);
-
-                }
-            }
+            if (sm == sendMessage.inExit) send(); 
 
         }
 

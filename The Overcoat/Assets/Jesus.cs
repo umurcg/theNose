@@ -6,24 +6,33 @@ using MovementEffects;
 
 public class Jesus : GameController, IClickAction {
 
+    public GameObject pontiff;
     public GameObject priest;
     public GameObject door;
+    public GameObject basementTrigger,throne;
+
 
     NavMeshAgent priestNma;
     Animator priestAnim;
 
-	// Use this for initialization
-	public override void Start () {
+    characterComponents pontiffCC;
+
+
+    // Use this for initialization
+    public override void Start () {
         base.Start();
         priestNma = priest.GetComponent<NavMeshAgent>();
         priestAnim = priest.GetComponent<Animator>();
 
-     
+        pontiffCC = new characterComponents(pontiff);
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    
+
+
 	}
 
     public void Action()
@@ -111,4 +120,40 @@ public class Jesus : GameController, IClickAction {
 
     }
 
-}
+    public void basement()
+    {
+        Timing.RunCoroutine(_basement());
+    }
+
+    IEnumerator<float> _basement()
+    {
+        //First subt
+        sc.callSubtitle();
+
+        yield return Timing.WaitForSeconds(2f);
+
+        //Pontiff get closer
+        pontiffCC.navmashagent.SetDestination(player.transform.position + Vector3.forward*3);
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(pontiff, 0));
+
+        while (subtitle.text != "") yield return 0;
+
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        //Second sub
+        sc.callSubtitle();
+        while (subtitle.text != "") yield return 0;
+
+        WalkLookAnim wla = throne.GetComponent<WalkLookAnim>();
+
+        //Wait for the sit
+        while (!wla.isSitting()) yield return 0;
+
+        //Third sub
+        sc.callSubtitle();
+        while (subtitle.text != "") yield return 0;
+
+
+    }
+
+ }

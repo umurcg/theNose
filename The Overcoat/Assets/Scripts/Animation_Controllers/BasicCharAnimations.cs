@@ -23,18 +23,17 @@ public class BasicCharAnimations : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         anim = GetComponent<Animator>();
-        lastPosition = transform.position;
+      
         lastRotate = transform.rotation;
-
-        
+            
         
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
-          
+
+        if(lastPosition==Vector3.zero) lastPosition = transform.position;
 
         float dist = Vector3.Distance(transform.position, lastPosition);
         float speed =speedFactor* dist / Time.deltaTime;
@@ -44,6 +43,7 @@ public class BasicCharAnimations : MonoBehaviour {
 
 		if (dist > threshold) {
 			anim.speed = speed;
+            //print(dist);
 			anim.SetBool (animName, dist > threshold);
  
 		} 
