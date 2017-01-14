@@ -13,20 +13,20 @@ public enum AnimType { Trigger, Boolean, Int,Float };
 public class Vckrs : MonoBehaviour
 {
 
- 
-    public static IEnumerator<float> _setLightIntensity(GameObject light, float speed,float intensity)
+
+    public static IEnumerator<float> _setLightIntensity(GameObject light, float speed, float intensity)
     {
         Light l = light.GetComponent<Light>();
         float initialIntesity = l.intensity;
         float ratio = 0;
-         
-       while (ratio < 1)
-       {
-             ratio += Time.deltaTime * speed;
-            l.intensity = Mathf.Lerp(initialIntesity, intensity,ratio);
+
+        while (ratio < 1)
+        {
+            ratio += Time.deltaTime * speed;
+            l.intensity = Mathf.Lerp(initialIntesity, intensity, ratio);
             yield return 0;
         }
-           
+
 
 
     }
@@ -40,12 +40,12 @@ public class Vckrs : MonoBehaviour
             //print((Vector3.Distance(obj.transform.position, pos)));
             pos = obj.transform.position;
             yield return 0;
-            
+
         }
 
     }
 
-    
+
 
     public static IEnumerator<float> _Tween(GameObject go, Vector3 aim, float speed)
     {
@@ -71,19 +71,19 @@ public class Vckrs : MonoBehaviour
 
     static public IEnumerator<float> _lookTo(GameObject go, Vector3 aim, float speed)
     {
-   
+
         Vector3 localAim = go.transform.position + aim;
-  
+
 
         localAim.y = go.transform.position.y;
 
 
-       Quaternion initialRot = go.transform.rotation;
-       Quaternion aimRot = Quaternion.LookRotation(localAim - go.transform.position);
-       float  ratio = 0;
+        Quaternion initialRot = go.transform.rotation;
+        Quaternion aimRot = Quaternion.LookRotation(localAim - go.transform.position);
+        float ratio = 0;
 
 
-        while (ratio<1)
+        while (ratio < 1)
         {
 
             ratio += Time.deltaTime * speed;
@@ -132,12 +132,12 @@ public class Vckrs : MonoBehaviour
         nav.enabled = true;
         nav.Resume();
         nav.SetDestination(aim1);
-        IEnumerator<float> handler=Timing.RunCoroutine(Vckrs.waitUntilStop(obj, 0.0001f));
+        IEnumerator<float> handler = Timing.RunCoroutine(Vckrs.waitUntilStop(obj, 0.0001f));
 
         yield return Timing.WaitUntilDone(handler);
 
-        
-        Vector3 aim = aim2; 
+
+        Vector3 aim = aim2;
         while (true)
         {
             //print("while");
@@ -152,14 +152,14 @@ public class Vckrs : MonoBehaviour
             if (aim == aim1)
             {
                 aim = aim2;
-            }else
+            } else
             {
                 aim = aim1;
             }
 
-            
+
         }
-        
+
     }
 
 
@@ -180,7 +180,7 @@ public class Vckrs : MonoBehaviour
                 cm.change();
             }
         }
-        
+
         obj.transform.tag = "ActiveObject";
 
     }
@@ -224,15 +224,15 @@ public class Vckrs : MonoBehaviour
         }
     }
 
-   
 
 
-    public static IEnumerator<float> _cameraSize(Camera cam,float size,float speed)
+
+    public static IEnumerator<float> _cameraSize(Camera cam, float size, float speed)
     {
-       
+
         if (cam.orthographicSize > size)
         {
-            
+
             while (cam.orthographicSize > size)
             {
                 cam.orthographicSize -= Time.deltaTime * speed;
@@ -243,7 +243,7 @@ public class Vckrs : MonoBehaviour
         }
         else
         {
-           
+
             while (cam.orthographicSize < size)
             {
                 //print("increase");
@@ -255,7 +255,7 @@ public class Vckrs : MonoBehaviour
     }
 
 
-    public static IEnumerator<float> _fadeObject(GameObject obj,float speed)
+    public static IEnumerator<float> _fadeObject(GameObject obj, float speed)
     {
         Renderer rend = obj.GetComponent<Renderer>();
         Color textureColor = rend.material.color;
@@ -291,14 +291,14 @@ public class Vckrs : MonoBehaviour
         }
     }
 
-    public static IEnumerator<float> _fadeInfadeOut(GameObject black,float speed)
+    public static IEnumerator<float> _fadeInfadeOut(GameObject black, float speed)
     {
         RawImage r = black.GetComponent<RawImage>();
-        
-        Color textureColor=r.color;
+
+        Color textureColor = r.color;
         float a = textureColor.a;
 
-     
+
 
         if (a == 0)
         {
@@ -312,7 +312,7 @@ public class Vckrs : MonoBehaviour
             textureColor.a = 1;
             r.color = textureColor;
 
-        }else
+        } else
         {
             while (a > 0)
             {
@@ -325,7 +325,7 @@ public class Vckrs : MonoBehaviour
             r.color = textureColor;
 
         }
-        
+
     }
 
     //Returns a list holding all children objects.
@@ -348,7 +348,6 @@ public class Vckrs : MonoBehaviour
 
     }
 
-   
 
 
 
