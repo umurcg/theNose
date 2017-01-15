@@ -7,11 +7,15 @@ using System.Collections;
 
 public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
 
+    //Start automatic when player clicks the object or start manually from script
+    public bool startAutomatic = true;
+
+
     //int currentIndex = 0;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -71,5 +75,10 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         }
     }
 
+
+    public bool isAutomatic()
+    {
+        return startAutomatic;
+    }
 
 }

@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class CharGameController : MonoBehaviour {
     static CharGameController cgc;
-   
+    public string rigthHand = "/ Armature / Torso / Chest / Arm_L / Hand_R";
+    public string leftHand = "/ Armature / Torso / Chest / Arm_L / Hand_L";
+    public enum hand { LeftHand,RightHand};
 
     static int lastDoorId;
      
@@ -127,4 +129,18 @@ public class CharGameController : MonoBehaviour {
          
         
     }
+
+    //This function returns object that is owned by the hand of the armature of a player character.
+
+    public static  GameObject getObjectOfHand(string objectName, hand r_l)
+    {
+        string playerName = getActiveCharacter().transform.GetChild(0).name;
+        string handName="";
+        if (r_l == hand.LeftHand) { handName = "Hand_L"; } else if (r_l == hand.RightHand) { handName = "Hand_R"; }
+
+        string fullString = playerName + "/Armature/Torso/Chest/Arm_L/" + handName + "/" + objectName;
+
+        return getActiveCharacter().transform.Find(fullString).gameObject;
+    }
+
 }

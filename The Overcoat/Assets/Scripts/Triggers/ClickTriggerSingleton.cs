@@ -231,7 +231,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
         ISubtitleTrigger ist = go.GetComponent<ISubtitleTrigger>();
         if (ist != null)
         {
-            ist.callSubtitle();
+            if(ist.isAutomatic())     ist.callSubtitle();
         }
 
     }

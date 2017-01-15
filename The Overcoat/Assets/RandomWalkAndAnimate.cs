@@ -76,7 +76,8 @@ public class RandomWalkAndAnimate : GameController {
 
         //print("Set animation");
 
-        //Wait timer to be finished by update function
+        //Wait timer to be finished by update function.
+        //Finish 1 second early to let the object finishes its animation
         while (timer > 0) yield return 0;
 
         //Disable animation

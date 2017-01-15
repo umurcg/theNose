@@ -67,6 +67,9 @@ public interface ISubtitleTrigger
     void callSubtitleWithIndex(int index);
     void callSubtitle();
 
+    //FUCKKKKKK DESIGN FAULT
+    bool isAutomatic();
+
 }
 
 

@@ -398,6 +398,8 @@ GameObject:
   - 114: {fileID: 114000013683950538}
   - 195: {fileID: 195000012472993456}
   - 114: {fileID: 114000010903502942}
+  - 135: {fileID: 135000011398696828}
+  - 114: {fileID: 114000010655476352}
   m_Layer: 0
   m_Name: girty
   m_TagString: Untagged
@@ -815,6 +817,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010655476352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014003314998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded2b3d3256395b4ab8f2dbcc5b6fba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animName: Bark
+  subtitles:
+  - 'Girty: Hav Hav!'
+  - "Kovalev: Bu bana sald\u0131racak. Bunun yan\u0131na yakla\u015Famam."
+  delay: 1
 --- !u!114 &114000010903502942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -846,6 +864,18 @@ MonoBehaviour:
   threshold: 0.01
   animName: Walk
   speedFactor: 0.6
+--- !u!135 &135000011398696828
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014003314998}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.6
+  m_Center: {x: 0, y: 0.47, z: 0}
 --- !u!137 &137000013913364806
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
