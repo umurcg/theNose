@@ -339,6 +339,7 @@ GameObject:
   - 114: {fileID: 366735888}
   - 114: {fileID: 366735890}
   - 114: {fileID: 366735889}
+  - 114: {fileID: 366735891}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -362,6 +363,7 @@ MonoBehaviour:
   Bread: {fileID: 1874209628}
   Nose: {fileID: 1213410981}
   NosePackage: {fileID: 0}
+  ivanFirstPosition: {x: 6.58, y: 0.93, z: -2.86}
 --- !u!4 &366735884
 Transform:
   m_ObjectHideFlags: 0
@@ -410,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startAutomatic: 1
 --- !u!114 &366735887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +551,17 @@ MonoBehaviour:
   subtitle: {fileID: 1211602640}
   ifDesroyItself: 1
   releaseAfterSub: 0
+--- !u!114 &366735891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366735882}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2df56e23b20ccf418f927c5bc0b5b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &457948712 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100006, guid: c0ee99e1f1fca1b468322987afc7dc17, type: 3}
@@ -1059,9 +1073,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subject: {fileID: 0}
   animationName: SitTrigger
-  tol: 1
-  animParameter: 0
+  speed: 1
   rotSpeed: 1
+  lookDirection: {x: 0, y: 0, z: 1}
+  lockSit: 0
+  animParameter: 0
 --- !u!136 &725893111
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1626,6 +1642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startAutomatic: 1
 --- !u!114 &1213410996
 MonoBehaviour:
   m_ObjectHideFlags: 0

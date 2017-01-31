@@ -5,6 +5,7 @@ using MovementEffects;
 
 public class IvanHouseGameController : GameController {
     public GameObject Praskovaya, blackScreen, Bread, Nose, NosePackage;
+    public Vector3 ivanFirstPosition;
 
     Animator praskovayaAnim;
     NavMeshAgent praskovayaNma;
@@ -13,13 +14,19 @@ public class IvanHouseGameController : GameController {
 	// Use this for initialization
 	public override void Start () {
         base.Start();
+
+        //Set ivan as a character and put it on true positon
+        CharGameController.setCharacter("Ivan");
+        CharGameController.getOwner().transform.position = ivanFirstPosition;
+        CharGameController.getCamera().SetActive(true);
+
         playerNma.enabled = false;
         praskovayaAnim = Praskovaya.GetComponent<Animator>();
         praskovayaNma = Praskovaya.GetComponent<NavMeshAgent>();
 
         Timing.RunCoroutine(_wakeUpScene());
 
-
+        
 
         //Timing.RunCoroutine(_startBreadGame());
         //Timing.RunCoroutine(_noseDrop());

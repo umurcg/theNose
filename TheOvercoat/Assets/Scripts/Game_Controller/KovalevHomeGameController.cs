@@ -192,7 +192,7 @@ public class KovalevHomeGameController : MonoBehaviour {
         od.otherCanOpen = false;
         od.playerCanOpen = true;
 
-        GlobalController.Instance.registerToSceneList();
+
 
         //ksc.disableWC();
 

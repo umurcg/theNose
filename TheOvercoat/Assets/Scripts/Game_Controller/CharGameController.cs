@@ -2,12 +2,19 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+//This script is attached to player object
+//It is active for all game while every scene player object is alive
+//You can get and set characters through this script
+//Owner object should have camera and players objects, nothing else.
+
+
 public class CharGameController : MonoBehaviour {
     static CharGameController cgc;
     public string rigthHand = "/ Armature / Torso / Chest / Arm_L / Hand_R";
     public string leftHand = "/ Armature / Torso / Chest / Arm_L / Hand_L";
     public enum hand { LeftHand,RightHand};
 
+    //For matching doors
     static int lastDoorId;
      
 
@@ -17,6 +24,8 @@ public class CharGameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+
+  
         if (cgc == null)
         {
             cgc = this;
@@ -26,14 +35,16 @@ public class CharGameController : MonoBehaviour {
         else if(cgc!=this){
             Destroy(gameObject);
         }
-   
+
+        //if it is not main menu register to scene list
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            GlobalController.Instance.registerToSceneList();
+        }
+
 
     }
 
-    void Update()
-    {
-        
-    }
 
     void setPositionToDoor(Scene scene, LoadSceneMode mode)
     {
@@ -82,6 +93,11 @@ public class CharGameController : MonoBehaviour {
         lastDoorId = index;
     }
 
+    public static GameObject getOwner()
+    {
+        return cgc.gameObject;
+    }
+
     public static GameObject getActiveCharacter()
     {
 
@@ -112,24 +128,70 @@ public class CharGameController : MonoBehaviour {
         for (int i = 0; i < childCount; i++)
         {
             Transform child = cgc.transform.GetChild(i);
-            if (child.name == "Main Camera")
-            { }
-            else if (child.name == characterName)
+            if (child.tag != "MainCamera") { 
+            
+           if (child.name == characterName)
+                {
+                    child.gameObject.SetActive(true);
+                }
+                else
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
+
+          }
+                
+    }
+
+    public static void setCharacter(int characterIndex)
+    {
+
+
+        int childCount = cgc.transform.childCount;
+        for (int i = 0; i < childCount; i++)
+        {
+            Transform child = cgc.transform.GetChild(i);
+
+
+            if (i == characterIndex)
             {
+                if (child.tag == "MainCamera")
+                {
+                    Debug.Log("You can't set camera as character");
+                    return;
+                }
+
                 child.gameObject.SetActive(true);
             }
             else
             {
                 child.gameObject.SetActive(false);
-            }       
-           
-
             }
-                
-         
-        
+
+
+        }
+
     }
 
+    public static GameObject getCamera()
+    {
+        return cgc.transform.GetChild(0).gameObject;
+    }
+
+    public static void deactivateAllCharacters()
+    {
+        int childCount = cgc.transform.childCount;
+        for (int i = 0; i < childCount; i++)
+        {
+            Transform child = cgc.transform.GetChild(i);
+            if (child.tag != "MainCamera")
+            {
+                child.gameObject.SetActive(false);
+            }
+
+        }
+    }
     //This function returns object that is owned by the hand of the armature of a player character.
 
     public static  GameObject getObjectOfHand(string objectName, hand r_l)

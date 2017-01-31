@@ -100,7 +100,6 @@ public class GameControllerPoliceStation : MonoBehaviour {
         //while(true)
         //yield return 0;
 
-        GlobalController.Instance.registerToSceneList();
         
     }
 }

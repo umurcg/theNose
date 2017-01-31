@@ -291,9 +291,9 @@ public class Vckrs : MonoBehaviour
         }
     }
 
-    public static IEnumerator<float> _fadeInfadeOut(GameObject black, float speed)
+    public static IEnumerator<float> _fadeInfadeOut(GameObject rawImage, float speed)
     {
-        RawImage r = black.GetComponent<RawImage>();
+        RawImage r = rawImage.GetComponent<RawImage>();
 
         Color textureColor = r.color;
         float a = textureColor.a;
@@ -327,6 +327,84 @@ public class Vckrs : MonoBehaviour
         }
 
     }
+
+    public static IEnumerator<float> _fadeInfadeOutImage(GameObject image, float speed)
+    {
+        Image i = image.GetComponent<Image>();
+
+        Color textureColor = i.color;
+        float a = textureColor.a;
+
+
+
+        if (a == 0)
+        {
+            while (a < 1)
+            {
+                a += Time.deltaTime * speed;
+                textureColor.a = a;
+                i.color = textureColor;
+                yield return 0;
+            }
+            textureColor.a = 1;
+            i.color = textureColor;
+
+        }
+        else
+        {
+            while (a > 0)
+            {
+                a -= Time.deltaTime * speed;
+                textureColor.a = a;
+                i.color = textureColor;
+                yield return 0;
+            }
+            textureColor.a = 0;
+            i.color = textureColor;
+
+        }
+
+    }
+
+    public static IEnumerator<float> _fadeInfadeOutText(GameObject text, float speed)
+    {
+        Text t = text.GetComponent<Text>();
+
+        Color textureColor = t.color;
+        float a = textureColor.a;
+
+
+
+        if (a == 0)
+        {
+            while (a < 1)
+            {
+                a += Time.deltaTime * speed;
+                textureColor.a = a;
+                t.color = textureColor;
+                yield return 0;
+            }
+            textureColor.a = 1;
+            t.color = textureColor;
+
+        }
+        else
+        {
+            while (a > 0)
+            {
+                a -= Time.deltaTime * speed;
+                textureColor.a = a;
+                t.color = textureColor;
+                yield return 0;
+            }
+            textureColor.a = 0;
+            t.color = textureColor;
+
+        }
+
+    }
+
+
 
     //Returns a list holding all children objects.
     public static List<Transform> getAllChildren(Transform parent)
