@@ -46,24 +46,34 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 
         originalRotation = transform.rotation;
 
-        List<Transform> children = Vckrs.getAllChildren(player);
-
-        foreach (Transform c in children)
+        if (player == null)
         {
-            if (c.name == "Hand_R")
-            {
-                rightHand = c;
-            }
-            else if (c.name == "Hand_L")
-            {
-                leftHand = c;
-            }
+            Debug.Log("Player is null");
+            enabled = false;
+            return;
+        }
+
+        //Get hands from chargameController
+        rightHand = CharGameController.getHand(CharGameController.hand.RightHand).transform;
+        leftHand = CharGameController.getHand(CharGameController.hand.LeftHand).transform;
+        //List<Transform> children = Vckrs.getAllChildren(player);
+
+        //foreach (Transform c in children)
+        //{
+        //    if (c.name == "Hand_R")
+        //    {
+        //        rightHand = c;
+        //    }
+        //    else if (c.name == "Hand_L")
+        //    {
+        //        leftHand = c;
+        //    }
 
 
-        }        
-        
+        //}        
 
-		foreach (GameObject placeholder in placeholders){
+
+        foreach (GameObject placeholder in placeholders){
 			placeholder.SetActive(true);
 		}
 

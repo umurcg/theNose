@@ -23,6 +23,7 @@ public class TavernGameController : GameController {
 	}
     public  void TarkovskyStopsIvan()
     {
+        if(enabled)
         Timing.RunCoroutine(_TarkovskyStopsIvan());
     }
 

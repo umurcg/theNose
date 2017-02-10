@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using MovementEffects;
+using System.Collections.Generic;
 
 //Fades in when script starts
 //Owner should have fade or transparent material
 public class FadeInWhenAwake : MonoBehaviour {
+
+    public float delay = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +16,16 @@ public class FadeInWhenAwake : MonoBehaviour {
         Color c = rend.material.color;
         c.a = 0;
         rend.material.color = c;
+
+        Timing.RunCoroutine(fadeIn());
+    }
+
+    IEnumerator<float> fadeIn()
+    {
+        yield return Timing.WaitForSeconds(delay);
+       
         Timing.RunCoroutine(Vckrs._fadeObject(gameObject, 1f));
+        yield break;
     }
 
 

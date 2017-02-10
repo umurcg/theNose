@@ -12,6 +12,7 @@ public class ChangeKeyShapesWithMouse : MonoBehaviour {
 	SkinnedMeshRenderer smr;
 	float blend=0;
 	public float speed=200;
+    public bool useRaycast;
 	// Use this for initialization
 	void Start () {
 		smr = GetComponent<SkinnedMeshRenderer> ();
@@ -20,8 +21,25 @@ public class ChangeKeyShapesWithMouse : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButton (0))
-			changeBlendKey ();
+        if (Input.GetMouseButton(0))
+        {
+            if (useRaycast)
+            {
+                RaycastHit hit;
+
+                Ray ray = new Ray(Camera.main.transform.position, transform.position - Camera.main.transform.position);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                {
+                    Debug.Log(hit.transform.name);
+                    if (hit.transform.gameObject == transform.gameObject)
+                        changeBlendKey();
+                }
+            }else
+            {
+                changeBlendKey();
+            }
+
+        }
 
 
 	}

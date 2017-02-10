@@ -28,14 +28,16 @@ public class CityGameController : MonoBehaviour {
 
                 switch (lastSceneIndex)
                 {
-                    ////If player coming from main menu
-                    //case (int)GlobalController.Scenes.MainMenu:
-                    //    //Start with berber shop scene
-                    //    berberShopScene();
-                    //    break;
-                    //default:
-                    //    Debug.Log("Unused scene index");
-                    //    break;
+                    //If player coming from main menu
+                    case (int)GlobalController.Scenes.MainMenu:
+                        Debug.Log("It is impossible. How can you come from main menu?");
+                        break;
+                    case (int)GlobalController.Scenes.IvanHouse:
+
+                        break;
+                    default:
+                        Debug.Log("Unused scene index");
+                        break;
 
                 }
             }

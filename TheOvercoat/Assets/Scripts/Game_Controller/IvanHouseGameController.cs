@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MovementEffects;
 
 public class IvanHouseGameController : GameController {
-    public GameObject Praskovaya, blackScreen, BigBread, BreadPH, Nose,  door, bread;
+    public GameObject Praskovaya, blackScreen, BigBread, BreadPH, Nose,  door, bread, aim1;
     public Vector3 ivanFirstPosition;
 
     Animator praskovayaAnim;
@@ -12,7 +12,7 @@ public class IvanHouseGameController : GameController {
 
 
     public override void Awake()
-    {
+    {   
         base.Awake();
 
 
@@ -50,7 +50,7 @@ public class IvanHouseGameController : GameController {
     IEnumerator<float> _wakeUpScene()
     {
 
-        Debug.Log("Wakeupscene");
+        //Debug.Log("Wakeupscene");
         //fading in;
         //handlerHolder = Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen,0.5f));
 
@@ -85,7 +85,7 @@ public class IvanHouseGameController : GameController {
 
         //Ivan get up
         playerAnim.SetTrigger("GetOffContinue");
-        playerAnim.SetBool("GetOffBed", false);
+      
 
         yield return Timing.WaitUntilDone(handlerHolder);
 
@@ -98,9 +98,10 @@ public class IvanHouseGameController : GameController {
         {
             yield return 0;
         }
-
+        playerAnim.SetBool("GetOffBed", false);
         yield return Timing.WaitForSeconds(2);
-        Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position+player.transform.forward*1.5f-player.transform.up*0.3f, 1f));
+        
+        Timing.RunCoroutine(Vckrs._Tween(player, aim1.transform.position, 1f));
         yield return Timing.WaitForSeconds(4);
        
         playerNma.enabled = true;

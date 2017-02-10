@@ -57,7 +57,8 @@ public class EnterSceneGameController : GameController{
         {
             Debug.Log("Couldnt find who is talking script");
         }
-        Debug.Log("into");
+        //Debug.Log("into");
+        if(enabled)
         Timing.RunCoroutine(_intro());
         //Timing.RunCoroutine(Vckrs._fadeObject(building, 1f, true));
 

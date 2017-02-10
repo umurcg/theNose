@@ -57,34 +57,21 @@ public class OpenDoorLoad : LoadScene {
 
         if(key>=100 && playerInside)
         {
-            loadScene();
+            Load();
             enabled = false;
         }
 
     }
 
 
-   void loadScene()
+    public override IEnumerator<float> _Load()
     {
-        Timing.RunCoroutine(_loadScene());
-    }
 
-    IEnumerator<float> _loadScene()
-    {
-       
-        if (blackScreen.obj != null)
-        {
-            blackScreen.obj.GetComponent<blackScreen>().fadeOut();
-            yield return Timing.WaitForSeconds(5f);
-        }
-        else
-        {
-            Debug.Log("no blackscreen");
-        }
-
+  
 
         CharGameController.setLastDoorId(doorId);
-        base.Load();
+        Timing.RunCoroutine(base._Load());
+
         yield break;
     }
 
