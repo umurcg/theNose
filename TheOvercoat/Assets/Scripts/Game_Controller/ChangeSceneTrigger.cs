@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 //Also it is an enter trigger.
 //But dont use it again.
 
-public class ChangeSceneTrigger : MonoBehaviour {
-	public  string sceneName;
-    public int index;
+public class ChangeSceneTrigger : ChangeScene {
+
 
 	// Use this for initialization
 	void Start () {
@@ -20,26 +19,10 @@ public class ChangeSceneTrigger : MonoBehaviour {
 	
 	}
 
-	public void changeScene(){
-		Debug.Log ("Scene changed.");
-
-        if (sceneName != "")
-        {
-            SceneManager.LoadScene(sceneName);
-        }else
-        {
-            changeSceneIndex();
-        }
-	}
-
-    public void changeSceneIndex()
-    {
-        SceneManager.LoadScene(index);
-    }
 
 	public virtual void OnTriggerEnter(){
         print("entered");
-        changeScene();
+        base.changeScene();
         
 	
 	}

@@ -17,7 +17,13 @@ public class PutNoseToFruitStand : GameController, IClickAction/*, IClickActionD
     // Use this for initialization
     public override void Start () {
         base.Start();
-        
+
+        if (player == null){
+
+            enabled = false;
+            return;
+
+        }
         //Check is character is ivan. 
         if (player.name != "Ivan") enabled = false;
 

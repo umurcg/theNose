@@ -19,6 +19,9 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
     public float rotSpeed = 3f;
     public Vector3 lookDirection = Vector3.forward;
 
+    //Active script is script that is called sit but not getup yet
+    public static WalkLookAnim activeScript=null;
+
     //Locks sitting
     public bool lockSit;
 
@@ -39,6 +42,11 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         if (subject == null)
         {
             subject = CharGameController.getActiveCharacter();
+            if (subject == null)
+            {
+                enabled = false;
+                return;
+            }
         }
 
         col = GetComponent<Collider>();
@@ -142,11 +150,17 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         //Call interface method
         IWalkLookAnim iwla = GetComponent<IWalkLookAnim>();
         if (iwla!=null)  iwla.finishedIWLA();
-        
+
+        activeScript = this;
     }
 
 
-    IEnumerator<float> _getUp()
+    public void getUp()
+    {
+        Timing.RunCoroutine(_getUp());
+    }
+
+    public IEnumerator<float> _getUp()
     {
         if (!sitting) yield break;
     
@@ -166,14 +180,16 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
                     break;
             }
 
-        handler = Timing.RunCoroutine(Vckrs._Tween(subject, subject.transform.position+subject.transform.forward , speed));
-        yield return Timing.WaitUntilDone(handler);
+        //handler = Timing.RunCoroutine(Vckrs._Tween(subject, subject.transform.position+subject.transform.forward , speed));
+        //yield return Timing.WaitUntilDone(handler);
 
         disablePlayer(false);
 
         col.enabled = true;
         sitting = false;
 
+
+        activeScript = null;
     }
 
     public void disablePlayer(bool disable)
@@ -209,5 +225,12 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         return sitting;
     }
 
-    
+    public void lockPlayer()
+    {
+        lockSit = true;
+    }
+
+
+
+
 }

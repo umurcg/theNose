@@ -10,7 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class GlobalController : MonoBehaviour {
 
 
-    public enum Scenes {City=1,IvanHouse=2,KovalevHouse=3,PoliceStation=4,Newspaper=5,Church=6,Doctor=7 };
+    public enum Scenes {MainMenu=0 ,City=1,IvanHouse=2,KovalevHouse=3,PoliceStation=4,Newspaper=5,Church=6,Doctor=7, None=8 };
 
     public static GlobalController Instance;
     
@@ -30,19 +30,22 @@ public class GlobalController : MonoBehaviour {
     void Awake()
     {
         if (Instance == null)
-        {
-        
+        {        
             Instance = this;
-            //SceneManager.sceneLoaded += registerToSceneList;
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
 
-        debugWriteCustomSaveFile();
 
+        //if it is not main menu register to scene list
+        if (SceneManager.GetActiveScene().buildIndex != (int)Scenes.MainMenu)
+        {
+            GlobalController.Instance.registerToSceneList();
+        }
 
+        
     }
 
     //This function register creates scene list if it is not exist.
@@ -72,51 +75,56 @@ public class GlobalController : MonoBehaviour {
         //print(scene.buildIndex + " added to list");
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-    public void SaveData()
+	
+
+    public bool SaveData()
     {
 
       
 
         if (!Directory.Exists(Application.persistentDataPath + "/Saves"))
+        {
             Directory.CreateDirectory(Application.persistentDataPath + "/Saves");
+            return false;
+        }
 
-  
+
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream saveFile = File.Create(Application.persistentDataPath+ "/Saves/save.vkcrs");
 
         
         formatter.Serialize(saveFile, sceneList);
-
-
+        
         saveFile.Close();
-
-
+        
         Debug.Log("Saved");
+        return true;
     }
 
-    public void LoadData()
+    public bool LoadData()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream saveFile = File.Open(Application.persistentDataPath + "/Saves/save.vkcrs", FileMode.Open);
-     
 
+        var files = new DirectoryInfo(Application.persistentDataPath + "/Saves/").GetFiles();
+        //Debug.Log("Files are ");
+        //foreach (var f in files) Debug.Log(f);
+
+        if (files.Length==0)
+        {
+            Debug.Log("No save file");
+            return false;
+        }
+
+        FileStream saveFile = File.Open(Application.persistentDataPath + "/Saves/save.vkcrs", FileMode.Open);
+        
         sceneList = (List<int>)formatter.Deserialize(saveFile);
 
-
         saveFile.Close();
-
-
+        
         Debug.Log("Loaded");
+
+        return true;
     }
 
     //Unnecesseary
@@ -141,6 +149,17 @@ public class GlobalController : MonoBehaviour {
     {
         return sceneList;
     }
+
+    public int getLastSceneInList()
+    {
+        return sceneList[sceneList.Count - 1];
+    }
+
+    public void clearSceneList()
+    {
+        sceneList.Clear();
+    }
+    
 
     public void debugWriteCustomSaveFile()
     {

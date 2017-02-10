@@ -30,7 +30,7 @@ public class SpaceTrigger : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if(colliding)
+        if(colliding&&iclick!=null)
         iclick.Action();
     }
 

@@ -7,10 +7,15 @@ public class MoveToWithoutAgent : MonoBehaviour {
 
     public float speed = 3;
     IEnumerator<float> handler;
-    GameObject floor;
+    public GameObject floor;
 	// Use this for initialization
 	void Start () {
-        floor= transform.GetChild(2).gameObject;
+        if (floor == null)
+        {
+            Debug.Log("No floor object");
+            enabled = false;
+            
+        }
 	}
 	
 	// Update is called once per frame
@@ -36,14 +41,13 @@ public class MoveToWithoutAgent : MonoBehaviour {
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
 
                 {
-                    //print(hit.transform.name);
+                    print(hit.transform.name);
                     if (hit.transform.gameObject==floor)
                     {
                         Vector3 aim = hit.point;
                         aim = new Vector3(aim.x, transform.position.y, aim.z);
-                        float dist = Vector3.Distance(aim, transform.position);
-                        float time = speed/dist;
-                        Timing.RunCoroutine(_lookAndGo(aim, time));
+
+                        Timing.RunCoroutine(_lookAndGo(aim));
                         
                         
                         
@@ -57,10 +61,16 @@ public class MoveToWithoutAgent : MonoBehaviour {
         }
     }
 
-    IEnumerator<float> _lookAndGo(Vector3 aim,float time)
+
+
+    public IEnumerator<float> _lookAndGo(Vector3 aim)
     {
+        float dist = Vector3.Distance(aim, transform.position);
+        float time = speed / dist;
+
         if (handler != null) 
         Timing.KillCoroutines(handler);
+
         IEnumerator<float> localHandler = Timing.RunCoroutine(Vckrs._lookTo(gameObject, aim-transform.position, 2f));
         yield return Timing.WaitUntilDone(localHandler);
         handler = Timing.RunCoroutine(Vckrs._Tween(gameObject, aim, time));

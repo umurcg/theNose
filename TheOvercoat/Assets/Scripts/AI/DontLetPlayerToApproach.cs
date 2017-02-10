@@ -32,7 +32,10 @@ public class DontLetPlayerToApproach : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         GameObject playerObject = CharGameController.getActiveCharacter();
-        if (!playerObject) enabled = false;
+        if (!playerObject) {
+            enabled = false;
+            return;
+        }
         player = new characterComponents(playerObject);
         pcc = player.player.GetComponent<PlayerComponentController>();
 

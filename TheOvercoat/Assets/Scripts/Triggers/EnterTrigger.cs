@@ -6,7 +6,7 @@ public class EnterTrigger : MonoBehaviour {
     public enum sendMessage { inExit,inEnter};
     public sendMessage sm = sendMessage.inEnter;
     public bool deleteAfterSendMessage = false;
-
+    public bool onlyPlayerCanTrigger = true;
 
     public bool enter=false;
 
@@ -49,7 +49,7 @@ public class EnterTrigger : MonoBehaviour {
         //ic.Action();
         
 
-        if (col.tag == "Player"){
+        if (col.tag == "Player"||!onlyPlayerCanTrigger){
             //print("hello");
             enter = true;
             IEnterTrigger iet = GetComponent<IEnterTrigger>();
@@ -64,7 +64,7 @@ public class EnterTrigger : MonoBehaviour {
 
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "Player")
+        if (col.tag == "Player"||!onlyPlayerCanTrigger)
         {
             enter = false;
             IEnterTrigger iet = GetComponent<IEnterTrigger>();

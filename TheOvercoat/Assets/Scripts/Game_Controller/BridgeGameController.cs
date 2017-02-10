@@ -65,24 +65,35 @@ public class BridgeGameController : MonoBehaviour {
 
     public void throwNose()
     {
+        //Debug.Log("ThrowNose");
 
         if (player == null)
         {
+            Debug.Log("No player");
             return;
         }
 
         if (player.name != "Ivan")
         {
+            Debug.Log("Player name is not Ivan");
             this.enabled = false;
             return;
         }
 
-        if (onBridge && nose != null)
+        if (onBridge)
         {
             nose = player.transform.Find("ivan/Armature/Torso/Chest/Arm_L/Hand_L/nosePackage").gameObject;
+            if(nose == null)
+            {
+                Debug.Log("Couldnt find nose");
+                return;
+            }
             noseRB = nose.GetComponent<Rigidbody>();
 
             Timing.RunCoroutine(_throwNose());
+        }else
+        {
+            Debug.Log("Not on bridge");
         }
         //if (nose == null)
         //    print("Couldn't find nose");

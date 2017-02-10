@@ -24,6 +24,7 @@ public class CollectableObject : MonoBehaviour, IClickAction {
     public Vector3 unCollectPositionOffset;
     public Vector3 scale =new Vector3(0,0,0);
     Vector3 originalScale;
+    Quaternion originalRotation;
     Transform parent;
     MeshCollider mc;
 	Rigidbody rb;
@@ -43,7 +44,7 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 
         player = CharGameController.getActiveCharacter().transform;
 
-
+        originalRotation = transform.rotation;
 
         List<Transform> children = Vckrs.getAllChildren(player);
 
@@ -59,9 +60,7 @@ public class CollectableObject : MonoBehaviour, IClickAction {
             }
 
 
-        }
-
-        
+        }        
         
 
 		foreach (GameObject placeholder in placeholders){
@@ -99,6 +98,7 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 			}
 			 
 			transform.localScale =originalScale+ scale;
+            
 		
 
 		}
@@ -111,9 +111,9 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 
         //Disable texture
         transform.tag = "Untagged";
-        MouseTexture mt = GetComponent<MouseTexture>();
-        if (mt != null)
-            mt.checkTag();
+        //MouseTexture mt = GetComponent<MouseTexture>();
+        //if (mt != null)
+        //    mt.checkTag();
 
         
 
@@ -123,7 +123,7 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 		enableMeshCollider (true);
 		transform.parent = parent;
 		collected.Remove (gameObject);
-		transform.position = position;
+
         gameObject.SetActive(true);
         //foreach (GameObject placeholder in placeholders){
         //    //gameObject.SetActive(false);
@@ -135,6 +135,9 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 		}
 
 		transform.localScale = originalScale;
+        transform.rotation = originalRotation;
+
+        transform.position = position;
 
         if (canBeCollectedAgain == true)
         {

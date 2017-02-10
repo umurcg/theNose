@@ -128,7 +128,7 @@ public class HorseScript : MonoBehaviour, IClickAction {
         mt.reverse = false;
         IEnumerator<float> handle = Timing.RunCoroutine(mt._tweenMEC(passenger, 2f));
         yield return Timing.WaitUntilDone(handle);
-
+        
      
         Animator anim = passenger.GetComponent<Animator>();
         if(anim)

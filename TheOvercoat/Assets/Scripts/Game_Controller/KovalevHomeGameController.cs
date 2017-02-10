@@ -188,7 +188,7 @@ public class KovalevHomeGameController : MonoBehaviour {
         Paper.transform.localPosition=new Vector3(-0.475f, 0.008f, -0.044f);
         KovAnimator.SetBool("RightHandAtFace", true);
         Vckrs.ActivateAnotherObject(Door);
-        OpenDoor od = Door.GetComponent<OpenDoor>();
+        OpenDoorLoad od = Door.GetComponent<OpenDoorLoad>();
         od.otherCanOpen = false;
         od.playerCanOpen = true;
 

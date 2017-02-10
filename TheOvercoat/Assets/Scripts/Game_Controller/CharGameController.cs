@@ -36,12 +36,6 @@ public class CharGameController : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        //if it is not main menu register to scene list
-        if (SceneManager.GetActiveScene().name != "MainMenu")
-        {
-            GlobalController.Instance.registerToSceneList();
-        }
-
 
     }
 
@@ -59,10 +53,10 @@ public class CharGameController : MonoBehaviour {
             nma.enabled = false;
 
             print("position");
-            if (OpenDoor.doors.ContainsKey(lastDoorId))
+            if (OpenDoorLoad.doors.ContainsKey(lastDoorId))
             {
 
-                GameObject door = OpenDoor.doors[lastDoorId].gameObject;
+                GameObject door = OpenDoorLoad.doors[lastDoorId].gameObject;
 
                 if (door.transform.childCount>0) { 
                     GameObject spawnPos = door.transform.GetChild(0).gameObject;
@@ -110,7 +104,9 @@ public class CharGameController : MonoBehaviour {
         for (int i = 0; i < childCount; i++)
         {
             Transform child = cgc.transform.GetChild(i);
-            if (child.tag != "MainCamera" && child.gameObject.activeSelf)
+
+            Camera camComponent = child.GetComponent<Camera>();
+            if (camComponent==null && child.gameObject.activeSelf)
             {
                 return child.gameObject;
             }
@@ -185,13 +181,19 @@ public class CharGameController : MonoBehaviour {
         for (int i = 0; i < childCount; i++)
         {
             Transform child = cgc.transform.GetChild(i);
-            if (child.tag != "MainCamera")
+            Camera camComponent = child.GetComponent<Camera>();
+
+            if (camComponent==null)
             {
+                //Debug.Log("Deactivating " + child.name);
                 child.gameObject.SetActive(false);
             }
 
         }
     }
+
+ 
+
     //This function returns object that is owned by the hand of the armature of a player character.
 
     public static  GameObject getObjectOfHand(string objectName, hand r_l)
@@ -202,7 +204,11 @@ public class CharGameController : MonoBehaviour {
 
         string fullString = playerName + "/Armature/Torso/Chest/Arm_L/" + handName + "/" + objectName;
 
-        return getActiveCharacter().transform.Find(fullString).gameObject;
+        Transform handTransform = getActiveCharacter().transform.Find(fullString);
+        if (handTransform!=null)
+            return handTransform.gameObject;
+
+        return null;
     }
 
 }

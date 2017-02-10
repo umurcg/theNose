@@ -6,7 +6,7 @@ using System.Collections;
 //It triggered with click or space trigger scripts.
 //Also it changes material if its have changeMaterial script.
 
-public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching {
+public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching, IClickAction {
 
     public GameObject go;
 
@@ -46,6 +46,8 @@ public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching {
 
     public static void Activate(GameObject go)
     {
+        Debug.Log("Activate method");
+
         MonoBehaviour[] scripts = go.GetComponents<MonoBehaviour>();
 
         foreach (MonoBehaviour script in scripts)
@@ -85,6 +87,11 @@ public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching {
         DisableItself();
     }
 
+
+    public void Action()
+    {
+        Activate(go);
+    }
 
     //public void Action()
     //{

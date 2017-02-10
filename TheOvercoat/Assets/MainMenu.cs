@@ -6,28 +6,35 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
     public GameObject DynamicButton;
+    public GameObject momentsButton;
     public GameObject momentsSubMenu;
-
+    public GameObject continueButton;
 
     // Use this for initialization
     void Start () {
-	
-	}
+        Debug.Log(Application.persistentDataPath);
+        if (/*!GlobalController.Instance.LoadData()*/true) //For now it is always disabled.
+        {
+            continueButton.GetComponent<Button>().interactable = false;
+            momentsButton.GetComponent<Button>().interactable = false;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-    public void start()
+    public void startButton()
     {
+        GlobalController.Instance.clearSceneList();
        SceneManager.LoadScene((int)GlobalController.Instance.fullGameSceneList[0]);
     }
 
     public void load()
     {
 
-        GlobalController.Instance.LoadData();
+       
 
         List<int> scenes = GlobalController.Instance.sceneList;
         Debug.Log("Load");
@@ -126,6 +133,8 @@ public class MainMenu : MonoBehaviour {
 
     public void loadLastLevel()
     {
-
+        GlobalController.Instance.LoadData();
+        List<int> sceneList = GlobalController.Instance.sceneList;
+        SceneManager.LoadScene(sceneList[sceneList.Count-1]);
     }
 }

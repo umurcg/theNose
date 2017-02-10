@@ -14,8 +14,8 @@ public class ShallNotPass : MonoBehaviour
 
     public string message;
     public GameObject subtitle;
-    public float duration = 10;
-    public float speed = 1;
+    public float duration = 3;
+    public float speed = 0.05f;
     public float subtitleWait = 3;
     public float waitBeforeMove = 3;
     bool hasStartedCouretine= false;
@@ -119,9 +119,7 @@ public class ShallNotPass : MonoBehaviour
             rb.Move(back * speed);
             yield return null;
 
-
-
-
+            
         }
 
         timer = 0;

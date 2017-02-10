@@ -3,23 +3,37 @@ using System.Collections;
 using MovementEffects;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnterSceneGameController : GameController{
 
-    public GameObject blackScreen, building, ivan, kovalev, head, aims,cameraObj;
+    public GameObject  building, ivan, kovalev, head, aims,cameraObj;
 
     Camera cam;
     NavMeshAgent ivanNma, kovalevNma;
     Animator ivanAnim, kovalevAnim;
+
+
+    public override void Awake()
+    {
+        base.Awake();
+
+     
+    }
 
     // Use this for initialization
     public override void Start () {
 
         base.Start();
 
+        //At enter scene blackscreen shouldn't fade in automatically
+        if(blackScreen.script!=null)
+        blackScreen.script.fadeInAtStart = false;  //race condition
+
         if (player != null)
         {
             this.enabled = false;
+            Debug.Log("No player");
             return;
         }
 
@@ -31,14 +45,24 @@ public class EnterSceneGameController : GameController{
         ivanAnim = ivan.GetComponent<Animator>();
         kovalevAnim = kovalev.GetComponent<Animator>();
 
-        RawImage r = blackScreen.GetComponent<RawImage>();
-        Color textureColor = r.color;
-        textureColor.a = 1;
-        r.color = textureColor;
 
+        WhoIsTalking wit = subtitle.GetComponent<WhoIsTalking>();
+        if (wit != null)
+        {
+            wit.characters.Clear();
+            wit.characters.Add("Kovalev", kovalev);
+            wit.characters.Add(ivan.name, ivan);
+            wit.setCameraComponent(cam);
+        }else
+        {
+            Debug.Log("Couldnt find who is talking script");
+        }
+        Debug.Log("into");
         Timing.RunCoroutine(_intro());
+        //Timing.RunCoroutine(Vckrs._fadeObject(building, 1f, true));
 
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -47,13 +71,14 @@ public class EnterSceneGameController : GameController{
 
     IEnumerator<float> _intro()
     {
+      
         yield return Timing.WaitForSeconds(5f);
 
         sc.callSubtitleWithIndexTime(0);
 
         yield return Timing.WaitForSeconds(25);
 
-        Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen, 1f));
+        blackScreen.script.fadeIn();
         Timing.RunCoroutine(Vckrs._cameraSize(cam, 10, 0.7f));
 
         while (cam.orthographicSize!=10 || narSubtitle.text!="")
@@ -64,7 +89,7 @@ public class EnterSceneGameController : GameController{
 
         ivanNma.SetDestination(aims.transform.GetChild(0).position);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan, 0));
-        Timing.RunCoroutine(Vckrs._fadeObject(building, 1f));
+        Timing.RunCoroutine(Vckrs._fadeObject(building, 1f,false));
         sc.callSubtitleWithIndex(3);
         yield return Timing.WaitUntilDone(handlerHolder);
         ivanAnim.SetBool("Hands", true);
@@ -208,8 +233,8 @@ public class EnterSceneGameController : GameController{
             yield return 0;
         } 
 
-        handlerHolder= Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen, 1f));
+        handlerHolder = blackScreen.script.fadeOut();
         yield return Timing.WaitUntilDone(handlerHolder);
-
+        SceneManager.LoadScene((int)GlobalController.Scenes.IvanHouse);
     }
 }

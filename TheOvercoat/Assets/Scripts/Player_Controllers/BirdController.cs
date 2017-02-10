@@ -11,7 +11,11 @@ public class BirdController : MonoBehaviour {
     public float minHeight,minX,minZ = 0f;
     public float camSizeFactor=1; //One height -> x Size
     public float camSizeChangeLimit = 10f;
-    
+
+    [HideInInspector]
+    public bool pauseMovement;
+    [HideInInspector]
+    public bool pauseLimits;
 
     float firstCamSize;
     Camera cam;
@@ -40,6 +44,13 @@ public class BirdController : MonoBehaviour {
         float xAngle = transform.rotation.eulerAngles.x;
         float zAngle = transform.rotation.eulerAngles.z;
 
+        //Pause movement
+        if (pauseMovement)
+        {
+            ver = 0;
+            elev = 0;
+        }
+
         //Prevent backward movement
         if (ver < 0)
             ver = 0;
@@ -52,11 +63,15 @@ public class BirdController : MonoBehaviour {
 
         //Set camera zoom
         float calculatedSize = calculateCamSize(transform.position.y);
-        if (cam.orthographicSize != calculatedSize)
+        if(cam!=null)
         {
-            cam.orthographicSize = calculatedSize;
+
+            if (cam.orthographicSize != calculatedSize)
+            {
+                cam.orthographicSize = calculatedSize;
+            }
         }
-        
+
         //Check rotation glitch
         preserveRotationZ(zAngle);
 
@@ -67,14 +82,18 @@ public class BirdController : MonoBehaviour {
         //    transform.position =new Vector3(transform.position.x, prevHeight , transform.position.z);
         //}
 
+
         //Limits
-        float x = transform.position.x;
-        float y = transform.position.y;
-        float z = transform.position.z;
-        if (x > maxX) { x = maxX; } else if (x < minX) { x = minX; }
-        if (y > maxHeight) { y = maxHeight; } else if (y < minHeight) { y = minHeight; }
-        if (z> maxZ){z = maxZ;}  else if (z < minZ) {z = minZ;}
-        transform.position = new Vector3(x, y, z);
+        if (!pauseLimits)
+        {
+            float x = transform.position.x;
+            float y = transform.position.y;
+            float z = transform.position.z;
+            if (x > maxX) { x = maxX; } else if (x < minX) { x = minX; }
+            if (y > maxHeight) { y = maxHeight; } else if (y < minHeight) { y = minHeight; }
+            if (z > maxZ) { z = maxZ; } else if (z < minZ) { z = minZ; }
+            transform.position = new Vector3(x, y, z);
+        }
 
         //Change head angle for elevation
         if (elev == 0)
@@ -141,5 +160,6 @@ public class BirdController : MonoBehaviour {
             transform.Rotate(new Vector3(0, 0, -zAngle));
         }
     }
+
 
 }

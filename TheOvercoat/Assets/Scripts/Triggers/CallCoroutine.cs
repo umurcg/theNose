@@ -8,12 +8,19 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
 
 
     public GameObject owner;
+    public Object passParameter;
     public string methodName;
 
     public void call()
     {
         //print("call");
-        owner.SendMessage(methodName);
+        if (passParameter == null)
+        {
+            owner.SendMessage(methodName);
+        }else
+        {
+            owner.SendMessage(methodName, passParameter);
+        }
     }
 
     public void finishedSwitching()

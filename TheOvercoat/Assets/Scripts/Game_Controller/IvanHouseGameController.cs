@@ -4,29 +4,38 @@ using System.Collections.Generic;
 using MovementEffects;
 
 public class IvanHouseGameController : GameController {
-    public GameObject Praskovaya, blackScreen, Bread, Nose, NosePackage;
+    public GameObject Praskovaya, blackScreen, BigBread, BreadPH, Nose,  door, bread;
     public Vector3 ivanFirstPosition;
 
     Animator praskovayaAnim;
     NavMeshAgent praskovayaNma;
 
 
-	// Use this for initialization
-	public override void Start () {
+    public override void Awake()
+    {
+        base.Awake();
+
+
+    }
+
+    // Use this for initialization
+    public override void Start () {
         base.Start();
+
 
         //Set ivan as a character and put it on true positon
         CharGameController.setCharacter("Ivan");
         CharGameController.getOwner().transform.position = ivanFirstPosition;
         CharGameController.getCamera().SetActive(true);
 
+
+        Debug.Log("Start");
+
         playerNma.enabled = false;
         praskovayaAnim = Praskovaya.GetComponent<Animator>();
         praskovayaNma = Praskovaya.GetComponent<NavMeshAgent>();
 
         Timing.RunCoroutine(_wakeUpScene());
-
-        
 
         //Timing.RunCoroutine(_startBreadGame());
         //Timing.RunCoroutine(_noseDrop());
@@ -40,14 +49,16 @@ public class IvanHouseGameController : GameController {
 
     IEnumerator<float> _wakeUpScene()
     {
+
+        Debug.Log("Wakeupscene");
         //fading in;
-        handlerHolder = Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen,0.5f));
+        //handlerHolder = Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen,0.5f));
 
         //Setting animations and stop player
         praskovayaAnim.SetBool("Hands", true);
         playerAnim.SetBool("GetOffBed", true);
         pcc.StopToWalk();
-        yield return Timing.WaitUntilDone(handlerHolder);
+        //yield return Timing.WaitUntilDone(handlerHolder);
 
         yield return Timing.WaitForSeconds(6);
 
@@ -60,7 +71,7 @@ public class IvanHouseGameController : GameController {
         yield return Timing.WaitUntilDone(handlerHolder);
 
         //Talk
-        sc.callSubtitle();
+        sc.callSubtitleWithIndex(0);
         while (subtitle.text != "")
         {
             yield return 0;
@@ -82,6 +93,12 @@ public class IvanHouseGameController : GameController {
         yield return Timing.WaitUntilDone(handlerHolder);
         praskovayaAnim.SetBool("Hands", true);
 
+        sc.callSubtitleWithIndex(1);
+        while (subtitle.text != "")
+        {
+            yield return 0;
+        }
+
         yield return Timing.WaitForSeconds(2);
         Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position+player.transform.forward*1.5f-player.transform.up*0.3f, 1f));
         yield return Timing.WaitForSeconds(4);
@@ -93,30 +110,41 @@ public class IvanHouseGameController : GameController {
 
     public void startBreadGame()
     {
-        Timing.RunCoroutine(_startBreadGame());
+        //Debug.Log("I am in collected arrau  "+CollectableObject.collected[0].transform.name+ " "+ CollectableObject.collected[0].transform.position);
+        //Debug.Log("I am bread reference  " + BigBread.transform.name + " " + BigBread.transform.position);
+
+
+        if (CollectableObject.collected.Contains(bread))
+        {
+            
+            Timing.RunCoroutine(_startBreadGame());
+
+        }
     }
 
     IEnumerator<float> _startBreadGame()
     {
-       
-        if (CollectableObject.collected.Count == 0)
-        {
-            yield break;
-        }
+        
+      
         pcc.StopToWalk();
+        WalkLookAnim.activeScript.lockSit = true;
+
         GameObject smallBread = CollectableObject.collected[0];
         CollectableObject co = smallBread.GetComponent<CollectableObject>();
         co.UnCollect(player.transform.position + player.transform.forward * 1+player.transform.up*2);
 
-        sc.callSubtitleTime();
+        sc.callSubtitleWithIndexTime(0);
         
         while (narSubtitle.text[0] != ' ')
         {
             yield return 0;
 
         }
+        pcc.StopToWalk();
 
-        Bread.SetActive(true);
+
+        BigBread.transform.position = Camera.main.gameObject.transform.position;
+        BigBread.SetActive(true);
     
 
     }
@@ -128,6 +156,8 @@ public class IvanHouseGameController : GameController {
 
     IEnumerator<float> _noseDrop()
     {
+        
+
         pcc.ContinueToWalk();
         Nose.SetActive(true);
         Rigidbody rb = Nose.GetComponent<Rigidbody>();
@@ -137,12 +167,11 @@ public class IvanHouseGameController : GameController {
 
         praskovayaAnim.SetBool("Hands", false);
 
-        sc.callSubtitle();
+        sc.callSubtitleWithIndex(3);
         while (subtitle.text != "")
         {
             yield return 0;
         }
-
 
 
         praskovayaNma.SetDestination(Nose.transform.position - Vector3.forward);
@@ -152,8 +181,17 @@ public class IvanHouseGameController : GameController {
 
         Timing.RunCoroutine(Vckrs._lookTo(Praskovaya,Nose, 1f));
 
+        if (WalkLookAnim.activeScript != null)
+        {
+            WalkLookAnim wla = WalkLookAnim.activeScript;
+            handlerHolder = Timing.RunCoroutine(WalkLookAnim.activeScript._getUp());
+            yield return Timing.WaitUntilDone(handlerHolder);
+            wla.lockSit = false;
+        }
+        
+       
+
         playerNma.enabled = true;
-        playerAnim.SetTrigger("SitTrigger");
         playerNma.SetDestination(Nose.transform.position - Vector3.right);
 
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(player, 0));
@@ -164,14 +202,44 @@ public class IvanHouseGameController : GameController {
         rb.isKinematic = true;
 
 
-        sc.callSubtitle();
+
+        sc.callSubtitleWithIndex(4);
         while (subtitle.text != "")
         {
             yield return 0;
         }
 
-        
+
     }
+
+    public void swapNose(Object caller)
+    {
+        Timing.RunCoroutine(_swapNose(caller));
+    }
+
+    IEnumerator<float> _swapNose(Object caller)
+    {
+        pcc.StopToWalk();
+
+        GameObject drawer = (GameObject)caller;
+
+        playerAnim.SetBool("Hands",true);
+        yield return Timing.WaitForSeconds(4.0f);
+
+        Nose.SetActive(false);
+        GameObject nosePackage=CharGameController.getObjectOfHand("nosePackage", CharGameController.hand.LeftHand);
+        nosePackage.SetActive(true);
+
+
+        playerAnim.SetBool("Hands", false);
+
+        ActivateAnotherObject.Disable(drawer);
+        ActivateAnotherObject.Activate(door);
+        door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
+
+        pcc.ContinueToWalk();
+        yield break;
+    }   
 
 
 }

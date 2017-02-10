@@ -42,15 +42,13 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
             object obj = raycastFirst();
             if (obj != null)
-            {
-                
+            {                
                 hit = (RaycastHit)obj;
                 //print(hit.transform.name);
                 if (tags.Contains(hit.transform.tag)) { 
                 StopCoroutine("setAim");
                 StartCoroutine(setAim(hit.transform.gameObject));
-
-
+                    
             }
             }
           }
@@ -225,6 +223,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
         IClickAction[] icas = go.GetComponents<IClickAction>();
         foreach(IClickAction ica in icas)
         {
+            if(ica!=null)
             ica.Action();
         }
 

@@ -459,6 +459,7 @@ GameObject:
   - 114: {fileID: 114000010465545124}
   - 114: {fileID: 114000010000796404}
   - 114: {fileID: 114000010944682478}
+  - 114: {fileID: 114000013621621636}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Player
@@ -807,6 +808,7 @@ GameObject:
   - 114: {fileID: 114000012014652088}
   - 114: {fileID: 114000013119608828}
   - 114: {fileID: 114000012306617476}
+  - 114: {fileID: 114000013647501782}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1221,7 +1223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000014265392238
 GameObject:
   m_ObjectHideFlags: 1
@@ -1523,7 +1525,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 48.5, y: 2.3, z: -83.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2089,9 +2091,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014274362202}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.015895892, z: 1.020571}
-  m_LocalScale: {x: 1.5680046, y: 1.5680046, z: 1.5680046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010404820352}
@@ -2883,6 +2885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  floor: {fileID: 1000011418524038}
 --- !u!114 &114000010280481586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3053,9 +3056,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f87066c66877748b5495dc9827fded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTexture: {fileID: 2800000, guid: 0de625f98a4fe7d4a9f394b9ef25952f, type: 3}
-  disabled: {fileID: 0}
-  floor: {fileID: 0}
+  defaultTexture: {fileID: 2800000, guid: 65daa82073c8934429e82c42480d6164, type: 3}
+  disabled: {fileID: 2800000, guid: 34f90a52bedb1ef48b530718045329d8, type: 3}
+  floor: {fileID: 2800000, guid: 993652c76a14cd94a8a2c60b6411ade9, type: 3}
+  activeObject: {fileID: 2800000, guid: 0bd8e104bc6f12e429a0404de800cfee, type: 3}
+  grab: {fileID: 2800000, guid: 36763b5e11262b14ba37456ebb49d848, type: 3}
 --- !u!114 &114000012142572098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3081,6 +3086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneList: 
+  fullGameSceneList: 01000000020000000100000003000000010000000400000005000000060000000100000003000000010000000700000001000000
 --- !u!114 &114000012349219652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3144,6 +3150,8 @@ MonoBehaviour:
   minZ: -300
   camSizeFactor: 0.25
   camSizeChangeLimit: 10
+  pauseMovement: 0
+  pauseLimits: 0
 --- !u!114 &114000012916099430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3222,6 +3230,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638bf55a3bedb454b9e207ecb83321cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000013621621636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011785493192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98efdfae09befd41a28b3e73f0a4498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landingAnimationName: land
+  distance: 3
+  delay: 5
+--- !u!114 &114000013647501782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013127924312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a116415aacabb4fb28d689e864b271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: []
 --- !u!114 &114000013681976042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3613,7 +3647,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013419269496}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Speed: 3
   m_Acceleration: 8

@@ -42,6 +42,12 @@ public class CatAttackToPlayer : MonoBehaviour, IClickAction {
 
 
         player = CharGameController.getActiveCharacter();
+        if (player == null)
+        {
+            enabled = false;
+            return;
+        }
+
         pcc = player.GetComponent<PlayerComponentController>();
         catNma = GetComponent<NavMeshAgent>();
         rwb = GetComponent<RandomWalkBot>();
@@ -49,7 +55,15 @@ public class CatAttackToPlayer : MonoBehaviour, IClickAction {
         catAnim = GetComponent<Animator>();
         playerCC = player.GetComponent<CharacterController>();
         playerAnim = player.GetComponent<Animator>();
-        nose = player.transform.Find("nosePackage").gameObject;
+
+        GameObject noseTransform = CharGameController.getObjectOfHand("nosePackage",CharGameController.hand.LeftHand);
+        if (noseTransform != null) {
+            nose =noseTransform.gameObject;
+        }else
+        {
+            Debug.Log("Couldn't find nose package");
+            enabled = false;
+        }
         //initialPos = transform.position;
         //aimRot = Quaternion.LookRotation (player.transform.position,transform.up);
 
@@ -72,8 +86,8 @@ public class CatAttackToPlayer : MonoBehaviour, IClickAction {
         print("startattack");
         pcc.StopToWalk();
         playerCC.enabled = false;
-        Timing.RunCoroutine(Vckrs._lookTo(player, transform.position-player.transform.position, 2f));
-        charSubt.text = "Ivan: Gel pisi pisi... Bak leziz bir şey var burada.";
+        Timing.RunCoroutine(Vckrs._lookTo(player, transform.position-player.transform.position, 1f));
+        charSubt.text = "Ivan: Gel pisi pisi... Bak leziz bir şey var burada."; //TODO remove magic string
 
 
         rwb.enabled = false;
@@ -81,7 +95,7 @@ public class CatAttackToPlayer : MonoBehaviour, IClickAction {
 
         IEnumerator<float> handler=Timing.RunCoroutine(Vckrs._lookTo(gameObject, player.transform.position-gameObject.transform.position, 1f));
         yield return Timing.WaitUntilDone(handler);
-         
+        yield return Timing.WaitForSeconds(2);
         
         catNose.SetActive(true);
 
@@ -112,6 +126,11 @@ public class CatAttackToPlayer : MonoBehaviour, IClickAction {
         playerAnim.SetTrigger("FallBack");
         charSubt.text = "AAAAAA!";
         yield return Timing.WaitForSeconds(3f);
+
+        //Getup
+        playerAnim.SetTrigger("FallBack");
+        yield return Timing.WaitForSeconds(2f);
+
         charSubt.text = "Lanet kedi!";
 
         catNose.SetActive(false);
@@ -121,31 +140,38 @@ public class CatAttackToPlayer : MonoBehaviour, IClickAction {
             nose.SetActive(true);
         catNma.enabled = true;
         rwb.enabled = true;
-        pcc.ContinueToWalk();
 
+        Timing.WaitForSeconds(2);
+        charSubt.text = "";
+
+        pcc.ContinueToWalk();
+        
+
+        //Destroy after finish everything
+        Destroy(this);
         
     }
 
     public void Jump()
     {
-        Timing.RunCoroutine(_Jump());
+        Timing.RunCoroutine(Vckrs._TweenSinHeight(gameObject,player.transform.position,JumpSpeed,1));
     }
 
-     IEnumerator<float> _Jump(){
+ //    IEnumerator<float> _Jump(){
 
-        //print("JUmpppppp");
-		Vector3 initialPos = transform.position;
-		float ratio = 0;
+ //       //print("JUmpppppp");
+	//	Vector3 initialPos = transform.position;
+	//	float ratio = 0;
 
-		while (ratio<1) {
-			ratio += Time.deltaTime * JumpSpeed;
-			transform.position = Vector3.Lerp (initialPos, player.transform.position,ratio);
-			yield return 0;
+	//	while (ratio<1) {
+	//		ratio += Time.deltaTime * JumpSpeed;
+	//		transform.position = Vector3.Lerp (initialPos, player.transform.position,ratio);
+	//		yield return 0;
 
-		}
+	//	}
 
 
-	}
+	//}
 
 
 }

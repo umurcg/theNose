@@ -43,8 +43,17 @@ public class RandomWalkBot : MonoBehaviour {
 
 	public void WalkIfNotWalking(){
 		if (checkIsMoving () == false) {
-			if (nma.isOnNavMesh)
-			nma.destination = GetARandomTreePos ();
+
+            if (nma.isOnNavMesh)
+            {
+                Vector3 dest = GetARandomTreePos();
+                nma.Resume();
+                nma.destination = dest;
+                //Debug.Log("Destination is " + dest.ToString());
+            }else
+            {
+                Debug.Log("Is not on mesh");
+            }
 			timer = waitBetweenWalks;
 		}
 	}

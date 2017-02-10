@@ -19,7 +19,19 @@ public class JokeGroupGameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        
+        
         player = CharGameController.getActiveCharacter();
+        if (player == null)
+        {
+            enabled = false;
+            gameObject.SetActive(false);
+            return;
+        }
+
+        //Debug.Log("Last scene is " + GlobalController.Instance.getLastSceneInList()); //TODO disable if is not coming from Ivan scene
+
+
         subt = SubtitleFade.subtitles["CharacterSubtitle"].GetComponent<Text>();
         marcoALT = marco.GetComponent<AlwaysLookTo>();
         zoriaALT = zoria.GetComponent<AlwaysLookTo>();

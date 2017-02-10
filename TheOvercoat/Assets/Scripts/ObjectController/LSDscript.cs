@@ -11,6 +11,13 @@ public class LSDscript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        //Add slider 3 times
+        for(int i = 0; i < 3; i++)
+        {
+            gameObject.AddComponent<SliderScript>();
+        }
+
         sliders = GetComponents<SliderScript>();
         
         if (sliders.Length<3)

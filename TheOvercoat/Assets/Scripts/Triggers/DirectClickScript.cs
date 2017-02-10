@@ -16,16 +16,33 @@ public class DirectClickScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+      
+
         if (Input.GetMouseButtonDown(0))
         {
-            if (idc == null)
+
+
+            //Debug.Log("Clicked");
+            RaycastHit hit;
+            if (Camera.main == null) return;
+            Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward);
+            if (Physics.Raycast(ray, out hit))
             {
-                print("There is no idirectClick script");
+                //Debug.Log(hit.transform.name);
+                if(hit.transform.gameObject==gameObject){
+                    if (idc == null)
+                    {
+                        print("There is no idirectClick script");
+                    }
+                    else
+                    {
+                        idc.directClick();
+                    }
+                }
+
+
             }
-            else
-            {
-                idc.directClick();
-            }
+           
         }
 	}
 }

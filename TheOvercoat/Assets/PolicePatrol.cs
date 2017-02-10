@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class PolicePatrol : MonoBehaviour {
     public float walkRadius = 5f;
     public float waitBetweenWalks;
-    
 
+    //This message will be called when police catches player
+    public GameObject catchMessageObject;
+    public string catchMessage;
     
     SubtitleCaller sc;
     WalkInsideSphere wis;
@@ -16,13 +18,18 @@ public class PolicePatrol : MonoBehaviour {
     NavMeshAgent nma;
     Vector3 center;
     Vector3 prevPos=Vector3.zero;
+    PlayerComponentController pcc;
+
     // Use this for initialization
-	void Start () {
+    void Start () {
         nma = GetComponent<NavMeshAgent>();
         center = transform.position;
         wis = GetComponent<WalkInsideSphere>();
         sc = GetComponent<SubtitleCaller>();
-        
+        pcc = GetComponent<PlayerComponentController>();
+
+        //Enable right hand forward bool for light
+        GetComponent<Animator>().SetBool("RightHandForward",true);
 
     }
 	
@@ -44,8 +51,8 @@ public class PolicePatrol : MonoBehaviour {
 
     IEnumerator<float> _catch(GameObject go)
     {
+        //Debug.Log("CATCH");
         sc.callSubtitleWithIndex(0);
-        PlayerComponentController pcc = go.GetComponent<PlayerComponentController>();
         if (pcc != null)
             pcc.StopToWalk();
         nma.Resume();
@@ -59,7 +66,19 @@ public class PolicePatrol : MonoBehaviour {
 
         sc.callSubtitleWithIndex(1);
 
-     }
+        while (SubtitleFade.subtitles["CharacterSubtitle"].text != "")
+        {
+            yield return 0;
+        }
+        
+        if (catchMessageObject != null) catchMessageObject.SendMessage(catchMessage, gameObject);
+    }
 
 
+    public void Resume()
+    {
+        if(pcc!=null)  pcc.ContinueToWalk();
+        nma.Resume();
+        wis.enabled = true;
+    }
 }
