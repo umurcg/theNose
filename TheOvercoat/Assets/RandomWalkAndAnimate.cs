@@ -111,4 +111,18 @@ public class RandomWalkAndAnimate : GameController {
         return target;
 
     }
+
+
+    public override void activateController()
+    {
+        base.activateController();
+        gameObject.SetActive(true);
+    }
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        gameObject.SetActive(false); 
+
+    }
+
 }

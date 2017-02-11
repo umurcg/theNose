@@ -7,7 +7,7 @@ using System.Collections;
 //This script makes object randomly walk on RoadObject.It generates random position on road and set agent destination to that position when object finish its path.WaitbetweenWalks makes object wait when it finish its path before starting to new path.Tolerance affects finish condition of obj.
 //Also interruptAndWaşlAgain can be called outside to change destination of object from outside.
 
-public class RandomWalkBot : MonoBehaviour {
+public class RandomWalkBot : GameController {
 	public GameObject obj;
 
 	protected NavMeshAgent nma;
@@ -16,8 +16,10 @@ public class RandomWalkBot : MonoBehaviour {
 
 	public float waitBetweenWalks;
 	public float tolerance;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+
+    public override void Start () {
+        base.Start();
 		nma = GetComponent<NavMeshAgent> ();
 			
 	}
@@ -89,6 +91,15 @@ public class RandomWalkBot : MonoBehaviour {
 		return newVec;
 	}
 
+    public override void activateController()
+    {
+        gameObject.SetActive(true);
+    }
+    public override void deactivateController()
+    {
 
+        gameObject.SetActive(false);
+
+    }
 
 }

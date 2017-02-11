@@ -59,6 +59,7 @@ public class CityGameController : MonoBehaviour {
     void berberShopScene()
     {
         CharGameController.deactivateAllCharacters();
-        berberShop.SetActive(true);
+        berberShop.GetComponent<EnterSceneGameController>().isDisabledAtStart = false;
+        berberShop.GetComponent<EnterSceneGameController>().activateController();
     }
 }

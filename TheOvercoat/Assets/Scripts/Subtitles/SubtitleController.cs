@@ -13,8 +13,8 @@ public class SubtitleController : MonoBehaviour {
 
 	PlayerComponentController pcc;
 
-    public bool ifDesroyItself = true;
-    public bool releaseAfterSub = true;
+    public bool ifDesroyItself = false;
+    public bool releaseAfterSub = false;
     protected int index;
 
 

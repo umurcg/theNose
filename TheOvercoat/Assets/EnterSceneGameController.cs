@@ -238,4 +238,23 @@ public class EnterSceneGameController : GameController{
         yield return Timing.WaitUntilDone(handlerHolder);
         SceneManager.LoadScene((int)GlobalController.Scenes.IvanHouse);
     }
+
+    public override void activateController() {
+
+        base.activateController();
+        enabled = true;
+        cameraObj.SetActive(true);
+        ivan.SetActive(true);
+        kovalev.SetActive(true);
+    }
+    public override void deactivateController() {
+
+        base.deactivateController();
+        enabled = false;
+        cameraObj.SetActive(false);
+        ivan.SetActive(false);
+        kovalev.SetActive(false);
+
+    }
+
 }

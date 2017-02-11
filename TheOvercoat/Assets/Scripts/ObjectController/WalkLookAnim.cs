@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
+using UnityEngine.UI;
 
 //This script make subject object walk to owner object position, then rotates subject to forward vector of owner object and lastly it triggers or bools animation of it.
 //Important! This doesn't use nav mesh agent
@@ -70,9 +71,19 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
                 {
                     if (hit.transform.tag == "Floor")
                     {
+                        //TODO If is a dialouge open we should prevent getting up if subtitleController' lockPlayer boolean is true
+                        //We can not understand directly wther dialouges locksPlayer or not.
+                        ////For now just check subtitile
+                        //Text subt = SubtitleFade.subtitles["CharacterSubtitle"];
+                        //if (subt != null)
+                        //{
+                        //    if (subt.text != "")
+                        //        return;
+                           
+                        //}
+
 
                         Timing.RunCoroutine(_getUp());
-
                     }
                 }
 

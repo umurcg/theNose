@@ -156,4 +156,15 @@ public class Jesus : GameController, IClickAction {
 
     }
 
- }
+    public override void activateController()
+    {
+        gameObject.SetActive(true);
+    }
+    public override void deactivateController()
+    {
+
+        gameObject.SetActive(false);
+
+    }
+
+}

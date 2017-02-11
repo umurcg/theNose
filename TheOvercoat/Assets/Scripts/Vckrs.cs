@@ -334,6 +334,8 @@ public class Vckrs : MonoBehaviour
         {
             StandardShaderUtils.ChangeRenderMode(rend.material, StandardShaderUtils.BlendMode.Opaque);
         }
+
+        yield break;
     }
 
     public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) where T: MaskableGraphic

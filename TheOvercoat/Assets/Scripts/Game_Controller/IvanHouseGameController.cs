@@ -240,7 +240,16 @@ public class IvanHouseGameController : GameController {
 
         pcc.ContinueToWalk();
         yield break;
-    }   
+    }
+    public override void activateController()
+    {
+        base.activateController();
+    }
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        Destroy(this);
 
+    }
 
 }

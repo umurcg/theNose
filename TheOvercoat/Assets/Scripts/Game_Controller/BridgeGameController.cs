@@ -4,25 +4,21 @@ using System.Collections.Generic;
 using MovementEffects;
 using UnityEngine.UI;
 
-public class BridgeGameController : MonoBehaviour {
+public class BridgeGameController : GameController {
 
     public GameObject police,trigger,blackScreen;
 
     bool onBridge = false;
-    GameObject player;
     GameObject nose;
     BoxCollider bc;
-    NavMeshAgent playerNma;
     Rigidbody noseRB;
-    Animator anim;
-    SubtitleCaller sc;
-    Text subtitle;
-    PlayerComponentController pcc;
     NavMeshAgent policeNma;
 
+    bool disabled;
+
 	// Use this for initialization
-	void Start () {
-        player = CharGameController.getActiveCharacter();
+	public override void Start () {
+        base.Start();
 
 
         if (player == null)
@@ -46,11 +42,7 @@ public class BridgeGameController : MonoBehaviour {
 
 
         bc =GetComponent<BoxCollider>();
-        playerNma = player.GetComponent<NavMeshAgent>();
-        anim = player.GetComponent<Animator>();
-        sc = GetComponent<SubtitleCaller>();
-        subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
-        pcc = player.GetComponent<PlayerComponentController>();
+
         policeNma = police.GetComponent<NavMeshAgent>();
 
         //Vckrs.testPosition(new Vector3(bc.bounds.center.x, player.transform.position.y, player.transform.position.z + 5));
@@ -66,7 +58,7 @@ public class BridgeGameController : MonoBehaviour {
     public void throwNose()
     {
         //Debug.Log("ThrowNose");
-
+        if (disabled) return;
         if (player == null)
         {
             Debug.Log("No player");
@@ -128,9 +120,9 @@ public class BridgeGameController : MonoBehaviour {
         yield return Timing.WaitUntilDone(handler);
 
 
-        anim.SetTrigger("Throw");
+        playerAnim.SetTrigger("Throw");
    
-        while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.7f)
+        while (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.7f)
         {
              yield return 0;
         }
@@ -209,5 +201,18 @@ public class BridgeGameController : MonoBehaviour {
     void OnTriggerExit()
     {
         onBridge = false;
+    }
+
+    public override void activateController()
+    {
+        base.activateController();
+        disabled = false;
+        police.SetActive(true);
+    }
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        disabled = true;
+        police.SetActive(false);
     }
 }

@@ -4,24 +4,23 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using MovementEffects;
 
-public class JokeGroupGameController : MonoBehaviour {
+public class JokeGroupGameController : GameController {
     public GameObject marco, zoria, trigger;
 
     AlwaysLookTo marcoALT;
     AlwaysLookTo zoriaALT;
     NavMeshAgent marcoNma;
     NavMeshAgent zoriaNma;
-    GameObject player;
+
     Text subt;
-    PlayerComponentController pcc;
-    NavMeshAgent nma;
-    SubtitleCaller sc;
+
+
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+
+        base.Start();
         
-        
-        player = CharGameController.getActiveCharacter();
         if (player == null)
         {
             enabled = false;
@@ -32,14 +31,12 @@ public class JokeGroupGameController : MonoBehaviour {
         //Debug.Log("Last scene is " + GlobalController.Instance.getLastSceneInList()); //TODO disable if is not coming from Ivan scene
 
 
-        subt = SubtitleFade.subtitles["CharacterSubtitle"].GetComponent<Text>();
+
         marcoALT = marco.GetComponent<AlwaysLookTo>();
         zoriaALT = zoria.GetComponent<AlwaysLookTo>();
-        pcc = player.GetComponent<PlayerComponentController>();
-        nma = player.GetComponent<NavMeshAgent>();
         marcoNma=marco.GetComponent<NavMeshAgent>();
         zoriaNma=zoria.GetComponent<NavMeshAgent>();
-        sc = GetComponent<SubtitleCaller>();
+
     }
 	
     public void joke()
@@ -57,7 +54,7 @@ public class JokeGroupGameController : MonoBehaviour {
         subt.text = "Hey Ivan!";
         yield return Timing.WaitForSeconds(1.5f);
         pcc.StopToWalk();
-        nma.Stop();
+        playerNma.Stop();
 
         marcoNma.SetDestination(player.transform.position + player.transform.forward * 2 + player.transform.right * 1);
         zoriaNma.SetDestination(player.transform.position + player.transform.forward * 2 - player.transform.right * 1);
@@ -102,6 +99,18 @@ public class JokeGroupGameController : MonoBehaviour {
 
         marco.SetActive(false);
         zoria.SetActive(false);
+    }
+
+    public override void activateController()
+    {
+        base.activateController();
+        gameObject.SetActive(true);
+    }
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        gameObject.SetActive(false);
+
     }
 
 }

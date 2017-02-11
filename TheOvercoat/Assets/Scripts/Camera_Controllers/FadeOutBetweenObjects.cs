@@ -11,20 +11,19 @@ public class FadeOutBetweenObjects : MonoBehaviour {
 
     public GameObject[] targets;
     List<GameObject> targetsList;
-    List<GameObject> fadedObjects;
+    Dictionary<GameObject,IEnumerator<float>> fadedObjects;
 
     // Use this for initialization
     void Start () {
 
         targetsList = targets.ToList();
-        fadedObjects = new List<GameObject>();
+        fadedObjects = new Dictionary<GameObject, IEnumerator<float>>();
         GameObject player = CharGameController.getActiveCharacter();
         if (player != null && !targetsList.Contains(player))
         {
             targetsList.Add(player);
         }
-        //foreach (GameObject obj in targetsList)
-        //    Debug.Log(obj.transform.name);
+  
 	}
 	
 	// Update is called once per frame
@@ -52,13 +51,13 @@ public class FadeOutBetweenObjects : MonoBehaviour {
 
             }
 
-            foreach (GameObject fadedObj in fadedObjects)
+            foreach (KeyValuePair<GameObject, IEnumerator<float>> fadedObj in fadedObjects)
             {
                 
-                if (!allHittedObjects.Contains(fadedObj))
+                if (!allHittedObjects.Contains(fadedObj.Key))
                 {
                     //Debug.Log("Restoring " + fadedObj.name);
-                    Timing.RunCoroutine(restoreMaterial(fadedObj));
+                    Timing.RunCoroutine(restoreMaterial(fadedObj.Key));
                 }
             }
 
@@ -68,9 +67,9 @@ public class FadeOutBetweenObjects : MonoBehaviour {
 
     void makeObjectTransparent(GameObject obj)
     {
-        if (fadedObjects.Contains(obj)) return;
+        if (fadedObjects.ContainsKey(obj)) return;
 
-
+       
 
         Renderer rend = obj.GetComponent<Renderer>();
         if (rend == null) return;
@@ -79,13 +78,21 @@ public class FadeOutBetweenObjects : MonoBehaviour {
 
         Material originalMat = rend.material;
         StandardShaderUtils.ChangeRenderMode(rend.material,StandardShaderUtils.BlendMode.Transparent);
-        Timing.RunCoroutine(Vckrs._fadeObject(obj, 1f));
-        fadedObjects.Add(obj);
+        IEnumerator<float> handler= Timing.RunCoroutine(Vckrs._fadeObject(obj, 1f));
+        fadedObjects.Add(obj,handler);
     }
 
     IEnumerator<float> restoreMaterial(GameObject obj)  //TODO while restorematerial function running prevent call of makeObjectTransparent function for this object.
     {
-        if (!fadedObjects.Contains(obj)) yield break;
+  
+        if (!fadedObjects.ContainsKey(obj)) yield break;
+
+        //Kill fade enumarator if it is not null
+        if (fadedObjects[obj] != null)
+        {
+            Timing.KillCoroutines(fadedObjects[obj]);
+        }
+
 
 
         Renderer rend = obj.GetComponent<Renderer>();
@@ -93,7 +100,7 @@ public class FadeOutBetweenObjects : MonoBehaviour {
 
         fadedObjects.Remove(obj);
 
-        Debug.Log("Fading in " + obj.name);
+        Debug.Log("Restoring" + obj.name);
 
         IEnumerator<float> handler= Timing.RunCoroutine(Vckrs._fadeObject(obj, 1f));
         yield return Timing.WaitUntilDone(handler);

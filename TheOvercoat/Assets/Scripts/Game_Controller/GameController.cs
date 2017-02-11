@@ -6,7 +6,10 @@ using MovementEffects;
 
 //This script is parent script of game controllers. 
 //It initilizes main variables generally that is used by every game controller.
-public class GameController : MonoBehaviour {
+abstract public class GameController : MonoBehaviour {
+
+
+    public bool isDisabledAtStart;
 
     protected GameObject player;
     protected NavMeshAgent playerNma;
@@ -34,13 +37,27 @@ public class GameController : MonoBehaviour {
         subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
         narSubtitle = SubtitleFade.subtitles["NarratorSubtitle"];
         sc = GetComponent<SubtitleCaller>();
+
+
     }
 	
     public virtual void Awake()
     {
 
+        if (isDisabledAtStart) deactivateController();
     }
 
-   
+    //These two function controles activate status of game controllers.
+    //While every game property have different apparence (for example some of them just scripts, while some of them both gameobject and script)
+    //They should decide how to be activated and deactivated themselfs.
+
+    public virtual void activateController() {
+        Debug.Log("Activated  "+ transform.name);
+    }
+    public virtual void deactivateController() {
+        Debug.Log("Deactivated  " + transform.name);
+    }
+
+
  
 }

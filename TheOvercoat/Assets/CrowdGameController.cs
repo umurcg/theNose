@@ -6,7 +6,7 @@ using MovementEffects;
 public class CrowdGameController : GameController, IClickAction {
 
     
-
+    
 	// Use this for initialization
 	public override void Start () {
 
@@ -71,5 +71,16 @@ public class CrowdGameController : GameController, IClickAction {
         }
         return nearestObject;
     }
+
+    public override void activateController()
+    {
+        gameObject.SetActive(true);
+  
+    }
+    public override void deactivateController()
+    {
+        gameObject.SetActive(false);
+    }
+
 
 }

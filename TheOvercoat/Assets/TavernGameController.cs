@@ -5,9 +5,16 @@ using MovementEffects;
 
 public class TavernGameController : GameController {
 
-    public GameObject tarkovksy, door, tarkovskyChair;
+    public GameObject tarkovksy, door, tarkovskyChair,chair;
+
+    public Material drunkMaterial;
+    public Material normalMaterial;
+    public GameObject tavernBuilding;
+    public GameObject[] drunkBuildings;
 
     characterComponents ccTarkovsky;
+
+    bool disabled;
 
 	// Use this for initialization
 	public override void Start () {
@@ -23,12 +30,13 @@ public class TavernGameController : GameController {
 	}
     public  void TarkovskyStopsIvan()
     {
-        if(enabled)
+        if (disabled) return;
         Timing.RunCoroutine(_TarkovskyStopsIvan());
     }
 
     IEnumerator<float> _TarkovskyStopsIvan()
     {
+        
   
         Debug.Log("Tavern game");
         pcc.StopToWalk();
@@ -66,23 +74,77 @@ public class TavernGameController : GameController {
 
     public void ivanEntersBar()
     {
-
+        if (disabled) return;
         sc.callSubtitleWithIndex(1);
     }
 
     public void ivanSitsBar()
     {
+        if (disabled) return;
         Timing.RunCoroutine(_ivanSitsBar());
     }
     IEnumerator<float> _ivanSitsBar()
     {
+        chair.GetComponent<WalkLookAnim>().lockSit = true;
+
         yield return Timing.WaitForSeconds(3);
         sc.callSubtitleWithIndex(2);
         while (subtitle.text != "") yield return 0;
         yield return Timing.WaitForSeconds(2);
-        blackScreen.script.fadeOut();
+        handlerHolder= blackScreen.script.fadeOut();
+        yield return Timing.WaitUntilDone(handlerHolder);
+                
+        makeAllBuildingsDrunk();
+        Timing.RunCoroutine(Vckrs._fadeObject(tavernBuilding, 1f));
+
         yield return Timing.WaitForSeconds(5);
-        blackScreen.script.fadeIn();
+
+
+        handlerHolder=blackScreen.script.fadeIn();
+        yield return Timing.WaitUntilDone(handlerHolder);
+        sc.callSubtitleWithIndex(3);
+        while (subtitle.text != "") yield return 0;
+
+
+        chair.GetComponent<WalkLookAnim>().lockSit = false;
+        yield break;
     }
-   
+
+    public override void activateController()
+    {
+        disabled = false;
+        tarkovksy.SetActive(true);
+    }
+    public override void deactivateController()
+    {
+
+        disabled = true;
+        tarkovksy.SetActive(false);
+
+    }
+
+    void makeAllBuildingsDrunk()
+    {
+        foreach(GameObject obj in drunkBuildings)
+        {
+            Renderer rend=obj.GetComponent<Renderer>();
+            if (rend != null)
+            {
+                rend.material = drunkMaterial;
+            }
+        }
+    }
+
+    void recoverAllBuildings()
+    {
+
+        foreach (GameObject obj in drunkBuildings)
+        {
+            Renderer rend = obj.GetComponent<Renderer>();
+            if (rend != null)
+            {
+                rend.material = normalMaterial;
+            }
+        }
+    }
 }

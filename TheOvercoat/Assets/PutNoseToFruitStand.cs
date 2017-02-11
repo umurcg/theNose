@@ -91,4 +91,17 @@ public class PutNoseToFruitStand : GameController, IClickAction/*, IClickActionD
     //    //return transform.GetChild(0).position;
     //}
 
+
+    public override void activateController()
+    {
+        base.activateController();
+        transform.tag = "ActiveObject";
+    }
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        transform.tag = "Untagged";   
+
+    }
+
 }
