@@ -12,7 +12,6 @@ public class JokeGroupGameController : GameController {
     NavMeshAgent marcoNma;
     NavMeshAgent zoriaNma;
 
-    Text subt;
 
 
 
@@ -51,7 +50,7 @@ public class JokeGroupGameController : GameController {
         marco.SetActive(true);
         zoria.SetActive(true);
 
-        subt.text = "Hey Ivan!";
+        subtitle.text = "Hey Ivan!";
         yield return Timing.WaitForSeconds(1.5f);
         pcc.StopToWalk();
         playerNma.Stop();
@@ -69,14 +68,14 @@ public class JokeGroupGameController : GameController {
         zoriaALT.enabled = true;
 
         sc.callSubtitle();
-        while (subt.text != "")
+        while (subtitle.text != "")
         {
             yield return 0;
         }
 
         yield return Timing.WaitForSeconds(3);
         sc.callSubtitle();
-        while (subt.text != "")
+        while (subtitle.text != "")
         {
             yield return 0;
         }
@@ -90,11 +89,11 @@ public class JokeGroupGameController : GameController {
 
         yield return Timing.WaitForSeconds(1.5f);
 
-        subt.text = "-Marko: Bak şimdi anlatıyorum. ";
+        subtitle.text = "-Marko: Bak şimdi anlatıyorum. ";
         yield return Timing.WaitForSeconds(2);
-        subt.text="-Marko: Zegin bir adam hastanede doğan yeni çocuğunun haberini bekliyormuş...";
+        subtitle.text="-Marko: Zegin bir adam hastanede doğan yeni çocuğunun haberini bekliyormuş...";
         yield return Timing.WaitForSeconds(5);
-        subt.text = "";
+        subtitle.text = "";
         yield return Timing.WaitForSeconds(5);
 
         marco.SetActive(false);

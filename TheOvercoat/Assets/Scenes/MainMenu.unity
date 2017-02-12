@@ -501,6 +501,20 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000010109351266, guid: dd651778041846143b79e2a904c465fc,
     type: 2}
   m_PrefabInternal: {fileID: 2047300706}
+--- !u!114 &376180567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 376180566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4423e97779af4b4583349d3296c27a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: 1
+  Scene: 8
+  debugLoad: 0
 --- !u!114 &376180569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,7 +526,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fe89b43d9dd984fb51b9ad2bea7c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: 10
+  scale: 1
+--- !u!1 &614238969 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013127924312, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 2047300706}
+--- !u!114 &614238980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 614238969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c941d2abd8c3944e8e6918a31251fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: []
 --- !u!224 &841700984 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224000013344743704, guid: 61380229c3d781e4eaba46bdc3cd6a23,
@@ -780,6 +811,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.size
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -811,6 +847,71 @@ Prefab:
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[5]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[6]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[7]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[8]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[9]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[10]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[11]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: fullGameSceneList.Array.data[12]
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd651778041846143b79e2a904c465fc, type: 2}

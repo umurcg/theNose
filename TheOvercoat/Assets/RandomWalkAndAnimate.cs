@@ -47,7 +47,10 @@ public class RandomWalkAndAnimate : GameController {
         if (timer == 0)
         {
             Vector3 target = findRandomPos(col.radius*sphere.transform.localScale.x);
+
+            if (dogCC.navmashagent!=null)
             dogCC.navmashagent.SetDestination(target);
+
             string animationName = animationNames[Random.Range(0, animationNames.Length)];
 
             //Starts timer 

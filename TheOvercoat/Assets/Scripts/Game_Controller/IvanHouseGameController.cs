@@ -20,17 +20,17 @@ public class IvanHouseGameController : GameController {
 
     // Use this for initialization
     public override void Start () {
-        base.Start();
 
 
         //Set ivan as a character and put it on true positon
         CharGameController.setCharacter("Ivan");
         CharGameController.getOwner().transform.position = ivanFirstPosition;
         CharGameController.getCamera().SetActive(true);
+        base.Start();
 
 
         Debug.Log("Start");
-
+                
         playerNma.enabled = false;
         praskovayaAnim = Praskovaya.GetComponent<Animator>();
         praskovayaNma = Praskovaya.GetComponent<NavMeshAgent>();
@@ -159,7 +159,7 @@ public class IvanHouseGameController : GameController {
     {
         
 
-        pcc.ContinueToWalk();
+        //pcc.ContinueToWalk();
         Nose.SetActive(true);
         Rigidbody rb = Nose.GetComponent<Rigidbody>();
         rb.AddForce(Vector3.right*2, ForceMode.Impulse);
@@ -188,6 +188,7 @@ public class IvanHouseGameController : GameController {
             handlerHolder = Timing.RunCoroutine(WalkLookAnim.activeScript._getUp());
             yield return Timing.WaitUntilDone(handlerHolder);
             wla.lockSit = false;
+            pcc.StopToWalk();
         }
         
        
@@ -210,7 +211,7 @@ public class IvanHouseGameController : GameController {
             yield return 0;
         }
 
-
+        pcc.ContinueToWalk();
     }
 
     public void swapNose(Object caller)

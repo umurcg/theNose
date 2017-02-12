@@ -24,6 +24,12 @@ public class OpenDoorLoad : LoadScene {
     {
         smr = GetComponent<SkinnedMeshRenderer>();
         key = smr.GetBlendShapeWeight(0);
+
+        if (doors.ContainsKey(doorId))
+        {
+            Debug.Log("There cant be more than one door having same index in scene. Check it. Door id is " + doorId);
+            return;
+        }
         doors[doorId] = this;
 
     
@@ -65,9 +71,7 @@ public class OpenDoorLoad : LoadScene {
 
 
     public override IEnumerator<float> _Load()
-    {
-
-  
+    {  
 
         CharGameController.setLastDoorId(doorId);
         Timing.RunCoroutine(base._Load());
@@ -102,7 +106,11 @@ public class OpenDoorLoad : LoadScene {
         }
    }
 
-
+    void OnDisable()
+    {
+        if (doors.Count > 0)
+            doors.Clear();
+    }
      
 
 

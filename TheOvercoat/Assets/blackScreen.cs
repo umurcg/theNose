@@ -15,7 +15,7 @@ public class blackScreen : MonoBehaviour {
    
     void Awake()
     {
-        if (obj != null || script != null) Destroy(this);
+        //if (obj != null || script != null) Destroy(this);
 
         obj = gameObject;
         script = this;
@@ -39,7 +39,7 @@ public class blackScreen : MonoBehaviour {
         yield return 0;
         if (fadeInAtStart)
         {
-            Debug.Log("Fade in at start");
+            //Debug.Log("Fade in at start");
             fadeIn();
         }
         yield break;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BridgeGameController : GameController {
 
-    public GameObject police,trigger,blackScreen;
+    public GameObject police,trigger,/*blackScreen,*/ shallNotPass;
 
     bool onBridge = false;
     GameObject nose;
@@ -74,7 +74,8 @@ public class BridgeGameController : GameController {
 
         if (onBridge)
         {
-            nose = player.transform.Find("ivan/Armature/Torso/Chest/Arm_L/Hand_L/nosePackage").gameObject;
+            //nose = player.transform.Find("ivan/Armature/Torso/Chest/Arm_L/Hand_L/nosePackage").gameObject;
+            nose = CharGameController.getObjectOfHand("nosePackage",CharGameController.hand.LeftHand);
             if(nose == null)
             {
                 Debug.Log("Couldnt find nose");
@@ -187,8 +188,8 @@ public class BridgeGameController : GameController {
         Timing.WaitForSeconds(1f);
 
 
-        Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen, 0.1f));
-
+        //Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen, 0.1f));
+        blackScreen.script.fadeOut();
     }
 
 
@@ -208,11 +209,13 @@ public class BridgeGameController : GameController {
         base.activateController();
         disabled = false;
         police.SetActive(true);
+        shallNotPass.SetActive(true);
     }
     public override void deactivateController()
     {
         base.deactivateController();
         disabled = true;
         police.SetActive(false);
+        shallNotPass.SetActive(false);
     }
 }

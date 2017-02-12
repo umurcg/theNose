@@ -43,6 +43,7 @@ public class GlobalController : MonoBehaviour {
         if (SceneManager.GetActiveScene().buildIndex != (int)Scenes.MainMenu)
         {
             GlobalController.Instance.registerToSceneList();
+  
         }
 
         
@@ -61,13 +62,21 @@ public class GlobalController : MonoBehaviour {
         if (sceneList.Count > 0)
         {
             //If current scene index equals next scene in story line which means player play in right direction that add that scene into sceneList 
-            if(currentScene == (int)fullGameSceneList[sceneList.Count - 1])
+            if(currentScene == (int)fullGameSceneList[sceneList.Count])
             {
+                Debug.Log(currentScene + "is added to scene list");
                 sceneList.Add(currentScene);
+
+            }else
+            {
+                Debug.Log("Player is not going to right direction in story");
             }
-        }else
+         }
+          else
         {
-            sceneList.Add((int)fullGameSceneList[0]);
+            //Debug.Log("Registered scene " + currentScene); //TODOthis part is for debugging
+            //sceneList.Add((int)fullGameSceneList[0]);
+            sceneList.Add(currentScene);
         }
 
 

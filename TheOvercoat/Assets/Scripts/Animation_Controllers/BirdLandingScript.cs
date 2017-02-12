@@ -56,19 +56,19 @@ public class BirdLandingScript : MonoBehaviour {
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, distance))
                 {
-                    Debug.Log("Hit!");
+                    //Debug.Log("Hit!");
                     timer = delay;
                     lockPos = transform.position;
                 }
             }else if (timer <= 0)
             {
-                Debug.Log("hi");
+                //Debug.Log("hi");
                 Timing.RunCoroutine(_landOnTo(getBelowPosition(transform.position)));
                 timer = delay * 2;
 
             }else
             {
-                Debug.Log(timer);
+                //Debug.Log(timer);
                 timer -= Time.deltaTime;
                 if (Vector3.Distance(transform.position, lockPos) > 0.05f)
                 {

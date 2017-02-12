@@ -81,7 +81,7 @@ public class SubtitleControllerTime : SubtitleController {
     public new void startSubtitle()
     {
 
-        print("start");
+        //print("start");
 
         this.enabled = true;
         if (TimeMode == timeMode.automatic)

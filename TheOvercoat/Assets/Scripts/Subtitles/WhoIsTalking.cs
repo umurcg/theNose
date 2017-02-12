@@ -26,8 +26,10 @@ public class WhoIsTalking : MonoBehaviour
         if (gameobjectsArray.Length > 0)
             foreach (GameObject go in gameobjectsArray)
             {
-
-                characters.Add(go.name, go);
+                if (go != null)
+                {
+                    characters.Add(go.name, go);
+                }
             }
 
         //Add player character to dictionary
@@ -70,7 +72,7 @@ public class WhoIsTalking : MonoBehaviour
 
             if (characters.ContainsKey(key))
             {
-                if (characters[key] == null) return;
+               
                 baloon.SetActive(true);
                 if (cameraComponent == null) return;
                 Vector2 ActualPosition = cameraComponent.WorldToScreenPoint(characters[key].transform.position);
@@ -80,7 +82,7 @@ public class WhoIsTalking : MonoBehaviour
             else
             {
 
-                //Debug.Log(key + " isn't included in dictionary.\n Current key are followings:");
+                baloon.SetActive(false);
 
 
             }

@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Debug.Log(Application.persistentDataPath);
+        //Debug.Log(Application.persistentDataPath);
         if (/*!GlobalController.Instance.LoadData()*/true) //For now it is always disabled.
         {
             continueButton.GetComponent<Button>().interactable = false;

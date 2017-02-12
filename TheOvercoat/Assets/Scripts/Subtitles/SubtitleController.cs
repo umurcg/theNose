@@ -43,7 +43,7 @@ public class SubtitleController : MonoBehaviour {
         }
         if (text == null)
         {
-            print("PUT THE SUBTITLE YOU FAGGOT");
+            //print("PUT THE SUBTITLE YOU FAGGOT");
          
         }
         index = -1;

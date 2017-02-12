@@ -42,7 +42,7 @@ public class CharGameController : MonoBehaviour {
 
     void setPositionToDoor(Scene scene, LoadSceneMode mode)
     {
-
+        
      
         if (lastDoorId != 0)
         {

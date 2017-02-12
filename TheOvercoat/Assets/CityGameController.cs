@@ -5,7 +5,7 @@ using System.Collections.Generic;
 //City includes lots of scenes and games. So when this script starts it looks player's sceneList and decide how to initilize city.
 public class CityGameController : MonoBehaviour {
 
-    public GameObject berberShop;
+    public GameObject berberShop, Crowd, girty, bar, jokeGroup, bridge, fruitStad, cat;
     
 	// Use this for initialization
 	void Awake () {
@@ -15,11 +15,11 @@ public class CityGameController : MonoBehaviour {
         {
             //Scene list
             List<int> sceneList = GlobalController.Instance.sceneList;
-            //Debug.Log("SceneList lenght is " + sceneList.Count);
-            //foreach(int i in sceneList)
-            //{
-            //    Debug.Log(i);
-            //}
+            Debug.Log("SceneList lenght is " + sceneList.Count);
+            foreach (int i in sceneList)
+            {
+                Debug.Log(i);
+            }
 
             if (sceneList.Count > 0)
             {
@@ -33,10 +33,11 @@ public class CityGameController : MonoBehaviour {
                         Debug.Log("It is impossible. How can you come from main menu?");
                         break;
                     case (int)GlobalController.Scenes.IvanHouse:
+                        comingFromIvanHouse();
 
                         break;
                     default:
-                        Debug.Log("Unused scene index");
+                        Debug.Log("Unused scene index. Index is "+lastSceneIndex);
                         break;
 
                 }
@@ -58,8 +59,31 @@ public class CityGameController : MonoBehaviour {
 
     void berberShopScene()
     {
+        //Debug.Log("Berber shop");
         CharGameController.deactivateAllCharacters();
-        berberShop.GetComponent<EnterSceneGameController>().isDisabledAtStart = false;
-        berberShop.GetComponent<EnterSceneGameController>().activateController();
+        berberShop.GetComponent<GameController>().isDisabledAtStart = false;
+        //berberShop.GetComponent<GameController>().activateController();
+    }
+
+    void comingFromIvanHouse()
+    {
+
+        //Debug.Log("Coming From Ivan house");
+        //Crowd.GetComponent<GameController>().isDisabledAtStart = false;
+        //girty.GetComponent<GameController>().isDisabledAtStart = false;
+        //bar.GetComponent<GameController>().isDisabledAtStart = false;
+        //jokeGroup.GetComponent<GameController>().isDisabledAtStart = false;
+        //fruitStad.GetComponent<GameController>().isDisabledAtStart = false;
+        //bridge.GetComponent<GameController>().isDisabledAtStart = false;
+        //cat.GetComponent<GameController>().isDisabledAtStart = false;
+
+        Crowd.GetComponent<GameController>().activateController();
+        girty.GetComponent<GameController>().activateController();
+        bar.GetComponent<GameController>().activateController();
+        jokeGroup.GetComponent<GameController>().activateController();
+        fruitStad.GetComponent<GameController>().activateController();
+        bridge.GetComponent<GameController>().activateController();
+        cat.GetComponent<GameController>().activateController();
+
     }
 }

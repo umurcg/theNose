@@ -95,4 +95,12 @@ public class SubtitleFade : MonoBehaviour {
         
          
 	}
+
+    void OnDisable()
+    {
+        if (subtitles.Count>0)
+        {
+            subtitles.Clear();
+        }
+    }
 }

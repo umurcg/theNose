@@ -31,7 +31,14 @@ public class CursorImageScript : MonoBehaviour
         player = CharGameController.getActiveCharacter();
         if (player != null)
             mt = player.GetComponent<MoveTo>();
-        subt = SubtitleFade.subtitles["CharacterSubtitle"];
+        if (SubtitleFade.subtitles != null)
+        {
+            if (SubtitleFade.subtitles.ContainsKey("CharacterSubtitle"))
+            {
+                subt = SubtitleFade.subtitles["CharacterSubtitle"];
+            }
+        }
+       
     }
 
     // Update is called once per frame

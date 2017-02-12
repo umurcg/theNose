@@ -14,21 +14,21 @@ public class LoadScene : MonoBehaviour {
     //public string sceneName;
 
     //Test
-    //public bool debugLoad;
+    public bool debugLoad;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        //if (debugLoad)
-        //{
-        //    Load();
-        //    debugLoad = false;
-        //}
-	}
+        if (debugLoad)
+        {
+            Load();
+            debugLoad = false;
+        }
+    }
     
     public void Load()
     {
