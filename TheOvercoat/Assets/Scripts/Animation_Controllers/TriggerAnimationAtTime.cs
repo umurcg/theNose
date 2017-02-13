@@ -19,8 +19,9 @@ public class TriggerAnimationAtTime : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(time>0)
         time -= Time.deltaTime;
+
         if (time <= 0)
         {
             Animator an = GetComponent<Animator>();
@@ -40,6 +41,8 @@ public class TriggerAnimationAtTime : MonoBehaviour {
 
                 }
             }
+
+            time = 0;
         }
 
 	}

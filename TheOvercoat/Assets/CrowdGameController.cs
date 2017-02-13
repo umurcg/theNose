@@ -5,7 +5,7 @@ using MovementEffects;
 
 public class CrowdGameController : GameController, IClickAction {
 
-    
+    public    GameObject stage;
     
 	// Use this for initialization
 	public override void Start () {
@@ -75,11 +75,13 @@ public class CrowdGameController : GameController, IClickAction {
     public override void activateController()
     {
         gameObject.SetActive(true);
+        stage.SetActive(true);
   
     }
     public override void deactivateController()
     {
         gameObject.SetActive(false);
+        stage.SetActive(false);
     }
 
 
