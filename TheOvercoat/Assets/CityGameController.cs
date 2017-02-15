@@ -78,7 +78,7 @@ public class CityGameController : MonoBehaviour {
         //cat.GetComponent<GameController>().isDisabledAtStart = false;
 
         Crowd.GetComponent<GameController>().activateController();
-        girty.GetComponent<GameController>().activateController();
+        //girty.GetComponent<GameController>().activateController();
         bar.GetComponent<GameController>().activateController();
         jokeGroup.GetComponent<GameController>().activateController();
         fruitStad.GetComponent<GameController>().activateController();

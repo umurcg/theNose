@@ -19,6 +19,8 @@ public class CursorImageScript : MonoBehaviour
     public Texture2D grab;
     public Texture2D nextSubtitle;
 
+    public LayerMask ignoreLayers;
+
     RaycastHit lastHit;
 
     GameObject player;
@@ -65,9 +67,12 @@ public class CursorImageScript : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
+        //LayerMask mask = (1 << 8);
+        ////mask = (1 << 2);
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayers))
         {
-            //Debug.Log(hit.transform.tag);
+            //Debug.Log(hit.transform.gameObject.name+ " "+ hit.transform.tag+ " "+hit.transform.gameObject.layer);
 
 
 

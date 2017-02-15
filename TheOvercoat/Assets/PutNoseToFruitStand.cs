@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 
-public class PutNoseToFruitStand : GameController, IClickAction/*, IClickActionDifferentPos*/ {
+public class PutNoseToFruitStand : GameController, IClickAction, IClickActionDifferentPos
+{
 
     public GameObject salesclerk;
     public GameObject noseCopy;
+    public GameObject specificLocation;
 
     //max distance that player can move before interrupted by salesclerk
     public float moveAwayDistance = 5f;
@@ -80,16 +82,16 @@ public class PutNoseToFruitStand : GameController, IClickAction/*, IClickActionD
         Timing.RunCoroutine(_putNose());
     }
 
-    //public Vector3 giveMePosition()
-    //{
-    //    //if (transform.childCount == 0)
-    //    //{
-    //    //    print("Add child object for specifiyng psoition");
-    //    //    return Vector3.zero;
-    //    //}
+    public Vector3 giveMePosition()
+    {
+        //if (transform.childCount == 0)
+        //{
+        //    print("Add child object for specifiyng psoition");
+        //    return Vector3.zero;
+        //}
 
-    //    //return transform.GetChild(0).position;
-    //}
+        return specificLocation.transform.position;
+    }
 
 
     public override void activateController()

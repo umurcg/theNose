@@ -37,6 +37,9 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
     IEnumerator<float> handler;
     Animator anim;
 
+    public bool debug;
+
+
     //public bool getup;
     // Use this for initialization
     void Start () {
@@ -56,46 +59,55 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
 	
 	// Update is called once per frame
 	void Update () {
-        if (sitting&&!lockSit)
+
+        if (debug)
         {
-            //If trying to move
-            if(Input.GetAxis("Horizontal")!=0|| Input.GetAxis("Vertical") != 0) Timing.RunCoroutine(_getUp());
+            debug = false;
+            start();
+        }
 
-                        
-            if (Input.GetMouseButton(0))
+        if(subject.transform.tag=="Player"){
+            if (sitting && !lockSit)
             {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
+                //If trying to move
+                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) Timing.RunCoroutine(_getUp());
 
+
+                if (Input.GetMouseButton(0))
                 {
-                    if (hit.transform.tag == "Floor")
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
+
                     {
-                        //TODO If is a dialouge open we should prevent getting up if subtitleController' lockPlayer boolean is true
-                        //We can not understand directly wther dialouges locksPlayer or not.
-                        ////For now just check subtitile
-                        //Text subt = SubtitleFade.subtitles["CharacterSubtitle"];
-                        //if (subt != null)
-                        //{
-                        //    if (subt.text != "")
-                        //        return;
-                           
-                        //}
+                        if (hit.transform.tag == "Floor")
+                        {
+                            //TODO If is a dialouge open we should prevent getting up if subtitleController' lockPlayer boolean is true
+                            //We can not understand directly wther dialouges locksPlayer or not.
+                            ////For now just check subtitile
+                            //Text subt = SubtitleFade.subtitles["CharacterSubtitle"];
+                            //if (subt != null)
+                            //{
+                            //    if (subt.text != "")
+                            //        return;
+
+                            //}
 
 
-                        Timing.RunCoroutine(_getUp());
+                            Timing.RunCoroutine(_getUp());
+                        }
                     }
+
+
                 }
 
-                
             }
-  
         }
 
 
 
 
-	}
+    }
 
 
     public void start()
@@ -103,13 +115,14 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         Timing.RunCoroutine(_sit());
     }
 
-    IEnumerator<float> _sit()
+    public IEnumerator<float> _sit()
     {
       
         //Validate is not sitting
         if (sitting)  yield break;
 
         //Disable collider
+        if(col!=null)
         col.enabled = false;
 
         //Set player components
@@ -196,6 +209,7 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
 
         disablePlayer(false);
 
+        if(col!=null)
         col.enabled = true;
         sitting = false;
 
@@ -209,17 +223,17 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         PlayerComponentController pcc = subject.GetComponent<PlayerComponentController>();
         NavMeshAgent nma = subject.GetComponent<NavMeshAgent>();
         
-        if (!pcc||!nma) return;
+        //if (!pcc||!nma) return;
 
         if (disable)
         {
-            pcc.StopToWalk();
-            nma.enabled = false;
+            if(pcc)  pcc.StopToWalk();
+            if(nma)  nma.enabled = false;
         }
         else
         {
-            pcc.ContinueToWalk();
-            nma.enabled = true;
+            if(pcc) pcc.ContinueToWalk();
+            if(nma) nma.enabled = true;
         }
 
     }

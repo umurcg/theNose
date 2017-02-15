@@ -50,6 +50,12 @@ public class IvanHouseGameController : GameController {
     IEnumerator<float> _wakeUpScene()
     {
 
+        GameObject canvas=GameObject.FindGameObjectWithTag("TutorialCanvas");
+        if (canvas != null)
+        {
+            canvas.GetComponent<TutorailCanvas>().startFullTutorial(10f);
+        }
+
         //Debug.Log("Wakeupscene");
         //fading in;
         //handlerHolder = Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen,0.5f));

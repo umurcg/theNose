@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Todo write a custom editor 
 public class EnterTrigger : MonoBehaviour {
 
     public enum sendMessage { inExit,inEnter};
@@ -13,6 +14,7 @@ public class EnterTrigger : MonoBehaviour {
     //Use this variables if you want to send message when trigger is activated.
     public GameObject messageReciever;
     public string message;
+    public bool isRecieverActivePlayer=false;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +34,16 @@ public class EnterTrigger : MonoBehaviour {
 
     void send()
     {
+        if (isRecieverActivePlayer)
+        {
+            GameObject player = CharGameController.getActiveCharacter();
+            if (player != null)
+            {
+                player.SendMessage(message);
+                return;
+            }
+        }
+
         //Sending message
         if (messageReciever != null && message != "")
         {

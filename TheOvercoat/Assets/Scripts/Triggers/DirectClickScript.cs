@@ -28,11 +28,12 @@ public class DirectClickScript : MonoBehaviour {
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward);
             if (Physics.Raycast(ray, out hit))
             {
-                //Debug.Log(hit.transform.name);
+                
                 if(hit.transform.gameObject==gameObject){
+                    Debug.Log(hit.transform.name);
                     if (idc == null)
                     {
-                        print("There is no idirectClick script");
+                        Debug.Log("There is no idirectClick script");
                     }
                     else
                     {

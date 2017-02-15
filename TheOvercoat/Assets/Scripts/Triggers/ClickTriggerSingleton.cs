@@ -19,10 +19,14 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
     List<GameObject> collidingObjects = new List<GameObject>();
 
+    IEnumerator<float> walkToTargetHandler;
+    
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         //cml = GetComponent<CharacterMouseLook>();
+
     }
 
 	// Use this for initialization
@@ -156,6 +160,16 @@ public class ClickTriggerSingleton : MonoBehaviour {
         agent.Stop();
     }
 
+    //Cancel all actions, coroutines
+    public void abort()
+    {
+        if(walkToTargetHandler!=null)
+        Timing.KillCoroutines(walkToTargetHandler);
+
+        StopCoroutine("setAim");
+
+        agent.Stop();
+    }
    
     IEnumerator<float> walkToTarget(GameObject aim)
     {

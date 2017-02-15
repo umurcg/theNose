@@ -15,6 +15,7 @@ public class BridgeGameController : GameController {
     NavMeshAgent policeNma;
 
     bool disabled;
+    //public bool activate;
 
 	// Use this for initialization
 	public override void Start () {
@@ -57,6 +58,12 @@ public class BridgeGameController : GameController {
 
     public void throwNose()
     {
+        //if (activate)
+        //{
+        //    activateController();
+        //    activate = false;
+        //}
+
         //Debug.Log("ThrowNose");
         if (disabled) return;
         if (player == null)
@@ -185,11 +192,19 @@ public class BridgeGameController : GameController {
         Timing.RunCoroutine(Vckrs._cameraSize(Camera.main, 40, 0.5f));
         sc.callSubtitleWithIndexTime(0);
 
-        Timing.WaitForSeconds(1f);
+        Timing.WaitForSeconds(5f);
 
 
         //Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen, 0.1f));
-        blackScreen.script.fadeOut();
+        handler=blackScreen.script.fadeOut();
+
+        //yield return Timing.WaitForSeconds(3f);
+
+        //while (narSubtitle.text != "") yield return 0;
+
+        ////For demo exit
+        //Application.Quit();
+
     }
 
 
@@ -209,6 +224,7 @@ public class BridgeGameController : GameController {
         base.activateController();
         disabled = false;
         police.SetActive(true);
+        //trigger.SetActive(true);
         shallNotPass.SetActive(true);
     }
     public override void deactivateController()
@@ -216,6 +232,7 @@ public class BridgeGameController : GameController {
         base.deactivateController();
         disabled = true;
         police.SetActive(false);
+        //trigger.SetActive(false);
         shallNotPass.SetActive(false);
     }
 }

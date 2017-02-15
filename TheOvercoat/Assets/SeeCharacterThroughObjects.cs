@@ -8,6 +8,10 @@ using MovementEffects;
 //If found object is specified layer it makes it transparent
 //When mouse is over on those object also make them transparent
 
+
+//TODO bug when two object is in targetList
+
+
 public class SeeCharacterThroughObjects : MonoBehaviour {
 
     //Characters that can be seen through objects
@@ -164,5 +168,16 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
 
     }
 
+    public void registerToTargets(GameObject obj)
+    {
+        Debug.Log("Adding obj " + obj.name + " to targets");
+        targetsList.Add(obj);
+    }
+
+    public void removeFromTargets(GameObject obj)
+    {
+        if(targetsList.Contains(obj))
+        targetsList.Remove(obj);
+    }
 
 }

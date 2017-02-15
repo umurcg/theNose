@@ -8,6 +8,7 @@ public class MoveTo : MonoBehaviour
     NavMeshAgent agent;
     public GameObject[] aims;
 
+    public LayerMask ignoreMasks;
 
     public bool debug;
 
@@ -59,7 +60,7 @@ public class MoveTo : MonoBehaviour
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
+                if (Physics.Raycast(ray, out hit, ignoreMasks))
 
                 {
                     //print(hit.transform.name);

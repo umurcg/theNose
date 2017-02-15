@@ -13,6 +13,7 @@ public class TavernGameController : GameController {
     public GameObject[] drunkBuildings;
 
     characterComponents ccTarkovsky;
+    WalkLookAnim tarkovskySitScript;
 
     bool disabled;
 
@@ -21,7 +22,8 @@ public class TavernGameController : GameController {
         base.Start();
         ccTarkovsky = new characterComponents(tarkovksy);
 
-
+        tarkovskySitScript = tarkovskyChair.GetComponent<WalkLookAnim>();
+        //tarkovskySitScript.start();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +43,12 @@ public class TavernGameController : GameController {
         Debug.Log("Tavern game");
         pcc.StopToWalk();
         Vector3 aim = door.transform.position + door.transform.forward * 3;
+
+        //tarkovskySitScript.getUp();
+
+        ////while (ccTarkovsky.navmashagent != enabled) yield return 0;
+        //yield return Timing.WaitForSeconds(3f);
+
         ccTarkovsky.navmashagent.SetDestination(aim);
 
         Timing.RunCoroutine(Vckrs._lookTo(player, tarkovksy.transform.position - player.transform.position, 1f));
@@ -63,8 +71,8 @@ public class TavernGameController : GameController {
         ccTarkovsky.navmashagent.SetDestination(tarkovskyChair.transform.position);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(tarkovksy,0));
         yield return Timing.WaitUntilDone(handlerHolder);
-        ccTarkovsky.animator.SetBool("SitPosition", true);
-        
+        //ccTarkovsky.animator.SetBool("SitPosition", true);
+        tarkovskySitScript.start();
 
         pcc.ContinueToWalk(); 
 

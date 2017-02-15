@@ -5,7 +5,7 @@ using MovementEffects;
 
 //This script randomly move owner andanimate between movements.
 
-public class RandomWalkAndAnimate : GameController {
+public class RandomWalkAndAnimate : MonoBehaviour {
 
     public float minAnimationDuration, maxAnimationDuration;
     public GameObject sphere;
@@ -17,8 +17,8 @@ public class RandomWalkAndAnimate : GameController {
     float timer;
 
 	// Use this for initialization
-	public override void Start () {
-        base.Start();
+         void Start () {
+        //base.Start();
         dogCC = new characterComponents(gameObject);
 
         //Check sphere is not null
@@ -70,7 +70,7 @@ public class RandomWalkAndAnimate : GameController {
     public IEnumerator<float> _animateForSeconds(string name)
     {
         //Wait for object finish its transform. While waiting for it timer is not ticking.
-        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject, 0));
+       IEnumerator<float>  handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject, 0));
         yield return Timing.WaitUntilDone(handlerHolder);
 
 
@@ -116,16 +116,5 @@ public class RandomWalkAndAnimate : GameController {
     }
 
 
-    public override void activateController()
-    {
-        base.activateController();
-        gameObject.SetActive(true);
-    }
-    public override void deactivateController()
-    {
-        base.deactivateController();
-        gameObject.SetActive(false); 
-
-    }
 
 }
