@@ -39,14 +39,19 @@ public class GlobalController : MonoBehaviour {
         }
 
 
+ 
+        
+    }
+
+    void Start()
+    {
         //if it is not main menu register to scene list
         if (SceneManager.GetActiveScene().buildIndex != (int)Scenes.MainMenu)
         {
             GlobalController.Instance.registerToSceneList();
-  
+
         }
 
-        
     }
 
     //This function register creates scene list if it is not exist.

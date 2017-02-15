@@ -22,17 +22,25 @@ public class CameraFollower : MonoBehaviour {
             //myValue = anyFloat > 0 ? 1f : 2f;
             target= (gameObject== transform.parent.GetChild(0).gameObject) ? transform.parent.GetChild(1).gameObject: transform.parent.GetChild(0).gameObject;
         }
-        relativePosition = transform.position - target.transform.position;
 
+        updateRelative();
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (target)
         {
-           transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * lookSpeed);
-           // transform.rotation = Quaternion.LookRotation(target.transform.position);
-            transform.position = Vector3.Lerp(transform.position, relativePosition+ target.transform.position, Time.deltaTime * transformSpeed);
+            transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            transform.position = relativePosition + target.transform.position;
+            //Lerp
+           // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * lookSpeed);
+           //transform.position = Vector3.Lerp(transform.position, relativePosition+ target.transform.position, Time.deltaTime * transformSpeed);
         }
-        }
+    }
+
+    public void updateRelative()
+    {
+        relativePosition = transform.position - target.transform.position;
+    }
+
 }

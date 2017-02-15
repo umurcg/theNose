@@ -5,31 +5,23 @@ using MovementEffects;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class KovalevHomeGameController : MonoBehaviour {
-    public GameObject Kovalev, CharSubt, Door, Ivan, Dolap, Paper, HandR;
+public class KovalevHomeGameController : GameController {
+    public GameObject CharSubt, Door, Ivan, Dolap, Paper, HandR;
     
 
-    SubtitleCaller sc;
-    PlayerComponentController pcc;
-    Animator KovAnimator;
    
-    NavMeshAgent KovAgent;
+
     Text charText;
     NavMeshAgent IvanAgent;
     AlwaysLookTo IvanAlt;
-
     KeySlideCompletely ksc;
 
-  
 
     // Use this for initialization
-    void Awake()
+    public override void Awake()
     {
-        Kovalev = CharGameController.getActiveCharacter();
-
-        pcc = Kovalev.GetComponent<PlayerComponentController>();
-        KovAnimator = Kovalev.GetComponent<Animator>();
-        KovAgent = Kovalev.GetComponent<NavMeshAgent>();
+        base.Awake();
+                      
         charText = CharSubt.GetComponent<Text>();
         sc = GetComponent<SubtitleCaller>();
         IvanAgent = Ivan.GetComponent<NavMeshAgent>();
@@ -44,11 +36,14 @@ public class KovalevHomeGameController : MonoBehaviour {
         }
         else
         {
-             
-            if (!GlobalController.Instance.sceneList.Contains(SceneManager.GetActiveScene().buildIndex))
-               callWakeUp();
-               
 
+            if (!GlobalController.Instance.sceneList.Contains(SceneManager.GetActiveScene().buildIndex))
+            {
+                Debug.Log("calling wake up");
+                callWakeUp();
+                return;
+            }
+            Debug.Log("Build index in sceneList");
         }
 
     }
@@ -65,26 +60,30 @@ public class KovalevHomeGameController : MonoBehaviour {
 
     IEnumerator<float> _WakeUp()
     {
+        Debug.Log("wake up");
 
-        KovAnimator.SetTrigger("Lie");
+        if (!playerAnim) yield return 0;
+
+        playerAnim.SetTrigger("Lie");
    
-        PlayerComponentController pcc = Kovalev.GetComponent<PlayerComponentController>();
+        PlayerComponentController pcc = player.GetComponent<PlayerComponentController>();
         if(pcc)
         pcc.StopToWalk();
 
+        player.GetComponent<CharacterController>().enabled = false;
 
 
-        KovAnimator.SetTrigger("GetUp");
+        playerAnim.SetTrigger("GetUp");
 
         yield return Timing.WaitForSeconds(2f);
 
-        IEnumerator<float> handler =Timing.RunCoroutine(Vckrs._Tween(Kovalev, Kovalev.transform.position - Kovalev.transform.right * 1.5f, 0.5f));
+        IEnumerator<float> handler =Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position - player.transform.right * 1f-player.transform.up*0.5f, 0.5f));
         yield return Timing.WaitUntilDone(handler);
 
-        NavMeshAgent KovAgent = Kovalev.GetComponent<NavMeshAgent>();
+        NavMeshAgent KovAgent = player.GetComponent<NavMeshAgent>();
         KovAgent.enabled = true;
         pcc.ContinueToWalk();
-      }
+    }
 
     public void callIvan()
     {
@@ -108,13 +107,15 @@ public class KovalevHomeGameController : MonoBehaviour {
         }
 
         Ivan.SetActive(true);
-        IvanAgent.SetDestination(Kovalev.transform.position + Vector3.forward * 5);
+        IvanAgent.SetDestination(player.transform.position + Vector3.forward * 5);
         
         handler = Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan, 0.005f));
 
         yield return Timing.WaitUntilDone(handler);
 
         IvanAlt.enabled = true;
+
+        Timing.RunCoroutine(Vckrs._lookTo(player, Ivan.transform.position - player.transform.position, 1f));
 
         sc.callSubtitleWithIndex(1);
         while (charText.text != "")
@@ -123,9 +124,9 @@ public class KovalevHomeGameController : MonoBehaviour {
             yield return 0;
         }
 
-        KovAgent.speed = 1.5f;
-        handler = Timing.RunCoroutine(Vckrs._pace(Kovalev, Kovalev.transform.position, Kovalev.transform.position+3*Vector3.right));
-        KovAgent.speed = 3f;
+        playerNma.speed = 1.5f;
+        handler = Timing.RunCoroutine(Vckrs._pace(player, player.transform.position, player.transform.position+3*Vector3.right));
+        playerNma.speed = 3f;
 
         sc.callSubtitleWithIndex(2);
         while (charText.text != "")
@@ -134,7 +135,7 @@ public class KovalevHomeGameController : MonoBehaviour {
         }
 
         Timing.KillCoroutines(handler);
-        KovAgent.Stop();
+        playerNma.Stop();
 
         sc.callSubtitleWithIndex(3);
         while (charText.text != "")
@@ -162,13 +163,15 @@ public class KovalevHomeGameController : MonoBehaviour {
 
     public IEnumerator<float> _IvanComesWithPaper()
     {
+
+        Debug.Log("Ivan comes with paper");
         IEnumerator<float> handler;
 
         Vckrs.DisableAnotherObject(Dolap);
 
         Ivan.SetActive(true);
         Paper.SetActive(true);
-        IvanAgent.SetDestination(Kovalev.transform.position + Vector3.forward * 3);
+        IvanAgent.SetDestination(player.transform.position + Vector3.forward * 3);
 
         handler = Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan,0.0005f));
         yield return Timing.WaitUntilDone(handler);
@@ -186,7 +189,7 @@ public class KovalevHomeGameController : MonoBehaviour {
 
         Paper.transform.SetParent(HandR.transform);
         Paper.transform.localPosition=new Vector3(-0.475f, 0.008f, -0.044f);
-        KovAnimator.SetBool("RightHandAtFace", true);
+        playerAnim.SetBool("RightHandAtFace", true);
         Vckrs.ActivateAnotherObject(Door);
         OpenDoorLoad od = Door.GetComponent<OpenDoorLoad>();
         od.otherCanOpen = false;

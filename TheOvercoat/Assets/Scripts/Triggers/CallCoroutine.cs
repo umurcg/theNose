@@ -13,7 +13,7 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
 
     public void call()
     {
-        //print("call");
+        Debug.Log("calling "+methodName);
         if (passParameter == null)
         {
             owner.SendMessage(methodName);

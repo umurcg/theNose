@@ -19,6 +19,8 @@ public class BirdController : MonoBehaviour {
 
     float firstCamSize;
     Camera cam;
+    CameraRotator rotator;
+
     ////TODO
     //public enum direction {posFor,negFor,posRigh,negRigh,posUp,negUp };
     //public direction forward;
@@ -33,6 +35,7 @@ public class BirdController : MonoBehaviour {
         cc = GetComponent<CharacterController>();
         cam = Camera.main;
         firstCamSize = cam.orthographicSize;
+        rotator = cam.gameObject.GetComponent<CameraRotator>();
 	}
 	
 	// Update is called once per frame
@@ -54,6 +57,16 @@ public class BirdController : MonoBehaviour {
         //Prevent backward movement
         if (ver < 0)
             ver = 0;
+
+
+        //If camera is rotating you should prevent elevation
+        if (rotator != null)
+        {
+            if (rotator.rotating)
+            {
+                elev = 0;
+            }
+        }
 
         //Move
         cc.Move(transform.forward * ver * speed);

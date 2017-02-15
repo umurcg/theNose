@@ -100,6 +100,7 @@ public class BridgeGameController : GameController {
         //if (!onBridge)
         //    print("is not on bridge");
 
+
     }
 
 
@@ -120,7 +121,7 @@ public class BridgeGameController : GameController {
         Vector3 edge = new Vector3(bc.bounds.max.x, player.transform.position.y, player.transform.position.z);
         playerNma.Resume();
         playerNma.SetDestination(edge);
-        handler = Timing.RunCoroutine(Vckrs.waitUntilStop(player,0));
+        handler = Timing.RunCoroutine(Vckrs.waitUntilStop(player));
         yield return Timing.WaitUntilDone(handler);
 
        
@@ -165,8 +166,13 @@ public class BridgeGameController : GameController {
         }
 
         playerNma.SetDestination(police.transform.position + police.transform.forward * 2);
-        handler = Timing.RunCoroutine(Vckrs.waitUntilStop(player, 0));
+        handler = Timing.RunCoroutine(Vckrs.waitUntilStop(player));
+
+        Debug.Log("I am here");
+
         yield return Timing.WaitUntilDone(handler);
+
+        
 
         while (subtitle.text != "")
         {
@@ -192,15 +198,12 @@ public class BridgeGameController : GameController {
         Timing.RunCoroutine(Vckrs._cameraSize(Camera.main, 40, 0.5f));
         sc.callSubtitleWithIndexTime(0);
 
-        Timing.WaitForSeconds(5f);
+                 
+        yield return Timing.WaitForSeconds(5f);
 
+        while (narSubtitle.text != "") yield return 0;
 
-        //Timing.RunCoroutine(Vckrs._fadeInfadeOut(blackScreen, 0.1f));
-        handler=blackScreen.script.fadeOut();
-
-        //yield return Timing.WaitForSeconds(3f);
-
-        //while (narSubtitle.text != "") yield return 0;
+        GetComponent<LoadScene>().Load();
 
         ////For demo exit
         //Application.Quit();

@@ -31,13 +31,14 @@ public class Vckrs : MonoBehaviour
 
     }
 
-    public static IEnumerator<float> waitUntilStop(GameObject obj, float tol)
+    public static IEnumerator<float> waitUntilStop(GameObject obj, float tol=0.000001f)
     {
+      
         Vector3 pos = obj.transform.position;
         yield return Timing.WaitForSeconds(0.5f);
         while (Vector3.Distance(obj.transform.position, pos) > tol)
         {
-            //print((Vector3.Distance(obj.transform.position, pos)));
+            //Debug.Log((Vector3.Distance(obj.transform.position, pos)));
             pos = obj.transform.position;
             yield return 0;
 

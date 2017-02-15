@@ -40068,7 +40068,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 54.3
+      value: 46.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -40089,6 +40089,22 @@ Prefab:
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_RootOrder
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010117061346, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011478008078, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011785493192, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014093701332, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd651778041846143b79e2a904c465fc, type: 2}
@@ -60086,6 +60102,7 @@ GameObject:
   - 114: {fileID: 1514217654}
   - 114: {fileID: 1514217653}
   - 114: {fileID: 1514217652}
+  - 114: {fileID: 1514217663}
   m_Layer: 0
   m_Name: BridgeScene
   m_TagString: Floor
@@ -60237,7 +60254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4a4b3e425b6e54db67786b133264e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDisabledAtStart: 1
+  isDisabledAtStart: 0
   police: {fileID: 1631534634}
   trigger: {fileID: 2109161433}
   shallNotPass: {fileID: 1411700612}
@@ -60325,6 +60342,20 @@ Transform:
   - {fileID: 381630478}
   m_Father: {fileID: 0}
   m_RootOrder: 31
+--- !u!114 &1514217663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1514217651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4423e97779af4b4583349d3296c27a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: 1
+  Scene: 3
+  debugLoad: 0
 --- !u!1001 &1515011737
 Prefab:
   m_ObjectHideFlags: 0
