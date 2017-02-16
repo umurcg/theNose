@@ -63,10 +63,10 @@ public class MoveTo : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, ignoreMasks))
 
                 {
-                    //print(hit.transform.name);
+                    //Debug.Log(hit.transform.name);
                     if (hit.transform.CompareTag("Floor"))
                     {
-
+                        //Debug.Log("Walking");
                         agent.Resume();
 
                         if (agent.isOnNavMesh)

@@ -24,21 +24,28 @@ abstract public class GameController : MonoBehaviour {
     // Initilize variables of game controller.
     public virtual  void Start () {
 
-        
+
+        updateCharacterVariables();
+
+        subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
+        narSubtitle = SubtitleFade.subtitles["NarratorSubtitle"];
+        sc = GetComponent<SubtitleCaller>();
+
+
+    }
+
+    //Gets new character and upğdates variables tıo that character object
+    public void updateCharacterVariables()
+    {
         player = CharGameController.getActiveCharacter();
         if (player != null)
         {
             playerNma = player.GetComponent<NavMeshAgent>();
             playerAnim = player.GetComponent<Animator>();
             pcc = player.GetComponent<PlayerComponentController>();
-        
+
 
         }
-        subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
-        narSubtitle = SubtitleFade.subtitles["NarratorSubtitle"];
-        sc = GetComponent<SubtitleCaller>();
-
-
     }
 	
     public virtual void Awake()

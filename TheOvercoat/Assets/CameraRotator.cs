@@ -8,6 +8,8 @@ using MovementEffects;
 public class CameraRotator : MonoBehaviour {
 
 
+    public float speed = 4f;
+
     GameObject player;
     CameraFollower cf;
 
@@ -32,7 +34,7 @@ public class CameraRotator : MonoBehaviour {
             if (player != null)
             {
                 //Debug.Log(angle);
-                Timing.RunCoroutine(_rotateCam(angle, 30));
+                Timing.RunCoroutine(_rotateCam(angle, speed));
                 
             }     
            
@@ -50,6 +52,9 @@ public class CameraRotator : MonoBehaviour {
     IEnumerator<float> _rotateCam(float angle,float speed)
     {
 
+        //Factor speed
+        speed *= 10;
+
         //cf.enabled = false;
         Vector3 initialVector = transform.forward;
 
@@ -60,11 +65,14 @@ public class CameraRotator : MonoBehaviour {
 
         float totalAngleDif=0;
 
+        //float y = 20;
+
         rotating = true;
         while (totalAngleDif<Mathf.Abs(angle))
         {
            
             transform.RotateAround(player.transform.position, player.transform.up, Time.deltaTime * speed * Mathf.Sign(angle));
+            //transform.position = new Vector3(transform.position.x, initialPosition.y+ Mathf.Sin(Mathf.PI*totalAngleDif/Mathf.Abs(angle)*y)  , transform.position.z);
             totalAngleDif += Time.deltaTime * speed ;
             cf.updateRelative();
 

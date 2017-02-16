@@ -20,7 +20,8 @@ public class ClickTriggerSingleton : MonoBehaviour {
     List<GameObject> collidingObjects = new List<GameObject>();
 
     IEnumerator<float> walkToTargetHandler;
-    
+    public LayerMask ignoreMasks;
+
 
     void Awake()
     {
@@ -48,9 +49,11 @@ public class ClickTriggerSingleton : MonoBehaviour {
             if (obj != null)
             {                
                 hit = (RaycastHit)obj;
-                //print(hit.transform.name);
-                if (tags.Contains(hit.transform.tag)) { 
-                StopCoroutine("setAim");
+                Debug.Log(hit.transform.name);
+                if (tags.Contains(hit.transform.tag)) {
+
+                    Debug.Log(hit.transform.name);
+                    StopCoroutine("setAim");
                 StartCoroutine(setAim(hit.transform.gameObject));
                     
             }
@@ -100,7 +103,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity,~(1 << 8)))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreMasks))
         {
             return hit;
         }
@@ -174,7 +177,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
     IEnumerator<float> walkToTarget(GameObject aim)
     {
 
-        
+        //Debug.Log("Walking");
 
         IClickActionDifferentPos icadp = aim.GetComponent<IClickActionDifferentPos>();
 
@@ -193,8 +196,8 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
                position=aim.transform.position;
             }
-            //print(position);
-            //print("aiming");
+            //Debug.Log(position);
+      
             agent.SetDestination(position);
             if (aim.isStatic)
             {
@@ -237,8 +240,12 @@ public class ClickTriggerSingleton : MonoBehaviour {
         IClickAction[] icas = go.GetComponents<IClickAction>();
         foreach(IClickAction ica in icas)
         {
-            if(ica!=null)
-            ica.Action();
+
+            if (ica != null)
+            {
+                ica.Action();
+                Debug.Log("Calling action");
+            }
         }
 
         ISubtitleTrigger ist = go.GetComponent<ISubtitleTrigger>();

@@ -22,6 +22,8 @@ public class GlobalController : MonoBehaviour {
 //  Also use this class for holding all savable data
     public List<int> sceneList;
 
+    //You can use this variable for starting game with specific sceneList in editor.
+    public string debugSceneList;
 
     //  This list holding scene squence (shortest) for all game. So from this array, all levels can be load with only necessary scene sequence
     //  Dont include main menu
@@ -38,7 +40,17 @@ public class GlobalController : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        if (debugSceneList != "")
+        {
+            if (Application.isEditor)
+            {
+                foreach (char index in debugSceneList)
+                {
 
+                    sceneList.Add((int)char.GetNumericValue(index));
+                }
+            }
+        }
  
         
     }
@@ -51,6 +63,8 @@ public class GlobalController : MonoBehaviour {
             GlobalController.Instance.registerToSceneList();
 
         }
+
+
 
     }
 
@@ -66,8 +80,12 @@ public class GlobalController : MonoBehaviour {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         if (sceneList.Count > 0)
         {
+            
+         
+
             //If current scene index equals next scene in story line which means player play in right direction that add that scene into sceneList 
-            if(currentScene == (int)fullGameSceneList[sceneList.Count])
+            //Debug.Log("scene list count: " + sceneList.Count+" full game scene list count"+fullGameSceneList.Count);
+            if(currentScene == (int)fullGameSceneList[sceneList.Count-1])
             {
                 Debug.Log(currentScene + "is added to scene list");
                 sceneList.Add(currentScene);

@@ -492,6 +492,43 @@ public class Vckrs : MonoBehaviour
 
 
 
+    //Returns nearest position to pos on navmesh.
+    //If fails returns false
+    public static bool findNearestPositionOnNavMesh(Vector3 pos, int areaMask, float radiusToSearch, out Vector3 foundPosition)
+    {
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(pos, out hit, radiusToSearch, areaMask))
+        {
+            foundPosition = hit.position;
+            return true;
+        }
+
+        foundPosition = Vector3.zero;
+        return false;
+
+    }
+
+    void testGenerateRandomPosition()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.position = generateRandomPositionOnCircle(transform.position, 10f);
+        }
+    }
+
+    //Return random position on a circle which is around center and have radius of indicated in paramaters
+    public static Vector3 generateRandomPositionOnCircle(Vector3 center, float radius)
+    {
+        int angle = Random.Range(0, 360); // generates numbers in the range 0 ... 359
+
+        float x = center.x + radius * Mathf.Cos(Mathf.Deg2Rad * angle);
+        float z = center.z + radius * Mathf.Sin(Mathf.Deg2Rad * angle);
+
+        return new Vector3(x, center.y, z);
+
+    }
+
     //Returns a list holding all children objects.
     public static List<Transform> getAllChildren(Transform parent)
     {

@@ -8,7 +8,7 @@ using System.Collections;
 public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
 
     //Start automatic when player clicks the object or start manually from script
-    public bool startAutomatic = true;
+    public bool startAutomatic = false;
 
 
     //int currentIndex = 0;

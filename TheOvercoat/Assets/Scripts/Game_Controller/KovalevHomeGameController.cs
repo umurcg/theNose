@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class KovalevHomeGameController : GameController {
-    public GameObject CharSubt, Door, Ivan, Dolap, Paper, HandR;
+    public GameObject CharSubt, Door, Ivan, Dolap, Paper, HandR, StartingPoint;
     
 
    
@@ -27,8 +27,7 @@ public class KovalevHomeGameController : GameController {
         IvanAgent = Ivan.GetComponent<NavMeshAgent>();
         IvanAlt = Ivan.GetComponent<AlwaysLookTo>();
 
-
-
+        
         if (GlobalController.Instance == null)
         {
 
@@ -61,6 +60,15 @@ public class KovalevHomeGameController : GameController {
     IEnumerator<float> _WakeUp()
     {
         Debug.Log("wake up");
+
+        //Set player as kovalev
+        GameObject character=CharGameController.setCharacter("Kovalev");
+        updateCharacterVariables();
+        //Set model of kovalev as with pijamas assuming kovalev is 1st element and kovalevwithpijamas is 2nd
+        player.transform.GetChild(1).gameObject.SetActive(false);
+        player.transform.GetChild(2).gameObject.SetActive(true);
+
+        character.transform.position = StartingPoint.transform.position;
 
         if (!playerAnim) yield return 0;
 
@@ -125,7 +133,7 @@ public class KovalevHomeGameController : GameController {
         }
 
         playerNma.speed = 1.5f;
-        handler = Timing.RunCoroutine(Vckrs._pace(player, player.transform.position, player.transform.position+3*Vector3.right));
+        handler = Timing.RunCoroutine(Vckrs._pace(player, player.transform.position, player.transform.position+7*Vector3.right));
         playerNma.speed = 3f;
 
         sc.callSubtitleWithIndex(2);

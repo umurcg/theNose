@@ -67,6 +67,9 @@ public class HitchockController : MonoBehaviour, IClickAction  {
         CallCoroutine cc = GetComponent<CallCoroutine>();
         cc.call();
 
+        Destroy(this);
+        gameObject.transform.tag = "Untagged";
+        yield break;
         
     }
 

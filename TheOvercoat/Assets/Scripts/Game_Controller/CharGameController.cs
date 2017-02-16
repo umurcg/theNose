@@ -116,9 +116,10 @@ public class CharGameController : MonoBehaviour {
 
      }
 
-    public static void setCharacter(string characterName)
+    public static GameObject setCharacter(string characterName)
     {
-        
+
+        GameObject character=null;
 
         int childCount = cgc.transform.childCount;
         for (int i = 0; i < childCount; i++)
@@ -129,6 +130,7 @@ public class CharGameController : MonoBehaviour {
            if (child.name == characterName)
                 {
                     child.gameObject.SetActive(true);
+                    character = child.gameObject;
                 }
                 else
                 {
@@ -137,6 +139,8 @@ public class CharGameController : MonoBehaviour {
             }
 
           }
+
+        return character;
                 
     }
 
