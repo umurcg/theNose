@@ -43,7 +43,7 @@ public class GirtController : GameController {
         rwaa = GetComponent<RandomWalkAndAnimate>();
         animDog = GetComponent<Animator>();
 
-        Debug.Log("hi");
+        //Debug.Log("hi");
         dltpta.enabled = false;
         rwaa.enabled = false;
         animDog.SetBool("Bark", true);

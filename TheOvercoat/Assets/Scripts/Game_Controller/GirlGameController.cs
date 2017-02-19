@@ -15,7 +15,10 @@ public class GirlGameController : MonoBehaviour {
     public GameObject obstacle;
     public GameObject aimObject;
     public GameObject scoreObj;
-    public GameObject city2GameController;
+
+
+    public string message;
+    public GameObject recieverObj;
 
     public float obstacleDelay=5f;
     RectTransform rt;
@@ -127,8 +130,7 @@ public class GirlGameController : MonoBehaviour {
             yield return 0;
         }
 
-        NoseEncounterGameController c2gc = city2GameController.GetComponent<NoseEncounterGameController>();
-        Timing.RunCoroutine(c2gc._noseGoneLost());
+        recieverObj.SendMessage(message);
 
         transform.parent.gameObject.SetActive(false);
     }

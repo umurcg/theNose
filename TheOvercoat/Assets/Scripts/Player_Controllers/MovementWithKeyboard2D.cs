@@ -29,8 +29,8 @@ public class MovementWithKeyboard2D : MonoBehaviour {
        forward = Camera.main.gameObject.transform.forward;
         right = Camera.main.gameObject.transform.right;
         prevHorInputState = Input.GetAxis("Horizontal");
-       y = Camera.main.ScreenToWorldPoint(new Vector3(0, -5, 0)).y;
 
+        transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y, transform.position.z);
     }
 	
 	// Update is called once per frame
@@ -97,7 +97,7 @@ public class MovementWithKeyboard2D : MonoBehaviour {
             yield return 0;
         }
 
-        transform.position = new Vector3(transform.position.x, y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y, transform.position.z);
 
         jumping = false;
     }

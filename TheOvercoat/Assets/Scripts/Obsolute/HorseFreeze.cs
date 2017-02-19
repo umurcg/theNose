@@ -23,7 +23,6 @@ public class HorseFreeze : MonoBehaviour {
 	void Update () {
 	
 	}
-
     public void freeze()
     {
         cc.constraints = RigidbodyConstraints.FreezeAll;
@@ -38,6 +37,5 @@ public class HorseFreeze : MonoBehaviour {
         carierFrontcc.constraints = RigidbodyConstraints.None;
         nma.enabled = enabled;
     }
-
 
 }

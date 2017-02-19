@@ -264,4 +264,10 @@ public class CharGameController : MonoBehaviour {
         return handObject.gameObject;
     }
 
+    //Moves active main character to position with considering camera and unactive characters
+    public static void movePlayer(Vector3 pos)
+    {
+        getOwner().transform.position = pos;
+    }
+
  }

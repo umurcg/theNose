@@ -19,6 +19,9 @@ public class AlwaysLookTo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //If not intilized return 
+        if (aim == null && aimPos == Vector3.zero) return;
+
        Vector3 localAim = aimPos;
         if (aim != null)
         {

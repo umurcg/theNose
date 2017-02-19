@@ -37,7 +37,7 @@ public class DayAndNightCycle : MonoBehaviour {
         //}
 	}
 
-    void makeNight()
+    public void makeNight()
     {
         Light l = GetComponent<Light>();
         l.intensity = 1;
@@ -46,7 +46,7 @@ public class DayAndNightCycle : MonoBehaviour {
 
 
 
-    void makeDay()
+    public void makeDay()
     {
         Light l = GetComponent<Light>();
         l.intensity = 0;

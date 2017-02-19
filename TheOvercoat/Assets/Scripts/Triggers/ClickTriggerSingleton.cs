@@ -49,7 +49,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
             if (obj != null)
             {                
                 hit = (RaycastHit)obj;
-                Debug.Log(hit.transform.name);
+                //Debug.Log(hit.transform.name);
                 if (tags.Contains(hit.transform.tag)) {
 
                     Debug.Log(hit.transform.name);

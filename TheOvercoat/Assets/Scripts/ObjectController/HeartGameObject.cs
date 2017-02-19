@@ -37,7 +37,7 @@ public class HeartGameObject : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        print(col.tag);
+        Debug.Log("Triggered " + col.transform.name);
 
         if (col.tag == "Respawn")
         {

@@ -42,6 +42,7 @@ public class TriggerAnimationAtTime : MonoBehaviour {
                 }
             }
 
+            Destroy(this);
             time = 0;
         }
 

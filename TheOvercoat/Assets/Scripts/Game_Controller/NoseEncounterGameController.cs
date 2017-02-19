@@ -13,18 +13,20 @@ using UnityEngine.UI;
 //public GameObject Obstacles;
 
 
-public class NoseEncounterGameController : MonoBehaviour {
-    public GameObject Horse, Player, Nose, CSub, NSub, Obstacles, HorseAimOne, SubHolder, newspaper, Girlgame, LightObj, HorseAimTwo;
-    
+public class NoseEncounterGameController : GameController {
+    public GameObject Horse, Nose, newspaper, sun, Girlgame/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
+
+    HorseScript hs;
+    characterComponents noseCC;
+
+
     public float walkTolerance = 0.01f;
-    Text CharSubt, NarSub;
     EnterTrigger NoseEt;
     RunRandomlyFromObject rrfo;
-    SubtitleCaller sc;
     GameObject girl;
     GameObject girlCanvas;
-    PlayerComponentController pcc;
     MountCarier mc;
+
 
 
 
@@ -32,35 +34,21 @@ public class NoseEncounterGameController : MonoBehaviour {
     //SubtitleCaller ivanSc;
 
     // Use this for initialization
-    void Start () {
-        Player = CharGameController.getActiveCharacter();
+    public override void Start () {
+        base.Start();
 
-        if (Player == null)
-        {
-            gameObject.SetActive(false);
-            this.enabled = false;
-            return;
-        }
+        hs = Horse.GetComponent<HorseScript>();
+        noseCC = new characterComponents(Nose);
 
-        if (Player.name != "Kovalev")
-        {
-            gameObject.SetActive(false);
-            this.enabled = false;
-            
-            return;
-        }
+        rrfo = Nose.GetComponent<RunRandomlyFromObject>();
 
-        CharSubt = CSub.GetComponent<Text>();
-        NarSub = NSub.GetComponent<Text>();
-        rrfo= Nose.GetComponent<RunRandomlyFromObject>();
-        sc = SubHolder.GetComponent<SubtitleCaller>();
         girl = Girlgame.transform.GetChild(0).gameObject;
         girlCanvas = Girlgame.transform.GetChild(1).gameObject;
-        pcc = Player.GetComponent<PlayerComponentController>();
-        mc = Nose.GetComponent<MountCarier>();
+        //mc = Nose.GetComponent<MountCarier>();
 
-        //Timing.RunCoroutine(_noseCatched());
-        //noseEnter();
+
+        //startNoseGame();
+        //noseCatched();
     }
 
 
@@ -68,39 +56,125 @@ public class NoseEncounterGameController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+              
 
-        
-
-        if (rrfo.catched)
-        {
-            print("chatched game started");
-        }
+        //if (rrfo.catched)
+        //{
+        //    print("chatched game started");
+        //}
 
 	}
 
+    public void startNoseGame()
+    {     
+        Timing.RunCoroutine(_start());
+    }
 
 
-    //Kovalev first city scene
-    public IEnumerator<float> _noseCatched()
+    IEnumerator<float> _start()
     {
-        sc.callSubtitle();
-        while (CharSubt.text!="")
+
+        //hs.release();
+        handlerHolder= hs.setDes(player.transform.position + Vector3.forward * 10);
+        pcc.StopToWalk();
+
+        
+        SubtitleFade.subtitles["CharacterSubtitle"].text= "Kovalev: Nasıll!?!?";
+
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        hs.unmount();
+
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Nose));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+
+
+        Vector3 pos = Vckrs.generateRandomPositionOnCircle(Nose.transform.position, 10f);
+        NavMeshHit nmh;
+        if((NavMesh.SamplePosition(pos, out nmh, 15f, noseCC.navmashagent.areaMask))){
+
+            noseCC.navmashagent.SetDestination(nmh.position);
+        }else
+        {
+            Debug.Log("Couldnt found");
+            noseCC.navmashagent.SetDestination(pos);
+        }
+
+   
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Nose));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        newspaper.SetActive(true);
+        Nose.transform.parent = transform;
+
+
+
+        sc.callSubtitleWithIndex(0);
+        while (subtitle.text != "") yield return 0;
+
+        yield return Timing.WaitForSeconds(3f);
+
+        sc.callSubtitleWithIndex(1);
+        while (subtitle.text != "") yield return 0;
+
+        int numberOfTrial = 3;
+        bool inside = false;
+
+        while (Vector3.Distance(player.transform.position, Nose.transform.position) > Nose.GetComponent<SphereCollider>().radius || numberOfTrial>0)
+        {
+            //Debug.Log(Vector3.Distance(player.transform.position, Nose.transform.position) + " "+Nose.GetComponent<SphereCollider>().radius);
+            if (!(Vector3.Distance(player.transform.position, Nose.transform.position) > Nose.GetComponent<SphereCollider>().radius) && !inside)
+            {
+                numberOfTrial--;
+                inside = true;
+            }else if (inside)
+            {
+                if ((Vector3.Distance(player.transform.position, Nose.transform.position) > Nose.GetComponent<SphereCollider>().radius))
+                    inside = false;
+
+            }
+
+            yield return 0;
+
+        }
+        sc.callSubtitleWithIndexTime(0);
+
+ 
+
+    }
+
+
+
+    public void noseCatched()
+    {
+        Timing.RunCoroutine(_noseCatched());
+    }
+
+    IEnumerator<float> _noseCatched()
+    {
+        pcc.StopToWalk();
+        sc.callSubtitleWithIndex(2);
+        while (subtitle.text != "")
         {
             yield return 0;
         }
 
-        pcc.StopToWalk();
+
         girl.SetActive(true);
         NavMeshAgent nmaGirls = girl.GetComponent<NavMeshAgent>();
-        nmaGirls.SetDestination(girl.transform.position + girl.transform.forward * 20);
-       
-        
-        //IEnumerator<float> lightHnadler= Timing.RunCoroutine(Vckrs._setLightIntensity(LightObj, 0.5f, 0));
+        nmaGirls.Resume();
+        nmaGirls.SetDestination(player.transform.position + player.transform.forward * 5);
+
+        DayAndNightCycle danc = sun.GetComponent<DayAndNightCycle>();
+        danc.makeNight();
+
+        //IEnumerator<float> lightHnadler = Timing.RunCoroutine(Vckrs._setLightIntensity(LightObj, 0.5f, 0));
         IEnumerator<float> girlWalkHandler = Timing.RunCoroutine(Vckrs.waitUntilStop(girl, 0f));
 
         yield return Timing.WaitUntilDone(girlWalkHandler);
 
-        Timing.RunCoroutine(Vckrs._lookTo(Player,girl.transform.position-Player.transform.position, 2f));
+        Timing.RunCoroutine(Vckrs._lookTo(player, girl.transform.position - player.transform.position, 2f));
 
         girlCanvas.SetActive(true);
         yield return Timing.WaitForSeconds(0.5f);
@@ -114,7 +188,7 @@ public class NoseEncounterGameController : MonoBehaviour {
         mwk2.scriptInput = -0;
         mwk2.speed = 0.1f;
 
-        CharacterController gkcc= girlGameKov.GetComponent<CharacterController>();
+        CharacterController gkcc = girlGameKov.GetComponent<CharacterController>();
         gkcc.enabled = false;
         gkcc.enabled = true;
 
@@ -123,27 +197,26 @@ public class NoseEncounterGameController : MonoBehaviour {
 
         yield return Timing.WaitForSeconds(1f);
 
-        IEnumerator<float> handler= Timing.RunCoroutine(mc._mount());
+        IEnumerator<float> handler = hs.mount();
 
         yield return Timing.WaitUntilDone(handler);
 
-        HorseFreeze hf = Horse.GetComponent<HorseFreeze>();
-        hf.release();
-
-
-        NavMeshAgent nma = Horse.GetComponent<NavMeshAgent>();
-        nma.SetDestination(HorseAimTwo.transform.position);
+        hs.setDes(Horse.transform.position + Horse.transform.forward * -40f);
 
         yield return Timing.WaitForSeconds(5f);
         Horse.transform.parent.gameObject.SetActive(false);
 
     }
 
-
-    public IEnumerator<float> _noseGoneLost()
+    public void noseGoneLost()
     {
-        sc.callSubtitle();
-        while (CharSubt.text != "")
+        Timing.RunCoroutine(_noseGoneLost());
+    }
+
+    IEnumerator<float> _noseGoneLost()
+    {
+        sc.callSubtitleWithIndex(3);
+        while (subtitle.text != "")
         {
             yield return 0;
         }
@@ -151,90 +224,7 @@ public class NoseEncounterGameController : MonoBehaviour {
 
     }
 
-    public void noseEnter()
-    {
-        GetComponent<EnterTrigger>().enabled = false;
-        Timing.RunCoroutine(_noseEnter());
-    }
-
-    public IEnumerator<float> _noseEnter()
-    {
-       
-        HorseFreeze hf = Horse.GetComponent<HorseFreeze>();
-        hf.release();
 
 
-        pcc.StopToWalk();
 
-       
-        IEnumerator<float> mountHandler = Timing.RunCoroutine(mc._mount());
-
-        yield return Timing.WaitUntilDone(mountHandler);
-
-        //print("Done");
-
-        //yield return Timing.WaitForSeconds(1000000000000000f);
-
-        NavMeshAgent nma = Horse.GetComponent<NavMeshAgent>();
-        nma.SetDestination(HorseAimOne.transform.position);
-
-        CharSubt.text = "Kovalev: Nasıll!?!?";
-
-        Vector3 horsePosition = Horse.transform.position;
-        yield return Timing.WaitForSeconds(0.5f);
-        while (Vector3.Distance(horsePosition, Horse.transform.position) > walkTolerance)
-        {
-            horsePosition = Horse.transform.position;
-            yield return 0;
-        }
-        hf.freeze();
-        yield return Timing.WaitForSeconds(0.5f);
-
-        IEnumerator<float> unmountHandler =Timing.RunCoroutine(mc._unmount());
-        yield return Timing.WaitUntilDone(unmountHandler);
-
-
-        yield return Timing.WaitForSeconds(0.5f);
-
-
-        //pace
-      
-        sc.callSubtitle();
-
-        NavMeshAgent nmaNose = Nose.GetComponent<NavMeshAgent>();
-        nmaNose.enabled = true;
-       
-        rrfo.enabled = true;
-        nmaNose.Resume();
-        nmaNose.speed = 3;
-        Vector3 aim =Nose.transform.position+ Nose.transform.forward*4;
-
-        //print(aim);
-        nmaNose.SetDestination(aim);
-
-
-        newspaper.SetActive(true);
-
-
-        while (CharSubt.text != "")
-        {
-            yield return 0;
-        }
-
-        yield return Timing.WaitForSeconds(8f);
-
-        sc.callSubtitle();
-        while (CharSubt.text != "")
-        {
-            yield return 0;
-        }
-
-        //pace finish;
-    
-
-        yield return Timing.WaitForSeconds(8f);
-
-        sc.callSubtitleTime();
-   
-    }
 }

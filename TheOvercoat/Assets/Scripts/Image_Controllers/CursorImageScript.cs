@@ -19,6 +19,8 @@ public class CursorImageScript : MonoBehaviour
     public Texture2D grab;
     public Texture2D nextSubtitle;
 
+    public Texture2D externalTexture;
+
     public LayerMask ignoreLayers;
 
     RaycastHit lastHit;
@@ -46,6 +48,13 @@ public class CursorImageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //If external texture is not null then just put it no matter what
+        if (externalTexture != null)
+        {
+            Cursor.SetCursor(externalTexture, Vector2.zero, CursorMode.Auto);
+            return;
+        }
+
 
         //First look at char subtitile. If it is empty then raycast.
 

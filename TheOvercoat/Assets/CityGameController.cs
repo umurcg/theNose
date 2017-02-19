@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class CityGameController : MonoBehaviour {
 
     public GameObject berberShop, Crowd, girty, bar, jokeGroup, bridge, fruitStad, cat;
+    public GameObject lookAtMeNowTrigger;
     
 	// Use this for initialization
 	void Awake () {
@@ -36,6 +37,12 @@ public class CityGameController : MonoBehaviour {
                         comingFromIvanHouse();
 
                         break;
+
+                    case (int)GlobalController.Scenes.KovalevHouse:
+                        Debug.Log("comingFromKoavlevHouse");
+                        comingFromKovalevHouse();
+                        break;
+
                     default:
                         Debug.Log("Unused scene index. Index is "+lastSceneIndex);
                         break;
@@ -48,6 +55,9 @@ public class CityGameController : MonoBehaviour {
                 //Debug.Log("Starting berber shop");
                 berberShopScene();
             }
+        }else
+        {
+            Debug.Log("No global controller instace!!!!!!!!!!!");
         }
 
     }
@@ -85,5 +95,14 @@ public class CityGameController : MonoBehaviour {
         bridge.GetComponent<GameController>().activateController();
         cat.GetComponent<GameController>().activateController();
 
+    }
+
+
+    void comingFromKovalevHouse()
+    {
+
+        GameObject characterObj = CharGameController.getActiveCharacter();
+        GameObject spawnedTrigger=(GameObject)Instantiate(lookAtMeNowTrigger, characterObj.transform);
+        spawnedTrigger.transform.localPosition = Vector3.zero;
     }
 }

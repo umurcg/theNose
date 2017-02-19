@@ -6,71 +6,87 @@ using MovementEffects;
 //This script is special for horse carier.
 //It triggers camera to fly to map view
 //And it force to carier to go destinations via agent.
+//Passenger can be player or actor
+//If you not specify passenger it will automatically get player as passenger
 
 public class HorseScript : MonoBehaviour, IClickAction {
-
-
+    
 
     public GameObject[] aims;
-    public bool debugButton=false;
     public GameObject passenger;
-    public float mountTime=5f;
     NavMeshAgent nma;
-
-
+    
+    //For mounting animation an walking
     public enum animType { Bool, Trigger };
     public animType AnimType = animType.Bool;
     public string animationName = "Sit";
     GameObject wayPoints;
     myTween mt;
 
-    HorseFreeze hf;
+
+    public GameObject carierFront;
+    public GameObject carierBack;
+    Rigidbody carierBackcc;
+    Rigidbody carierFrontcc;
+    Rigidbody cc;
 
     //Check is at dest
     Vector3 destination;
     bool checkDest = false;
 
     //Debug
-    //public bool unmount;
+    public bool mountDebug;
+    public bool unmountDebug;
+
+    IEnumerator<float> setDestHandler;
+
     // Use this for initialization
     void Awake() {  
         nma = GetComponent<NavMeshAgent>();
         wayPoints = transform.parent.GetChild(1).GetChild(0).GetChild(2).gameObject;
         mt = wayPoints.GetComponent<myTween>();
-        hf = GetComponent<HorseFreeze>();
+        cc = GetComponent<Rigidbody>();
+        carierBackcc = carierBack.GetComponent<Rigidbody>();
+        carierFrontcc = carierFront.GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        //if (unmount)
-        //{
-        //    unmount = false;
-        //    Timing.RunCoroutine(_unMount());
-        //}
+        if (unmountDebug)
+        {
+            unmountDebug = false;
+            Timing.RunCoroutine(_unMount());
+        }
+
+        if (mountDebug)
+        {
+            mountDebug = false;
+            Timing.RunCoroutine(_mount());
+        }
 
         if (checkDest)
         {
-            //print("checkin");
-            if (Vector3.Distance(transform.position, destination) < 1)
+            if (Vector3.Distance(transform.position, destination) < 0.1f)
             {
                 nma.Stop();
                 checkDest = false;
-                callUnmount();
+                unmount();
             }
         }
 	
 	}
 
-    public void callUnmount()
+    //Mount and unmount is working
+    public IEnumerator<float> unmount()
     {
-        Timing.RunCoroutine(_unMount());
+        return Timing.RunCoroutine(_unMount());
 
     }
 
     IEnumerator<float> _unMount()
     {
-        hf.freeze();
+        freeze();
         if (passenger == null)
         {
             passenger = CharGameController.getActiveCharacter();
@@ -106,13 +122,17 @@ public class HorseScript : MonoBehaviour, IClickAction {
 
     }
 
+    public IEnumerator<float> mount()
+    {
+       return Timing.RunCoroutine(_mount());
+    }
+
     IEnumerator<float> _mount()
     {
-         if (passenger == null)
+         if (passenger == null || !passenger.activeSelf)
         {
             passenger = CharGameController.getActiveCharacter();
-            //print("Passenfer is null");
-            //yield break;
+
         }
 
 
@@ -160,24 +180,40 @@ public class HorseScript : MonoBehaviour, IClickAction {
    
     }
 
-    public void setDes(Vector3 pos)
+    public IEnumerator<float>  setDes(Vector3 pos)
     {
-        hf.release();
+
+        setDestHandler =Timing.RunCoroutine(_setDes(pos));
+        return setDestHandler;
+       
+    }
+
+    IEnumerator<float> _setDes(Vector3 pos)
+    {
+        
+        release();
         NavMeshHit myNavHit;
         if (NavMesh.SamplePosition(pos, out myNavHit, 100, nma.areaMask))
         {
             nma.SetDestination(myNavHit.position);
-          
+
         }
 
-        debugButton = false;
+        IEnumerator<float> walkHandler = Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject));
+        yield return Timing.WaitUntilDone(walkHandler);
+
+        freeze();
+        yield break;
+        
 
     }
 
+    //For points on mesh.
+    //TODO calculate points with mouse click so this will be removeed
     public void goToAim(int index)
     {
-        hf.release();
-        print("Button pressed");
+        release();
+        //print("Button pressed");
         if (index < aims.Length)
         {
             NavMeshHit myNavHit;
@@ -189,7 +225,26 @@ public class HorseScript : MonoBehaviour, IClickAction {
                 checkDest = true;
             }
 
-            debugButton = false;
+            //debugButton = false;
         }
     }
+
+
+    public void freeze()
+    {
+        Debug.Log("freeze");
+        cc.constraints = RigidbodyConstraints.FreezeAll;
+        carierBackcc.constraints = RigidbodyConstraints.FreezeAll;
+        carierFrontcc.constraints = RigidbodyConstraints.FreezeAll;
+        nma.enabled = false;
+    }
+    public void release()
+    {
+        Debug.Log("release");
+        cc.constraints = RigidbodyConstraints.None;
+        carierBackcc.constraints = RigidbodyConstraints.None;
+        carierFrontcc.constraints = RigidbodyConstraints.None;
+        nma.enabled = enabled;
+    }
+
 }

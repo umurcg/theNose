@@ -64,11 +64,13 @@ public class KovalevHomeGameController : GameController {
         //Set player as kovalev
         GameObject character=CharGameController.setCharacter("Kovalev");
         updateCharacterVariables();
-        //Set model of kovalev as with pijamas assuming kovalev is 1st element and kovalevwithpijamas is 2nd
+        
+        //Set model of kovalev as with pijamas assuming kovalev is 1st element and kovalevwithpijamas is 2nd     
         player.transform.GetChild(1).gameObject.SetActive(false);
         player.transform.GetChild(2).gameObject.SetActive(true);
 
-        character.transform.position = StartingPoint.transform.position;
+        //Move player to starting position
+        CharGameController.movePlayer(StartingPoint.transform.position);
 
         if (!playerAnim) yield return 0;
 
