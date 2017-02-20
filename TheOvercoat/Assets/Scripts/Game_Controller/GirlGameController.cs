@@ -51,8 +51,7 @@ public class GirlGameController : MonoBehaviour {
         else
         {
             obstacleTimer -= Time.deltaTime * level;
-
-        }
+          }
         aimObjectTimer -= Time.deltaTime*level;
 
         

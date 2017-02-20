@@ -12,6 +12,9 @@ public class OpenDoorLoad : LoadScene {
     public bool playerCanOpen = false;
     public int doorId;
 
+    //ForMapUI
+    public string doorName;
+
     SkinnedMeshRenderer smr;
     float key = 0;
     bool open;

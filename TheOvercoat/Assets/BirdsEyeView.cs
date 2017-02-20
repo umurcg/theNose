@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 using System.Linq;
+using UnityEngine.UI;
 
 public class BirdsEyeView : MonoBehaviour {
 
+    public GameObject mainCanvas;
+    public GameObject uiTextPrefab;
     public GameObject[] streetAreas;
     List<GameObject> areaList;
     public float maxSize = 50f;
@@ -14,14 +17,15 @@ public class BirdsEyeView : MonoBehaviour {
     Vector3 initialPosition;
     Quaternion initialRotation;
     float initialSize;
-    
-    
+
+    Dictionary<GameObject, Vector3> doorNames;
 
     bool isBirdEye = false;
 
     void Awake()
     {
         areaList = streetAreas.ToList();
+        doorNames = new Dictionary<GameObject, Vector3>();
     }
 
     // Use this for initialization
@@ -40,6 +44,9 @@ public class BirdsEyeView : MonoBehaviour {
         //TODO add cancel button
         if (isBirdEye)
         {
+            //Update door names positions
+            updateDoorNamesPositions();
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit ,Mathf.Infinity,~mask))
@@ -90,12 +97,49 @@ public class BirdsEyeView : MonoBehaviour {
             yield return 0;
         }
 
+        createMapUI();
 
         isBirdEye = true;
+
+        yield return Timing.WaitForSeconds(5f);
+        Timing.RunCoroutine(getBackToOriginal());
         yield break;
 
     }
 
+    void createMapUI()
+    {
+        foreach (KeyValuePair<int, OpenDoorLoad> attachStat in OpenDoorLoad.doors)
+        {
+            string doorName = attachStat.Value.doorName;
+            Vector3 doorPos = attachStat.Value.transform.position;
+            GameObject UIDoorName = Instantiate(uiTextPrefab,mainCanvas.transform,false) as GameObject;
+            UIDoorName.GetComponent<Text>().text = doorName;
+            Debug.Log(doorName);
+            //UIDoorName.transform.position = GetComponent<Camera>().WorldToScreenPoint(doorPos);
+            doorNames.Add(UIDoorName, doorPos);
+        }
+
+        updateDoorNamesPositions();
+    }
+
+    void updateDoorNamesPositions()
+    {
+    
+        foreach (KeyValuePair<GameObject,Vector3> doorName in doorNames)
+        {
+            doorName.Key.transform.position = GetComponent<Camera>().WorldToScreenPoint(doorName.Value);
+        }
+    }
+
+    void clearUI()
+    {
+        foreach (KeyValuePair<GameObject, Vector3> doorName in doorNames)
+        {
+            Destroy(doorName.Key);
+        }
+        doorNames.Clear();
+    }
 
     void setStreetsActive(bool b)
     {
@@ -110,6 +154,8 @@ public class BirdsEyeView : MonoBehaviour {
 
     IEnumerator<float> getBackToOriginal()
     {
+        clearUI();
+
         isBirdEye = false;
         Camera cam = GetComponent<Camera>();
 
@@ -130,7 +176,7 @@ public class BirdsEyeView : MonoBehaviour {
             yield return 0;
         }
 
-
+        disableEverythingExceptThis(true);
 
         yield break;
 
