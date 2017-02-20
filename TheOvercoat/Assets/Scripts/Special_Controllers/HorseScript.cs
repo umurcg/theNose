@@ -164,11 +164,11 @@ public class HorseScript : MonoBehaviour, IClickAction {
 
 
         passenger.transform.parent = transform;
-        FlyCameraBetween fcb = Camera.main.gameObject.GetComponent<FlyCameraBetween>();
-        if (fcb)
-        {
-            fcb.fly();
-        }
+        //FlyCameraBetween fcb = Camera.main.gameObject.GetComponent<FlyCameraBetween>();
+        //if (fcb)
+        //{
+        //    fcb.fly();
+        //}
 
 
     }

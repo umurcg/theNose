@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using MovementEffects;
 
 
 //This script provides player several objects
@@ -17,6 +18,11 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
     public LayerMask rayCastMask;
     public GameObject UIText;
     public string countMessage;
+
+    public enum animationType { Boolean, Trigger};
+    public animationType AnimationType = animationType.Boolean;
+    public string collectAnimation;
+    public float animationTime = 5f;
 
     //Cursor textures for uncollecting
     public Texture2D outsideOfRadius;
@@ -65,7 +71,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
 
                 if (cis) cis.externalTexture = insideOfRadius;
 
-                if (Input.GetButtonDown("Uncollect"))
+                if (Input.GetButtonUp("Uncollect"))
                 {
                     uncollect(hit.point);
                 }
@@ -80,6 +86,49 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
      
 
 	}
+
+    IEnumerator<float> supplyWithAnimation()
+    {
+        Animator playerAnim = CharGameController.getActiveCharacter().GetComponent<Animator>();
+        PlayerComponentController pcc= CharGameController.getActiveCharacter().GetComponent<PlayerComponentController>();
+
+        if (collectAnimation != "")
+        {
+            pcc.StopToWalk();
+
+            if (AnimationType == animationType.Trigger)
+            {
+                playerAnim.SetTrigger(collectAnimation);
+            }else
+            {
+                playerAnim.SetBool(collectAnimation, true);
+            }
+
+
+            yield return Timing.WaitForSeconds(animationTime);
+        }
+
+        supply();
+
+        if (collectAnimation != "")
+        {
+
+            pcc.ContinueToWalk();
+
+            if (AnimationType == animationType.Trigger)
+            {
+                playerAnim.SetTrigger(collectAnimation);
+            }
+            else
+            {
+                playerAnim.SetBool(collectAnimation, false);
+            }
+
+        }
+
+        yield break;
+
+    }
 
     void supply()
     {
@@ -97,6 +146,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
 
     void uncollect(Vector3 pos)
     {
+        Debug.Log("Uncollect");  
         if (collectedObjs.Count == 0) return;
 
         GameObject objectToSpawn = collectedObjs[Random.Range(0, collectedObjs.Count)];
@@ -121,8 +171,8 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
 
     public void Action()
     {
-        Debug.Log("Action");
-        supply();
+        Timing.RunCoroutine(supplyWithAnimation());
+        
     }
 
     void refreshMessage()

@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using MovementEffects;
 
 //City includes lots of scenes and games. So when this script starts it looks player's sceneList and decide how to initilize city.
 public class CityGameController : MonoBehaviour {
 
     public GameObject berberShop, Crowd, girty, bar, jokeGroup, bridge, fruitStad, cat;
-    public GameObject lookAtMeNowTrigger;
+    public GameObject lookAtMeNowTrigger, NoseGame;
     
 	// Use this for initialization
 	void Awake () {
@@ -104,5 +105,18 @@ public class CityGameController : MonoBehaviour {
         GameObject characterObj = CharGameController.getActiveCharacter();
         GameObject spawnedTrigger=(GameObject)Instantiate(lookAtMeNowTrigger, characterObj.transform);
         spawnedTrigger.transform.localPosition = Vector3.zero;
+
+        //Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
+    }
+
+
+
+    IEnumerator<float> ActivateIn(GameObject obj, float delay/*, GameObject player*/)
+    {
+        yield return Timing.WaitForSeconds(delay);
+        //obj.transform.position = player.transform.position+player.transform.forward*40;
+        obj.SetActive(true);
+        yield break;
+
     }
 }

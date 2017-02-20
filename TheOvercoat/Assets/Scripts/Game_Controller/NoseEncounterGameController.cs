@@ -12,9 +12,10 @@ using UnityEngine.UI;
 //public GameObject NSub;
 //public GameObject Obstacles;
 
+//TODO kovaev position when canvas is activated
 
 public class NoseEncounterGameController : GameController {
-    public GameObject Horse, Nose, newspaper, sun, Girlgame/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
+    public GameObject Horse, Nose, newspaper, sun, Girlgame, girlCanvas/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
 
     HorseScript hs;
     characterComponents noseCC;
@@ -24,7 +25,6 @@ public class NoseEncounterGameController : GameController {
     EnterTrigger NoseEt;
     RunRandomlyFromObject rrfo;
     GameObject girl;
-    GameObject girlCanvas;
     MountCarier mc;
 
 
@@ -37,22 +37,36 @@ public class NoseEncounterGameController : GameController {
     public override void Start () {
         base.Start();
 
+        initilasePosition();
+
         hs = Horse.GetComponent<HorseScript>();
         noseCC = new characterComponents(Nose);
 
         rrfo = Nose.GetComponent<RunRandomlyFromObject>();
 
         girl = Girlgame.transform.GetChild(0).gameObject;
-        girlCanvas = Girlgame.transform.GetChild(1).gameObject;
+
         //mc = Nose.GetComponent<MountCarier>();
 
 
-        //startNoseGame();
+        startNoseGame();
         //noseCatched();
     }
 
 
+    void initilasePosition()
+    {
+        Vector3 pos = player.transform.position + player.transform.forward * 50;
+        NavMeshHit nmh;
+        if(NavMesh.SamplePosition(pos, out nmh, 400f, Horse.GetComponent<NavMeshAgent>().areaMask))
+        {
+            transform.position = nmh.position;
+        }else
+        {
+             Debug.Log("Failed to initilize");
+        }
 
+    }
 
     // Update is called once per frame
     void Update () {
@@ -75,7 +89,7 @@ public class NoseEncounterGameController : GameController {
     {
 
         //hs.release();
-        handlerHolder= hs.setDes(player.transform.position + Vector3.forward * 10);
+        handlerHolder= hs.setDes(player.transform.position + Vector3.forward * 20);
         pcc.StopToWalk();
 
         
@@ -104,6 +118,8 @@ public class NoseEncounterGameController : GameController {
    
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Nose));
         yield return Timing.WaitUntilDone(handlerHolder);
+
+        Timing.RunCoroutine(Vckrs._lookTo(player, Nose, 1));
 
         newspaper.SetActive(true);
         Nose.transform.parent = transform;
@@ -153,6 +169,9 @@ public class NoseEncounterGameController : GameController {
 
     IEnumerator<float> _noseCatched()
     {
+        newspaper.SetActive(false);
+        Timing.RunCoroutine(Vckrs._lookTo(Nose,player,1f));
+
         pcc.StopToWalk();
         sc.callSubtitleWithIndex(2);
         while (subtitle.text != "")
@@ -160,7 +179,7 @@ public class NoseEncounterGameController : GameController {
             yield return 0;
         }
 
-
+        girl.transform.position = Vector3.Normalize(Horse.transform.position - player.transform.position) * 15;
         girl.SetActive(true);
         NavMeshAgent nmaGirls = girl.GetComponent<NavMeshAgent>();
         nmaGirls.Resume();
@@ -175,17 +194,22 @@ public class NoseEncounterGameController : GameController {
         yield return Timing.WaitUntilDone(girlWalkHandler);
 
         Timing.RunCoroutine(Vckrs._lookTo(player, girl.transform.position - player.transform.position, 2f));
-
+        
         girlCanvas.SetActive(true);
+        girlCanvas.GetComponent<GirlGameController>().setKovalevPositionToInitialPosition();
         yield return Timing.WaitForSeconds(0.5f);
 
         GameObject girlGameKov = girlCanvas.transform.GetChild(0).GetChild(0).gameObject;
+        //girlGameKov.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(300, 0, 0));
 
         MovementWithKeyboard2D mwk2 = girlGameKov.GetComponent<MovementWithKeyboard2D>();
         mwk2.speed = 0.05f;
+
+        //For movement to left
         mwk2.scriptInput = -1;
         yield return Timing.WaitForSeconds(4f);
-        mwk2.scriptInput = -0;
+
+        mwk2.scriptInput = 0;
         mwk2.speed = 0.1f;
 
         CharacterController gkcc = girlGameKov.GetComponent<CharacterController>();

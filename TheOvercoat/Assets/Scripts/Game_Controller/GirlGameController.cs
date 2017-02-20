@@ -26,6 +26,8 @@ public class GirlGameController : MonoBehaviour {
     public float aimScale;
     public float obsScale;
     GameObject playerObject;
+
+
     // Use this for initialization
 	void Start () {
         //float aimObjectTimer = aimObjectTime;
@@ -33,7 +35,10 @@ public class GirlGameController : MonoBehaviour {
         score = scoreObj.GetComponent<Text>();
         rt = GetComponent<RectTransform>();
         playerObject = transform.GetChild(0).gameObject;
-        //playerObject.transform.position= Camera.main.ScreenToWorldPoint(new Vector3(300, 0, 0));
+
+
+        setKovalevPositionToInitialPosition();
+
 
     }
 	
@@ -138,7 +143,7 @@ public class GirlGameController : MonoBehaviour {
 
     public void setKovalevPositionToInitialPosition()
     {
-
+        playerObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
     }
 
 }

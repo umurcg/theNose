@@ -491,6 +491,22 @@ public class Vckrs : MonoBehaviour
     }
 
 
+    public static IEnumerator<float> InstantiateIn(GameObject obj, float delay, Vector3 pos)
+    {
+        yield return Timing.WaitForSeconds(delay);
+        GameObject spawnedObj = Instantiate(obj) as GameObject;
+        spawnedObj.transform.position = pos;
+        yield break;
+
+    }
+    public static IEnumerator<float> InstantiateIn(GameObject obj, float delay, GameObject posObj,Vector3 offset)
+    {
+        yield return Timing.WaitForSeconds(delay);
+        GameObject spawnedObj = Instantiate(obj) as GameObject;
+        spawnedObj.transform.position = posObj.transform.position+offset;
+        yield break;
+
+    }
 
     //Returns nearest position to pos on navmesh.
     //If fails returns false

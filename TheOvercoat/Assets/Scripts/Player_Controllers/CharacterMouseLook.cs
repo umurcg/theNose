@@ -8,6 +8,8 @@ public class CharacterMouseLook : MonoBehaviour {
     public enum Mode{withAgent,withoutAgent };
     public Mode mode = Mode.withAgent;
 
+    public LayerMask mask;
+
 	float timer=0;
 	Vector3 forcedTarget;
 
@@ -65,8 +67,9 @@ public class CharacterMouseLook : MonoBehaviour {
                 if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && (velocity < 0.001 ))
 
                     
-                        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
+                        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask))
                         {
+                            //Debug.Log(hit.transform.name);
                             Vector3 target = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target - transform.position), Time.deltaTime * speed);
 

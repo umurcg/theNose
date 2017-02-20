@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class FadeInWhenAwake : MonoBehaviour {
 
     public float delay = 0;
+    public float speed = 1f;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +25,7 @@ public class FadeInWhenAwake : MonoBehaviour {
     {
         yield return Timing.WaitForSeconds(delay);
        
-        Timing.RunCoroutine(Vckrs._fadeObject(gameObject, 1f));
+        Timing.RunCoroutine(Vckrs._fadeObject(gameObject, speed));
         yield break;
     }
 
