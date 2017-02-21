@@ -83,10 +83,13 @@ public class myTween : MonoBehaviour {
             yield break;
         int index = 0;
         float ratio = 0;
+
         Vector3 initialPosition = subject.transform.position;
         Vector3 aimPosition = childrenArray[index].transform.position;
+
         t = speed / Vector3.Distance(initialPosition, aimPosition);
         Timing.RunCoroutine(_rotateToPosition(subject, aimPosition, speed, true));
+
         while (true)
         {
             ratio += Time.deltaTime * t;

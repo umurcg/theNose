@@ -7,6 +7,7 @@ using MovementEffects;
 public class CityGameController : MonoBehaviour {
 
     public GameObject berberShop, Crowd, girty, bar, jokeGroup, bridge, fruitStad, cat;
+    public GameObject[] ivanScenePolice;
     public GameObject lookAtMeNowTrigger, NoseGame;
     
 	// Use this for initialization
@@ -95,6 +96,12 @@ public class CityGameController : MonoBehaviour {
         fruitStad.GetComponent<GameController>().activateController();
         bridge.GetComponent<GameController>().activateController();
         cat.GetComponent<GameController>().activateController();
+
+        //Activae policemans
+        foreach(GameObject police in ivanScenePolice)
+        {
+            police.SetActive(true);
+        }
 
     }
 

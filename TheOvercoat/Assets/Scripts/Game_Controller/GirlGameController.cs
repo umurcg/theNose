@@ -34,12 +34,13 @@ public class GirlGameController : MonoBehaviour {
         //float obstacleTimer = obstacleTime;
         score = scoreObj.GetComponent<Text>();
         rt = GetComponent<RectTransform>();
-        playerObject = transform.GetChild(0).gameObject;
+        playerObject = transform.GetComponentInChildren<MovementWithKeyboard2D>().gameObject;
 
 
         setKovalevPositionToInitialPosition();
 
-
+        CameraRotator bew = Camera.main.GetComponent<CameraRotator>();
+        if (bew) bew.enabled = false;
     }
 	
 	// Update is called once per frame
@@ -136,13 +137,16 @@ public class GirlGameController : MonoBehaviour {
 
         recieverObj.SendMessage(message);
 
+        CameraRotator bew = Camera.main.GetComponent<CameraRotator>();
+        if (bew) bew.enabled = true;
+
         transform.parent.gameObject.SetActive(false);
     }
 
 
     public void setKovalevPositionToInitialPosition()
     {
-        playerObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
+        transform.GetChild(0).gameObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
     }
 
 }

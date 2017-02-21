@@ -244,9 +244,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38479c355cc7c3f4fbc6fb946f725b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sm: 1
+  deleteAfterSendMessage: 0
+  onlyPlayerCanTrigger: 1
   enter: 0
   messageReciever: {fileID: 1708090184}
   message: callGuardStopsKovalev
+  isRecieverActivePlayer: 0
 --- !u!1001 &492927377
 Prefab:
   m_ObjectHideFlags: 0
@@ -285,6 +289,15 @@ Prefab:
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013419269496, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 195000012418968336, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd651778041846143b79e2a904c465fc, type: 2}
@@ -1059,6 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startAutomatic: 0
 --- !u!114 &1708090187
 MonoBehaviour:
   m_ObjectHideFlags: 0

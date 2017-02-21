@@ -40,7 +40,7 @@ public class DayAndNightCycle : MonoBehaviour {
     public void makeNight()
     {
         Light l = GetComponent<Light>();
-        l.intensity = 1;
+        l.intensity = maxIntensity;
         Timing.RunCoroutine(_changeLight(speed,l,minIntensity,maxIntensity));
     }
 
@@ -49,7 +49,7 @@ public class DayAndNightCycle : MonoBehaviour {
     public void makeDay()
     {
         Light l = GetComponent<Light>();
-        l.intensity = 0;
+        l.intensity = minIntensity;
         Timing.RunCoroutine(_changeLight(speed, l,minIntensity,maxIntensity));
     }
 
@@ -68,7 +68,7 @@ public class DayAndNightCycle : MonoBehaviour {
             }
             intensity=maxIntensity;
             light.intensity = intensity;
-
+            yield break;
         }
         else
         {
@@ -80,7 +80,7 @@ public class DayAndNightCycle : MonoBehaviour {
             }
             intensity = minIntensity;
             light.intensity = intensity;
-
+            yield break;
         }
     }
 }

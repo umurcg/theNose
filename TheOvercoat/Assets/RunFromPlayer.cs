@@ -48,6 +48,7 @@ public class RunFromPlayer : MonoBehaviour {
                 Debug.Log("Message");
                 eventReviever.SendMessage(message);
                 catchTimer = 0;
+                enabled = false;
             }
 
         }

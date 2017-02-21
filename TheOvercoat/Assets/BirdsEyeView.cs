@@ -5,7 +5,14 @@ using MovementEffects;
 using System.Linq;
 using UnityEngine.UI;
 
+//This script deals with camera movement for map view of city
+//User can send location to reciever via this script
+//Also it gets doors names for creating ui elements on canvas like building names
 public class BirdsEyeView : MonoBehaviour {
+
+    //For sending selected destination
+    public GameObject messageReciever;
+    public string message;
 
     public GameObject mainCanvas;
     public GameObject uiTextPrefab;
@@ -14,6 +21,9 @@ public class BirdsEyeView : MonoBehaviour {
     public float maxSize = 50f;
     public float speed = 0.1f;
     public LayerMask mask;
+    public float maxZ = 600f;
+    public float minZ = -100f;
+    public float scrollSpeed = 2f;
     Vector3 initialPosition;
     Quaternion initialRotation;
     float initialSize;
@@ -31,7 +41,7 @@ public class BirdsEyeView : MonoBehaviour {
     // Use this for initialization
     void Start () {
        
-        Timing.RunCoroutine( goToBirdEye());
+        //Timing.RunCoroutine( _goToBirdEye());
 
 	}
 	
@@ -40,12 +50,35 @@ public class BirdsEyeView : MonoBehaviour {
         
 	void Update () {
 
-        //TODO scroll with mouse
-        //TODO add cancel button
+       
         if (isBirdEye)
         {
-            //Update door names positions
-            updateDoorNamesPositions();
+            // scroll with mouse
+            if (Input.mousePosition.y < (Screen.height / 3))
+            {
+                if (transform.position.z > minZ)
+                {
+                    transform.position= new Vector3(transform.position.x, transform.position.y, transform.position.z-Time.deltaTime* scrollSpeed*50);
+                }
+                //Debug.Log("Alttasin");
+            }else if (Input.mousePosition.y > (2*Screen.height / 3))
+            {
+                if (transform.position.z < maxZ)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * scrollSpeed*50);
+                }
+                //Debug.Log("Usttesin");
+            }
+            else
+            {
+                //Debug.Log("Ortadasin");
+            }
+
+
+                //TODO add cancel button
+
+                //Update door names positions
+                updateDoorNamesPositions();
 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -56,6 +89,7 @@ public class BirdsEyeView : MonoBehaviour {
                     if (Input.GetMouseButtonDown(0))
                     {
                         Debug.Log("You are goint to " + hit.point);
+                        getBackToOriginal(hit.point);
                         
                     }
 
@@ -69,7 +103,13 @@ public class BirdsEyeView : MonoBehaviour {
         }
 	}
 
-    IEnumerator<float> goToBirdEye()
+   
+    public void goToBirdEye()
+    {
+        Timing.RunCoroutine(_goToBirdEye());
+    }
+
+    IEnumerator<float> _goToBirdEye()
     {
         setStreetsActive(true);
         
@@ -80,7 +120,7 @@ public class BirdsEyeView : MonoBehaviour {
         initialRotation = transform.rotation;
         initialSize = cam.orthographicSize;
 
-        Vector3 aimPosition = Vector3.zero;
+        Vector3 aimPosition = new Vector3(50,0,0);
         Quaternion aimRotation = Quaternion.Euler(90, 0, 0);
 
 
@@ -101,8 +141,8 @@ public class BirdsEyeView : MonoBehaviour {
 
         isBirdEye = true;
 
-        yield return Timing.WaitForSeconds(5f);
-        Timing.RunCoroutine(getBackToOriginal());
+        //yield return Timing.WaitForSeconds(5f);
+        //Timing.RunCoroutine(getBackToOriginal());
         yield break;
 
     }
@@ -152,7 +192,13 @@ public class BirdsEyeView : MonoBehaviour {
             area.SetActive(b);
     }
 
-    IEnumerator<float> getBackToOriginal()
+    public void getBackToOriginal(Vector3 resultPos)
+    {
+        if (isBirdEye)
+            Timing.RunCoroutine(_getBackToOriginal(resultPos));
+    }
+
+    IEnumerator<float> _getBackToOriginal(Vector3 resultPos)
     {
         clearUI();
 
@@ -166,7 +212,7 @@ public class BirdsEyeView : MonoBehaviour {
         float ratio = 0;
         while (ratio < 1)
         {
-            Debug.Log(ratio);
+            //Debug.Log(ratio);
 
             transform.position = Vector3.Lerp(curPos,initialPosition, ratio);
             transform.rotation = Quaternion.Slerp(curRot, initialRotation, ratio);
@@ -177,6 +223,11 @@ public class BirdsEyeView : MonoBehaviour {
         }
 
         disableEverythingExceptThis(true);
+
+        if (resultPos != Vector3.zero)
+            messageReciever.SendMessage(message, resultPos);
+
+        setStreetsActive(false);
 
         yield break;
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
+using System;
 
 //This script is special for horse carier.
 //It triggers camera to fly to map view
@@ -9,10 +10,10 @@ using MovementEffects;
 //Passenger can be player or actor
 //If you not specify passenger it will automatically get player as passenger
 
-public class HorseScript : MonoBehaviour, IClickAction {
+public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos {
     
 
-    public GameObject[] aims;
+
     public GameObject passenger;
     NavMeshAgent nma;
     
@@ -86,10 +87,13 @@ public class HorseScript : MonoBehaviour, IClickAction {
 
     IEnumerator<float> _unMount()
     {
+        bool isPassengerPlayer = false;
         freeze();
         if (passenger == null)
         {
+
             passenger = CharGameController.getActiveCharacter();
+            isPassengerPlayer = true;
             //print("Passenfer is null");
             //yield break;
         }
@@ -118,7 +122,15 @@ public class HorseScript : MonoBehaviour, IClickAction {
         
         if (pcc)
             pcc.ContinueToWalk();
-        passenger.transform.parent= Camera.main.transform.parent;
+
+        if (isPassengerPlayer)
+        {
+            passenger.transform.parent = Camera.main.transform.parent;
+        }
+        else
+        {
+            passenger.transform.parent = null;
+        }
 
     }
 
@@ -129,10 +141,11 @@ public class HorseScript : MonoBehaviour, IClickAction {
 
     IEnumerator<float> _mount()
     {
+        bool isPassengerPlayer = false;
          if (passenger == null || !passenger.activeSelf)
         {
             passenger = CharGameController.getActiveCharacter();
-
+            isPassengerPlayer = true;
         }
 
 
@@ -140,7 +153,9 @@ public class HorseScript : MonoBehaviour, IClickAction {
         NavMeshAgent nmaPas = passenger.GetComponent<NavMeshAgent>();
         if (nmaPas)
         {
-              nmaPas.enabled = false;
+            if (nmaPas.isOnNavMesh) ;
+                nmaPas.Stop();
+             nmaPas.enabled = false;
         }
         if (pcc)
              pcc.StopToWalk();
@@ -163,7 +178,23 @@ public class HorseScript : MonoBehaviour, IClickAction {
         yield return Timing.WaitForSeconds(2);
 
 
-        passenger.transform.parent = transform;
+
+        passenger.transform.parent = carierBack.transform;
+        if (!isPassengerPlayer)
+        {        
+            yield break;
+        }
+
+
+        //If passenger is player open map view
+        //passenger.transform.parent.parent = transform;
+        BirdsEyeView bev = Camera.main.GetComponent<BirdsEyeView>();
+        bev.messageReciever = gameObject;
+        bev.goToBirdEye();
+
+
+
+
         //FlyCameraBetween fcb = Camera.main.gameObject.GetComponent<FlyCameraBetween>();
         //if (fcb)
         //{
@@ -182,7 +213,7 @@ public class HorseScript : MonoBehaviour, IClickAction {
 
     public IEnumerator<float>  setDes(Vector3 pos)
     {
-
+        Debug.Log("Set des");
         setDestHandler =Timing.RunCoroutine(_setDes(pos));
         return setDestHandler;
        
@@ -198,36 +229,42 @@ public class HorseScript : MonoBehaviour, IClickAction {
             nma.SetDestination(myNavHit.position);
 
         }
+        else
+        {
+            Debug.Log("Couldn't sample aim");
+        }
 
         IEnumerator<float> walkHandler = Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject));
         yield return Timing.WaitUntilDone(walkHandler);
 
         freeze();
+
+        unmount();
         yield break;
         
 
     }
 
-    //For points on mesh.
-    //TODO calculate points with mouse click so this will be removeed
-    public void goToAim(int index)
-    {
-        release();
-        //print("Button pressed");
-        if (index < aims.Length)
-        {
-            NavMeshHit myNavHit;
-            if (NavMesh.SamplePosition(aims[index].transform.position, out myNavHit, 100, nma.areaMask))
-            {
-                nma.Resume();
-                nma.SetDestination(myNavHit.position);
-                destination = myNavHit.position;
-                checkDest = true;
-            }
+    ////For points on mesh.
+    ////TODO calculate points with mouse click so this will be removeed
+    //public void goToAim(int index)
+    //{
+    //    release();
+    //    //print("Button pressed");
+    //    if (index < aims.Length)
+    //    {
+    //        NavMeshHit myNavHit;
+    //        if (NavMesh.SamplePosition(aims[index].transform.position, out myNavHit, 100, nma.areaMask))
+    //        {
+    //            nma.Resume();
+    //            nma.SetDestination(myNavHit.position);
+    //            destination = myNavHit.position;
+    //            checkDest = true;
+    //        }
 
-            //debugButton = false;
-        }
-    }
+    //        //debugButton = false;
+    //    }
+    //}
 
 
     public void freeze()
@@ -247,4 +284,8 @@ public class HorseScript : MonoBehaviour, IClickAction {
         nma.enabled = enabled;
     }
 
+    public Vector3 giveMePosition()
+    {
+        return wayPoints.transform.GetChild(0).transform.position;
+    }
 }

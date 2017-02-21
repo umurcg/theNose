@@ -15,7 +15,9 @@ using UnityEngine.UI;
 //TODO kovaev position when canvas is activated
 
 public class NoseEncounterGameController : GameController {
-    public GameObject Horse, Nose, newspaper, sun, Girlgame, girlCanvas/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
+    public GameObject Horse, Nose, trash, newspaper, sun, Girlgame, girl,girlCanvas, girlGameKov/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
+
+    public bool debugCatch;
 
     HorseScript hs;
     characterComponents noseCC;
@@ -23,12 +25,11 @@ public class NoseEncounterGameController : GameController {
 
     public float walkTolerance = 0.01f;
     EnterTrigger NoseEt;
-    RunRandomlyFromObject rrfo;
-    GameObject girl;
     MountCarier mc;
 
 
-
+    //Set this as object that you want to player look at.
+    GameObject lookAtObject=null;
 
     //public GameObject IvanSubtitleHolder;
     //SubtitleCaller ivanSc;
@@ -41,12 +42,6 @@ public class NoseEncounterGameController : GameController {
 
         hs = Horse.GetComponent<HorseScript>();
         noseCC = new characterComponents(Nose);
-
-        rrfo = Nose.GetComponent<RunRandomlyFromObject>();
-
-        girl = Girlgame.transform.GetChild(0).gameObject;
-
-        //mc = Nose.GetComponent<MountCarier>();
 
 
         startNoseGame();
@@ -70,12 +65,17 @@ public class NoseEncounterGameController : GameController {
 
     // Update is called once per frame
     void Update () {
-              
 
-        //if (rrfo.catched)
-        //{
-        //    print("chatched game started");
-        //}
+        //Constantly lookat object
+        if(lookAtObject!=null)
+           player.transform.LookAt(lookAtObject.transform);
+
+        if (debugCatch)
+        {
+            debugCatch = false;
+            noseCatched();
+        }
+
 
 	}
 
@@ -92,7 +92,8 @@ public class NoseEncounterGameController : GameController {
         handlerHolder= hs.setDes(player.transform.position + Vector3.forward * 20);
         pcc.StopToWalk();
 
-        
+        lookAtObject = Nose;
+
         SubtitleFade.subtitles["CharacterSubtitle"].text= "Kovalev: Nasıll!?!?";
 
         yield return Timing.WaitUntilDone(handlerHolder);
@@ -119,12 +120,12 @@ public class NoseEncounterGameController : GameController {
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Nose));
         yield return Timing.WaitUntilDone(handlerHolder);
 
-        Timing.RunCoroutine(Vckrs._lookTo(player, Nose, 1));
+        //Timing.RunCoroutine(Vckrs._lookTo(player, Nose, 1));
 
         newspaper.SetActive(true);
         Nose.transform.parent = transform;
 
-
+        lookAtObject = null;
 
         sc.callSubtitleWithIndex(0);
         while (subtitle.text != "") yield return 0;
@@ -133,6 +134,8 @@ public class NoseEncounterGameController : GameController {
 
         sc.callSubtitleWithIndex(1);
         while (subtitle.text != "") yield return 0;
+
+    
 
         int numberOfTrial = 3;
         bool inside = false;
@@ -156,10 +159,25 @@ public class NoseEncounterGameController : GameController {
         }
         sc.callSubtitleWithIndexTime(0);
 
- 
+        enbaleTrashObjs(true);
 
     }
 
+    public void enbaleTrashObjs(bool b) {
+        
+        for(int i = 0; i < trash.transform.childCount; i++)
+        {
+            if (b)
+            {
+                ActivateAnotherObject.Activate(trash.transform.GetChild(i).gameObject);
+            }
+            else
+            {
+                ActivateAnotherObject.Disable(trash.transform.GetChild(i).gameObject);
+            }
+        }
+
+    }
 
 
     public void noseCatched()
@@ -170,6 +188,7 @@ public class NoseEncounterGameController : GameController {
     IEnumerator<float> _noseCatched()
     {
         newspaper.SetActive(false);
+        enbaleTrashObjs(false);
         Timing.RunCoroutine(Vckrs._lookTo(Nose,player,1f));
 
         pcc.StopToWalk();
@@ -179,8 +198,23 @@ public class NoseEncounterGameController : GameController {
             yield return 0;
         }
 
-        girl.transform.position = Vector3.Normalize(Horse.transform.position - player.transform.position) * 15;
+        //Set girl position
+        Vector3 girlPosition =player.transform.position+  Vector3.Normalize(Horse.transform.position - player.transform.position) * 20;
+        //CAst girl position to navmesh
+        NavMeshHit nmh;
+        if ((NavMesh.SamplePosition(girlPosition, out nmh, 30f, girl.GetComponent<NavMeshAgent>().areaMask)))
+        {
+            girlPosition=nmh.position;
+        }
+
+        girl.transform.position = girlPosition;
+
         girl.SetActive(true);
+
+        lookAtObject = girl;
+
+        subtitle.text = "Kovalev: Aman tanrım! Bu nasıl bir güzellik";
+        
         NavMeshAgent nmaGirls = girl.GetComponent<NavMeshAgent>();
         nmaGirls.Resume();
         nmaGirls.SetDestination(player.transform.position + player.transform.forward * 5);
@@ -193,14 +227,22 @@ public class NoseEncounterGameController : GameController {
 
         yield return Timing.WaitUntilDone(girlWalkHandler);
 
-        Timing.RunCoroutine(Vckrs._lookTo(player, girl.transform.position - player.transform.position, 2f));
+        subtitle.text = "";
+        lookAtObject = null;
+        //Timing.RunCoroutine(Vckrs._lookTo(player, girl.transform.position - player.transform.position, 2f));
         
-        girlCanvas.SetActive(true);
-        girlCanvas.GetComponent<GirlGameController>().setKovalevPositionToInitialPosition();
-        yield return Timing.WaitForSeconds(0.5f);
 
-        GameObject girlGameKov = girlCanvas.transform.GetChild(0).GetChild(0).gameObject;
+        girlCanvas.SetActive(true);
+
+        yield return 0;
+        girlCanvas.GetComponent<GirlGameController>().setKovalevPositionToInitialPosition();
+
+        //yield return Timing.WaitForSeconds(0.5f);
+
+
+        //GameObject girlGameKov = girlCanvas.transform.GetChild(0).GetChild(0).gameObject;
         //girlGameKov.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(300, 0, 0));
+        
 
         MovementWithKeyboard2D mwk2 = girlGameKov.GetComponent<MovementWithKeyboard2D>();
         mwk2.speed = 0.05f;
@@ -216,7 +258,7 @@ public class NoseEncounterGameController : GameController {
         gkcc.enabled = false;
         gkcc.enabled = true;
 
-        GirlGameController ggc = girlCanvas.transform.GetChild(0).GetComponent<GirlGameController>();
+        GirlGameController ggc = girlCanvas.transform.GetComponent<GirlGameController>();
         ggc.enabled = true;
 
         yield return Timing.WaitForSeconds(1f);
@@ -239,6 +281,10 @@ public class NoseEncounterGameController : GameController {
 
     IEnumerator<float> _noseGoneLost()
     {
+
+        DayAndNightCycle danc = sun.GetComponent<DayAndNightCycle>();
+        danc.makeDay();
+
         sc.callSubtitleWithIndex(3);
         while (subtitle.text != "")
         {
