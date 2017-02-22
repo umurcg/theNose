@@ -19,6 +19,7 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
     public float speed = 1f;
     public float rotSpeed = 3f;
     public Vector3 lookDirection = Vector3.forward;
+    public bool sitAtStart = false;
 
     //Active script is script that is called sit but not getup yet
     public static WalkLookAnim activeScript=null;
@@ -37,7 +38,6 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
     IEnumerator<float> handler;
     Animator anim;
 
-    public bool debug;
 
 
     //public bool getup;
@@ -55,16 +55,18 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
 
         col = GetComponent<Collider>();
         anim = subject.GetComponent<Animator>();
-    }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (debug)
+        if (sitAtStart)
         {
-            debug = false;
-            start();
+            Timing.RunCoroutine(_sit(true));
         }
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+
 
         if(subject.transform.tag=="Player"){
             if (sitting && !lockSit)
@@ -115,7 +117,7 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         Timing.RunCoroutine(_sit());
     }
 
-    public IEnumerator<float> _sit()
+    public IEnumerator<float> _sit(bool baked=false)
     {
       
         //Validate is not sitting
@@ -140,31 +142,51 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         //float y = aim.y;
         aim = new Vector3(aim.x, aim.y, aim.z);
 
-        //Tween to position
-        handler = Timing.RunCoroutine(Vckrs._Tween(subject,aim,speed));
-        yield return Timing.WaitUntilDone(handler);
+        if (!baked)
+        {
+            //Tween to position
+            handler = Timing.RunCoroutine(Vckrs._Tween(subject, aim, speed));
+            yield return Timing.WaitUntilDone(handler);
 
-        //Rotate to forward
-        handler = Timing.RunCoroutine(Vckrs._lookTo(subject, lookDirection, rotSpeed));
+            //Rotate to forward
+            handler = Timing.RunCoroutine(Vckrs._lookTo(subject, lookDirection, rotSpeed));
 
-        ////Set y while sitting
-        //Vector3 aimWithY = new Vector3(subject.transform.position.x, y, subject.transform.position.z);
-        //IEnumerator<float> handler2 = Timing.RunCoroutine(Vckrs._Tween(subject, aimWithY, speed));
-        //yield return Timing.WaitUntilDone(handler2);
-        
-        yield return Timing.WaitUntilDone(handler);
-        
+
+            ////Set y while sitting
+            //Vector3 aimWithY = new Vector3(subject.transform.position.x, y, subject.transform.position.z);
+            //IEnumerator<float> handler2 = Timing.RunCoroutine(Vckrs._Tween(subject, aimWithY, speed));
+            //yield return Timing.WaitUntilDone(handler2);
+
+            yield return Timing.WaitUntilDone(handler);
+        }
+        else
+        {
+            //Set position and rotation directly
+            subject.transform.position = aim;
+            subject.transform.LookAt(subject.transform.position+ lookDirection);
+
+        }
+
+
+
         //Animation according to enum value
-        if(anim!=null)
-        switch (animParameter) {
-            case AnimType.Boolean:
-               anim.SetBool(animationName, true);
-                break;
-            case AnimType.Trigger:
-                anim.SetTrigger(animationName);
-                break;
-            default:
-                break;
+        if (anim != null)
+        {
+            switch (animParameter)
+            {
+                case AnimType.Boolean:
+                    
+                    anim.SetBool(animationName, true);
+                    break;
+                case AnimType.Trigger:
+                    anim.SetTrigger(animationName);
+                    break;
+                default:
+                    break;
+            }
+        }else
+        {
+            Debug.Log("No animator");
         }
 
         
@@ -187,10 +209,11 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
     public IEnumerator<float> _getUp()
     {
         if (!sitting) yield break;
-    
+
 
         //Animation according to enum value
         if (anim != null)
+        {
             switch (animParameter)
             {
                 case AnimType.Boolean:
@@ -203,6 +226,11 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
                 default:
                     break;
             }
+        }
+        else
+        {
+            Debug.Log("No animator");
+        }
 
         //handler = Timing.RunCoroutine(Vckrs._Tween(subject, subject.transform.position+subject.transform.forward , speed));
         //yield return Timing.WaitUntilDone(handler);

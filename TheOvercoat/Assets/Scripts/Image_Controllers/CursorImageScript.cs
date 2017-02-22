@@ -81,7 +81,7 @@ public class CursorImageScript : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayers))
         {
-            //Debug.Log(hit.transform.gameObject.name+ " "+ hit.transform.tag+ " "+hit.transform.gameObject.layer);
+            Debug.Log(hit.transform.gameObject.name + " " + hit.transform.tag + " " + hit.transform.gameObject.layer);
 
 
 
@@ -108,6 +108,7 @@ public class CursorImageScript : MonoBehaviour
                 //Check is reachable if player is active
                 if (player != null)
                 {
+                    //Debug.Log("Player is not null");
                     NavMeshHit nmHit;
                     if (NavMesh.SamplePosition(hit.point, out nmHit, 0.1f, NavMesh.AllAreas))
                     {
