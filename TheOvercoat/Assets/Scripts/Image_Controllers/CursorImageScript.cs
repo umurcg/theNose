@@ -81,7 +81,7 @@ public class CursorImageScript : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayers))
         {
-            Debug.Log(hit.transform.gameObject.name + " " + hit.transform.tag + " " + hit.transform.gameObject.layer);
+            //Debug.Log(hit.transform.gameObject.name + " " + hit.transform.tag + " " + hit.transform.gameObject.layer);
 
 
 

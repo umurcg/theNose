@@ -46,8 +46,9 @@ public class MoveTo : MonoBehaviour
         if (Input.anyKey)
         {
         
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || 
-                Input.GetKey(KeyCode.UpArrow)  || Input.GetKey(KeyCode.DownArrow)||Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.LeftArrow))
+            //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || 
+            //    Input.GetKey(KeyCode.UpArrow)  || Input.GetKey(KeyCode.DownArrow)||Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.LeftArrow))
+            if(Input.GetAxis("Horizontal")!=0||Input.GetAxis("Vertical")!=0)
             {
                 //print("keyboard");
                 if (agent.isOnNavMesh)

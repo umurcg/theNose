@@ -89,6 +89,16 @@ public class GameControllerPoliceStation : GameController {
         //while(true)
         //yield return 0;
 
-        
+        while (subtitle.text != "") yield return 0;
+
+        guardnNma.SetDestination(Chair0.transform.position + Chair0.transform.right * 2);
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(guardnNma.gameObject));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        Chair0.GetComponent<WalkLookAnim>().start();
+
+        yield break;
+
+
     }
 }

@@ -211,9 +211,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sm: 1
   deleteAfterSendMessage: 0
+  onlyPlayerCanTrigger: 1
   enter: 0
   messageReciever: {fileID: 341879130}
   message: basement
+  isRecieverActivePlayer: 0
 --- !u!1 &140805098
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdce34c7e6866443ae096db53a0fb69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisabledAtStart: 0
   pontiff: {fileID: 1403586194}
   priest: {fileID: 462298940}
   door: {fileID: 451562039}
@@ -487,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startAutomatic: 0
 --- !u!114 &341879133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,6 +993,48 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 71d0757bcecef094fa74e599e91fc6a3, type: 3}
   m_PrefabInternal: {fileID: 1164375557}
+--- !u!1 &547891824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 547891826}
+  - 114: {fileID: 547891825}
+  m_Layer: 0
+  m_Name: LevelMusicController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &547891825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 547891824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913f32517e284de4e931115648ee59a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelMusicClip: {fileID: 8300000, guid: 5b67033590c4cf04496cba3fad655717, type: 3}
+  preserveLastSceneMusic: 0
+--- !u!4 &547891826
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 547891824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75.18946, y: 10.417648, z: 106.28484}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &548845375 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100004, guid: 4643da121b766584da0c8dc219142de3, type: 3}
@@ -1025,6 +1071,7 @@ MonoBehaviour:
   speed: 1
   rotSpeed: 3
   lookDirection: {x: -1, y: 0, z: 0}
+  sitAtStart: 0
   lockSit: 1
   animParameter: 1
 --- !u!1 &601994192
@@ -1446,9 +1493,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sm: 1
   deleteAfterSendMessage: 0
+  onlyPlayerCanTrigger: 1
   enter: 0
   messageReciever: {fileID: 601994192}
   message: switchTransparentOpaque
+  isRecieverActivePlayer: 0
 --- !u!23 &1011820567
 MeshRenderer:
   m_ObjectHideFlags: 0

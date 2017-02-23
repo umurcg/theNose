@@ -20,7 +20,7 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
     public float rotSpeed = 3f;
     public Vector3 lookDirection = Vector3.forward;
     public bool sitAtStart = false;
-
+    
     //Active script is script that is called sit but not getup yet
     public static WalkLookAnim activeScript=null;
 
@@ -177,6 +177,9 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
                 case AnimType.Boolean:
                     
                     anim.SetBool(animationName, true);
+
+                  
+
                     break;
                 case AnimType.Trigger:
                     anim.SetTrigger(animationName);
@@ -218,6 +221,7 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
             {
                 case AnimType.Boolean:
                     anim.SetBool(animationName, false);
+            
 
                     break;
                 case AnimType.Trigger:
@@ -234,6 +238,8 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
 
         //handler = Timing.RunCoroutine(Vckrs._Tween(subject, subject.transform.position+subject.transform.forward , speed));
         //yield return Timing.WaitUntilDone(handler);
+
+        yield return Timing.WaitForSeconds(1f); //Todo get this from animator
 
         disablePlayer(false);
 

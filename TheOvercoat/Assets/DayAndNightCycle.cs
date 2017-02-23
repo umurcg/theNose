@@ -7,6 +7,7 @@ using MovementEffects;
 //Owner should have light component
 public class DayAndNightCycle : MonoBehaviour {
 
+    
     //public bool debugNight, debugDay;
     public float maxIntensity = 1;
     public float minIntensity = 0;

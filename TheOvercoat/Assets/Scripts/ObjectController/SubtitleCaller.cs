@@ -41,7 +41,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
     public void callSubtitle()
     {
 
-
+        Debug.Log("Call subtitle");
         SubtitleController scs = GetComponent<SubtitleController>();
         if (scs)
         {

@@ -2,12 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
+using UnityEngine.UI;
 
 public class Door : MonoBehaviour {
+
 
     public float speed = 40f;
     public float maxAngle = 70f;
     public GameObject turnAxis;
+    public bool locked=false;
+    public string lockMessage="Kapı kilitli";
+    public float messageDuration=3f;
 
     Quaternion closeRotation;
     IEnumerator<float> openDoorHandler;
@@ -57,5 +62,23 @@ public class Door : MonoBehaviour {
         }
         transform.rotation = closeRotation;
         yield break;
+    }
+
+    public void OnTriggerEnter()
+    { 
+        if (locked)
+        {
+            if(lockMessage!="")
+            Timing.RunCoroutine(Vckrs.showMessageForSeconds(lockMessage, SubtitleFade.subtitles["CharacterSubtitle"].GetComponent<Text>(),messageDuration));
+        }
+        else
+        {
+            openDoor();
+        }
+    }
+
+    public void OnTriggerExit()
+    {
+        closeDoor();
     }
 }

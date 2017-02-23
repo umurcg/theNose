@@ -565,6 +565,13 @@ public class Vckrs : MonoBehaviour
 
     }
 
+    public static IEnumerator<float> showMessageForSeconds(string message, Text textComp, float seconds)
+    {
+        textComp.text = message;
+        yield return Timing.WaitForSeconds(seconds);
+        textComp.text = "";
+        yield break;
+    }
 
 
 

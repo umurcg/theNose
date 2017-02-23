@@ -270,4 +270,17 @@ public class CharGameController : MonoBehaviour {
         getOwner().transform.position = pos;
     }
 
+    //Sun should have night and day cycle so we found it with that script
+    public static GameObject getSun()
+    {
+        DayAndNightCycle danc= cgc.GetComponentInChildren<DayAndNightCycle>();
+        if(!danc)
+        {
+            Debug.Log("Couldn't found sun");
+            return null;
+        }
+
+        return danc.gameObject;
+    }
+
  }
