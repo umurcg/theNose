@@ -80,8 +80,7 @@ public class SubtitleControllerTime : SubtitleController {
 
     public new void startSubtitle()
     {
-
-        //print("start");
+        Debug.Log("starting subtitles, obj name " + name);
 
         this.enabled = true;
         if (TimeMode == timeMode.automatic)
@@ -103,6 +102,7 @@ public class SubtitleControllerTime : SubtitleController {
     //fills time array
     void calculateTimes()
     {
+        Debug.Log("Calculating times, obj name " + name);
         automaticTimerArray = new float[subtitleTexts.Length ];
         for (int i = 0; i < subtitleTexts.Length; i++)
         {          

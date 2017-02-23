@@ -8,22 +8,33 @@ public class PlayerComponentController : MonoBehaviour {
 	CharacterController cc;
 	NavMeshAgent nma;
 	public void StopToWalk(){
+
+        if (moveto!=null)
         moveto.enabled = false;
 
+        if(cck!=null)
 		cck.enabled = false;
-		cl.enabled = false;
-		cc.enabled = false;
+
+        if(cl!=null)
+        cl.enabled = false;
+
+        if(cc!=null)
+        cc.enabled = false;
 		//nma.enabled = false;
 
 	}
 
 	public void ContinueToWalk(){
         //nma.enabled = true;
-        moveto.enabled = true;
-		cck.enabled = true;
-		cl.enabled = true;
+        if (moveto != null)
+            moveto.enabled = true;
+        if (cck != null)
+            cck.enabled = true;
 
-		cc.enabled = true;
+        if (cl != null)
+            cl.enabled = true;
+        if (cc != null)
+            cc.enabled = true;
 	}
 
 	// Use this for initialization

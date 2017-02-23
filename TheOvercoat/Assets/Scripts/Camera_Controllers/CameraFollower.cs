@@ -12,9 +12,13 @@ public class CameraFollower : MonoBehaviour {
     public GameObject target;
     public float lookSpeed=3f;
     public float transformSpeed=3f;
+    public bool assignPlayerAutomatically=true;
+
     Vector3 relativePosition;
 	// Use this for initialization
 	void Start () {
+
+        if(assignPlayerAutomatically)
         target = CharGameController.getActiveCharacter();
 
         if (target == null)
