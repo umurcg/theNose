@@ -13,10 +13,15 @@ public class CafeSingerGameController : GameController {
 	public override void Start () {
         base.Start();
 
+        Debug.Log("Cafe singer start");
+
         //Disable playerCamera object
         CharGameController.getOwner().SetActive(false);
         kovalevCC = new characterComponents(Kovalev);
         cam = CameraObj.GetComponent<Camera>();
+
+        //Set camera object rotation
+        CameraObj.transform.eulerAngles = new Vector3(30, 45, 0);
 
         Timing.RunCoroutine(_start());
 
@@ -113,4 +118,18 @@ public class CafeSingerGameController : GameController {
         CharGameController.getOwner().SetActive(true);
     }
 
+    public override void activateController()
+    {
+        base.activateController();
+
+        enabled = true;
+        gameObject.SetActive(true);
+     
+    }
+
+    public override void deactivateController()
+    {
+        gameObject.SetActive(false);
+        enabled = false;
+    }
 }

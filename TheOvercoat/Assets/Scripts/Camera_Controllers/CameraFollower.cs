@@ -18,8 +18,8 @@ public class CameraFollower : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        if(assignPlayerAutomatically)
-        target = CharGameController.getActiveCharacter();
+        if (assignPlayerAutomatically)
+            updateTarget();
 
         if (target == null)
         {
@@ -47,4 +47,10 @@ public class CameraFollower : MonoBehaviour {
         relativePosition = transform.position - target.transform.position;
     }
 
+    public void updateTarget()
+    {
+        target = CharGameController.getActiveCharacter();
+        if(target!=null)
+            updateRelative();
+    }
 }

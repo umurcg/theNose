@@ -5366,7 +5366,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0a08b4f0fcfe3ff4aad3b8a887ec9a10, type: 2}
+  - {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -6197,6 +6197,102 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3.09
   m_Center: {x: 0, y: -0.0073789954, z: 0}
+--- !u!1 &159940693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000012904246304, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 159940694}
+  - 108: {fileID: 159940697}
+  - 114: {fileID: 159940696}
+  - 114: {fileID: 159940695}
+  m_Layer: 0
+  m_Name: Sun (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &159940694
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000010290038120, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159940693}
+  m_LocalRotation: {x: 0.006864934, y: -0.16815221, z: 0.95616496, w: 0.23963803}
+  m_LocalPosition: {x: 63.669067, y: 87.8066, z: -52.829033}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 131.15399, y: -50.62097, z: -32.026}
+  m_Children: []
+  m_Father: {fileID: 762603494}
+  m_RootOrder: 1
+--- !u!114 &159940695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000013090218250, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159940693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fe89b43d9dd984fb51b9ad2bea7c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 1
+--- !u!114 &159940696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011188354656, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159940693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eec3833d473bc443b2e28e6a900424f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxIntensity: 1
+  minIntensity: 0.3
+  speed: 0.5
+--- !u!108 &159940697
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 108000011704737064, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159940693}
+  m_Enabled: 1
+  serializedVersion: 7
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &162173897
 GameObject:
   m_ObjectHideFlags: 0
@@ -15732,7 +15828,7 @@ Prefab:
     - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
         type: 2}
       propertyPath: playerCanOpen
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sceneName
@@ -15776,6 +15872,11 @@ Prefab:
         type: 2}
       propertyPath: doorName
       value: Police Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
+        type: 2}
+      propertyPath: Scene
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -16547,7 +16648,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 418514143}
   m_LocalRotation: {x: 0.8001031, y: 0.3314136, z: 0.19134173, w: 0.4619398}
-  m_LocalPosition: {x: -1.24, y: 1.24, z: 1.01}
+  m_LocalPosition: {x: -10.52, y: 10.52, z: 8.59}
   m_LocalScale: {x: 0.26575905, y: 0.26575908, z: 0.2657592}
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
   m_Children:
@@ -22124,6 +22225,11 @@ Prefab:
         type: 2}
       propertyPath: doorName
       value: IvanHouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
+        type: 2}
+      propertyPath: Scene
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -27945,6 +28051,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 30, y: 135, z: 0}
   m_Children:
   - {fileID: 383034310}
+  - {fileID: 159940694}
   m_Father: {fileID: 1393505327}
   m_RootOrder: 9
 --- !u!95 &762603495
@@ -28017,7 +28124,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
@@ -36970,7 +37077,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -57.25
+      value: -102.1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -52318,7 +52425,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000012932656190, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 71.9
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 4000012932656190, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -52326,7 +52433,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012932656190, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -74.4
+      value: 617.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000012932656190, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -52355,7 +52462,7 @@ Prefab:
     - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
         type: 2}
       propertyPath: playerCanOpen
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sceneName
@@ -54790,7 +54897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fade: 1
-  Scene: 3
+  Scene: 1
   debugLoad: 0
 --- !u!1001 &1515011737
 Prefab:
@@ -56169,6 +56276,16 @@ Prefab:
         type: 2}
       propertyPath: doorName
       value: KovalevHouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
+        type: 2}
+      propertyPath: playerCanOpen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
+        type: 2}
+      propertyPath: Scene
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
@@ -65631,7 +65748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bf9ce0578666048a2c28129288aad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDisabledAtStart: 0
+  isDisabledAtStart: 1
   Kovalev: {fileID: 1902942235}
   CameraObj: {fileID: 418514143}
   kovalevStartPoint: {fileID: 537450827}
@@ -75959,6 +76076,7 @@ MonoBehaviour:
   lookAtMeNowTrigger: {fileID: 1000012353849610, guid: b62e5e95a7ce38843bd208f537e4199d,
     type: 2}
   NoseGame: {fileID: 1195742760}
+  SingerCafe: {fileID: 1805330999}
 --- !u!1 &2066464652
 GameObject:
   m_ObjectHideFlags: 0

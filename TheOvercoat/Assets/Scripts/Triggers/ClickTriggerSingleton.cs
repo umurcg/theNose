@@ -52,7 +52,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
                 //Debug.Log(hit.transform.name);
                 if (tags.Contains(hit.transform.tag)) {
 
-                    Debug.Log(hit.transform.name);
+                    //Debug.Log(hit.transform.name);
                     StopCoroutine("setAim");
                 StartCoroutine(setAim(hit.transform.gameObject));
                     

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MovementEffects;
 
 public class IvanHouseGameController : GameController {
-    public GameObject Praskovaya, blackScreen, BigBread, BreadPH, Nose,  door, bread, aim1;
+    public GameObject Praskovaya,  BigBread, BreadPH, Nose,  door, bread, aim1;
     public Vector3 ivanFirstPosition;
 
     Animator praskovayaAnim;
@@ -14,6 +14,11 @@ public class IvanHouseGameController : GameController {
     public override void Awake()
     {   
         base.Awake();
+        if (GlobalController.Instance.sceneList.Count != 1 || GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1] != (int)GlobalController.Scenes.City)
+        {
+            deactivateController();
+            return;
+        }
 
 
     }
@@ -21,10 +26,11 @@ public class IvanHouseGameController : GameController {
     // Use this for initialization
     public override void Start () {
 
-
+       
         //Set ivan as a character and put it on true positon
         CharGameController.setCharacter("Ivan");
         CharGameController.getOwner().transform.position = ivanFirstPosition;
+        CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
         CharGameController.getCamera().SetActive(true);
         base.Start();
 
@@ -255,6 +261,8 @@ public class IvanHouseGameController : GameController {
     public override void deactivateController()
     {
         base.deactivateController();
+        bread.transform.position = BreadPH.transform.position;
+        door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
         Destroy(this);
 
     }

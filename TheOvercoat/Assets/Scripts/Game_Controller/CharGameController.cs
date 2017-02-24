@@ -42,7 +42,7 @@ public class CharGameController : MonoBehaviour {
 
     void setPositionToDoor(Scene scene, LoadSceneMode mode)
     {
-        
+        Debug.Log("Setting position");
      
         if (lastDoorId != 0)
         {
@@ -63,7 +63,7 @@ public class CharGameController : MonoBehaviour {
                     activeChar.transform.position = spawnPos.transform.position;
 
                     //Instantiate(go, spawnPos.transform.position,transform.rotation);
-                    //print("Object started at spawn position " + spawnPos.transform.position);
+                    //Debug.Log("Object started at spawn position " + spawnPos.transform.position);
                 }
                 else
                 {
@@ -75,6 +75,9 @@ public class CharGameController : MonoBehaviour {
             }
 
             nma.enabled = true;
+        }else
+        {
+            Debug.Log("Last foor id is null");
         }
                
 

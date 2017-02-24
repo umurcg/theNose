@@ -11,6 +11,9 @@ abstract public class GameController : MonoBehaviour {
 
     public bool isDisabledAtStart;
 
+    ////Last scenes of sceneList must be same as this array
+    //public GlobalController.Scenes[] activateCondition;
+
     protected GameObject player;
     protected NavMeshAgent playerNma;
     protected Animator playerAnim;
@@ -31,6 +34,16 @@ abstract public class GameController : MonoBehaviour {
         narSubtitle = SubtitleFade.subtitles["NarratorSubtitle"];
         sc = GetComponent<SubtitleCaller>();
 
+
+        ////TODO test it
+        //if (activateCondition.Length != 0)
+        //{
+        //   for(int i=activateCondition.Length-1;i>-1; i--)
+        //    {
+        //        if (i >= GlobalController.Instance.sceneList.Count || GlobalController.Instance.sceneList[i] != (int)activateCondition[i])
+        //            deactivateController();
+        //    }
+        //}
 
     }
 

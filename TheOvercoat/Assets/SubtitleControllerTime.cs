@@ -80,7 +80,7 @@ public class SubtitleControllerTime : SubtitleController {
 
     public new void startSubtitle()
     {
-        Debug.Log("starting subtitles, obj name " + name);
+        //Debug.Log("starting subtitles, obj name " + name);
 
         this.enabled = true;
         if (TimeMode == timeMode.automatic)

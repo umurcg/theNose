@@ -9,6 +9,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject berberShop, Crowd, girty, bar, jokeGroup, bridge, fruitStad, cat;
     public GameObject[] ivanScenePolice;
     public GameObject lookAtMeNowTrigger, NoseGame;
+    public GameObject SingerCafe;
     
 	// Use this for initialization
 	void Awake () {
@@ -38,11 +39,23 @@ public class CityGameController : MonoBehaviour {
                     case (int)GlobalController.Scenes.IvanHouse:
                         comingFromIvanHouse();
 
+
+
                         break;
 
                     case (int)GlobalController.Scenes.KovalevHouse:
                         Debug.Log("comingFromKoavlevHouse");
                         comingFromKovalevHouse();
+
+                      
+
+                        break;
+
+                    case (int)GlobalController.Scenes.City:
+                        //Look for previous scene, if it is ivan house than it must be call singerCafeScene
+                        if (sceneList.Count > 1 && sceneList[sceneList.Count - 2] == (int)GlobalController.Scenes.IvanHouse)
+                            singerCafeScene();
+
                         break;
 
                     default:
@@ -71,14 +84,15 @@ public class CityGameController : MonoBehaviour {
 
     void berberShopScene()
     {
-        //Debug.Log("Berber shop");
+        Debug.Log("Berber shop");
         CharGameController.deactivateAllCharacters();
         berberShop.GetComponent<GameController>().isDisabledAtStart = false;
-        //berberShop.GetComponent<GameController>().activateController();
+        berberShop.GetComponent<GameController>().activateController();
     }
 
     void comingFromIvanHouse()
     {
+        //Debug.Log("Coming from ivan house");
 
         //Debug.Log("Coming From Ivan house");
         //Crowd.GetComponent<GameController>().isDisabledAtStart = false;
@@ -88,6 +102,9 @@ public class CityGameController : MonoBehaviour {
         //fruitStad.GetComponent<GameController>().isDisabledAtStart = false;
         //bridge.GetComponent<GameController>().isDisabledAtStart = false;
         //cat.GetComponent<GameController>().isDisabledAtStart = false;
+
+        //Unlock Ivan home door
+        OpenDoorLoad.doors[1].playerCanOpen = true;
 
         Crowd.GetComponent<GameController>().activateController();
         //girty.GetComponent<GameController>().activateController();
@@ -109,14 +126,23 @@ public class CityGameController : MonoBehaviour {
     void comingFromKovalevHouse()
     {
 
+        //Unlock police door and kovalev door
+        OpenDoorLoad.doors[2].playerCanOpen = true;
+        OpenDoorLoad.doors[3].playerCanOpen = true;
+
+        //Set all cll characters for looking at kovalev
         GameObject characterObj = CharGameController.getActiveCharacter();
         GameObject spawnedTrigger=(GameObject)Instantiate(lookAtMeNowTrigger, characterObj.transform);
         spawnedTrigger.transform.localPosition = Vector3.zero;
-
-        //Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
+        
+        Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
     }
 
-
+    void singerCafeScene()
+    {
+        Debug.Log("Singer cafe");
+        SingerCafe.GetComponent<GameController>().activateController();
+    }
 
     IEnumerator<float> ActivateIn(GameObject obj, float delay/*, GameObject player*/)
     {

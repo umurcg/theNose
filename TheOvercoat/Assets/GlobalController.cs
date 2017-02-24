@@ -23,7 +23,7 @@ public class GlobalController : MonoBehaviour {
     public List<int> sceneList;
 
     //You can use this variable for starting game with specific sceneList in editor.
-    public string debugSceneList;
+    public Scenes[] debugSceneList;
 
     //  This list holding scene squence (shortest) for all game. So from this array, all levels can be load with only necessary scene sequence
     //  Dont include main menu
@@ -40,14 +40,14 @@ public class GlobalController : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (debugSceneList != "")
+        if (debugSceneList.Length!=0 && sceneList.Count==0)
         {
             if (Application.isEditor)
             {
-                foreach (char index in debugSceneList)
+                foreach (Scenes sce in debugSceneList)
                 {
 
-                    sceneList.Add((int)char.GetNumericValue(index));
+                    sceneList.Add((int)sce);
                 }
             }
         }
@@ -58,34 +58,51 @@ public class GlobalController : MonoBehaviour {
     void Start()
     {
         //if it is not main menu register to scene list
-        if (SceneManager.GetActiveScene().buildIndex != (int)Scenes.MainMenu)
-        {
+        
+        //if (SceneManager.GetActiveScene().buildIndex != (int)Scenes.MainMenu)
+        //{
+           
+        //    GlobalController.Instance.registerToSceneList();
+
+        //}
+
+
+
+    }
+
+    void OnLevelWasLoaded()
+    {
+     
+   
             GlobalController.Instance.registerToSceneList();
-
-        }
-
-
-
     }
 
     //This function register creates scene list if it is not exist.
     //After that it registers scene to sceneList
     public void registerToSceneList(/*Scene scene, LoadSceneMode mode*/)
     {
+
+        //Debug.Log("hiiiiiiiiiiii");
+        if (SceneManager.GetActiveScene().buildIndex == (int)Scenes.MainMenu) return;
+ 
+
         if (GlobalController.Instance.sceneList == null)
         {
             GlobalController.Instance.sceneList = new List<int>();
         }
 
+
+
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         if (sceneList.Count > 0)
         {
-            
-         
+
+            if (GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1] == currentScene ) return;
 
             //If current scene index equals next scene in story line which means player play in right direction that add that scene into sceneList 
-            //Debug.Log("scene list count: " + sceneList.Count+" full game scene list count"+fullGameSceneList.Count);
-            if(currentScene == (int)fullGameSceneList[sceneList.Count-1])
+                Debug.Log("scene list count: " + sceneList.Count + " full game scene list count" + fullGameSceneList.Count);
+            Debug.Log("current scene is " + currentScene + " it should be " + (int)fullGameSceneList[sceneList.Count ] + " index is "+ (sceneList.Count ));
+            if (currentScene == (int)fullGameSceneList[sceneList.Count])
             {
                 Debug.Log(currentScene + "is added to scene list");
                 sceneList.Add(currentScene);
@@ -97,7 +114,7 @@ public class GlobalController : MonoBehaviour {
          }
           else
         {
-            //Debug.Log("Registered scene " + currentScene); //TODOthis part is for debugging
+            Debug.Log("Registered scene " + currentScene); //TODOthis part is for debugging
             //sceneList.Add((int)fullGameSceneList[0]);
             sceneList.Add(currentScene);
         }
