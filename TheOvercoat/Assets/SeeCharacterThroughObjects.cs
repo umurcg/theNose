@@ -147,6 +147,9 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
 
     IEnumerator<float> recoverMaterial(GameObject obj)  
     {
+        // I dont know
+        if (obj == null) yield break;
+
         //If it is restored then break which means it is not in fadedObject list anymore
         if (!fadedObjects.Contains(obj)) yield break;
                 

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
+//Girty handles its own activation and deactivation while it is complecated.
 public class GirtController : GameController {
 
     DontLetPlayerToApproach dltpta;
@@ -22,31 +24,49 @@ public class GirtController : GameController {
         //    dltpta.enabled = false;
         //}
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public override void Start()
+    {
+        base.Start();
+        activation();
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 
 
-    public override void activateController()
+    void activation()
     {
-        base.activateController();
-        dltpta.enabled = true;
-        rwaa.enabled = true;
-    }
-    public override void deactivateController()
-    {
-        base.deactivateController();
+        List<int> sceneList= GlobalController.Instance.sceneList;
 
         dltpta = GetComponent<DontLetPlayerToApproach>();
         rwaa = GetComponent<RandomWalkAndAnimate>();
         animDog = GetComponent<Animator>();
 
-        //Debug.Log("hi");
-        dltpta.enabled = false;
-        rwaa.enabled = false;
-        animDog.SetBool("Bark", true);
+        if (player.name == "Ivan")
+        {  
+
+            dltpta.enabled = false;
+            rwaa.enabled = false;
+            animDog.SetBool("Bark", true);
+        }else if(player.name=="Kovalev" && GlobalController.countSceneInList(GlobalController.Scenes.Newspaper)==1 )
+        {
+            dltpta.enabled = true;
+            rwaa.enabled = true;
+
+
+        } else if(GlobalController.countSceneInList(GlobalController.Scenes.Newspaper) == 2)
+        {
+            gameObject.transform.parent.gameObject.SetActive(false);
+        }
+        else
+        {
+            dltpta.enabled = false;
+        }
 
     }
+
+
 }

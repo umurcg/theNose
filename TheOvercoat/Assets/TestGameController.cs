@@ -9,7 +9,7 @@ public class TestGameController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-
+        
         //if (GlobalController.Instance == null)
         //{
         //    initialFunc();
@@ -38,6 +38,11 @@ public class TestGameController : MonoBehaviour {
 
 	}
 	
+    void Start()
+    {
+        CharGameController.movePlayer(Vector3.zero);
+    }
+
 	// Update is called once per frame
 	void Update () {
 	

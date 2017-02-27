@@ -6,7 +6,7 @@ using MovementEffects;
 //City includes lots of scenes and games. So when this script starts it looks player's sceneList and decide how to initilize city.
 public class CityGameController : MonoBehaviour {
 
-    public GameObject berberShop, Crowd, girty, bar, jokeGroup, bridge, fruitStad, cat;
+    public GameObject berberShop, Crowd,  bar, jokeGroup, bridge, fruitStad, cat;
     public GameObject[] ivanScenePolice;
     public GameObject lookAtMeNowTrigger, NoseGame;
     public GameObject SingerCafe;

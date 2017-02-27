@@ -111,7 +111,7 @@ public class DontLetPlayerToApproach : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-
+        if(enabled)
         Timing.RunCoroutine(_prevent());
     }
 

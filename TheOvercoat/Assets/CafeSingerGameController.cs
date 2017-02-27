@@ -116,6 +116,7 @@ public class CafeSingerGameController : GameController {
     void OnDestroy()
     {
         CharGameController.getOwner().SetActive(true);
+       
     }
 
     public override void activateController()

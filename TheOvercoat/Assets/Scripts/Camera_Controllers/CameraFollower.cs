@@ -15,8 +15,12 @@ public class CameraFollower : MonoBehaviour {
     public bool assignPlayerAutomatically=true;
 
     Vector3 relativePosition;
-	// Use this for initialization
-	void Start () {
+
+
+    Vector3 defaultRelative = new Vector3(-89.1f, 72.7f, 85.1f);
+
+
+    void Start () {
 
         if (assignPlayerAutomatically)
             updateTarget();
@@ -40,6 +44,8 @@ public class CameraFollower : MonoBehaviour {
            // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * lookSpeed);
            //transform.position = Vector3.Lerp(transform.position, relativePosition+ target.transform.position, Time.deltaTime * transformSpeed);
         }
+
+        //Debug.Log(relativePosition);
     }
 
     public void updateRelative()
@@ -53,4 +59,13 @@ public class CameraFollower : MonoBehaviour {
         if(target!=null)
             updateRelative();
     }
+
+    //Use this if your camera mess up when new sceene is loaded
+    public void fixRelativeToDefault()
+    {
+        relativePosition = defaultRelative;
+
+    }
+
+
 }

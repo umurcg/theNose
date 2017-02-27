@@ -70,6 +70,7 @@ public class Vckrs : MonoBehaviour
         }
         go.transform.position = aim;
 
+        yield break;
     }
 
      //Lerp position with heigh.

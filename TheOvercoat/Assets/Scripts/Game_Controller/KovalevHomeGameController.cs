@@ -59,11 +59,18 @@ public class KovalevHomeGameController : GameController {
 
     IEnumerator<float> _WakeUp()
     {
+        //wait one frame
+        yield return 0;
+
         Debug.Log("wake up");
 
         //Set player as kovalev
         GameObject character=CharGameController.setCharacter("Kovalev");
         updateCharacterVariables();
+
+        CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
+        cf.updateTarget();
+        cf.fixRelativeToDefault();        
         
         //Set model of kovalev as with pijamas assuming kovalev is 1st element and kovalevwithpijamas is 2nd     
         player.transform.GetChild(1).gameObject.SetActive(false);

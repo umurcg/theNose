@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using MovementEffects;
 
 //Static list that is attached to MainCamera
 //It is never destroyed
@@ -31,6 +32,9 @@ public class GlobalController : MonoBehaviour {
 
     void Awake()
     {
+        //Kill all mec before starting new scene
+        Timing.KillAllCoroutines();
+
         if (Instance == null)
         {        
             Instance = this;
@@ -230,6 +234,20 @@ public class GlobalController : MonoBehaviour {
 
 
         Debug.Log("Saved");
+    }
+
+    //Counts how may times a scene is visited by player
+    public static int  countSceneInList(GlobalController.Scenes scn)
+    {
+        int count=0;
+        if (!Instance.sceneList.Contains((int)scn)) return count;
+
+        for(int i = 0; i < Instance.sceneList.Count; i++)
+        {
+            if (Instance.sceneList[i] == (int)scn) count++;
+        }
+
+        return count;
     }
 
 }

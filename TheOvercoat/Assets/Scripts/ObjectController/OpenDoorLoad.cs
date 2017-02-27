@@ -42,6 +42,13 @@ public class OpenDoorLoad : LoadScene {
 
     // Update is called once per frame
     void Update () {
+
+        if (debugLoad)
+        {
+            Load();
+            debugLoad = false;
+        }
+
         if (open)
         {
             //print(key);

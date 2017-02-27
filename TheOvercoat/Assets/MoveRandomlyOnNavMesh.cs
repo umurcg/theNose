@@ -48,6 +48,8 @@ public class MoveRandomlyOnNavMesh : MonoBehaviour {
 
     IEnumerator<float> _walkToPoint(Vector3 pos)
     {
+        if (!nma.isOnNavMesh) yield break;
+
         walking = true;
         nma.Resume();
         nma.SetDestination(pos);
