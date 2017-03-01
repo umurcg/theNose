@@ -93,7 +93,7 @@ public class SubtitleController : MonoBehaviour {
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-
+                    //Debug.Log("You pressed to mouse");
                     index++;
                                     
                     if (index < subtitleTexts.Length)
@@ -134,7 +134,8 @@ public class SubtitleController : MonoBehaviour {
 
    public virtual void startSubtitle()
     {
- 
+
+        if (text == null) Debug.Log("No text");
         text.text = subtitleTexts[0];
         index = 0;
         if (pcc != null)

@@ -4,34 +4,60 @@ using System.Collections.Generic;
 using MovementEffects;
 using UnityEngine.UI;
 
+//This script provides functionality of girt pet game script
+
 public class GirtyPetGameScript : MonoBehaviour {
 
-    Camera mainCamera;
-    bool running = false;
-
+    //Game point variables
     public GameObject pointBar;
     Image pointBarFill;
     Text pointText;
+    float point;
 
     public float speed = 5;
     public float rotationSpeed = 10f;
-
     public float approachSpeed = 1f;
+    public float runAwayMagnitude = 3f;
+
+    //How much time to wait for approach dog to mouse
     public float timeToApproach = 30f;
+    public float pointSpeed=5f;
+
+    //Minimum mouse movement while petting
+    public float minimumMouseMovement = 10f;
+
+    //Minimum distance between object and mouse for petting
+    public float minimumDistanceForPetting = 2f;
+
+    //Cursor texture when player can pet girty
+    public Texture2D petTexture;
+
+    Camera mainCamera;
+
+    //Is running from player
+    bool running = false;
+    
+    //This timer is for triggereng approaching function of girty
     float timer;
-    IEnumerator<float> approachCor;
+
+    //Can player pet girty now?
     bool canPet = false;
 
-    public float pointSpeed;
+    Animator anim;
 
-    Vector3 petMp;
-    public float point;
+    Vector3 previousMousePosition;
+    Vector3 previousPosition;
 
+    //Message recieve and message to send when win condition is triggered
+    public GameObject messageReciever;
+    public string message;
+          
 
     void Awake()
     {
         pointBarFill = pointBar.GetComponent<Image>();
         pointText = pointBar.transform.GetChild(0).GetComponent<Text>();
+        anim = GetComponent<Animator>();
 
     }
 
@@ -39,131 +65,236 @@ public class GirtyPetGameScript : MonoBehaviour {
     void Start () {
 
         mainCamera = CharGameController.getCamera().GetComponent<Camera>();
+      
         //Set position to middle of screen
         transform.position = mainCamera.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
 
         //Look to cam
         transform.LookAt(mainCamera.gameObject.transform.position-mainCamera.gameObject.transform.forward);
 
+        //Set timer
         timer = timeToApproach;
 
+        //Set prev positions
+        previousPosition = transform.position;
+        previousMousePosition = Input.mousePosition;
         
     }
 	
 	// Update is called once per frame
 	void Update () {
-                
+
+        //Handles rotation of girty
+        rotateTowardsMovementDir();
+
+        //Prevents girty to go outside of screen. Like snake game
         checkObjInScreen(gameObject);
 
+        //Timer counter
         if (timer>0)  timer -= Time.deltaTime;
-        if (timer < 0) approachCor= Timing.RunCoroutine(approachToMouse());
 
-        if (point >= 100) Debug.Log("win");
+        //If timer is finished then start approachin to mouse
+        if (timer < 0) Timing.RunCoroutine(approachToMouse());
 
-        if (canPet)
+        //If point is above 100 win, and disable update funciton of script
+        if (point >= 100)  win();
+    
+        if (canPet) petting();
+
+        previousMousePosition = Input.mousePosition;
+        previousPosition = transform.position;
+    }
+
+    //This function enables player to pet girty and collect points
+    void petting()
+    {
+
+        CursorImageScript cis = mainCamera.GetComponent<CursorImageScript>();
+
+        if (!pointBar.activeSelf)    pointBar.SetActive(true);
+
+        //Mouse movement 
+        float deltaMouse=Vector3.Distance(previousMousePosition, Input.mousePosition);
+
+        //If mouse moves too much it scares girty and he runs away
+        if (deltaMouse > minimumMouseMovement)
         {
-            //Debug.Log("canpet mouse movement: " + Vector3.Distance(petMp, Input.mousePosition));
-            if (Vector3.Distance(petMp, Input.mousePosition) > 10f)
+            //Reset point and execute petting
+            canPet = false;
+
+            //Set to smell animation false
+            anim.SetBool("Smell", false);
+
+            point = 0;
+
+            //Reset external texture
+            if (cis.externalTexture == petTexture) cis.externalTexture = null;
+
+            //Deactivate point bar
+            pointBar.SetActive(false);
+
+            //Reset timer
+            timer = timeToApproach;
+            
+            return;
+        }
+
+
+        //Can pet if distance smaller than minimumDistanceForPetting
+        if (Vector3.Distance(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)) < minimumDistanceForPetting)
+        {
+            //Set cursor to canpet texture
+            if (petTexture != null && cis.externalTexture == null) cis.externalTexture = petTexture;
+
+            if (Input.GetMouseButton(0))
             {
-                canPet = false;
-                point = 0;
+                point += Time.deltaTime * pointSpeed * deltaMouse;
             }
+        }
+        //Reset external texture
+        else if (cis.externalTexture == petTexture) cis.externalTexture = null;
 
-            Debug.Log("mouse obj dist: " + Vector3.Distance(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition)));
-            if (Input.GetMouseButton(0) && Vector3.Distance(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition))<2f){
-                point += Time.deltaTime*pointSpeed* Vector3.Distance(petMp, Input.mousePosition);
-            }
+        //Update point text and bar
+        pointText.text = "%" + ((int)point).ToString();
+        pointBarFill.fillAmount = point / 100;
+    }
 
-            petMp = Input.mousePosition;
+    void win()
+    {
+        point = 100;
+        //Update point text and bar
+        pointText.text = "%" + ((int)point).ToString();
+        pointBarFill.fillAmount = point / 100;
+        mainCamera.GetComponent<CursorImageScript>().externalTexture = null;
+        enabled = false;
+        //Reset cursor texture
+        mainCamera.GetComponent<CursorImageScript>().externalTexture = null;
+        messageReciever.SendMessage(message);
+    }
 
-            pointText.text = "%"+ point.ToString();
-            pointBarFill.fillAmount = point / 100;
+    void rotateTowardsMovementDir()
+    {
+        //Rotate to movement position
+        Vector3 movementVector = transform.position - previousPosition;
+        if (movementVector.magnitude > 0.01f)
+        {
+            transform.rotation = Quaternion.Slerp(
+                 transform.rotation,
+                 Quaternion.LookRotation(movementVector),
+                 Time.deltaTime * rotationSpeed
+                );
 
         }
-        
-	}
+        else
+        {
+            //If player can pet then don't look to camera, stay to look mouse
+            if (canPet) return;
+
+            //If not rotating then look to camera
+            transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            Quaternion.LookRotation(-mainCamera.transform.forward),
+            Time.deltaTime * rotationSpeed
+           );
+        }
+
+    }
 
     void OnMouseOver()
     {
+        //If player can pet girty onMouseOver should return immediatly
         if (canPet) return;
 
+        //Timer is reset if player disturb girty
         timer = timeToApproach;
         
-        Vector3 mousePosition = Input.mousePosition;
-        Vector3 runDir = transform.position - mainCamera.ScreenToWorldPoint(mousePosition);
-
-        Timing.RunCoroutine(run(transform.position, Vector3.ProjectOnPlane(runDir, mainCamera.transform.forward) * 3));
+        //Run boy run
+        Timing.RunCoroutine(run(transform.position, findOppositeDirectionOfMouse() * runAwayMagnitude));
 
     }
 
     IEnumerator<float> approachToMouse()
     {
+        //Local mouse position for this corouitne
+        Vector3 localMousePosition = Input.mousePosition;
 
-        Vector3 mousePos = Input.mousePosition;
+        //Set to 0 for disabling update function call again this function
         timer = 0;
         
+        //While distance between girty and mouse position is bigger tan sphere collider's 2*r, walk towards mouse 
         while (Vector3.Distance(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition))>GetComponent<SphereCollider>().radius*2.5f)
         {
+            //Walk towards
             transform.position = Vector3.MoveTowards(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition), approachSpeed*Time.deltaTime);
 
-            if (Vector3.Distance(mousePos, Input.mousePosition) > 0.25f)
-            {
-                Vector3 runDir = transform.position - mainCamera.ScreenToWorldPoint(mousePos);
-                Timing.RunCoroutine(run(transform.position, Vector3.ProjectOnPlane(runDir, mainCamera.transform.forward) * 3));
+            //Check for mouse delta. If player moves mouse too much while girty is tryinh to approach run away.
+            //Magic number is used for that. Sorryyyyyy. But script is already too complicted
+            float deltaMouse = Vector3.Distance(localMousePosition, Input.mousePosition);
+            if (deltaMouse > 0.25f)
+            {                   
+                Timing.RunCoroutine(run(transform.position, findOppositeDirectionOfMouse() * runAwayMagnitude));
+
+                //Execure coroutine
                 yield break;
 
             }
-            mousePos = Input.mousePosition;
 
+            //Update mouse position
+            localMousePosition = Input.mousePosition;
             yield return 0;
         }
 
-        petMp = Input.mousePosition;
+        //If coroutine reaches this line player wait enough for girt, Now he can pet him
         canPet = true;
-    }
 
-
-   IEnumerator<float> run(Vector3 from, Vector3 aim)
-    {
-        if (running) yield break;
-
-        running = true;
-  
-
-        //Set look
-        IEnumerator<float> rotationHandler=Timing.RunCoroutine(Vckrs._lookTo(gameObject, aim, rotationSpeed));
-
-        Vector3 initialPosition =from;
-        gameObject.transform.position = initialPosition;
-
-        float ratio = 0;
-
-        float time = speed / Vector3.Distance(from, from + aim) ;
-
-        while (ratio < 1)
-        {
-            ratio += Time.deltaTime * time;
-
-
-            gameObject.transform.position = Vector3.Lerp(initialPosition,initialPosition+ aim, ratio);
-            yield return 0;
-
-        }
-        gameObject.transform.position = initialPosition + aim;
-
-    
-
-        running = false;
-
-        Timing.KillCoroutines(rotationHandler);
-        Timing.RunCoroutine(Vckrs._lookTo(gameObject, -mainCamera.transform.forward, rotationSpeed));
+        //Set to smell animation
+        anim.SetBool("Smell", true);
 
         yield break;
     }
 
+    //Calculates opposite direction for running away from mouse
+    Vector3 findOppositeDirectionOfMouse()
+    {
+        Vector3 dirIn3d= transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition);    
+        Vector3 dirInPlane = Vector3.ProjectOnPlane(dirIn3d, mainCamera.transform.forward);
+        return dirInPlane;
+    }
+
+   IEnumerator<float> run(Vector3 from, Vector3 aim)
+    {               
+        //If already running exit coroutine
+        if (running) yield break;
+
+        //Set running boolean
+        running = true;
+ 
+        //Set gameObject to intial position just in case
+        Vector3 initialPosition =from;
+        gameObject.transform.position = initialPosition;
 
 
+        float ratio = 0;
+        //Calculate time to walk from one point to another point according to distance and speed
+        float time = speed / Vector3.Distance(from, from + aim) ;
 
+        //Lerp until complete
+        while (ratio < 1)
+        {
+            ratio += Time.deltaTime * time;
+            gameObject.transform.position = Vector3.Lerp(initialPosition,initialPosition+ aim, ratio);
+            yield return 0;
+        }
+
+        //Set object position to final destination
+        gameObject.transform.position = initialPosition + aim;
+           
+        //Set running boolean false before finishing coroutine
+        running = false;
+        yield break;
+    }
+
+    //Checks girty in screen, if not moves it to other side of screen and make it walk to in to screen a little bit
     public void checkObjInScreen(GameObject obj)
     {
         float tol = 10;
@@ -182,7 +313,7 @@ public class GirtyPetGameScript : MonoBehaviour {
         }
 
         objScreenPos = mainCamera.WorldToScreenPoint(obj.transform.position);
-
+        
         if (objScreenPos.y > Screen.height + tol)
         {
             obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector2(objScreenPos.x, 0));

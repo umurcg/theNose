@@ -30,6 +30,18 @@ public class GlobalController : MonoBehaviour {
     //  Dont include main menu
     public List<Scenes> fullGameSceneList;
 
+    public int setDebugListToLevelIndex;
+
+    public void setDebugListToIndex()
+    {
+        debugSceneList = new Scenes[setDebugListToLevelIndex];
+        for (int i = 0; i < setDebugListToLevelIndex; i++)
+        {
+            debugSceneList[i] = fullGameSceneList[i];
+
+        }
+    }
+
     void Awake()
     {
         //Kill all mec before starting new scene
@@ -53,6 +65,7 @@ public class GlobalController : MonoBehaviour {
 
                     sceneList.Add((int)sce);
                 }
+                debugSceneList = new Scenes[0];
             }
         }
  
@@ -76,8 +89,8 @@ public class GlobalController : MonoBehaviour {
 
     void OnLevelWasLoaded()
     {
-     
-   
+
+        //Debug.Log("New scene is laoded");
             GlobalController.Instance.registerToSceneList();
     }
 
@@ -86,7 +99,7 @@ public class GlobalController : MonoBehaviour {
     public void registerToSceneList(/*Scene scene, LoadSceneMode mode*/)
     {
 
-        //Debug.Log("hiiiiiiiiiiii");
+        Debug.Log("Registering");
         if (SceneManager.GetActiveScene().buildIndex == (int)Scenes.MainMenu) return;
  
 
@@ -104,8 +117,8 @@ public class GlobalController : MonoBehaviour {
             if (GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1] == currentScene ) return;
 
             //If current scene index equals next scene in story line which means player play in right direction that add that scene into sceneList 
-                Debug.Log("scene list count: " + sceneList.Count + " full game scene list count" + fullGameSceneList.Count);
-            Debug.Log("current scene is " + currentScene + " it should be " + (int)fullGameSceneList[sceneList.Count ] + " index is "+ (sceneList.Count ));
+            Debug.Log("scene list count: " + sceneList.Count + " full game scene list count" + fullGameSceneList.Count);
+            Debug.Log("current scene is " + currentScene + " it should be " + (int)fullGameSceneList[sceneList.Count ]);
             if (currentScene == (int)fullGameSceneList[sceneList.Count])
             {
                 Debug.Log(currentScene + "is added to scene list");

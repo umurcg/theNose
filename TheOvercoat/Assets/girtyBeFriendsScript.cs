@@ -11,17 +11,18 @@ public class girtyBeFriendsScript : MonoBehaviour {
         girty = new characterComponents(gameObject);
         player = CharGameController.getActiveCharacter();
         transform.parent = CharGameController.getOwner().transform;
-        GetComponent<DontLetPlayerToApproach>().enabled = false;
         GetComponent<RandomWalkAndAnimate>().enabled = false;
 
         girty.animator.SetBool("Bark", false);
         girty.animator.SetBool("Smell", false);
+
+        girty.navmashagent.Resume();
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(Vector3.Distance(player.transform.position,transform.position)>3)
+        if (Vector3.Distance(player.transform.position, transform.position) > 3) 
         girty.navmashagent.SetDestination(player.transform.position-player.transform.forward*2);
 
 	}

@@ -10,6 +10,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject[] ivanScenePolice;
     public GameObject lookAtMeNowTrigger, NoseGame;
     public GameObject SingerCafe;
+    public GameObject friendTellsChurch;
     
 	// Use this for initialization
 	void Awake () {
@@ -20,15 +21,17 @@ public class CityGameController : MonoBehaviour {
             //Scene list
             List<int> sceneList = GlobalController.Instance.sceneList;
             Debug.Log("SceneList lenght is " + sceneList.Count);
-            foreach (int i in sceneList)
-            {
-                Debug.Log(i);
-            }
+            //foreach (int i in sceneList)
+            //{
+            //    Debug.Log(i);
+            //}
 
             if (sceneList.Count > 0)
             {
                 //Get last index of sceneList
                 int lastSceneIndex = sceneList[sceneList.Count - 1];
+
+                Debug.Log("last scene is " + (GlobalController.Scenes)lastSceneIndex);
 
                 switch (lastSceneIndex)
                 {
@@ -38,18 +41,21 @@ public class CityGameController : MonoBehaviour {
                         break;
                     case (int)GlobalController.Scenes.IvanHouse:
                         comingFromIvanHouse();
-
-
-
+                        
                         break;
 
                     case (int)GlobalController.Scenes.KovalevHouse:
                         Debug.Log("comingFromKoavlevHouse");
                         comingFromKovalevHouse();
+                                              
+                        break;
 
-                      
+                    case (int)GlobalController.Scenes.Newspaper:
+                        Debug.Log("comingfrom newspaper");
+                        comingFromNewspaper();
 
                         break;
+
 
                     case (int)GlobalController.Scenes.City:
                         //Look for previous scene, if it is ivan house than it must be call singerCafeScene
@@ -136,6 +142,36 @@ public class CityGameController : MonoBehaviour {
         spawnedTrigger.transform.localPosition = Vector3.zero;
         
         Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
+    }
+
+    void comingFromNewspaper()
+    {
+        //Girty handles its activation itself.
+
+        //Unlock newspaper home door
+        OpenDoorLoad.doors[4].playerCanOpen = true;
+
+        //If coming from newspaper second time that player gave girty to newspaper 
+        //So lets instantiate churchteller
+        if (GlobalController.countSceneInList(GlobalController.Scenes.Newspaper) == 2)
+        {
+            GameObject spawnedCT = Instantiate(friendTellsChurch);
+            GameObject player = CharGameController.getActiveCharacter();
+            spawnedCT.transform.position = player.transform.position + player.transform.forward * 5;
+
+            //Set subtitles of scs of churchteller
+            //Set char subtitles
+            SubtitleController[] scs = spawnedCT.GetComponents<SubtitleController>();
+            foreach (SubtitleController sc in scs)
+            {
+                sc.setCharSubtitle();
+            }
+
+            //Activate game controller scripot
+            spawnedCT.GetComponent<ChurchTellerGameController>().enabled = true;
+
+        }
+
     }
 
     void singerCafeScene()
