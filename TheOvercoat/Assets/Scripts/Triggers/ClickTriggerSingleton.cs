@@ -14,6 +14,9 @@ using MovementEffects;
 public class ClickTriggerSingleton : MonoBehaviour {
 
     NavMeshAgent agent;
+    //This is for bird
+    MoveToWithoutAgent mtwagent;
+
     //CharacterMouseLook cml;
     public string[] tags;
 
@@ -26,6 +29,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        mtwagent = GetComponent<MoveToWithoutAgent>();
         //cml = GetComponent<CharacterMouseLook>();
 
     }
@@ -160,7 +164,13 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
     void stopToWalk()
     {
-        agent.Stop();
+        if (agent)
+        {
+            agent.Stop();
+        }else
+        {
+            mtwagent.stop();
+        }
     }
 
     //Cancel all actions, coroutines
@@ -170,10 +180,21 @@ public class ClickTriggerSingleton : MonoBehaviour {
         Timing.KillCoroutines(walkToTargetHandler);
 
         StopCoroutine("setAim");
-
-        agent.Stop();
+        
+        stopToWalk();
     }
    
+    public void setDestination(Vector3 pos)
+    {
+        if (agent)
+        {
+            agent.SetDestination(pos);
+        }else
+        {
+            mtwagent.setDestination(pos);
+        }
+    }
+
     IEnumerator<float> walkToTarget(GameObject aim)
     {
 
@@ -181,7 +202,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
         IClickActionDifferentPos icadp = aim.GetComponent<IClickActionDifferentPos>();
 
-        agent.Resume();
+        if(agent) agent.Resume();
 
         Vector3 position;
         while (true)
@@ -197,8 +218,11 @@ public class ClickTriggerSingleton : MonoBehaviour {
                position=aim.transform.position;
             }
             //Debug.Log(position);
-      
-            agent.SetDestination(position);
+
+            //if(agent) agent.SetDestination(position);
+            setDestination(position);
+
+
             if (aim.isStatic)
             {
                 yield break;

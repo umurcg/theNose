@@ -101,19 +101,24 @@ public class GlobalController : MonoBehaviour {
 
     }
 
-    void OnLevelWasLoaded()
+    void OnEnable()
     {
-
-        Debug.Log("New scene is laoded");
-            GlobalController.Instance.registerToSceneList();
+        //Tell our 'registerToSceneList' function to start listening for a scene change as soon as this script is enabled.
+       SceneManager.sceneLoaded += registerToSceneList;
     }
+
+    void OnDisable()
+     {
+        //Tell our 'registerToSceneList' function to stop listening for a scene change as soon as this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
+       SceneManager.sceneLoaded -= registerToSceneList;
+     }
 
     //This function register creates scene list if it is not exist.
     //After that it registers scene to sceneList
-    public void registerToSceneList(/*Scene scene, LoadSceneMode mode*/)
+    public void registerToSceneList(Scene scene, LoadSceneMode mode)
     {
 
-        Debug.Log("Registering");
+        //Debug.Log("Registering");
         if (SceneManager.GetActiveScene().buildIndex == (int)Scenes.MainMenu) return;
  
 

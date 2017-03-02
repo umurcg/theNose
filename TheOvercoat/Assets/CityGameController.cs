@@ -190,7 +190,7 @@ public class CityGameController : MonoBehaviour {
         GameObject player = CharGameController.getActiveCharacter();
         if (player.transform.name == "Bird")
         {
-            player.transform.position = churchBirdPosition.transform.position;
+           CharGameController.movePlayer(churchBirdPosition.transform.position);
         }
     }
 

@@ -19,8 +19,11 @@ public class BirdLandingScript : MonoBehaviour {
     Animator animContoller;
     MoveToWithoutAgent mwa;
     BirdController bc;
+    BasicCharAnimations bca;
 
     bool isLanded=false;
+    bool takingOff = false;
+    bool landingOn = false;
     float timer;
     Vector3 lockPos;
 	// Use this for initialization
@@ -29,6 +32,7 @@ public class BirdLandingScript : MonoBehaviour {
 
         bc = GetComponent<BirdController>();
         mwa = GetComponent<MoveToWithoutAgent>();
+        bca = GetComponent<BasicCharAnimations>();
         animContoller = GetComponent<Animator>();
         timer = delay * 2;
 	}
@@ -36,18 +40,20 @@ public class BirdLandingScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (isLanded)
+        //If bird is in land, and taking off corouitene isn't working
+        if (isLanded && !takingOff)
         {
             //Debug.Log(Input.GetAxis("Vertical"));
             if (Input.GetAxis("Vertical") != 0)
             {
-                Timing.RunCoroutine(_landOff());
+                Timing.RunCoroutine(_takingOff());
             }
         }
 
 
         //Autolanding
-        if (!isLanded)
+        //If bird is not landed or not landing on right now
+        if (!isLanded && !landingOn)
         {
             //Delay*2 means timer is locked. I know it is stupid.
             if (timer == delay*2)
@@ -83,26 +89,41 @@ public class BirdLandingScript : MonoBehaviour {
 	}
 
     
-
-    public IEnumerator<float> _landOff()
+    //It makes bird take off
+    public IEnumerator<float> _takingOff()
     {
-        //Debug.Log("LandOff");
+        takingOff = true;
+
+        Debug.Log("Taking Off");
         animContoller.SetBool(landingAnimationName, false);
         //Wait for animation
         yield return Timing.WaitForSeconds(2f);
 
+        //Disable basic char animation for taking off
+        bca.enabled = false;
+
         IEnumerator<float> handler = Timing.RunCoroutine(mwa._lookAndGo(transform.position+transform.up*2));
         yield return Timing.WaitUntilDone(handler);
+
         bc.pauseMovement = false;
         bc.pauseLimits = false;
         mwa.enabled = true;
         isLanded = false;
+
+        //Enable basic char animation after finsiihng taking off
+        bca.enabled = true;
+
+        takingOff = false;
         yield break;
     }
 
     //TODO It can not detect object between character and aim
     public IEnumerator<float> _landOnTo(Vector3 position)
     {
+        landingOn = true;
+
+        //Disable basic char animation for landing
+        bca.enabled = false;
 
         bc.pauseMovement=true;
         bc.pauseLimits = true;
@@ -111,6 +132,12 @@ public class BirdLandingScript : MonoBehaviour {
         yield return Timing.WaitUntilDone(handler);
         animContoller.SetBool(landingAnimationName, true);
         isLanded = true;
+
+        landingOn = false;
+
+        //Enable basic char animation after finsiihng landing
+        bca.enabled = true;
+
         yield break;
     }
 
@@ -133,7 +160,11 @@ public class BirdLandingScript : MonoBehaviour {
 
     public void setAsLanded(bool isLanded)
     {
+        animContoller.SetBool(landingAnimationName, isLanded);
         this.isLanded = isLanded;
+        bc.pauseMovement = isLanded;
+        bc.pauseLimits = isLanded;
+        mwa.enabled = !isLanded;
     }
 
 

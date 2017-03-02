@@ -8,6 +8,7 @@ public class MoveToWithoutAgent : MonoBehaviour {
     public float speed = 3;
     IEnumerator<float> handler;
     public GameObject floor;
+
 	// Use this for initialization
 	void Start () {
         if (floor == null)
@@ -28,9 +29,8 @@ public class MoveToWithoutAgent : MonoBehaviour {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) ||
                 Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
             {
-                //print("keyboard");
-                if (handler != null) 
-                Timing.KillCoroutines(handler);
+                stop();
+          
             }
             else if (Input.GetMouseButtonDown(0))
             {
@@ -41,7 +41,7 @@ public class MoveToWithoutAgent : MonoBehaviour {
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
 
                 {
-                    print(hit.transform.name);
+                    //print(hit.transform.name);
                     if (hit.transform.gameObject==floor)
                     {
                         Vector3 aim = hit.point;
@@ -61,10 +61,21 @@ public class MoveToWithoutAgent : MonoBehaviour {
         }
     }
 
+    public void stop()
+    {
+        if (handler != null)
+            Timing.KillCoroutines(handler);
+    }
 
+    public void setDestination(Vector3 pos)
+    {
+        Timing.RunCoroutine(_lookAndGo(pos));
+    }
 
     public IEnumerator<float> _lookAndGo(Vector3 aim)
     {
+        stop();
+
         float dist = Vector3.Distance(aim, transform.position);
         float time = speed / dist;
 
@@ -74,6 +85,9 @@ public class MoveToWithoutAgent : MonoBehaviour {
         IEnumerator<float> localHandler = Timing.RunCoroutine(Vckrs._lookTo(gameObject, aim-transform.position, 2f));
         yield return Timing.WaitUntilDone(localHandler);
         handler = Timing.RunCoroutine(Vckrs._Tween(gameObject, aim, time));
+        yield return Timing.WaitUntilDone(handler);
+
+        yield break;
     }
 
 }

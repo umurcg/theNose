@@ -33,6 +33,8 @@ public class MazeGameController : MonoBehaviour {
         Timing.RunCoroutine(_catched());
     }
 
+  
+
     IEnumerator<float> _catched()
     {
         //Debug.Log("_catched");
