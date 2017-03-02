@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using MovementEffects;
+using System.Linq;
 
 //Static list that is attached to MainCamera
 //It is never destroyed
@@ -28,7 +29,20 @@ public class GlobalController : MonoBehaviour {
 
     //  This list holding scene squence (shortest) for all game. So from this array, all levels can be load with only necessary scene sequence
     //  Dont include main menu
-    public List<Scenes> fullGameSceneList;
+    public Scenes[] fullGameSceneList= {
+        Scenes.City,
+        Scenes.IvanHouse,
+        Scenes.City,
+        Scenes.KovalevHouse,
+        Scenes.City,
+        Scenes.PoliceStation,
+        Scenes.City,
+        Scenes.Newspaper,
+        Scenes.City,
+        Scenes.Church,
+        Scenes.City
+    };
+ 
 
     public int setDebugListToLevelIndex;
 
@@ -90,7 +104,7 @@ public class GlobalController : MonoBehaviour {
     void OnLevelWasLoaded()
     {
 
-        //Debug.Log("New scene is laoded");
+        Debug.Log("New scene is laoded");
             GlobalController.Instance.registerToSceneList();
     }
 
@@ -117,7 +131,7 @@ public class GlobalController : MonoBehaviour {
             if (GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1] == currentScene ) return;
 
             //If current scene index equals next scene in story line which means player play in right direction that add that scene into sceneList 
-            Debug.Log("scene list count: " + sceneList.Count + " full game scene list count" + fullGameSceneList.Count);
+            Debug.Log("scene list count: " + sceneList.Count + " full game scene list count" + fullGameSceneList.Length);
             Debug.Log("current scene is " + currentScene + " it should be " + (int)fullGameSceneList[sceneList.Count ]);
             if (currentScene == (int)fullGameSceneList[sceneList.Count])
             {

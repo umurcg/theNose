@@ -23,6 +23,16 @@ public class OpenDoorLoad : LoadScene {
     bool close;
     bool playerInside;
 
+    public void Unlock()
+    {
+        playerCanOpen = true;
+    }
+
+    public void Lock()
+    {
+        playerCanOpen = false;
+    }
+
 
     // Use this for initialization
     void Awake()
@@ -37,6 +47,7 @@ public class OpenDoorLoad : LoadScene {
         }
         doors[doorId] = this;
 
+        if (doorName == null) doorName = Scene.ToString(); 
     
     }
 

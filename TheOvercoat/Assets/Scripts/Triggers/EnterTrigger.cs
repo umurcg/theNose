@@ -62,7 +62,7 @@ public class EnterTrigger : MonoBehaviour {
         
 
         if (col.tag == "Player"||!onlyPlayerCanTrigger){
-            //print("hello");
+            //Debug.Log("Player entered");
             enter = true;
             IEnterTrigger iet = GetComponent<IEnterTrigger>();
             if (iet != null)

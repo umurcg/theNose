@@ -11,6 +11,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject lookAtMeNowTrigger, NoseGame;
     public GameObject SingerCafe;
     public GameObject friendTellsChurch;
+    public GameObject churchBirdPosition;
     
 	// Use this for initialization
 	void Awake () {
@@ -48,6 +49,11 @@ public class CityGameController : MonoBehaviour {
                         Debug.Log("comingFromKoavlevHouse");
                         comingFromKovalevHouse();
                                               
+                        break;
+
+                    case (int)GlobalController.Scenes.Church:
+
+                        comingFromChurch();
                         break;
 
                     case (int)GlobalController.Scenes.Newspaper:
@@ -155,23 +161,37 @@ public class CityGameController : MonoBehaviour {
         //So lets instantiate churchteller
         if (GlobalController.countSceneInList(GlobalController.Scenes.Newspaper) == 2)
         {
-            GameObject spawnedCT = Instantiate(friendTellsChurch);
-            GameObject player = CharGameController.getActiveCharacter();
-            spawnedCT.transform.position = player.transform.position + player.transform.forward * 5;
+            //GameObject spawnedCT = Instantiate(friendTellsChurch);
+            //GameObject player = CharGameController.getActiveCharacter();
+            //spawnedCT.transform.position = player.transform.position + player.transform.forward * 5;
 
-            //Set subtitles of scs of churchteller
-            //Set char subtitles
-            SubtitleController[] scs = spawnedCT.GetComponents<SubtitleController>();
-            foreach (SubtitleController sc in scs)
-            {
-                sc.setCharSubtitle();
-            }
+            ////Set subtitles of scs of churchteller
+            ////Set char subtitles
+            //SubtitleController[] scs = spawnedCT.GetComponents<SubtitleController>();
+            //foreach (SubtitleController sc in scs)
+            //{
+            //    sc.setCharSubtitle();
+            //}
 
-            //Activate game controller scripot
-            spawnedCT.GetComponent<ChurchTellerGameController>().enabled = true;
+            ////Activate game controller scripot
+            //spawnedCT.GetComponent<ChurchTellerGameController>().enabled = true;
+
+            //Unlock church door
+            OpenDoorLoad.doors[5].Unlock();
 
         }
 
+    }
+
+    void comingFromChurch()
+    {
+        Debug.Log("Coming from church");
+        //If active character is bird then set its position to churchTop
+        GameObject player = CharGameController.getActiveCharacter();
+        if (player.transform.name == "Bird")
+        {
+            player.transform.position = churchBirdPosition.transform.position;
+        }
     }
 
     void singerCafeScene()

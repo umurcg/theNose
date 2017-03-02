@@ -14,5 +14,11 @@ public class GlobalControllerEditor : Editor
             script.setDebugListToIndex();
 
         }
+
+        //if (GUILayout.Button("Set full game scene list to default "))
+        //{
+        //    script.setDebugListToIndex();
+
+        //}
     }
 }

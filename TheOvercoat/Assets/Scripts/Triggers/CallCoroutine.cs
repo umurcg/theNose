@@ -3,13 +3,14 @@ using System.Collections;
 
 public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, IDirectClick, IWalkLookAnim
 {
-    public enum interFaceTpyes{ClickAction,DirectClick,Switch,/*EnterTrigger*/NoInterface,WalkLookAnim};
-    public interFaceTpyes InterfaceType;
+    public enum callType{ClickAction,DirectClick,Switch,/*EnterTrigger*/NoInterface,WalkLookAnim, OnEnter};
+    public callType CallType;
 
 
     public GameObject owner;
     public Object passParameter;
     public string methodName;
+    public bool destroySelf = false;
 
     public void call()
     {
@@ -21,11 +22,13 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
         {
             owner.SendMessage(methodName, passParameter);
         }
+
+        if (destroySelf) Destroy(this);
     }
 
     public void finishedSwitching()
     {
-        if (InterfaceType == interFaceTpyes.Switch)
+        if (CallType == callType.Switch)
             call();
     }
 
@@ -34,7 +37,7 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
     public void Action()
     {
         print("action");
-        if(InterfaceType==interFaceTpyes.ClickAction)
+        if(CallType==callType.ClickAction)
         call();
     }
     
@@ -46,14 +49,20 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
 
     public void directClick()
     {
-        if (InterfaceType == interFaceTpyes.DirectClick)
+        if (CallType == callType.DirectClick)
             call();
     }
 
     public void finishedIWLA()
     {
-        if (InterfaceType == interFaceTpyes.WalkLookAnim)
+        if (CallType == callType.WalkLookAnim)
             call();
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        //Debug.Log("entered");
+        if(CallType==callType.OnEnter && col.transform.tag=="Player")   call();
     }
 
 

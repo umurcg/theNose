@@ -6,16 +6,15 @@ using MovementEffects;
 
 public class Jesus : GameController, IClickAction {
 
-    public GameObject pontiff;
     public GameObject priest;
     public GameObject door;
-    public GameObject basementTrigger,throne;
+
 
 
     NavMeshAgent priestNma;
     Animator priestAnim;
 
-    characterComponents pontiffCC;
+    bool playerLookToPriest;
 
 
     // Use this for initialization
@@ -24,14 +23,13 @@ public class Jesus : GameController, IClickAction {
         priestNma = priest.GetComponent<NavMeshAgent>();
         priestAnim = priest.GetComponent<Animator>();
 
-        pontiffCC = new characterComponents(pontiff);
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    
 
+        if (playerLookToPriest) player.transform.LookAt(priest.transform);
 
 	}
 
@@ -84,12 +82,15 @@ public class Jesus : GameController, IClickAction {
             yield return 0;
 
         }
-
-        priestNma.SetDestination(door.transform.position - door.transform.up);
+        playerLookToPriest = true;
+        priestNma.SetDestination(door.transform.GetChild(0).position);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(priest, 0));
         yield return Timing.WaitUntilDone(handlerHolder);
 
-        handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(priest, door.transform.position - priest.transform.position, 1f));
+        handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(priest, door.transform.position+door.transform.GetChild(0).forward, 1f));
+
+  
+        
         yield return Timing.WaitUntilDone(handlerHolder);
 
         priestAnim.SetBool("Hands", true);
@@ -98,8 +99,12 @@ public class Jesus : GameController, IClickAction {
 
 
         priestAnim.SetBool("Hands", false);
-        yield return Timing.WaitForSeconds(1f);
+        yield return Timing.WaitForSeconds(0.5f);
         priestNma.SetDestination(door.transform.position - door.transform.up * 2+door.transform.right*2);
+
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(priest));
+        
+        yield return Timing.WaitForSeconds(1f);
 
         while (door.transform.rotation.z < 0.4f)
         {
@@ -108,6 +113,8 @@ public class Jesus : GameController, IClickAction {
             yield return 0;
         }
 
+        yield return Timing.WaitUntilDone(handlerHolder);
+        Timing.RunCoroutine(Vckrs._lookTo(priest, player, 1f));
 
         sc.callSubtitle();
 
@@ -117,44 +124,11 @@ public class Jesus : GameController, IClickAction {
 
         }
 
+        playerLookToPriest = false;
 
     }
 
-    public void basement()
-    {
-        Timing.RunCoroutine(_basement());
-    }
 
-    IEnumerator<float> _basement()
-    {
-        //First subt
-        sc.callSubtitle();
-
-        yield return Timing.WaitForSeconds(2f);
-
-        //Pontiff get closer
-        pontiffCC.navmashagent.SetDestination(player.transform.position + Vector3.forward*3);
-        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(pontiff, 0));
-
-        while (subtitle.text != "") yield return 0;
-
-        yield return Timing.WaitUntilDone(handlerHolder);
-
-        //Second sub
-        sc.callSubtitle();
-        while (subtitle.text != "") yield return 0;
-
-        WalkLookAnim wla = throne.GetComponent<WalkLookAnim>();
-
-        //Wait for the sit
-        while (!wla.isSitting()) yield return 0;
-
-        //Third sub
-        sc.callSubtitle();
-        while (subtitle.text != "") yield return 0;
-
-
-    }
 
     public override void activateController()
     {

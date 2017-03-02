@@ -131,6 +131,10 @@ public class BirdLandingScript : MonoBehaviour {
         return Vector3.zero;
     }
 
+    public void setAsLanded(bool isLanded)
+    {
+        this.isLanded = isLanded;
+    }
 
 
 }
