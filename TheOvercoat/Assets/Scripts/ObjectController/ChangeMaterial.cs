@@ -7,8 +7,7 @@ using System.Collections.Generic;
 
 public class ChangeMaterial : MonoBehaviour {
 	Material originalMat;
-
-	Renderer rend;
+    Renderer rend;
 	public List<Material> matList;
 	public int index;
 
@@ -38,5 +37,16 @@ public class ChangeMaterial : MonoBehaviour {
 		rend.material = matList [index];
 
 	}
+
+    public void changeWithIndex(int index)
+    {
+        if (index >= matList.Count)
+        {
+            Debug.Log("Index is bigger than materail list count");
+            return;
+        }
+        this.index = index;
+        rend.material = matList[index];
+    }
 
 }

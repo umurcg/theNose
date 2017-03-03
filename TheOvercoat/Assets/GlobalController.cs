@@ -29,7 +29,7 @@ public class GlobalController : MonoBehaviour {
 
     //  This list holding scene squence (shortest) for all game. So from this array, all levels can be load with only necessary scene sequence
     //  Dont include main menu
-    public Scenes[] fullGameSceneList= {
+    public Scenes[] fullGameSceneList = {
         Scenes.City,
         Scenes.IvanHouse,
         Scenes.City,
@@ -40,6 +40,10 @@ public class GlobalController : MonoBehaviour {
         Scenes.Newspaper,
         Scenes.City,
         Scenes.Church,
+        Scenes.City,
+        Scenes.KovalevHouse,
+        Scenes.City,
+        Scenes.Doctor,
         Scenes.City
     };
  
@@ -282,4 +286,8 @@ public class GlobalController : MonoBehaviour {
         return count;
     }
 
+    public static bool isScnListContains(GlobalController.Scenes scn)
+    {
+        return Instance.sceneList.Contains((int)scn);
+    }
 }

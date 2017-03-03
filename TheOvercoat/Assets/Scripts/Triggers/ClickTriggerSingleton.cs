@@ -186,7 +186,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
    
     public void setDestination(Vector3 pos)
     {
-        if (agent)
+        if (agent.enabled)
         {
             agent.SetDestination(pos);
         }else
@@ -202,7 +202,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
         IClickActionDifferentPos icadp = aim.GetComponent<IClickActionDifferentPos>();
 
-        if(agent) agent.Resume();
+        if(agent.enabled) agent.Resume();
 
         Vector3 position;
         while (true)

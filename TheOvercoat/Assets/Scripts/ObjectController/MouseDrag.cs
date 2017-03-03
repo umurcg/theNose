@@ -24,11 +24,13 @@ public class MouseDrag : MonoBehaviour
     {
         if (invertMouse)
         {
-            transform.position += new Vector3(0, Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X")) * Time.deltaTime * speed;
+            transform.position +=( transform.up* Input.GetAxis("Mouse Y")+ transform.forward* -Input.GetAxis("Mouse X") )* Time.deltaTime * speed;
+            //transform.position += new Vector3(0, Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X")) * Time.deltaTime * speed;
         }
         else
         {
-            transform.position += new Vector3(0, Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * Time.deltaTime * speed;
+            //transform.position += new Vector3(0, Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * Time.deltaTime * speed;
+            transform.position += (transform.up * Input.GetAxis("Mouse Y") + transform.forward * +Input.GetAxis("Mouse X")) * Time.deltaTime * speed;
         }
     }
 

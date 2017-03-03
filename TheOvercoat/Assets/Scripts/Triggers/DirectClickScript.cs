@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 
 //This script triggered when object is clicked.
@@ -8,17 +9,19 @@ using System.Collections;
 
 public class DirectClickScript : MonoBehaviour {
     IDirectClick idc;
+    Text charSubt;
 	// Use this for initialization
 	void Start () {
         idc = GetComponent<IDirectClick>();
-	}
+        charSubt= SubtitleFade.subtitles["CharacterSubtitle"]; 
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
       
-
-        if (Input.GetMouseButtonDown(0))
+        //If char subtitile is active  then dont listen mouse
+        if (charSubt.text=="" && Input.GetMouseButtonDown(0))
         {
 
 

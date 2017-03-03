@@ -83,9 +83,15 @@ public class CursorImageScript : MonoBehaviour
         {
             //Debug.Log(hit.transform.gameObject.name + " " + hit.transform.tag + " " + hit.transform.gameObject.layer);
 
+            //Even player can't move if object have this tag, it will change cursor to activeObject
+            if(hit.transform.tag== "ActiveEvenCantWalk")
+            {
 
+                Cursor.SetCursor(activeObject, Vector2.zero, CursorMode.Auto);
+                return;
+            } 
 
-            if (hit.transform.tag == "ActiveObject")
+            else if (hit.transform.tag == "ActiveObject")
             {
                 if (!checkAvaiblity())
                 {

@@ -23,7 +23,7 @@ public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching, IClickAc
 
     public static void Disable(GameObject go)
     {
-        MonoBehaviour[] scripts = go.GetComponents<MonoBehaviour>();
+        MonoBehaviour[] scripts = go.GetComponentsInChildren<MonoBehaviour>();
 
         foreach (MonoBehaviour script in scripts)
         {

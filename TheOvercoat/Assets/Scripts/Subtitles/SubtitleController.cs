@@ -103,6 +103,7 @@ public class SubtitleController : MonoBehaviour {
             
             else
             {
+                //Debug.Log("index is exceeds subtitle length");
                 ClickTrigger.disabled = false;
 
                 text.text = "";
@@ -128,6 +129,10 @@ public class SubtitleController : MonoBehaviour {
                 this.enabled = false;
             }
         }
+        else
+        {
+            Debug.Log("index is -1");
+        }
 
 	}
 
@@ -136,6 +141,13 @@ public class SubtitleController : MonoBehaviour {
     {
 
         if (text == null) Debug.Log("No text");
+        //Debug.Log(subtitleTexts.Length);
+
+        if (text == null)
+        {
+            text = SubtitleFade.subtitles["CharacterSubtitle"];
+        }
+
         text.text = subtitleTexts[0];
         index = 0;
         if (pcc != null)
@@ -143,6 +155,8 @@ public class SubtitleController : MonoBehaviour {
 
         ClickTrigger.disabled = true;
         this.enabled = true;
+
+        //Debug.Log("enabled subtitile");
     }
 
 

@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class KovalevHomeGameController : GameController {
     public GameObject CharSubt, Door, Ivan, Dolap, Paper, HandR, StartingPoint;
-    
 
+    public GameObject armChair, handMirror,  handMirrorBig, letterToSend, letterRecieved ,tableChair, police;
    
 
     Text charText;
@@ -35,22 +35,36 @@ public class KovalevHomeGameController : GameController {
         }
         else
         {
-
-            if (!GlobalController.Instance.sceneList.Contains(SceneManager.GetActiveScene().buildIndex))
+            //If user coming for first time and didn't go church 
+            if (!GlobalController.isScnListContains(GlobalController.Scenes.KovalevHouse)
+                && !GlobalController.isScnListContains(GlobalController.Scenes.Church)
+                )
             {
-                Debug.Log("calling wake up");
+                //Debug.Log("calling wake up");
                 callWakeUp();
                 return;
+            } //If previous 2nd scene is church
+            else if (GlobalController.Instance.sceneList.Count>=2 &&  GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 2] == (int)GlobalController.Scenes.Church)
+            {
+                //Debug.Log("Nose is FOUUUUND!");
+                Timing.RunCoroutine(noseIsFound());
             }
-            Debug.Log("Build index in sceneList");
+           
         }
+    }
+
+    public override void Start()
+    {
+        base.Start();
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
+
+    //These functions are called in scene that Kovalev founds that his nose is lost :/
 
     public void callWakeUp()
     {
@@ -219,4 +233,184 @@ public class KovalevHomeGameController : GameController {
 
     }
 
+    //The functions are called in scene that officer brings kovalev nose to home.
+
+    IEnumerator<float> noseIsFound()
+    {
+        //Wait for one frame to initilizing
+        yield return 0;
+
+        updateCharacterVariables();
+
+        //Stop player
+        pcc.StopToWalk();
+
+        //Enable hand mirror
+        handMirror.SetActive(true);
+
+        //Make kovalev sit to chair
+        WalkLookAnim wla = armChair.GetComponent<WalkLookAnim>();
+        wla.lockSit = true;
+        Timing.RunCoroutine(wla._sit(true));
+
+        sc.callSubtitleWithIndex(4);
+        while (getSubt().text != "") yield return 0;
+
+        //Wait for the player activate hand mirror
+        while (!handMirrorBig.activeSelf) yield return 0;
+
+        yield return Timing.WaitForSeconds(5f);
+
+        //Deactive big mirror
+        handMirrorBig.SetActive(false);
+
+        sc.callSubtitleWithIndex(5);
+        while (getSubt().text != "") yield return 0;
+
+        //Player get up
+        wla.getUp();
+
+        WalkLookAnim tcWLA = tableChair.GetComponent<WalkLookAnim>();
+
+        //Wait kovalet for sit 
+        while (!tcWLA.isSitting()) yield return 0;
+
+        letterToSend.SetActive(true);
+
+
+        yield break;
+    }
+
+    public void finishedWriting()
+    {
+        Timing.RunCoroutine(_finishedWriting());
+    }
+
+    IEnumerator<float> _finishedWriting()
+    {
+        Paper.SetActive(true);
+
+        letterToSend.SetActive(false);
+
+        sc.callSubtitleWithIndex(6);
+        while (getSubt().text != "") yield return 0;
+
+        yield return Timing.WaitForSeconds(3f);
+
+        IvanAlt.enabled = transform;        
+        Ivan.transform.tag = "ActiveObject";
+        
+
+        //call ivan
+        Ivan.SetActive(true);
+        //Ivan position is back of chair
+        IvanAgent.SetDestination(tableChair.transform.position + Vector3.right * 5);
+
+        sc.callSubtitleWithIndex(7);
+        while (getSubt().text != "") yield return 0;
+
+        WalkLookAnim tcWLA = tableChair.GetComponent<WalkLookAnim>();
+        tcWLA.getUp();
+
+        yield break;
+    }
+
+    public void giveLetterToIvan()
+    {
+        Timing.RunCoroutine(_giveLetterToIvan());
+    }
+
+    IEnumerator<float> _giveLetterToIvan()
+    {
+        Paper.SetActive(false);
+
+        //Check is in right point in story
+        if (!GlobalController.isScnListContains(GlobalController.Scenes.Church)) yield break;
+
+        sc.callSubtitleWithIndex(8);
+        while (getSubt().text != "") yield return 0;
+
+
+        IvanAlt.enabled = false;
+
+        IvanAgent.SetDestination(Door.transform.position);
+
+        handlerHolder =  Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        Ivan.SetActive(false);
+
+        blackScreen.script.fadeOut();
+
+        yield return Timing.WaitForSeconds(3f);
+
+        //Pace while wating ivan
+        handlerHolder= Timing.RunCoroutine(Vckrs._pace(player, player.transform.position, player.transform.position - Vector3.forward * 5));
+
+        blackScreen.script.fadeIn();
+
+        yield return Timing.WaitForSeconds(5f);
+
+
+        Ivan.SetActive(true);
+        IvanAgent.SetDestination(Vector3.Lerp(Ivan.transform.position, player.transform.position, 0.7f));
+
+        Timing.KillCoroutines(handlerHolder);
+
+        sc.callSubtitleWithIndex(9);
+
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        while (subtitle.text != "") yield return 0;
+
+        letterRecieved.SetActive(true);
+
+        
+    }
+
+    public void finishedRecievedLetter()
+    {
+        Timing.RunCoroutine(_finishedRecievedLetter());
+    }
+
+    IEnumerator<float> _finishedRecievedLetter()
+    {
+        letterRecieved.SetActive(false);
+
+        //Wait for some time
+        yield return Timing.WaitForSeconds(5f);
+
+        sc.callSubtitleWithIndex(10);
+        while (subtitle.text != "") yield return 0;
+
+        //Door is rang, Ivan goes to door
+        handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(Ivan, Door.transform.position));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        Ivan.SetActive(false);
+
+        yield return Timing.WaitForSeconds(3f);
+
+        Ivan.SetActive(true);
+
+        sc.callSubtitleWithIndex(11);
+        while (subtitle.text != "") yield return 0;
+
+        //Police comes in 
+        police.SetActive(true);
+
+        handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(police, player.transform.position+Vector3.forward*3));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        sc.callSubtitleWithIndex(12);
+        while (subtitle.text != "") yield return 0;
+
+        handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(police, Door.transform.position ));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        police.SetActive(false);
+
+        yield break;
+    }
 }

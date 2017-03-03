@@ -30,8 +30,7 @@ abstract public class GameController : MonoBehaviour {
 
         updateCharacterVariables();
 
-        subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
-        narSubtitle = SubtitleFade.subtitles["NarratorSubtitle"];
+        assignSubtitles();
         sc = GetComponent<SubtitleCaller>();
 
 
@@ -45,6 +44,24 @@ abstract public class GameController : MonoBehaviour {
         //    }
         //}
 
+    }
+
+    public void assignSubtitles()
+    {
+        subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
+        narSubtitle = SubtitleFade.subtitles["NarratorSubtitle"];
+    }
+
+    protected Text getSubt()
+    {
+        if (subtitle == null) assignSubtitles();
+        return subtitle;
+    }
+
+    protected Text getNarSubt()
+    {
+        if (narSubtitle == null) assignSubtitles();
+        return narSubtitle;
     }
 
     //Gets new character and upğdates variables tıo that character object

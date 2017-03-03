@@ -47,6 +47,19 @@ public class Vckrs : MonoBehaviour
         yield break;
     }
 
+    public static IEnumerator<float> _setDestination(GameObject obj, Vector3 pos)
+    {
+        NavMeshAgent agent = obj.GetComponent<NavMeshAgent>();
+        if (!agent) yield break;
+
+        agent.SetDestination(pos);
+        IEnumerator<float> handler = Timing.RunCoroutine(waitUntilStop(obj));
+        yield return Timing.WaitUntilDone(handler);
+
+        yield break;
+
+    }
+
 
 
 
