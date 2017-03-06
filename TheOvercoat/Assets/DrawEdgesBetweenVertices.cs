@@ -30,7 +30,7 @@ public class DrawEdgesBetweenVertices : MonoBehaviour {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
 
             if (Physics.Raycast(ray, out hit))

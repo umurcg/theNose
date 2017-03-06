@@ -51,6 +51,10 @@ public class CityGameController : MonoBehaviour {
                                               
                         break;
 
+                    case (int)GlobalController.Scenes.Doctor:
+                        comingFromDoctor();
+                        break;
+                    
                     case (int)GlobalController.Scenes.Church:
 
                         comingFromChurch();
@@ -192,6 +196,12 @@ public class CityGameController : MonoBehaviour {
         {
            CharGameController.movePlayer(churchBirdPosition.transform.position);
         }
+    }
+
+    void comingFromDoctor()
+    {
+        berberShop.transform.GetChild(0).gameObject.GetComponent<EnterSceneGameController>().enabled = false;
+        berberShop.transform.GetChild(1).gameObject.GetComponent<OutroGameController>().enabled = true;
     }
 
     void singerCafeScene()

@@ -12,6 +12,7 @@ public class CharGameController : MonoBehaviour {
     public static CharGameController cgc;
     public static string rigthHand = "Armature/Torso/Chest/Arm_R/Hand_R/HandPosition";
     public static string leftHand = "Armature/Torso/Chest/Arm_L/Hand_L/HandPosition";
+    public static string nose = "Armature/Torso/Chest/Neck/Head/NosePosition";
     public enum hand { LeftHand,RightHand};
 
     //For matching doors
@@ -271,6 +272,27 @@ public class CharGameController : MonoBehaviour {
     public static void movePlayer(Vector3 pos)
     {
         getOwner().transform.position = pos;
+    }
+
+    public static GameObject getNosePos()
+    {
+
+        GameObject owner = getActiveCharacter();
+        if (owner == null)
+        {
+            Debug.Log("No player");
+            return null;
+        }
+
+
+        Transform handObject = owner.transform.Find(nose);
+        if (handObject == null)
+        {
+            Debug.Log("Couldn't find hand. The path name is " + nose);
+            return null;
+        }
+
+        return handObject.gameObject;
     }
 
     //Sun should have night and day cycle so we found it with that script

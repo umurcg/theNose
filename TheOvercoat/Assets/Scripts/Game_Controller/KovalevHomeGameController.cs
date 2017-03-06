@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class KovalevHomeGameController : GameController {
     public GameObject CharSubt, Door, Ivan, Dolap, Paper, HandR, StartingPoint;
 
-    public GameObject armChair, handMirror,  handMirrorBig, letterToSend, letterRecieved ,tableChair, police;
+    public GameObject armChair, handMirror,  handMirrorBig, letterToSend, letterRecieved ,tableChair, police, headAttachNose;
    
 
     Text charText;
@@ -48,6 +48,7 @@ public class KovalevHomeGameController : GameController {
             {
                 //Debug.Log("Nose is FOUUUUND!");
                 Timing.RunCoroutine(noseIsFound());
+                //Timing.RunCoroutine(_finishedRecievedLetter());
             }
            
         }
@@ -214,6 +215,8 @@ public class KovalevHomeGameController : GameController {
 
     public void KovalevPickedPaper()
     {
+        if (GlobalController.isScnListContains(GlobalController.Scenes.Church)) return;
+
         Vckrs.DisableAnotherObject(Ivan);
         Ivan.GetComponent<BasicCharAnimations>().enabled = true;
         IvanAlt.enabled = true;
@@ -256,6 +259,10 @@ public class KovalevHomeGameController : GameController {
         sc.callSubtitleWithIndex(4);
         while (getSubt().text != "") yield return 0;
 
+        //TODO Slap game
+
+        
+
         //Wait for the player activate hand mirror
         while (!handMirrorBig.activeSelf) yield return 0;
 
@@ -266,6 +273,9 @@ public class KovalevHomeGameController : GameController {
 
         sc.callSubtitleWithIndex(5);
         while (getSubt().text != "") yield return 0;
+
+        sc.callSubtitleWithIndexTime(0);
+        while (getNarSubt().text != "") yield return 0;
 
         //Player get up
         wla.getUp();
@@ -292,7 +302,7 @@ public class KovalevHomeGameController : GameController {
 
         letterToSend.SetActive(false);
 
-        sc.callSubtitleWithIndex(6);
+        sc.callSubtitleWithIndex(7);
         while (getSubt().text != "") yield return 0;
 
         yield return Timing.WaitForSeconds(3f);
@@ -306,7 +316,7 @@ public class KovalevHomeGameController : GameController {
         //Ivan position is back of chair
         IvanAgent.SetDestination(tableChair.transform.position + Vector3.right * 5);
 
-        sc.callSubtitleWithIndex(7);
+        sc.callSubtitleWithIndex(8);
         while (getSubt().text != "") yield return 0;
 
         WalkLookAnim tcWLA = tableChair.GetComponent<WalkLookAnim>();
@@ -327,7 +337,7 @@ public class KovalevHomeGameController : GameController {
         //Check is in right point in story
         if (!GlobalController.isScnListContains(GlobalController.Scenes.Church)) yield break;
 
-        sc.callSubtitleWithIndex(8);
+        sc.callSubtitleWithIndex(9);
         while (getSubt().text != "") yield return 0;
 
 
@@ -342,22 +352,23 @@ public class KovalevHomeGameController : GameController {
 
         blackScreen.script.fadeOut();
 
-        yield return Timing.WaitForSeconds(3f);
+        yield return Timing.WaitForSeconds(1.5f);
 
         //Pace while wating ivan
         handlerHolder= Timing.RunCoroutine(Vckrs._pace(player, player.transform.position, player.transform.position - Vector3.forward * 5));
 
+        yield return Timing.WaitForSeconds(1.5f);
+
         blackScreen.script.fadeIn();
 
         yield return Timing.WaitForSeconds(5f);
-
-
+        
         Ivan.SetActive(true);
         IvanAgent.SetDestination(Vector3.Lerp(Ivan.transform.position, player.transform.position, 0.7f));
 
         Timing.KillCoroutines(handlerHolder);
 
-        sc.callSubtitleWithIndex(9);
+        sc.callSubtitleWithIndex(10);
 
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan));
         yield return Timing.WaitUntilDone(handlerHolder);
@@ -379,10 +390,12 @@ public class KovalevHomeGameController : GameController {
         letterRecieved.SetActive(false);
 
         //Wait for some time
-        yield return Timing.WaitForSeconds(5f);
+        yield return Timing.WaitForSeconds(3f);
 
-        sc.callSubtitleWithIndex(10);
+        sc.callSubtitleWithIndex(11);
         while (subtitle.text != "") yield return 0;
+
+        //Rang door
 
         //Door is rang, Ivan goes to door
         handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(Ivan, Door.transform.position));
@@ -394,22 +407,59 @@ public class KovalevHomeGameController : GameController {
 
         Ivan.SetActive(true);
 
-        sc.callSubtitleWithIndex(11);
+        sc.callSubtitleWithIndex(12);
         while (subtitle.text != "") yield return 0;
 
         //Police comes in 
         police.SetActive(true);
+        Ivan.SetActive(false);
 
         handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(police, player.transform.position+Vector3.forward*3));
         yield return Timing.WaitUntilDone(handlerHolder);
 
-        sc.callSubtitleWithIndex(12);
+        sc.callSubtitleWithIndex(13);
         while (subtitle.text != "") yield return 0;
 
         handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(police, Door.transform.position ));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         police.SetActive(false);
+
+        sc.callSubtitleWithIndex(14);
+        while (subtitle.text != "") yield return 0;
+
+        sc.callSubtitleWithIndexTime(1);
+        while (narSubtitle.text != "") yield return 0;
+
+        sc.callSubtitleWithIndex(16);
+        while (subtitle.text != "") yield return 0;
+
+        headAttachNose.SetActive(true);
+
+        yield break;
+    }
+
+    public void finishAttachGame()
+    {
+        Timing.RunCoroutine(_finishAttachGame());
+    }
+
+    IEnumerator<float> _finishAttachGame()
+    {
+        headAttachNose.SetActive(false);
+        
+        sc.callSubtitleWithIndex(17);
+        while (subtitle.text != "") yield return 0;
+
+        Ivan.SetActive(true);
+        IvanAgent.SetDestination(Vector3.Lerp(Ivan.transform.position, player.transform.position, 0.7f));
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        sc.callSubtitleWithIndex(18);
+        while (subtitle.text != "") yield return 0;
+
+        Door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
 
         yield break;
     }

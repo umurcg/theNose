@@ -36,7 +36,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 1345661557}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -101,16 +101,198 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000011485099676, guid: dd651778041846143b79e2a904c465fc,
     type: 2}
   m_PrefabInternal: {fileID: 1167304108}
---- !u!1 &60871717 stripped
+--- !u!1001 &53371769
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 868026964}
+    m_Modifications:
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.15128808
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.46677017
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0038776353
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0000006258487
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000004023313
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071064
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071073
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.06723588
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.06723589
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.06723589
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+  m_IsPrefabParent: 0
+--- !u!4 &53371770 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+  m_PrefabInternal: {fileID: 53371769}
+--- !u!1 &53371771 stripped
 GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: f388d0482107b3849ba1b09c8110a090, type: 3}
+  m_PrefabInternal: {fileID: 53371769}
+--- !u!54 &53371775
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53371771}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1 &60871717
+GameObject:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 1000013586629258, guid: 650b1addce4b32545988d133c2557773,
     type: 2}
-  m_PrefabInternal: {fileID: 348992343}
---- !u!224 &60871718 stripped
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 60871718}
+  - 222: {fileID: 60871721}
+  - 114: {fileID: 60871720}
+  - 114: {fileID: 60871719}
+  m_Layer: 0
+  m_Name: LetterRecieved
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &60871718
 RectTransform:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
     type: 2}
-  m_PrefabInternal: {fileID: 348992343}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 60871717}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.77, y: 0.77, z: 0.77}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 2145869329}
+  m_Father: {fileID: 552039690}
+  m_RootOrder: 5
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 419, y: 550}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &60871719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011791541936, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 60871717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336335800b6852b4e88073643237d3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FillType: 1
+  numberOfLines: 10
+  lineObject: {fileID: 734304133}
+  linePivotY: 0
+  linePivotX: 0
+  skipLines: 
+  fillSpeed: 5
+  messageReciever: {fileID: 964300599}
+  message: finishedRecievedLetter
+--- !u!114 &60871720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010422123706, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 60871717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &60871721
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222000010386788776, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 60871717}
 --- !u!1 &109599446
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +477,171 @@ MonoBehaviour:
   sitAtStart: 0
   lockSit: 0
   animParameter: 1
+--- !u!1 &149808243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000013842655060, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 149808244}
+  - 33: {fileID: 149808250}
+  - 23: {fileID: 149808249}
+  - 95: {fileID: 149808248}
+  - 135: {fileID: 149808247}
+  - 54: {fileID: 149808246}
+  - 59: {fileID: 149808245}
+  - 114: {fileID: 149808251}
+  m_Layer: 0
+  m_Name: KovalevHeadSlap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &149808244
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000010168090892, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149808243}
+  m_LocalRotation: {x: -0.7071068, y: -0.000000029802319, z: -0.0000000074505797,
+    w: 0.70710677}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 371.5576, y: 371.55768, z: 371.55762}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 419290022}
+  m_RootOrder: 1
+--- !u!59 &149808245
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149808243}
+  m_ConnectedBody: {fileID: 1636743453}
+  m_Anchor: {x: 0, y: -0.22, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: -42.151764, y: 30.303604, z: 33.851757}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0.2
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+--- !u!54 &149808246
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149808243}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &149808247
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 135000011177266274, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149808243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Center: {x: 3.0659173e-12, y: -0.0008229986, z: -0.01942049}
+--- !u!95 &149808248
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 95000010813936580, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149808243}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 08c2e849d61385344a0a1dde77c34c97, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!23 &149808249
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 23000013851335148, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149808243}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &149808250
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 33000011584743706, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149808243}
+  m_Mesh: {fileID: 4300000, guid: 08c2e849d61385344a0a1dde77c34c97, type: 3}
+--- !u!114 &149808251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149808243}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0595b1117ca34e34b83c3cfe70b1e706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &165141853
 Prefab:
   m_ObjectHideFlags: 0
@@ -369,6 +716,95 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de97a6330a44d5e439c8c14ceaa3a6f6, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &204634122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 204634123}
+  - 222: {fileID: 204634125}
+  - 114: {fileID: 204634124}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &204634123
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204634122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1222508900}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 367, y: 499}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &204634124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204634122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Say\u0131n Bayan Aleksandra Grigorievna,   \r\n\n\u015Eu \u015Fa\u015F\u0131rt\u0131c\u0131
+    davran\u0131\u015F\u0131n\u0131za bir anlam veremiyorum do\u011Frusu. B\xF6yle
+    davranmakla elinize bir \u015Fey ge\xE7ece\u011Fini ve  beni   k\u0131z\u0131n\u0131zla
+    evlenmek zorunda b\u0131rakaca\u011F\u0131n\u0131z\u0131 san\u0131yorsan\u0131z
+    aldan\u0131yorsunuz. Ba\u015F dalavereci rol\xFCn\xFC oynad\u0131\u011F\u0131n\u0131z
+    \ burun  oyununun \u015Fu anda bizce t\xFCm\xFCyle ayd\u0131nlanm\u0131\u015F
+    bulundu\u011Fundan emin olabilirsiniz. Hi\xE7 beklenmedik bir  zamanda  yerinden
+    ayr\u0131l\u0131\u015F\u0131, ka\xE7\u0131\u015F\u0131, k\u0131l\u0131k de\u011Fi\u015Ftirip
+    bir memur kimli\u011Fine b\xFCr\xFCnmesi ve sonunda, gene kendi g\xF6r\xFCn\xFC\u015F\xFCyle
+    ortaya \xE7\u0131kmas\u0131, sizin ya da paran\u0131zla tutulmu\u015F baz\u0131
+    kimselerin, cidden \xE7ok namusluca yapt\u0131klar\u0131 sihirbazl\u0131klardan
+    \ ba\u015Fka bir \u015Fey de\u011Fildir. S\xF6z konusu burun, bug\xFCn ak\u015Fama
+    dek yerine yerle\u015Ftirilmezse, yasal yollara  ba\u015Fvurmak  zorunda kalaca\u011F\u0131m\u0131
+    \xF6nceden haber vermeyi kendime bir g\xF6rev sayd\u0131m.   eri gelmi\u015Fken,
+    sayg\u0131lar\u0131m\u0131 sunmakla onur duyar\u0131m.   \r\n\nHizmetk\xE2r\u0131n\u0131z,
+    \ \r\n\nPlaton Kovalev\r\n"
+--- !u!222 &204634125
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204634122}
 --- !u!1 &224362772 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: a83c94a1c23c4654cb495d06c945dc40, type: 3}
@@ -718,129 +1154,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52139b6fe570f7c448b904668bbafce1, type: 3}
   m_IsPrefabParent: 0
---- !u!1001 &348992343
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 552039690}
-    m_Modifications:
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 419
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 550
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013586629258, guid: 650b1addce4b32545988d133c2557773, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011791541936, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: messageReciever
-      value: 
-      objectReference: {fileID: 964300599}
-    - target: {fileID: 114000011791541936, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: message
-      value: finishedRecievedLetter
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013586629258, guid: 650b1addce4b32545988d133c2557773, type: 2}
-      propertyPath: m_Name
-      value: LetterRecieved
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011791541936, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: FillType
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 650b1addce4b32545988d133c2557773, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &374072899
 Prefab:
   m_ObjectHideFlags: 0
@@ -999,6 +1312,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 667974590}
+  - {fileID: 149808244}
+  - {fileID: 1636743452}
+  - {fileID: 868026964}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
@@ -1076,11 +1392,85 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15f50c77fb4bcd846918ebe0554be7f0, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &459631775 stripped
+--- !u!1 &459631775
 GameObject:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 1000013586629258, guid: 650b1addce4b32545988d133c2557773,
     type: 2}
-  m_PrefabInternal: {fileID: 1222508899}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1222508900}
+  - 222: {fileID: 459631778}
+  - 114: {fileID: 459631777}
+  - 114: {fileID: 459631776}
+  m_Layer: 0
+  m_Name: LetterToSend
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &459631776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011791541936, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 459631775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336335800b6852b4e88073643237d3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FillType: 0
+  numberOfLines: 18
+  lineObject: {fileID: 734304133}
+  linePivotY: -150
+  linePivotX: 0
+  skipLines: 010000001100000013000000
+  fillSpeed: 5
+  messageReciever: {fileID: 964300599}
+  message: finishedWriting
+--- !u!114 &459631777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010422123706, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 459631775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &459631778
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222000010386788776, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 459631775}
+--- !u!1 &491096613 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 147456, guid: 7a4e7dd9c01e8c04cb575213c9699112, type: 2}
+  m_PrefabInternal: {fileID: 491230048}
 --- !u!1001 &491230048
 Prefab:
   m_ObjectHideFlags: 0
@@ -1364,10 +1754,11 @@ RectTransform:
   - {fileID: 491230049}
   - {fileID: 1605323572}
   - {fileID: 792240786}
+  - {fileID: 734304134}
   - {fileID: 1222508900}
   - {fileID: 60871718}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1907,6 +2298,78 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &734304133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000010242938320, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 734304134}
+  - 222: {fileID: 734304136}
+  - 114: {fileID: 734304135}
+  m_Layer: 0
+  m_Name: LineMaskPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &734304134
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 224000011561017830, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734304133}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.77, y: 0.77, z: 0.77}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 552039690}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 204, y: 87.877975}
+  m_SizeDelta: {x: 413, y: 16.099998}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &734304135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000012430456262, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734304133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 1a9b3c0b873d4674097734b13814311f, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 1
+--- !u!222 &734304136
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222000014052347454, guid: 650b1addce4b32545988d133c2557773,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734304133}
 --- !u!1001 &780117038
 Prefab:
   m_ObjectHideFlags: 0
@@ -2004,6 +2467,126 @@ Transform:
   - {fileID: 1516422179}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &868026963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000013842655060, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 868026964}
+  - 33: {fileID: 868026969}
+  - 23: {fileID: 868026968}
+  - 95: {fileID: 868026967}
+  - 135: {fileID: 868026966}
+  - 114: {fileID: 868026965}
+  m_Layer: 0
+  m_Name: KovalevHeadNoseAttach
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &868026964
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000010168090892, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868026963}
+  m_LocalRotation: {x: -0.7071068, y: -0.000000029802322, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 371.55765, y: 371.55768, z: 371.55774}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 53371770}
+  m_Father: {fileID: 419290022}
+  m_RootOrder: 3
+--- !u!114 &868026965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868026963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72560d24442980a4c8bbc1bd1f639a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nose: {fileID: 53371771}
+  numberOfAttachTrial: 3
+  messageReciever: {fileID: 964300599}
+  message: finishAttachGame
+--- !u!135 &868026966
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 135000011177266274, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868026963}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.11
+  m_Center: {x: 3.0659173e-12, y: 0.11, z: -0.01942049}
+--- !u!95 &868026967
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 95000010813936580, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868026963}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 08c2e849d61385344a0a1dde77c34c97, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!23 &868026968
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 23000013851335148, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868026963}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &868026969
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 33000011584743706, guid: 7058b84692a013b4d9bb558f0934fe28,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868026963}
+  m_Mesh: {fileID: 4300000, guid: 08c2e849d61385344a0a1dde77c34c97, type: 3}
 --- !u!4 &959922661 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 52139b6fe570f7c448b904668bbafce1, type: 3}
@@ -2024,6 +2607,7 @@ GameObject:
   - 114: {fileID: 964300608}
   - 114: {fileID: 964300600}
   - 114: {fileID: 964300604}
+  - 114: {fileID: 964300616}
   - 114: {fileID: 964300609}
   - 114: {fileID: 964300610}
   - 114: {fileID: 964300615}
@@ -2031,6 +2615,11 @@ GameObject:
   - 114: {fileID: 964300613}
   - 114: {fileID: 964300612}
   - 114: {fileID: 964300611}
+  - 114: {fileID: 964300619}
+  - 114: {fileID: 964300618}
+  - 114: {fileID: 964300617}
+  - 114: {fileID: 964300620}
+  - 114: {fileID: 964300621}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2050,18 +2639,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleTexts:
-  - "Kovalev: Tanr\u0131m ben ne yapaca\u011F\u0131m? T\xFCm \u015Fehri talan ettim
-    hi\xE7 bir yerde yok!\r"
+  - "Kovalev: Tanr\u0131m, Tanr\u0131m, bunu hak edicek ne yapt\u0131m. \r"
   - "Kovalev: B\xFCy\xFCc\xFC bile bana yard\u0131m edemedi. Zaten ne yapt\u0131ysa
     bana iblis eve nas\u0131l geldi\u011Fimi bile hat\u0131rlam\u0131yorum.\r"
-  - "Kovalev: Ne yapsam bilmiyorum ki? Hay\u0131r \xE7ok da \xE7irkin duruyorum. Aynalara
-    bile bakam\u0131yorum. O deh\u015Fet manzara. O d\xFCzl\xFCk beni mahvediyor!"
-  AllSubtitles: "Kovalev: Tanr\u0131m ben ne yapaca\u011F\u0131m? T\xFCm \u015Fehri
-    talan ettim hi\xE7 bir yerde yok!\r\nKovalev: B\xFCy\xFCc\xFC bile bana yard\u0131m
-    edemedi. Zaten ne yapt\u0131ysa bana iblis eve nas\u0131l geldi\u011Fimi bile
-    hat\u0131rlam\u0131yorum.\r\nKovalev: Ne yapsam bilmiyorum ki? Hay\u0131r \xE7ok
-    da \xE7irkin duruyorum. Aynalara bile bakam\u0131yorum. O deh\u015Fet manzara.
-    O d\xFCzl\xFCk beni mahvediyor!"
+  - "Kovalev: Bir kol veya bacak kaybetseydim bu kadar k\xF6t\xFC olmazd\u0131. Kula\u011F\u0131m\u0131
+    kaybetmi\u015F olsayd\u0131m bile ho\u015F olmam\u0131na ra\u011Fmen d\xFCnyan\u0131n
+    sonu olmazd\u0131.\r"
+  - "Kovalev: Ama burunsuz bir adam? \r"
+  - "Kovalev: En az\u0131ndan sava\u015Fta veya duelloda burnunu kaybetmi\u015F bir
+    adam olsayd\u0131m s\xF6yliyecek bir \u015Feyim olurdu.\r"
+  - "Kovalev: Ancak yok yere kaybetmek ve \xF6zellikle yerine d\xFCmd\xFCz pankek
+    gibi yumu\u015Fak bir deri olmas\u0131!\r"
+  - "Kovalev: Hay\u0131r imkans\u0131z. B\xF6yle olamaz, r\xFCyada olmal\u0131y\u0131m.
+    Belki de sakal\u0131ma masaj yapt\u0131\u011F\u0131m vodkan\u0131n biraz\u0131n\u0131
+    su diye i\xE7mi\u015Fimdir. "
+  AllSubtitles: "Kovalev: Tanr\u0131m, Tanr\u0131m, bunu hak edicek ne yapt\u0131m.
+    \r\nKovalev: B\xFCy\xFCc\xFC bile bana yard\u0131m edemedi. Zaten ne yapt\u0131ysa
+    bana iblis eve nas\u0131l geldi\u011Fimi bile hat\u0131rlam\u0131yorum.\r\nKovalev:
+    Bir kol veya bacak kaybetseydim bu kadar k\xF6t\xFC olmazd\u0131. Kula\u011F\u0131m\u0131
+    kaybetmi\u015F olsayd\u0131m bile ho\u015F olmam\u0131na ra\u011Fmen d\xFCnyan\u0131n
+    sonu olmazd\u0131.\r\nKovalev: Ama burunsuz bir adam? \r\nKovalev: En az\u0131ndan
+    sava\u015Fta veya duelloda burnunu kaybetmi\u015F bir adam olsayd\u0131m s\xF6yliyecek
+    bir \u015Feyim olurdu.\r\nKovalev: Ancak yok yere kaybetmek ve \xF6zellikle yerine
+    d\xFCmd\xFCz pankek gibi yumu\u015Fak bir deri olmas\u0131!\r\nKovalev: Hay\u0131r
+    imkans\u0131z. B\xF6yle olamaz, r\xFCyada olmal\u0131y\u0131m. Belki de sakal\u0131ma
+    masaj yapt\u0131\u011F\u0131m vodkan\u0131n biraz\u0131n\u0131 su diye i\xE7mi\u015Fimdir. "
   subtitle: {fileID: 2055941764}
   ifDesroyItself: 0
   releaseAfterSub: 0
@@ -2078,7 +2680,7 @@ Transform:
   m_Children:
   - {fileID: 680808515}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!114 &964300602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2120,19 +2722,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleTexts:
-  - "Kovalev: \u0130\u011Freniyorum kendimden. \r"
-  - "Kovalev: Hala nas\u0131l olmu\u015F olabilir inanm\u0131yorum. Kesin bayan bilmem
-    ne b\xFCy\xFC yapt\u0131. Ba\u015Fka bir ihtimal yok.\r"
-  - "Kovalev: Evet, \xE7ok sert bir mektup yazaca\u011F\u0131m ona. Ve derhal bu i\u015Fi
-    \xE7\xF6zmesini emredece\u011Fim \xF6b\xFCr t\xFCrl\xFC ilgili makamlara ula\u015Faca\u011F\u0131m\u0131
-    yazaca\u011F\u0131m.\r"
-  - "Kovalev: Evet hemen bunu yapmal\u0131y\u0131m."
-  AllSubtitles: "Kovalev: \u0130\u011Freniyorum kendimden. \r\nKovalev: Hala nas\u0131l
-    olmu\u015F olabilir inanm\u0131yorum. Kesin bayan bilmem ne b\xFCy\xFC yapt\u0131.
-    Ba\u015Fka bir ihtimal yok.\r\nKovalev: Evet, \xE7ok sert bir mektup yazaca\u011F\u0131m
-    ona. Ve derhal bu i\u015Fi \xE7\xF6zmesini emredece\u011Fim \xF6b\xFCr t\xFCrl\xFC
-    ilgili makamlara ula\u015Faca\u011F\u0131m\u0131 yazaca\u011F\u0131m.\r\nKovalev:
-    Evet hemen bunu yapmal\u0131y\u0131m."
+  - "Kovalev: Hay\u0131r hala bu sa\xE7ma bo\u015Fluk."
+  - "Kovalev: Allah\u0131m ben ne yapaca\u011F\u0131m?"
+  AllSubtitles: "Kovalev: Hay\u0131r hala bu sa\xE7ma bo\u015Fluk.\nKovalev: Allah\u0131m
+    ben ne yapaca\u011F\u0131m?"
   subtitle: {fileID: 2055941764}
   ifDesroyItself: 0
   releaseAfterSub: 0
@@ -2225,6 +2818,7 @@ MonoBehaviour:
   letterRecieved: {fileID: 60871717}
   tableChair: {fileID: 135810623}
   police: {fileID: 1599776378}
+  headAttachNose: {fileID: 868026963}
 --- !u!114 &964300609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2273,11 +2867,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleTexts:
-  - subtt
-  - subttttt
-  AllSubtitles: 'subtt
-
-    subttttt'
+  - "Polis: Merhaba, burnunu kaybeden beyfendi siz misiniz?\r"
+  - "Kovalev: Evet benim.\r"
+  - "Polis: Burnunuz bulundu.\r"
+  - "Kovalev: Ne dediniz! Bulundu mu?\r"
+  - "kovalev: Nerede nas\u0131l bulundu?\r"
+  - "Polis: Tuhaf bir \u015Fekilde. Onu tam, bir araban\u0131n arkas\u0131na saklanm\u0131\u015F,
+    Riga'ya ka\xE7am \xFCzereyken yakalad\u0131k. En ba\u015Fta onu bir beyfendi sanm\u0131\u015Ft\u0131m.
+    Neyse ki g\xF6zl\xFCklerim g\xF6z\xFCmdeydi. Dikkatli bak\u0131nca ge\xE7rekten
+    bir burun oldu\u011Funu farkettim.\r"
+  - "Polis: Ben miyobumdur efendim. \xD6n\xFCmde durursan\u0131z sizin ancak y\xFCz\xFCn\xFCz
+    oldu\u011Funu g\xF6r\xFCr\xFCm ancak ne burnunuzu, sakalan\u0131z\u0131 veya herangi
+    bir detay\u0131 se\xE7emem. Kaynanam da bu sorundan muzdariptir.\r"
+  - "Kovalev: Nerede. Hemen onu almaya gidece\u011Fim.\r"
+  - "Polis: Heycanlanman\u0131za gerek yok efendim. Bunu ne kadar isted\u011Fini biliyordum
+    o nedenle yan\u0131mda getirdim. \xC7ok garip. T\xFCm olay Voznesensky Caddesinde
+    berberlik yapan bir haydutun y\xFCz\xFCnden olmu\u015F. \u015Eimdi kendisi nezarethanede
+    yat\u0131yor. \r"
+  - "Polis: Uzun s\xFCredir sarho\u015Flu\u011Fu y\xFCz\xFCnden g\xF6z\xFCm \xFCst\xFCndeydi.
+    H\u0131rs\u0131zl\u0131\u011F\u0131ndan \u015F\xFCphe ediypordum. \xDC\xE7 g\xFCn
+    \xF6nce de bir d\xFCkkandan bir d\xFCzine kadar d\xFC\u011Fme \xE7alm\u0131\u015F.
+    Ama merak etmeyin burnunuz sa\u011Flamd\u0131r. Buyurun.\r"
+  - "Kovalev: Evet burnum bu. \u0130\u015Ete burada! \r"
+  - "Kovalev: Buyrun kal\u0131n efendim size bir \xE7ay ikram etmeliyim.\r"
+  - "Polis: \u0130sterdim ancak nezarethaneye geri d\xF6nemem gerek. G\u0131da \xFCcreti
+    u\xE7tu. Kaynanam benle kal\u0131yor ve t\xFCm di\u011Fer \xE7ocuklar, en b\xFCy\xFC\u011F\xFC
+    gelcek vaad ediyor gibi g\xF6z\xFCk\xFCyor. Ancak onu okula g\xF6ndericek paray\u0131
+    bulam\u0131yoruz bir t\xFCrl\xFC."
+  AllSubtitles: "Polis: Merhaba, burnunu kaybeden beyfendi siz misiniz?\r\nKovalev:
+    Evet benim.\r\nPolis: Burnunuz bulundu.\r\nKovalev: Ne dediniz! Bulundu mu?\r\nkovalev:
+    Nerede nas\u0131l bulundu?\r\nPolis: Tuhaf bir \u015Fekilde. Onu tam, bir araban\u0131n
+    arkas\u0131na saklanm\u0131\u015F, Riga'ya ka\xE7am \xFCzereyken yakalad\u0131k.
+    En ba\u015Fta onu bir beyfendi sanm\u0131\u015Ft\u0131m. Neyse ki g\xF6zl\xFCklerim
+    g\xF6z\xFCmdeydi. Dikkatli bak\u0131nca ge\xE7rekten bir burun oldu\u011Funu farkettim.\r\nPolis:
+    Ben miyobumdur efendim. \xD6n\xFCmde durursan\u0131z sizin ancak y\xFCz\xFCn\xFCz
+    oldu\u011Funu g\xF6r\xFCr\xFCm ancak ne burnunuzu, sakalan\u0131z\u0131 veya herangi
+    bir detay\u0131 se\xE7emem. Kaynanam da bu sorundan muzdariptir.\r\nKovalev: Nerede.
+    Hemen onu almaya gidece\u011Fim.\r\nPolis: Heycanlanman\u0131za gerek yok efendim.
+    Bunu ne kadar isted\u011Fini biliyordum o nedenle yan\u0131mda getirdim. \xC7ok
+    garip. T\xFCm olay Voznesensky Caddesinde berberlik yapan bir haydutun y\xFCz\xFCnden
+    olmu\u015F. \u015Eimdi kendisi nezarethanede yat\u0131yor. \r\nPolis: Uzun s\xFCredir
+    sarho\u015Flu\u011Fu y\xFCz\xFCnden g\xF6z\xFCm \xFCst\xFCndeydi. H\u0131rs\u0131zl\u0131\u011F\u0131ndan
+    \u015F\xFCphe ediypordum. \xDC\xE7 g\xFCn \xF6nce de bir d\xFCkkandan bir d\xFCzine
+    kadar d\xFC\u011Fme \xE7alm\u0131\u015F. Ama merak etmeyin burnunuz sa\u011Flamd\u0131r.
+    Buyurun.\r\nKovalev: Evet burnum bu. \u0130\u015Ete burada! \r\nKovalev: Buyrun
+    kal\u0131n efendim size bir \xE7ay ikram etmeliyim.\r\nPolis: \u0130sterdim ancak
+    nezarethaneye geri d\xF6nemem gerek. G\u0131da \xFCcreti u\xE7tu. Kaynanam benle
+    kal\u0131yor ve t\xFCm di\u011Fer \xE7ocuklar, en b\xFCy\xFC\u011F\xFC gelcek
+    vaad ediyor gibi g\xF6z\xFCk\xFCyor. Ancak onu okula g\xF6ndericek paray\u0131
+    bulam\u0131yoruz bir t\xFCrl\xFC."
   subtitle: {fileID: 2055941764}
   ifDesroyItself: 0
   releaseAfterSub: 0
@@ -2293,11 +2931,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleTexts:
-  - subtt
-  - subttttt
-  AllSubtitles: 'subtt
-
-    subttttt'
+  - "Ivan: Efendim bir polis geldi. Sizi soruyor. \r"
+  - "Kovalev: Hemen i\xE7eri al. Belki burunumla alakal\u0131d\u0131r.\r"
+  - 'Ivan: Peki efendim.'
+  AllSubtitles: "Ivan: Efendim bir polis geldi. Sizi soruyor. \r\nKovalev: Hemen i\xE7eri
+    al. Belki burunumla alakal\u0131d\u0131r.\r\nIvan: Peki efendim."
   subtitle: {fileID: 2055941764}
   ifDesroyItself: 0
   releaseAfterSub: 0
@@ -2313,11 +2951,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleTexts:
-  - subtt
-  - subttttt
-  AllSubtitles: 'subtt
-
-    subttttt'
+  - "Kovalev: Aman tanr\u0131m. Yok Bayan Grigorievna yapm\u0131\u015F olamaz bunu.
+    \r"
+  - "Kovalev: Ancak nas\u0131l olur ki bu? Kim yapt\u0131 o zaman bana bu kara b\xFCy\xFCy\xFC?\r"
+  - "Kovalev: Kimin benle al\u0131p veremedi\u011Fi var? \r"
+  - "Kovalev: Tanr\u0131m l\xFCtfen yeter art\u0131k. Kurtar beni bu lanetten."
+  AllSubtitles: "Kovalev: Aman tanr\u0131m. Yok Bayan Grigorievna yapm\u0131\u015F
+    olamaz bunu. \r\nKovalev: Ancak nas\u0131l olur ki bu? Kim yapt\u0131 o zaman
+    bana bu kara b\xFCy\xFCy\xFC?\r\nKovalev: Kimin benle al\u0131p veremedi\u011Fi
+    var? \r\nKovalev: Tanr\u0131m l\xFCtfen yeter art\u0131k. Kurtar beni bu lanetten."
   subtitle: {fileID: 2055941764}
   ifDesroyItself: 0
   releaseAfterSub: 0
@@ -2333,11 +2975,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleTexts:
-  - subtt
-  - subttttt
-  AllSubtitles: 'subtt
-
-    subttttt'
+  - "Ivan: Efendim yan\u0131t\u0131n\u0131z\u0131 getirdim. Ancak s\xF6yleyeyim bayan
+    \xE7ok sinirli g\xF6z\xFCk\xFCyordu. \u0130\xE7eriden epey s\xF6ylenme sesleri
+    duydum.\r"
+  - "Kovalev: Su\xE7unun fark\u0131na var\u0131ld\u0131\u011F\u0131n\u0131 \xF6\u011Frenince
+    panik olmu\u015F i\u015Fte. \r"
+  - "Kovalev: Bu hayatta \u015Feytanla anla\u015Fma yaparsan b\xF6yle olur."
+  AllSubtitles: "Ivan: Efendim yan\u0131t\u0131n\u0131z\u0131 getirdim. Ancak s\xF6yleyeyim
+    bayan \xE7ok sinirli g\xF6z\xFCk\xFCyordu. \u0130\xE7eriden epey s\xF6ylenme sesleri
+    duydum.\r\nKovalev: Su\xE7unun fark\u0131na var\u0131ld\u0131\u011F\u0131n\u0131
+    \xF6\u011Frenince panik olmu\u015F i\u015Fte. \r\nKovalev: Bu hayatta \u015Feytanla
+    anla\u015Fma yaparsan b\xF6yle olur."
   subtitle: {fileID: 2055941764}
   ifDesroyItself: 0
   releaseAfterSub: 0
@@ -2353,14 +3001,190 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleTexts:
-  - subtt
-  - subttttt
-  AllSubtitles: 'subtt
-
-    subttttt'
+  - "Kovalev: Bunu hemen Bayan Aleksandra Grigorievna'n\u0131n evine g\xF6t\xFCrmeni
+    istiyorum.\r"
+  - "Kovalev: Ve ondan bir yan\u0131t mektubu al\u0131ncaya kadar orada bekliyece\u011Fini
+    s\xF6yle.\r"
+  - "Kovalev: \xC7ok acil bir durum oldu\u011Funu s\xF6yle.\r"
+  - 'Ivan: Peki efendim. Hemen gidiyorum.'
+  AllSubtitles: "Kovalev: Bunu hemen Bayan Aleksandra Grigorievna'n\u0131n evine g\xF6t\xFCrmeni
+    istiyorum.\r\nKovalev: Ve ondan bir yan\u0131t mektubu al\u0131ncaya kadar orada
+    bekliyece\u011Fini s\xF6yle.\r\nKovalev: \xC7ok acil bir durum oldu\u011Funu s\xF6yle.\r\nIvan:
+    Peki efendim. Hemen gidiyorum."
   subtitle: {fileID: 2055941764}
   ifDesroyItself: 0
   releaseAfterSub: 0
+--- !u!114 &964300616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 964300599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "-\u0130\u015Fte Binba\u015F\u0131 Kovalev tam bu an kafas\u0131nda yeni teoriler
+    \xFCretmeye ba\u015Flam\u0131\u015Ft\u0131r say\u0131n oyuncu.\r"
+  - "-Elinde ki t\xFCm delilleri g\xF6ze ald\u0131ktan sonra olay\u0131n tamamen k\u0131z\u0131n\u0131
+    onla evlendirmek isteyen Kurmay Subay\u0131'n\u0131n kar\u0131s\u0131 Bayan Podtochin'in
+    alt\u0131ndan \xE7\u0131kt\u0131\u011F\u0131 kan\u0131s\u0131na var\u0131r.\r"
+  - "-Asl\u0131nda k\u0131zla cilvele\u015Fmek Kovalev'in ho\u015Funa gidiyordu ancak
+    akl\u0131nda hi\xE7 b\xF6yle bir evlilik plan\u0131 yoktu. Ve ne zaman Bayan Podtochin
+    bu konuyu a\xE7sa kendisinin daha \xE7ok gen\xE7 oldu\u011Funu, \r"
+  - "iyi bir konuma gelebilmek i\xE7in i\u015Finde 5 y\u0131l harc\u0131yaca\u011F\u0131n\u0131
+    ve bu durumda bile ancak 42 ya\u015F\u0131nda olaca\u011F\u0131n\u0131 belirterek
+    bu fiklirden ka\xE7\u0131yordu. \r"
+  - "-\u0130\u015Fte bu sebeple Kurmay Subay'\u0131n kar\u0131s\u0131 Kovalev'e b\xFCy\xFC
+    yapt\u0131rm\u0131\u015F olmal\u0131yd\u0131. Bu olay\u0131n tek mant\u0131kl\u0131
+    a\xE7\u0131klamas\u0131 buydu.\r"
+  - "-\u0130ki g\xFCn \xF6nce berber Ivan Yakovlevi\xE7e gittikten sonra kimse ziyaretine
+    gelmemi\u015Fti. Ve bu s\xFCre\xE7te de burnu hep y\xFCz\xFCne yap\u0131\u015F\u0131kt\u0131.
+    Zaten bir kopma durumu olsa nas\u0131l ac\u0131y\u0131 farketmemi\u015F olabilirdi
+    ki?\r"
+  - "-Kovalev ne yap\u0131ca\u011F\u0131n\u0131 planlamaya ba\u015Flam\u0131\u015Ft\u0131.
+    Ya subay kar\u0131s\u0131na dava a\xE7\u0131kcakt\u0131 ya da kendi gidip ona
+    bu konuda ki su\xE7lamalar\u0131n\u0131 y\xF6nelticekti.\r"
+  - "-En sonunda her \u015Feyden \xF6nce sert dilli bir mektupla su\xE7lamalar\u0131
+    y\xF6neltmeye karar verdi Kovalev."
+  AllSubtitles: "-\u0130\u015Fte Binba\u015F\u0131 Kovalev tam bu an kafas\u0131nda
+    yeni teoriler \xFCretmeye ba\u015Flam\u0131\u015Ft\u0131r say\u0131n oyuncu.\r\n-Elinde
+    ki t\xFCm delilleri g\xF6ze ald\u0131ktan sonra olay\u0131n tamamen k\u0131z\u0131n\u0131
+    onla evlendirmek isteyen Kurmay Subay\u0131'n\u0131n kar\u0131s\u0131 Bayan Podtochin'in
+    alt\u0131ndan \xE7\u0131kt\u0131\u011F\u0131 kan\u0131s\u0131na var\u0131r.\r\n-Asl\u0131nda
+    k\u0131zla cilvele\u015Fmek Kovalev'in ho\u015Funa gidiyordu ancak akl\u0131nda
+    hi\xE7 b\xF6yle bir evlilik plan\u0131 yoktu. Ve ne zaman Bayan Podtochin bu konuyu
+    a\xE7sa kendisinin daha \xE7ok gen\xE7 oldu\u011Funu, \r\niyi bir konuma gelebilmek
+    i\xE7in i\u015Finde 5 y\u0131l harc\u0131yaca\u011F\u0131n\u0131 ve bu durumda
+    bile ancak 42 ya\u015F\u0131nda olaca\u011F\u0131n\u0131 belirterek bu fiklirden
+    ka\xE7\u0131yordu. \r\n-\u0130\u015Fte bu sebeple Kurmay Subay'\u0131n kar\u0131s\u0131
+    Kovalev'e b\xFCy\xFC yapt\u0131rm\u0131\u015F olmal\u0131yd\u0131. Bu olay\u0131n
+    tek mant\u0131kl\u0131 a\xE7\u0131klamas\u0131 buydu.\r\n-\u0130ki g\xFCn \xF6nce
+    berber Ivan Yakovlevi\xE7e gittikten sonra kimse ziyaretine gelmemi\u015Fti. Ve
+    bu s\xFCre\xE7te de burnu hep y\xFCz\xFCne yap\u0131\u015F\u0131kt\u0131. Zaten
+    bir kopma durumu olsa nas\u0131l ac\u0131y\u0131 farketmemi\u015F olabilirdi ki?\r\n-Kovalev
+    ne yap\u0131ca\u011F\u0131n\u0131 planlamaya ba\u015Flam\u0131\u015Ft\u0131. Ya
+    subay kar\u0131s\u0131na dava a\xE7\u0131kcakt\u0131 ya da kendi gidip ona bu
+    konuda ki su\xE7lamalar\u0131n\u0131 y\xF6nelticekti.\r\n-En sonunda her \u015Feyden
+    \xF6nce sert dilli bir mektupla su\xE7lamalar\u0131 y\xF6neltmeye karar verdi
+    Kovalev."
+  subtitle: {fileID: 491096613}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+  manualTimerArray: []
+  TimeMode: 0
+  timeInhibator: 13
+--- !u!114 &964300617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 964300599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "Kovalev: Ya yap\u0131\u015Fmassa?"
+  AllSubtitles: "Kovalev: Ya yap\u0131\u015Fmassa?"
+  subtitle: {fileID: 2055941764}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+--- !u!114 &964300618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 964300599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "-Ancak hi\xE7 bir \u015Fey sonsuza kadar s\xFCrmez bu d\xFCnyada. Ne\u015Fe bile
+    ilk dakikadan sonra solmaya ba\u015Flar. \u0130kinci dakika hala zay\u0131flamaya
+    devam etmektedir. Sonunda monoton hayat\u0131m\u0131zda ki di\u011Fer \u015Feyler
+    gibi tamamen yutulur, ayn\u0131 suda geni\u015Fleyen halkarlar\u0131n yava\u015F
+    yava\u015F su y\xFCzeyiyle bir olup yok olmas\u0131 gibi.\r"
+  - "-\u0130\u015Fte Kovalev bunu d\xFC\u015F\xFCnmeye ba\u015Flad\u0131. Sorun daha
+    bitmemi\u015Fti."
+  AllSubtitles: "-Ancak hi\xE7 bir \u015Fey sonsuza kadar s\xFCrmez bu d\xFCnyada.
+    Ne\u015Fe bile ilk dakikadan sonra solmaya ba\u015Flar. \u0130kinci dakika hala
+    zay\u0131flamaya devam etmektedir. Sonunda monoton hayat\u0131m\u0131zda ki di\u011Fer
+    \u015Feyler gibi tamamen yutulur, ayn\u0131 suda geni\u015Fleyen halkarlar\u0131n
+    yava\u015F yava\u015F su y\xFCzeyiyle bir olup yok olmas\u0131 gibi.\r\n-\u0130\u015Fte
+    Kovalev bunu d\xFC\u015F\xFCnmeye ba\u015Flad\u0131. Sorun daha bitmemi\u015Fti."
+  subtitle: {fileID: 491096613}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+  manualTimerArray: []
+  TimeMode: 0
+  timeInhibator: 13
+--- !u!114 &964300619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 964300599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "Kovzalev: \u0130\u015Fte buldum onu. Tamamen ayn\u0131. Hatta d\xFCn tam sa\u011F
+    tarafta \xE7\u0131kan k\xFC\xE7\xFCk sivilce de burada."
+  AllSubtitles: "Kovzalev: \u0130\u015Fte buldum onu. Tamamen ayn\u0131. Hatta d\xFCn
+    tam sa\u011F tarafta \xE7\u0131kan k\xFC\xE7\xFCk sivilce de burada."
+  subtitle: {fileID: 2055941764}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+--- !u!114 &964300620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 964300599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "Kovalev: Yerinde kal!!!\r"
+  - "Kovalev: IVAN!\r"
+  AllSubtitles: "Kovalev: Yerinde kal!!!\r\nKovalev: IVAN!\r"
+  subtitle: {fileID: 2055941764}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+--- !u!114 &964300621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 964300599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "Ivan: Buyurun efendim?\r"
+  - "Kovalev: Bana yard\u0131m et. Yap\u0131\u015Fm\u0131yor bu!"
+  - "Ivan: Efendim bence fazla kurcalamay\u0131n. Bu i\u015Ften en iyi doktor anlar. "
+  - "Kovalev: Hakl\u0131s\u0131n. Hemen doktora gitmeliyim. Bu u\u011Fursuzluklar
+    art\u0131k bitmeli."
+  AllSubtitles: "Ivan: Buyurun efendim?\r\nKovalev: Bana yard\u0131m et. Yap\u0131\u015Fm\u0131yor
+    bu!\nIvan: Efendim bence fazla kurcalamay\u0131n. Bu i\u015Ften en iyi doktor
+    anlar. \nKovalev: Hakl\u0131s\u0131n. Hemen doktora gitmeliyim. Bu u\u011Fursuzluklar
+    art\u0131k bitmeli."
+  subtitle: {fileID: 2055941764}
+  ifDesroyItself: 0
+  releaseAfterSub: 1
 --- !u!1001 &984965039
 Prefab:
   m_ObjectHideFlags: 0
@@ -2462,6 +3286,11 @@ Prefab:
     - target: {fileID: 1000013713371292, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
+        type: 2}
+      propertyPath: playerCanOpen
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
@@ -2598,7 +3427,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!1 &1123528238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3205,129 +4034,26 @@ MonoBehaviour:
   oldModel: {fileID: 605113507}
   newModel: {fileID: 224509544}
   rootGameObject: {fileID: 305655533}
---- !u!1001 &1222508899
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 552039690}
-    m_Modifications:
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 419
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 550
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013586629258, guid: 650b1addce4b32545988d133c2557773, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011791541936, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: messageReciever
-      value: 
-      objectReference: {fileID: 964300599}
-    - target: {fileID: 114000011791541936, guid: 650b1addce4b32545988d133c2557773,
-        type: 2}
-      propertyPath: message
-      value: finishedWriting
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013586629258, guid: 650b1addce4b32545988d133c2557773, type: 2}
-      propertyPath: m_Name
-      value: LetterToSend
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 650b1addce4b32545988d133c2557773, type: 2}
-  m_IsPrefabParent: 0
---- !u!224 &1222508900 stripped
+--- !u!224 &1222508900
 RectTransform:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 224000012743829728, guid: 650b1addce4b32545988d133c2557773,
     type: 2}
-  m_PrefabInternal: {fileID: 1222508899}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 459631775}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.77, y: 0.77, z: 0.77}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 204634123}
+  m_Father: {fileID: 552039690}
+  m_RootOrder: 4
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 419, y: 550}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1278227470
 Prefab:
   m_ObjectHideFlags: 0
@@ -3701,69 +4427,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400010, guid: 85b05b6da2f25a44d956bd0e4356ac42, type: 3}
   m_PrefabInternal: {fileID: 329605879}
---- !u!1 &1345661556
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1345661558}
-  - 108: {fileID: 1345661557}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &1345661557
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1345661556}
-  m_Enabled: 1
-  serializedVersion: 7
-  m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1345661558
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1345661556}
-  m_LocalRotation: {x: 0.25130036, y: 0.39684266, z: -0.17525358, w: 0.8652458}
-  m_LocalPosition: {x: -17.87, y: 15.94, z: -9.41}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 35.019, y: 46.927002, z: -7.0850005}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
 --- !u!4 &1364511787 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f0471e54649d0734297492e700c27e0b, type: 3}
@@ -3961,6 +4624,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 646d7e03922ba414a84809d711ea2fe9, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a5e71c9b0d16f714f8a8ba01e472483a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 646d7e03922ba414a84809d711ea2fe9, type: 3}
   m_IsPrefabParent: 0
@@ -4101,6 +4768,101 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22471308, guid: ceec570ea80dde442932325ffdb0f567,
     type: 2}
   m_PrefabInternal: {fileID: 1605323571}
+--- !u!1 &1636743451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1636743452}
+  - 33: {fileID: 1636743456}
+  - 65: {fileID: 1636743455}
+  - 23: {fileID: 1636743454}
+  - 54: {fileID: 1636743453}
+  m_Layer: 5
+  m_Name: PivotKovalevHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1636743452
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636743451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 79.1}
+  m_LocalScale: {x: 1, y: 50.609234, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 419290022}
+  m_RootOrder: 2
+--- !u!54 &1636743453
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636743451}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!23 &1636743454
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636743451}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1636743455
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636743451}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1636743456
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636743451}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1651433549 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013127924312, guid: dd651778041846143b79e2a904c465fc,
@@ -5022,3 +5784,94 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 180ea21548579b8488098f99b6551f43, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &2145869328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 2145869329}
+  - 222: {fileID: 2145869331}
+  - 114: {fileID: 2145869330}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2145869329
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2145869328}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 60871718}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3, y: -34}
+  m_SizeDelta: {x: 354, y: 420}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2145869330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2145869328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\"Say\u0131n Bay Platon Kovalev,  \r\n\nMektubunuz beni pek \u015Fa\u015F\u0131rtt\u0131.
+    Do\u011Frusu ya bu denli haks\u0131z sald\u0131r\u0131lar\u0131n\u0131za hedef
+    olaca\u011F\u0131m\u0131 hi\xE7 sanm\u0131yordum.  Size   \xF6nceden bildireyim
+    ki, s\xF6z\xFCn\xFC etti\u011Finiz kimseyi, ne kendi k\u0131l\u0131\u011F\u0131yla,
+    ne de k\u0131l\u0131k de\u011Fi\u015Ftirmi\u015F olarak, hi\xE7bir  nedenle   evime
+    kabul etmi\u015F de\u011Filim. Evime yaln\u0131zca Filip \u0110vanovi\xE7 Potan\xE7ikov
+    geldi. Do\u011Fru; ama bundan ne \xE7\u0131kar? O   k\u0131z\u0131mla evlenmek
+    istedi; davran\u0131\u015Flar\u0131 kibar, ahlak\u0131 temiz, \xE7ok bilgili bir
+    adamd\u0131r, ama gene de ben kendisine  bu   konuda hi\xE7bir umut vermedim.
+    Bir de burnunuzdan s\xF6z ediyorsunuz. Bununla burnunuza kar\u015F\u0131 g\xFClmek
+    \ niyetinde   oldu\u011Fumu s\xF6yl\xFCyorsan\u0131z, yani size usulen bir ret
+    yan\u0131t\u0131 verece\u011Fimi ileri s\xFCrmek istiyorsan\u0131z, bu s\xF6z\xFCn\xFCze
+    \ ayr\u0131ca   \u015Fa\u015Far\u0131m. \xC7\xFCnk\xFC ben t\xFCm\xFCyle tersini
+    d\xFC\u015F\xFCn\xFCyorum. B\xF6yle oldu\u011Funu siz de bilirsiniz. K\u0131z\u0131mla
+    yasal yolla   evlenmek istiyorsan\u0131z sizi hemen sevindirmeye haz\u0131r\u0131m.
+    Bu her zaman i\xE7in, benim de en b\xFCy\xFCk iste\u011Fimdir.  \n\nHer   zaman
+    emrinize haz\u0131r oldu\u011Fumu bildirmekle onur duyar\u0131m. \n\n Aleksandra
+    Podto\xE7ina\"  "
+--- !u!222 &2145869331
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2145869328}
