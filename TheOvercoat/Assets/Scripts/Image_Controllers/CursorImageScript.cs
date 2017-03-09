@@ -56,6 +56,7 @@ public class CursorImageScript : MonoBehaviour
 
     void newSceneIsLoad(Scene scene, LoadSceneMode mode)
     {
+        //Debug.Log("Getting new move to ");
         player = CharGameController.getActiveCharacter();
         if (player != null)
             mt = player.GetComponent<MoveTo>();
@@ -86,6 +87,7 @@ public class CursorImageScript : MonoBehaviour
         //If external texture is not null then just put it no matter what
         if (externalTexture != null)
         {
+            //Debug.Log("External texture is not null");
             Cursor.SetCursor(externalTexture, Vector2.zero, CursorMode.Auto);
             return;
         }
@@ -184,6 +186,7 @@ public class CursorImageScript : MonoBehaviour
             {
                 if (!checkAvaiblity())
                 {
+                    //Debug.Log("is not avaible");
                     Cursor.SetCursor(disabled, Vector2.zero, CursorMode.Auto);
                     return;
                 }
@@ -210,6 +213,13 @@ public class CursorImageScript : MonoBehaviour
 
         //If mt is null this means player couldn't be found. So it assumes player (real player) can still make interactive actions.
         return true;
+    }
+
+    public void updateComponents()
+    {
+        player = CharGameController.getActiveCharacter();
+        mt = player.GetComponent<MoveTo>();
+
     }
 
 }

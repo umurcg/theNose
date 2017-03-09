@@ -561,7 +561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011788189490
 GameObject:
   m_ObjectHideFlags: 1
@@ -906,7 +906,6 @@ GameObject:
   - 114: {fileID: 114000012349219652}
   - 114: {fileID: 114000012014652088}
   - 114: {fileID: 114000013119608828}
-  - 114: {fileID: 114000012623503446}
   - 114: {fileID: 114000011359743036}
   - 114: {fileID: 114000013945706278}
   m_Layer: 0
@@ -1077,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013424932310
 GameObject:
   m_ObjectHideFlags: 1
@@ -1652,7 +1651,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 84.3, y: -0.89, z: -8.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3578,6 +3577,7 @@ MonoBehaviour:
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 260
+  forceToDefault: 0
 --- !u!114 &114000012006399516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3616,6 +3616,7 @@ MonoBehaviour:
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 260
+  forceToDefault: 0
 --- !u!114 &114000012142572098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3656,21 +3657,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneList: 
-  debugSceneList: 
+  debugSceneList: 0100000002000000
   fullGameSceneList: 01000000020000000100000003000000010000000400000001000000050000000100000005000000060000000100000003000000010000000700000001000000
-  setDebugListToLevelIndex: 4
---- !u!114 &114000012623503446
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013127924312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c941d2abd8c3944e8e6918a31251fee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targets: []
+  setDebugListToLevelIndex: 6
 --- !u!114 &114000012654939820
 MonoBehaviour:
   m_ObjectHideFlags: 1

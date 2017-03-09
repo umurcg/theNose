@@ -12,7 +12,7 @@ public class HitchcockShot : MonoBehaviour {
     public float fov=69;
     [Range(-10f, 10.0f)]
     public float dist;
-    public GameObject go;
+    public GameObject mirrorPlane;
 
     float initialDist;
 
@@ -26,7 +26,7 @@ public class HitchcockShot : MonoBehaviour {
 	void Start () {
         cam = GetComponent<Camera>();
         fov = cam.fieldOfView;
-        dist = Vector3.Distance(transform.position, go.transform.position);
+        dist = Vector3.Distance(transform.position, mirrorPlane.transform.position);
  
 
 
@@ -56,7 +56,7 @@ public class HitchcockShot : MonoBehaviour {
         }
 
 
-        transform.position= go.transform.position -  transform.forward*dist;
+        transform.position= mirrorPlane.transform.position -  transform.forward*dist;
 
         cam.fieldOfView = fov;
 

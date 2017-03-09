@@ -175,10 +175,10 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
             switch (animParameter)
             {
                 case AnimType.Boolean:
-                    
-                    anim.SetBool(animationName, true);
 
-                  
+                    yield return 0;
+                    anim.SetBool(animationName, true);
+                                     
 
                     break;
                 case AnimType.Trigger:

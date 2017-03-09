@@ -19,7 +19,9 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
     List<GameObject> targetsList;
     List<GameObject> fadedObjects;
 
-
+    GameObject CameraObj;
+    Camera Cam;
+   
     // Use this for initialization
     void Start() {
 
@@ -29,15 +31,20 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
         if (player != null && !targetsList.Contains(player))
         {
             targetsList.Add(player);
-        }
+        } else if(player==null)  Debug.Log("Player is null");
 
         fadedObjects = new List<GameObject>();
+
+        CameraObj = CharGameController.getCamera().gameObject;
+        Cam = CameraObj.GetComponent<Camera>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        //Debug.Log(CameraObj.name);
 
         //Iterate over every character
         foreach (GameObject character in targetsList)
@@ -46,13 +53,13 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
                 List<GameObject> allHittedObjects = new List<GameObject>();
 
                 //Get distance between camera and player
-                float distance=Vector3.Distance(transform.position,character.transform.position);
+                float distance=Vector3.Distance(CameraObj.transform.position,character.transform.position);
 
                 //We should mask everything except building layer. If you want to add new excepttion to masking, add your layer here.
                 int layerMask = 1 << 8;  // "7" here needing to be replaced by whatever layer it is you're wanting to use
                         
                 //Get all object of our layer in the direction of camera to character
-                Ray ray = new Ray(transform.position, character.transform.position - transform.position);
+                Ray ray = new Ray(CameraObj.transform.position, character.transform.position - CameraObj.transform.position);
                 RaycastHit[] hits = Physics.RaycastAll(ray,Mathf.Infinity,layerMask);
 
                 //Iterate over every hitted object
@@ -65,7 +72,7 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
 
                     //Check if hit point between camera and player, for that distance between obj and camera should be smaller than distance between camera and character
                 
-                    if (Vector3.Distance(transform.position, hitPoint) < distance)
+                    if (Vector3.Distance(CameraObj.transform.position, hitPoint) < distance)
                     {
                     //Debug.Log(hit.transform.name + " should be faded");
 
@@ -83,8 +90,8 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
                 //For direction it uses camera face direction
                 //Same layer mask is used
 
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                ray = new Ray(mousePosition,Camera.main.transform.forward);
+                Vector3 mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
+                ray = new Ray(mousePosition,CameraObj.transform.forward);
                 hits = Physics.RaycastAll(ray, Mathf.Infinity, layerMask);
             
                 //Iterate over every hitted object
@@ -174,6 +181,7 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
     public void registerToTargets(GameObject obj)
     {
         Debug.Log("Adding obj " + obj.name + " to targets");
+        if(!targetsList.Contains(obj))
         targetsList.Add(obj);
     }
 
@@ -181,6 +189,18 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
     {
         if(targetsList.Contains(obj))
         targetsList.Remove(obj);
+    }
+
+    public void registerActivePlayer()
+    {
+        GameObject objToRegister = CharGameController.getActiveCharacter();
+        registerToTargets(objToRegister);
+    }
+
+    public void changeCamera(GameObject camObj)
+    {
+        CameraObj = camObj;
+        Cam = camObj.GetComponent<Camera>();
     }
 
 }

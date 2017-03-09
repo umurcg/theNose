@@ -5,6 +5,7 @@ using MovementEffects;
 
 public class TutorailCanvas : MonoBehaviour {
 
+    public GameObject[] basicTutorials;
     
     public bool debug;
     
@@ -33,9 +34,9 @@ public class TutorailCanvas : MonoBehaviour {
     IEnumerator<float> _startFullTutorial(float duration = 5f)
     {
       
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < basicTutorials.Length; i++)
         {
-            GameObject child = transform.GetChild(i).gameObject;
+            GameObject child =basicTutorials[i].gameObject;
             child.SetActive(true);
             yield return Timing.WaitForSeconds(duration);
             child.SetActive(false);
@@ -49,7 +50,7 @@ public class TutorailCanvas : MonoBehaviour {
     IEnumerator<float> _startTutorial(int index, float duration = 5f)
     {
      
-            GameObject child = transform.GetChild(index).gameObject;
+            GameObject child = basicTutorials[index];
             child.SetActive(true);
             yield return Timing.WaitForSeconds(duration);
             child.SetActive(false);

@@ -117,6 +117,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
         PlayerComponentController pcc = passenger.GetComponent<PlayerComponentController>();
         NavMeshAgent nmaPas = passenger.GetComponent<NavMeshAgent>();
+
         if (nmaPas)
             nmaPas.enabled = true;
         
@@ -131,7 +132,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         {
             passenger.transform.parent = null;
         }
-
+        passenger.GetComponent<BasicCharAnimations>().enabled = true;
     }
 
     public IEnumerator<float> mount()
@@ -193,7 +194,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         bev.goToBirdEye();
 
 
-
+        passenger.GetComponent<BasicCharAnimations>().enabled = false;
 
         //FlyCameraBetween fcb = Camera.main.gameObject.GetComponent<FlyCameraBetween>();
         //if (fcb)
@@ -221,7 +222,20 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     IEnumerator<float> _setDes(Vector3 pos)
     {
-        
+
+        GameObject mainCam = CharGameController.getCamera();
+        CameraFollower cf = mainCam.GetComponent<CameraFollower>();
+
+        GameObject activePlayer = CharGameController.getActiveCharacter();
+
+        GameObject orgTarget=null;
+        if (passenger == activePlayer) {
+            //Set aim of camera follower to owner
+            orgTarget = cf.target;
+            cf.changeTarget(gameObject);
+        }
+
+
         release();
         NavMeshHit myNavHit;
         if (NavMesh.SamplePosition(pos, out myNavHit, 100, nma.areaMask))
@@ -238,6 +252,13 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         yield return Timing.WaitUntilDone(walkHandler);
 
         freeze();
+
+
+        if (passenger == activePlayer)
+        {
+            cf.changeTarget(orgTarget);
+
+        }
 
         unmount();
         yield break;

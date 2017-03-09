@@ -536,7 +536,8 @@ public class Vckrs : MonoBehaviour
         foundPosition = Vector3.zero;
         return false;
 
-    }
+    }  
+
 
     void testGenerateRandomPosition()
     {

@@ -63,6 +63,12 @@ public class CameraFollower : MonoBehaviour {
             updateRelative();
     }
 
+    public void changeTarget(GameObject obj)
+    {
+        target = obj;
+        updateRelative();
+    }
+
     //Use this if your camera mess up when new sceene is loaded
     public void fixRelativeToDefault()
     {

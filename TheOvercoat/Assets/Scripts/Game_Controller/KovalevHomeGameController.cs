@@ -58,6 +58,16 @@ public class KovalevHomeGameController : GameController {
     {
         base.Start();
 
+        //Set player as kovalev
+        GameObject character = CharGameController.setCharacter("Kovalev");
+        updateCharacterVariables();
+
+        //I have to update omponents of cursor image script
+        CharGameController.getCamera().GetComponent<CursorImageScript>().updateComponents();
+
+        //Update chair subject
+        tableChair.GetComponent<WalkLookAnim>().subject = character;
+
     }
 
     // Update is called once per frame
@@ -74,14 +84,18 @@ public class KovalevHomeGameController : GameController {
 
     IEnumerator<float> _WakeUp()
     {
+        CharGameController.movePlayer(Vector3.zero);
+
         //wait one frame
         yield return 0;
+        
 
         Debug.Log("wake up");
 
-        //Set player as kovalev
-        GameObject character=CharGameController.setCharacter("Kovalev");
-        updateCharacterVariables();
+        //deactivate Handmirror
+        ActivateAnotherObject.Disable(handMirror);
+
+        playerNma.enabled = false;
 
         CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
         cf.updateTarget();
@@ -97,9 +111,7 @@ public class KovalevHomeGameController : GameController {
         if (!playerAnim) yield return 0;
 
         playerAnim.SetTrigger("Lie");
-   
-        PlayerComponentController pcc = player.GetComponent<PlayerComponentController>();
-        if(pcc)
+
         pcc.StopToWalk();
 
         player.GetComponent<CharacterController>().enabled = false;
@@ -109,13 +121,33 @@ public class KovalevHomeGameController : GameController {
 
         yield return Timing.WaitForSeconds(2f);
 
-        IEnumerator<float> handler =Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position - player.transform.right * 1f-player.transform.up*0.5f, 0.5f));
+        
+        IEnumerator<float> handler =Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position - player.transform.right * 1f-player.transform.up*1.7f, 0.5f));
         yield return Timing.WaitUntilDone(handler);
 
-        NavMeshAgent KovAgent = player.GetComponent<NavMeshAgent>();
-        KovAgent.enabled = true;
+
+        //Destroy(KovAgent);
+        Vector3 posOnNavMesh;
+        if (Vckrs.findNearestPositionOnNavMesh(player.transform.position, playerNma.areaMask, 2f, out posOnNavMesh))
+        {
+            player.transform.position = posOnNavMesh;
+        }else
+        {
+            Debug.Log("Coudn't found position on navmesh");
+        }
+        //yield return 0;
+        //KovAgent = player.AddComponent<NavMeshAgent>();
+
+        yield return Timing.WaitForSeconds(0.5f);
+
+        playerNma.enabled = true;
+
         pcc.ContinueToWalk();
+        
+
     }
+
+
 
     public void callIvan()
     {
@@ -124,6 +156,8 @@ public class KovalevHomeGameController : GameController {
 
     public IEnumerator<float> _callIvan()
     {
+        subtitle.text = "";
+        pcc.StopToWalk();
         print("callIvan");
         IEnumerator<float> handler;
         //charText.text = "-Kovalev: Aman Tanrım!";
@@ -185,6 +219,8 @@ public class KovalevHomeGameController : GameController {
 
         Ivan.SetActive(false);
 
+        pcc.ContinueToWalk();
+
 
     }
 
@@ -221,8 +257,8 @@ public class KovalevHomeGameController : GameController {
         Ivan.GetComponent<BasicCharAnimations>().enabled = true;
         IvanAlt.enabled = true;
 
-        Paper.transform.SetParent(HandR.transform);
-        Paper.transform.localPosition=new Vector3(-0.475f, 0.008f, -0.044f);
+        Paper.SetActive(false);
+        CharGameController.getObjectOfHand("paper", CharGameController.hand.RightHand).SetActive(true);
         playerAnim.SetBool("RightHandAtFace", true);
         Vckrs.ActivateAnotherObject(Door);
         OpenDoorLoad od = Door.GetComponent<OpenDoorLoad>();
@@ -242,6 +278,8 @@ public class KovalevHomeGameController : GameController {
     {
         //Wait for one frame to initilizing
         yield return 0;
+
+        sc.startAutomatic = true;
 
         updateCharacterVariables();
 

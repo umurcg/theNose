@@ -14,6 +14,7 @@ using UnityEngine.UI;
 
 //TODO kovaev position when canvas is activated
 
+
 public class NoseEncounterGameController : GameController {
     public GameObject Horse, Nose, trash, newspaper, sun, Girlgame, girl,girlCanvas, girlGameKov/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
 
@@ -43,8 +44,8 @@ public class NoseEncounterGameController : GameController {
         hs = Horse.GetComponent<HorseScript>();
         noseCC = new characterComponents(Nose);
 
-
-        startNoseGame();
+        enbaleTrashObjs(true);
+        //startNoseGame();
         //noseCatched();
     }
 
@@ -94,7 +95,7 @@ public class NoseEncounterGameController : GameController {
 
         lookAtObject = Nose;
 
-        SubtitleFade.subtitles["CharacterSubtitle"].text= "Kovalev: Nasıll!?!?";
+        sc.callSubtitleWithIndex(5);
 
         yield return Timing.WaitUntilDone(handlerHolder);
 
@@ -126,6 +127,8 @@ public class NoseEncounterGameController : GameController {
         Nose.transform.parent = transform;
 
         lookAtObject = null;
+
+        while (subtitle.text != "") yield return 0;
 
         sc.callSubtitleWithIndex(0);
         while (subtitle.text != "") yield return 0;

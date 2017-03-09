@@ -5,7 +5,7 @@ using MovementEffects;
 
 public class CafeSingerGameController : GameController {
 
-    public GameObject Kovalev, CameraObj, kovalevStartPoint, /*kovalevFirstPoint*/ mirror, chair1, chair2, building, sun;
+    public GameObject Kovalev, CameraObj, kovalevStartPoint, /*kovalevFirstPoint*/ mirror, chair1, chair2, building, sun, city;
 
     characterComponents kovalevCC;
     Camera cam;
@@ -35,6 +35,12 @@ public class CafeSingerGameController : GameController {
 
     IEnumerator<float> _start()
     {
+        //Register kovalev to see throug objects script
+        SeeCharacterThroughObjects scto = city.GetComponent<SeeCharacterThroughObjects>();
+        scto.registerToTargets(Kovalev);
+
+        //Change camera to cafe singer camera
+        scto.changeCamera(CameraObj);
 
 
         cam.orthographicSize = 30;

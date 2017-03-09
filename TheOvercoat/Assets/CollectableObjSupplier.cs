@@ -11,13 +11,19 @@ using MovementEffects;
 
 public class CollectableObjSupplier : MonoBehaviour, IClickAction {
 
-    
-    public static List<GameObject> collectedObjs;
+
+    public static CollectableObject activeScript;
+
+    public List<GameObject> collectedObjs;
     public float radiusForUncollect;
     public GameObject[] prefabs;
     public LayerMask rayCastMask;
     public GameObject UIText;
+    public GameObject _3DPanel;
+    public GameObject UI3Dicon;
+
     public string countMessage;
+    public string additionalTutorialString;
 
     public enum animationType { Boolean, Trigger};
     public animationType AnimationType = animationType.Boolean;
@@ -43,7 +49,10 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
 	void Update () {
 
         //If don'tt have item in inventory retun
-        if (collectedObjs.Count == 0) return;
+        if (collectedObjs.Count == 0) {
+            if (activeScript == this) activeScript = null;
+            return;
+        }
 
         //Mouse right click will be uncollect obj in that position.
         //For uncollecting mouse will be near of player with given raidus
@@ -177,6 +186,20 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
 
     void refreshMessage()
     {
+        if(UI3Dicon!=null && _3DPanel != null)
+        {
+            if (collectedObjs.Count == 0)
+            {
+                Destroy(_3DPanel.transform.GetChild(0).gameObject);
+            }else if (UI3Dicon.transform.childCount == 0)
+            {
+                GameObject spawnedObj=Instantiate(UI3Dicon) as GameObject;
+                spawnedObj.transform.parent = _3DPanel.transform;
+                spawnedObj.transform.localPosition = Vector2.zero;
+                spawnedObj.transform.localScale = Vector3.one * 5;
+            }
+        }
+
         Text text = UIText.GetComponent<Text>();
         if (text)
         {
@@ -185,7 +208,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
                 text.text = "";
             }else
             {
-                text.text = countMessage + " " + collectedObjs.Count;
+                text.text = countMessage + " " + collectedObjs.Count +"\n"+additionalTutorialString;
             }
         }
          

@@ -385,7 +385,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 4d58270b36da6db4fb6f57c5d3f0d462, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.63
+      value: -9.85
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4d58270b36da6db4fb6f57c5d3f0d462, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2709,7 +2709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAutomatic: 1
+  startAutomatic: 0
 --- !u!114 &964300604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3461,11 +3461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a796815beaf765b4e863060b70d1efd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 1651433549}
   Camera: {fileID: 1697559094}
-  Kovalev: {fileID: 305655533}
   MirrorPlane: {fileID: 2102253712}
-  KovMirrorPose: {fileID: 1854694587}
   GameController: {fileID: 964300599}
   CharController: {fileID: 2055941764}
   fovSpeed: 0.04
@@ -3493,7 +3490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42681b2798a7f4418a506cdf5e2f223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CallType: 0
+  CallType: 3
   owner: {fileID: 964300599}
   passParameter: {fileID: 0}
   methodName: callIvan
@@ -3715,20 +3712,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114000013681976042, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: tags.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
         type: 2}
       propertyPath: debugSceneList.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.size
-      value: 15
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.x
@@ -3762,143 +3749,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 1000014093701332, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012306617476, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
         type: 2}
       propertyPath: debugSceneList.Array.data[2]
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[3]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[3]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[4]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[5]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[6]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[7]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[8]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[9]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[10]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[11]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[12]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[13]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: setDebugListToLevelIndex
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[14]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[4]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[5]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[6]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[7]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[8]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[9]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[10]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013681976042, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: tags.Array.data[1]
-      value: ActiveEvenCantWalk
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000014139320344, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd651778041846143b79e2a904c465fc, type: 2}
@@ -4863,11 +4717,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1636743451}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1651433549 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013127924312, guid: dd651778041846143b79e2a904c465fc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1167304108}
 --- !u!20 &1651433561 stripped
 Camera:
   m_PrefabParentObject: {fileID: 20000014287620988, guid: dd651778041846143b79e2a904c465fc,
@@ -5044,7 +4893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fov: 42.1
   dist: 0
-  go: {fileID: 2102253712}
+  mirrorPlane: {fileID: 2102253712}
   distTolerance: 0.2
   prevDist: 0
   prevFov: 0
@@ -5231,10 +5080,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1780101118}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1854694587 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100020, guid: 39a5ff055901dd549866f524dd534e68, type: 3}
-  m_PrefabInternal: {fileID: 1287959266}
 --- !u!4 &1854694588 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400020, guid: 39a5ff055901dd549866f524dd534e68, type: 3}
