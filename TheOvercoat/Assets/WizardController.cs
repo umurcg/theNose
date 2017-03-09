@@ -14,7 +14,7 @@ public class WizardController : GameController {
         base.Start();
         pontiffCC = new characterComponents(gameObject);
 
-        Timing.RunCoroutine(loadCity());
+        //Timing.RunCoroutine(loadCity());
     }
 	
 	// Update is called once per frame

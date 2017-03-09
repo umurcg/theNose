@@ -18,7 +18,7 @@ public class CameraFollower : MonoBehaviour {
 
 
     Vector3 defaultRelative = new Vector3(-89.1f, 72.7f, 85.1f);
-
+    float xRotation;
 
     void Start () {
 
@@ -32,6 +32,7 @@ public class CameraFollower : MonoBehaviour {
         }
 
         updateRelative();
+        xRotation = transform.eulerAngles.x;
     }
 	
 	// Update is called once per frame
@@ -39,6 +40,8 @@ public class CameraFollower : MonoBehaviour {
         if (target)
         {
             transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            //Preserve euler angles x
+            transform.rotation = Quaternion.Euler(30, transform.eulerAngles.y, 0);
             transform.position = relativePosition + target.transform.position;
             //Lerp
            // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * lookSpeed);

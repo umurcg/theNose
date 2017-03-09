@@ -15,6 +15,12 @@ public class GlobalControllerEditor : Editor
 
         }
 
+
+        if (GUILayout.Button("Load next level "))
+        {
+            script.loadNextScene();
+
+        }
         //if (GUILayout.Button("Set full game scene list to default "))
         //{
         //    script.setDebugListToIndex();

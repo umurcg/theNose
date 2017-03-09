@@ -39,6 +39,8 @@ GameObject:
   - 4: {fileID: 4000011063175188}
   - 114: {fileID: 114000013702181264}
   - 114: {fileID: 114000012589669922}
+  - 114: {fileID: 114000011269651312}
+  - 114: {fileID: 114000011113696416}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -551,13 +553,14 @@ GameObject:
   - 114: {fileID: 114000010000796404}
   - 114: {fileID: 114000010944682478}
   - 114: {fileID: 114000013621621636}
+  - 114: {fileID: 114000013410914960}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011788189490
 GameObject:
   m_ObjectHideFlags: 1
@@ -1256,7 +1259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000014117282164
 GameObject:
   m_ObjectHideFlags: 1
@@ -1648,7 +1651,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -61.93, y: -0.89, z: -102.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3459,6 +3462,18 @@ MonoBehaviour:
   threshold: 0.01
   animName: Walk
   speedFactor: 0.5
+--- !u!114 &114000011113696416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010109351266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fe89b43d9dd984fb51b9ad2bea7c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 0
 --- !u!114 &114000011129048884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3484,6 +3499,20 @@ MonoBehaviour:
   maxIntensity: 1
   minIntensity: 0.3
   speed: 0.5
+--- !u!114 &114000011269651312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010109351266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4423e97779af4b4583349d3296c27a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: 1
+  Scene: 3
+  debugLoad: 0
 --- !u!114 &114000011359743036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3605,8 +3634,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneList: 
-  debugSceneList: 00000000
-  fullGameSceneList: 01000000020000000100000003000000010000000400000005000000060000000100000003000000010000000700000001000000
+  debugSceneList: 
+  fullGameSceneList: 01000000020000000100000003000000010000000400000001000000050000000100000005000000060000000100000003000000010000000700000001000000
+  setDebugListToLevelIndex: 4
 --- !u!114 &114000012623503446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3769,6 +3799,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638bf55a3bedb454b9e207ecb83321cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000013410914960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011785493192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f62fc923a4a78b4ebff21a01cc73694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - ActiveObject
+  ignoreMasks:
+    serializedVersion: 2
+    m_Bits: 260
 --- !u!114 &114000013621621636
 MonoBehaviour:
   m_ObjectHideFlags: 1

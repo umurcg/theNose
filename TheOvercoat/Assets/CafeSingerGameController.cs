@@ -5,7 +5,7 @@ using MovementEffects;
 
 public class CafeSingerGameController : GameController {
 
-    public GameObject Kovalev, CameraObj, kovalevStartPoint, /*kovalevFirstPoint*/ mirror, chair1, chair2;
+    public GameObject Kovalev, CameraObj, kovalevStartPoint, /*kovalevFirstPoint*/ mirror, chair1, chair2, building, sun;
 
     characterComponents kovalevCC;
     Camera cam;
@@ -123,14 +123,22 @@ public class CafeSingerGameController : GameController {
     {
         base.activateController();
 
+        Kovalev.SetActive(true);
+        CameraObj.SetActive(true);
+        sun.SetActive(true);
+
         enabled = true;
-        gameObject.SetActive(true);
+
      
     }
 
     public override void deactivateController()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Kovalev.SetActive(false);
+        CameraObj.SetActive(false);
+        sun.SetActive(false);
+                
         enabled = false;
     }
 }

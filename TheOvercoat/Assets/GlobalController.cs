@@ -290,4 +290,9 @@ public class GlobalController : MonoBehaviour {
     {
         return Instance.sceneList.Contains((int)scn);
     }
+
+    public void loadNextScene()
+    {
+        SceneManager.LoadScene((int)fullGameSceneList[sceneList.Count]);
+    }
 }

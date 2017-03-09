@@ -140,6 +140,8 @@ public class IvanHouseGameController : GameController {
         
       
         pcc.StopToWalk();
+
+        while (WalkLookAnim.activeScript == null) yield return 0;
         WalkLookAnim.activeScript.lockSit = true;
 
         GameObject smallBread = CollectableObject.collected[0];

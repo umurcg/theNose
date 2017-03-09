@@ -102,7 +102,7 @@ public class SubtitleControllerTime : SubtitleController {
     //fills time array
     void calculateTimes()
     {
-        Debug.Log("Calculating times, obj name " + name);
+        //Debug.Log("Calculating times, obj name " + name);
         automaticTimerArray = new float[subtitleTexts.Length ];
         for (int i = 0; i < subtitleTexts.Length; i++)
         {          

@@ -12,6 +12,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject SingerCafe;
     public GameObject friendTellsChurch;
     public GameObject churchBirdPosition;
+    public GameObject outroScene;
     
 	// Use this for initialization
 	void Awake () {
@@ -102,6 +103,7 @@ public class CityGameController : MonoBehaviour {
     {
         Debug.Log("Berber shop");
         CharGameController.deactivateAllCharacters();
+        CharGameController.deactivateCamera();
         berberShop.GetComponent<GameController>().isDisabledAtStart = false;
         berberShop.GetComponent<GameController>().activateController();
     }
@@ -200,8 +202,20 @@ public class CityGameController : MonoBehaviour {
 
     void comingFromDoctor()
     {
-        berberShop.transform.GetChild(0).gameObject.GetComponent<EnterSceneGameController>().enabled = false;
-        berberShop.transform.GetChild(1).gameObject.GetComponent<OutroGameController>().enabled = true;
+        Debug.Log("Coming from doctor");
+
+        //Deactivate player and camera
+        CharGameController.deactivateAllCharacters();
+        CharGameController.deactivateCamera();
+
+        //Disable enter scene controller script. Dont call deactivate method because it also deactivates kovalev camera and ivan which we need;
+        //For that we first call activate method enterSceneGameController and then disable it
+        EnterSceneGameController esgc = berberShop.GetComponent<EnterSceneGameController>();
+        esgc.activateController();
+        esgc.enabled = false;
+
+        //Activate outro scene
+        outroScene.GetComponent<OutroGameController>().activateController();
     }
 
     void singerCafeScene()

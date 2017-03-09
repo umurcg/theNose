@@ -10,8 +10,15 @@ public class MainMenu : MonoBehaviour {
     public GameObject momentsSubMenu;
     public GameObject continueButton;
 
+    //CharacterController cc;
+
     // Use this for initialization
     void Start () {
+
+        ////Disable main player character controller
+        //cc= CharGameController.getActiveCharacter().GetComponent<CharacterController>();
+        //cc.enabled = false;
+
         //Debug.Log(Application.persistentDataPath);
         if (/*!GlobalController.Instance.LoadData()*/true) //For now it is always disabled.
         {
@@ -32,9 +39,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void load()
-    {
-
-       
+    {               
 
         List<int> scenes = GlobalController.Instance.sceneList;
         Debug.Log("Load");
@@ -137,4 +142,10 @@ public class MainMenu : MonoBehaviour {
         List<int> sceneList = GlobalController.Instance.sceneList;
         SceneManager.LoadScene(sceneList[sceneList.Count-1]);
     }
+
+    //void OnDisable()
+    //{
+    //    Debug.Log("On disable function");
+    //    cc.enabled = true;
+    //}
 }

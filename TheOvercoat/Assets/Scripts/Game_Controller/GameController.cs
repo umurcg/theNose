@@ -81,7 +81,10 @@ abstract public class GameController : MonoBehaviour {
     public virtual void Awake()
     {
 
-        if (isDisabledAtStart) deactivateController();
+        if (isDisabledAtStart)
+        {
+            deactivateController();
+        }
     }
 
     //These two function controles activate status of game controllers.
@@ -89,10 +92,10 @@ abstract public class GameController : MonoBehaviour {
     //They should decide how to be activated and deactivated themselfs.
 
     public virtual void activateController() {
-        //Debug.Log("Activated  "+ transform.name);
+        Debug.Log("Activated  "+ transform.name);
     }
     public virtual void deactivateController() {
-        //Debug.Log("Deactivated  " + transform.name);
+        Debug.Log("Deactivated  " + transform.name);
     }
 
 

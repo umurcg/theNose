@@ -579,6 +579,28 @@ public class Vckrs : MonoBehaviour
 
     }
 
+    public static void disableAllChildren(Transform parent)
+    {
+        for (int i = 0; i < parent.childCount; i++) parent.GetChild(i).gameObject.SetActive(false);
+
+    }
+
+    public static void disableAllChildren(Transform parent, List<Transform> exceptions)
+    {
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            Transform child = parent.GetChild(i);
+            if(!exceptions.Contains(child))    parent.GetChild(i).gameObject.SetActive(false);
+        }
+
+    }
+    
+    public static void enableAllChildren(Transform parent)
+    {
+        for (int i = 0; i < parent.childCount; i++) parent.GetChild(i).gameObject.SetActive(true);
+
+    }
+
     public static IEnumerator<float> showMessageForSeconds(string message, Text textComp, float seconds)
     {
         textComp.text = message;

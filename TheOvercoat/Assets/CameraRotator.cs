@@ -16,14 +16,19 @@ public class CameraRotator : MonoBehaviour {
     [HideInInspector]
     public bool rotating=false;
 
+
+
     // Use this for initialization
     void Start () {
         updatePlayer();
         cf = GetComponent<CameraFollower>();
+
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 
 
         

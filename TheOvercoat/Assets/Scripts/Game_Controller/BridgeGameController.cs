@@ -205,8 +205,6 @@ public class BridgeGameController : GameController {
 
         GetComponent<LoadScene>().Load();
 
-        ////For demo exit
-        //Application.Quit();
 
     }
 

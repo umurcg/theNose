@@ -49,6 +49,7 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
 
     public void directClick()
     {
+        Debug.Log("Direct click");
         if (CallType == callType.DirectClick)
             call();
     }

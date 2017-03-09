@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class WhoIsTalking : MonoBehaviour
 {
+    //Singleton
+    public static WhoIsTalking self;
+
     public Dictionary<string, GameObject> characters;
     public GameObject[] gameobjectsArray;
     Text text;
@@ -20,6 +23,14 @@ public class WhoIsTalking : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (self != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            self = this;
+        }
 
         characters = new Dictionary<string, GameObject>();
         text = GetComponent<Text>();
@@ -102,7 +113,10 @@ public class WhoIsTalking : MonoBehaviour
 
     public void addCharacterToDict(GameObject obj, string Name)
     {
-        characters.Add(Name, obj);
+        if (!characters.ContainsKey(name) && !characters.ContainsValue(obj))
+        {
+            characters.Add(Name, obj);
+        }
     }
 
     public void setCameraComponent(Camera cam)

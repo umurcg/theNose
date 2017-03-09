@@ -33,7 +33,7 @@ public class DirectClickScript : MonoBehaviour {
             {
                 
                 if(hit.transform.gameObject==gameObject){
-                    Debug.Log(hit.transform.name);
+                    //Debug.Log(hit.transform.name);
                     if (idc == null)
                     {
                         Debug.Log("There is no idirectClick script");

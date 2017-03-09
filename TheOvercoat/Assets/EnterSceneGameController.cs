@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class EnterSceneGameController : GameController{
 
-    public GameObject  building, ivan, kovalev, head, aims,cameraObj;
+    public GameObject  building, ivan, kovalev, head, aims,cameraObj, sun;
 
     Camera cam;
     NavMeshAgent ivanNma, kovalevNma;
@@ -246,18 +246,22 @@ public class EnterSceneGameController : GameController{
     public override void activateController() {
 
         base.activateController();
+        //gameObject.SetActive(true);
         enabled = true;
         cameraObj.SetActive(true);
         ivan.SetActive(true);
         kovalev.SetActive(true);
+        sun.SetActive(true);
     }
     public override void deactivateController() {
 
         base.deactivateController();
+        //gameObject.SetActive(false);
         enabled = false;
         cameraObj.SetActive(false);
         ivan.SetActive(false);
         kovalev.SetActive(false);
+        sun.SetActive(false);
 
     }
 

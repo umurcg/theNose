@@ -7632,6 +7632,11 @@ Prefab:
       propertyPath: isDisabledAtStart
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010773088734, guid: 6bb060a3799c0e24687e3328c0bc0a32,
+        type: 2}
+      propertyPath: sun
+      value: 
+      objectReference: {fileID: 159940693}
     m_RemovedComponents:
     - {fileID: 114000010346189962, guid: 6bb060a3799c0e24687e3328c0bc0a32, type: 2}
     - {fileID: 114000014206308360, guid: 6bb060a3799c0e24687e3328c0bc0a32, type: 2}
@@ -18422,6 +18427,17 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.95, z: 0}
+--- !u!114 &451481236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 451481230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d813d6aff508f04f9696619a2b88898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &451740168
 GameObject:
   m_ObjectHideFlags: 0
@@ -29478,25 +29494,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 786447292}
   m_Mesh: {fileID: 4300352, guid: 98f97c92b5773d84bbfb0491fb403f39, type: 3}
---- !u!1 &787007961 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000010109351266, guid: dd651778041846143b79e2a904c465fc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1008298710}
---- !u!114 &787007965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 787007961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4423e97779af4b4583349d3296c27a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fade: 1
-  Scene: 3
-  debugLoad: 0
 --- !u!1 &787773213
 GameObject:
   m_ObjectHideFlags: 0
@@ -33661,6 +33658,102 @@ Transform:
   - {fileID: 228039968}
   m_Father: {fileID: 448220495}
   m_RootOrder: 1
+--- !u!1 &897088737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000012904246304, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 897088738}
+  - 108: {fileID: 897088741}
+  - 114: {fileID: 897088740}
+  - 114: {fileID: 897088739}
+  m_Layer: 0
+  m_Name: Sun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &897088738
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000010290038120, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 897088737}
+  m_LocalRotation: {x: 0.5463451, y: -0.76024926, z: 0.35074246, w: -0.022537142}
+  m_LocalPosition: {x: -35.016396, y: -107.698906, z: 32.297688}
+  m_LocalScale: {x: 0.26575908, y: 0.265759, z: 0.26575902}
+  m_LocalEulerAnglesHint: {x: 131.15399, y: -140.62097, z: -32.026}
+  m_Children: []
+  m_Father: {fileID: 1805330998}
+  m_RootOrder: 8
+--- !u!114 &897088739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000013090218250, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 897088737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fe89b43d9dd984fb51b9ad2bea7c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 1
+--- !u!114 &897088740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011188354656, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 897088737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eec3833d473bc443b2e28e6a900424f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxIntensity: 1
+  minIntensity: 0.3
+  speed: 0.5
+--- !u!108 &897088741
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 108000011704737064, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 897088737}
+  m_Enabled: 1
+  serializedVersion: 7
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &897682345
 GameObject:
   m_ObjectHideFlags: 0
@@ -37372,16 +37465,11 @@ Prefab:
     - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
         type: 2}
       propertyPath: debugSceneList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.size
-      value: 16
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -112.4
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.y
@@ -37389,7 +37477,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 480
+      value: -42.1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -37508,11 +37596,6 @@ Prefab:
       objectReference: {fileID: 1190876300}
     - target: {fileID: 114000013945706278, guid: dd651778041846143b79e2a904c465fc,
         type: 2}
-      propertyPath: streetAreas.Array.data[18]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013945706278, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
       propertyPath: streetAreas.Array.data[19]
       value: 
       objectReference: {fileID: 610472043}
@@ -37538,61 +37621,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
         type: 2}
-      propertyPath: fullGameSceneList.Array.data[6]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[7]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[8]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[9]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[10]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[11]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[12]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[13]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[14]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: fullGameSceneList.Array.data[15]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: setDebugListToLevelIndex
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
       propertyPath: debugSceneList.Array.data[2]
       value: 1
       objectReference: {fileID: 0}
@@ -37606,6 +37634,19 @@ Prefab:
       propertyPath: debugSceneList.Array.data[4]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011785493192, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014093701332, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: setDebugListToLevelIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
         type: 2}
       propertyPath: debugSceneList.Array.data[5]
@@ -37614,42 +37655,9 @@ Prefab:
     - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
         type: 2}
       propertyPath: debugSceneList.Array.data[6]
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[7]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[8]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[9]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000014093701332, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011785493192, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[10]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: debugSceneList.Array.data[11]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010109351266, guid: dd651778041846143b79e2a904c465fc, type: 2}
+    - target: {fileID: 1000013419269496, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -39436,6 +39444,9 @@ GameObject:
   - 114: {fileID: 1058481630}
   - 114: {fileID: 1058481629}
   - 114: {fileID: 1058481628}
+  - 114: {fileID: 1058481631}
+  - 114: {fileID: 1058481632}
+  - 114: {fileID: 1058481633}
   m_Layer: 8
   m_Name: OutroScene
   m_TagString: Untagged
@@ -39483,13 +39494,17 @@ MonoBehaviour:
   - "-Ama evrenin akan bir nehir oldu\u011Fu unutlmamal\u0131d\u0131r. Ve bu nehirin
     ak\u0131\u015F\u0131n\u0131 hesaplamak ne yaz\u0131k ki hi\xE7 bir varl\u0131\u011F\u0131n
     yapabilece\u011Fi bir i\u015F de\u011Fildir.\r"
-  - "-Bir g\xFCn Bay Kovalev kalkt\u0131\u011F\u0131nda gene o\u011Fla\u011Fan\xFCst\xFC
-    bir \u015Fekilde, \xF6nceki gece masas\u0131nda b\u0131rakt\u0131\u011F\u0131
-    burunu y\xFCz\xFCnde bulmu\u015Ftur.\r"
-  - "-B\xFCy\xFCc\xFClerin ve doktorlar\u0131n yapamad\u0131\u011F\u0131 \u015Feyi
-    nehrin kendisi yapm\u0131\u015Ft\u0131r.\r"
-  - "-Ama ne yaz\u0131k ki nehrin i\xE7inde y\xFCzenlerin hayat\u0131 b\xF6yle bir
-    o\u011Fla\u011Fan\xFCst\xFC hikayeden sonra bile hemen eski haline d\xF6nm\xFC\u015Ft\xFCr."
+  - "-\u015Eu d\xFCnya \xE7ok garip \u015Feylere kadir. Ve bu oyunda ge\xE7en olaylara
+    inanmazsan\u0131z sizi hor g\xF6rmem. Ancak gene o\u011Fla\u011Fan\xFCst\xFC bir
+    \u015Fekilde bir g\xFCn Bay Kovalev kalkt\u0131\u011F\u0131nda , \xF6nceki gece
+    masas\u0131nda b\u0131rakt\u0131\u011F\u0131 burunu yerinde bulmu\u015Ftur. Yani
+    iki yana\u011F\u0131n\u0131n tam ortas\u0131nda. Bu olay 7 Nisan'da ger\xE7ekle\u015Fti.\r"
+  - "-G\xF6rd\xFC\u011F\xFCn\xFCz gibi b\xFCy\xFCc\xFClerin ve doktorlar\u0131n yapamad\u0131\u011F\u0131
+    \u015Feyi nehrin kendisi yapm\u0131\u015F ve su yolunu bir \u015Fekilde bulmu\u015Ftur.\r"
+  - "-Ama ne yaz\u0131k ki insano\u011Flunun nank\xF6rl\xFC\u011F\xFC tekrar g\xFCn
+    y\xFCz\xFCne \xE7\u0131km\u0131\u015Ft\u0131r ve nehrin i\xE7inde y\xFCzenlerin
+    hayat\u0131 b\xF6yle bir o\u011Fla\u011Fan\xFCst\xFC hikayeden sonra bile hemen
+    eski haline d\xF6nm\xFC\u015Ft\xFCr."
   AllSubtitles: "-Bu arada bu olay\u0131n s\xF6ylentileri t\xFCm kasabada yay\u0131lm\u0131aya
     ba\u015Flama\u0131\u015Ft\u0131r.\r\n-\xD6yk\xFC en ufak ayr\u0131nt\u0131s\u0131na
     dek \u015Fi\u015Firlerek analt\u0131l\u0131yordu.\r\n-Zaten o s\u0131ralar halk
@@ -39501,12 +39516,17 @@ MonoBehaviour:
     \u015Fa\u015F\u0131rmam\u0131\u015Ft\u0131r.\r\n-Ama evrenin akan bir nehir oldu\u011Fu
     unutlmamal\u0131d\u0131r. Ve bu nehirin ak\u0131\u015F\u0131n\u0131 hesaplamak
     ne yaz\u0131k ki hi\xE7 bir varl\u0131\u011F\u0131n yapabilece\u011Fi bir i\u015F
-    de\u011Fildir.\r\n-Bir g\xFCn Bay Kovalev kalkt\u0131\u011F\u0131nda gene o\u011Fla\u011Fan\xFCst\xFC
-    bir \u015Fekilde, \xF6nceki gece masas\u0131nda b\u0131rakt\u0131\u011F\u0131
-    burunu y\xFCz\xFCnde bulmu\u015Ftur.\r\n-B\xFCy\xFCc\xFClerin ve doktorlar\u0131n
-    yapamad\u0131\u011F\u0131 \u015Feyi nehrin kendisi yapm\u0131\u015Ft\u0131r.\r\n-Ama
-    ne yaz\u0131k ki nehrin i\xE7inde y\xFCzenlerin hayat\u0131 b\xF6yle bir o\u011Fla\u011Fan\xFCst\xFC
-    hikayeden sonra bile hemen eski haline d\xF6nm\xFC\u015Ft\xFCr."
+    de\u011Fildir.\r\n-\u015Eu d\xFCnya \xE7ok garip \u015Feylere kadir. Ve bu oyunda
+    ge\xE7en olaylara inanmazsan\u0131z sizi hor g\xF6rmem. Ancak gene o\u011Fla\u011Fan\xFCst\xFC
+    bir \u015Fekilde bir g\xFCn Bay Kovalev kalkt\u0131\u011F\u0131nda , \xF6nceki
+    gece masas\u0131nda b\u0131rakt\u0131\u011F\u0131 burunu yerinde bulmu\u015Ftur.
+    Yani iki yana\u011F\u0131n\u0131n tam ortas\u0131nda. Bu olay 7 Nisan'da ger\xE7ekle\u015Fti.\r\n-G\xF6rd\xFC\u011F\xFCn\xFCz
+    gibi b\xFCy\xFCc\xFClerin ve doktorlar\u0131n yapamad\u0131\u011F\u0131 \u015Feyi
+    nehrin kendisi yapm\u0131\u015F ve su yolunu bir \u015Fekilde bulmu\u015Ftur.\r\n-Ama
+    ne yaz\u0131k ki insano\u011Flunun nank\xF6rl\xFC\u011F\xFC tekrar g\xFCn y\xFCz\xFCne
+    \xE7\u0131km\u0131\u015Ft\u0131r ve nehrin i\xE7inde y\xFCzenlerin hayat\u0131
+    b\xF6yle bir o\u011Fla\u011Fan\xFCst\xFC hikayeden sonra bile hemen eski haline
+    d\xF6nm\xFC\u015Ft\xFCr."
   subtitle: {fileID: 988427696}
   ifDesroyItself: 0
   releaseAfterSub: 0
@@ -39531,17 +39551,123 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1058481626}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 215d722cd4cda8e4e98aaa5107b47a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDisabledAtStart: 0
+  isDisabledAtStart: 1
   cameraObj: {fileID: 762603493}
   cameraInitialPosition: {fileID: 1072926834}
   kovalev: {fileID: 197953946}
   ivan: {fileID: 197953945}
   berberShop: {fileID: 197953944}
+  building: {fileID: 451343151}
+  ivanAim: {fileID: 1684205080}
+--- !u!114 &1058481631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1058481626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "Kovalev: Hemen s\xF6yler, ellerin temiz mi?\r"
+  - "Ivan: Temiz efendim.\r"
+  - "Kovalev: Yalanc\u0131!\r"
+  - "Ivan: Vallahi temiz.\r"
+  - "Kovalev: Peki, haydi bakal\u0131m.\r"
+  AllSubtitles: "Kovalev: Hemen s\xF6yler, ellerin temiz mi?\r\nIvan: Temiz efendim.\r\nKovalev:
+    Yalanc\u0131!\r\nIvan: Vallahi temiz.\r\nKovalev: Peki, haydi bakal\u0131m.\r\n"
+  subtitle: {fileID: 1940411400}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+--- !u!114 &1058481632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1058481626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "Bu olaylardan sonra, Binba\u015F\u0131 Kovalev Nevsky caddesi civar\u0131nda
+    hi\xE7 bir \u015Fey olmam\u0131\u015F gibi dola\u015Fmaya devam ediyordu. \r"
+  - "O g\xFCnden sonra Kovalev'i hi\xE7 dertli g\xF6rmediler. Y\xFCz\xFCn de ki kocaman
+    burnu hi\xE7 eksik olmadan, t\xFCm g\xFCzel k\u0131zlar\u0131n pe\u015Finde dola\u015F\u0131yordu.\r"
+  - "Bir kez Gostine'de ki ni\u015Fanc\u0131da kendisine bir ni\u015Fan al\u0131nd\u0131\u011F\u0131
+    g\xF6r\xFClm\xFC\u015Ft\xFC. \xC7ok ilgin\xE7tir ki \u015Fu ana kadar kimse ona
+    ni\u015Fan verildi\u011Fini duymam\u0131\u015Ft\u0131r.\r"
+  - "\u0130\u015Fte st petersburg'un merkezide b\xF6yle bir \xF6yk\xFC ge\xE7mi\u015Ftir.
+    Ancak \u015Fimdi oyunumuza bak\u0131nca ger\xE7ekten akl\u0131n alm\u0131ayaca\u011F\u0131
+    bir s\xFCr\xFC olay ger\xE7ekle\u015Fmi\u015Ftir.\r"
+  - "Burnun \u015Fehirde bir Dan\u0131\u015Ftay \xDCyesi olarak gezmesini g\xF6rmezden
+    gelelim. Kovalev nas\u0131l b\xF6yle bir duyurunun gazeteye verilemiyece\u011Fini
+    anlamaz. Hem duyuru fiyatlar\u0131n\u0131n ne kadar y\xFCksek oldu\u011Fundan
+    s\xF6z etmiyorum bile. \r"
+  - "Hem ekmek pi\u015Fen bir \u015Feyken burnun i\xE7inden \xE7\u0131kmas\u0131.
+    Hem Ivan Yakovlevi\xE7'in hala Nevsky caddesnde \xE7al\u0131\u015F\u0131yor olabilmesi.\r"
+  - "Hem o kulak f\u0131kras\u0131 neydi? Neden Ivan o f\u0131kray\u0131 dinlemedi?
+    Oyuncunun birazc\u0131k olsun g\xFClmeye ihtiyac\u0131 yokmuydu bu kaotik hikayede?\r"
+  - "Hay\u0131r akl\u0131m almaz bu \u015Feyleri. Ve en sa\xE7ma taraf\u0131nda oyun
+    yap\u0131mc\u0131lar\u0131n\u0131n b\xF6yle konular\u0131 al\u0131p oyun yapmas\u0131.
+    \u0130nan\u0131n bu a\xE7\u0131klanamaz bir konu. \xD6ncelikle oyun e\u011Flence
+    arac\u0131d\u0131r. B\xF6yle bir hikayede e\u011Flenceli hi\xE7 bi taraf yoktur.
+    Ayn\u0131 zamanda hikayenin verdi\u011Fi yararl\u0131 bir mesajda yoktur. \r"
+  - "Ne derseniz diyin. B\xF6yle garip bir oyuna bu kadar vakit verilmesi... Ancak
+    hayatta da b\xF6yle garip olaylar yok mudur? Hem bu oyunda da insan\u0131n kendini
+    buldu\u011Fu noktalar yok mudur? Kim bilir belki vard\u0131r. Bin de bir bile
+    olsa vard\u0131r."
+  AllSubtitles: "Bu olaylardan sonra, Binba\u015F\u0131 Kovalev Nevsky caddesi civar\u0131nda
+    hi\xE7 bir \u015Fey olmam\u0131\u015F gibi dola\u015Fmaya devam ediyordu. \r\nO
+    g\xFCnden sonra Kovalev'i hi\xE7 dertli g\xF6rmediler. Y\xFCz\xFCn de ki kocaman
+    burnu hi\xE7 eksik olmadan, t\xFCm g\xFCzel k\u0131zlar\u0131n pe\u015Finde dola\u015F\u0131yordu.\r\nBir
+    kez Gostine'de ki ni\u015Fanc\u0131da kendisine bir ni\u015Fan al\u0131nd\u0131\u011F\u0131
+    g\xF6r\xFClm\xFC\u015Ft\xFC. \xC7ok ilgin\xE7tir ki \u015Fu ana kadar kimse ona
+    ni\u015Fan verildi\u011Fini duymam\u0131\u015Ft\u0131r.\r\n\u0130\u015Fte st petersburg'un
+    merkezide b\xF6yle bir \xF6yk\xFC ge\xE7mi\u015Ftir. Ancak \u015Fimdi oyunumuza
+    bak\u0131nca ger\xE7ekten akl\u0131n alm\u0131ayaca\u011F\u0131 bir s\xFCr\xFC
+    olay ger\xE7ekle\u015Fmi\u015Ftir.\r\nBurnun \u015Fehirde bir Dan\u0131\u015Ftay
+    \xDCyesi olarak gezmesini g\xF6rmezden gelelim. Kovalev nas\u0131l b\xF6yle bir
+    duyurunun gazeteye verilemiyece\u011Fini anlamaz. Hem duyuru fiyatlar\u0131n\u0131n
+    ne kadar y\xFCksek oldu\u011Fundan s\xF6z etmiyorum bile. \r\nHem ekmek pi\u015Fen
+    bir \u015Feyken burnun i\xE7inden \xE7\u0131kmas\u0131. Hem Ivan Yakovlevi\xE7'in
+    hala Nevsky caddesnde \xE7al\u0131\u015F\u0131yor olabilmesi.\r\nHem o kulak f\u0131kras\u0131
+    neydi? Neden Ivan o f\u0131kray\u0131 dinlemedi? Oyuncunun birazc\u0131k olsun
+    g\xFClmeye ihtiyac\u0131 yokmuydu bu kaotik hikayede?\r\nHay\u0131r akl\u0131m
+    almaz bu \u015Feyleri. Ve en sa\xE7ma taraf\u0131nda oyun yap\u0131mc\u0131lar\u0131n\u0131n
+    b\xF6yle konular\u0131 al\u0131p oyun yapmas\u0131. \u0130nan\u0131n bu a\xE7\u0131klanamaz
+    bir konu. \xD6ncelikle oyun e\u011Flence arac\u0131d\u0131r. B\xF6yle bir hikayede
+    e\u011Flenceli hi\xE7 bi taraf yoktur. Ayn\u0131 zamanda hikayenin verdi\u011Fi
+    yararl\u0131 bir mesajda yoktur. \r\nNe derseniz diyin. B\xF6yle garip bir oyuna
+    bu kadar vakit verilmesi... Ancak hayatta da b\xF6yle garip olaylar yok mudur?
+    Hem bu oyunda da insan\u0131n kendini buldu\u011Fu noktalar yok mudur? Kim bilir
+    belki vard\u0131r. Bin de bir bile olsa vard\u0131r."
+  subtitle: {fileID: 988427696}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+  manualTimerArray: []
+  TimeMode: 0
+  timeInhibator: 13
+--- !u!114 &1058481633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1058481626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fe89b43d9dd984fb51b9ad2bea7c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 10
 --- !u!1 &1060642741
 GameObject:
   m_ObjectHideFlags: 0
@@ -60074,27 +60200,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!1 &1619352194 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011785493192, guid: dd651778041846143b79e2a904c465fc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1008298710}
---- !u!114 &1619352203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1619352194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f62fc923a4a78b4ebff21a01cc73694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tags:
-  - ActiveObject
-  ignoreMasks:
-    serializedVersion: 2
-    m_Bits: 260
 --- !u!1 &1619832273
 GameObject:
   m_ObjectHideFlags: 0
@@ -62564,6 +62669,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1682713882}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1684205080 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010857744420, guid: 6bb060a3799c0e24687e3328c0bc0a32,
+    type: 2}
+  m_PrefabInternal: {fileID: 197953943}
 --- !u!1 &1685679746
 GameObject:
   m_ObjectHideFlags: 0
@@ -66808,6 +66918,7 @@ Transform:
   - {fileID: 537450828}
   - {fileID: 1886651425}
   - {fileID: 1320154020}
+  - {fileID: 897088738}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &1805330999
@@ -66855,6 +66966,8 @@ MonoBehaviour:
   mirror: {fileID: 1886651424}
   chair1: {fileID: 561220930}
   chair2: {fileID: 676247748}
+  building: {fileID: 1320154016}
+  sun: {fileID: 897088737}
 --- !u!114 &1805331001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77361,6 +77474,7 @@ MonoBehaviour:
   friendTellsChurch: {fileID: 1000013067790522, guid: 8b3af1de52d31e846a6020d908c77f7e,
     type: 2}
   churchBirdPosition: {fileID: 2004258013}
+  outroScene: {fileID: 1058481626}
 --- !u!1 &2066464652
 GameObject:
   m_ObjectHideFlags: 0
@@ -78746,11 +78860,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42681b2798a7f4418a506cdf5e2f223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CallType: 0
+  CallType: 1
   owner: {fileID: 1514217651}
   passParameter: {fileID: 0}
   methodName: throwNose
-  destroySelf: 0
+  destroySelf: 1
 --- !u!114 &2109161436
 MonoBehaviour:
   m_ObjectHideFlags: 0

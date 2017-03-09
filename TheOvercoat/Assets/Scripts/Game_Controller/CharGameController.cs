@@ -200,7 +200,10 @@ public class CharGameController : MonoBehaviour {
         }
     }
 
- 
+    public static void deactivateCamera()
+    {
+        getCamera().SetActive(false);
+    }
 
     //This function returns object that is owned by the hand of the armature of a player character.
 
@@ -208,6 +211,7 @@ public class CharGameController : MonoBehaviour {
     {
 
         GameObject hand=getHand(r_l);
+        if (!hand) return null;
         Transform obj= hand.transform.Find(objectName);
         if (obj == null)
         {
