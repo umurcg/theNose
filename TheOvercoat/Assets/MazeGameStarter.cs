@@ -7,23 +7,46 @@ using MovementEffects;
 //This scirpt triggeres maze game.
 //When bird enters trigger or click on it, it switches characters with fade screen. For now just 'mplemeent iclick action
 //After that it starts game
+//Also it makes scene night when bird gets near of nose
 
 public class MazeGameStarter : GameController, IClickAction {
 
     public GameObject birdPrefab, nosePefab;
     public GameObject starterPos;
 
+    
+    DayAndNightCycle danc;
+    Light dancL;
+    float minInt, maxInt;
+    float currentInt;
+    float firtsDist;
+
     // Use this for initialization
-    public override void Start () {
+    public override void Start()
+    {
         base.Start();
 
+        danc = CharGameController.getSun().GetComponent<DayAndNightCycle>();
+        minInt = danc.minIntensity;
+        maxInt = danc.maxIntensity;
+        dancL = danc.GetComponent<Light>();
+        currentInt = dancL.intensity;
+        firtsDist = Vector3.Distance(player.transform.position, nosePefab.transform.position);
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        //Dim the light while bird is approaching to nose
+
+        //Percentage of distance between bird and nose
+        float percentage = Mathf.Clamp(Vector3.Distance(player.transform.position, nosePefab.transform.position) / firtsDist,minInt,maxInt);
+
+        if (percentage < dancL.intensity) dancL.intensity = percentage;
+
+
+
+    }
 
     //public void movePlayerBirdToStarterPos()
     //{
@@ -137,5 +160,18 @@ public class MazeGameStarter : GameController, IClickAction {
     {
         SkinnedMeshRenderer smr = obj.GetComponentInChildren<SkinnedMeshRenderer>();
         if (smr) smr.enabled = enable;
+    }
+
+
+    public override void activateController()
+    {
+        base.activateController();
+        gameObject.SetActive(true);
+    }
+
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        gameObject.SetActive(false);
     }
 }

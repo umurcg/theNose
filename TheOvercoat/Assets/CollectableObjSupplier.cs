@@ -36,7 +36,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
 	// Use this for initialization
 	void Start () {
         collectedObjs = new List<GameObject>();
-        cis = Camera.main.GetComponent<CursorImageScript>();
+        cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
 	}
 	
 	// Update is called once per frame

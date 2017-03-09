@@ -40,10 +40,10 @@ public class BirdsEyeView : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-       
-        //Timing.RunCoroutine( _goToBirdEye());
 
-	}
+        //Timing.RunCoroutine(_goToBirdEye());
+
+    }
 	
 	// Update is called once per frame
 
@@ -151,13 +151,18 @@ public class BirdsEyeView : MonoBehaviour {
     {
         foreach (KeyValuePair<int, OpenDoorLoad> attachStat in OpenDoorLoad.doors)
         {
-            string doorName = attachStat.Value.doorName;
-            Vector3 doorPos = attachStat.Value.transform.position;
-            GameObject UIDoorName = Instantiate(uiTextPrefab,mainCanvas.transform,false) as GameObject;
-            UIDoorName.GetComponent<Text>().text = doorName;
-            Debug.Log(doorName);
-            //UIDoorName.transform.position = GetComponent<Camera>().WorldToScreenPoint(doorPos);
-            doorNames.Add(UIDoorName, doorPos);
+            if (!attachStat.Value.isLocked())
+            {
+                string doorName = attachStat.Value.doorName;
+                Vector3 doorPos = attachStat.Value.transform.position;
+                GameObject UIDoorName = Instantiate(uiTextPrefab, mainCanvas.transform, false) as GameObject;
+                UIDoorName.GetComponent<Text>().text = doorName;
+                Debug.Log(doorName);
+                //UIDoorName.transform.position = GetComponent<Camera>().WorldToScreenPoint(doorPos);
+                doorNames.Add(UIDoorName, doorPos);
+
+                Debug.Log(doorName + " is not locked");
+            }
         }
 
         updateDoorNamesPositions();

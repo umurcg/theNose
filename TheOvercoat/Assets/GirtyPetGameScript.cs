@@ -109,7 +109,7 @@ public class GirtyPetGameScript : MonoBehaviour {
     void petting()
     {
 
-        CursorImageScript cis = mainCamera.GetComponent<CursorImageScript>();
+        CursorImageScript cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
 
         if (!pointBar.activeSelf)    pointBar.SetActive(true);
 
@@ -165,10 +165,10 @@ public class GirtyPetGameScript : MonoBehaviour {
         //Update point text and bar
         pointText.text = "%" + ((int)point).ToString();
         pointBarFill.fillAmount = point / 100;
-        mainCamera.GetComponent<CursorImageScript>().externalTexture = null;
+        CharGameController.getOwner().GetComponent<CursorImageScript>().externalTexture = null;
         enabled = false;
         //Reset cursor texture
-        mainCamera.GetComponent<CursorImageScript>().externalTexture = null;
+        CharGameController.getOwner().GetComponent<CursorImageScript>().externalTexture = null;
         messageReciever.SendMessage(message);
     }
 

@@ -30,7 +30,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
     {
         
         SubtitleController[] scs=GetComponents<SubtitleController>();
-        if (index <= scs.Length)
+        if (index < scs.Length)
         {
             scs[index].startSubtitle();
             //currentIndex = index;
@@ -54,7 +54,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
      
         SubtitleControllerTime[] scs = GetComponents<SubtitleControllerTime>();
     
-        if (index <= scs.Length)
+        if (index < scs.Length)
         {
             scs[index].startSubtitle();
 

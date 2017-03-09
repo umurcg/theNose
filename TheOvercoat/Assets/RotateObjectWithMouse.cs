@@ -9,6 +9,8 @@ public class RotateObjectWithMouse : MonoBehaviour {
     public float rotateSpeed = 150;
     public bool invertXY = false;
 
+    public GameObject rotateAround;
+
 
     // Use this for initialization
     void Start()
@@ -47,10 +49,26 @@ public class RotateObjectWithMouse : MonoBehaviour {
         {
             if (invertXY)
             {
-                transform.Rotate(new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0) * Time.deltaTime * rotateSpeed);
+                if (rotateAround != null)
+                {
+                    transform.RotateAround(rotateAround.transform.position, rotateAround.transform.up, Input.GetAxis("Mouse Y"));
+                    transform.RotateAround(rotateAround.transform.position, rotateAround.transform.right, Input.GetAxis("Mouse X"));
+                }
+                else
+                {
+                    transform.Rotate(new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0) * Time.deltaTime * rotateSpeed);
+                }
             }else
             {
-                transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * rotateSpeed);
+                if (rotateAround != null)
+                {
+                    transform.RotateAround(rotateAround.transform.position, rotateAround.transform.up, Input.GetAxis("Mouse X"));
+                    transform.RotateAround(rotateAround.transform.position, rotateAround.transform.right, Input.GetAxis("Mouse Y"));
+                }
+                else
+                {
+                    transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * rotateSpeed);
+                }
             }
 
         }

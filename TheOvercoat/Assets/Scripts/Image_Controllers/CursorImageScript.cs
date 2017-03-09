@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 //Dependent to: Player(Owner)
 //This script changes mouse image according to hitted object. 
@@ -23,14 +24,37 @@ public class CursorImageScript : MonoBehaviour
 
     public LayerMask ignoreLayers;
 
+    public bool forceToDefault = false;
+
     RaycastHit lastHit;
 
     GameObject player;
     MoveTo mt;
 
     Text subt;
+
+    Camera currentCamera;
+
     // Use this for initialization
     void Start()
+    {
+
+
+    }
+
+    void OnEnable()
+    {
+        //Tell our 'registerToSceneList' function to start listening for a scene change as soon as this script is enabled.
+        SceneManager.sceneLoaded += newSceneIsLoad;
+    }
+
+    void OnDisable()
+    {
+        //Tell our 'registerToSceneList' function to stop listening for a scene change as soon as this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
+        SceneManager.sceneLoaded -= newSceneIsLoad;
+    }
+
+    void newSceneIsLoad(Scene scene, LoadSceneMode mode)
     {
         player = CharGameController.getActiveCharacter();
         if (player != null)
@@ -42,7 +66,18 @@ public class CursorImageScript : MonoBehaviour
                 subt = SubtitleFade.subtitles["CharacterSubtitle"];
             }
         }
-       
+
+        Camera[] allCameras = Camera.allCameras;
+
+        foreach(Camera c in allCameras)
+        {
+            if (c.gameObject.activeSelf == true)
+            {
+                currentCamera = c;
+            }
+
+        }
+
     }
 
     // Update is called once per frame
@@ -70,10 +105,15 @@ public class CursorImageScript : MonoBehaviour
             }
 
         }
+        //else Debug.Log("Subtitle is null");
 
+        if (forceToDefault)
+        {
+            Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
+            return;
+        }
 
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = currentCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         //LayerMask mask = (1 << 8);

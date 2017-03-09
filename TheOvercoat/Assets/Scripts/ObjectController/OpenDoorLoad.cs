@@ -33,6 +33,11 @@ public class OpenDoorLoad : LoadScene {
         playerCanOpen = false;
     }
 
+    public bool isLocked()
+    {
+        return !playerCanOpen;
+    }
+
 
     // Use this for initialization
     void Awake()

@@ -47,9 +47,9 @@ using System.Linq;
     // Update is called once per frame
     void Update()
     {
-         //   print(mesh.triangles.Length);
-
-            if (mesh.triangles.Length <= triNumber/2)
+          //print(mesh.triangles.Length);
+          //TODO remove magic number
+            if (mesh.triangles.Length <= 165)
         {
             finish();
         }

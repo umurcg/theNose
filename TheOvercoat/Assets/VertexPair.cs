@@ -25,7 +25,7 @@ public class VertexPair : MonoBehaviour {
         lr.SetVertexCount(0);
         v1 = transform.GetChild(0).gameObject;
         v2 = transform.GetChild(1).gameObject;
-        cis = Camera.main.GetComponent<CursorImageScript>();
+        cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
     }
 
     // Update is called once per frame

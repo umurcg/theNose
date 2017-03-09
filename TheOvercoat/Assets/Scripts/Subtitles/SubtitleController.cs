@@ -148,6 +148,10 @@ public class SubtitleController : MonoBehaviour {
             text = SubtitleFade.subtitles["CharacterSubtitle"];
         }
 
+        //If subtitle text is not null dont start subtitle.
+        if (text.text != "") return;
+        
+
         text.text = subtitleTexts[0];
         index = 0;
         if (pcc != null)

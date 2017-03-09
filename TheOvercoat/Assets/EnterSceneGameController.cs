@@ -26,6 +26,9 @@ public class EnterSceneGameController : GameController{
 
         base.Start();
 
+        //Force to default cursor while this scene is not interactive
+        CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = true;
+
         //At enter scene blackscreen shouldn't fade in automatically
         if(blackScreen.script!=null)
         blackScreen.script.fadeInAtStart = false;  //race condition
@@ -65,6 +68,11 @@ public class EnterSceneGameController : GameController{
 
     }
 	
+    void onDisable()
+    {
+        CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = false;
+    }
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -247,6 +255,7 @@ public class EnterSceneGameController : GameController{
 
         base.activateController();
         //gameObject.SetActive(true);
+        
         enabled = true;
         cameraObj.SetActive(true);
         ivan.SetActive(true);

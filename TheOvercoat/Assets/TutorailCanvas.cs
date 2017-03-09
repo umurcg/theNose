@@ -7,6 +7,7 @@ public class TutorailCanvas : MonoBehaviour {
 
     
     public bool debug;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,7 @@ public class TutorailCanvas : MonoBehaviour {
 
     public void startFullTutorial( float duration = 5f)
     {
+        Debug.Log("Starting full tutorial");
         Timing.RunCoroutine(_startFullTutorial( duration));
     }
 

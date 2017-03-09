@@ -95,7 +95,7 @@ abstract public class GameController : MonoBehaviour {
         Debug.Log("Activated  "+ transform.name);
     }
     public virtual void deactivateController() {
-        Debug.Log("Deactivated  " + transform.name);
+        //Debug.Log("Deactivated  " + transform.name);
     }
 
 

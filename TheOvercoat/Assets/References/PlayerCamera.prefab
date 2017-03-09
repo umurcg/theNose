@@ -41,6 +41,7 @@ GameObject:
   - 114: {fileID: 114000012589669922}
   - 114: {fileID: 114000011269651312}
   - 114: {fileID: 114000011113696416}
+  - 114: {fileID: 114000011959196130}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -3556,6 +3557,27 @@ MonoBehaviour:
   threshold: 0.01
   animName: Walk
   speedFactor: 0.5
+--- !u!114 &114000011959196130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010109351266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f87066c66877748b5495dc9827fded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultTexture: {fileID: 2800000, guid: 65daa82073c8934429e82c42480d6164, type: 3}
+  disabled: {fileID: 2800000, guid: 34f90a52bedb1ef48b530718045329d8, type: 3}
+  floor: {fileID: 2800000, guid: 993652c76a14cd94a8a2c60b6411ade9, type: 3}
+  activeObject: {fileID: 2800000, guid: 0bd8e104bc6f12e429a0404de800cfee, type: 3}
+  grab: {fileID: 2800000, guid: 36763b5e11262b14ba37456ebb49d848, type: 3}
+  nextSubtitle: {fileID: 2800000, guid: 343d433117a801c40a793ebb07787e52, type: 3}
+  externalTexture: {fileID: 0}
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 260
 --- !u!114 &114000012006399516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3579,7 +3601,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013127924312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97f87066c66877748b5495dc9827fded, type: 3}
   m_Name: 

@@ -6,7 +6,7 @@ using MovementEffects;
 //City includes lots of scenes and games. So when this script starts it looks player's sceneList and decide how to initilize city.
 public class CityGameController : MonoBehaviour {
 
-    public GameObject berberShop, Crowd,  bar, jokeGroup, bridge, fruitStad, cat;
+    public GameObject berberShop, Crowd,  bar, jokeGroup, bridge, fruitStad, cat, nosePack, ivanCityController;
     public GameObject[] ivanScenePolice;
     public GameObject lookAtMeNowTrigger, NoseGame;
     public GameObject SingerCafe;
@@ -124,6 +124,7 @@ public class CityGameController : MonoBehaviour {
         //Unlock Ivan home door
         OpenDoorLoad.doors[1].playerCanOpen = true;
 
+        ivanCityController.GetComponent<GameController>().activateController();
         Crowd.GetComponent<GameController>().activateController();
         //girty.GetComponent<GameController>().activateController();
         bar.GetComponent<GameController>().activateController();
@@ -131,6 +132,9 @@ public class CityGameController : MonoBehaviour {
         fruitStad.GetComponent<GameController>().activateController();
         bridge.GetComponent<GameController>().activateController();
         cat.GetComponent<GameController>().activateController();
+
+        nosePack.SetActive(true);
+
 
         //Activae policemans
         foreach(GameObject police in ivanScenePolice)
