@@ -191,7 +191,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
             if (collectedObjs.Count == 0)
             {
                 Destroy(_3DPanel.transform.GetChild(0).gameObject);
-            }else if (UI3Dicon.transform.childCount == 0)
+            }else if (_3DPanel.transform.childCount == 0)
             {
                 GameObject spawnedObj=Instantiate(UI3Dicon) as GameObject;
                 spawnedObj.transform.parent = _3DPanel.transform;
@@ -208,7 +208,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
                 text.text = "";
             }else
             {
-                text.text = countMessage + " " + collectedObjs.Count +"\n"+additionalTutorialString;
+                text.text = countMessage + " " + collectedObjs.Count +"/n"+additionalTutorialString;
             }
         }
          

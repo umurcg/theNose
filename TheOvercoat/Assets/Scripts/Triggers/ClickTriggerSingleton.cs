@@ -156,7 +156,9 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
         Timing.KillCoroutines(handler);
         stopToWalk();
-        Timing.RunCoroutine(Vckrs._lookTo(gameObject, aim.transform.position, 1f));
+
+        Timing.RunCoroutine(Vckrs._lookTo(gameObject, aim, 1f));
+        //Vckrs.testPosition(aim.transform.position);
 
         callAction(aim);
         yield break;

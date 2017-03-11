@@ -89,10 +89,10 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     {
         bool isPassengerPlayer = false;
         freeze();
-        if (passenger == null)
+        if (passenger != null)
         {
 
-            passenger = CharGameController.getActiveCharacter();
+            //passenger = CharGameController.getActiveCharacter();
             isPassengerPlayer = true;
             //print("Passenfer is null");
             //yield break;
@@ -207,7 +207,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     public void Action()
     {
-
+        //If passenger is not null which means it is not for player, iclick action can't call mount function
+        if (passenger != null) return;
         Timing.RunCoroutine(_mount());
    
     }

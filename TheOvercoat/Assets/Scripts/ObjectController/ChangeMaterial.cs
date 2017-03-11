@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 //This script changes material to another material from list.
-
+//0 is the first material of object (default material)
 
 public class ChangeMaterial : MonoBehaviour {
 	Material originalMat;

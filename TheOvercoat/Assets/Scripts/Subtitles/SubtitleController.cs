@@ -43,7 +43,7 @@ public class SubtitleController : MonoBehaviour {
         }
         if (text == null)
         {
-            //print("PUT THE SUBTITLE YOU FAGGOT");
+            Debug.Log("No text here");
          
         }
         index = -1;
@@ -84,7 +84,9 @@ public class SubtitleController : MonoBehaviour {
 
     // Update is called once per frame
     protected virtual void Update () {
-      //  print("index: "+index+"array: "+subtitleTexts.Length);
+        //  print("index: "+index+"array: "+subtitleTexts.Length);
+
+        if (Time.timeScale == 0) return;
 
         if (index != -1)
         {
@@ -148,9 +150,13 @@ public class SubtitleController : MonoBehaviour {
             text = SubtitleFade.subtitles["CharacterSubtitle"];
         }
 
+        //if (text == null) Debug.Log("No text again");
+        
+
         //If subtitle text is not null dont start subtitle.
         if (text.text != "") return;
-        
+
+        Debug.Log("Subtitle is started");
 
         text.text = subtitleTexts[0];
         index = 0;

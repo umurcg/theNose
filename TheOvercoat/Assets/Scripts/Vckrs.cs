@@ -61,6 +61,28 @@ public class Vckrs : MonoBehaviour
     }
 
 
+    public static IEnumerator<float> _Tween(GameObject go, GameObject aim, float speed)
+    {
+
+        Vector3 initialPosition = go.transform.position;
+
+        float ratio = 0;
+
+
+
+        while (ratio < 1)
+        {
+            ratio += Time.deltaTime * speed;
+
+
+            go.transform.position = Vector3.Lerp(initialPosition, aim.transform.position, ratio);
+            yield return 0;
+
+        }
+        go.transform.position = aim.transform.position;
+
+        yield break;
+    }
 
 
     public static IEnumerator<float> _Tween(GameObject go, Vector3 aim, float speed)
@@ -578,6 +600,21 @@ public class Vckrs : MonoBehaviour
 
         return children;
 
+    }
+
+    public static bool canCameraSeeObject(GameObject obj, Camera cam)
+    {
+        Vector3 screenPoint = cam.WorldToViewportPoint(obj.transform.position);
+        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+        return onScreen;
+    }
+
+    public static bool canCameraSeeObject(Vector3 pos, Camera cam)
+    {
+        
+        Vector3 screenPoint = cam.WorldToViewportPoint(pos);
+        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+        return onScreen;
     }
 
     public static void disableAllChildren(Transform parent)

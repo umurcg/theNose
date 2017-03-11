@@ -5,8 +5,6 @@ using MovementEffects;
 
 public class RunFromPlayer : MonoBehaviour {
 
-    public enum runDirection { x, z}
-    public runDirection RunDirection = runDirection.z;
 
     public float speed=5f;
     public float forwardValue=15;
@@ -92,15 +90,20 @@ public class RunFromPlayer : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Failed to sample position on navmesh");
-            if (RunDirection == runDirection.x)
+
+            //Try to run in z direction
+            destination = transform.position + Vector3.right * forwardValue;
+            if (NavMesh.SamplePosition(destination, out nmh, navMeshSampleRaidus, nma.areaMask))
             {
-                destination = transform.position + Vector3.right*forwardValue;
-            }else
+                //If dest is almost in navmesh leave it like that
+            } else
             {
+                //Try to run in x direction if z is not valid, I hope it is valid else fuck it i am out.
+
                 destination = transform.position + Vector3.forward * forwardValue;
 
             }
+
 
         }
 

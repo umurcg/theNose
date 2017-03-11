@@ -16,7 +16,7 @@ using UnityEngine.UI;
 
 
 public class NoseEncounterGameController : GameController {
-    public GameObject Horse, Nose, trash, newspaper, sun, Girlgame, girl,girlCanvas, girlGameKov/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
+    public GameObject Horse, Nose, trash, newspaper, Girlgame, girl,girlCanvas, girlGameKov/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
 
     public bool debugCatch;
 
@@ -35,6 +35,10 @@ public class NoseEncounterGameController : GameController {
     //public GameObject IvanSubtitleHolder;
     //SubtitleCaller ivanSc;
 
+    //For tracing obstacle avoidence typ of player
+    ObstacleAvoidanceType playerInitialAvoidenceType;
+    ObstacleAvoidanceType nosesInitialAvoidenceType;
+
     // Use this for initialization
     public override void Start () {
         base.Start();
@@ -44,9 +48,12 @@ public class NoseEncounterGameController : GameController {
         hs = Horse.GetComponent<HorseScript>();
         noseCC = new characterComponents(Nose);
 
-        enbaleTrashObjs(true);
+        //enbaleTrashObjs(true);
         //startNoseGame();
         //noseCatched();
+        //setGirlPosition();
+
+
     }
 
 
@@ -88,14 +95,22 @@ public class NoseEncounterGameController : GameController {
 
     IEnumerator<float> _start()
     {
+        yield return 0;
+
+        CameraFollower cf=CharGameController.getCamera().GetComponent<CameraFollower>();
 
         //hs.release();
-        handlerHolder= hs.setDes(player.transform.position + Vector3.forward * 20);
+        handlerHolder = hs.setDes(player.transform.position + Vector3.forward * 20);
         pcc.StopToWalk();
 
         lookAtObject = Nose;
 
-        sc.callSubtitleWithIndex(5);
+        sc.callSubtitleWithIndex(0);
+
+        yield return Timing.WaitForSeconds(1f);
+
+        //Set camera to nose
+        cf.changeTargetWithLerp(Nose,0.3f);
 
         yield return Timing.WaitUntilDone(handlerHolder);
 
@@ -121,6 +136,10 @@ public class NoseEncounterGameController : GameController {
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Nose));
         yield return Timing.WaitUntilDone(handlerHolder);
 
+        //Set camera to active character
+        yield return Timing.WaitForSeconds(1f);
+        cf.changeTargetWithLerp(player, 0.3f);
+
         //Timing.RunCoroutine(Vckrs._lookTo(player, Nose, 1));
 
         newspaper.SetActive(true);
@@ -128,14 +147,16 @@ public class NoseEncounterGameController : GameController {
 
         lookAtObject = null;
 
+        
+
         while (subtitle.text != "") yield return 0;
 
-        sc.callSubtitleWithIndex(0);
+        sc.callSubtitleWithIndex(1);
         while (subtitle.text != "") yield return 0;
 
         yield return Timing.WaitForSeconds(3f);
 
-        sc.callSubtitleWithIndex(1);
+        sc.callSubtitleWithIndex(2);
         while (subtitle.text != "") yield return 0;
 
     
@@ -167,16 +188,46 @@ public class NoseEncounterGameController : GameController {
     }
 
     public void enbaleTrashObjs(bool b) {
-        
-        for(int i = 0; i < trash.transform.childCount; i++)
+
+        //If you enable trash objects you should set player navmesh obstacle avoidence to none because we don't want to
+        //player avoid from boks 
+        //If you disable it you should recover first obstacle settings to not leaving a trace
+        //Also you should set nose avoidence type to high quality, iftrash objects are enabled while he should fear from boks
+        //If you disabletrash objects you should recover its initial av.type too
+        if (b)
         {
+            playerInitialAvoidenceType = playerNma.obstacleAvoidanceType;
+            playerNma.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+
+            nosesInitialAvoidenceType= noseCC.navmashagent.obstacleAvoidanceType;
+            noseCC.navmashagent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        }
+        else
+        {
+           if(playerInitialAvoidenceType!=ObstacleAvoidanceType.NoObstacleAvoidance) playerNma.obstacleAvoidanceType = playerInitialAvoidenceType;
+            noseCC.navmashagent.obstacleAvoidanceType = nosesInitialAvoidenceType;
+        }
+
+        for (int i = 0; i < trash.transform.childCount; i++)
+        {
+
+            GameObject child = trash.transform.GetChild(i).gameObject;
+            CollectableObjSupplier cos = child.GetComponent<CollectableObjSupplier>();
+            ChangeMaterial cm =child.GetComponent<ChangeMaterial>();
+
             if (b)
             {
-                ActivateAnotherObject.Activate(trash.transform.GetChild(i).gameObject);
+                cos.enabled = enabled;
+                child.tag = "ActiveObject";
+                cm.changeWithIndex(1);
             }
             else
             {
-                ActivateAnotherObject.Disable(trash.transform.GetChild(i).gameObject);
+                cos.clearInventory();
+                cos.enabled = false;
+                child.tag = "Untagged";
+                cm.changeWithIndex(0);
+
             }
         }
 
@@ -192,43 +243,54 @@ public class NoseEncounterGameController : GameController {
     {
         newspaper.SetActive(false);
         enbaleTrashObjs(false);
+
+        noseCC.navmashagent.Stop();
         Timing.RunCoroutine(Vckrs._lookTo(Nose,player,1f));
 
         pcc.StopToWalk();
-        sc.callSubtitleWithIndex(2);
+        sc.callSubtitleWithIndex(3);
         while (subtitle.text != "")
         {
             yield return 0;
         }
 
-        //Set girl position
-        Vector3 girlPosition =player.transform.position+  Vector3.Normalize(Horse.transform.position - player.transform.position) * 20;
-        //CAst girl position to navmesh
+        sc.callSubtitleWithIndexTime(1);
+
+        setGirlPosition();
+
+        Vector3 girlPosition = girl.transform.position;
         NavMeshHit nmh;
-        if ((NavMesh.SamplePosition(girlPosition, out nmh, 30f, girl.GetComponent<NavMeshAgent>().areaMask)))
+
+        if ((NavMesh.SamplePosition(girlPosition, out nmh, 10f, girl.GetComponent<NavMeshAgent>().areaMask)))
         {
-            girlPosition=nmh.position;
+            girlPosition = nmh.position;
+            
         }
 
-        girl.transform.position = girlPosition;
+        girl.transform.position=girlPosition;
 
         girl.SetActive(true);
 
-        lookAtObject = girl;
-
-        subtitle.text = "Kovalev: Aman tanrım! Bu nasıl bir güzellik";
         
         NavMeshAgent nmaGirls = girl.GetComponent<NavMeshAgent>();
         nmaGirls.Resume();
         nmaGirls.SetDestination(player.transform.position + player.transform.forward * 5);
 
+
+        //danc.makeNight();
+
+        GameObject sun = CharGameController.getSun();
         DayAndNightCycle danc = sun.GetComponent<DayAndNightCycle>();
-        danc.makeNight();
 
-        //IEnumerator<float> lightHnadler = Timing.RunCoroutine(Vckrs._setLightIntensity(LightObj, 0.5f, 0));
+        IEnumerator<float> lightHnadler = Timing.RunCoroutine(Vckrs._setLightIntensity(sun,0.5f,danc.minIntensity));
+
+        lookAtObject = girl;
+
         IEnumerator<float> girlWalkHandler = Timing.RunCoroutine(Vckrs.waitUntilStop(girl, 0f));
-
         yield return Timing.WaitUntilDone(girlWalkHandler);
+        
+        subtitle.text = "Kovalev: Aman tanrım! Bu nasıl bir güzellik";
+       
 
         subtitle.text = "";
         lookAtObject = null;
@@ -277,6 +339,57 @@ public class NoseEncounterGameController : GameController {
 
     }
 
+    //Sets girl position to suitable place which is on navmesh and outside of camera but near of player
+    //TODO make it static in vckrs
+    public void setGirlPosition()
+    {
+
+        //Set girl position
+        //Vector3 girlPosition =player.transform.position+  Vector3.Normalize(Horse.transform.position - player.transform.position) * 20;
+
+        Vector3 positionLimit1 = Vckrs.generateRandomPositionOnCircle(player.transform.position, 30f);
+        Vector3 positionLimit2= Vckrs.generateRandomPositionOnCircle(player.transform.position, 50f);
+        Vector3 position = Vector3.Lerp(positionLimit1, positionLimit2, Random.Range(0, 1));
+
+
+        bool onNavmesh = false;
+        bool outsideOfCam = false;
+
+        int trial = 100000;
+
+
+        while ((!onNavmesh || !outsideOfCam) && trial>0)
+        {
+            //Cast girl position to navmesh and check it is on navmesh
+            NavMeshHit nmh;
+            if ((NavMesh.SamplePosition(position, out nmh, 2f, girl.GetComponent<NavMeshAgent>().areaMask)))
+            {
+                position = nmh.position;
+                onNavmesh = true;
+            }else
+            {
+                onNavmesh = false;
+            }
+
+            //Check girl is outisde of camera
+            outsideOfCam=!Vckrs.canCameraSeeObject(position, CharGameController.getCamera().GetComponent<Camera>());
+            
+    
+            trial--;
+        }
+
+        if (trial <= 0)
+        {
+            Debug.Log("Couldn't find appropiate position for girl");
+        }else
+        {
+            Debug.Log("Found appropiate position for girl");
+        }
+
+        girl.transform.position = position;
+
+    }
+
     public void noseGoneLost()
     {
         Timing.RunCoroutine(_noseGoneLost());
@@ -285,10 +398,10 @@ public class NoseEncounterGameController : GameController {
     IEnumerator<float> _noseGoneLost()
     {
 
-        DayAndNightCycle danc = sun.GetComponent<DayAndNightCycle>();
+        DayAndNightCycle danc = CharGameController.getSun().GetComponent<DayAndNightCycle>();
         danc.makeDay();
 
-        sc.callSubtitleWithIndex(3);
+        sc.callSubtitleWithIndex(4);
         while (subtitle.text != "")
         {
             yield return 0;
