@@ -133,6 +133,11 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
             passenger.transform.parent = null;
         }
         passenger.GetComponent<BasicCharAnimations>().enabled = true;
+
+        //Update camera follower
+        //CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
+
+        yield break;
     }
 
     public IEnumerator<float> mount()

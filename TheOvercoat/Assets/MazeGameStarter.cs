@@ -32,6 +32,8 @@ public class MazeGameStarter : GameController, IClickAction {
         dancL = danc.GetComponent<Light>();
         currentInt = dancL.intensity;
         firtsDist = Vector3.Distance(player.transform.position, nosePefab.transform.position);
+
+        //movePlayerBirdToStarterPos();
     }
 
     // Update is called once per frame
@@ -72,6 +74,7 @@ public class MazeGameStarter : GameController, IClickAction {
 
     IEnumerator<float> _startMazeGame()
     {
+        player = CharGameController.getActiveCharacter();
 
         //Disable character mouse look of bird
         CharacterMouseLook cml = player.GetComponent<CharacterMouseLook>();
@@ -97,7 +100,8 @@ public class MazeGameStarter : GameController, IClickAction {
         Vector3 oldPos = player.transform.position;
 
         Quaternion oldRotation = player.transform.rotation;
-        float birdSpeed = player.GetComponent<MoveToWithoutAgent>().speed;
+        MoveToWithoutAgent mtwa = player.GetComponent<MoveToWithoutAgent>();
+        float birdSpeed = mtwa.speed;
 
         //Disable bot nose and make player to that nose, in other words transform bot to player
         enableDisableSkinnedMesh(nosePefab,false);

@@ -14,6 +14,7 @@ public class ChurchTellerGameController : GameController {
 	public override void Start () {
         base.Start();
         ownerCC = new characterComponents(gameObject);
+        //Debug.Log("helooooooooooooooooo");
 
         Timing.RunCoroutine(_goTellChurch());
 	}
@@ -25,6 +26,11 @@ public class ChurchTellerGameController : GameController {
 
     IEnumerator<float> _goTellChurch()
     {
+
+        yield return 0;
+
+        transform.position = CharGameController.getActiveCharacterPosition() + CharGameController.getActiveCharacter().transform.forward * 5;
+
         playerAnim.SetBool("RightHandAtFace", true);
         pcc.StopToWalk();
         //Walk to player
@@ -35,7 +41,10 @@ public class ChurchTellerGameController : GameController {
         //Call subtitle.
         sc.callSubtitleWithIndex(0);
 
-        ownerCC.navmashagent.SetDestination(player.transform.position + 2*(transform.position-player.transform.position).normalized);
+    
+
+        //Vckrs.testPosition(player.transform.position + 2 * (transform.position - player.transform.position).normalized);
+        ownerCC.navmashagent.SetDestination(player.transform.position + 5*(transform.position-player.transform.position).normalized);
         
         //Kovalev looks churchteller
         Timing.RunCoroutine(Vckrs._lookTo(player, gameObject, 1f));
@@ -79,5 +88,25 @@ public class ChurchTellerGameController : GameController {
         Destroy(gameObject);
 
         yield break;
+    }
+
+    public override void activateController()
+    {
+        base.activateController();
+        //Debug.Log("TAKE ME TO THE TO CHURCH");
+        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+
+
+
+    }
+
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        gameObject.SetActive(false);
     }
 }

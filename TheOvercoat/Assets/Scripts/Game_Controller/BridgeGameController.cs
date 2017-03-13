@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BridgeGameController : GameController {
 
-    public GameObject police,trigger,/*blackScreen,*/ shallNotPass;
+    public GameObject police,trigger,/*blackScreen,*/ shallNotPass, singerCafe;
 
     bool onBridge = false;
     GameObject nose;
@@ -107,7 +107,7 @@ public class BridgeGameController : GameController {
 
     IEnumerator<float> _throwNose()
     {
-
+        yield return 0;
 
 
         trigger.GetComponent<DirectClickScript>().enabled = false;
@@ -154,10 +154,12 @@ public class BridgeGameController : GameController {
         policeNma.SetDestination(new Vector3(bc.bounds.center.x, player.transform.position.y, player.transform.position.z +  5));
         subtitle.text = "-Polis: Hey!";
 
-        handler = Timing.RunCoroutine(Vckrs.waitUntilStop(police, 0));
+        handler = Timing.RunCoroutine(Vckrs.waitUntilStop(police));
         yield return Timing.WaitUntilDone(handler);
         Timing.RunCoroutine(Vckrs._lookTo(police, player.transform.position-police.transform.position, 1));
         Timing.RunCoroutine(Vckrs._lookTo(player, police.transform.position-player.transform.position, 1));
+
+        subtitle.text = "";
         sc.callSubtitleWithIndex(1);
 
         while (subtitle.text != "")
@@ -203,7 +205,16 @@ public class BridgeGameController : GameController {
 
         while (narSubtitle.text != "") yield return 0;
 
-        GetComponent<LoadScene>().Load();
+        //Dont load new scene instead fade out and activate singer cafe
+        //GetComponent<LoadScene>().Load();
+
+        handlerHolder= blackScreen.script.fadeOut();
+        yield return Timing.WaitUntilDone(handlerHolder);
+        
+        singerCafe.GetComponent<CafeSingerGameController>().activateController();
+
+        handlerHolder = blackScreen.script.fadeIn();
+        yield return Timing.WaitUntilDone(handlerHolder);
 
 
     }

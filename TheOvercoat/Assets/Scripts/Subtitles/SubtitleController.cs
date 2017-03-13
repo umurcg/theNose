@@ -156,7 +156,7 @@ public class SubtitleController : MonoBehaviour {
         //If subtitle text is not null dont start subtitle.
         if (text.text != "") return;
 
-        Debug.Log("Subtitle is started");
+        //Debug.Log("Subtitle is started");
 
         text.text = subtitleTexts[0];
         index = 0;

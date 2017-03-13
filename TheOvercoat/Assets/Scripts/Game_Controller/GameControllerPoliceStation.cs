@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameControllerPoliceStation : GameController {
-    public GameObject trigger,  Gaurd, CharSubtitle, Chair0;
+    public GameObject trigger,  Gaurd,  Chair0;
 
     EnterTrigger et;
     public bool debug;
@@ -101,4 +101,12 @@ public class GameControllerPoliceStation : GameController {
 
 
     }
+
+    public void DestroyItSelf()
+    {
+        Destroy(this);
+    }
+
+
+
 }

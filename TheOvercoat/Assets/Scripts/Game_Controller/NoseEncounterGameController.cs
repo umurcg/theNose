@@ -49,7 +49,7 @@ public class NoseEncounterGameController : GameController {
         noseCC = new characterComponents(Nose);
 
         //enbaleTrashObjs(true);
-        //startNoseGame();
+        startNoseGame();
         //noseCatched();
         //setGirlPosition();
 

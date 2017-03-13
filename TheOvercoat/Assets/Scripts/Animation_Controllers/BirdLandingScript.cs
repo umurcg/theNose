@@ -27,7 +27,7 @@ public class BirdLandingScript : MonoBehaviour {
     float timer;
     Vector3 lockPos;
 	// Use this for initialization
-	void Start () {
+	public void Start () {
       
 
         bc = GetComponent<BirdController>();
@@ -160,6 +160,7 @@ public class BirdLandingScript : MonoBehaviour {
 
     public void setAsLanded(bool isLanded)
     {
+
         animContoller.SetBool(landingAnimationName, isLanded);
         this.isLanded = isLanded;
         bc.pauseMovement = isLanded;

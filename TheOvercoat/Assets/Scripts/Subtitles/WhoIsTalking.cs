@@ -29,7 +29,7 @@ public class WhoIsTalking : MonoBehaviour
         }
         else
         {
-            Debug.Log("Creating new static object");
+            //Debug.Log("Creating new static object");
             self = this;
         }
 

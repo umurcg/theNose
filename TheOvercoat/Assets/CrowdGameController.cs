@@ -11,11 +11,11 @@ public class CrowdGameController : GameController, IClickAction {
 	public override void Start () {
 
         base.Start();
-        if (CharGameController.getActiveCharacter() == null) {
-            Destroy(gameObject);
-            return;
-        }
-        if (CharGameController.getActiveCharacter().transform.name != "Ivan") Destroy(gameObject);
+        //if (CharGameController.getActiveCharacter() == null) {
+        //    Destroy(gameObject);
+        //    return;
+        //}
+        //if (CharGameController.getActiveCharacter().transform.name != "Ivan") Destroy(gameObject);
     }
 	
 	// Update is called once per frame
@@ -75,13 +75,13 @@ public class CrowdGameController : GameController, IClickAction {
     public override void activateController()
     {
         gameObject.SetActive(true);
-        stage.SetActive(true);
-  
+        Vckrs.enableAllChildren(stage.transform);
+
     }
     public override void deactivateController()
     {
         gameObject.SetActive(false);
-        stage.SetActive(false);
+        Vckrs.disableAllChildren(stage.transform,new List<Transform>());
     }
 
 

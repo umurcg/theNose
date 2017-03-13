@@ -6,7 +6,7 @@ using MovementEffects;
 //City includes lots of scenes and games. So when this script starts it looks player's sceneList and decide how to initilize city.
 public class CityGameController : MonoBehaviour {
 
-    public GameObject berberShop, Crowd,  bar, jokeGroup, bridge, fruitStad, cat, nosePack, ivanCityController;
+    public GameObject berberShop, Crowd,  bar, jokeGroup, bridge, fruitStad, cat, nosePack, ivanCityController, maze;
     public GameObject[] ivanScenePolice;
     public GameObject lookAtMeNowTrigger, NoseGame;
     public GameObject SingerCafe;
@@ -14,7 +14,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject churchBirdPosition;
     public GameObject outroScene;
     
-	// Use this for initialization
+	// Awake function is for registering current scene. It sets scene according to storyline
 	void Awake () {
 
 
@@ -22,7 +22,7 @@ public class CityGameController : MonoBehaviour {
         {
             //Scene list
             List<int> sceneList = GlobalController.Instance.sceneList;
-            Debug.Log("SceneList lenght is " + sceneList.Count);
+            //Debug.Log("SceneList lenght is " + sceneList.Count);
             //foreach (int i in sceneList)
             //{
             //    Debug.Log(i);
@@ -34,6 +34,13 @@ public class CityGameController : MonoBehaviour {
                 int lastSceneIndex = sceneList[sceneList.Count - 1];
 
                 Debug.Log("last scene is " + (GlobalController.Scenes)lastSceneIndex);
+
+                //If last scene is city then make last scene previous scene
+                if (lastSceneIndex == (int)GlobalController.Scenes.City)
+                {
+                   lastSceneIndex= sceneList[sceneList.Count - 2];
+                }
+
 
                 switch (lastSceneIndex)
                 {
@@ -67,8 +74,15 @@ public class CityGameController : MonoBehaviour {
 
                         break;
 
+                    case (int)GlobalController.Scenes.PoliceStation:
+                        Debug.Log("comingfrom police station");
+                        comingFromPoliceStation();
+
+                        break;
+
 
                     case (int)GlobalController.Scenes.City:
+                        
                         //Look for previous scene, if it is ivan house than it must be call singerCafeScene
                         if (sceneList.Count > 1 && sceneList[sceneList.Count - 2] == (int)GlobalController.Scenes.IvanHouse)
                             singerCafeScene();
@@ -92,8 +106,21 @@ public class CityGameController : MonoBehaviour {
             Debug.Log("No global controller instace!!!!!!!!!!!");
         }
 
+        //In city player hould have enabled bird eye view script. so enable it you fucking idiot
+        BirdsEyeView bev = CharGameController.getCamera().GetComponent<BirdsEyeView>();
+        bev.enabled = true;
+
     }
-	
+
+    void OnDestroy()
+    {
+        //On any other scenes bird eye view should be disabled
+        BirdsEyeView bev = CharGameController.getCamera().GetComponent<BirdsEyeView>();
+        bev.enabled = false;
+    }
+
+
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -160,6 +187,14 @@ public class CityGameController : MonoBehaviour {
         Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
     }
 
+    void comingFromPoliceStation()
+    {
+        //Unlock police door and kovalev door
+        OpenDoorLoad.doors[2].playerCanOpen = true;
+        OpenDoorLoad.doors[3].playerCanOpen = true;
+        OpenDoorLoad.doors[4].playerCanOpen = true;
+    }
+
     void comingFromNewspaper()
     {
         //Girty handles its activation itself.
@@ -187,6 +222,12 @@ public class CityGameController : MonoBehaviour {
             //spawnedCT.GetComponent<ChurchTellerGameController>().enabled = true;
 
             //Unlock church door
+
+            Debug.Log("Coming from newspaper second time");
+
+            friendTellsChurch.GetComponent<GameController>().isDisabledAtStart = false;
+            friendTellsChurch.GetComponent<GameController>().activateController();  
+
             OpenDoorLoad.doors[5].Unlock();
 
         }
@@ -196,12 +237,24 @@ public class CityGameController : MonoBehaviour {
     void comingFromChurch()
     {
         Debug.Log("Coming from church");
+        OpenDoorLoad.openAllTheVisitedDoors();
+
         //If active character is bird then set its position to churchTop
         GameObject player = CharGameController.getActiveCharacter();
         if (player.transform.name == "Bird")
         {
-           CharGameController.movePlayer(churchBirdPosition.transform.position);
+            Timing.RunCoroutine(moveBirdAfterOneFrame());
+            CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
+            //cf.updateRelative();
+            maze.GetComponent<GameController>().activateController();
         }
+
+    }
+
+    IEnumerator<float> moveBirdAfterOneFrame()
+    {
+        yield return 0;
+        CharGameController.movePlayer(churchBirdPosition.transform.position);
     }
 
     void comingFromDoctor()

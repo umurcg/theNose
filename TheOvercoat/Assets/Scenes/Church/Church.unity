@@ -109,8 +109,8 @@ Transform:
   - {fileID: 1384492439}
   - {fileID: 1094478782}
   - {fileID: 867816281}
-  - {fileID: 1236387577}
   - {fileID: 1831585917}
+  - {fileID: 1236387577}
   - {fileID: 1991099831}
   - {fileID: 52553196}
   - {fileID: 1233956260}
@@ -218,7 +218,7 @@ MonoBehaviour:
   owner: {fileID: 1773820511}
   passParameter: {fileID: 0}
   methodName: basement
-  destroySelf: 0
+  destroySelf: 1
 --- !u!1 &140805098
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +343,85 @@ Transform:
   - {fileID: 444372297}
   m_Father: {fileID: 1773604988}
   m_RootOrder: 1
+--- !u!1 &162473403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 162473404}
+  - 33: {fileID: 162473407}
+  - 65: {fileID: 162473406}
+  - 23: {fileID: 162473405}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &162473404
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162473403}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.44, y: -7.39e-13, z: 2.92}
+  m_LocalScale: {x: 3.69523, y: 0.6395394, z: 5.041077}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 387542699}
+  m_RootOrder: 0
+--- !u!23 &162473405
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162473403}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &162473406
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162473403}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &162473407
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162473403}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &206411470
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,14 +583,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 341879142}
-  - 65: {fileID: 341879138}
   - 114: {fileID: 341879131}
   - 114: {fileID: 341879132}
   - 114: {fileID: 341879133}
   - 114: {fileID: 341879134}
   - 114: {fileID: 341879135}
   - 114: {fileID: 341879140}
-  - 114: {fileID: 341879145}
+  - 114: {fileID: 341879137}
+  - 136: {fileID: 341879136}
   m_Layer: 0
   m_Name: Jesus
   m_TagString: ActiveObject
@@ -659,8 +738,8 @@ MonoBehaviour:
   subtitle: {fileID: 945407002}
   ifDesroyItself: 1
   releaseAfterSub: 0
---- !u!65 &341879138
-BoxCollider:
+--- !u!136 &341879136
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -668,9 +747,22 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.38, y: 7.76, z: 10.734644}
-  m_Center: {x: 0, y: -3.08, z: 3.17}
+  m_Radius: 8.05
+  m_Height: 18.57
+  m_Direction: 2
+  m_Center: {x: 0, y: -2.67, z: 2.68}
+--- !u!114 &341879137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 341879130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b48fbf4d790d84eabf3c5a245b3d8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posObject: {fileID: 1061440728}
 --- !u!114 &341879140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,21 +791,89 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1061440732}
   - {fileID: 488584306}
   m_Father: {fileID: 124965}
   m_RootOrder: 4
---- !u!114 &341879145
-MonoBehaviour:
+--- !u!1 &375726980
+GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 341879130}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 375726981}
+  - 33: {fileID: 375726984}
+  - 65: {fileID: 375726983}
+  - 23: {fileID: 375726982}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &375726981
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 375726980}
+  m_LocalRotation: {x: -0.00000005960463, y: 0.0000018775459, z: -0.7071059, w: 0.7071077}
+  m_LocalPosition: {x: -6.18, y: 4.28, z: 2.92}
+  m_LocalScale: {x: 8.414339, y: 0.63953966, z: 5.041079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.00001}
+  m_Children: []
+  m_Father: {fileID: 387542699}
+  m_RootOrder: 1
+--- !u!23 &375726982
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 375726980}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &375726983
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 375726980}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d06fa5cd80666b44e946c82b627780c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkOffset: {x: 0, y: 0, z: 2}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &375726984
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 375726980}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &387542690
 Prefab:
   m_ObjectHideFlags: 0
@@ -769,6 +929,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+    - target: {fileID: 100002, guid: aa3380362186dec43b677f549afc49d2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: aa3380362186dec43b677f549afc49d2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa3380362186dec43b677f549afc49d2, type: 3}
   m_IsPrefabParent: 0
@@ -846,6 +1014,22 @@ Rigidbody:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: aa3380362186dec43b677f549afc49d2, type: 3}
   m_PrefabInternal: {fileID: 387542690}
+--- !u!4 &387542699 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400002, guid: aa3380362186dec43b677f549afc49d2, type: 3}
+  m_PrefabInternal: {fileID: 387542690}
+--- !u!65 &387542702
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 387542691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.8238542, y: 0.212524, z: 5.5539746}
+  m_Center: {x: -4.285442, y: -6.069746e-13, z: 2.6695025}
 --- !u!1 &388082674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1429,7 @@ GameObject:
   - 23: {fileID: 601994194}
   - 114: {fileID: 601994196}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1315,7 +1499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c3133fd6c213544bda6310bd796259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchTransparent: 1
+  switchTransparent: 0
   transparentMaterial: {fileID: 2100000, guid: 0a94301e6e71e0d49acf74f33bcdff51, type: 2}
   objects:
   - {fileID: 206411470}
@@ -1495,6 +1679,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 124965}
   - 95: {fileID: 919943586}
+  - 114: {fileID: 919943587}
   m_Layer: 0
   m_Name: church1
   m_TagString: Untagged
@@ -1520,6 +1705,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &919943587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 919943585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726b4a21f7367144b823858dccc993f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLevel: 0
+  oneTimeUse: 1
+  reciever: {fileID: 601994192}
+  message: switchTransparentOpaque
 --- !u!1 &931951978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,7 +1857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1011820565
 Transform:
   m_ObjectHideFlags: 0
@@ -1737,6 +1937,85 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1011820564}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1061440728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1061440732}
+  - 33: {fileID: 1061440731}
+  - 65: {fileID: 1061440730}
+  - 23: {fileID: 1061440729}
+  m_Layer: 0
+  m_Name: pos
+  m_TagString: ActiveObject
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1061440729
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061440728}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1061440730
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061440728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1061440731
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061440728}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1061440732
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061440728}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.9, y: -9.21, z: -2.16}
+  m_LocalScale: {x: 0.38010186, y: 0.38010192, z: 0.38010192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 341879142}
+  m_RootOrder: 0
 --- !u!1001 &1069047640
 Prefab:
   m_ObjectHideFlags: 0
@@ -1840,15 +2119,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 9.19
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.94
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -10.82
+      value: 6.85
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2004,7 +2283,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 71d0757bcecef094fa74e599e91fc6a3, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 71d0757bcecef094fa74e599e91fc6a3, type: 3}
       propertyPath: m_LocalScale.x
@@ -2022,6 +2301,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+    - target: {fileID: 100000, guid: 71d0757bcecef094fa74e599e91fc6a3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 71d0757bcecef094fa74e599e91fc6a3, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71d0757bcecef094fa74e599e91fc6a3, type: 3}
   m_IsPrefabParent: 0
@@ -2200,6 +2487,19 @@ MeshFilter:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 71d0757bcecef094fa74e599e91fc6a3, type: 3}
   m_PrefabInternal: {fileID: 1164375557}
+--- !u!136 &1234806933
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1234806929}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.6
+  m_Height: 12.08
+  m_Direction: 2
+  m_Center: {x: -7.24513e-16, y: 0.05098307, z: 0.600651}
 --- !u!4 &1236387577 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e3ee37deadaac5e4eb7fbd4908b25030, type: 3}
@@ -2274,7 +2574,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e3ee37deadaac5e4eb7fbd4908b25030, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e3ee37deadaac5e4eb7fbd4908b25030, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2938,6 +3238,7 @@ GameObject:
   - 114: {fileID: 1773820517}
   - 114: {fileID: 1773820519}
   - 114: {fileID: 1773820522}
+  - 114: {fileID: 1773820523}
   m_Layer: 0
   m_Name: Pontiff
   m_TagString: Untagged
@@ -3030,21 +3331,21 @@ MonoBehaviour:
   AllSubtitles: "Kovalev: ...\r\nKovalev: Efendim, bak\u0131n bana b\xFCy\xFC yap\u0131ld\u0131.
     Kara bir b\xFCy\xFC. Rahip buraya gelmemei s\xF6yledi. Sadece sizin bana yard\u0131m
     edebilece\u011Finizi ve bu lanetten kurtulmam\u0131 sa\u011Flayabilece\u011Finizi
-    s\xF6yledi.\r\nB\xFCy\xFCc\xFC: Yeter. Bir insana ancak haketti\u011Fi bir laneti
-    verebilirsin. \xD6b\xFCr t\xFCrl\xFC en g\xFC\xE7l\xFC efsun bile tutmaz insan
-    ruhuna.\r\nKovalev: Ama benim lanetim ruhuma de\u011Fil bedenime tuttu. G\xF6rm\xFCyor
-    musunuz burnum yok.\r\nB\xFCy\xFCc\xFC: ...\r\nB\xFCy\xFCc\xFC: Sizin gibilerin
-    anlamad\u0131\u011F\u0131 \u015Fey de bu. D\xFCnyevi \xF6\u011Felerle ruhani \xF6\u011Feler
-    aras\u0131nda keskin bir \xE7izgi oldu\u011Funu d\xFC\u015F\xFCn\xFCyorsunuz.\r\nB\xFCy\xFCc\xFC:
-    Sana yard\u0131m edece\u011Fim. Ancak sen bu durumdan ma\u011Fdur oldu\u011Fun
-    i\xE7in de\u011Fil, insanlar\u0131n aras\u0131nda b\xF6yle pis kanl\u0131 birinin
-    dola\u015Fmas\u0131n\u0131 engellemek i\xE7in.\r\nKovalev: Te\u015Fekk\xFCrler
-    efendim. \xC7ok te\u015F\u015Fekk\xFCr ederim. Bu \u015Feyleri atlat\u0131y\u0131m
-    size y\xFCkl\xFC -tabi beni sarsmayacak \u015Fekilde- bir \xF6d\xFCl verece\u011Fim.\r\nB\xFCy\xFCc\xFC:
-    \u0130stemez senin zehirli paran\u0131. \r\nB\xFCy\xFCc\xFC: Ge\xE7 otur \u015Furaya."
+    s\xF6yledi.\r\nPontiff: Yeter. Bir insana ancak haketti\u011Fi bir laneti verebilirsin.
+    \xD6b\xFCr t\xFCrl\xFC en g\xFC\xE7l\xFC efsun bile tutmaz insan ruhuna.\r\nKovalev:
+    Ama benim lanetim ruhuma de\u011Fil bedenime tuttu. G\xF6rm\xFCyor musunuz burnum
+    yok.\r\nPontiff: ...\r\nPontiff: Sizin gibilerin anlamad\u0131\u011F\u0131 \u015Fey
+    de bu. D\xFCnyevi \xF6\u011Felerle ruhani \xF6\u011Feler aras\u0131nda keskin
+    bir \xE7izgi oldu\u011Funu d\xFC\u015F\xFCn\xFCyorsunuz.\r\nPontiff: Sana yard\u0131m
+    edece\u011Fim. Ancak sen bu durumdan ma\u011Fdur oldu\u011Fun i\xE7in de\u011Fil,
+    insanlar\u0131n aras\u0131nda b\xF6yle pis kanl\u0131 birinin dola\u015Fmas\u0131n\u0131
+    engellemek i\xE7in.\r\nKovalev: Te\u015Fekk\xFCrler efendim. \xC7ok te\u015F\u015Fekk\xFCr
+    ederim. Bu \u015Feyleri atlat\u0131y\u0131m size y\xFCkl\xFC -tabi beni sarsmayacak
+    \u015Fekilde- bir \xF6d\xFCl verece\u011Fim.\r\nPontiff: \u0130stemez senin zehirli
+    paran\u0131. \r\nPontiff: Ge\xE7 otur \u015Furaya."
   subtitle: {fileID: 945407002}
   ifDesroyItself: 0
-  releaseAfterSub: 1
+  releaseAfterSub: 0
 --- !u!114 &1773820516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,20 +3373,18 @@ MonoBehaviour:
     durumlar\u0131, biraz uzakla\u015Farak kolayca \xE7\xF6zebilirsin.\r"
   - "B\xFCy\xFCc\xFC: Tek yapman gereken birazc\u0131k uzakla\u015Fmak. Sonra t\xFCm
     sorunlar\u0131n yava\u015F yava\u015F \xE7\xF6z\xFCme kavu\u015Facak.\r"
-  - "B\xFCy\xFCc\xFC: Otur \u015Furaya \u015Fimdi."
-  AllSubtitles: "B\xFCy\xFCc\xFC: Hi\xE7 bir b\xFCy\xFC emeksiz ger\xE7ekle\u015Fmez.
-    \u0130nsanlar b\xFCy\xFCyle istediklerine direkt ula\u015Fabileceklerini san\u0131yorlar.
-    Ancak b\xFCy\xFC de her ne kadar ruhani bir d\xFCnyadan gelse de ya\u015Fad\u0131\u011F\u0131m\u0131z
-    hayattan \xE7ok farkl\u0131 de\u011Fildir.\r\nB\xFCy\xFCc\xFC: Kimse emek vermeden
-    istedi\u011Fine ula\u015Famaz. O nedenle benim bu yap\u0131caklar\u0131m sana
-    burnunu vermiyecek.\r\nB\xFCy\xFCc\xFC: \u015Eimdi yap\u0131caklar\u0131m sadece
-    sana bir ara\xE7 sunacak. Burunu bulmak gene senin g\xF6revin ve senin sorumlulu\u011Fun.\r\nKovalev:
-    Ama nas\u0131l? Nereden ba\u015Fl\u0131yaca\u011F\u0131m\u0131 bile bilmiyorum.
-    Kocaman petersburgda k\xFC\xE7\xFCc\xFCk burunumu nas\u0131l bulurum ki?\r\nB\xFCy\xFCc\xFC:
-    Boyut g\xF6recelidir. Bazen i\xE7inde bulundu\u011Fun komplike durumlar\u0131,
-    biraz uzakla\u015Farak kolayca \xE7\xF6zebilirsin.\r\nB\xFCy\xFCc\xFC: Tek yapman
-    gereken birazc\u0131k uzakla\u015Fmak. Sonra t\xFCm sorunlar\u0131n yava\u015F
-    yava\u015F \xE7\xF6z\xFCme kavu\u015Facak.\r"
+  AllSubtitles: "Pontiff: Hi\xE7 bir b\xFCy\xFC emeksiz ger\xE7ekle\u015Fmez. \u0130nsanlar
+    b\xFCy\xFCyle istediklerine direkt ula\u015Fabileceklerini san\u0131yorlar. Ancak
+    b\xFCy\xFC de her ne kadar ruhani bir d\xFCnyadan gelse de ya\u015Fad\u0131\u011F\u0131m\u0131z
+    hayattan \xE7ok farkl\u0131 de\u011Fildir.\r\nPontiff: Kimse emek vermeden istedi\u011Fine
+    ula\u015Famaz. O nedenle benim bu yap\u0131caklar\u0131m sana burnunu vermiyecek.\r\nPontiff:
+    \u015Eimdi yap\u0131caklar\u0131m sadece sana bir ara\xE7 sunacak. Burunu bulmak
+    gene senin g\xF6revin ve senin sorumlulu\u011Fun.\r\nKovalev: Ama nas\u0131l?
+    Nereden ba\u015Fl\u0131yaca\u011F\u0131m\u0131 bile bilmiyorum. Kocaman petersburgda
+    k\xFC\xE7\xFCc\xFCk burunumu nas\u0131l bulurum ki?\r\nPontiff: Boyut g\xF6recelidir.
+    Bazen i\xE7inde bulundu\u011Fun komplike durumlar\u0131, biraz uzakla\u015Farak
+    kolayca \xE7\xF6zebilirsin.\r\nPontiff: Tek yapman gereken birazc\u0131k uzakla\u015Fmak.
+    Sonra t\xFCm sorunlar\u0131n yava\u015F yava\u015F \xE7\xF6z\xFCme kavu\u015Facak.\r"
   subtitle: {fileID: 945407002}
   ifDesroyItself: 0
   releaseAfterSub: 0
@@ -3118,7 +3417,7 @@ MonoBehaviour:
   - "B\xFCy\xFCc\xFC: Neden geldin buraya? O pis iblis kan\u0131nla tanr\u0131n\u0131n
     evini nas\u0131l kirletmeye c\xFCret edersin. KONU\u015E!\r"
   - "Kovalev: Ne diyorsun sen. Benim kim oldu\u011Fu\r"
-  AllSubtitles: "B\xFCy\xFCc\xFC: Neden geldin buraya? O pis iblis kan\u0131nla tanr\u0131n\u0131n
+  AllSubtitles: "Pontiff: Neden geldin buraya? O pis iblis kan\u0131nla tanr\u0131n\u0131n
     evini nas\u0131l kirletmeye c\xFCret edersin. KONU\u015E!\r\nKovalev: Ne diyorsun
     sen. Benim kim oldu\u011Fu\r"
   subtitle: {fileID: 945407002}
@@ -3180,9 +3479,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4423e97779af4b4583349d3296c27a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fade: 1
+  fade: 0
   Scene: 1
   debugLoad: 0
+--- !u!114 &1773820523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773820511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d813d6aff508f04f9696619a2b88898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1831585916
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,7 +3523,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 124965}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!23 &1831585918
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3328,7 +3638,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1934319409}
   - 33: {fileID: 1934319412}
-  - 65: {fileID: 1934319411}
   - 23: {fileID: 1934319410}
   m_Layer: 0
   m_Name: Lock posiiton
@@ -3379,18 +3688,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1934319411
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1934319408}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1934319412
 MeshFilter:
   m_ObjectHideFlags: 0

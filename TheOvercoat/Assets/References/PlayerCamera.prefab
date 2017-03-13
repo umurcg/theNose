@@ -42,6 +42,7 @@ GameObject:
   - 114: {fileID: 114000011269651312}
   - 114: {fileID: 114000011113696416}
   - 114: {fileID: 114000011959196130}
+  - 114: {fileID: 114000012814978802}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -904,7 +905,6 @@ GameObject:
   - 81: {fileID: 81000010189069812}
   - 95: {fileID: 95000010059957848}
   - 114: {fileID: 114000012349219652}
-  - 114: {fileID: 114000012014652088}
   - 114: {fileID: 114000013119608828}
   - 114: {fileID: 114000011359743036}
   - 114: {fileID: 114000013945706278}
@@ -1076,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013424932310
 GameObject:
   m_ObjectHideFlags: 1
@@ -1259,7 +1259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000014117282164
 GameObject:
   m_ObjectHideFlags: 1
@@ -1651,7 +1651,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 84.3, y: -0.89, z: -8.1}
+  m_LocalPosition: {x: 188.5, y: -0.89, z: 55.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3595,28 +3595,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 260
   debug: 0
---- !u!114 &114000012014652088
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013127924312}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97f87066c66877748b5495dc9827fded, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultTexture: {fileID: 2800000, guid: 65daa82073c8934429e82c42480d6164, type: 3}
-  disabled: {fileID: 2800000, guid: 34f90a52bedb1ef48b530718045329d8, type: 3}
-  floor: {fileID: 2800000, guid: 993652c76a14cd94a8a2c60b6411ade9, type: 3}
-  activeObject: {fileID: 2800000, guid: 0bd8e104bc6f12e429a0404de800cfee, type: 3}
-  grab: {fileID: 2800000, guid: 36763b5e11262b14ba37456ebb49d848, type: 3}
-  nextSubtitle: {fileID: 2800000, guid: 343d433117a801c40a793ebb07787e52, type: 3}
-  externalTexture: {fileID: 0}
-  ignoreLayers:
-    serializedVersion: 2
-    m_Bits: 260
-  forceToDefault: 0
 --- !u!114 &114000012142572098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3657,9 +3635,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneList: 
-  debugSceneList: 0100000002000000
-  fullGameSceneList: 01000000020000000100000003000000010000000400000001000000050000000100000005000000060000000100000003000000010000000700000001000000
-  setDebugListToLevelIndex: 6
+  debugSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000006000000
+  fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
+  setDebugListToLevelIndex: 11
 --- !u!114 &114000012654939820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3693,6 +3671,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 260
   debug: 0
+--- !u!114 &114000012814978802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010109351266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1d415eff84b1346963fc19bac882bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012855388498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3753,7 +3742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf714e482887b54dbed390b5d7e3366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: c645fb18e53558d489df507a08f49c35, type: 2}
+  mat: {fileID: 2100000, guid: 71ef2eaa84333614a901a16ecf95dcc8, type: 2}
   speed: 1
   matPropert: _Glossiness
 --- !u!114 &114000013200424760
@@ -3873,7 +3862,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013127924312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 761602ce3d6a2854ab6d6aaeebb5a901, type: 3}
   m_Name: 
@@ -3883,29 +3872,6 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   uiTextPrefab: {fileID: 1000011656113242, guid: a2bdf3582c4058b43acf28564cb8d440,
     type: 2}
-  streetAreas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   maxSize: 200
   speed: 0.5
   mask:

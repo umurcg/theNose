@@ -68,6 +68,7 @@ public class GirtController : GameController {
         }
         else
         {
+            //Debug.Log("casual");
             rwaa.enabled = true;
         }
 
@@ -108,5 +109,20 @@ public class GirtController : GameController {
 
         yield return 0;
     }
+
+    //public void barkToChairDance()
+    //{
+         
+    //}
+
+    //public void allGamesActive()
+    //{
+
+    //}
+
+    //public void randomMovementAndBark()
+    //{
+
+    //}
 
 }

@@ -16,7 +16,11 @@ public class AutoLightScript : MonoBehaviour {
 	void Start () {
         l = GetComponent<Light>();
         GameObject sun = CharGameController.getSun();
-        if (sun == null) return;
+        if (sun == null)
+        {
+            Debug.Log("No sun");
+            enabled = false;
+        }
 
         globalLight = sun.GetComponent<Light>();
         danc = sun.GetComponent<DayAndNightCycle>();
@@ -25,7 +29,8 @@ public class AutoLightScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!danc || globalLight) return;
+        if (!danc || !globalLight) return;
+        
         l.intensity = (danc.maxIntensity - globalLight.intensity)/(danc.maxIntensity-danc.minIntensity)*maxIntensity;
         //Debug.Log(l.intensity);
 	}

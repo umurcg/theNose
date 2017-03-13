@@ -188,8 +188,9 @@ public class ClickTriggerSingleton : MonoBehaviour {
    
     public void setDestination(Vector3 pos)
     {
-        if (agent.enabled)
+        if (agent && agent.enabled)
         {
+            //Vckrs.testPosition(pos);
             agent.SetDestination(pos);
         }else
         {
@@ -204,7 +205,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
         IClickActionDifferentPos icadp = aim.GetComponent<IClickActionDifferentPos>();
 
-        if(agent.enabled) agent.Resume();
+        if(agent && agent.enabled) agent.Resume();
 
         Vector3 position;
         while (true)
@@ -212,7 +213,12 @@ public class ClickTriggerSingleton : MonoBehaviour {
                
             if (icadp != null)
             {
+                //Debug.Log("different pos"+aim.gameObject.name);
+                
                 position=icadp.giveMePosition();
+
+
+                //Vckrs.testPosition(position);
             }
             else
             {

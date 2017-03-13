@@ -63,7 +63,7 @@ public class CameraRotator : MonoBehaviour {
         //cf.enabled = false;
         Vector3 initialVector = transform.forward;
 
-        Vector3 initialPosition = transform.position;
+        Vector3 cameraInitialPosition = transform.position;
         Quaternion initialRotation = transform.rotation;
 
         //float initialHeight = player.transform.position.y;

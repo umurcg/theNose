@@ -43,17 +43,18 @@ public class CharGameController : MonoBehaviour {
 
     void setPositionToDoor(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Setting position");
+        //Debug.Log("Setting position");
      
         if (lastDoorId != 0)
         {
 
             GameObject activeChar = getActiveCharacter();
 
+            
             NavMeshAgent nma = activeChar.GetComponent < NavMeshAgent > ();
-            nma.enabled = false;
+            if(nma) nma.enabled = false;
 
-            print("position");
+            //print("position");
             if (OpenDoorLoad.doors.ContainsKey(lastDoorId))
             {
 
@@ -75,10 +76,10 @@ public class CharGameController : MonoBehaviour {
                 //print("position changes");
             }
 
-            nma.enabled = true;
+            if(nma)nma.enabled = true;
         }else
         {
-            Debug.Log("Last foor id is null");
+            //Debug.Log("Last foor id is null");
         }
                
 
@@ -276,6 +277,7 @@ public class CharGameController : MonoBehaviour {
     public static void movePlayer(Vector3 pos)
     {
         getOwner().transform.position = pos;
+        getActiveCharacter().transform.position = pos;
     }
 
     public static GameObject getNosePos()
@@ -310,6 +312,13 @@ public class CharGameController : MonoBehaviour {
         }
 
         return danc.gameObject;
+    }
+
+    public static Vector3 getActiveCharacterPosition()
+    {
+        Vector3 pos=getActiveCharacter().transform.position;
+        //Vckrs.testPosition(pos);
+        return pos;
     }
 
  }

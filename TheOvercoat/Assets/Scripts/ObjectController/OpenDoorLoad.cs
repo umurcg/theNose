@@ -145,6 +145,21 @@ public class OpenDoorLoad : LoadScene {
             doors.Clear();
     }
      
+    //Opens all the scene doors that player went previously
+    public static void openAllTheVisitedDoors()
+    {
+        List<int> sceneList = GlobalController.Instance.getCurrentSceneList();
+        
+        foreach(KeyValuePair<int,OpenDoorLoad> door in doors)
+        {
+            if (sceneList.Contains((int)door.Value.Scene))
+            {
+                door.Value.playerCanOpen=true;
+            }
+        }
+
+    }
+
     //public static OpenDoorLoad getDoorOfScene(GlobalController.Scenes scene)
     //{
     //    foreach(KeyValuePair<int,OpenDoorLoad> door in doors)

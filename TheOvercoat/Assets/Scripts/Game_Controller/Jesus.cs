@@ -31,6 +31,8 @@ public class Jesus : GameController, IClickAction {
 
         if (playerLookToPriest) player.transform.LookAt(priest.transform);
 
+        
+
 	}
 
     public void Action()

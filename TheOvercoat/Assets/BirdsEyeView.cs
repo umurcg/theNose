@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MovementEffects;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //This script deals with camera movement for map view of city
 //User can send location to reciever via this script
@@ -16,7 +17,7 @@ public class BirdsEyeView : MonoBehaviour {
 
     public GameObject mainCanvas;
     public GameObject uiTextPrefab;
-    public GameObject[] streetAreas;
+
     List<GameObject> areaList;
     public float maxSize = 50f;
     public float speed = 0.1f;
@@ -33,21 +34,54 @@ public class BirdsEyeView : MonoBehaviour {
     bool isBirdEye = false;
 
     void Awake()
-    {
-        areaList = streetAreas.ToList();
-        doorNames = new Dictionary<GameObject, Vector3>();
+    {    
+
+
     }
 
     // Use this for initialization
-    void Start () {
+    void Start () { 
 
         //Timing.RunCoroutine(_goToBirdEye());
-
+        //Timing.RunCoroutine(disableEnable());
     }
+
+    void OnEnable()
+    {
+        areaList = new List<GameObject>();
+        GameObject streetParent = GameObject.FindGameObjectWithTag("Street");
+
+
+        for (int i = 0; i < streetParent.transform.childCount; i++)
+        {
+            areaList.Add(streetParent.transform.GetChild(i).gameObject);
+        }
+
+
+        doorNames = new Dictionary<GameObject, Vector3>();
+        mainCanvas = GameObject.FindGameObjectWithTag("Canvas");
+    }
+
+    void OnDisable()
+    {
+        areaList = null;
+        mainCanvas = null;
+        doorNames = null;
+    }
+
 	
 	// Update is called once per frame
 
-        
+    IEnumerator<float> disableEnable()
+    {
+        yield return 0;
+        yield return 0;
+
+        disableEverythingExceptThis(false);
+        yield return 0;
+        disableEverythingExceptThis(true);
+        yield break;
+    }
 	void Update () {
 
        
@@ -193,7 +227,7 @@ public class BirdsEyeView : MonoBehaviour {
         //    streetAreas.transform.GetChild(i).gameObject.SetActive(b);
         //}
 
-        foreach (GameObject area in streetAreas)
+        foreach (GameObject area in areaList)
             area.SetActive(b);
     }
 

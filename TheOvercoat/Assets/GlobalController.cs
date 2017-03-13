@@ -140,11 +140,11 @@ public class GlobalController : MonoBehaviour {
             if (GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1] == currentScene ) return;
 
             //If current scene index equals next scene in story line which means player play in right direction that add that scene into sceneList 
-            Debug.Log("scene list count: " + sceneList.Count + " full game scene list count" + fullGameSceneList.Length);
-            Debug.Log("current scene is " + currentScene + " it should be " + (int)fullGameSceneList[sceneList.Count ]);
+            //Debug.Log("scene list count: " + sceneList.Count + " full game scene list count" + fullGameSceneList.Length);
+            //Debug.Log("current scene is " + currentScene + " it should be " + (int)fullGameSceneList[sceneList.Count ]);
             if (currentScene == (int)fullGameSceneList[sceneList.Count])
             {
-                Debug.Log(currentScene + "is added to scene list");
+                //Debug.Log(currentScene + "is added to scene list");
                 sceneList.Add(currentScene);
 
             }else
@@ -187,7 +187,7 @@ public class GlobalController : MonoBehaviour {
         
         saveFile.Close();
         
-        Debug.Log("Saved");
+        //Debug.Log("Saved");
         return true;
     }
 

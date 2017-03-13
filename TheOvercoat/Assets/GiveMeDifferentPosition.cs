@@ -9,6 +9,8 @@ public class GiveMeDifferentPosition : MonoBehaviour, IClickActionDifferentPos {
 
     public Vector3 giveMePosition()
     {
+        //Debug.Log("hellooooooooooo");
+        //Vckrs.testPosition(posObject.transform.position);
         return posObject.transform.position;
     }
 

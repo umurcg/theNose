@@ -50,7 +50,7 @@ public class CheatScript : MonoBehaviour {
         //Wait for input
         while (Input.anyKeyDown == false)
         {
-            Debug.Log("Waiting for a number");
+            //Debug.Log("Waiting for a number");
             yield return 0;
         }
 
@@ -60,7 +60,7 @@ public class CheatScript : MonoBehaviour {
         {
             if (Input.GetKey(numbers[i]))
             {
-                Debug.Log("You pressed a number which is" + numbers[i].ToString());
+                //Debug.Log("You pressed a number which is" + numbers[i].ToString());
                 timeScale += 10 * (i );
 
             }
@@ -82,12 +82,12 @@ public class CheatScript : MonoBehaviour {
             if (Input.GetKey(numbers[i]))
             {
                 timeScale += (i);
-                Debug.Log("You pressed a number which is" + numbers[i].ToString());
+                //Debug.Log("You pressed a number which is" + numbers[i].ToString());
             }
 
         }
 
-        Debug.Log("Your time scale is " + timeScale);
+        //Debug.Log("Your time scale is " + timeScale);
         if (timeScale > 0) Time.timeScale = timeScale;
 
         yield break;
@@ -102,7 +102,7 @@ public class CheatScript : MonoBehaviour {
         //Wait for input
         while (Input.anyKeyDown == false)
         {
-            Debug.Log("Waiting for a number");
+            //Debug.Log("Waiting for a number");
             yield return 0;
         }
 
@@ -114,7 +114,7 @@ public class CheatScript : MonoBehaviour {
         {
             if (Input.GetKey(numbers[i]))
             {
-                Debug.Log("You pressed a number which is" + numbers[i].ToString());
+                //Debug.Log("You pressed a number which is" + numbers[i].ToString());
                 localSpeed += 10 * (i );
 
 
@@ -138,12 +138,12 @@ public class CheatScript : MonoBehaviour {
             if (Input.GetKey(numbers[i]))
             {
                 localSpeed += (i );
-                Debug.Log("You pressed a number which is" + numbers[i].ToString());
+                //Debug.Log("You pressed a number which is" + numbers[i].ToString());
             }
 
         }
 
-        Debug.Log("Your speed is " + localSpeed);
+        //Debug.Log("Your speed is " + localSpeed);
         if (localSpeed > 0) cck.speed = localSpeed;
 
         yield break;

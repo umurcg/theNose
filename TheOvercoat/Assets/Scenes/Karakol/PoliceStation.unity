@@ -1016,7 +1016,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.18
+      value: -18.97
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1045,15 +1045,6 @@ Prefab:
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013419269496, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 195000012418968336, guid: dd651778041846143b79e2a904c465fc,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd651778041846143b79e2a904c465fc, type: 2}
@@ -1851,11 +1842,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012285195362, guid: 9cd7751858d7fc04f88c8e516898c39f, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000010133457258, guid: 9cd7751858d7fc04f88c8e516898c39f, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9cd7751858d7fc04f88c8e516898c39f, type: 2}
@@ -2164,7 +2155,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 1
+  m_Convex: 0
   m_Mesh: {fileID: 4300004, guid: 3427f6b35cf6f654bada849b5a3c3fb3, type: 3}
 --- !u!23 &1134271162
 MeshRenderer:
@@ -2694,6 +2685,22 @@ MonoBehaviour:
   time: 0
   animationParameter: 0
   parameterName: SitPosition
+--- !u!114 &1464211582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1464211574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42681b2798a7f4418a506cdf5e2f223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CallType: 0
+  owner: {fileID: 1708090184}
+  passParameter: {fileID: 0}
+  methodName: DestroyItSelf
+  destroySelf: 0
 --- !u!1 &1481821220 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010971514230, guid: 9cd7751858d7fc04f88c8e516898c39f,
@@ -3147,7 +3154,6 @@ MonoBehaviour:
   isDisabledAtStart: 0
   trigger: {fileID: 395407898}
   Gaurd: {fileID: 1464211574}
-  CharSubtitle: {fileID: 0}
   Chair0: {fileID: 1281912647}
   debug: 0
 --- !u!4 &1708090188

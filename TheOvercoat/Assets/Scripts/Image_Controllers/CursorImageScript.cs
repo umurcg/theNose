@@ -56,7 +56,7 @@ public class CursorImageScript : MonoBehaviour
 
     void newSceneIsLoad(Scene scene, LoadSceneMode mode)
     {
-        //Debug.Log("Getting new move to ");
+        Debug.Log("Getting new move to ");
         player = CharGameController.getActiveCharacter();
         if (player != null)
             mt = player.GetComponent<MoveTo>();
@@ -84,6 +84,8 @@ public class CursorImageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(player.name);
+
         //If external texture is not null then just put it no matter what
         if (externalTexture != null)
         {
@@ -156,7 +158,9 @@ public class CursorImageScript : MonoBehaviour
                 //Check is reachable if player is active
                 if (player != null)
                 {
+                    //Vckrs.testPosition(hit.point);
                     //Debug.Log("Player is not null");
+
                     NavMeshHit nmHit;
                     if (NavMesh.SamplePosition(hit.point, out nmHit, 0.1f, NavMesh.AllAreas))
                     {
@@ -206,9 +210,15 @@ public class CursorImageScript : MonoBehaviour
 
     bool checkAvaiblity()
     {
+        
         if (mt)
         {
             return mt.enabled;
+        }else
+        {
+            //FOR BIRD
+            MoveToWithoutAgent mtwa = CharGameController.getActiveCharacter().GetComponent<MoveToWithoutAgent>();
+            if (mtwa && mtwa.enabled) return true; 
         }
 
         //If mt is null this means player couldn't be found. So it assumes player (real player) can still make interactive actions.

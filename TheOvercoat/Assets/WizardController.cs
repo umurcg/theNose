@@ -14,7 +14,7 @@ public class WizardController : GameController {
         base.Start();
         pontiffCC = new characterComponents(gameObject);
 
-        //Timing.RunCoroutine(loadCity());
+        Timing.RunCoroutine(loadCity());
     }
 	
 	// Update is called once per frame
@@ -30,6 +30,7 @@ public class WizardController : GameController {
 
     IEnumerator<float> _basement()
     {
+        yield return 0;
         //First subt
         sc.callSubtitleWithIndex(0);
 
@@ -68,13 +69,15 @@ public class WizardController : GameController {
 
 
 
-
+        Timing.RunCoroutine(loadCity());
 
 
     }
 
     IEnumerator<float> loadCity()
-    {        
+    {
+        yield return 0;
+
         //It is just for now. I will add a mini game here.
         LoadScene ls = GetComponent<LoadScene>();
         blackScreen bs = blackScreen.obj.GetComponent<blackScreen>();
@@ -84,13 +87,15 @@ public class WizardController : GameController {
         
         //Set bird as main character
         player=CharGameController.setCharacter("Bird");
-        CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
+        yield return 0;
+        CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
+        cf.updateTarget();
+        cf.fixRelativeToDefault();
 
 
         //Set bird anim to land and set the birdlandscript according to that
         BirdLandingScript bls = player.GetComponent<BirdLandingScript>();
-        Animator anim = player.GetComponent<Animator>();
-        anim.SetBool("land", true);
+        bls.Start();
         bls.setAsLanded(true);
 
         //Load

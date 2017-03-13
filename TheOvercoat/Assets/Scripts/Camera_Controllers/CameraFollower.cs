@@ -22,18 +22,24 @@ public class CameraFollower : MonoBehaviour {
     Vector3 defaultRelative = new Vector3(-89.1f, 72.7f, 85.1f);
     float xRotation;
 
+
+
+    //public Vector3 relativePositionBeforeDisabling;
+
     void Start () {
 
         if (assignPlayerAutomatically)
             updateTarget();
-
+                
         if (target == null)
         {
             //myValue = anyFloat > 0 ? 1f : 2f;
             target= (gameObject== transform.parent.GetChild(0).gameObject) ? transform.parent.GetChild(1).gameObject: transform.parent.GetChild(0).gameObject;
         }
 
-        updateRelative();
+
+        fixRelativeToDefault();
+        //updateRelative();
         xRotation = transform.eulerAngles.x;
     }
 	
@@ -42,24 +48,41 @@ public class CameraFollower : MonoBehaviour {
         if (target)
         {
             transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            transform.position = relativePosition + target.transform.position;
+
             //Preserve euler angles x
             transform.rotation = Quaternion.Euler(30, transform.eulerAngles.y, 0);
-            transform.position = relativePosition + target.transform.position;
+
             //Lerp
-           // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * lookSpeed);
-           //transform.position = Vector3.Lerp(transform.position, relativePosition+ target.transform.position, Time.deltaTime * transformSpeed);
+            // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * lookSpeed);
+            //transform.position = Vector3.Lerp(transform.position, relativePosition+ target.transform.position, Time.deltaTime * transformSpeed);
         }
 
         //Debug.Log(relativePosition);
     }
 
+    //void OnDisable()
+    //{
+    //    relativePositionBeforeDisabling = relativePosition;
+    //}
+
+    //void OnEnable()
+    //{
+    //    //updateRelative();
+    //    //updateTarget();
+    //    relativePosition = relativePositionBeforeDisabling;
+    //    transform.position = target.transform.position + relativePosition;
+    //}
+
     public void updateRelative()
     {
+        //Debug.Log("UPDATING RELATIVE");
         relativePosition = transform.position - target.transform.position;
     }
 
     public void updateTarget()
     {
+        //Debug.Log("UPDATE IS CALLED");
         target = CharGameController.getActiveCharacter();
         if(target!=null)
             updateRelative();
@@ -96,6 +119,7 @@ public class CameraFollower : MonoBehaviour {
         float ratio = 0;
         while (ratio < 1)
         {
+            Debug.Log("Lerping");
             ratio += Time.deltaTime * speed;
             gameObject.transform.position = Vector3.Lerp(initialPosition, relativePosition+ obj.transform.position, ratio);
             yield return 0;
