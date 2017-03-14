@@ -37,7 +37,7 @@ public class Jesus : GameController, IClickAction {
 
     public void Action()
     {
-        print("hello");
+        transform.tag = "Untagged";
         Timing.RunCoroutine(_pray());
 
     }

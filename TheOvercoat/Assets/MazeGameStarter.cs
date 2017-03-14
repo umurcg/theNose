@@ -11,7 +11,7 @@ using MovementEffects;
 
 public class MazeGameStarter : GameController, IClickAction {
 
-    public GameObject birdPrefab, nosePefab;
+    public GameObject birdPrefab, nosePefab, spawner;
     public GameObject starterPos;
 
     
@@ -101,11 +101,15 @@ public class MazeGameStarter : GameController, IClickAction {
 
         Quaternion oldRotation = player.transform.rotation;
         MoveToWithoutAgent mtwa = player.GetComponent<MoveToWithoutAgent>();
+        if (mtwa == null) Debug.Log("mtwa is null");
         float birdSpeed = mtwa.speed;
 
         //Disable bot nose and make player to that nose, in other words transform bot to player
         enableDisableSkinnedMesh(nosePefab,false);
         CharGameController.movePlayer(nosePefab.transform.position);
+
+        yield return 0;
+
         player=CharGameController.setCharacter("Nose");
         player.transform.rotation = nosePefab.transform.rotation;
         CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
@@ -157,6 +161,8 @@ public class MazeGameStarter : GameController, IClickAction {
     public void Action()
     {
         Timing.RunCoroutine(_startMazeGame());
+        //When start make remove tag so it can't be started again
+        transform.tag = "Untagged";
         Debug.Log("startiing maze");
     }
 
@@ -170,12 +176,14 @@ public class MazeGameStarter : GameController, IClickAction {
     public override void activateController()
     {
         base.activateController();
+        spawner.SetActive(true);
         gameObject.SetActive(true);
     }
 
     public override void deactivateController()
     {
         base.deactivateController();
+        spawner.SetActive(false);
         gameObject.SetActive(false);
     }
 }

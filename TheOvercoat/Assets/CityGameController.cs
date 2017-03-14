@@ -243,7 +243,7 @@ public class CityGameController : MonoBehaviour {
         GameObject player = CharGameController.getActiveCharacter();
         if (player.transform.name == "Bird")
         {
-            Timing.RunCoroutine(moveBirdAfterOneFrame());
+            //Timing.RunCoroutine(moveBirdAfterOneFrame());
             CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
             //cf.updateRelative();
             maze.GetComponent<GameController>().activateController();

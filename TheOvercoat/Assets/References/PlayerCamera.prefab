@@ -439,7 +439,7 @@ GameObject:
   - 33: {fileID: 33000011914835234}
   - 64: {fileID: 64000011991379818}
   - 23: {fileID: 23000010599474562}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FlyingFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,14 +555,14 @@ GameObject:
   - 114: {fileID: 114000010000796404}
   - 114: {fileID: 114000010944682478}
   - 114: {fileID: 114000013621621636}
-  - 114: {fileID: 114000013410914960}
+  - 114: {fileID: 114000013211572414}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011788189490
 GameObject:
   m_ObjectHideFlags: 1
@@ -1145,7 +1145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013788025734
 GameObject:
   m_ObjectHideFlags: 1
@@ -1259,7 +1259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000014117282164
 GameObject:
   m_ObjectHideFlags: 1
@@ -1651,7 +1651,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 188.5, y: -0.89, z: 55.8}
+  m_LocalPosition: {x: -136, y: -0.89, z: 504}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1934,7 +1934,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013127924312}
   m_LocalRotation: {x: 0.09904577, y: 0.89239913, z: -0.23911765, w: 0.3696438}
-  m_LocalPosition: {x: -89.1, y: 72.7, z: 86.3}
+  m_LocalPosition: {x: 90.5, y: 72.7, z: -390.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 30, y: 135, z: 0}
   m_Children:
@@ -3635,9 +3635,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneList: 
-  debugSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000006000000
+  debugSceneList: 010000000200000001000000030000000100000004000000010000000500000001000000050000000100000006000000
   fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
-  setDebugListToLevelIndex: 11
+  setDebugListToLevelIndex: 12
 --- !u!114 &114000012654939820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3758,6 +3758,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   invertMouse: 1
+--- !u!114 &114000013211572414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011785493192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f62fc923a4a78b4ebff21a01cc73694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - ActiveObject
+  ignoreMasks:
+    serializedVersion: 2
+    m_Bits: 260
 --- !u!114 &114000013292080468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3799,22 +3815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638bf55a3bedb454b9e207ecb83321cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000013410914960
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011785493192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f62fc923a4a78b4ebff21a01cc73694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tags:
-  - ActiveObject
-  ignoreMasks:
-    serializedVersion: 2
-    m_Bits: 260
 --- !u!114 &114000013621621636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4198,13 +4198,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 3.72
+  m_Radius: 1.02
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.78, z: 0}
+  m_Center: {x: 0, y: 1.9, z: 0}
 --- !u!143 &143000012727188370
 CharacterController:
   m_ObjectHideFlags: 1

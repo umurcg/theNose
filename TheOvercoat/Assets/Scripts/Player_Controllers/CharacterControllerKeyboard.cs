@@ -10,6 +10,7 @@ public class CharacterControllerKeyboard : MonoBehaviour {
     public float speed = 3f;
     Vector3 move;
     public float rotateSpeed = 3f;
+    CameraRotator rotator;
 
 
     void Awake()
@@ -19,11 +20,17 @@ public class CharacterControllerKeyboard : MonoBehaviour {
 
     }
 
+     void Start()
+    {
+        rotator = CharGameController.getCamera().GetComponent<CameraRotator>();
+    }
+
 
     // Update is called once per frame
     void Update()
     {
- 
+        //TODO fix bug that appears while camera rotating and player is moving. For now I prevent player to move while camera rotates
+        //if (rotator && rotator.rotating) return;
 
         // move=(new Vector3(Input.GetAxis("Horizontal"),0,-Input.GetAxis("Vertical")));
         if (Input.GetAxis("Vertical") > 0){

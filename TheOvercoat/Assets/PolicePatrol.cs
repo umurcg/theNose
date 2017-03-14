@@ -41,23 +41,33 @@ public class PolicePatrol : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Player")
-        {
-            wis.enabled = false;
-            nma.Stop();
-            Timing.RunCoroutine(_catch(col.transform.gameObject));
-        }
+        //if (col.tag == "Player")
+        //{
+        //    wis.enabled = false;
+        //    nma.Stop();
+        //    Timing.RunCoroutine(_catch(col.transform.gameObject));
+        //}
+    }
+
+    public void catchFun(GameObject obj){
+
+        Timing.RunCoroutine(_catch(obj));
     }
 
     IEnumerator<float> _catch(GameObject go)
     {
+        yield return 0;
+
+        PlayerComponentController  pcc = go.GetComponent<PlayerComponentController>();
+
+        if (pcc) pcc.StopToWalk();
+
         //Debug.Log("CATCH");
         sc.callSubtitleWithIndex(0);
-        if (pcc != null)
-            pcc.StopToWalk();
-        nma.Resume();
-        nma.SetDestination(go.transform.position + go.transform.forward * 2);
-        yield return Timing.WaitUntilDone(Vckrs.waitUntilStop(gameObject, 0));
+
+        //nma.Resume();
+        //nma.SetDestination(go.transform.position + go.transform.forward * 2);
+        //yield return Timing.WaitUntilDone(Vckrs.waitUntilStop(gameObject, 0));
         Timing.RunCoroutine(Vckrs._lookTo(gameObject, go.transform.position-gameObject.transform.position, 2f));
         while (SubtitleFade.subtitles["CharacterSubtitle"].text != "")
         {

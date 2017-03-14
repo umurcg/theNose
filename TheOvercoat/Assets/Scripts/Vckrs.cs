@@ -582,6 +582,22 @@ public class Vckrs : MonoBehaviour
 
     }
 
+
+    //Return random position on a circle which is around center and have radius of indicated in paramaters
+    public static Vector3 generateRandomPositionBetweenCircles(Vector3 center, float radius1, float radius2)
+    {
+        int angle = Random.Range(0, 360); // generates numbers in the range 0 ... 359
+        float radius = Random.Range(radius1, radius2); //generates random radius
+
+
+        float x = center.x + radius * Mathf.Cos(Mathf.Deg2Rad * angle);
+        float z = center.z + radius * Mathf.Sin(Mathf.Deg2Rad * angle);
+
+        return new Vector3(x, center.y, z);
+
+    }
+
+
     //Returns a list holding all children objects.
     public static List<Transform> getAllChildren(Transform parent)
     {

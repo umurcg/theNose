@@ -10,6 +10,9 @@ public class WalkInsideSphere : MonoBehaviour {
     NavMeshAgent nma;
     Vector3 center;
     Vector3 prevPos = Vector3.zero;
+
+    public float navMeshSampleRadius = 0f;
+
     // Use this for initialization
     void Start () {
         nma = GetComponent<NavMeshAgent>();
@@ -36,7 +39,7 @@ public class WalkInsideSphere : MonoBehaviour {
             if(timer<0)
             {
                
-                nma.SetDestination(Random.insideUnitSphere * walkRadius + center);
+                nma.SetDestination(getPosOnNavmesh());
                 threashold = 0.5f;
                 timer = -1;
             }
@@ -44,5 +47,23 @@ public class WalkInsideSphere : MonoBehaviour {
         }
 
         prevPos = transform.position;
+    }
+
+    Vector3 getPosOnNavmesh()
+    {
+        Vector3 randomPos = Random.insideUnitSphere * walkRadius + center;
+        if (navMeshSampleRadius == 0) return randomPos;
+        
+
+        //Cast navmeshpos
+        NavMeshHit nmh;
+        if (NavMesh.SamplePosition(randomPos, out nmh, navMeshSampleRadius, nma.areaMask))
+        {
+            return nmh.position;
+        }else
+        {
+            return randomPos;
+        }
+
     }
 }

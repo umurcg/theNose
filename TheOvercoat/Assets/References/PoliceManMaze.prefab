@@ -386,9 +386,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011656891896}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -116.9, y: -1.9993896, z: 521.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 0.5921046, y: -0.6555999, z: -0.019095993}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011552946638}
@@ -702,6 +702,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkRadius: 15
   waitBetweenWalks: 0
+  catchMessageObject: {fileID: 0}
+  catchMessage: catched
 --- !u!114 &114000013270576690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -717,8 +719,8 @@ MonoBehaviour:
   - "-Polis: Heryerde seni ar\u0131yorduk. Benimle geliyorsun."
   AllSubtitles: "-Polis: Heryerde seni ar\u0131yorduk. Benimle geliyorsun."
   subtitle: {fileID: 0}
-  ifDesroyItself: 1
-  releaseAfterSub: 1
+  ifDesroyItself: 0
+  releaseAfterSub: 0
 --- !u!114 &114000013350679958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -734,8 +736,8 @@ MonoBehaviour:
   - 'Polis: Hey! Sen dur orda!'
   AllSubtitles: 'Polis: Hey! Sen dur orda!'
   subtitle: {fileID: 0}
-  ifDesroyItself: 1
-  releaseAfterSub: 1
+  ifDesroyItself: 0
+  releaseAfterSub: 0
 --- !u!135 &135000012737068760
 SphereCollider:
   m_ObjectHideFlags: 1

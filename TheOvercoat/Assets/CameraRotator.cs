@@ -56,6 +56,7 @@ public class CameraRotator : MonoBehaviour {
 
     IEnumerator<float> _rotateCam(float angle,float speed)
     {
+        player = CharGameController.getActiveCharacter();
 
         //Factor speed
         speed *= 10;
