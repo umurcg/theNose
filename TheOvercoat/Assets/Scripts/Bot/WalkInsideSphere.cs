@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using MovementEffects;
 
 public class WalkInsideSphere : MonoBehaviour {
     public float walkRadius = 5f;
@@ -12,6 +14,9 @@ public class WalkInsideSphere : MonoBehaviour {
     Vector3 prevPos = Vector3.zero;
 
     public float navMeshSampleRadius = 0f;
+
+    public Vector3 randomPosition = Vector3.zero;
+    IEnumerator<float> randomPosHandler;
 
     // Use this for initialization
     void Start () {
@@ -38,10 +43,17 @@ public class WalkInsideSphere : MonoBehaviour {
             
             if(timer<0)
             {
-               
-                nma.SetDestination(getPosOnNavmesh());
-                threashold = 0.5f;
-                timer = -1;
+                if (randomPosHandler == null && randomPosition == Vector3.zero)
+                {
+                  randomPosHandler=  Timing.RunCoroutine(tryToGetPosOnNavmesh());
+                }
+                else if (randomPosition != Vector3.zero)
+                {
+                    nma.SetDestination(randomPosition);
+                    threashold = 0.5f;
+                    timer = -1;
+                    randomPosition = Vector3.zero;
+                }
             }
 
         }
@@ -66,4 +78,49 @@ public class WalkInsideSphere : MonoBehaviour {
         }
 
     }
+
+    void onDisable()
+    {
+        if (randomPosHandler != null)
+        {
+            Timing.KillCoroutines(randomPosHandler);
+            randomPosHandler = null;
+        }
+    }
+
+    IEnumerator<float> tryToGetPosOnNavmesh()
+    {
+        Vector3 randomPos = Random.insideUnitSphere * walkRadius + center;
+        if (navMeshSampleRadius == 0)
+        {
+            randomPosition = randomPos;
+            randomPosHandler = null;
+            yield break;
+        }
+
+
+        Vector3 foundPos = Vector3.zero;
+
+        while (foundPos == Vector3.zero)
+        {
+            //Cast navmeshpos
+            NavMeshHit nmh;
+            if (NavMesh.SamplePosition(randomPos, out nmh, navMeshSampleRadius, nma.areaMask))
+            {
+                foundPos = nmh.position;
+            }
+
+            yield return 0;
+        }
+
+
+        randomPosition = foundPos;
+        randomPosHandler = null;
+        yield break;
+
+    }
+
+
+
+
 }

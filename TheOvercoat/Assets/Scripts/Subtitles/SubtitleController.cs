@@ -182,4 +182,9 @@ public class SubtitleController : MonoBehaviour {
 
     }
 
+    public void updatePCC()
+    {
+        pcc = CharGameController.getActiveCharacter().GetComponent<PlayerComponentController>();
+    }
+
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
+using UnityEngine.SceneManagement;
 
 //This script deals with cheats
 //For now cheats only avaible on editor mode but in future they maybe in build too ;)
@@ -39,6 +40,27 @@ public class CheatScript : MonoBehaviour {
             if (Input.GetKey(KeyCode.C)) Timing.RunCoroutine(setSpeedDuringPlay());
 
         }
+    }
+
+
+    void OnEnable()
+    {
+        //Tell our 'registerToSceneList' function to start listening for a scene change as soon as this script is enabled.
+        SceneManager.sceneLoaded += updateMembers;
+    }
+
+    void OnDisable()
+    {
+        //Tell our 'registerToSceneList' function to stop listening for a scene change as soon as this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
+        SceneManager.sceneLoaded -= updateMembers;
+    }
+
+    //This function register creates scene list if it is not exist.
+    //After that it registers scene to sceneList
+    public void updateMembers(Scene scene, LoadSceneMode mode)
+    {
+        cck = CharGameController.getActiveCharacter().GetComponent<CharacterControllerKeyboard>();
+
     }
 
 

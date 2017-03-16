@@ -80,7 +80,9 @@ public class DoctorGameCameController : GameController {
         sc.callSubtitleWithIndex(3);
         while (subtitle.text != "") yield return 0;
 
-        smallNose.GetComponent<Rigidbody>().useGravity=true;
+        Rigidbody rb = smallNose.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.isKinematic = false;
         smallNose.GetComponent<SphereCollider>().enabled = true;
 
         yield return Timing.WaitForSeconds(2f);

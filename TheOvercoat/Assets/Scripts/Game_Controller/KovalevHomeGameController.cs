@@ -60,13 +60,25 @@ public class KovalevHomeGameController : GameController {
 
         //Set player as kovalev
         GameObject character = CharGameController.setCharacter("Kovalev");
+        CameraFollower cf= CharGameController.getCamera().GetComponent<CameraFollower>();
+        cf.updateTarget();
+        cf.fixRelativeToDefault();
+
+        //After changing character you should update all pcc is subtitles
+        SubtitleController[] scs = GetComponents<SubtitleController>();
+        foreach(SubtitleController sc in scs)
+        {
+            sc.updatePCC();
+        }
+
         updateCharacterVariables();
 
         //I have to update omponents of cursor image script
-        CharGameController.getCamera().GetComponent<CursorImageScript>().updateComponents();
+        CharGameController.getOwner().GetComponent<CursorImageScript>().updateComponents();
 
         //Update chair subject
-        tableChair.GetComponent<WalkLookAnim>().subject = character;
+        tableChair.GetComponent<WalkLookAnim>().changeSubject(character);
+        armChair.GetComponent<WalkLookAnim>().changeSubject(character);
 
     }
 
@@ -288,6 +300,12 @@ public class KovalevHomeGameController : GameController {
 
         //Enable hand mirror
         handMirror.SetActive(true);
+
+        //Lock cafe chair
+        tableChair.GetComponent<WalkLookAnim>().lockSit = true;
+
+        //CharGameController.movePlayer(armChair.transform.position);
+
 
         //Make kovalev sit to chair
         WalkLookAnim wla = armChair.GetComponent<WalkLookAnim>();

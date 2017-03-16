@@ -13,11 +13,31 @@ public class KovalevNoseAttachGame : MonoBehaviour {
 
     float fallingTimer;
 
+
+
 	// Use this for initialization
 	void Start () {
         rb = nose.GetComponent<Rigidbody>();
         rb.useGravity = false;
 	}
+
+    void OnEnable()
+    {
+        GameObject player=CharGameController.getActiveCharacter();
+        PlayerComponentController pcc=player.GetComponent<PlayerComponentController>();
+        if (pcc) pcc.StopToWalk();
+        
+    }
+
+
+    void OnDisable()
+    {
+        GameObject player = CharGameController.getActiveCharacter();
+        PlayerComponentController pcc = player.GetComponent<PlayerComponentController>();
+        if (pcc) pcc.ContinueToWalk();
+
+    }
+
 
     // Update is called once per frame
     void Update()

@@ -160,6 +160,25 @@ public class OpenDoorLoad : LoadScene {
 
     }
 
+    public static int getIndexWithScene(GlobalController.Scenes scene)
+    {
+        foreach (KeyValuePair<int, OpenDoorLoad> door in doors)
+        {
+            if (door.Value.Scene == scene) return door.Key;
+        }
+
+        //If fails to find scene
+        return -1;
+    }
+
+    public static OpenDoorLoad getDoorSciptWithScene(GlobalController.Scenes scene)
+    {
+        int index=getIndexWithScene(scene);
+        if (index == -1) return null;
+        return doors[index].GetComponent<OpenDoorLoad>();
+
+    }
+
     //public static OpenDoorLoad getDoorOfScene(GlobalController.Scenes scene)
     //{
     //    foreach(KeyValuePair<int,OpenDoorLoad> door in doors)

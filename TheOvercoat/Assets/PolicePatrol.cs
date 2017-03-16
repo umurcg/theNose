@@ -19,6 +19,7 @@ public class PolicePatrol : MonoBehaviour {
     Vector3 center;
     Vector3 prevPos=Vector3.zero;
     PlayerComponentController pcc;
+    Text subtitle;
 
     // Use this for initialization
     void Start () {
@@ -30,7 +31,7 @@ public class PolicePatrol : MonoBehaviour {
 
         //Enable right hand forward bool for light
         GetComponent<Animator>().SetBool("RightHandForward",true);
-
+        subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
     }
 	
 	// Update is called once per frame
@@ -65,18 +66,25 @@ public class PolicePatrol : MonoBehaviour {
         //Debug.Log("CATCH");
         sc.callSubtitleWithIndex(0);
 
-        //nma.Resume();
-        //nma.SetDestination(go.transform.position + go.transform.forward * 2);
-        //yield return Timing.WaitUntilDone(Vckrs.waitUntilStop(gameObject, 0));
+
+        gameObject.GetComponent<WalkInsideSphere>().enabled = false;
+
+
+        nma.Resume();
+        nma.SetDestination(go.transform.position + go.transform.forward * 2);
+        IEnumerator<float> handler =Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject, 0));
+        yield return Timing.WaitUntilDone(handler);
+
         Timing.RunCoroutine(Vckrs._lookTo(gameObject, go.transform.position-gameObject.transform.position, 2f));
-        while (SubtitleFade.subtitles["CharacterSubtitle"].text != "")
+
+        while (subtitle.text != "")
         {
             yield return 0;
         }
 
         sc.callSubtitleWithIndex(1);
 
-        while (SubtitleFade.subtitles["CharacterSubtitle"].text != "")
+        while (subtitle.text != "")
         {
             yield return 0;
         }

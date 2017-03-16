@@ -289,7 +289,10 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         lockSit = true;
     }
 
-
-
+    public void changeSubject(GameObject subject)
+    {
+        this.subject = subject;
+        anim = this.subject.GetComponent<Animator>();
+    }
 
 }

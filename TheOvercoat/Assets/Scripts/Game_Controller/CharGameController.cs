@@ -291,14 +291,14 @@ public class CharGameController : MonoBehaviour {
         }
 
 
-        Transform handObject = owner.transform.Find(nose);
-        if (handObject == null)
+        Transform noseObject = owner.transform.Find(nose);
+        if (noseObject == null)
         {
             Debug.Log("Couldn't find hand. The path name is " + nose);
             return null;
         }
 
-        return handObject.gameObject;
+        return noseObject.gameObject;
     }
 
     //Sun should have night and day cycle so we found it with that script

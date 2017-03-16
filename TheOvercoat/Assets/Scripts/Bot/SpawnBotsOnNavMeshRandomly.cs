@@ -14,7 +14,7 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
     public float maxSpeed = 4;
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         spawnedObjects = new List<GameObject>();
         if (objects.Length > 0)

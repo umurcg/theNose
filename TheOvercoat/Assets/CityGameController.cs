@@ -13,6 +13,8 @@ public class CityGameController : MonoBehaviour {
     public GameObject friendTellsChurch;
     public GameObject churchBirdPosition;
     public GameObject outroScene;
+
+    public GameObject streetAreas;
     
 	// Awake function is for registering current scene. It sets scene according to storyline
 	void Awake () {
@@ -174,17 +176,35 @@ public class CityGameController : MonoBehaviour {
 
     void comingFromKovalevHouse()
     {
+        //If scene list contains church then it means kovalev must go to doctor else it should meet with nose
+        if (GlobalController.isScnListContains(GlobalController.Scenes.Church))
+        {
+            OpenDoorLoad doctoDoor=OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.Doctor);
+            OpenDoorLoad kovaevDoor= OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse);
 
-        //Unlock police door and kovalev door
-        OpenDoorLoad.doors[2].playerCanOpen = true;
-        OpenDoorLoad.doors[3].playerCanOpen = true;
+            doctoDoor.playerCanOpen = true;
+            kovaevDoor.playerCanOpen = true;
 
-        //Set all cll characters for looking at kovalev
-        GameObject characterObj = CharGameController.getActiveCharacter();
-        GameObject spawnedTrigger=(GameObject)Instantiate(lookAtMeNowTrigger, characterObj.transform);
-        spawnedTrigger.transform.localPosition = Vector3.zero;
-        
-        Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
+            //Make night
+            CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight();
+
+            //Reduce to spawnedObjects to 20
+            streetAreas.GetComponent<SpawnBotsOnNavMeshRandomly>().spawnNumber = 20;
+
+        }
+        else
+        {
+            //Unlock police door and kovalev door
+            OpenDoorLoad.doors[2].playerCanOpen = true;
+            OpenDoorLoad.doors[3].playerCanOpen = true;
+
+            //Set all cll characters for looking at kovalev
+            GameObject characterObj = CharGameController.getActiveCharacter();
+            GameObject spawnedTrigger = (GameObject)Instantiate(lookAtMeNowTrigger, characterObj.transform);
+            spawnedTrigger.transform.localPosition = Vector3.zero;
+
+            Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
+        }
     }
 
     void comingFromPoliceStation()
