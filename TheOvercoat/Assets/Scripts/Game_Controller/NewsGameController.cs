@@ -63,6 +63,9 @@ public class NewsGameController : GameController {
         {
             girtyBeFriendsScript gbfs = gc.gameObject.GetComponent<girtyBeFriendsScript>();
             if (gbfs != null) gbfs.enabled = false;
+
+            //Set parent of girty null
+            gc.gameObject.transform.parent = null;
         }
     }
 

@@ -31,7 +31,7 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
         if (player != null && !targetsList.Contains(player))
         {
             targetsList.Add(player);
-        } else if(player==null)  Debug.Log("Player is null");
+        } else if(player==null) /* Debug.Log("Player is null");*/
 
         fadedObjects = new List<GameObject>();
 
@@ -46,44 +46,51 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
 
         //Debug.Log(CameraObj.name);
 
+        //We should mask everything except building layer. If you want to add new excepttion to masking, add your layer here.
+        int layerMask = 1 << 8;  // "7" here needing to be replaced by whatever layer it is you're wanting to use
+
+        //All hitted objects should be added to this list. It will be used while recovering unhitted but faded objects
+        List<GameObject> allHittedObjects = new List<GameObject>();
+
         //Iterate over every character
         foreach (GameObject character in targetsList)
         {
-                //All hitted objects should be added to this list. It will be used while recovering unhitted but faded objects
-                List<GameObject> allHittedObjects = new List<GameObject>();
+            //Debug.Log(character.name);
 
-                //Get distance between camera and player
-                float distance=Vector3.Distance(CameraObj.transform.position,character.transform.position);
 
-                //We should mask everything except building layer. If you want to add new excepttion to masking, add your layer here.
-                int layerMask = 1 << 8;  // "7" here needing to be replaced by whatever layer it is you're wanting to use
-                        
-                //Get all object of our layer in the direction of camera to character
-                Ray ray = new Ray(CameraObj.transform.position, character.transform.position - CameraObj.transform.position);
-                RaycastHit[] hits = Physics.RaycastAll(ray,Mathf.Infinity,layerMask);
 
-                //Iterate over every hitted object
-                foreach (RaycastHit hit in hits)
+            //Get distance between camera and player
+            float distance = Vector3.Distance(CameraObj.transform.position, character.transform.position);
+
+      
+
+            //Get all object of our layer in the direction of camera to character
+            Ray localRay = new Ray(CameraObj.transform.position, character.transform.position - CameraObj.transform.position);
+            RaycastHit[] localHits = Physics.RaycastAll(localRay, Mathf.Infinity, layerMask);
+
+            //Iterate over every hitted object
+            foreach (RaycastHit hit in localHits)
+            {
+                //Debug.Log(hit.transform.gameObject.layer);
+                Vector3 hitPoint = hit.point;
+                GameObject hittedObject = hit.transform.gameObject;
+
+
+                //Check if hit point between camera and player, for that distance between obj and camera should be smaller than distance between camera and character
+
+                if (Vector3.Distance(CameraObj.transform.position, hitPoint) < distance)
                 {
-                    //Debug.Log(hit.transform.gameObject.layer);
-                    Vector3 hitPoint=hit.point;
-                    GameObject hittedObject = hit.transform.gameObject;
-                    
-
-                    //Check if hit point between camera and player, for that distance between obj and camera should be smaller than distance between camera and character
-                
-                    if (Vector3.Distance(CameraObj.transform.position, hitPoint) < distance)
-                    {
                     //Debug.Log(hit.transform.name + " should be faded");
 
                     //While allHittedObjects will be used wether or not fadedObjects should be recovered, we are adding hittedObject that will assing to fadedObjects list.
-                        if (!allHittedObjects.Contains(hittedObject)) allHittedObjects.Add(hittedObject);
-                        makeObjectTransparent(hittedObject);
-     
-                    }
+                    if (!allHittedObjects.Contains(hittedObject)) allHittedObjects.Add(hittedObject);
+                    makeObjectTransparent(hittedObject);
 
                 }
 
+            }
+
+        }
 
                 //This part is for mouse.
                 //If mouse is over building no matter what make it transparent
@@ -91,8 +98,8 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
                 //Same layer mask is used
 
                 Vector3 mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
-                ray = new Ray(mousePosition,CameraObj.transform.forward);
-                hits = Physics.RaycastAll(ray, Mathf.Infinity, layerMask);
+                Ray ray = new Ray(mousePosition,CameraObj.transform.forward);
+                RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity, layerMask);
             
                 //Iterate over every hitted object
                 foreach (RaycastHit hit in hits)
@@ -124,15 +131,14 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
             {
                 Timing.RunCoroutine(recoverMaterial(restoreObj));
             }
-
-
-        }
-
+                             
+            
     }
 
     void makeObjectTransparent(GameObject obj)
     {
         //Chek if object is already faded. If it is then return
+        if (fadedObjects == null) fadedObjects = new List<GameObject>();
         if (fadedObjects.Contains(obj)) return;
 
         Renderer rend = obj.GetComponent<Renderer>();
@@ -180,7 +186,7 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
 
     public void registerToTargets(GameObject obj)
     {
-        Debug.Log("Adding obj " + obj.name + " to targets");
+        //Debug.Log("Adding obj " + obj.name + " to targets");
         if(!targetsList.Contains(obj))
         targetsList.Add(obj);
     }

@@ -16,8 +16,7 @@ using System.Linq;
     
     public class RemoveSquares : MonoBehaviour {
 
-
-  
+     
 
     Mesh mesh;
     List<int> indices;
@@ -30,6 +29,8 @@ using System.Linq;
     List<int> removedInd;
     public GameObject camObj;
     Camera cam;
+
+    float initialMeshLenght;
 
     // Use this for initialization
     void Start()
@@ -47,10 +48,11 @@ using System.Linq;
     // Update is called once per frame
     void Update()
     {
-          //print(mesh.triangles.Length);
-          //TODO remove magic number
-            if (mesh.triangles.Length <= 165)
+        //Debug.Log(mesh.triangles.Length);
+        //TODO remove magic number
+        if (mesh.triangles.Length <= 200)
         {
+            
             finish();
         }
 

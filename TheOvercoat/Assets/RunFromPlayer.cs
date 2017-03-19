@@ -22,6 +22,8 @@ public class RunFromPlayer : MonoBehaviour {
 
     float catchTimer;
 
+    public bool sendMessage;
+
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +38,11 @@ public class RunFromPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (sendMessage)
+        {
+            finish();
+        }
+
         if (catchTimer > 0)
         {
             //Debug.Log(catchTimer);
@@ -43,17 +50,22 @@ public class RunFromPlayer : MonoBehaviour {
 
             if (catchTimer > catchDuration)
             {
-                Debug.Log("Message");
-                eventReviever.SendMessage(message);
-                catchTimer = 0;
-                enabled = false;
+                finish();
             }
-
         }
 
-        
 
-	}
+
+    }
+
+    private void finish()
+    {
+        //Debug.Log("Message");
+        eventReviever.SendMessage(message);
+        catchTimer = 0;
+        enabled = false;
+    }
+
 
     void OnTriggerEnter(Collider col)
     {

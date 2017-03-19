@@ -26,9 +26,6 @@ public class EnterSceneGameController : GameController{
 
         base.Start();
 
-        //Force to default cursor while this scene is not interactive
-        CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = true;
-
         //At enter scene blackscreen shouldn't fade in automatically
         if(blackScreen.script!=null)
         blackScreen.script.fadeInAtStart = false;  //race condition
@@ -68,8 +65,9 @@ public class EnterSceneGameController : GameController{
 
     }
 	
-    void onDisable()
+    void OnDisable()
     {
+        //Debug.Log("Disabliiiiiiiiiiiing");
         CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = false;
     }
 
@@ -80,7 +78,12 @@ public class EnterSceneGameController : GameController{
 
     IEnumerator<float> _intro()
     {
-      
+        yield return 0;
+
+        //Force to default cursor while this scene is not interactive
+        CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = true;
+
+
         yield return Timing.WaitForSeconds(5f);
 
         sc.callSubtitleWithIndexTime(0);

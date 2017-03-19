@@ -21,7 +21,7 @@ public class CafeSingerGameController : GameController {
         cam = CameraObj.GetComponent<Camera>();
 
         //Set camera object rotation
-        CameraObj.transform.eulerAngles = new Vector3(30, 45, 0);
+        CameraObj.transform.eulerAngles = new Vector3(30, 135, 0);
 
         Timing.RunCoroutine(_start());
 
@@ -35,6 +35,8 @@ public class CafeSingerGameController : GameController {
 
     IEnumerator<float> _start()
     {
+        WhoIsTalking.self.setCameraComponent(CameraObj.GetComponent<Camera>());
+
         //Register kovalev to see throug objects script
         SeeCharacterThroughObjects scto = city.GetComponent<SeeCharacterThroughObjects>();
         scto.registerToTargets(Kovalev);
@@ -115,6 +117,8 @@ public class CafeSingerGameController : GameController {
         yield return Timing.WaitForSeconds(1f);
 
         GetComponent<LoadScene>().Load();
+
+        
 
         yield break;
     }

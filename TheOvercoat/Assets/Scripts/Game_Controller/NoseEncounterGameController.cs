@@ -16,7 +16,7 @@ using UnityEngine.UI;
 
 
 public class NoseEncounterGameController : GameController {
-    public GameObject Horse, Nose, trash, newspaper, Girlgame, girl,girlCanvas, girlGameKov/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
+    public GameObject Horse, Nose, trash, newspaper, Girlgame, girl,girlCanvas, girlGameKov, allHorses/*, Obstacles, HorseAimOne, SubHolder,  Girlgame, LightObj, HorseAimTwo*/;
 
     public bool debugCatch;
 
@@ -54,6 +54,22 @@ public class NoseEncounterGameController : GameController {
         //setGirlPosition();
 
 
+    }
+
+    void disableEnableHorses(bool enable)
+    {
+        if (enable) {
+            for (int i = 0; i < allHorses.transform.childCount; i++)
+            {
+                allHorses.transform.GetChild(i).tag = "ActiveObject";
+            }
+        }else
+        {
+            for (int i = 0; i < allHorses.transform.childCount; i++)
+            {
+                allHorses.transform.GetChild(i).tag = "Untagged";
+            }
+        }
     }
 
 
@@ -336,6 +352,7 @@ public class NoseEncounterGameController : GameController {
 
         yield return Timing.WaitForSeconds(5f);
         Horse.transform.parent.gameObject.SetActive(false);
+        Nose.SetActive(false);
 
     }
 
@@ -344,49 +361,51 @@ public class NoseEncounterGameController : GameController {
     public void setGirlPosition()
     {
 
-        //Set girl position
-        //Vector3 girlPosition =player.transform.position+  Vector3.Normalize(Horse.transform.position - player.transform.position) * 20;
+        Vckrs.setPositionToOutsideOfCameraAndOnNavmesh(girl, player.transform.position, 100, CharGameController.getMainCameraComponent(), 30, 50);
 
-        Vector3 positionLimit1 = Vckrs.generateRandomPositionOnCircle(player.transform.position, 30f);
-        Vector3 positionLimit2= Vckrs.generateRandomPositionOnCircle(player.transform.position, 50f);
-        Vector3 position = Vector3.Lerp(positionLimit1, positionLimit2, Random.Range(0, 1));
+        ////Set girl position
+        ////Vector3 girlPosition =player.transform.position+  Vector3.Normalize(Horse.transform.position - player.transform.position) * 20;
 
-
-        bool onNavmesh = false;
-        bool outsideOfCam = false;
-
-        int trial = 100000;
+        //Vector3 positionLimit1 = Vckrs.generateRandomPositionOnCircle(player.transform.position, 30f);
+        //Vector3 positionLimit2= Vckrs.generateRandomPositionOnCircle(player.transform.position, 50f);
+        //Vector3 position = Vector3.Lerp(positionLimit1, positionLimit2, Random.Range(0, 1));
 
 
-        while ((!onNavmesh || !outsideOfCam) && trial>0)
-        {
-            //Cast girl position to navmesh and check it is on navmesh
-            NavMeshHit nmh;
-            if ((NavMesh.SamplePosition(position, out nmh, 2f, girl.GetComponent<NavMeshAgent>().areaMask)))
-            {
-                position = nmh.position;
-                onNavmesh = true;
-            }else
-            {
-                onNavmesh = false;
-            }
+        //bool onNavmesh = false;
+        //bool outsideOfCam = false;
 
-            //Check girl is outisde of camera
-            outsideOfCam=!Vckrs.canCameraSeeObject(position, CharGameController.getCamera().GetComponent<Camera>());
+        //int trial = 100000;
+
+
+        //while ((!onNavmesh || !outsideOfCam) && trial>0)
+        //{
+        //    //Cast girl position to navmesh and check it is on navmesh
+        //    NavMeshHit nmh;
+        //    if ((NavMesh.SamplePosition(position, out nmh, 2f, girl.GetComponent<NavMeshAgent>().areaMask)))
+        //    {
+        //        position = nmh.position;
+        //        onNavmesh = true;
+        //    }else
+        //    {
+        //        onNavmesh = false;
+        //    }
+
+        //    //Check girl is outisde of camera
+        //    outsideOfCam=!Vckrs.canCameraSeeObject(position, CharGameController.getCamera().GetComponent<Camera>());
             
     
-            trial--;
-        }
+        //    trial--;
+        //}
 
-        if (trial <= 0)
-        {
-            Debug.Log("Couldn't find appropiate position for girl");
-        }else
-        {
-            Debug.Log("Found appropiate position for girl");
-        }
+        //if (trial <= 0)
+        //{
+        //    Debug.Log("Couldn't find appropiate position for girl");
+        //}else
+        //{
+        //    Debug.Log("Found appropiate position for girl");
+        //}
 
-        girl.transform.position = position;
+        //girl.transform.position = position;
 
     }
 

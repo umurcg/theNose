@@ -13,6 +13,7 @@ public class SwitchObjects : MonoBehaviour, IClickAction {
     public GameObject oldModel;
     public GameObject newModel;
     public GameObject rootGameObject;
+    public int indexOfOldModel, indexOfNewModel;
 
 	// Use this for initialization
 	void Start () {
@@ -31,13 +32,45 @@ public class SwitchObjects : MonoBehaviour, IClickAction {
 
     IEnumerator change()
     {
+
+        //If old model or new model is null,try to get from active player by yoursefl from indexes;)
+        GameObject player = CharGameController.getActiveCharacter();
+        if (indexOfNewModel < player.transform.childCount)
+        {
+            newModel = player.transform.GetChild(indexOfNewModel).gameObject;
+        }
+
+        if (indexOfOldModel < player.transform.childCount)
+        {
+            oldModel = player.transform.GetChild(indexOfOldModel).gameObject;
+        }
+
         float t = delay;
-        PlayerComponentController pcc = rootGameObject.GetComponent<PlayerComponentController>();
+        PlayerComponentController pcc=null;
+
+        if (rootGameObject != null)
+        {
+            pcc = rootGameObject.GetComponent<PlayerComponentController>();
+        }else
+        {
+            pcc = CharGameController.getActiveCharacter().GetComponent<PlayerComponentController>();
+        }
+
         if (pcc != null) 
         pcc.StopToWalk();
 
+        Animator anim=null;
+        if (rootGameObject != null)
+        {
+            anim = rootGameObject.GetComponent<Animator>();
+        }
+        else
+        {
+            anim = CharGameController.getActiveCharacter().GetComponent<Animator>();
+        }
 
-       Animator anim= rootGameObject.GetComponent<Animator>();
+
+
         if(anim!=null&&animationName!="")
         anim.SetBool(animationName, true);
 

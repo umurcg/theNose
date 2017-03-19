@@ -83,6 +83,9 @@ public class TavernGameController : GameController {
     public void ivanEntersBar()
     {
         if (disabled) return;
+
+        ClickTriggerSingleton cts = player.GetComponent<ClickTriggerSingleton>();
+        if(cts) cts.abort();
         sc.callSubtitleWithIndex(1);
     }
 

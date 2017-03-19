@@ -18,8 +18,11 @@ public class AutoLightScript : MonoBehaviour {
         GameObject sun = CharGameController.getSun();
         if (sun == null)
         {
-            Debug.Log("No sun");
+            //Debug.Log("No sun");
             enabled = false;
+            l.intensity = 0;
+            return;
+
         }
 
         globalLight = sun.GetComponent<Light>();

@@ -78,6 +78,8 @@ public class GirtyPetGameScript : MonoBehaviour {
         //Set prev positions
         previousPosition = transform.position;
         previousMousePosition = Input.mousePosition;
+
+        
         
     }
 	
@@ -97,7 +99,12 @@ public class GirtyPetGameScript : MonoBehaviour {
         if (timer < 0) Timing.RunCoroutine(approachToMouse());
 
         //If point is above 100 win, and disable update funciton of script
-        if (point >= 100)  win();
+        if (point >= 100)
+        {
+            enabled = false;
+            win();
+            return;
+        }
     
         if (canPet) petting();
 
@@ -165,10 +172,10 @@ public class GirtyPetGameScript : MonoBehaviour {
         //Update point text and bar
         pointText.text = "%" + ((int)point).ToString();
         pointBarFill.fillAmount = point / 100;
-        CharGameController.getOwner().GetComponent<CursorImageScript>().externalTexture = null;
-        enabled = false;
         //Reset cursor texture
-        CharGameController.getOwner().GetComponent<CursorImageScript>().externalTexture = null;
+        CharGameController.getOwner().GetComponent<CursorImageScript>().resetExternalCursor();
+        enabled = false;
+
         messageReciever.SendMessage(message);
     }
 

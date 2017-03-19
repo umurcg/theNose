@@ -92,7 +92,7 @@ abstract public class GameController : MonoBehaviour {
     //They should decide how to be activated and deactivated themselfs.
 
     public virtual void activateController() {
-        Debug.Log("Activated  "+ transform.name);
+        //Debug.Log("Activated  "+ transform.name);
     }
     public virtual void deactivateController() {
         //Debug.Log("Deactivated  " + transform.name);

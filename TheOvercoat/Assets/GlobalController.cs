@@ -154,7 +154,7 @@ public class GlobalController : MonoBehaviour {
          }
           else
         {
-            Debug.Log("Registered scene " + currentScene); //TODOthis part is for debugging
+            //Debug.Log("Registered scene " + currentScene); //TODOthis part is for debugging
             //sceneList.Add((int)fullGameSceneList[0]);
             sceneList.Add(currentScene);
         }
@@ -291,8 +291,22 @@ public class GlobalController : MonoBehaviour {
         return Instance.sceneList.Contains((int)scn);
     }
 
+    public Scenes getNextScene()
+    {
+        return fullGameSceneList[sceneList.Count];
+    }
+
     public void loadNextScene()
     {
-        SceneManager.LoadScene((int)fullGameSceneList[sceneList.Count]);
+        SceneManager.LoadScene((int)getNextScene());
     }
+
+    public static Scenes getPreviousScene()
+    {
+        if (Instance.sceneList.Count < 2) return Scenes.None;
+        Scenes prevScene = (GlobalController.Scenes)Instance.sceneList[Instance.sceneList.Count - 2];
+        //Debug.Log(prevScene);
+        return prevScene;
+    }
+    
 }

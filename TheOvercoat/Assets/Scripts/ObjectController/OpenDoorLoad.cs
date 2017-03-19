@@ -179,6 +179,28 @@ public class OpenDoorLoad : LoadScene {
 
     }
 
+    public static int numberOfActiveDoors()
+    {
+        int number = 0;
+        foreach (KeyValuePair<int, OpenDoorLoad> door in doors)
+        {
+            if (door.Value.playerCanOpen) number++;
+        }
+
+        return number;
+    }
+
+    public static List<OpenDoorLoad> getAllActiveDoors()
+    {
+        List<OpenDoorLoad> activeDoors = new List<OpenDoorLoad>();
+        foreach (KeyValuePair<int, OpenDoorLoad> door in doors)
+        {
+            if (door.Value.playerCanOpen) activeDoors.Add(door.Value);
+        }
+
+        return activeDoors;
+    }
+
     //public static OpenDoorLoad getDoorOfScene(GlobalController.Scenes scene)
     //{
     //    foreach(KeyValuePair<int,OpenDoorLoad> door in doors)
@@ -193,7 +215,7 @@ public class OpenDoorLoad : LoadScene {
 
     //public static void lockUnlockDoor(GlobalController.Scenes scene, bool locked)
     //{
-        
+
     //    OpenDoorLoad door= getDoorOfScene(scene);
     //    if (door)
     //    {

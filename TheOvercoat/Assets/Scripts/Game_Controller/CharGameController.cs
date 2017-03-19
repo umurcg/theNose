@@ -182,6 +182,20 @@ public class CharGameController : MonoBehaviour {
     public static GameObject getCamera()
     {
         return cgc.transform.GetChild(0).gameObject;
+        //return getMainCameraComponent().gameObject;
+    }
+
+    public static Camera getMainCameraComponent()
+    {
+        GameObject owner = getOwner();
+        Camera cam = owner.GetComponentInChildren<Camera>();
+        if (cam == null)
+        {
+            Debug.Log("Couldnt find camera component under owner");
+            return null;
+        } 
+        return cam;
+
     }
 
     public static void deactivateAllCharacters()
@@ -307,7 +321,7 @@ public class CharGameController : MonoBehaviour {
         DayAndNightCycle danc= cgc.GetComponentInChildren<DayAndNightCycle>();
         if(!danc)
         {
-            Debug.Log("Couldn't found sun");
+            //Debug.Log("Couldn't found sun");
             return null;
         }
 
@@ -317,6 +331,8 @@ public class CharGameController : MonoBehaviour {
     public static Vector3 getActiveCharacterPosition()
     {
         Vector3 pos=getActiveCharacter().transform.position;
+        Debug.Log("Character position is " + pos.ToString());
+        //Debug.Log("Name of active character is " + getActiveCharacter().transform.name);
         //Vckrs.testPosition(pos);
         return pos;
     }

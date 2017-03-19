@@ -119,7 +119,7 @@ public class CameraFollower : MonoBehaviour {
         float ratio = 0;
         while (ratio < 1)
         {
-            Debug.Log("Lerping");
+            //Debug.Log("Lerping");
             ratio += Time.deltaTime * speed;
             gameObject.transform.position = Vector3.Lerp(initialPosition, relativePosition+ obj.transform.position, ratio);
             yield return 0;

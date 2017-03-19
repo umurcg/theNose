@@ -24,6 +24,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     GameObject wayPoints;
     myTween mt;
 
+    //Check this if passenger is not player
+    public bool isPassengerPlayer=true;
 
     public GameObject carierFront;
     public GameObject carierBack;
@@ -35,11 +37,14 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     Vector3 destination;
     bool checkDest = false;
 
+
     //Debug
     public bool mountDebug;
     public bool unmountDebug;
 
+
     IEnumerator<float> setDestHandler;
+    
 
     // Use this for initialization
     void Awake() {  
@@ -87,16 +92,18 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     IEnumerator<float> _unMount()
     {
-        bool isPassengerPlayer = false;
         freeze();
-        if (passenger != null)
-        {
 
-            //passenger = CharGameController.getActiveCharacter();
-            isPassengerPlayer = true;
-            //print("Passenfer is null");
-            //yield break;
-        }
+        //bool isPassengerPlayer = false;
+
+        //if (passenger == null)
+        //{
+
+        //    //passenger = CharGameController.getActiveCharacter();
+        //    isPassengerPlayer = true;
+        //    //print("Passenfer is null");
+        //    //yield break;
+        //}
 
 
         Animator anim = passenger.GetComponent<Animator>();
@@ -147,13 +154,14 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     IEnumerator<float> _mount()
     {
-        bool isPassengerPlayer = false;
-         if (passenger == null || !passenger.activeSelf)
-        {
-            passenger = CharGameController.getActiveCharacter();
-            isPassengerPlayer = true;
-        }
+        //bool isPassengerPlayer = false;
+        // if (passenger == null || !passenger.activeSelf)
+        //{
+        //    passenger = CharGameController.getActiveCharacter();
+        //    isPassengerPlayer = true;
+        //}
 
+        if(isPassengerPlayer) passenger= CharGameController.getActiveCharacter(); 
 
         PlayerComponentController pcc = passenger.GetComponent<PlayerComponentController>();
         NavMeshAgent nmaPas = passenger.GetComponent<NavMeshAgent>();
@@ -200,6 +208,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
 
         passenger.GetComponent<BasicCharAnimations>().enabled = false;
+
 
         //FlyCameraBetween fcb = Camera.main.gameObject.GetComponent<FlyCameraBetween>();
         //if (fcb)
@@ -296,7 +305,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     public void freeze()
     {
-        Debug.Log("freeze");
+        //Debug.Log("freeze");
         cc.constraints = RigidbodyConstraints.FreezeAll;
         carierBackcc.constraints = RigidbodyConstraints.FreezeAll;
         carierFrontcc.constraints = RigidbodyConstraints.FreezeAll;
@@ -304,7 +313,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     }
     public void release()
     {
-        Debug.Log("release");
+        //Debug.Log("release");
         cc.constraints = RigidbodyConstraints.None;
         carierBackcc.constraints = RigidbodyConstraints.None;
         carierFrontcc.constraints = RigidbodyConstraints.None;

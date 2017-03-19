@@ -597,6 +597,14 @@ public class Vckrs : MonoBehaviour
 
     }
 
+    public static Vector3 generateRandomPositionInBox(GameObject boxObject)
+    {
+        Vector3 randomPositionInBox;
+        randomPositionInBox = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        randomPositionInBox = boxObject.transform.TransformPoint(randomPositionInBox * .5f);
+        return randomPositionInBox;
+    }
+
 
     //Returns a list holding all children objects.
     public static List<Transform> getAllChildren(Transform parent)
@@ -663,6 +671,90 @@ public class Vckrs : MonoBehaviour
         yield break;
     }
 
+    public delegate void myDelegate();
+
+    public static void doItAfterFrame(myDelegate theDelegate, int frameCount)
+    {
+        Timing.RunCoroutine(_doItAfterFrame(theDelegate,frameCount));
+    }
+
+    static IEnumerator<float> _doItAfterFrame(myDelegate theDelegate, int frameCount)
+    {
+        int frame = 0;
+        while (frame < frameCount)
+        {
+            frame++;
+            yield return 0;
+        }
+        theDelegate();
+        yield break;
+
+    }
+
+
+    //Sets object position outside of camera with trying to find suitable place on navmesh. 
+    //It generates tries to find position between tow circle areas like a torus
+    //If it fails does nothing. It does in one frame so choose try number suitable.
+    public static bool setPositionToOutsideOfCameraAndOnNavmesh(GameObject obj, Vector3 center, int numberOfTrial,Camera cam, float smallRadius=30f, float bigRadius=50f)
+    {
+
+
+        //If object doesnt have navmesh then return null 
+        NavMeshAgent nma = obj.GetComponent<NavMeshAgent>();
+        if (nma == null) return false;
+        if (smallRadius > bigRadius) return false;
+        
+        
+
+        
+        bool onNavmesh = false;
+        bool outsideOfCam = false;
+
+        int trial = numberOfTrial;
+
+        Vector3 position=Vector3.zero;
+
+        while ((!onNavmesh || !outsideOfCam) && trial > 0)
+        {
+            Vector3 positionLimit1 = Vckrs.generateRandomPositionOnCircle(center, smallRadius);
+            Vector3 positionLimit2 = Vckrs.generateRandomPositionOnCircle(center, bigRadius);
+            position = Vector3.Lerp(positionLimit1, positionLimit2, Random.Range(0, 1));
+
+            //Cast obj position to navmesh and check it is on navmesh
+            NavMeshHit nmh;
+            if ((NavMesh.SamplePosition(position, out nmh, 2f, nma.areaMask)))
+            {
+                position = nmh.position;
+                onNavmesh = true;
+            }
+            else
+            {
+                onNavmesh = false;
+            }
+
+            //Check obj is outisde of camera
+            outsideOfCam = !canCameraSeeObject(position, CharGameController.getCamera().GetComponent<Camera>());
+
+
+            trial--;
+        }
+
+        if (trial <= 0)
+        {
+            //Debug.Log("Couldn't find appropiate position for girl");
+            return false;
+        }
+        else
+        {
+            //Debug.Log("Found appropiate position for girl");
+            //Debug.Log("Number of trial is " + (numberOfTrial - trial));
+            obj.transform.position = position;
+            return true;
+        }
+
+
+
+    }
 
 
 }

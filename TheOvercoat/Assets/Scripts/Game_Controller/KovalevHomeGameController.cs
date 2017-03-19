@@ -61,8 +61,10 @@ public class KovalevHomeGameController : GameController {
         //Set player as kovalev
         GameObject character = CharGameController.setCharacter("Kovalev");
         CameraFollower cf= CharGameController.getCamera().GetComponent<CameraFollower>();
+        Camera cam = CharGameController.getCamera().GetComponent<Camera>();
         cf.updateTarget();
         cf.fixRelativeToDefault();
+        cam.orthographicSize = 10;
 
         //After changing character you should update all pcc is subtitles
         SubtitleController[] scs = GetComponents<SubtitleController>();

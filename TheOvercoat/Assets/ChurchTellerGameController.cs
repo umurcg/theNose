@@ -9,6 +9,7 @@ using MovementEffects;
 public class ChurchTellerGameController : GameController {
 
     characterComponents ownerCC;
+    
 
 	// Use this for initialization
 	public override void Start () {
@@ -16,20 +17,39 @@ public class ChurchTellerGameController : GameController {
         ownerCC = new characterComponents(gameObject);
         //Debug.Log("helooooooooooooooooo");
 
+
+        setInitialPos();
+
         Timing.RunCoroutine(_goTellChurch());
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
+    //TODO If you do not disable navmesh before changin position it makes an odd effect. Learn why it is. But for now it is working with disabling and enablign it.
+    public void setInitialPos()
+    {
+        ownerCC.navmashagent.enabled = false;
+
+        bool foundPosition = Vckrs.setPositionToOutsideOfCameraAndOnNavmesh(gameObject,player.transform.position ,100, CharGameController.getMainCameraComponent(),30,60);
+        if (foundPosition == false)
+        {
+            Debug.Log("Couldnt generate position, so just setting object to forward of player by 20");
+            Vector3 pos = CharGameController.getActiveCharacterPosition() + CharGameController.getActiveCharacter().transform.forward * 20;
+            transform.position = pos;
+        }
+
+        ownerCC.navmashagent.enabled = true;
+    }
+
     IEnumerator<float> _goTellChurch()
     {
 
         yield return 0;
 
-        transform.position = CharGameController.getActiveCharacterPosition() + CharGameController.getActiveCharacter().transform.forward * 5;
+
 
         playerAnim.SetBool("RightHandAtFace", true);
         pcc.StopToWalk();
@@ -40,8 +60,7 @@ public class ChurchTellerGameController : GameController {
 
         //Call subtitle.
         sc.callSubtitleWithIndex(0);
-
-    
+        
 
         //Vckrs.testPosition(player.transform.position + 2 * (transform.position - player.transform.position).normalized);
         ownerCC.navmashagent.SetDestination(player.transform.position + 5*(transform.position-player.transform.position).normalized);

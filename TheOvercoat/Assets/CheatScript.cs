@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class CheatScript : MonoBehaviour {
 
+    
     CharacterControllerKeyboard cck;
 
     //Numbers
@@ -38,10 +39,74 @@ public class CheatScript : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.T)) Timing.RunCoroutine(setScaleDuringPlay());
             if (Input.GetKey(KeyCode.C)) Timing.RunCoroutine(setSpeedDuringPlay());
-
+            if (Input.GetKey(KeyCode.N)) loadNextLevel();
         }
     }
 
+    void loadNextLevel()
+    {
+        //There is exception at one scene where ivan throws nose. In that scene, scene actualyy is not changed but it fades out and fades in so
+        //This if condition checks that player is in that scene and calls a specific function making effect like scene change
+        if (GlobalController.getPreviousScene()==GlobalController.Scenes.IvanHouse)
+        {
+            //Bridge game controller have owner objects having floor tag so we find it with that tag
+            GameObject[] flootObjects=GameObject.FindGameObjectsWithTag("Floor");
+            BridgeGameController bgc=null;
+            foreach (GameObject floorObj in flootObjects)
+            {
+                BridgeGameController localBgc=floorObj.GetComponent<BridgeGameController>();
+                if (localBgc) bgc = localBgc;
+            }
+
+            
+
+            if (bgc) {
+                //Debug.Log("Triggering change scen from bgc");
+                Timing.RunCoroutine(bgc.GetComponent<BridgeGameController>().changeScene());
+                return;
+            }else
+            {
+                //Debug.Log("Couldny found bgc");
+            }
+
+            
+        }
+
+        if (OpenDoorLoad.doors.Count == 1)
+        {
+            //Debug.Log("Door count is 1");
+            Dictionary<int, OpenDoorLoad> doors = OpenDoorLoad.doors;
+            foreach (KeyValuePair<int, OpenDoorLoad> door in doors)
+            {
+                door.Value.debugLoad=true;
+                return;
+            }
+        }
+        else  if (OpenDoorLoad.numberOfActiveDoors() > 0)
+            {
+                //Debug.Log("Active door count is bigger then 0");
+                GlobalController.Scenes nextScene= GlobalController.Instance.getNextScene();
+
+                List<OpenDoorLoad> activeDoors = OpenDoorLoad.getAllActiveDoors();
+
+                foreach (OpenDoorLoad door in activeDoors) {
+                if (door.Scene == nextScene)
+                {
+                    door.debugLoad = true;
+                    return;
+                }
+
+                }
+
+            //Debug.Log("But none of them is next scene so just loading next scene");
+            GlobalController.Instance.loadNextScene();
+
+        } else{
+
+            //Debug.Log("Loading next scene directly");
+            GlobalController.Instance.loadNextScene();
+        }
+    }
 
     void OnEnable()
     {
@@ -59,10 +124,15 @@ public class CheatScript : MonoBehaviour {
     //After that it registers scene to sceneList
     public void updateMembers(Scene scene, LoadSceneMode mode)
     {
-        cck = CharGameController.getActiveCharacter().GetComponent<CharacterControllerKeyboard>();
+        updateMembers();
 
     }
 
+    public void updateMembers()
+    {
+        GameObject player = CharGameController.getActiveCharacter();
+        if(player)  cck = player.GetComponent<CharacterControllerKeyboard>();
+    }
 
     //This enables user to set time scale. It is for debugging. But also it can be a cheat in futuer;)
     IEnumerator<float> setScaleDuringPlay()

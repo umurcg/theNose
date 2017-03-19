@@ -17,6 +17,7 @@ public class CatAttackToPlayer : GameController, IClickAction {
     CharacterController playerCC;
     public float JumpSpeed = 2;
 
+    bool used = false;
     public bool debug;
 
 
@@ -38,7 +39,7 @@ public class CatAttackToPlayer : GameController, IClickAction {
 
         if (player == null)
         {
-            Debug.Log("Hello i am citty. no player");
+            //Debug.Log("Hello i am citty. no player");
             enabled = false;
             return;
         }
@@ -93,6 +94,10 @@ public class CatAttackToPlayer : GameController, IClickAction {
 
     public IEnumerator<float> _startAttack()
     {
+        if (used) yield break;
+
+        disableGame();
+
         print("startattack");
         pcc.StopToWalk();
         playerCC.enabled = false;
@@ -155,11 +160,17 @@ public class CatAttackToPlayer : GameController, IClickAction {
         charSubt.text = "";
 
         pcc.ContinueToWalk();
-        
 
+
+
+    }
+
+
+    public void disableGame()
+    {
         //Destroy after finish everything
-        Destroy(this);
-        
+        used = true;
+        gameObject.transform.tag = "Untagged";
     }
 
     public void Jump()

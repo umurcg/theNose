@@ -254,6 +254,7 @@ GameObject:
   - 114: {fileID: 114000011378129720}
   - 114: {fileID: 114000012789173506}
   - 114: {fileID: 114000010952922272}
+  - 114: {fileID: 114000010344117274}
   m_Layer: 5
   m_Name: GirlGameCanvas
   m_TagString: Untagged
@@ -641,7 +642,7 @@ GameObject:
   - 114: {fileID: 114000011925755382}
   m_Layer: 0
   m_Name: horse
-  m_TagString: ActiveObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1271,7 +1272,8 @@ GameObject:
   - 114: {fileID: 114000012285659210}
   - 114: {fileID: 114000013700323588}
   - 135: {fileID: 135000012308352636}
-  m_Layer: 0
+  - 114: {fileID: 114000013437635342}
+  m_Layer: 2
   m_Name: Burun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2097,13 +2099,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010171386954}
   - 114: {fileID: 114000011934856574}
+  - 114: {fileID: 114000012331564524}
   - 114: {fileID: 114000012688734596}
   - 114: {fileID: 114000011999004462}
   - 114: {fileID: 114000013695667876}
   - 114: {fileID: 114000012839810508}
   - 114: {fileID: 114000011987156834}
+  - 114: {fileID: 114000010718215856}
   - 114: {fileID: 114000013276060348}
-  - 114: {fileID: 114000011004013424}
   m_Layer: 0
   m_Name: NoseEncounterGame
   m_TagString: Untagged
@@ -6609,6 +6612,17 @@ MonoBehaviour:
   hand: 0
   offset: {x: 0, y: -0.3, z: 0}
   collectEvenFull: 0
+--- !u!114 &114000010344117274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010585460960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1b4318ef8383e4cb9bc8ba078e41c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010347913516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6721,6 +6735,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliding: 0
+--- !u!114 &114000010718215856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013710874622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - "\u0130\u015Fte tam bu an da kovalevin g\xF6z\xFCne bir \u015Fey tak\u0131l\u0131r.
+    \r"
+  - "Kovalev gibi \xE7apk\u0131n bir erke\u011Fin mant\u0131\u011F\u0131n\u0131n kalbine
+    s\xF6z ge\xE7irmesini bekliyemezsiniz heralde.\r"
+  AllSubtitles: "\u0130\u015Fte tam bu an da kovalevin g\xF6z\xFCne bir \u015Fey tak\u0131l\u0131r.
+    \r\nKovalev gibi \xE7apk\u0131n bir erke\u011Fin mant\u0131\u011F\u0131n\u0131n
+    kalbine s\xF6z ge\xE7irmesini bekliyemezsiniz heralde.\r"
+  subtitle: {fileID: 0}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+  manualTimerArray: []
+  TimeMode: 0
+  timeInhibator: 13
 --- !u!114 &114000010728592696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6763,6 +6802,7 @@ MonoBehaviour:
   passenger: {fileID: 1000012292824702}
   AnimType: 0
   animationName: Sit
+  isPassengerPlayer: 0
   carierFront: {fileID: 1000013018910108}
   carierBack: {fileID: 1000011868973702}
   mountDebug: 0
@@ -6790,22 +6830,6 @@ MonoBehaviour:
   obstacleDelay: 5
   aimScale: 0.5
   obsScale: 2
---- !u!114 &114000011004013424
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013710874622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  subtitleTexts: []
-  AllSubtitles: 
-  subtitle: {fileID: 0}
-  ifDesroyItself: 0
-  releaseAfterSub: 0
 --- !u!114 &114000011037144328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7332,6 +7356,23 @@ MonoBehaviour:
   time: 0
   animationParameter: 0
   parameterName: Sit
+--- !u!114 &114000012331564524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013710874622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleTexts:
+  - 'Kovalev: Nasiiil?'
+  AllSubtitles: 'Kovalev: Nasiiil?'
+  subtitle: {fileID: 0}
+  ifDesroyItself: 0
+  releaseAfterSub: 0
 --- !u!114 &114000012357271800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7605,11 +7646,11 @@ MonoBehaviour:
   Nose: {fileID: 1000012292824702}
   trash: {fileID: 0}
   newspaper: {fileID: 1000010990366202}
-  sun: {fileID: 0}
   Girlgame: {fileID: 1000010858706724}
   girl: {fileID: 1000013481016148}
   girlCanvas: {fileID: 1000010585460960}
   girlGameKov: {fileID: 1000012783852576}
+  allHorses: {fileID: 0}
   debugCatch: 0
   walkTolerance: 0.01
 --- !u!114 &114000013290712852
@@ -7693,6 +7734,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b93b4a9cca35de4b991158d2911896c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000013437635342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012292824702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d813d6aff508f04f9696619a2b88898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114000013484892258
@@ -7833,13 +7885,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9249908e835acf43a8fd8dcf2a6b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunDirection: 1
   speed: 5
   forwardValue: 10
   navMeshSampleRaidus: 5
   message: noseCatched
   eventReviever: {fileID: 1000013710874622}
   catchDuration: 5
+  sendMessage: 0
 --- !u!114 &114000013770630900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8352,7 +8404,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 96a77aed599a54d4aab2be5c0951473c, type: 2}
+  - {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -8372,7 +8424,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: 249dd6c9c3207e94f80b1f060c6a1709, type: 3}
+  m_Mesh: {fileID: 4300002, guid: e2b3e34fafb9d2f4c8dc769ab6c099d1, type: 3}
   m_Bones:
   - {fileID: 4000012871119196}
   - {fileID: 4000011199765700}
@@ -8741,7 +8793,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 72
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!195 &195000012304193750
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -8761,7 +8813,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0.18
   m_WalkableMask: 64
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!195 &195000012559500414
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -8781,7 +8833,7 @@ NavMeshAgent:
   m_Height: 4.23
   m_BaseOffset: -0.13
   m_WalkableMask: 64
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!208 &208000010058409544
 NavMeshObstacle:
   m_ObjectHideFlags: 1

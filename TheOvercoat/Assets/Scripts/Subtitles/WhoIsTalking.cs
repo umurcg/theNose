@@ -59,6 +59,11 @@ public class WhoIsTalking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //foreach(KeyValuePair<string,GameObject> obj in characters)
+        //{
+        //    Debug.Log(obj.Key + "" + obj.Value.name);
+        //}
+
         if (baloon == null)
         {
             baloon = transform.GetChild(0).gameObject;
@@ -84,7 +89,7 @@ public class WhoIsTalking : MonoBehaviour
 
             if (characters.ContainsKey(key))
             {
-               
+       
                 baloon.SetActive(true);
                 if (cameraComponent == null) return;
                 Vector2 ActualPosition = cameraComponent.WorldToScreenPoint(characters[key].transform.position);
@@ -117,6 +122,11 @@ public class WhoIsTalking : MonoBehaviour
         if (!characters.ContainsKey(name) && !characters.ContainsValue(obj))
         {
             characters.Add(Name, obj);
+            Debug.Log("Registering " + obj.name + " to subtittle list");
+        } else if(characters.ContainsKey(name) && !characters.ContainsValue(obj))
+        {
+            Debug.Log("Replecaed " + obj.name);
+            characters[name] = obj;
         }
     }
 

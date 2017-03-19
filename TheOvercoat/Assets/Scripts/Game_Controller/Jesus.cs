@@ -8,6 +8,7 @@ public class Jesus : GameController, IClickAction {
 
     public GameObject priest;
     public GameObject door;
+    public GameObject plane;
 
 
 
@@ -131,6 +132,12 @@ public class Jesus : GameController, IClickAction {
     }
 
 
+    public void setPlaneTagToUntagged()
+    {
+        plane.transform.tag = "Untagged";
+        plane.layer = 2;
+    }
+
 
     public override void activateController()
     {
@@ -142,5 +149,7 @@ public class Jesus : GameController, IClickAction {
         gameObject.SetActive(false);
 
     }
+
+
 
 }

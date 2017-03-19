@@ -164,6 +164,11 @@ public class CityGameController : MonoBehaviour {
 
         nosePack.SetActive(true);
 
+        //Set ivan animator if you cheat
+        GameObject player = CharGameController.getActiveCharacter();
+        player.GetComponent<Animator>().SetTrigger("GetOffContinue");
+        player.GetComponent<Animator>().SetBool("GetOffBed", false);
+        //player.GetComponent<PlayerComponentController>().ContinueToWalk();
 
         //Activae policemans
         foreach(GameObject police in ivanScenePolice)
@@ -220,6 +225,8 @@ public class CityGameController : MonoBehaviour {
         //Girty handles its activation itself.
 
         //Unlock newspaper home door
+        OpenDoorLoad.doors[2].playerCanOpen = true;
+        OpenDoorLoad.doors[3].playerCanOpen = true;
         OpenDoorLoad.doors[4].playerCanOpen = true;
 
         //If coming from newspaper second time that player gave girty to newspaper 
@@ -263,7 +270,7 @@ public class CityGameController : MonoBehaviour {
         GameObject player = CharGameController.getActiveCharacter();
         if (player.transform.name == "Bird")
         {
-            //Timing.RunCoroutine(moveBirdAfterOneFrame());
+            Timing.RunCoroutine(moveBirdAfterOneFrame());
             CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
             //cf.updateRelative();
             maze.GetComponent<GameController>().activateController();

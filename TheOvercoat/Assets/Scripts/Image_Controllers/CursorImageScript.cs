@@ -38,8 +38,14 @@ public class CursorImageScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //Vckrs.doItAfterOneFrame(testDelegate);
+        //testDelegate();
 
+    }
 
+    public void testDelegate()
+    {
+        Debug.Log("Yes your ddelegate method works");
     }
 
     void OnEnable()
@@ -56,7 +62,7 @@ public class CursorImageScript : MonoBehaviour
 
     void newSceneIsLoad(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Getting new move to ");
+        //Debug.Log("Getting new move to ");
         player = CharGameController.getActiveCharacter();
         if (player != null)
             mt = player.GetComponent<MoveTo>();
@@ -68,9 +74,17 @@ public class CursorImageScript : MonoBehaviour
             }
         }
 
+        Vckrs.doItAfterFrame(assignCamera,3);
+        //assignCamera();
+
+    }
+
+
+    void assignCamera()
+    {
         Camera[] allCameras = Camera.allCameras;
 
-        foreach(Camera c in allCameras)
+        foreach (Camera c in allCameras)
         {
             if (c.gameObject.activeSelf == true)
             {
@@ -78,7 +92,6 @@ public class CursorImageScript : MonoBehaviour
             }
 
         }
-
     }
 
     // Update is called once per frame
@@ -117,6 +130,14 @@ public class CursorImageScript : MonoBehaviour
             return;
         }
 
+        if (currentCamera == null) assignCamera();
+        if (currentCamera==null)
+        {
+            enabled = false;
+            Debug.Log("Disabling cursor image script because there is no camera");
+            return;
+        }
+
         Ray ray = currentCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -135,7 +156,7 @@ public class CursorImageScript : MonoBehaviour
                 return;
             } 
 
-            else if (hit.transform.tag == "ActiveObject")
+            else if (hit.transform.tag == "ActiveObject" || hit.transform.tag=="ActiveObjectOnlyCursor")
             {
                 if (!checkAvaiblity())
                 {
@@ -229,6 +250,14 @@ public class CursorImageScript : MonoBehaviour
     {
         player = CharGameController.getActiveCharacter();
         mt = player.GetComponent<MoveTo>();
+
+    }
+
+    public void resetExternalCursor()
+    {
+        externalTexture = null;
+        Debug.Log("Reseting external cursor");
+        //DestroyImmediate(externalTexture);
 
     }
 

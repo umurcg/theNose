@@ -17,7 +17,7 @@ public class RandomWalkAndAnimate : MonoBehaviour {
     float timer;
 
 	// Use this for initialization
-         void Start () {
+   void Start () {
         //base.Start();
         dogCC = new characterComponents(gameObject);
 
@@ -35,6 +35,8 @@ public class RandomWalkAndAnimate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (dogCC == null) dogCC = new characterComponents(gameObject);
+
         //print(timer);
 
         //Decrease timer if it is set
@@ -47,6 +49,8 @@ public class RandomWalkAndAnimate : MonoBehaviour {
         if (timer == 0)
         {
             Vector3 target = findRandomPos(col.radius*sphere.transform.localScale.x);
+
+
 
             if (dogCC.navmashagent!=null)
             dogCC.navmashagent.SetDestination(target);

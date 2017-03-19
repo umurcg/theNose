@@ -29,8 +29,9 @@ public class IvanHouseGameController : GameController {
        
         //Set ivan as a character and put it on true positon
         CharGameController.setCharacter("Ivan");
-        CharGameController.getOwner().transform.position = ivanFirstPosition;
+        CharGameController.movePlayer(ivanFirstPosition);
         CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
+        CharGameController.getCamera().GetComponent<CameraFollower>().fixRelativeToDefault();
         CharGameController.getCamera().SetActive(true);
         base.Start();
 

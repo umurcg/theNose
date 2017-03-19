@@ -188,8 +188,9 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
     {
         if(UI3Dicon!=null && _3DPanel != null)
         {
-            if (collectedObjs.Count == 0)
+            if (collectedObjs.Count == 0 && _3DPanel.transform.childCount>0)
             {
+                
                 Destroy(_3DPanel.transform.GetChild(0).gameObject);
             }else if (_3DPanel.transform.childCount == 0)
             {

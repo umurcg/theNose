@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BridgeGameController : GameController {
 
-    public GameObject police,trigger,/*blackScreen,*/ shallNotPass, singerCafe;
+    public GameObject police,trigger,/*blackScreen,*/ shallNotPass, singerCafe, nehir;
 
     bool onBridge = false;
     GameObject nose;
@@ -208,17 +208,26 @@ public class BridgeGameController : GameController {
         //Dont load new scene instead fade out and activate singer cafe
         //GetComponent<LoadScene>().Load();
 
-        handlerHolder= blackScreen.script.fadeOut();
+        Timing.RunCoroutine(changeScene());
+
+        yield break;
+
+
+    }
+
+    public IEnumerator<float> changeScene()
+    {
+        handlerHolder = blackScreen.script.fadeOut();
         yield return Timing.WaitUntilDone(handlerHolder);
-        
+
+        CharGameController.getCamera().GetComponent<CameraFollower>().enabled = true;
         singerCafe.GetComponent<CafeSingerGameController>().activateController();
 
         handlerHolder = blackScreen.script.fadeIn();
         yield return Timing.WaitUntilDone(handlerHolder);
 
-
+        Destroy(this);
     }
-
 
 
     void OnTriggerEnter()
@@ -236,15 +245,18 @@ public class BridgeGameController : GameController {
         base.activateController();
         disabled = false;
         police.SetActive(true);
-        //trigger.SetActive(true);
+        trigger.SetActive(true);
         shallNotPass.SetActive(true);
+
+
     }
     public override void deactivateController()
     {
         base.deactivateController();
         disabled = true;
         police.SetActive(false);
-        //trigger.SetActive(false);
+        trigger.SetActive(false);
         shallNotPass.SetActive(false);
+
     }
 }

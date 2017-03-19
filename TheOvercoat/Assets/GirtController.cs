@@ -12,6 +12,9 @@ public class GirtController : GameController {
     Animator animDog;
     NavMeshAgent girtyNma;
     bool girtyGame = false;
+    public GameObject streetAreas;
+    public GameObject randomWalkSphere;
+    
 	// Use this for initialization
 	public override void Awake () {
         base.Awake();
@@ -35,6 +38,8 @@ public class GirtController : GameController {
         base.Start();
         activation();
 
+        
+
 
     }
 
@@ -52,13 +57,34 @@ public class GirtController : GameController {
         rwaa = GetComponent<RandomWalkAndAnimate>();
         animDog = GetComponent<Animator>();
 
+        if (player == null)
+        {
+            enabled = false;
+            return;
+        }
         if (player.name == "Ivan")
         {  
             rwaa.enabled = false;
             animDog.SetBool("Bark", true);
+
         }else if(player.name=="Kovalev" && GlobalController.countSceneInList(GlobalController.Scenes.Newspaper)==1 )
         {
-            
+
+            //Find RandomPosition on mesh
+            GameObject streetArea = streetAreas.transform.GetChild(Random.Range(0, streetAreas.transform.childCount)).gameObject;
+            Vector3 randomPositionInBox = Vckrs.generateRandomPositionInBox(streetArea);
+
+            //Cast navmesh
+            NavMeshHit nmh;
+            if( NavMesh.SamplePosition(randomPositionInBox,out nmh, 5, girtyNma.areaMask))
+            {
+                randomPositionInBox = nmh.position;
+            }
+
+            gameObject.transform.position = randomPositionInBox;
+            randomWalkSphere.transform.position = randomPositionInBox;
+
+            transform.tag = "ActiveObject";
             rwaa.enabled = true;
             girtyGame = true;
 

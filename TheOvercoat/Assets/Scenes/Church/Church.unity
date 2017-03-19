@@ -612,6 +612,7 @@ MonoBehaviour:
   isDisabledAtStart: 0
   priest: {fileID: 462298940}
   door: {fileID: 387542691}
+  plane: {fileID: 867816280}
 --- !u!114 &341879132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1680,6 +1681,7 @@ GameObject:
   - 4: {fileID: 124965}
   - 95: {fileID: 919943586}
   - 114: {fileID: 919943587}
+  - 114: {fileID: 919943588}
   m_Layer: 0
   m_Name: church1
   m_TagString: Untagged
@@ -1720,6 +1722,21 @@ MonoBehaviour:
   oneTimeUse: 1
   reciever: {fileID: 601994192}
   message: switchTransparentOpaque
+--- !u!114 &919943588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 919943585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726b4a21f7367144b823858dccc993f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLevel: 0
+  oneTimeUse: 1
+  reciever: {fileID: 341879130}
+  message: setPlaneTagToUntagged
 --- !u!1 &931951978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,7 +2008,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1061440728}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

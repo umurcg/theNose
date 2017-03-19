@@ -67,6 +67,7 @@ public class JokeGroupGameController : GameController {
         marcoALT.enabled = true;
         zoriaALT.enabled = true;
 
+        subtitle.text = "";
         sc.callSubtitle();
         while (subtitle.text != "")
         {
