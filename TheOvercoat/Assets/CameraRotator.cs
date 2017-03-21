@@ -9,19 +9,23 @@ public class CameraRotator : MonoBehaviour {
 
 
     public float speed = 4f;
+    public int rotationPerRound = 8;
+    float rotateAngle;
 
     GameObject player;
     CameraFollower cf;
 
     [HideInInspector]
     public bool rotating=false;
-
+    
+    
 
 
     // Use this for initialization
     void Start () {
         updatePlayer();
         cf = GetComponent<CameraFollower>();
+        rotateAngle = 360 / rotationPerRound;
 
         
 	}
@@ -35,7 +39,7 @@ public class CameraRotator : MonoBehaviour {
         if (Input.GetButtonDown("CameraRotator") && !rotating)
         {
             float angleDir = -Input.GetAxis("CameraRotator");
-            float angle = angleDir * 90;
+            float angle = angleDir * rotateAngle;
             if (player != null)
             {
                 //Debug.Log(angle);

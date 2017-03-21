@@ -319,6 +319,39 @@ public class Vckrs : MonoBehaviour
         }
     }
 
+    public static IEnumerator<float> _cameraSizeRootFunc(Camera cam, float size, float factor, float limitSpeed=0.2f)
+    {
+        float speed = factor;
+        float delta = Mathf.Abs(cam.orthographicSize - size);
+        
+        if (cam.orthographicSize > size)
+        {
+
+            while (cam.orthographicSize > size)
+            {
+                speed = factor * ( Mathf.Abs(cam.orthographicSize - size)) / delta;
+                speed = Mathf.Clamp(speed, limitSpeed, speed);
+                cam.orthographicSize -= Time.deltaTime * speed;
+                yield return 0;
+            }
+            cam.orthographicSize = size;
+
+        }
+        else
+        {
+
+            while (cam.orthographicSize < size)
+            {
+                //print("increase");
+                speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
+                speed = Mathf.Clamp(speed, speed, limitSpeed);
+                cam.orthographicSize += Time.deltaTime * speed;
+                yield return 0;
+            }
+            cam.orthographicSize = size;
+        }
+    }
+
 
     public static IEnumerator<float> _fadeObject(GameObject obj, float speed, bool fullFade=false)
     {

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class EnterSceneGameController : GameController{
 
-    public GameObject  building, ivan, kovalev, head, aims,cameraObj, sun;
+    public GameObject  building, ivan, kovalev, head, aims,cameraObj, sun, bigBook;
 
     Camera cam;
     NavMeshAgent ivanNma, kovalevNma;
@@ -40,7 +40,7 @@ public class EnterSceneGameController : GameController{
         ivanNma = ivan.GetComponent<NavMeshAgent>();
         kovalevNma = kovalev.GetComponent<NavMeshAgent>();
         cam = cameraObj.GetComponent<Camera>();
-        cam.orthographicSize = 40;
+        cam.orthographicSize = 1000;
 
         ivanAnim = ivan.GetComponent<Animator>();
         kovalevAnim = kovalev.GetComponent<Animator>();
@@ -80,6 +80,8 @@ public class EnterSceneGameController : GameController{
     {
         yield return 0;
 
+
+
         //Force to default cursor while this scene is not interactive
         CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = true;
 
@@ -88,10 +90,17 @@ public class EnterSceneGameController : GameController{
 
         sc.callSubtitleWithIndexTime(0);
 
-        yield return Timing.WaitForSeconds(25);
+        //yield return Timing.WaitForSeconds(25);
 
-        blackScreen.script.fadeIn();
-        Timing.RunCoroutine(Vckrs._cameraSize(cam, 10, 0.7f));
+        IEnumerator<float> fadeHandler= blackScreen.script.fadeIn();
+        //Timing.RunCoroutine(Vckrs._cameraSize(cam, 10, 20/*0.7f*/));
+        Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, 55,1f/*0.7f*/));
+
+        //yield return Timing.WaitUntilDone(fadeHandler);
+
+        bigBook.SetActive(true);
+        //Animator bookAnim = bigBook.GetComponent<Animator>();
+        //bookAnim.SetBool("")
 
         while (cam.orthographicSize!=10 || narSubtitle.text!="")
         {
