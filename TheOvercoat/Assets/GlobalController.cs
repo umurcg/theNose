@@ -16,7 +16,9 @@ public class GlobalController : MonoBehaviour {
 
     public static GlobalController Instance;
     
-
+    //Language settings
+    public enum Language { Eng=0, Tur=1};
+    public Language languageSetting = Language.Eng;
 
 //  This list holds scenes that are explored. One scene can register more than one.
 //  For example if player goes scene 2 from scene 1 and come back to scene 1 list will become
