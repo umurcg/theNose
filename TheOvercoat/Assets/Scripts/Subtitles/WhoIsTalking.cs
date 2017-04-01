@@ -47,8 +47,11 @@ public class WhoIsTalking : MonoBehaviour
         //Add player character to dictionary
         GameObject player = CharGameController.getActiveCharacter();
         if (player)
+        {
+            if(!characters.ContainsKey(player.name))
             characters.Add(player.name, player);
 
+        }
 
         baloon = transform.GetChild(0).gameObject;
         baloon.SetActive(false);

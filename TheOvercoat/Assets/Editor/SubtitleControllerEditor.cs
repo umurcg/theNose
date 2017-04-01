@@ -25,16 +25,23 @@ public class SubtitleControllerEditor : Editor {
 
         SubtitleController script = (SubtitleController)target;
 
+        if (GUILayout.Button("Export subtitles to Text Asset"))
+        {
+            script.exportToTextFile();
+        }
+        if (GUILayout.Button("Assign Text Asset"))
+        {
+            script.assignTextAsset();
 
+        }
 
-		if(GUILayout.Button("Set Subtitles")){
+        if (GUILayout.Button("Set Subtitles")){
             script.AllToArray();
 
 		}
         if (GUILayout.Button("Get Subtitles"))
         {
             script.ArrayToAll();
-
         }
 
         if (GUILayout.Button("Set Character Subtitle"))

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.IO;
 
 public class SubtitleControllerTime : SubtitleController {
     public float[] manualTimerArray;
@@ -14,6 +15,8 @@ public class SubtitleControllerTime : SubtitleController {
     float timer = 0;
     // Use this for initialization
     new void Start () {
+        if (textAsset != null) importFromTextFile();
+
         text = subtitle.GetComponent<Text>();
         if (text == null)
         {
