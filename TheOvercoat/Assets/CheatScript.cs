@@ -28,6 +28,12 @@ public class CheatScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //No character so disable cheat script
+        if (CharGameController.getActiveCharacter() == null)
+        {
+            enabled = false;
+            return;
+        }
         cck = CharGameController.getActiveCharacter().GetComponent<CharacterControllerKeyboard>();
 
 	}

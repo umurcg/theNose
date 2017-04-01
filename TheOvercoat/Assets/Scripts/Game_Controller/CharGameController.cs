@@ -181,7 +181,10 @@ public class CharGameController : MonoBehaviour {
 
     public static GameObject getCamera()
     {
-        return cgc.transform.GetChild(0).gameObject;
+        if (cgc == null) return null;
+        
+        GameObject mainCam = cgc.transform.GetChild(0).gameObject;
+        return mainCam;
         //return getMainCameraComponent().gameObject;
     }
 

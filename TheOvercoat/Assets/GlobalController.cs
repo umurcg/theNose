@@ -18,12 +18,13 @@ public class GlobalController : MonoBehaviour {
     
     //Language settings
     public enum Language { ENG=0, TR=1, RUS=2};
-    public Language languageSetting = Language.TR;
+    public Language languageSetting = Language.ENG;
+    
 
-//  This list holds scenes that are explored. One scene can register more than one.
-//  For example if player goes scene 2 from scene 1 and come back to scene 1 list will become
-//  [1,2,1]
-//  Also use this class for holding all savable data
+    //  This list holds scenes that are explored. One scene can register more than one.
+    //  For example if player goes scene 2 from scene 1 and come back to scene 1 list will become
+    //  [1,2,1]
+    //  Also use this class for holding all savable data
     public List<int> sceneList;
 
     //You can use this variable for starting game with specific sceneList in editor.
@@ -68,7 +69,8 @@ public class GlobalController : MonoBehaviour {
         Timing.KillAllCoroutines();
 
         if (Instance == null)
-        {        
+        {
+            //Debug.Log("Creating global controller instance");
             Instance = this;
         }
         else if (Instance != this)
@@ -310,5 +312,21 @@ public class GlobalController : MonoBehaviour {
         //Debug.Log(prevScene);
         return prevScene;
     }
-    
+
+    public  Language getLangueSetting()
+    {
+        return Instance.languageSetting;
+    }
+
+    public void setLanguageSetting(int id)
+    {
+        languageSetting = (Language)id;
+
+        //Change current visible texts
+        DynamicLanguageTexts.updateAllCurrentVisibleTexts();
+
+        Debug.Log("Language is " + languageSetting);
+        //Instance.languageSetting = lan;
+    }
+
 }

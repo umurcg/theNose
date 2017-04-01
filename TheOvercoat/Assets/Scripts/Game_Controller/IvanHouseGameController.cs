@@ -14,11 +14,19 @@ public class IvanHouseGameController : GameController {
     public override void Awake()
     {   
         base.Awake();
+
+        if (GlobalController.Instance == null)
+        {
+            Debug.Log("No global controller instance");
+        }
+
         if (GlobalController.Instance.sceneList.Count != 1 || GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1] != (int)GlobalController.Scenes.City)
         {
+            Debug.Log("Deactivating controller because you are not coming from city first time");
             deactivateController();
             return;
         }
+
 
 
     }
@@ -26,7 +34,7 @@ public class IvanHouseGameController : GameController {
     // Use this for initialization
     public override void Start () {
 
-       
+
         //Set ivan as a character and put it on true positon
         CharGameController.setCharacter("Ivan");
         CharGameController.movePlayer(ivanFirstPosition);

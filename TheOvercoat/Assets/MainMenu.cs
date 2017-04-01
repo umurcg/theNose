@@ -9,8 +9,19 @@ public class MainMenu : MonoBehaviour {
     public GameObject momentsButton;
     public GameObject momentsSubMenu;
     public GameObject continueButton;
+    public GameObject settingsButton, subsettingsMenu;
+    public GameObject exitButton;
+    public GameObject newgameButton;
+
+    public GameObject[] mainMenuButtons;
 
     //CharacterController cc;
+
+    void Awake()
+    {
+        mainMenuButtons = new GameObject[] { continueButton, exitButton, settingsButton, momentsButton, newgameButton };
+               
+    }
 
     // Use this for initialization
     void Start () {
@@ -38,18 +49,25 @@ public class MainMenu : MonoBehaviour {
        SceneManager.LoadScene((int)GlobalController.Instance.fullGameSceneList[0]);
     }
 
+    public void settings()
+    {
+        hideUnhideMainButtons(true);
+        HideUnhideButton[] hubs = subsettingsMenu.GetComponentsInChildren< HideUnhideButton >();
+        //Debug.Log(hubs.Length);
+        foreach(HideUnhideButton hub in hubs)
+        {
+            hub.activate();
+        }
+
+    }
+
     public void load()
     {               
 
         List<int> scenes = GlobalController.Instance.sceneList;
         Debug.Log("Load");
 
-        for (int i = 0; i < 4; i++)
-        {
-            HideUnhideButton hub = transform.GetChild(i).GetComponent<HideUnhideButton>();
-            if (!hub)   return;
-            hub.deactivate();
-        }
+        hideUnhideMainButtons(true);
 
         //Destroy all dynamic buttons if they exist
         for (int i = 0; i < momentsSubMenu.transform.childCount; i++)
@@ -121,13 +139,7 @@ public class MainMenu : MonoBehaviour {
             
         }
 
-
-        for (int i = 0; i < 4; i++)
-        {
-            HideUnhideButton hub = transform.GetChild(i).GetComponent<HideUnhideButton>();
-            if (!hub) return;
-            hub.activate();
-        }
+        hideUnhideMainButtons(false);
     }
 
     public void exit()
@@ -142,6 +154,27 @@ public class MainMenu : MonoBehaviour {
         List<int> sceneList = GlobalController.Instance.sceneList;
         SceneManager.LoadScene(sceneList[sceneList.Count-1]);
     }
+
+    void hideUnhideMainButtons(bool hide)
+    {
+            foreach(GameObject button in mainMenuButtons)
+            {
+
+                HideUnhideButton hub = button.GetComponent<HideUnhideButton>();
+                if (!hub) return;
+                if (hide)
+                {
+                    hub.deactivate();
+                }else
+                {
+                    hub.activate();
+                }
+            
+            }
+
+    }
+
+    
 
     //void OnDisable()
     //{

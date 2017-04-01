@@ -13,6 +13,7 @@ public class SubtitleControllerTime : SubtitleController {
     float[] automaticTimerArray;
 
     float timer = 0;
+
     // Use this for initialization
     new void Start () {
         if (textAsset != null) importFromTextFile();

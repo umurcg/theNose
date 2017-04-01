@@ -169,7 +169,7 @@ public class SubtitleController : MonoBehaviour {
 
         //Debug.Log("Subtitle is started");
 
-        //Debug.Log(subtitleTexts.Length);
+        Debug.Log(subtitleTexts.Length);
 
         text.text = subtitleTexts[0];
         index = 0;
@@ -252,8 +252,8 @@ public class SubtitleController : MonoBehaviour {
     public void importFromTextFile() {
 
 
-        string languageCode = GlobalController.Instance.languageSetting.ToString();
-
+        string languageCode = GlobalController.Instance.getLangueSetting().ToString();
+        
         //Debug.Log(languageCode);
 
         int startIndex = findLine(languageCode)+1;
@@ -298,6 +298,7 @@ public class SubtitleController : MonoBehaviour {
     //Finds and assign text asset from folder name an fenerated file name.
     public void assignTextAsset()
     {
+
         //Debug.Log("Assigning text file");
         createFileName();
         textAsset = AssetDatabase.LoadAssetAtPath("Assets/" + folderName + "/" + fileName, typeof(TextAsset)) as TextAsset;
@@ -316,6 +317,7 @@ public class SubtitleController : MonoBehaviour {
     //Returns line of input string if it is exist
     int findLine(string line)
     {
+        
         StreamReader theReader = new StreamReader(Application.dataPath + "/" + folderName + "/" + fileName);
 
         string wholeFile = theReader.ReadToEnd();

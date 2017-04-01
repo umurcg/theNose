@@ -82,6 +82,7 @@ public class EnterSceneGameController : GameController{
 
 
 
+
         //Force to default cursor while this scene is not interactive
         CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = true;
 
