@@ -33,11 +33,14 @@ public class IvanCityGameController : GameController {
         while (narSubtitle.text != "") yield return 0;
 
         pcc.ContinueToWalk();
+
+        registerAsUsed();
     }
 
     public override void activateController()
     {
         base.activateController();
+        if (isUsed()) return;
         enabled = true;
     }
 

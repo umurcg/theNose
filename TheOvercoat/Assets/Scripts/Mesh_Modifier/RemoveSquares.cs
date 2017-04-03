@@ -15,8 +15,7 @@ using System.Linq;
 
     
     public class RemoveSquares : MonoBehaviour {
-
-     
+         
 
     Mesh mesh;
     List<int> indices;

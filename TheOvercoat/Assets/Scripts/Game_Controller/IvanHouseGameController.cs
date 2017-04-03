@@ -273,7 +273,10 @@ public class IvanHouseGameController : GameController {
     {
         base.deactivateController();
         bread.transform.position = BreadPH.transform.position;
+        //bread.GetComponent<CollectableObject>().enabled = false;
+        ActivateAnotherObject.Disable(bread);
         door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
+        ActivateAnotherObject.Activate(door);
         Destroy(this);
 
     }

@@ -33,7 +33,6 @@ abstract public class GameController : MonoBehaviour {
         assignSubtitles();
         sc = GetComponent<SubtitleCaller>();
 
-
         ////TODO test it
         //if (activateCondition.Length != 0)
         //{
@@ -80,11 +79,12 @@ abstract public class GameController : MonoBehaviour {
 	
     public virtual void Awake()
     {
-
+        
         if (isDisabledAtStart)
         {
             deactivateController();
         }
+
     }
 
     //These two function controles activate status of game controllers.
@@ -92,12 +92,25 @@ abstract public class GameController : MonoBehaviour {
     //They should decide how to be activated and deactivated themselfs.
 
     public virtual void activateController() {
+
+        if (isUsed()) return;
         //Debug.Log("Activated  "+ transform.name);
     }
     public virtual void deactivateController() {
         //Debug.Log("Deactivated  " + transform.name);
     }
 
+    //Calling this functions saves that game controller is used and wont be used again.
+    protected void registerAsUsed()
+    {
+        
+        GlobalController.Instance.registerGameController(gameObject.name);
+    }
 
+    protected bool isUsed()
+    {
+        return (GlobalController.Instance.isGameControllerIsUsed(gameObject.name));
+
+    }
  
 }

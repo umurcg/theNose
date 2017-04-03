@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 using System;
+using UnityEngine.UI;
 
 //This script is special for horse carier.
 //It triggers camera to fly to map view
@@ -11,17 +12,17 @@ using System;
 //If you not specify passenger it will automatically get player as passenger
 
 public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos {
-    
-
-
+        
     public GameObject passenger;
     NavMeshAgent nma;
+
+    SubtitleCaller sc;
     
     //For mounting animation an walking
     public enum animType { Bool, Trigger };
     public animType AnimType = animType.Bool;
     public string animationName = "Sit";
-    GameObject wayPoints;
+    public GameObject wayPoints;
     myTween mt;
 
     //Check this if passenger is not player
@@ -33,6 +34,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     Rigidbody carierFrontcc;
     Rigidbody cc;
 
+    CharacterControllerKeyboard cck;
+
     //Check is at dest
     Vector3 destination;
     bool checkDest = false;
@@ -42,6 +45,12 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     public bool mountDebug;
     public bool unmountDebug;
 
+    GameObject mainCanvas;
+    public GameObject carierChoices;
+    public GameObject unmountButton;
+
+    GameObject spawnedCarierChoice;
+    GameObject spawnedUnmountButton;
 
     IEnumerator<float> setDestHandler;
     
@@ -49,11 +58,13 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     // Use this for initialization
     void Awake() {  
         nma = GetComponent<NavMeshAgent>();
-        wayPoints = transform.parent.GetChild(1).GetChild(0).GetChild(2).gameObject;
         mt = wayPoints.GetComponent<myTween>();
         cc = GetComponent<Rigidbody>();
         carierBackcc = carierBack.GetComponent<Rigidbody>();
         carierFrontcc = carierFront.GetComponent<Rigidbody>();
+        sc = GetComponent<SubtitleCaller>();
+        cck = GetComponent<CharacterControllerKeyboard>();
+        mainCanvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 	
 	// Update is called once per frame
@@ -83,6 +94,15 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 	
 	}
 
+
+    void unmountButtonFunc()
+    {
+        cck.enabled = false;
+        Destroy(spawnedUnmountButton);
+        unmount();
+        freeze();
+    }
+
     //Mount and unmount is working
     public IEnumerator<float> unmount()
     {
@@ -93,18 +113,6 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     IEnumerator<float> _unMount()
     {
         freeze();
-
-        //bool isPassengerPlayer = false;
-
-        //if (passenger == null)
-        //{
-
-        //    //passenger = CharGameController.getActiveCharacter();
-        //    isPassengerPlayer = true;
-        //    //print("Passenfer is null");
-        //    //yield break;
-        //}
-
 
         Animator anim = passenger.GetComponent<Animator>();
         if (anim)
@@ -117,6 +125,9 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
                 anim.SetTrigger(animationName);
             }
 
+        //Enable basic animation ctonroller if exists
+        BasicCharAnimations bca = passenger.GetComponent<BasicCharAnimations>();
+        if (bca) bca.enabled = true;
 
         mt.reverse = true;
         IEnumerator<float> handle = Timing.RunCoroutine(mt._tweenMEC(passenger, 2f));
@@ -133,7 +144,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
         if (isPassengerPlayer)
         {
-            passenger.transform.parent = Camera.main.transform.parent;
+            passenger.transform.parent = CharGameController.getOwner().transform ;
+            passenger = null;
         }
         else
         {
@@ -154,31 +166,26 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     IEnumerator<float> _mount()
     {
-        //bool isPassengerPlayer = false;
-        // if (passenger == null || !passenger.activeSelf)
-        //{
-        //    passenger = CharGameController.getActiveCharacter();
-        //    isPassengerPlayer = true;
-        //}
-
         if(isPassengerPlayer) passenger= CharGameController.getActiveCharacter(); 
 
         PlayerComponentController pcc = passenger.GetComponent<PlayerComponentController>();
         NavMeshAgent nmaPas = passenger.GetComponent<NavMeshAgent>();
+
         if (nmaPas)
         {
-            if (nmaPas.isOnNavMesh) ;
+            if (nmaPas.isOnNavMesh) 
                 nmaPas.Stop();
              nmaPas.enabled = false;
         }
+
         if (pcc)
              pcc.StopToWalk();
 
         mt.reverse = false;
+
         IEnumerator<float> handle = Timing.RunCoroutine(mt._tweenMEC(passenger, 2f));
         yield return Timing.WaitUntilDone(handle);
-        
-     
+             
         Animator anim = passenger.GetComponent<Animator>();
         if(anim)
         if (AnimType == animType.Bool)
@@ -190,8 +197,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         }
 
         yield return Timing.WaitForSeconds(2);
-
-
+        
 
         passenger.transform.parent = carierBack.transform;
         if (!isPassengerPlayer)
@@ -199,25 +205,51 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
             yield break;
         }
 
-
-        //If passenger is player open map view
-        //passenger.transform.parent.parent = transform;
-        BirdsEyeView bev = Camera.main.GetComponent<BirdsEyeView>();
-        bev.messageReciever = gameObject;
-        bev.goToBirdEye();
-
+        //If passenger is player then ask him wether or not he wants to control.
+        sc.callSubtitleWithIndex(0);
 
         passenger.GetComponent<BasicCharAnimations>().enabled = false;
 
+        Text subtitle=SubtitleFade.subtitles["CharacterSubtitle"];
+        while (subtitle.text != "") yield return 0;
 
-        //FlyCameraBetween fcb = Camera.main.gameObject.GetComponent<FlyCameraBetween>();
-        //if (fcb)
-        //{
-        //    fcb.fly();
-        //}
+        spawnedCarierChoice=Instantiate(carierChoices, mainCanvas.transform) as GameObject;
+        RectTransform rt = spawnedCarierChoice.GetComponent<RectTransform>();
+        rt.position = new Vector2(Screen.width / 2 + rt.rect.width / 2, Screen.height * 1 / 3);
 
+        Button[] buttons = spawnedCarierChoice.GetComponentsInChildren<Button>();
+        Button button1 = buttons[0];
+        Button button2 = buttons[1];
+
+        button1.onClick.AddListener(letUserDrive);
+        button2.onClick.AddListener(autoControl);
 
     }
+
+    void letUserDrive()
+    {
+        cck.enabled = true;
+        Destroy(spawnedCarierChoice);
+
+        spawnedUnmountButton = Instantiate(unmountButton, mainCanvas.transform) as GameObject;
+        RectTransform rt = spawnedUnmountButton.GetComponent<RectTransform>();
+        rt.position = new Vector2(Screen.width *4/5 + rt.rect.width / 2, Screen.height * 4/5);
+
+        Button button1 = spawnedUnmountButton.GetComponent<Button>();
+        button1.onClick.AddListener(unmountButtonFunc);
+
+        releaseForUserController();
+
+    }
+
+    void autoControl()
+    {
+        BirdsEyeView bev = Camera.main.GetComponent<BirdsEyeView>();
+        bev.messageReciever = gameObject;
+        bev.goToBirdEye();
+        Destroy(spawnedCarierChoice);
+    }
+
 
     public void Action()
     {
@@ -239,19 +271,20 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     {
 
         GameObject mainCam = CharGameController.getCamera();
-        CameraFollower cf = mainCam.GetComponent<CameraFollower>();
+        //CameraFollower cf = mainCam.GetComponent<CameraFollower>();
 
         GameObject activePlayer = CharGameController.getActiveCharacter();
 
         GameObject orgTarget=null;
-        if (passenger == activePlayer) {
-            //Set aim of camera follower to owner
-            orgTarget = cf.target;
-            cf.changeTarget(gameObject);
-        }
+        
+        //if (passenger == activePlayer) {
+        //    //Set aim of camera follower to owner
+        //    orgTarget = cf.target;
+        //    cf.changeTarget(gameObject);
+        //}
 
 
-        release();
+        releaseForNavMeshController();
         NavMeshHit myNavHit;
         if (NavMesh.SamplePosition(pos, out myNavHit, 100, nma.areaMask))
         {
@@ -269,11 +302,11 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         freeze();
 
 
-        if (passenger == activePlayer)
-        {
-            cf.changeTarget(orgTarget);
+        //if (passenger == activePlayer)
+        //{
+        //    cf.changeTarget(orgTarget);
 
-        }
+        //}
 
         unmount();
         yield break;
@@ -281,28 +314,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     }
 
-    ////For points on mesh.
-    ////TODO calculate points with mouse click so this will be removeed
-    //public void goToAim(int index)
-    //{
-    //    release();
-    //    //print("Button pressed");
-    //    if (index < aims.Length)
-    //    {
-    //        NavMeshHit myNavHit;
-    //        if (NavMesh.SamplePosition(aims[index].transform.position, out myNavHit, 100, nma.areaMask))
-    //        {
-    //            nma.Resume();
-    //            nma.SetDestination(myNavHit.position);
-    //            destination = myNavHit.position;
-    //            checkDest = true;
-    //        }
-
-    //        //debugButton = false;
-    //    }
-    //}
-
-
+    
     public void freeze()
     {
         //Debug.Log("freeze");
@@ -311,7 +323,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         carierFrontcc.constraints = RigidbodyConstraints.FreezeAll;
         nma.enabled = false;
     }
-    public void release()
+    public void releaseForNavMeshController()
     {
         //Debug.Log("release");
         cc.constraints = RigidbodyConstraints.None;
@@ -320,8 +332,15 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         nma.enabled = enabled;
     }
 
+    public void releaseForUserController()
+    {
+        carierBackcc.constraints = RigidbodyConstraints.None;
+        carierFrontcc.constraints = RigidbodyConstraints.None;
+    }
+
     public Vector3 giveMePosition()
     {
+        //Debug.Log(wayPoints.transform.childCount);
         return wayPoints.transform.GetChild(0).transform.position;
     }
 }

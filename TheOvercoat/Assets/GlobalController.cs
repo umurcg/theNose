@@ -19,6 +19,13 @@ public class GlobalController : MonoBehaviour {
     //Language settings
     public enum Language { ENG=0, TR=1, RUS=2};
     public Language languageSetting = Language.ENG;
+    public float audioLevel=1f;
+    public float musicLevel=1f;
+
+    //This list  will hold game controller  names that are used and won't be used again. For example some city games that only shoul
+    //be played once.
+    //TODO find more stable way to hold gameControllers
+    List<string> usedGameControllers;
     
 
     //  This list holds scenes that are explored. One scene can register more than one.
@@ -90,7 +97,8 @@ public class GlobalController : MonoBehaviour {
                 debugSceneList = new Scenes[0];
             }
         }
- 
+
+        usedGameControllers = new List<string>();
         
     }
 
@@ -172,9 +180,7 @@ public class GlobalController : MonoBehaviour {
 	
 
     public bool SaveData()
-    {
-
-      
+    {      
 
         if (!Directory.Exists(Application.persistentDataPath + "/Saves"))
         {
@@ -185,8 +191,7 @@ public class GlobalController : MonoBehaviour {
 
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream saveFile = File.Create(Application.persistentDataPath+ "/Saves/save.vkcrs");
-
-        
+                
         formatter.Serialize(saveFile, sceneList);
         
         saveFile.Close();
@@ -329,4 +334,40 @@ public class GlobalController : MonoBehaviour {
         //Instance.languageSetting = lan;
     }
 
+    public void setAudioLevel(float level)
+    {
+        audioLevel = Mathf.Clamp(level, 0, 1);
+    }
+
+    public void setMusicLevel(float level)
+    {
+        musicLevel = Mathf.Clamp(level, 0, 1);
+    }
+
+    public float getAudioLevel()
+    {
+        return audioLevel;
+    }
+
+    public float getMusicLevel()
+    {
+        return musicLevel;
+    }
+
+    public void registerGameController(string gc)
+    {
+        usedGameControllers.Add(gc);
+
+    }
+
+    public bool isGameControllerIsUsed(string gc)
+    {
+        return usedGameControllers.Contains(gc);
+    }
+
+    private void Update()
+    {
+        //if (usedGameControllers.Count > 0)
+        //    Debug.Log(usedGameControllers[0].gameObject.name);
+    }
 }

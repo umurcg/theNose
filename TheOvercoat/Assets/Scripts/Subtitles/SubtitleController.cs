@@ -264,7 +264,7 @@ public class SubtitleController : MonoBehaviour {
         // I am sure there will be turkish subtitle.
         if (startIndex > finishIndex || startIndex==0)
         {
-            Debug.Log("Couldn't find subtite for " + languageCode + " in "+ fileName+" so importing turkish");
+            //Debug.Log("Couldn't find subtite for " + languageCode + " in "+ fileName+" so importing turkish");
             startIndex = findLine("TR") + 1;
             finishIndex = findLine(startIndex, finishSignature) - 1;
 

@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEditor;
+using MovementEffects;
 
 public class MainMenu : MonoBehaviour {
     public GameObject DynamicButton;
@@ -14,6 +16,9 @@ public class MainMenu : MonoBehaviour {
     public GameObject newgameButton;
 
     public GameObject[] mainMenuButtons;
+    public TextAsset sceneDescriptions;
+
+    static string momentsImageDirectory="Assets/Textures/MomentsImages/";
 
     //CharacterController cc;
 
@@ -33,8 +38,16 @@ public class MainMenu : MonoBehaviour {
         //Debug.Log(Application.persistentDataPath);
         if (/*!GlobalController.Instance.LoadData()*/true) //For now it is always disabled.
         {
-            continueButton.GetComponent<Button>().interactable = false;
-            momentsButton.GetComponent<Button>().interactable = false;
+
+
+
+            //TODO Load data here
+            //If loaded scene list is empty then there shouldn't be any moment, so disable the continue and moments button
+            if (GlobalController.Instance.sceneList.Count == 0)
+            {
+                continueButton.GetComponent<Button>().interactable = false;
+                momentsButton.GetComponent<Button>().interactable = false;
+            }
         }
     }
 	
@@ -61,12 +74,14 @@ public class MainMenu : MonoBehaviour {
 
     }
 
-    public void load()
+    //This functions loads data from data file and creates buttons for each episode that user explored so far.
+    public void openMoments()
     {               
-
+        //Get the scene list
         List<int> scenes = GlobalController.Instance.sceneList;
         Debug.Log("Load");
 
+        //Hide main menu buttons
         hideUnhideMainButtons(true);
 
         //Destroy all dynamic buttons if they exist
@@ -75,7 +90,8 @@ public class MainMenu : MonoBehaviour {
             Destroy(momentsSubMenu.transform.GetChild(i).gameObject);
 
         }
-
+        
+        //Create dynamic buttons
 
         //Container of dynamic button
         float height = momentsSubMenu.GetComponent<RectTransform>().rect.height;
@@ -83,42 +99,47 @@ public class MainMenu : MonoBehaviour {
 
         for (int i = 0; i < scenes.Count; i++)
         {
-            string button="";
-          
-            for (int j = 0; j < i+1; j++)
+            string button = "";
+
+            for (int j = 0; j < i + 1; j++)
             {
 
                 button += j.ToString();
-                
+
             }
 
-            var newButton = (Transform)Instantiate(DynamicButton, momentsSubMenu.transform);
-            GameObject newButtonGO = newButton.gameObject;
-            newButtonGO.SetActive(false);
+            var newButton = Instantiate(DynamicButton/*, momentsSubMenu.transform*/) as GameObject;
+            newButton.transform.SetParent(momentsSubMenu.transform);
 
-            if (newButtonGO.GetComponent<RectTransform>().childCount == 0)
+            newButton.SetActive(false);
+
+            if (newButton.GetComponent<RectTransform>().childCount == 0)
             {
                 Debug.Log("Button doesn't have text");
                 return;
             }
 
-            //Set text
-            Text buttonText = newButton.transform.GetChild(0).GetComponent<Text>();
-            buttonText.text = button;
+            //Set image of button and text
+            fillDynamicButton(newButton,i);
+
+            ////Set text
+            //Text buttonText = newButton.transform.GetChild(0).GetComponent<Text>();
+            //buttonText.text = button;
 
             //Set position
-            RectTransform buttonTransform = newButtonGO.GetComponent<RectTransform>();
-            buttonTransform.localPosition = new Vector2(0,spaceBetweenButtons/2+spaceBetweenButtons*(i+1)-height/2);
+            //RectTransform buttonTransform = newButton.GetComponent<RectTransform>();
+            //buttonTransform.localPosition = new Vector2(0,spaceBetweenButtons/2+spaceBetweenButtons*(i+1)-height/2);
 
             //FadeIN
             HideUnhideButton hub = newButton.GetComponent<HideUnhideButton>();
             if(hub) hub.activate();
 
-            Debug.Log(button);
+            //Debug.Log(button);
         }
 
-        //Return Button
-        var returnButton = (Transform)Instantiate(DynamicButton, momentsSubMenu.transform);
+        //Create return Button
+        var returnButton = Instantiate(DynamicButton/*, momentsSubMenu.transform*/) as GameObject;
+        returnButton.transform.SetParent(momentsSubMenu.transform);
         GameObject returnButtonGO = returnButton.gameObject;
         returnButtonGO.SetActive(false);
         returnButton.transform.GetChild(0).GetComponent<Text>().text="Return";
@@ -126,8 +147,41 @@ public class MainMenu : MonoBehaviour {
         returnbuttonTransform.localPosition = new Vector2(0, spaceBetweenButtons / 2 - height/2);
         returnButton.GetComponent<HideUnhideButton>().activate();
 
-        //Adding event
+        //Adding event to return button
         returnButtonGO.GetComponent<Button>().onClick.AddListener(delegate () { returnEvent(); });
+    }
+
+    //This loads a moments
+    public void loadScene(GlobalController.Scenes scene, int episodeID)
+    {
+        int totalSceneListCount=GlobalController.Instance.sceneList.Count;
+        int sceneInt = (int)scene;
+
+        int numberOfSceneThatShouldBeRemoved = totalSceneListCount - episodeID;
+        //Should set int scene list while user chooses the moment that he wants.
+        Debug.Log("scene int "+episodeID+" numberOfSceneThatShouldBeRemoved "+ numberOfSceneThatShouldBeRemoved);
+        for (int i = 0; i < numberOfSceneThatShouldBeRemoved; i++)
+        {
+
+            GlobalController.Instance.sceneList.RemoveAt(GlobalController.Instance.sceneList.Count-1);
+        }
+
+
+        Timing.RunCoroutine(_loadScene(scene));
+    }
+
+    public IEnumerator<float> _loadScene(GlobalController.Scenes scene)
+    {
+        IEnumerator<float> handler= Timing.RunCoroutine(blackScreen.script.fadeOut());
+        yield return Timing.WaitUntilDone(handler);
+        Debug.Log("Loading " + scene.ToString() + " with id of " + (int)scene);
+
+        //Before loading active camera. pliiiiz
+
+        CharGameController.getCamera().SetActive(true);
+
+
+        SceneManager.LoadScene((int)scene);
     }
 
     public void returnEvent()
@@ -174,6 +228,26 @@ public class MainMenu : MonoBehaviour {
 
     }
 
+    //Fills dynamic button with image and changes its text to scene name
+    //Also assigns listener for button
+    void fillDynamicButton(GameObject button, int episodeID)
+    {
+        string[] descriptionLines = sceneDescriptions.text.Split('\n');
+
+        
+        Image buttonImage = button.GetComponent<Image>();
+        Text buttonText = button.GetComponentInChildren<Text>();
+        Sprite momentImage=(Sprite) AssetDatabase.LoadAssetAtPath(momentsImageDirectory + episodeID+".jpg", typeof(Sprite));
+        if (!momentImage) Debug.Log("Couldn't find momentImage");
+                
+        buttonImage.sprite = momentImage;
+        buttonText.text = descriptionLines[episodeID];
+
+        button.GetComponent<Button>().onClick.AddListener(delegate () { loadScene((GlobalController.Scenes)GlobalController.Instance.sceneList[episodeID],episodeID); });
+
+    }
+
+    
     
 
     //void OnDisable()

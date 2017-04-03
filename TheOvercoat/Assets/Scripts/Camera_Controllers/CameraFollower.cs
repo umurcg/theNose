@@ -15,11 +15,12 @@ public class CameraFollower : MonoBehaviour {
     public float lookSpeed=3f;
     public float transformSpeed=3f;
     public bool assignPlayerAutomatically=true;
+    public float damper = 0;
 
     Vector3 relativePosition;
 
 
-    Vector3 defaultRelative = new Vector3(-89.1f, 72.7f, 85.1f);
+    Vector3 defaultRelative = new Vector3(-90f, 75f, 90f);
     float xRotation;
 
 
@@ -35,44 +36,35 @@ public class CameraFollower : MonoBehaviour {
         {
             //myValue = anyFloat > 0 ? 1f : 2f;
             target= (gameObject== transform.parent.GetChild(0).gameObject) ? transform.parent.GetChild(1).gameObject: transform.parent.GetChild(0).gameObject;
+            
         }
 
 
         fixRelativeToDefault();
         //updateRelative();
         xRotation = transform.eulerAngles.x;
+
+        transform.position = target.transform.position+relativePosition;
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (target)
         {
-            transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
-            transform.position = relativePosition + target.transform.position;
+
+            //Set position according to relative position
+            Vector3 wantedPosition = relativePosition + target.transform.position;
+            transform.position = Vector3.Lerp(transform.position, wantedPosition, damper * Time.deltaTime);
+            
 
             //Preserve euler angles x
             transform.rotation = Quaternion.Euler(30, transform.eulerAngles.y, 0);
 
-            //Lerp
-            // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * lookSpeed);
-            //transform.position = Vector3.Lerp(transform.position, relativePosition+ target.transform.position, Time.deltaTime * transformSpeed);
         }
 
         //Debug.Log(relativePosition);
     }
 
-    //void OnDisable()
-    //{
-    //    relativePositionBeforeDisabling = relativePosition;
-    //}
-
-    //void OnEnable()
-    //{
-    //    //updateRelative();
-    //    //updateTarget();
-    //    relativePosition = relativePositionBeforeDisabling;
-    //    transform.position = target.transform.position + relativePosition;
-    //}
 
     public void updateRelative()
     {

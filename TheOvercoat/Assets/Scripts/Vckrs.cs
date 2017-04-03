@@ -408,7 +408,16 @@ public class Vckrs : MonoBehaviour
         yield break;
     }
 
-    public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) where T: MaskableGraphic
+    public static void setAlpha<T>(GameObject obj, float a) where T : MaskableGraphic
+    {
+          a = Mathf.Clamp(a, 0, 1);
+          T t = obj.GetComponent<T>();
+          Color textureColor = t.color;
+          textureColor.a=a;
+    }
+
+
+public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) where T: MaskableGraphic
     {
         T t = obj.GetComponent<T>();
 

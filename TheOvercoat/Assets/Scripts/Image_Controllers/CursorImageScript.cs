@@ -19,6 +19,7 @@ public class CursorImageScript : MonoBehaviour
     public Texture2D activeObject;
     public Texture2D grab;
     public Texture2D nextSubtitle;
+    
 
     public Texture2D externalTexture;
 
@@ -97,6 +98,8 @@ public class CursorImageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         //Debug.Log(player.name);
 
         //If external texture is not null then just put it no matter what
@@ -149,7 +152,7 @@ public class CursorImageScript : MonoBehaviour
             //Debug.Log(hit.transform.gameObject.name + " " + hit.transform.tag + " " + hit.transform.gameObject.layer);
 
             //Even player can't move if object have this tag, it will change cursor to activeObject
-            if(hit.transform.tag== "ActiveEvenCantWalk")
+            if (hit.transform.tag== "ActiveEvenCantWalk")
             {
 
                 Cursor.SetCursor(activeObject, Vector2.zero, CursorMode.Auto);
@@ -166,7 +169,7 @@ public class CursorImageScript : MonoBehaviour
 
                 Cursor.SetCursor(activeObject, Vector2.zero, CursorMode.Auto);
 
-            }
+            } 
             else if (hit.transform.tag == "Floor")
             {
 
@@ -206,7 +209,7 @@ public class CursorImageScript : MonoBehaviour
 
                 Cursor.SetCursor(grab, Vector2.zero, CursorMode.Auto);
             }
-
+       
             else
             {
                 if (!checkAvaiblity())

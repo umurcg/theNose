@@ -17,6 +17,7 @@ public class DynamicLanguageTexts : MonoBehaviour {
 
     private void OnEnable()
     {
+        updateText();
         if (currentVisibleTexts == null) currentVisibleTexts = new List<DynamicLanguageTexts>();
         currentVisibleTexts.Add(this);
     }
@@ -29,11 +30,15 @@ public class DynamicLanguageTexts : MonoBehaviour {
     void Awake()
     {
         textComp = GetComponent<Text>();
+
+        //If can't find text searchg it on children and assign first found component
+        if (!textComp) textComp = GetComponentInChildren<Text>();
+
     }
 
 	// Use this for initialization
 	void Start () {
-        updateText();
+
 	}
 	
 	// Update is called once per frame
@@ -54,8 +59,13 @@ public class DynamicLanguageTexts : MonoBehaviour {
 
     public static void updateAllCurrentVisibleTexts()
     {
+        if (currentVisibleTexts == null) return;
+
+        Debug.Log("Update all current visible texts and dlt length 's "+currentVisibleTexts.Count);
+
         foreach(DynamicLanguageTexts dlt in currentVisibleTexts)
         {
+            Debug.Log("Updating " + dlt.gameObject.name);
             dlt.updateText();
         }
     }
