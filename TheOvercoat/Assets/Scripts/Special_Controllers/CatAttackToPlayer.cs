@@ -96,6 +96,8 @@ public class CatAttackToPlayer : GameController, IClickAction {
     {
         if (used) yield break;
 
+        registerAsUsed();
+
         disableGame();
 
         print("startattack");
@@ -124,8 +126,9 @@ public class CatAttackToPlayer : GameController, IClickAction {
         
     }
 
-    public void Action()
+    public override void Action()
     {
+        base.Action();
         Timing.RunCoroutine(_startAttack());
     }
 

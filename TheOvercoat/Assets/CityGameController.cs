@@ -5,8 +5,7 @@ using MovementEffects;
 
 //City includes lots of scenes and games. So when this script starts it looks player's sceneList and decide how to initilize city.
 public class CityGameController : MonoBehaviour {
-
-    public GameObject berberShop, Crowd,  bar, jokeGroup, bridge, fruitStad, cat, nosePack, ivanCityController, maze;
+    public GameObject berberShop, Crowd,  bar, jokeGroup, bridge, fruitStad, cat,  ivanCityController, maze;
     public GameObject[] ivanScenePolice;
     public GameObject lookAtMeNowTrigger, NoseGame;
     public GameObject SingerCafe;
@@ -153,6 +152,9 @@ public class CityGameController : MonoBehaviour {
         //Unlock Ivan home door
         OpenDoorLoad.doors[1].playerCanOpen = true;
 
+        //Set active character to Ivan just in case
+        CharGameController.setCharacter("Ivan");
+
         ivanCityController.GetComponent<GameController>().activateController();
         Crowd.GetComponent<GameController>().activateController();
         //girty.GetComponent<GameController>().activateController();
@@ -162,7 +164,7 @@ public class CityGameController : MonoBehaviour {
         bridge.GetComponent<GameController>().activateController();
         cat.GetComponent<GameController>().activateController();
 
-        nosePack.SetActive(true);
+        CharGameController.getObjectOfHand("nosePackage", CharGameController.hand.LeftHand).SetActive(true);
 
         //Set ivan animator if you cheat
         GameObject player = CharGameController.getActiveCharacter();
@@ -181,6 +183,11 @@ public class CityGameController : MonoBehaviour {
 
     void comingFromKovalevHouse()
     {
+        CharGameController.setCharacter("Kovalev");
+        CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
+        cf.updateTarget();
+        cf.fixRelativeToDefault();
+
         //If scene list contains church then it means kovalev must go to doctor else it should meet with nose
         if (GlobalController.isScnListContains(GlobalController.Scenes.Church))
         {

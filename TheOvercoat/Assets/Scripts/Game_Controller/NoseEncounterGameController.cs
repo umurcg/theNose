@@ -75,15 +75,19 @@ public class NoseEncounterGameController : GameController {
 
     void initilasePosition()
     {
-        Vector3 pos = player.transform.position + player.transform.forward * 50;
-        NavMeshHit nmh;
-        if(NavMesh.SamplePosition(pos, out nmh, 400f, Horse.GetComponent<NavMeshAgent>().areaMask))
-        {
-            transform.position = nmh.position;
-        }else
-        {
-             Debug.Log("Failed to initilize");
-        }
+        //Vector3 pos = player.transform.position + player.transform.forward * 50;
+        //NavMeshHit nmh;
+        //if(NavMesh.SamplePosition(pos, out nmh, 400f, Horse.GetComponent<NavMeshAgent>().areaMask))
+        //{
+        //    transform.position = nmh.position;
+        //}else
+        //{
+        //     Debug.Log("Failed to initilize");
+        //}
+
+
+        Vckrs.setPositionToOutsideOfCameraAndOnNavmesh(gameObject, player.transform.position, 100, CharGameController.getCamera().GetComponent<Camera>());
+
 
     }
 

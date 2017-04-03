@@ -49,25 +49,28 @@ public class CameraFollower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (target)
-        {
 
-            //Set position according to relative position
-            Vector3 wantedPosition = relativePosition + target.transform.position;
-            transform.position = Vector3.Lerp(transform.position, wantedPosition, damper * Time.deltaTime);
-            
-
-            //Preserve euler angles x
-            transform.rotation = Quaternion.Euler(30, transform.eulerAngles.y, 0);
-
-        }
+        if (target) follow();
 
         //Debug.Log(relativePosition);
     }
 
 
+    public void follow()
+    {
+        //Set position according to relative position
+        Vector3 wantedPosition = relativePosition + target.transform.position;
+        transform.position = Vector3.Lerp(transform.position, wantedPosition, damper * Time.deltaTime);
+
+
+        ////Preserve euler angles x
+        //transform.rotation = Quaternion.Euler(30, transform.eulerAngles.y, 0);
+    }
+
     public void updateRelative()
     {
+        //Vector3 playerMove = target.transform.position + relativePosition - transform.position;
+
         //Debug.Log("UPDATING RELATIVE");
         relativePosition = transform.position - target.transform.position;
     }

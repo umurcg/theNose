@@ -77,8 +77,10 @@ public class PutNoseToFruitStand : GameController, IClickAction, IClickActionDif
 
     }
 
-    public void Action()
+    public override void Action()
     {
+        base.Action();
+        Debug.Log("Child controller");
         Timing.RunCoroutine(_putNose());
     }
 
@@ -102,7 +104,8 @@ public class PutNoseToFruitStand : GameController, IClickAction, IClickActionDif
     public override void deactivateController()
     {
         base.deactivateController();
-        transform.tag = "Untagged";   
+        transform.tag = "Untagged"; 
+          
 
     }
 

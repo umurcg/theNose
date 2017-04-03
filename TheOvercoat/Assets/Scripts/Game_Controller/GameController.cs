@@ -4,9 +4,14 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using MovementEffects;
 
+
+
+// Placeholder for UniqueIdDrawer script
+public class UniqueIdentifierAttribute : PropertyAttribute { }
+
 //This script is parent script of game controllers. 
 //It initilizes main variables generally that is used by every game controller.
-abstract public class GameController : MonoBehaviour {
+abstract public class GameController : MonoBehaviour , IClickAction{
 
 
     public bool isDisabledAtStart;
@@ -23,10 +28,17 @@ abstract public class GameController : MonoBehaviour {
     protected Text narSubtitle;
     protected IEnumerator<float> handlerHolder;
 
+    [UniqueIdentifier]
+    public string uniqueId;
 
     // Initilize variables of game controller.
     public virtual  void Start () {
 
+        if(isUsed())
+        {
+            deactivateController();
+            return;
+        }
 
         updateCharacterVariables();
 
@@ -87,13 +99,14 @@ abstract public class GameController : MonoBehaviour {
 
     }
 
+    
+
     //These two function controles activate status of game controllers.
     //While every game property have different apparence (for example some of them just scripts, while some of them both gameobject and script)
     //They should decide how to be activated and deactivated themselfs.
 
     public virtual void activateController() {
-
-        if (isUsed()) return;
+        
         //Debug.Log("Activated  "+ transform.name);
     }
     public virtual void deactivateController() {
@@ -104,13 +117,19 @@ abstract public class GameController : MonoBehaviour {
     protected void registerAsUsed()
     {
         
-        GlobalController.Instance.registerGameController(gameObject.name);
+        GlobalController.Instance.registerGameController(gameObject.name+uniqueId);
     }
 
     protected bool isUsed()
     {
-        return (GlobalController.Instance.isGameControllerIsUsed(gameObject.name));
-
+        return (GlobalController.Instance.isGameControllerIsUsed(gameObject.name+uniqueId));
+           
     }
- 
+
+    //If you wont override this in gamecontroller and just implement interaface in there, this function won't be called. Which gives you ability to ignore it.
+    public virtual void Action()
+    {
+        Debug.Log("parent controrller");
+        registerAsUsed();
+    }
 }

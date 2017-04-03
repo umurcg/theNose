@@ -13,6 +13,7 @@ public class OpenDoorLoad : LoadScene {
     public string lockMessageToPlayer = "The door is locked.";
     public float messageDuration = 3f;
     public int doorId;
+    public GameObject spawnObject;
 
     //ForMapUI
     public string doorName;
@@ -52,8 +53,10 @@ public class OpenDoorLoad : LoadScene {
         }
         doors[doorId] = this;
 
-        if (doorName == null) doorName = Scene.ToString(); 
-    
+        if (doorName == null) doorName = Scene.ToString();
+
+        if (spawnObject == null && transform.childCount>0) spawnObject = transform.GetChild(0).gameObject;
+
     }
 
     // Update is called once per frame
@@ -99,7 +102,7 @@ public class OpenDoorLoad : LoadScene {
 
 
     public override IEnumerator<float> _Load()
-    {  
+    {
 
         CharGameController.setLastDoorId(doorId);
         Timing.RunCoroutine(base._Load());
@@ -162,9 +165,11 @@ public class OpenDoorLoad : LoadScene {
 
     public static int getIndexWithScene(GlobalController.Scenes scene)
     {
+        //Debug.Log("You are looking for door to " + scene.ToString());
         foreach (KeyValuePair<int, OpenDoorLoad> door in doors)
         {
-            if (door.Value.Scene == scene) return door.Key;
+            //Debug.Log(door.Value.Scene);
+            if ((int)door.Value.Scene == (int)scene) return door.Key;
         }
 
         //If fails to find scene
@@ -199,6 +204,15 @@ public class OpenDoorLoad : LoadScene {
         }
 
         return activeDoors;
+    }
+
+    public bool getSpawnPositionAndRotation(out Vector3 pos , out Quaternion rot)
+    {
+        
+        pos = spawnObject.transform.position;
+        rot = spawnObject.transform.rotation;
+
+        return !(spawnObject==null);
     }
 
     //public static OpenDoorLoad getDoorOfScene(GlobalController.Scenes scene)

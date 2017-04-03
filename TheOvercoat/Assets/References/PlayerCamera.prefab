@@ -1753,7 +1753,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.8, y: -0.89, z: 48.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3867,6 +3867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  rotationPerRound: 8
   rotating: 0
 --- !u!114 &114000011367231086
 MonoBehaviour:
@@ -3965,6 +3966,7 @@ MonoBehaviour:
   lookSpeed: 3
   transformSpeed: 3
   assignPlayerAutomatically: 1
+  damper: 5
 --- !u!114 &114000012589669922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3976,10 +3978,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f195f4c89763a449ba035e4c632c056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  languageSetting: 1
+  audioLevel: 0
+  musicLevel: 1
   sceneList: 
-  debugSceneList: 0100000002000000
+  debugSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
   fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
-  setDebugListToLevelIndex: 14
+  setDebugListToLevelIndex: 18
 --- !u!114 &114000012654939820
 MonoBehaviour:
   m_ObjectHideFlags: 1

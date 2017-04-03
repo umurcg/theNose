@@ -79,9 +79,7 @@ public class EnterSceneGameController : GameController{
     IEnumerator<float> _intro()
     {
         yield return 0;
-
-
-
+        
 
         //Force to default cursor while this scene is not interactive
         CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = true;
@@ -99,9 +97,10 @@ public class EnterSceneGameController : GameController{
 
         //yield return Timing.WaitUntilDone(fadeHandler);
 
-        bigBook.SetActive(true);
+        //bigBook.SetActive(true);
         //Animator bookAnim = bigBook.GetComponent<Animator>();
         //bookAnim.SetBool("")
+        bigBook.GetComponent<BookAC>().openBook();
 
         while (cam.orthographicSize!=10 || narSubtitle.text!="")
         {

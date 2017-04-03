@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 //This script is attached to player object
 //It is active for all game while every scene player object is alive
@@ -15,16 +16,16 @@ public class CharGameController : MonoBehaviour {
     public static string nose = "Armature/Torso/Chest/Neck/Head/NosePosition";
     public enum hand { LeftHand,RightHand};
 
-    //For matching doors
+    ////For matching doors
     static int lastDoorId;
-     
+
 
     //public GameObject go;
 
     //static string activeCharacter;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
 
   
         if (cgc == null)
@@ -40,51 +41,98 @@ public class CharGameController : MonoBehaviour {
 
     }
 
-
+    //Called when new scene is load
+    //It gets last visited scene and looks a door to that scene. And set position of player to it while player came from that door.
+    
     void setPositionToDoor(Scene scene, LoadSceneMode mode)
     {
-        //Debug.Log("Setting position");
-     
+        //Debug.Log("Setting position to door");
+
+        //Get active char
+        GameObject activeChar = getActiveCharacter();
+
+        //Disable nav mesh
+        NavMeshAgent nma = activeChar.GetComponent < NavMeshAgent > ();
+        if(nma) nma.enabled = false;
+
+        //If lastdoorid is not 0 then set player position to it
         if (lastDoorId != 0)
         {
+            setPlayerPositionToDoor(OpenDoorLoad.doors[lastDoorId]);
 
-            GameObject activeChar = getActiveCharacter();
-
-            
-            NavMeshAgent nma = activeChar.GetComponent < NavMeshAgent > ();
-            if(nma) nma.enabled = false;
-
-            //print("position");
-            if (OpenDoorLoad.doors.ContainsKey(lastDoorId))
-            {
-
-                GameObject door = OpenDoorLoad.doors[lastDoorId].gameObject;
-
-                if (door.transform.childCount>0) { 
-                    GameObject spawnPos = door.transform.GetChild(0).gameObject;
-                    activeChar.transform.position = spawnPos.transform.position;
-
-                    //Instantiate(go, spawnPos.transform.position,transform.rotation);
-                    //Debug.Log("Object started at spawn position " + spawnPos.transform.position);
-                }
-                else
-                {
-                    activeChar.transform.position = door.transform.position;
-
-                    //print("Object started at door position " + door.transform.position);
-                }
-                //print("position changes");
-            }
-
-            if(nma)nma.enabled = true;
-        }else
-        {
-            //Debug.Log("Last foor id is null");
+            if (nma) nma.enabled = true;
+            return;
         }
-               
+
+        //While it is called in awake new scene is not assigned to sceneList so last scene is still previous scene. EDİT NO IT WASNT FUCKER!!!
+        //GlobalController.Scenes lastVisitedScene = (GlobalController.Scenes) GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count-1];
+        GlobalController.Scenes lastVisitedScene = GlobalController.getPreviousScene();
+        //Debug.Log("Last visited scene is " + lastVisitedScene + " and scene count is " + GlobalController.Instance.sceneList.Count);
+
+        int doorForLastVisitedScene = OpenDoorLoad.getIndexWithScene(lastVisitedScene);
+
+        //Debug.Log("Last visited door id is " + doorForLastVisitedScene);
+
+        if (OpenDoorLoad.doors.ContainsKey(doorForLastVisitedScene))
+        {
+            OpenDoorLoad lastVisitedDoorScript = OpenDoorLoad.doors[doorForLastVisitedScene];
+            setPlayerPositionToDoor(lastVisitedDoorScript);
+
+
+            if (nma) nma.enabled = true;
+            return;
+
+            //print("position changes");
+        }
+        else
+        {
+            Debug.Log("Couldn't find door for previous scene");
+        }
+
+
+        //If both case didn't happened then check if scene has only one door. If it is then move player to that door
+        if (OpenDoorLoad.doors.Count == 1)
+        {
+            foreach(KeyValuePair<int,OpenDoorLoad> door in OpenDoorLoad.doors)
+            {
+                setPlayerPositionToDoor(door.Value);
+
+
+                if (nma) nma.enabled = true;
+                return;
+            }
+           
+
+        }
+
+
+
+        if (nma) nma.enabled = true; 
 
     }
 
+    void setPlayerPositionToDoor(OpenDoorLoad doorScript)
+    {
+
+        
+        GameObject lastVisitedDoor = doorScript.gameObject;
+
+        Vector3 spawnPos;
+        Quaternion spawnRot;
+
+        //Debug.Log("Assinging position to " + doorForLastVisitedScene);
+
+        if (doorScript.getSpawnPositionAndRotation(out spawnPos, out spawnRot))
+        {
+            movePlayer(spawnPos);
+            getActiveCharacter().transform.rotation = spawnRot;
+        }
+        else
+        {
+            movePlayer(lastVisitedDoor.transform.position + lastVisitedDoor.transform.forward * 2);
+        }
+
+    }
 
 
     static public void setLastDoorId(int index)

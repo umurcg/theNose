@@ -66,6 +66,7 @@ public class CameraRotator : MonoBehaviour {
         speed *= 10;
 
         //cf.enabled = false;
+
         Vector3 initialVector = transform.forward;
 
         Vector3 cameraInitialPosition = transform.position;
@@ -82,18 +83,25 @@ public class CameraRotator : MonoBehaviour {
         {
            
             transform.RotateAround(player.transform.position, player.transform.up, Time.deltaTime * speed * Mathf.Sign(angle));
+            //cf.follow();
+
             //transform.position = new Vector3(transform.position.x, initialPosition.y+ Mathf.Sin(Mathf.PI*totalAngleDif/Mathf.Abs(angle)*y)  , transform.position.z);
             totalAngleDif += Time.deltaTime * speed ;
+
+            //cf.enabled = false;
+            //cf.follow();
             cf.updateRelative();
+            //cf.enabled = true;
+            
 
             //Preserve height while changing camera direction
             //player.transform.position = new Vector3(player.transform.position.x, initialHeight, player.transform.position.z);
 
             yield return 0;
-
-            
+                        
         }
 
+        //cf.enabled = true;
 
         //transform.position = initialPosition;
         //transform.rotation = initialRotation;

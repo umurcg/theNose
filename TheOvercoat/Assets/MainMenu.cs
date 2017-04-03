@@ -159,10 +159,11 @@ public class MainMenu : MonoBehaviour {
 
         int numberOfSceneThatShouldBeRemoved = totalSceneListCount - episodeID;
         //Should set int scene list while user chooses the moment that he wants.
-        Debug.Log("scene int "+episodeID+" numberOfSceneThatShouldBeRemoved "+ numberOfSceneThatShouldBeRemoved);
+        //Debug.Log("scene int "+episodeID+" numberOfSceneThatShouldBeRemoved "+ numberOfSceneThatShouldBeRemoved);
+        //Debug.Log("Cleaning list");
         for (int i = 0; i < numberOfSceneThatShouldBeRemoved; i++)
         {
-
+            //Debug.Log("Removing " + GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1]);
             GlobalController.Instance.sceneList.RemoveAt(GlobalController.Instance.sceneList.Count-1);
         }
 
@@ -206,7 +207,8 @@ public class MainMenu : MonoBehaviour {
     {
         GlobalController.Instance.LoadData();
         List<int> sceneList = GlobalController.Instance.sceneList;
-        SceneManager.LoadScene(sceneList[sceneList.Count-1]);
+        Timing.RunCoroutine(_loadScene((GlobalController.Scenes)sceneList[sceneList.Count - 1]));
+        
     }
 
     void hideUnhideMainButtons(bool hide)

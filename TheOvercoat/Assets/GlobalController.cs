@@ -261,8 +261,6 @@ public class GlobalController : MonoBehaviour {
 
     public void debugWriteCustomSaveFile()
     {
-
-
         if (!Directory.Exists(Application.persistentDataPath + "/Saves"))
             Directory.CreateDirectory(Application.persistentDataPath + "/Saves");
 
