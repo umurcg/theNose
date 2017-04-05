@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 //This script deals with camera movement for map view of city
 //User can send location to reciever via this script
 //Also it gets doors names for creating ui elements on canvas like building names
+
 public class BirdsEyeView : MonoBehaviour {
 
     //For sending selected destination
@@ -30,6 +31,7 @@ public class BirdsEyeView : MonoBehaviour {
     float initialSize;
 
     Dictionary<GameObject, Vector3> doorNames;
+   
 
     bool isBirdEye = false;
 
@@ -84,6 +86,22 @@ public class BirdsEyeView : MonoBehaviour {
     }
 	void Update () {
 
+        if (!isBirdEye)
+        {
+            if (Input.GetButtonDown("Map"))
+            {
+                //Debug.Log("Map");
+                goToBirdEye(false);
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown("Map"))
+            {
+                //Debug.Log("Map");
+                getBackToOriginal(Vector3.zero);
+            }
+        }
        
         if (isBirdEye)
         {
@@ -109,10 +127,13 @@ public class BirdsEyeView : MonoBehaviour {
             }
 
 
-                //TODO add cancel button
+            //TODO add cancel button
 
-                //Update door names positions
-                updateDoorNamesPositions();
+            //Update door names positions
+            updateDoorNamesPositions();
+
+            //If streets are not active then don't need to raycast because map isn't open for getting destination from user.
+            if (!areStreetsActive()) return;
 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -138,14 +159,14 @@ public class BirdsEyeView : MonoBehaviour {
 	}
 
    
-    public void goToBirdEye()
+    public void goToBirdEye(bool showStreets)
     {
-        Timing.RunCoroutine(_goToBirdEye());
+        Timing.RunCoroutine(_goToBirdEye(showStreets));
     }
 
-    IEnumerator<float> _goToBirdEye()
+    IEnumerator<float> _goToBirdEye(bool showStreets)
     {
-        setStreetsActive(true);
+        if(showStreets) setStreetsActive(true);
         
         disableEverythingExceptThis(false);
 
@@ -231,6 +252,11 @@ public class BirdsEyeView : MonoBehaviour {
             area.SetActive(b);
     }
 
+    bool areStreetsActive()
+    {
+        return areaList[0].activeSelf;
+    }
+
     public void getBackToOriginal(Vector3 resultPos)
     {
         if (isBirdEye)
@@ -283,5 +309,10 @@ public class BirdsEyeView : MonoBehaviour {
                 script.enabled = b;
             }
         }
+    }
+
+    public bool isMapOpen()
+    {
+        return isBirdEye;
     }
 }

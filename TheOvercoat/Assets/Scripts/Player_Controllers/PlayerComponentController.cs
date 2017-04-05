@@ -7,6 +7,9 @@ public class PlayerComponentController : MonoBehaviour {
 	CharacterMouseLook cl;
 	CharacterController cc;
 	NavMeshAgent nma;
+
+    bool bcanPlayerWalk = true;
+
 	public void StopToWalk(){
 
         if (moveto!=null)
@@ -20,7 +23,9 @@ public class PlayerComponentController : MonoBehaviour {
 
         if(cc!=null)
         cc.enabled = false;
-		//nma.enabled = false;
+        //nma.enabled = false;
+
+        bcanPlayerWalk = false;
 
 	}
 
@@ -35,6 +40,9 @@ public class PlayerComponentController : MonoBehaviour {
             cl.enabled = true;
         if (cc != null)
             cc.enabled = true;
+
+        bcanPlayerWalk = true;
+        
 	}
 
 	// Use this for initialization
@@ -50,4 +58,27 @@ public class PlayerComponentController : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public bool canPlayerWalk()
+    {
+        return bcanPlayerWalk;
+
+    }
+
+    public void pauseNma()
+    {
+        nma.Stop();
+    }
+
+    public void disableNma()
+    {
+        pauseNma();
+        nma.enabled = false;
+    }
+
+    public void enableNma()
+    {
+        nma.enabled = true;
+        nma.Resume();
+    }
 }

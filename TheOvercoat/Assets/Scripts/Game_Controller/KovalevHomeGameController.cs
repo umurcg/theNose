@@ -50,6 +50,11 @@ public class KovalevHomeGameController : GameController {
                 Timing.RunCoroutine(noseIsFound());
                 //Timing.RunCoroutine(_finishedRecievedLetter());
             }
+            //PLayer comes here for just fun. Just open the door and leave everythink else normal
+            else
+            {
+                Door.GetComponent<OpenDoorLoad>().Unlock();
+            }
            
         }
     }

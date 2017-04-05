@@ -17,7 +17,6 @@ public class DynamicLanguageTexts : MonoBehaviour {
 
     private void OnEnable()
     {
-        updateText();
         if (currentVisibleTexts == null) currentVisibleTexts = new List<DynamicLanguageTexts>();
         currentVisibleTexts.Add(this);
     }
@@ -38,8 +37,8 @@ public class DynamicLanguageTexts : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-	}
+        updateText();
+    }
 	
 	// Update is called once per frame
 	void Update () {

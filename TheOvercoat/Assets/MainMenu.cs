@@ -15,8 +15,11 @@ public class MainMenu : MonoBehaviour {
     public GameObject exitButton;
     public GameObject newgameButton;
 
+    public GameObject menuCamera;
+
     public GameObject[] mainMenuButtons;
     public TextAsset sceneDescriptions;
+    public TextAsset sceneCharacters;
 
     static string momentsImageDirectory="Assets/Textures/MomentsImages/";
 
@@ -154,6 +157,7 @@ public class MainMenu : MonoBehaviour {
     //This loads a moments
     public void loadScene(GlobalController.Scenes scene, int episodeID)
     {
+        
         int totalSceneListCount=GlobalController.Instance.sceneList.Count;
         int sceneInt = (int)scene;
 
@@ -168,10 +172,11 @@ public class MainMenu : MonoBehaviour {
         }
 
 
-        Timing.RunCoroutine(_loadScene(scene));
+        Timing.RunCoroutine(_loadScene(scene, episodeID));
     }
 
-    public IEnumerator<float> _loadScene(GlobalController.Scenes scene)
+    
+    public IEnumerator<float> _loadScene(GlobalController.Scenes scene, int episodeID)
     {
         IEnumerator<float> handler= Timing.RunCoroutine(blackScreen.script.fadeOut());
         yield return Timing.WaitUntilDone(handler);
@@ -179,7 +184,17 @@ public class MainMenu : MonoBehaviour {
 
         //Before loading active camera. pliiiiz
 
+        menuCamera.SetActive(false);
         CharGameController.getCamera().SetActive(true);
+
+        string[] characters = sceneCharacters.text.Split('\n');
+        string characterToActivate = characters[episodeID];
+        if (characterToActivate != "Null")
+        {
+            Debug.Log("Character top activate " + characterToActivate);
+            CharGameController.setCharacter(characterToActivate.Trim());
+            CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
+        }
 
 
         SceneManager.LoadScene((int)scene);
@@ -207,7 +222,7 @@ public class MainMenu : MonoBehaviour {
     {
         GlobalController.Instance.LoadData();
         List<int> sceneList = GlobalController.Instance.sceneList;
-        Timing.RunCoroutine(_loadScene((GlobalController.Scenes)sceneList[sceneList.Count - 1]));
+        Timing.RunCoroutine(_loadScene((GlobalController.Scenes)sceneList[sceneList.Count - 1],sceneList.Count));
         
     }
 
@@ -236,7 +251,6 @@ public class MainMenu : MonoBehaviour {
     {
         string[] descriptionLines = sceneDescriptions.text.Split('\n');
 
-        
         Image buttonImage = button.GetComponent<Image>();
         Text buttonText = button.GetComponentInChildren<Text>();
         Sprite momentImage=(Sprite) AssetDatabase.LoadAssetAtPath(momentsImageDirectory + episodeID+".jpg", typeof(Sprite));
@@ -245,6 +259,7 @@ public class MainMenu : MonoBehaviour {
         buttonImage.sprite = momentImage;
         buttonText.text = descriptionLines[episodeID];
 
+  
         button.GetComponent<Button>().onClick.AddListener(delegate () { loadScene((GlobalController.Scenes)GlobalController.Instance.sceneList[episodeID],episodeID); });
 
     }

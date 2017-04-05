@@ -33,11 +33,14 @@ public class GameControllerPoliceStation : GameController {
 
     }
 
-    
 
+    public override void Start()
+    {
+        base.Start();
 
-    void Update () {
-
+        //If main character is kovalev force him to cover his face
+        if (CharGameController.getActiveCharacter().name=="Kovalev")
+            CharGameController.coverKovalevsFace();        
     }
 
     public void callGuardStopsKovalev() {

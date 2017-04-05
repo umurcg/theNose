@@ -246,7 +246,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     {
         BirdsEyeView bev = Camera.main.GetComponent<BirdsEyeView>();
         bev.messageReciever = gameObject;
-        bev.goToBirdEye();
+        bev.goToBirdEye(true);
         Destroy(spawnedCarierChoice);
     }
 

@@ -210,11 +210,16 @@ public class CityGameController : MonoBehaviour {
             OpenDoorLoad.doors[2].playerCanOpen = true;
             OpenDoorLoad.doors[3].playerCanOpen = true;
 
+            //Kovalev should cover his hands
+            CharGameController.coverKovalevsFace();
+
             //Set all cll characters for looking at kovalev
             GameObject characterObj = CharGameController.getActiveCharacter();
             GameObject spawnedTrigger = (GameObject)Instantiate(lookAtMeNowTrigger, characterObj.transform);
             spawnedTrigger.transform.localPosition = Vector3.zero;
 
+
+            if(NoseGame!=null)
             Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
         }
     }
@@ -225,6 +230,9 @@ public class CityGameController : MonoBehaviour {
         OpenDoorLoad.doors[2].playerCanOpen = true;
         OpenDoorLoad.doors[3].playerCanOpen = true;
         OpenDoorLoad.doors[4].playerCanOpen = true;
+
+        //Force kovalev to cover his face
+        CharGameController.coverKovalevsFace();
     }
 
     void comingFromNewspaper()
@@ -323,4 +331,6 @@ public class CityGameController : MonoBehaviour {
         yield break;
 
     }
+
+ 
 }

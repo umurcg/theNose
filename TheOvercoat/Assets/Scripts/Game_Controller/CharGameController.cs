@@ -193,6 +193,7 @@ public class CharGameController : MonoBehaviour {
 
           }
 
+        if (character == null) Debug.Log("Could't find character while trying to activate it " + characterName);
         return character;
                 
     }
@@ -273,7 +274,7 @@ public class CharGameController : MonoBehaviour {
 
     //This function returns object that is owned by the hand of the armature of a player character.
 
-    public static  GameObject getObjectOfHand(string objectName, hand r_l)
+    public static  GameObject getObjectOfHand(string objectName, hand r_l, bool passNotification=false)
     {
 
         GameObject hand=getHand(r_l);
@@ -281,7 +282,7 @@ public class CharGameController : MonoBehaviour {
         Transform obj= hand.transform.Find(objectName);
         if (obj == null)
         {
-            Debug.Log("Couldn't find object in " + r_l.ToString());
+            //if(!passNotification) Debug.Log("Couldn't find object in " + r_l.ToString());
             return null;
         }
 
@@ -338,6 +339,19 @@ public class CharGameController : MonoBehaviour {
         return handObject.gameObject;
     }
 
+    //Searches an object through children of hands. It returns first found object. If it doesn't find it then returns null
+    public static GameObject searchThroughHands(string objectName)
+    {
+        GameObject foundObject;
+        foundObject=getObjectOfHand(objectName, hand.LeftHand);
+        if (foundObject == null)
+        {
+            foundObject = getObjectOfHand(objectName, hand.RightHand);
+        }
+
+        return foundObject;
+    }
+
     //Moves active main character to position with considering camera and unactive characters
     public static void movePlayer(Vector3 pos)
     {
@@ -388,4 +402,29 @@ public class CharGameController : MonoBehaviour {
         return pos;
     }
 
- }
+    //This scirpts make kovalev covers his face with a napkin
+    //If main char is not kovalev does nothing
+    //You should call this method when kovalev missing his nose and searches it in the story
+    public static void coverKovalevsFace()
+    {
+        GameObject player = getActiveCharacter();
+        if (player.name != "Kovalev") return;
+
+        GameObject paper = searchThroughHands("paper");
+        if (paper == null)
+        {
+            Debug.Log("CouldnT find paper");
+        }
+        else
+        {
+            paper.SetActive(true);
+        }
+
+
+        Animator anim = player.GetComponent<Animator>();
+        anim.SetBool("RightHandAtFace", true);
+
+
+    }
+
+}

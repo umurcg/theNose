@@ -58,9 +58,16 @@ public class CameraRotator : MonoBehaviour {
 
     }
 
+    //TODO while rotating if character walks, he gets out from focus of camera. To prevent this I disabled player movement while rotating.
+    //Fix this bug and enable player walk while camera rotates
     IEnumerator<float> _rotateCam(float angle,float speed)
     {
         player = CharGameController.getActiveCharacter();
+
+        PlayerComponentController pcc = player.GetComponent<PlayerComponentController>();
+
+        //If player cant walk then exit from rotation
+        if (!pcc.canPlayerWalk()) yield break;
 
         //Factor speed
         speed *= 10;
@@ -79,6 +86,11 @@ public class CameraRotator : MonoBehaviour {
         //float y = 20;
 
         rotating = true;
+
+        //Disabe player movement
+        pcc.StopToWalk();
+        pcc.pauseNma();
+
         while (totalAngleDif<Mathf.Abs(angle))
         {
            
@@ -100,6 +112,9 @@ public class CameraRotator : MonoBehaviour {
             yield return 0;
                         
         }
+
+        //Enable player movement
+        pcc.ContinueToWalk();
 
         //cf.enabled = true;
 

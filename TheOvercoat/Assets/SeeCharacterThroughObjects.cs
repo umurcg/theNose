@@ -21,6 +21,8 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
 
     GameObject CameraObj;
     Camera Cam;
+
+    BirdsEyeView biev;
    
     // Use this for initialization
     void Start() {
@@ -38,11 +40,15 @@ public class SeeCharacterThroughObjects : MonoBehaviour {
         CameraObj = CharGameController.getCamera().gameObject;
         Cam = CameraObj.GetComponent<Camera>();
 
+        biev = CameraObj.GetComponent<BirdsEyeView>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //If map is open then return
+        if (biev.isMapOpen()) return;
 
         //Debug.Log(CameraObj.name);
 

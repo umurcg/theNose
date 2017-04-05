@@ -36,7 +36,7 @@ abstract public class GameController : MonoBehaviour , IClickAction{
 
         if(isUsed())
         {
-            deactivateController();
+            gameIsUsed();
             return;
         }
 
@@ -112,6 +112,11 @@ abstract public class GameController : MonoBehaviour , IClickAction{
     public virtual void deactivateController() {
         //Debug.Log("Deactivated  " + transform.name);
     }
+
+    //This function is called if game is activated by player. So if game is only should played, then you should
+    //override this function according to your specfici game controller
+    public virtual void gameIsUsed() { }
+
 
     //Calling this functions saves that game controller is used and wont be used again.
     protected void registerAsUsed()

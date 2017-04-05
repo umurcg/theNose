@@ -125,7 +125,7 @@ public class WhoIsTalking : MonoBehaviour
         if (!characters.ContainsKey(name) && !characters.ContainsValue(obj))
         {
             characters.Add(Name, obj);
-            Debug.Log("Registering " + obj.name + " to subtittle list");
+            //Debug.Log("Registering " + obj.name + " to subtittle list");
         } else if(characters.ContainsKey(name) && !characters.ContainsValue(obj))
         {
             Debug.Log("Replecaed " + obj.name);

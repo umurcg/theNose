@@ -3,14 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 using UnityEngine.UI;
-//using CinemaDirector;
-
-//public GameObject HorseObject;
-//public GameObject Kovalev;
-//public GameObject Nose;
-//public GameObject CSub;
-//public GameObject NSub;
-//public GameObject Obstacles;
 
 //TODO kovaev position when canvas is activated
 
@@ -38,6 +30,8 @@ public class NoseEncounterGameController : GameController {
     //For tracing obstacle avoidence typ of player
     ObstacleAvoidanceType playerInitialAvoidenceType;
     ObstacleAvoidanceType nosesInitialAvoidenceType;
+
+    List<OpenDoorLoad> activeDoors;
 
     // Use this for initialization
     public override void Start () {
@@ -116,6 +110,9 @@ public class NoseEncounterGameController : GameController {
     IEnumerator<float> _start()
     {
         yield return 0;
+
+        //Lock all open doors
+        lockUnlockAllDoors(true);
 
         CameraFollower cf=CharGameController.getCamera().GetComponent<CameraFollower>();
 
@@ -358,6 +355,12 @@ public class NoseEncounterGameController : GameController {
         Horse.transform.parent.gameObject.SetActive(false);
         Nose.SetActive(false);
 
+        //unlock all open doors
+        lockUnlockAllDoors(false);
+        registerAsUsed();
+
+        yield break;
+
     }
 
     //Sets girl position to suitable place which is on navmesh and outside of camera but near of player
@@ -433,7 +436,42 @@ public class NoseEncounterGameController : GameController {
 
     }
 
+    void lockUnlockAllDoors(bool lockDoor)
+    {
+      
+
+        if (lockDoor)
+        {
+            activeDoors = OpenDoorLoad.getAllActiveDoors();
+        }
+        else if (activeDoors == null) return;
 
 
+        Debug.Log("Active door number is " + activeDoors.Count);
 
+        foreach(OpenDoorLoad door in activeDoors)
+        {
+            if (lockDoor)
+            {
+                door.Lock();
+                Debug.Log("All doors is locked");
+            }
+            else
+            {
+                Debug.Log("All doors is unlocekd");
+                door.Unlock();
+                activeDoors = null;
+            }
+        }
+
+        
+
+    }
+
+    public override void gameIsUsed()
+    {
+        base.gameIsUsed();
+        Destroy(gameObject);
+        
+    }
 }
