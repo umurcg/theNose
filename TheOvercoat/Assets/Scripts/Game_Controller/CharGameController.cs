@@ -120,7 +120,7 @@ public class CharGameController : MonoBehaviour {
         Vector3 spawnPos;
         Quaternion spawnRot;
 
-        //Debug.Log("Assinging position to " + doorForLastVisitedScene);
+        //Debug.Log("Assinging position to " + doorScript.Scene);
 
         if (doorScript.getSpawnPositionAndRotation(out spawnPos, out spawnRot))
         {

@@ -152,7 +152,7 @@ public class CityGameController : MonoBehaviour {
         //Unlock Ivan home door
         OpenDoorLoad.doors[1].playerCanOpen = true;
 
-        //Set active character to Ivan just in case
+        ////Set active character to Ivan just in case
         CharGameController.setCharacter("Ivan");
 
         ivanCityController.GetComponent<GameController>().activateController();

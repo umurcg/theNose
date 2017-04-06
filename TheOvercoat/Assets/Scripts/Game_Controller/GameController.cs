@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using MovementEffects;
+using UnityEngine.SceneManagement;
 
 
 
@@ -120,14 +121,13 @@ abstract public class GameController : MonoBehaviour , IClickAction{
 
     //Calling this functions saves that game controller is used and wont be used again.
     protected void registerAsUsed()
-    {
-        
-        GlobalController.Instance.registerGameController(gameObject.name+uniqueId);
+    {        
+        GlobalController.Instance.registerGameController(generateIDWithEpisodeID());
     }
 
     protected bool isUsed()
     {
-        return (GlobalController.Instance.isGameControllerIsUsed(gameObject.name+uniqueId));
+        return (GlobalController.Instance.isGameControllerIsUsed(generateID()));
            
     }
 
@@ -137,4 +137,23 @@ abstract public class GameController : MonoBehaviour , IClickAction{
         Debug.Log("parent controrller");
         registerAsUsed();
     }
+
+    public string generateID()
+    {
+        return SceneManager.GetActiveScene().name + gameObject.name + uniqueId ;
+    }
+
+    public string generateIDWithEpisodeID()
+    {
+        return generateID() + "_" + getEpisodeID();
+    }
+
+    //Episode ID is used for loading from moments. For example if user loads 5th episode, mainmenu script will erase gamecontrollers 
+    //that are in the later episodes.
+    //TODO think about this design
+    string getEpisodeID()
+    {
+        return (GlobalController.Instance.sceneList.Count).ToString();
+    }
+
 }

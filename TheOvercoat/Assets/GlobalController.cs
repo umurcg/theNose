@@ -12,20 +12,20 @@ using System.Linq;
 public class GlobalController : MonoBehaviour {
 
 
-    public enum Scenes {MainMenu=0 ,City=1,IvanHouse=2,KovalevHouse=3,PoliceStation=4,Newspaper=5,Church=6,Doctor=7, None=8 };
+    public enum Scenes {MainMenu=0 ,City=1,IvanHouse=2,KovalevHouse=3,PoliceStation=4,Newspaper=5,Church=6,Doctor=7,PrisonerGame=8, None=9 };
 
     public static GlobalController Instance;
     
     //Language settings
     public enum Language { ENG=0, TR=1, RUS=2};
     public Language languageSetting = Language.ENG;
-    public float audioLevel=1f;
-    public float musicLevel=1f;
+    public float audioLevel = 1f;
+    //public float musicLevel=1f;
 
     //This list  will hold game controller  names that are used and won't be used again. For example some city games that only shoul
     //be played once.
     //TODO find more stable way to hold gameControllers
-    List<string> usedGameControllers;
+    public List<string> usedGameControllers;
     
 
     //  This list holds scenes that are explored. One scene can register more than one.
@@ -34,18 +34,29 @@ public class GlobalController : MonoBehaviour {
     //  Also use this class for holding all savable data
     public List<int> sceneList;
 
+    //While player can also load previous episode this script will hold maximum scenes that user played. 
+    public List<int> maxSceneList;
+    //Same logic with maxScne List. While loading a moment, mainplayer trims usedGameControllers. So this list holds nontrimmed format.
+    public List<string> maxUsedGameController;
+
+
     //You can use this variable for starting game with specific sceneList in editor.
     public Scenes[] debugSceneList;
 
     //  This list holding scene squence (shortest) for all game. So from this array, all levels can be load with only necessary scene sequence
     //  Dont include main menu
-    public Scenes[] fullGameSceneList = {
-        Scenes.City,
+    //public TextAsset fullGameSceneListTA;
+
+    //[HideInInspector]
+    public Scenes[] fullGameSceneList= {
+    Scenes.City,
         Scenes.IvanHouse,
         Scenes.City,
         Scenes.KovalevHouse,
         Scenes.City,
         Scenes.PoliceStation,
+        Scenes.City,
+        Scenes.Newspaper,
         Scenes.City,
         Scenes.Newspaper,
         Scenes.City,
@@ -55,10 +66,10 @@ public class GlobalController : MonoBehaviour {
         Scenes.City,
         Scenes.Doctor,
         Scenes.City
-    };
- 
+};
 
-    public int setDebugListToLevelIndex;
+
+public int setDebugListToLevelIndex;
 
     public void setDebugListToIndex()
     {
@@ -74,6 +85,18 @@ public class GlobalController : MonoBehaviour {
     {
         //Kill all mec before starting new scene
         Timing.KillAllCoroutines();
+
+        ////Extract full game scene list from ta
+        //string[] fullGamesString = fullGameSceneListTA.text.Split('\n');
+        //fullGameSceneList = new Scenes[fullGamesString.Length];
+        //for(int i=0;  i<fullGamesString.Length; i++)
+        //{
+        //    fullGameSceneList[i]=(Scenes)System.Enum.Parse(typeof(Scenes), fullGamesString[i]);
+        //    Debug.Log(fullGameSceneList[i].ToString());
+        //}
+
+        
+
 
         if (Instance == null)
         {
@@ -93,12 +116,14 @@ public class GlobalController : MonoBehaviour {
                 {
 
                     sceneList.Add((int)sce);
+                    maxSceneList.Add((int)sce);
                 }
                 debugSceneList = new Scenes[0];
             }
         }
 
         usedGameControllers = new List<string>();
+        maxUsedGameController = usedGameControllers;
         
     }
 
@@ -143,7 +168,10 @@ public class GlobalController : MonoBehaviour {
             GlobalController.Instance.sceneList = new List<int>();
         }
 
-
+        if (GlobalController.Instance.maxSceneList == null)
+        {
+            GlobalController.Instance.maxSceneList = new List<int>();
+        }
 
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         if (sceneList.Count > 0)
@@ -158,6 +186,8 @@ public class GlobalController : MonoBehaviour {
             {
                 //Debug.Log(currentScene + "is added to scene list");
                 sceneList.Add(currentScene);
+
+                if (sceneList.Count > maxSceneList.Count) maxSceneList = sceneList;
 
             }else
             {
@@ -192,7 +222,10 @@ public class GlobalController : MonoBehaviour {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream saveFile = File.Create(Application.persistentDataPath+ "/Saves/save.vkcrs");
                 
-        formatter.Serialize(saveFile, sceneList);
+
+
+        formatter.Serialize(saveFile, maxSceneList);
+        formatter.Serialize(saveFile, maxUsedGameController);
         
         saveFile.Close();
         
@@ -216,7 +249,11 @@ public class GlobalController : MonoBehaviour {
 
         FileStream saveFile = File.Open(Application.persistentDataPath + "/Saves/save.vkcrs", FileMode.Open);
         
-        sceneList = (List<int>)formatter.Deserialize(saveFile);
+        maxSceneList = (List<int>)formatter.Deserialize(saveFile);
+        maxUsedGameController = (List<string>)formatter.Deserialize(saveFile);
+
+        sceneList = maxSceneList;
+        usedGameControllers = maxUsedGameController;
 
         saveFile.Close();
         
@@ -334,12 +371,14 @@ public class GlobalController : MonoBehaviour {
 
     public void setAudioLevel(float level)
     {
-        audioLevel = Mathf.Clamp(level, 0, 1);
+        Debug.Log("Setting audio leve");
+        audioLevel = level;
     }
 
     public void setMusicLevel(float level)
     {
-        musicLevel = Mathf.Clamp(level, 0, 1);
+        Debug.Log("Setting music");
+        GetComponent<AudioSource>().volume = Mathf.Clamp(level, 0, 1);
     }
 
     public float getAudioLevel()
@@ -349,23 +388,85 @@ public class GlobalController : MonoBehaviour {
 
     public float getMusicLevel()
     {
-        return musicLevel;
+        return GetComponent<AudioSource>().volume;
     }
 
     public void registerGameController(string gc)
     {
-        usedGameControllers.Add(gc);
+        if(!usedGameControllers.Contains(gc))       usedGameControllers.Add(gc);
+        if (!maxUsedGameController.Contains(gc)) maxUsedGameController.Add(gc);
 
     }
 
+    //With this function you can add game controllers more than one time.
+    public void registerGameControllerCanBeDuplicated(string gc)
+    {
+         usedGameControllers.Add(gc);
+
+        //Add to max used game controller if current game controller count in usedgamecontroller exceeds in current cunt in max used game controller.
+        //I now it is hard to think
+        if(countGameController(gc) > countGameControllerInMax(gc))
+        {
+            maxUsedGameController.Add(gc);
+        }
+    }
+
+    //Counts game controller with trimming ids in maxUsedGameController
+    public int countGameControllerInMax(string gc)
+    {
+        int count = 0;
+        foreach (string ugc in maxUsedGameController)
+        {
+            if (gc == trimEpisodeID(ugc)) count++;
+        }
+
+        return count;
+    }
+
+
+    //Counts game controller with trimming ids
+    public int  countGameController(string gc)
+    {
+        int count = 0;
+        foreach (string ugc in usedGameControllers)
+        {
+            if (gc == trimEpisodeID( ugc)) count++;
+        }
+
+        return count;
+   }
+
+    string trimEpisodeID(string gc)
+    {
+        int index = gc.IndexOf('_');
+        return gc.Substring(0, index);
+    }
+
+    //While checking wether or not game controller is used it trimmes id because ids are just for trimming game controllers while loading game
     public bool isGameControllerIsUsed(string gc)
     {
-        return usedGameControllers.Contains(gc);
+        foreach(string s in usedGameControllers)
+        {
+            //Trim episodeID of it while episode id is only used in trimmin while loading from moments
+
+            if (gc == trimEpisodeID(s)) return true;
+            
+
+        
+        }
+        return false;
     }
 
-    private void Update()
+    //This functions help you to check used game controllers without generated and episode id. It is not very stable while scene names and game objects name can be duplicated. But if you are sure game controller is not duplicated then you can use it
+    public bool isGameControllerIsUsedSceneNameAndGameObjectName(string gc)
     {
-        //if (usedGameControllers.Count > 0)
-        //    Debug.Log(usedGameControllers[0].gameObject.name);
+        int lengthOfGC = gc.Length;
+        foreach (string ugc in usedGameControllers)
+        {
+            if (gc == ugc.Substring(0, lengthOfGC)) return true;
+        }
+
+        return false;
     }
+
 }

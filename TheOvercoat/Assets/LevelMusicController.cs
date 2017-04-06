@@ -10,14 +10,12 @@ public class LevelMusicController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        GameObject camObj = CharGameController.getCamera();
-        Camera cam = camObj.GetComponent<Camera>();
 
         if (levelMusicClip == null)
         {
             if (preserveLastSceneMusic) return;
 
-            AudioSource currentSource=cam.GetComponent<AudioSource>();
+            AudioSource currentSource=CharGameController.getOwner().GetComponent<AudioSource>();
 
             if (currentSource != null)
             {
@@ -29,7 +27,7 @@ public class LevelMusicController : MonoBehaviour {
 
         //Check if audioSource exists
         //If exists add current source to camera else cre<ate a new source and add to camera
-        AudioSource source = cam.GetComponent<AudioSource>();
+        AudioSource source = CharGameController.getOwner().GetComponent<AudioSource>();
 
         if (source != null)
         {
@@ -38,15 +36,15 @@ public class LevelMusicController : MonoBehaviour {
             source.playOnAwake = true;
             source.Play();
         }
-        else
-        {
-            //Add audio source to camera
-            source = camObj.AddComponent<AudioSource>();
-            source.clip = levelMusicClip;
-            source.loop = true;
-            source.playOnAwake = true;
-            source.Play();
-        }
+        //else
+        //{
+        //    //Add audio source to camera
+        //    source = camObj.AddComponent<AudioSource>();
+        //    source.clip = levelMusicClip;
+        //    source.loop = true;
+        //    source.playOnAwake = true;
+        //    source.Play();
+        //}
 
 	}
 	

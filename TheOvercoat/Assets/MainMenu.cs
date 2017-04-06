@@ -39,10 +39,10 @@ public class MainMenu : MonoBehaviour {
         //cc.enabled = false;
 
         //Debug.Log(Application.persistentDataPath);
-        if (/*!GlobalController.Instance.LoadData()*/true) //For now it is always disabled.
+        if (/*!GlobalController.Instance.LoadData() */true) //For now it is always disabled.
         {
 
-
+            Debug.Log("Loaaaaaaaaaaaading");
 
             //TODO Load data here
             //If loaded scene list is empty then there shouldn't be any moment, so disable the continue and moments button
@@ -81,7 +81,7 @@ public class MainMenu : MonoBehaviour {
     public void openMoments()
     {               
         //Get the scene list
-        List<int> scenes = GlobalController.Instance.sceneList;
+        List<int> scenes = GlobalController.Instance.maxSceneList;
         Debug.Log("Load");
 
         //Hide main menu buttons
@@ -193,11 +193,56 @@ public class MainMenu : MonoBehaviour {
         {
             Debug.Log("Character top activate " + characterToActivate);
             CharGameController.setCharacter(characterToActivate.Trim());
+            
             CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
         }
 
+        //Trim game controllers that are after current episodeID
+        //TODO think about that design
+        trimGameControllers(episodeID);
+
 
         SceneManager.LoadScene((int)scene);
+    }
+
+    void trimGameControllers(int episodeID)
+    {
+
+        Debug.Log("Game controllers before trimm");
+        //For debug
+        foreach (string gc in GlobalController.Instance.usedGameControllers)
+        {
+            Debug.Log(gc);
+        }
+
+
+        string episodeIDString = episodeID.ToString();
+
+        List<string> gcToRemove = new List<string>();
+
+        foreach (string gc in GlobalController.Instance.usedGameControllers)
+        {
+            int gcEpisodeID = int.Parse(gc.Substring(gc.Length - episodeIDString.Length, episodeIDString.Length));
+
+            if (gcEpisodeID > episodeID)
+            {
+                Debug.Log("GC id is " + gcEpisodeID + " episod ıd is " + episodeID + " so removing it");
+                gcToRemove.Add(gc);
+            }
+        }
+
+        foreach (string gc in gcToRemove)
+        {
+            GlobalController.Instance.usedGameControllers.Remove(gc);
+        }
+
+        Debug.Log("Game controllers after trimm");
+        //For debug
+        foreach (string gc in GlobalController.Instance.usedGameControllers)
+        {
+            Debug.Log(gc);
+        }
+
     }
 
     public void returnEvent()

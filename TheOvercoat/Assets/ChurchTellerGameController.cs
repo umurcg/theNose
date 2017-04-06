@@ -103,10 +103,17 @@ public class ChurchTellerGameController : GameController {
             yield return 0;
         }
 
+        registerAsUsed();
 
         Destroy(gameObject);
 
         yield break;
+    }
+
+    public override void gameIsUsed()
+    {
+        base.gameIsUsed();
+        Destroy(gameObject);
     }
 
     public override void activateController()

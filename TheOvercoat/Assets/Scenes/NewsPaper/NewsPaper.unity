@@ -230,15 +230,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 320077686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b2f3f6a82a2c348be13312249f9275, type: 3}
+  m_Script: {fileID: 11500000, guid: c42681b2798a7f4418a506cdf5e2f223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CallType: 0
   owner: {fileID: 1683578477}
-  index: 0
-  destroyItself: 0
-  walkOffsetVector: {x: 0, y: 0, z: 0}
-  offsetForward: 2
-  offsetRigth: 0
+  passParameter: {fileID: 0}
+  methodName: callSubtitle
+  destroySelf: 0
 --- !u!1001 &361398410
 Prefab:
   m_ObjectHideFlags: 0
@@ -3068,6 +3067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "Kovalev: Merhaba, duyurularla siz mi ilgileniyorsunuz?\r"
   - "Edit\xF6r: Evet bir saniye.\r"
@@ -3138,6 +3138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDisabledAtStart: 0
+  uniqueId: 96ff160d-2c0c-4dc3-97cb-aad3d173ee94
 --- !u!4 &1683578481
 Transform:
   m_ObjectHideFlags: 0
@@ -3162,6 +3163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "Edit\xF6r: Oooo. Bulmu\u015Fsunuz. Tebrikler buyueun 100 rubleniz. Bence kazand\u0131\u011F\u0131n\u0131z
     en kolay para bu olabilir.\r"
@@ -3272,6 +3274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "Edit\xF6r: \xDCzg\xFCn\xFCm, dedi\u011Fim gibi size yard\u0131m edemem."
   AllSubtitles: "Edit\xF6r: \xDCzg\xFCn\xFCm, dedi\u011Fim gibi size yard\u0131m edemem."
@@ -3289,6 +3292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "Edit\xF6r: Hala k\xF6pe\u011Fi bulmam\u0131\u015Fs\u0131n\u0131z. K\xF6pe\u011Fi
     bulmadan duyurunuzu gazeteye koyamam."

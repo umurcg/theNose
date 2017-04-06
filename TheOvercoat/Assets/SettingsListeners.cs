@@ -25,7 +25,7 @@ public class SettingsListeners : MonoBehaviour {
         dropDown.value=(int)(GlobalController.Instance.getLangueSetting());
 
         audioSlider.onValueChanged.AddListener(delegate { GlobalController.Instance.setAudioLevel(audioSlider.value); });
-        musicSlider.onValueChanged.AddListener(delegate { GlobalController.Instance.setAudioLevel(musicSlider.value); });
+        musicSlider.onValueChanged.AddListener(delegate { GlobalController.Instance.setMusicLevel(musicSlider.value); });
         dropDown.onValueChanged.AddListener(delegate { GlobalController.Instance.setLanguageSetting(dropDown.value); });
     }
 	
