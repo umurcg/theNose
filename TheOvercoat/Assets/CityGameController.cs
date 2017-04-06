@@ -200,6 +200,8 @@ public class CityGameController : MonoBehaviour {
             //Make night
             CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight();
 
+            CharGameController.coverKovalevsFace();
+
             //Reduce to spawnedObjects to 20
             streetAreas.GetComponent<SpawnBotsOnNavMeshRandomly>().spawnNumber = 20;
 
@@ -289,6 +291,10 @@ public class CityGameController : MonoBehaviour {
             CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
             //cf.updateRelative();
             maze.GetComponent<GameController>().activateController();
+
+            //Set bird as landed
+            BirdLandingScript bls = player.GetComponent<BirdLandingScript>();
+            bls.setAsLandedBaked(true);
         }
 
     }

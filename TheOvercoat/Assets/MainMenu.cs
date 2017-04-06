@@ -193,8 +193,10 @@ public class MainMenu : MonoBehaviour {
         {
             Debug.Log("Character top activate " + characterToActivate);
             CharGameController.setCharacter(characterToActivate.Trim());
-            
+
+
             CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
+            CharGameController.getCamera().GetComponent<CameraFollower>().fixRelativeToDefault();
         }
 
         //Trim game controllers that are after current episodeID
@@ -216,13 +218,17 @@ public class MainMenu : MonoBehaviour {
         }
 
 
-        string episodeIDString = episodeID.ToString();
+        //string episodeIDString = episodeID.ToString();
 
         List<string> gcToRemove = new List<string>();
 
         foreach (string gc in GlobalController.Instance.usedGameControllers)
         {
-            int gcEpisodeID = int.Parse(gc.Substring(gc.Length - episodeIDString.Length, episodeIDString.Length));
+            int index = gc.IndexOf("_");
+            Debug.Log("index is " + index);
+
+            Debug.Log(gc.Substring(index+1, gc.Length - (index+1)));
+            int gcEpisodeID = int.Parse(gc.Substring(index + 1, gc.Length - (index + 1)));
 
             if (gcEpisodeID > episodeID)
             {

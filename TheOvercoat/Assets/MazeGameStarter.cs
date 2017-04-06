@@ -113,6 +113,7 @@ public class MazeGameStarter : GameController, IClickAction {
         player=CharGameController.setCharacter("Nose");
         player.transform.rotation = nosePefab.transform.rotation;
         CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
+        CharGameController.getCamera().GetComponent<CameraFollower>().fixRelativeToDefault();
 
         //Add bot bird instead of old bird player
         birdPrefab.transform.position = oldPos;

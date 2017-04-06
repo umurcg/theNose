@@ -62,6 +62,8 @@ public class NewsGameController : GameController {
             }
         }
 
+        CharGameController.coverKovalevsFace();
+
 	}
 	
 	// Update is called once per frame
@@ -77,7 +79,7 @@ public class NewsGameController : GameController {
             registerAsUsed();
         }else if (convType == Conv.FoundGirt)
         {
-            GlobalController.Instance.registerGameControllerCanBeDuplicated(generateID());
+            GlobalController.Instance.registerGameControllerCanBeDuplicated(generateIDWithEpisodeID());
         }
 
         sc.callSubtitle();

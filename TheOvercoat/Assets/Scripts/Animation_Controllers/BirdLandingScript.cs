@@ -162,6 +162,19 @@ public class BirdLandingScript : MonoBehaviour {
     {
 
         animContoller.SetBool(landingAnimationName, isLanded);
+        animContoller.SetBool(landingAnimationName + "Baked", false);
+        this.isLanded = isLanded;
+        bc.pauseMovement = isLanded;
+        bc.pauseLimits = isLanded;
+        mwa.enabled = !isLanded;
+    }
+
+
+    public void setAsLandedBaked(bool isLanded)
+    {
+
+        animContoller.SetBool(landingAnimationName, isLanded);
+        animContoller.SetBool(landingAnimationName+"Baked", true);
         this.isLanded = isLanded;
         bc.pauseMovement = isLanded;
         bc.pauseLimits = isLanded;

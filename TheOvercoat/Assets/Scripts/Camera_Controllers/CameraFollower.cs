@@ -17,7 +17,7 @@ public class CameraFollower : MonoBehaviour {
     public bool assignPlayerAutomatically=true;
     public float damper = 0;
 
-    Vector3 relativePosition;
+    public Vector3 relativePosition;
 
 
     Vector3 defaultRelative = new Vector3(-90f, 75f, 90f);

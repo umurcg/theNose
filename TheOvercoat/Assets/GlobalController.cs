@@ -37,7 +37,7 @@ public class GlobalController : MonoBehaviour {
     //While player can also load previous episode this script will hold maximum scenes that user played. 
     public List<int> maxSceneList;
     //Same logic with maxScne List. While loading a moment, mainplayer trims usedGameControllers. So this list holds nontrimmed format.
-    public List<string> maxUsedGameController;
+    //public List<string> maxUsedGameController;
 
 
     //You can use this variable for starting game with specific sceneList in editor.
@@ -123,7 +123,7 @@ public int setDebugListToLevelIndex;
         }
 
         usedGameControllers = new List<string>();
-        maxUsedGameController = usedGameControllers;
+        //maxUsedGameController = usedGameControllers;
         
     }
 
@@ -225,7 +225,7 @@ public int setDebugListToLevelIndex;
 
 
         formatter.Serialize(saveFile, maxSceneList);
-        formatter.Serialize(saveFile, maxUsedGameController);
+        formatter.Serialize(saveFile, usedGameControllers);
         
         saveFile.Close();
         
@@ -250,10 +250,10 @@ public int setDebugListToLevelIndex;
         FileStream saveFile = File.Open(Application.persistentDataPath + "/Saves/save.vkcrs", FileMode.Open);
         
         maxSceneList = (List<int>)formatter.Deserialize(saveFile);
-        maxUsedGameController = (List<string>)formatter.Deserialize(saveFile);
+        usedGameControllers = (List<string>)formatter.Deserialize(saveFile);
 
         sceneList = maxSceneList;
-        usedGameControllers = maxUsedGameController;
+        //usedGameControllers = maxUsedGameController;
 
         saveFile.Close();
         
@@ -393,8 +393,12 @@ public int setDebugListToLevelIndex;
 
     public void registerGameController(string gc)
     {
-        if(!usedGameControllers.Contains(gc))       usedGameControllers.Add(gc);
-        if (!maxUsedGameController.Contains(gc)) maxUsedGameController.Add(gc);
+        if (!usedGameControllers.Contains(gc))
+        {
+            usedGameControllers.Add(gc);
+            Debug.Log(gc);
+        }
+        //if (!maxUsedGameController.Contains(gc)) maxUsedGameController.Add(gc);
 
     }
 
@@ -405,23 +409,23 @@ public int setDebugListToLevelIndex;
 
         //Add to max used game controller if current game controller count in usedgamecontroller exceeds in current cunt in max used game controller.
         //I now it is hard to think
-        if(countGameController(gc) > countGameControllerInMax(gc))
-        {
-            maxUsedGameController.Add(gc);
-        }
+        //if(countGameController(gc) > countGameControllerInMax(gc))
+        //{
+        //    maxUsedGameController.Add(gc);
+        //}
     }
 
     //Counts game controller with trimming ids in maxUsedGameController
-    public int countGameControllerInMax(string gc)
-    {
-        int count = 0;
-        foreach (string ugc in maxUsedGameController)
-        {
-            if (gc == trimEpisodeID(ugc)) count++;
-        }
+    //public int countGameControllerInMax(string gc)
+    //{
+    //    int count = 0;
+    //    foreach (string ugc in maxUsedGameController)
+    //    {
+    //        if (gc == trimEpisodeID(ugc)) count++;
+    //    }
 
-        return count;
-    }
+    //    return count;
+    //}
 
 
     //Counts game controller with trimming ids
@@ -467,6 +471,12 @@ public int setDebugListToLevelIndex;
         }
 
         return false;
+    }
+
+    private void Update()
+    {
+        foreach (string s in usedGameControllers)
+            Debug.Log(s);
     }
 
 }

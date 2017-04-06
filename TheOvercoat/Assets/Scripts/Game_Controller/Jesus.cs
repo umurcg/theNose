@@ -21,6 +21,9 @@ public class Jesus : GameController, IClickAction {
     // Use this for initialization
     public override void Start () {
         base.Start();
+
+        CharGameController.coverKovalevsFace();
+
         priestNma = priest.GetComponent<NavMeshAgent>();
         priestAnim = priest.GetComponent<Animator>();
 
