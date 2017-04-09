@@ -295,60 +295,132 @@ public class Vckrs : MonoBehaviour
     public static IEnumerator<float> _cameraSize(Camera cam, float size, float speed)
     {
 
-        if (cam.orthographicSize > size)
+        bool isOrthographic = cam.orthographic;
+
+        if (isOrthographic)
         {
 
-            while (cam.orthographicSize > size)
+            if (cam.orthographicSize > size)
             {
-                cam.orthographicSize -= Time.deltaTime * speed;
-                yield return 0;
+
+                while (cam.orthographicSize > size)
+                {
+                    cam.orthographicSize -= Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.orthographicSize = size;
+
             }
-            cam.orthographicSize = size;
+            else
+            {
+
+                while (cam.orthographicSize < size)
+                {
+                    //print("increase");
+                    cam.orthographicSize += Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.orthographicSize = size;
+            }
 
         }
         else
         {
 
-            while (cam.orthographicSize < size)
+            if (cam.fieldOfView > size)
             {
-                //print("increase");
-                cam.orthographicSize += Time.deltaTime * speed;
-                yield return 0;
+
+                while (cam.fieldOfView > size)
+                {
+                    cam.fieldOfView -= Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.fieldOfView = size;
+
             }
-            cam.orthographicSize = size;
+            else
+            {
+
+                while (cam.fieldOfView < size)
+                {
+                    //print("increase");
+                    cam.fieldOfView += Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.fieldOfView = size;
+            }
         }
     }
 
     public static IEnumerator<float> _cameraSizeRootFunc(Camera cam, float size, float factor, float limitSpeed=0.2f)
     {
-        float speed = factor;
-        float delta = Mathf.Abs(cam.orthographicSize - size);
-        
-        if (cam.orthographicSize > size)
+        bool isOrthographic = cam.orthographic;
+
+        if (isOrthographic)
         {
 
-            while (cam.orthographicSize > size)
-            {
-                speed = factor * ( Mathf.Abs(cam.orthographicSize - size)) / delta;
-                speed = Mathf.Clamp(speed, limitSpeed, speed);
-                cam.orthographicSize -= Time.deltaTime * speed;
-                yield return 0;
-            }
-            cam.orthographicSize = size;
+            float speed = factor;
+            float delta = Mathf.Abs(cam.orthographicSize - size);
 
-        }
-        else
+            if (cam.orthographicSize > size)
+            {
+
+                while (cam.orthographicSize > size)
+                {
+                    speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
+                    speed = Mathf.Clamp(speed, limitSpeed, speed);
+                    cam.orthographicSize -= Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.orthographicSize = size;
+
+            }
+            else
+            {
+
+                while (cam.orthographicSize < size)
+                {
+                    //print("increase");
+                    speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
+                    speed = Mathf.Clamp(speed, speed, limitSpeed);
+                    cam.orthographicSize += Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.orthographicSize = size;
+            }
+
+        }else
         {
 
-            while (cam.orthographicSize < size)
+            float speed = factor;
+            float delta = Mathf.Abs(cam.fieldOfView - size);
+
+            if (cam.fieldOfView > size)
             {
-                //print("increase");
-                speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
-                speed = Mathf.Clamp(speed, speed, limitSpeed);
-                cam.orthographicSize += Time.deltaTime * speed;
-                yield return 0;
+
+                while (cam.fieldOfView > size)
+                {
+                    speed = factor * (Mathf.Abs(cam.fieldOfView - size)) / delta;
+                    speed = Mathf.Clamp(speed, limitSpeed, speed);
+                    cam.fieldOfView -= Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.fieldOfView = size;
+
             }
-            cam.orthographicSize = size;
+            else
+            {
+
+                while (cam.fieldOfView < size)
+                {
+                    //print("increase");
+                    speed = factor * (Mathf.Abs(cam.fieldOfView - size)) / delta;
+                    speed = Mathf.Clamp(speed, speed, limitSpeed);
+                    cam.fieldOfView += Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.fieldOfView = size;
+            }
         }
     }
 
@@ -798,7 +870,11 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
 
     }
 
-
+    //Makes Y axis of vector 0 with fast way. Yeah I know I am too lazy.
+    public static Vector3 eliminiteY(Vector3 vector)
+    {
+        return new Vector3(vector.x, 0, vector.z);
+    }
     
 
 }

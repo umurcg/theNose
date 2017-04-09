@@ -43,6 +43,8 @@ GameObject:
   - 114: {fileID: 114000011113696416}
   - 114: {fileID: 114000011959196130}
   - 114: {fileID: 114000012814978802}
+  - 114: {fileID: 114000012746968342}
+  - 82: {fileID: 82000012157847188}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -961,10 +963,8 @@ GameObject:
   - 81: {fileID: 81000010189069812}
   - 95: {fileID: 95000010059957848}
   - 114: {fileID: 114000012349219652}
-  - 114: {fileID: 114000013119608828}
-  - 114: {fileID: 114000011359743036}
   - 114: {fileID: 114000013945706278}
-  - 82: {fileID: 82000013296588056}
+  - 114: {fileID: 114000010639551300}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1754,7 +1754,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 51, y: -0.89, z: 250.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2123,7 +2123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014093701332}
   m_LocalRotation: {x: -0, y: -0.7071063, z: -0, w: -0.7071073}
-  m_LocalPosition: {x: 28.5, y: 0, z: -206.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: -270, z: 0}
   m_Children:
@@ -2692,10 +2692,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -30
+  near clip plane: 5
   far clip plane: 1004.68
-  field of view: 68.5
-  orthographic: 1
+  field of view: 10
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -3462,12 +3462,12 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013127924312}
   m_Enabled: 1
---- !u!82 &82000013296588056
+--- !u!82 &82000012157847188
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013127924312}
+  m_GameObject: {fileID: 1000010109351266}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -3513,7 +3513,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3535,7 +3535,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
 --- !u!92 &92000011635444754
 Behaviour:
   m_ObjectHideFlags: 1
@@ -3820,6 +3820,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   rotateSpeed: 3
+--- !u!114 &114000010639551300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013127924312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949985dc2a5ea624bb8abaed4b07f6ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010717158788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3890,7 +3901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fe89b43d9dd984fb51b9ad2bea7c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: 0
+  scale: 1
 --- !u!114 &114000011129048884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3930,20 +3941,6 @@ MonoBehaviour:
   fade: 1
   Scene: 3
   debugLoad: 0
---- !u!114 &114000011359743036
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013127924312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91393b58709352c44bc3904d8704a97f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  rotationPerRound: 8
-  rotating: 0
 --- !u!114 &114000011367231086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4040,8 +4037,10 @@ MonoBehaviour:
   target: {fileID: 1000013785656152}
   lookSpeed: 3
   transformSpeed: 3
+  rotatorSpeed: 10
   assignPlayerAutomatically: 1
-  damper: 5
+  damper: 4
+  relativePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012589669922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4055,10 +4054,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   languageSetting: 0
   audioLevel: 1
+  usedGameControllers: []
   sceneList: 
-  debugSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
+  maxSceneList: 
+  debugSceneList: 010000000200000001000000030000000100000004000000
   fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
-  setDebugListToLevelIndex: 17
+  setDebugListToLevelIndex: 6
 --- !u!114 &114000012654939820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4092,6 +4093,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 260
   debug: 0
+--- !u!114 &114000012746968342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010109351266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf714e482887b54dbed390b5d7e3366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 71ef2eaa84333614a901a16ecf95dcc8, type: 2}
+  speed: 1
+  matPropert: _Glossiness
 --- !u!114 &114000012814978802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4152,20 +4167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 1
---- !u!114 &114000013119608828
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013127924312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaf714e482887b54dbed390b5d7e3366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 71ef2eaa84333614a901a16ecf95dcc8, type: 2}
-  speed: 1
-  matPropert: _Glossiness
 --- !u!114 &114000013200424760
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -102,6 +102,20 @@ public class CityGameController : MonoBehaviour {
                 //Debug.Log("Starting berber shop");
                 berberShopScene();
             }
+
+            //Games only can be activated with registered game controllers
+            if (GlobalController.Instance.usedGameControllers.Count > 0)
+            {
+                if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PoliceStationPrisoner"))
+                {
+
+                    Debug.Log("Prisoner Gmae");
+                    //Activate hut 
+                    OpenDoorLoad prsionerDoor=OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.PrisonerGame);
+                    prsionerDoor.Unlock();
+                }
+            }
+
         }else
         {
             Debug.Log("No global controller instace!!!!!!!!!!!");

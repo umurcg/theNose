@@ -259,7 +259,7 @@ public class CursorImageScript : MonoBehaviour
     public void resetExternalCursor()
     {
         externalTexture = null;
-        Debug.Log("Reseting external cursor");
+        //Debug.Log("Reseting external cursor");
         //DestroyImmediate(externalTexture);
 
     }

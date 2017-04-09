@@ -16,6 +16,15 @@ public class CharGameController : MonoBehaviour {
     public static string nose = "Armature/Torso/Chest/Neck/Head/NosePosition";
     public enum hand { LeftHand,RightHand};
 
+    //Camera type
+
+    public enum cameraType
+    {
+        Ortographic = 0,
+        Perspective = 1
+    }
+    cameraType camType= cameraType.Perspective;
+
     ////For matching doors
     static int lastDoorId;
 
@@ -426,5 +435,37 @@ public class CharGameController : MonoBehaviour {
 
 
     }
+
+    public static void setCameraType(cameraType type)
+    {
+        cgc.camType = type;
+
+        Debug.Log("Setting camera type to "+ type.ToString());
+
+        //Update main camera
+
+        //If player camera is active dont bother to find camera
+        if (getCamera().activeSelf)
+        {
+            getCamera().GetComponent<CameraController>().updateCameraType();
+            return;
+        }
+
+        if (CameraController.activeCamera != null)
+        {
+            CameraController.activeCamera.updateCameraType();
+        }else
+        {
+            Debug.Log("No active camera");
+        }
+
+    }
+
+    public static cameraType getCameraType()
+    {
+        return cgc.camType;
+    }
+
+    
 
 }

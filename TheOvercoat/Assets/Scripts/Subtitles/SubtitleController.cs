@@ -200,6 +200,12 @@ public class SubtitleController : MonoBehaviour {
         pcc = CharGameController.getActiveCharacter().GetComponent<PlayerComponentController>();
     }
 
+    public int getCurrentIndex()
+    {
+        return index;
+    }
+
+
     public string[] textFileToStringArray(TextAsset ta)
     {
         string allText = ta.text;
@@ -331,7 +337,7 @@ public class SubtitleController : MonoBehaviour {
             }
         }
 
-        Debug.Log("Coduln2t fine line " + line + " in text asset");
+        //Debug.Log("Coduln2t fine line " + line + " in text asset");
         return -1;
     }
 
