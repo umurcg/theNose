@@ -3,20 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-//_RemoveSquares.cs
-//_Dependent to:
-//_To do: Split functionalities to different scripts.
-
 //This script enables player to remove squares from mesh of object with clicks.
-//It also adds a texture on mesh randomely.
-//When all squares deleted it calls a cinema director cutscene.
-
-
-
-    
+//It also adds a texture on mesh randomely.    
     public class RemoveSquares : MonoBehaviour {
          
-
     Mesh mesh;
     List<int> indices;
     public Object scar;
@@ -30,6 +20,8 @@ using System.Linq;
     Camera cam;
 
     float initialMeshLenght;
+
+    float numberOfRemovedFaces;
 
     // Use this for initialization
     void Start()
@@ -47,11 +39,12 @@ using System.Linq;
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(mesh.triangles.Length);
+
+        //Debug.Log(mesh.triangles.Length+ " removged "+numberOfRemovedFaces);
         //TODO remove magic number
-        if (mesh.triangles.Length <= 200)
+        if (mesh.triangles.Length <= 180)
         {
-            
+
             finish();
         }
 
@@ -113,7 +106,8 @@ using System.Linq;
                     //removedIndeces.Add(index);
                     //removedIndeces.Add(otherTri);
 
-                    generateScar(hitPosition,hitInfo.normal);
+                if(Random.Range(0,10)==0)
+                 generateScar(hitPosition,hitInfo.normal);
                 }
 
 
@@ -230,6 +224,8 @@ using System.Linq;
 
 
             this.gameObject.AddComponent<MeshCollider>();
+
+              numberOfRemovedFaces++;
         }
 
 

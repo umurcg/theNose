@@ -13,17 +13,18 @@ public class ShallNotPass : MonoBehaviour
 
 
     public string message;
-    public GameObject subtitle;
     public float duration = 3;
     public float speed = 0.05f;
     public float subtitleWait = 3;
     public float waitBeforeMove = 3;
     bool hasStartedCouretine= false;
+    Text subtitle;
 
     // Use this for initialization
     void Start()
     {
-
+        subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
+        if (!subtitle) Debug.Log("Couldnt find character subtitle.");
     }
 
     // Update is called once per frame
@@ -51,17 +52,17 @@ public class ShallNotPass : MonoBehaviour
 
     }
    
-    IEnumerator InvokeSubtitle(GameObject sub, string txt)
+    IEnumerator InvokeSubtitle(Text sub, string txt)
     {
-        Text t = sub.GetComponent<Text>();
-        t.text = txt;
+
+        sub.text = txt;
         float time = 3;
         while (time > 0)
         {
             time -= Time.deltaTime;
             yield return null;
         }
-        t.text = "";
+        sub.text = "";
     }
 
     

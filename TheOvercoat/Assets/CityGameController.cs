@@ -12,9 +12,11 @@ public class CityGameController : MonoBehaviour {
     public GameObject friendTellsChurch;
     public GameObject churchBirdPosition;
     public GameObject outroScene;
+    public GameObject deadManGameController;
 
     public GameObject streetAreas;
     
+
 	// Awake function is for registering current scene. It sets scene according to storyline
 	void Awake () {
 
@@ -28,6 +30,8 @@ public class CityGameController : MonoBehaviour {
             //{
             //    Debug.Log(i);
             //}
+
+            if (checkSideStories()) return;
 
             if (sceneList.Count > 0)
             {
@@ -106,7 +110,9 @@ public class CityGameController : MonoBehaviour {
             //Games only can be activated with registered game controllers
             if (GlobalController.Instance.usedGameControllers.Count > 0)
             {
-                if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PoliceStationPrisoner"))
+                if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PoliceStationPrisoner")
+                    && !GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PrisonerGameDeadMan")
+                    )
                 {
 
                     Debug.Log("Prisoner Gmae");
@@ -351,6 +357,31 @@ public class CityGameController : MonoBehaviour {
         yield break;
 
     }
+    
 
+    void foundDeadman()
+    {
+ 
+        CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight();
+
+        SculpturerCatchesKovalev sck = deadManGameController.GetComponent<SculpturerCatchesKovalev>();
+        sck.activateController();
+
+        Timing.RunCoroutine(sck.callFirstSubtitle());
+    }
+
+    //This function checks for gamecontrollers. It is called before checking last scenes. So if you have a gamecontroller
+    //that must interrupt normal story check in here
+    //If it finds a game controller returns true else returns false
+    bool checkSideStories()
+    {
+        if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PrisonerGameDeadMan"))
+        {
+            foundDeadman();
+            return true;
+        }
+
+        return false;   
+    }
  
 }

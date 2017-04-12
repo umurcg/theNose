@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 
-public class SculpturerAI : GameController {
+public class SculpturerAI : GameController, IClickAction {
 
     public float runDistance = 10f;
     public float navMeshSampleRaidus = 1f;
@@ -14,12 +14,22 @@ public class SculpturerAI : GameController {
     public float runFromPlayerSpeed = 5f;
     public float timeBetweenSubtitles = 10f;
     public float subtDuration=3f;
+
+
+
     float subtTimer;
     float timer;
     NavMeshAgent nma;
 
     Vector3 prevPos;
     float tolerance = 0.01f;
+
+    public GameObject alci;
+    bool oneHeykelIsLeft = false;
+    bool shooting = false;
+    public float timeBetweenShots = 5f;
+    float shotTimer;
+
     // Use this for initialization
 
     SubtitleController sub;
@@ -30,11 +40,18 @@ public class SculpturerAI : GameController {
         prevPos = transform.position;
         sub= GetComponent<SubtitleController>();
         subtTimer = timeBetweenSubtitles;
-
+        shotTimer = timeBetweenShots;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+
+        if (oneHeykelIsLeft)
+        {
+            shotTimer -= Time.deltaTime;
+            if (shotTimer <= 0 && !shooting) Timing.RunCoroutine( shootAlci());
+        }
 
         subtTimer -= Time.deltaTime;
         if (subtTimer <= 0)
@@ -56,7 +73,7 @@ public class SculpturerAI : GameController {
 
 
             timer -= Time.deltaTime;
-            if (timer <= 0)
+            if (timer <= 0 && !shooting)
             {
                 moveRandomly();
             }
@@ -158,4 +175,45 @@ public class SculpturerAI : GameController {
 
         yield break;
     }
+
+    IEnumerator<float> shootAlci()
+    {
+        nma.Stop();
+        shooting = true;
+
+        handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(gameObject, player, 1f));
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        alci.transform.position = transform.position;
+        alci.transform.rotation = transform.rotation;
+
+        ParticleSystem ps = alci.GetComponent<ParticleSystem>();
+        ps.Play();
+
+        while (ps.isPlaying) yield return 0;
+
+        shooting = false;
+        shotTimer = timeBetweenShots;
+
+        yield break;
+    }
+
+    public void shootWithAlci(bool shoot)
+    {
+        Debug.Log("Shoot with alci");
+        oneHeykelIsLeft = shoot;
+        GetComponent<CapsuleCollider>().radius = 2;
+    }
+
+    public override void Action()
+    {
+        //base.Action();
+
+        transform.parent.gameObject.GetComponent<SculpturerGameController>().outerSpeech();
+        transform.tag = "Untagged";
+    }
+
+    
+
+
 }

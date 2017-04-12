@@ -35,8 +35,16 @@ public class KovalevHomeGameController : GameController {
         }
         else
         {
+
+            //First check game objects
+            if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("SculpturerGameSculpturerGameController")/*true*/)
+            {
+                Timing.RunCoroutine( comingFromSculpturer());
+                return;
+            }
+
             //If user coming for first time and didn't go church 
-            if (!GlobalController.isScnListContains(GlobalController.Scenes.KovalevHouse)
+                if (!GlobalController.isScnListContains(GlobalController.Scenes.KovalevHouse)
                 && !GlobalController.isScnListContains(GlobalController.Scenes.Church)
                 )
             {
@@ -138,11 +146,14 @@ public class KovalevHomeGameController : GameController {
 
         playerAnim.SetTrigger("GetUp");
 
-        yield return Timing.WaitForSeconds(2f);
+        yield return Timing.WaitForSeconds(3f);
 
-        
-        IEnumerator<float> handler =Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position - player.transform.right * 1f-player.transform.up*1.7f, 0.5f));
+
+        IEnumerator<float> handler = Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position - player.transform.right * 1f - player.transform.up * 1.7f, 1.3f));
         yield return Timing.WaitUntilDone(handler);
+
+        //player.transform.position = player.transform.position - player.transform.right * 1f - player.transform.up * 1.7f;
+
 
 
         //Destroy(KovAgent);
@@ -526,4 +537,54 @@ public class KovalevHomeGameController : GameController {
 
         yield break;
     }
+
+
+    IEnumerator<float> comingFromSculpturer()
+    {
+        yield return 0;
+        Debug.Log("sCLUPTUREEEEEEER");
+
+        //Move player to starting position
+        CharGameController.movePlayer(StartingPoint.transform.position);
+
+        if (!playerAnim) yield return 0;
+
+        playerAnim.SetTrigger("Lie");
+
+        pcc.StopToWalk();
+
+        player.GetComponent<CharacterController>().enabled = false;
+
+
+        playerAnim.SetTrigger("GetUp");
+
+        yield return Timing.WaitForSeconds(2f);
+
+
+        IEnumerator<float> handler = Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position - player.transform.right * 1f - player.transform.up * 1.7f, 0.5f));
+        yield return Timing.WaitUntilDone(handler);
+
+
+        //Destroy(KovAgent);
+        Vector3 posOnNavMesh;
+        if (Vckrs.findNearestPositionOnNavMesh(player.transform.position, playerNma.areaMask, 2f, out posOnNavMesh))
+        {
+            player.transform.position = posOnNavMesh;
+        }
+        else
+        {
+            Debug.Log("Coudn't found position on navmesh");
+        }
+        //yield return 0;
+        //KovAgent = player.AddComponent<NavMeshAgent>();
+
+        yield return Timing.WaitForSeconds(0.5f);
+
+        sc.callSubtitleWithIndex(19);
+        Door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
+
+        yield break;
+    }
+
+
 }

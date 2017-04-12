@@ -20,7 +20,7 @@ public class CameraFollower : MonoBehaviour {
     public Vector3 relativePosition;
 
 
-    Vector3 defaultRelative = new Vector3(-90f, 75f, 90f);
+    public Vector3 defaultRelative = new Vector3(-90f, 75f, 90f);
    
     float xRotation;
 

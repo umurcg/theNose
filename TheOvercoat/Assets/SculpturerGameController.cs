@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class SculpturerGameController : GameController {
 
+    public GameObject playerInitialPos;
     public GameObject sculpturer;
     public float healthOfPlayer = 100;
     float health;
+    float sculpHealth;
     List<HeykelController> heykels;
     public GameObject healthBarPrefab;
     Image healthBar;
+    Image healthBarSculp;
 
     //public GameObject target;
     //public GameObject source;
@@ -29,73 +32,54 @@ public class SculpturerGameController : GameController {
 
     public override void Start()
     {
+        
+        CharGameController.movePlayer(playerInitialPos.transform.position);
         enableHeykels(false);
         base.Start();
-        //startGame();
+
         //Timing.RunCoroutine(innerSpeech());
+        win();
 
     }
 
     // Update is called once per frame
     void Update () {
 
-        ////Debug.Log(Vector3.Distance(master.transform.position, target.transform.position)
-        ////    + Vector3.Distance(master.transform.position, source.transform.position) + " " + (AA + BB / 2));
+        if (healthBar != null && health <= 0) die();
 
-        //if (Vector3.Distance(master.transform.position, target.transform.position)
-        //    + Vector3.Distance(master.transform.position, source.transform.position) >( AA + BB / 2))
-        //{
-        //    Debug.Log("Outside of capsule");
-        //}
-        //else
-        //{
-        //    Debug.Log("InsideOfCapsule");
-        //}
-
-        //Debug.DrawLine(target.transform.position, master.transform.position);
-        //Debug.DrawLine(source.transform.position, master.transform.position);
+        if (healthBarSculp != null && sculpHealth <= 0) win();
 
     }
 
-
-
-    //void drawElipse()
-    //{
-    //    //Dont shoot master
-    //    //TODO Test it
-    //    Vector3 planarTarget = target.transform.position;
-    //    Vector3 planarPostion = source.transform.position;
-
-    //    Vector3 planarMaster = master.transform.position;
-    //    AA = Vector3.Distance(planarTarget, planarPostion);
-    //    float B = 1;
-    //    BB = B * 2;
-
-    //    GameObject capsule = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Capsule));
-    //    //capsule.transform.eulerAngles = new Vector3(90, 0, 0);
-    
-    //    CapsuleCollider cc= capsule.GetComponent<CapsuleCollider>();
-    //    cc.direction = 2;
-    //    cc.height = AA + BB;
-    //    cc.radius = BB;
-
-    //    //capsule.transform.localScale =Vector3.right* cc.height;
-
-    //    capsule.transform.position = Vector3.Lerp(planarTarget, planarPostion, 0.5f);
-  
-
-    //}
-
-
     void startGame()
     {
+        sculpturer.GetComponent<SculpturerAI>().enabled = true;
         enableHeykels(true);
         Transform canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
         healthBar=  ((GameObject)Instantiate(healthBarPrefab,canvas) as GameObject).GetComponent<Image>();
+        RectTransform rt = healthBar.GetComponent<RectTransform>();
+        rt.position =new Vector2( Screen.width * 4 / 5,Screen.height*4/5);
+
         health = healthOfPlayer;
         healthBar.fillAmount = health/healthOfPlayer;
     }
 
+    void oneHeykelIsLeft()
+    {
+        heykels[0].shootMaster(true);
+        sculpturer.GetComponent<SculpturerAI>().shootWithAlci(true);
+
+        Transform canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
+        healthBarSculp = ((GameObject)Instantiate(healthBarPrefab, canvas) as GameObject).GetComponent<Image>();
+        healthBarSculp.transform.GetChild(0).GetComponent<Text>().text = "Enemy Health";
+        RectTransform rt = healthBar.GetComponent<RectTransform>();
+        rt.position = new Vector2(Screen.width * 1 / 5, Screen.height * 4 / 5);
+
+        sculpHealth = healthOfPlayer;
+        healthBar.fillAmount = sculpHealth / healthOfPlayer;
+
+
+    }
 
     IEnumerator<float> innerSpeech()
     {
@@ -119,6 +103,8 @@ public class SculpturerGameController : GameController {
         //Timing.KillCoroutines(handlerHolder);
 
         unlockPlayer();
+
+        startGame();
 
         yield break;
     }
@@ -144,6 +130,7 @@ public class SculpturerGameController : GameController {
     public void removeHeykel(HeykelController heykel)
     {
         heykels.Remove(heykel);
+        if (heykels.Count == 1) oneHeykelIsLeft();
     }
 
     void enableHeykels(bool enable)
@@ -160,4 +147,75 @@ public class SculpturerGameController : GameController {
         healthBar.fillAmount = health/healthOfPlayer;
     }
 
+    public void damageEnemy(int amount)
+    {
+        Debug.Log("Enemy damage");
+        sculpHealth -= amount;
+        healthBarSculp.fillAmount = sculpHealth/healthOfPlayer;
+
+    }
+
+    void win()
+    {
+        sculpturer.tag = "ActiveObject";
+        sculpturer.GetComponent<SculpturerAI>().enabled = false;
+        Debug.Log("Win");
+        
+
+    }
+
+    IEnumerator<float> lost()
+    {
+        sc.callSubtitleWithIndex(1);
+        while (subtitle.text != "") yield return 0;
+
+        Debug.Log("Lost");
+        LoadScene ls=GetComponent<LoadScene>();
+        ls.Scene = GlobalController.Scenes.Atolye;
+        ls.Load();
+
+    }
+
+    void die()
+    {
+        //Die animation
+        Timing.RunCoroutine(lost());
+    }
+
+    public void freezeKovalev()
+    {
+        Debug.Log("Freeze");
+        pcc.StopToWalk();
+        //Alciyla kapla
+        Timing.RunCoroutine(lost());
+
+
+    }
+
+    public void outerSpeech()
+    {
+        Timing.RunCoroutine(_outerSpeech());
+    }
+
+    IEnumerator<float> _outerSpeech()
+    {
+        
+
+        yield return 0;
+        sc.callSubtitleWithIndex(2);
+
+        while (subtitle.text != "") yield return 0;
+
+        //Register before exiting scene so kovalev house will understand last game controller is this and arrange scen according to that
+        registerAsUsed();
+
+
+        LoadScene ls = GetComponent<LoadScene>();
+        ls.Scene = GlobalController.Scenes.KovalevHouse;
+        ls.Load();
+
+    }
+
+    
 }
+

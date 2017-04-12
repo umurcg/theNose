@@ -64,7 +64,8 @@ public class PutNoseToFruitStand : GameController, IClickAction, IClickActionDif
 
         playerNma.Resume();
         playerNma.SetDestination(noseCopy.transform.position);
-        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(player, 0));
+        yield return Timing.WaitForSeconds(1f);
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(player));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         nose.SetActive(true);

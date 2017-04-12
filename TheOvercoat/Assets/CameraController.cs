@@ -10,6 +10,10 @@ public class CameraController : MonoBehaviour {
     public static CameraController activeCamera;
     Camera cam;
 
+    //Orthographic clipping sizes
+    public float nearOrt = -40;
+    public float farOrt = 2000;
+
     private void OnEnable()
     {
         activeCamera = this;
@@ -38,6 +42,8 @@ public class CameraController : MonoBehaviour {
             {
                 Debug.Log(gameObject.name + " setting ortho");
                 cam.orthographic = true;
+                cam.farClipPlane = farOrt;
+                cam.nearClipPlane = nearOrt;
             }else
             {
                 Debug.Log(gameObject.name + " setting perso");

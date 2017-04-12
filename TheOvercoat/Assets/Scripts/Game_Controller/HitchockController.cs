@@ -10,14 +10,14 @@ public class HitchockController : MonoBehaviour, IClickAction  {
     GameObject MainCamera, Kovalev;
     public float fovSpeed;
     public float maxFov = 57f;
-   
 
-    ReflectionProbe rp;
+    MirrorReflection mr;
+
     HitchcockShot hs;
     // Use this for initialization
     void Start () {
-        rp = MirrorPlane.GetComponent<ReflectionProbe>();
         hs = Camera.GetComponent<HitchcockShot>();
+        mr = GetComponentInChildren<MirrorReflection>();
 
 
     }
@@ -29,6 +29,7 @@ public class HitchockController : MonoBehaviour, IClickAction  {
 
     public IEnumerator<float> _start()
     {
+        mr.enabled = true;
         MainCamera = CharGameController.getCamera();
         Kovalev = CharGameController.getActiveCharacter();
 
@@ -40,26 +41,18 @@ public class HitchockController : MonoBehaviour, IClickAction  {
 
         Kovalev.GetComponent<NavMeshAgent>().Stop();
 
-        yield return 0;
-
-        rp.RenderProbe();
 
         yield return 0;
 
-        Kovalev.transform.position = gameObject.transform.position - 3 * transform.up;
-        Kovalev.transform.LookAt(gameObject.transform.position);
 
         //KovMirrorPose.SetActive(true);
 
+        yield return Timing.WaitForSeconds(0.1f);
+
+
         yield return 0;
 
-        Kovalev.transform.position = gameObject.transform.position - 3 * transform.up;
-        Kovalev.transform.LookAt(gameObject.transform.position);
-
-        rp.RenderProbe();
-        yield return 0;
-
-        Kovalev.transform.position = gameObject.transform.position - 3 * transform.up;
+        Kovalev.transform.position = gameObject.transform.position - 1 * transform.up;
         Kovalev.transform.LookAt(gameObject.transform.position);
 
         //KovMirrorPose.SetActive(false);
@@ -96,8 +89,11 @@ public class HitchockController : MonoBehaviour, IClickAction  {
         CallCoroutine cc = GetComponent<CallCoroutine>();
         cc.call();
 
+        mr.enabled = false;
+
         Destroy(this);
         gameObject.transform.tag = "Untagged";
+        
         yield break;
         
     }

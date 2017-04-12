@@ -38,8 +38,10 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
     IEnumerator<float> handler;
     Animator anim;
 
+    public Texture2D chairText;
+    bool textureAssigned = false;
 
-
+    CursorImageScript cis;
     //public bool getup;
     // Use this for initialization
     void Start () {
@@ -61,12 +63,27 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
             Timing.RunCoroutine(_sit(true));
         }
 
+        cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
+
     }
 
     // Update is called once per frame
     void Update () {
 
+        if (chairText != null)
+        {
+            if (sitting && !lockSit && !textureAssigned)
+            {
+                cis.externalTexture = chairText;
+                textureAssigned = true;
 
+            }
+            else if ((!sitting || lockSit) && textureAssigned)
+            {
+                cis.resetExternalCursor();
+                textureAssigned = false;
+            }
+        }
 
         if(subject.transform.tag=="Player"){
             if (sitting && !lockSit)

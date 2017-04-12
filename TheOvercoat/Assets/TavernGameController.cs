@@ -5,8 +5,9 @@ using MovementEffects;
 
 public class TavernGameController : GameController {
 
-    public GameObject tarkovksy, door, tarkovskyChair,chair;
+    public GameObject tarkovksy, door, tarkovskyChair,chair, barBuilding, bears;
 
+    public Material drunkTransparentMaterial;
     public Material drunkMaterial;
     public Material normalMaterial;
     public GameObject tavernBuilding;
@@ -110,8 +111,12 @@ public class TavernGameController : GameController {
 
         yield return Timing.WaitForSeconds(5);
 
+        bears.transform.GetChild(0).gameObject.SetActive(false);
+        bears.transform.GetChild(1).gameObject.SetActive(true);
+        bears.transform.GetChild(2).gameObject.SetActive(true);
 
-        handlerHolder=blackScreen.script.fadeIn();
+
+        handlerHolder =blackScreen.script.fadeIn();
         yield return Timing.WaitUntilDone(handlerHolder);
         sc.callSubtitleWithIndex(3);
         while (subtitle.text != "") yield return 0;
@@ -144,6 +149,9 @@ public class TavernGameController : GameController {
                 rend.material = drunkMaterial;
             }
         }
+
+        barBuilding.GetComponent<Renderer>().material = drunkTransparentMaterial;
+
     }
 
     void recoverAllBuildings()
@@ -157,5 +165,6 @@ public class TavernGameController : GameController {
                 rend.material = normalMaterial;
             }
         }
+        barBuilding.GetComponent<Renderer>().material = normalMaterial;
     }
 }

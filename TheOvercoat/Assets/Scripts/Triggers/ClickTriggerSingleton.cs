@@ -24,12 +24,13 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
     IEnumerator<float> walkToTargetHandler;
     public LayerMask ignoreMasks;
-
+    PlayerComponentController pcc;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         mtwagent = GetComponent<MoveToWithoutAgent>();
+        pcc = GetComponent<PlayerComponentController>();
         //cml = GetComponent<CharacterMouseLook>();
 
     }
@@ -200,6 +201,9 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
     IEnumerator<float> walkToTarget(GameObject aim)
     {
+
+        //If player cant walk the you should abort the action
+        if (pcc && !pcc.canPlayerWalk()) yield break;
 
         //Debug.Log("Walking");
 

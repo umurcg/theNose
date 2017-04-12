@@ -42,6 +42,7 @@ public class IvanHouseGameController : GameController {
         CharGameController.getCamera().GetComponent<CameraFollower>().fixRelativeToDefault();
         CharGameController.getCamera().SetActive(true);
         base.Start();
+        player.transform.LookAt(Vector3.forward);
 
 
         Debug.Log("Start");
@@ -87,8 +88,8 @@ public class IvanHouseGameController : GameController {
         //Praskovaya walks to ivan
         praskovayaAnim.SetBool("Hands", false);
         Vector3 praskovayaFirstPos = Praskovaya.transform.position;
-        praskovayaNma.SetDestination(player.transform.position + player.transform.forward *2);
-        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Praskovaya,0f));
+        praskovayaNma.SetDestination(player.transform.position - Vector3.right *2);
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Praskovaya));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         //Talk
@@ -100,7 +101,7 @@ public class IvanHouseGameController : GameController {
 
         //praskovaya returns to hr poistion
         praskovayaNma.SetDestination(praskovayaFirstPos);
-        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Praskovaya, 0f));
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Praskovaya));
 
         yield return Timing.WaitForSeconds(1);
 
@@ -155,8 +156,8 @@ public class IvanHouseGameController : GameController {
 
         GameObject smallBread = CollectableObject.collected[0];
         CollectableObject co = smallBread.GetComponent<CollectableObject>();
-        co.UnCollect(player.transform.position + player.transform.forward * 1+player.transform.up*2);
-
+        //co.UnCollect(player.transform.position + player.transform.forward * 1+player.transform.up*2);
+        co.UnCollect(BreadPH.transform.position);
         sc.callSubtitleWithIndexTime(0);
         
         while (narSubtitle.text[0] != ' ')
@@ -167,7 +168,7 @@ public class IvanHouseGameController : GameController {
         pcc.StopToWalk();
 
 
-        BigBread.transform.position = Camera.main.gameObject.transform.position;
+        BigBread.transform.position = Camera.main.gameObject.transform.position+ Camera.main.gameObject.transform.forward;
         BigBread.SetActive(true);
     
 
@@ -185,7 +186,7 @@ public class IvanHouseGameController : GameController {
         //pcc.ContinueToWalk();
         Nose.SetActive(true);
         Rigidbody rb = Nose.GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.right*2, ForceMode.Impulse);
+        rb.AddForce(Vector3.right*2-Vector3.forward, ForceMode.Impulse);
 
         yield return Timing.WaitForSeconds(3);
 
@@ -199,7 +200,7 @@ public class IvanHouseGameController : GameController {
 
 
         praskovayaNma.SetDestination(Nose.transform.position - Vector3.forward);
-        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Praskovaya,0));
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Praskovaya));
               
         yield return Timing.WaitUntilDone(handlerHolder);
 
@@ -219,7 +220,7 @@ public class IvanHouseGameController : GameController {
         playerNma.enabled = true;
         playerNma.SetDestination(Nose.transform.position - Vector3.right);
 
-        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(player, 0));
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(player));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         Timing.RunCoroutine(Vckrs._lookTo(player, Nose, 1f));

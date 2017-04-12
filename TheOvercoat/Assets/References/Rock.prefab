@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011385938904}
   - 33: {fileID: 33000011396523918}
-  - 65: {fileID: 65000010158513426}
   - 23: {fileID: 23000010918954346}
   - 54: {fileID: 54000011672437430}
   - 114: {fileID: 114000012214506636}
+  - 135: {fileID: 135000010726331808}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Fire
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013118072386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.235794, y: 3.3415232, z: 16.39}
+  m_LocalPosition: {x: -16.662537, y: 5.875395, z: 16.790243}
   m_LocalScale: {x: 0.36099637, y: 0.36099637, z: 0.36099637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -95,18 +95,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65000010158513426
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013118072386}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012214506636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,4 +107,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creator: {fileID: 0}
-  selfDestructionTimer: 5
+  selfDestructionTimer: 100
+  playerDamage: 5
+  enemyDamage: 25
+  reciever: {fileID: 0}
+--- !u!135 &135000010726331808
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013118072386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.66
+  m_Center: {x: 0, y: 0, z: 0}

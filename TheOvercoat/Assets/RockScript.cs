@@ -10,9 +10,11 @@ public class RockScript : MonoBehaviour {
     public float selfDestructionTimer = 5f;
     float timer;
 
-    string message;
-    GameObject reciever;
-    int messageParameter;
+    public float playerDamage = 5f;
+    public float enemyDamage = 25f;
+
+    public GameObject reciever;
+
 
     // Use this for initialization
     void Start () {
@@ -31,19 +33,19 @@ public class RockScript : MonoBehaviour {
         }
 	}
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
+        
+        
         if (collision.transform.tag == "Player")
         {
-            reciever.SendMessage(message,messageParameter);
+            reciever.SendMessage("damage",playerDamage);
 
+        } else if (collision.transform.tag == "Enemy")
+        {
+
+            reciever.SendMessage("damageEnemy", enemyDamage);
         }
     }
 
-    public void setMessage(GameObject reciever, string message, int parameter)
-    {
-        this.reciever = reciever;
-        this.message = message;
-        this.messageParameter = parameter;
-    }
 }

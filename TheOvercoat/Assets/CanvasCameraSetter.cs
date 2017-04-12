@@ -12,13 +12,29 @@ public class CanvasCameraSetter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        canvas = GetComponent<Canvas>();
-        GameObject mainCamera = CharGameController.getCamera();
-        if (mainCamera != null) canvas.worldCamera = mainCamera.GetComponent<Camera>();
+        updateCamera();
     }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public void updateCamera()
+    {
+        canvas = GetComponent<Canvas>();
+        GameObject mainCamera = CharGameController.getCamera();
+        if (mainCamera != null && mainCamera.activeSelf)
+        {
+            Debug.Log("Assigning main camera");
+            canvas.worldCamera = mainCamera.GetComponent<Camera>();
+        }
+        else
+        {
+
+            
+            Debug.Log("Assigning current camera");
+            canvas.worldCamera = CameraController.activeCamera.GetComponent<Camera>();
+        }
+    }
 }

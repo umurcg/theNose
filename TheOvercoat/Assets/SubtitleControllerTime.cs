@@ -18,9 +18,13 @@ public class SubtitleControllerTime : SubtitleController {
     new void Start () {
         if (textAsset != null) importFromTextFile();
 
+        if (subtitle == null) subtitle = SubtitleFade.subtitles["NarratorSubtitle"].gameObject;
+
+
         text = subtitle.GetComponent<Text>();
         if (text == null)
         {
+           
             print("PUT THE SUBTITLE YOU FAGGOT");
         }
         index = -1;

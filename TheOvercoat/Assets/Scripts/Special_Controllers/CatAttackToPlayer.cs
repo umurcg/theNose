@@ -5,8 +5,8 @@ using MovementEffects;
 using UnityEngine.UI;
 
 public class CatAttackToPlayer : GameController, IClickAction {
-    public GameObject characterSubtitle, catNose, trigger;
-    public GameObject nose;
+    public GameObject catNose, trigger;
+    GameObject nose;
 
     //PlayerComponentController pcc;
     NavMeshAgent catNma;
@@ -47,7 +47,7 @@ public class CatAttackToPlayer : GameController, IClickAction {
 
         catNma = GetComponent<NavMeshAgent>();
         rwb = GetComponent<RandomWalkBot>();
-        charSubt = characterSubtitle.GetComponent<Text>();
+        charSubt = SubtitleFade.subtitles["CharacterSubtitle"];
         catAnim = GetComponent<Animator>();
         playerCC = player.GetComponent<CharacterController>();
         playerAnim = player.GetComponent<Animator>();
@@ -72,12 +72,12 @@ public class CatAttackToPlayer : GameController, IClickAction {
     {
         yield return Timing.WaitForSeconds(1f);
 
-        SeeCharacterThroughObjects scto = CharGameController.getCamera().GetComponent<SeeCharacterThroughObjects>();
-        if (scto)
-        {
+        //SeeCharacterThroughObjects scto = CharGameController.getCamera().GetComponent<SeeCharacterThroughObjects>();
+        //if (scto)
+        //{
 
-            scto.registerToTargets(transform.gameObject);
-        }
+        //    scto.registerToTargets(transform.gameObject);
+        //}
     }
 	
 	// Update is called once per frame
@@ -199,7 +199,7 @@ public class CatAttackToPlayer : GameController, IClickAction {
     public override void activateController()
     {
         gameObject.SetActive(true);
-        SeeCharacterThroughObjects scto= CharGameController.getCamera().GetComponent<SeeCharacterThroughObjects>();
+        //SeeCharacterThroughObjects scto= CharGameController.getCamera().GetComponent<SeeCharacterThroughObjects>();
         //if (scto)
         //{
             
@@ -210,7 +210,7 @@ public class CatAttackToPlayer : GameController, IClickAction {
     public override void deactivateController()
     {
         gameObject.SetActive(false);
-        SeeCharacterThroughObjects scto = CharGameController.getCamera().GetComponent<SeeCharacterThroughObjects>();
+        //SeeCharacterThroughObjects scto = CharGameController.getCamera().GetComponent<SeeCharacterThroughObjects>();
         //if (scto)
         //{
         //    scto.removeFromTargets(transform.gameObject);

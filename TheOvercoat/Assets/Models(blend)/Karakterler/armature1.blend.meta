@@ -66,6 +66,7 @@ ModelImporter:
     7400046: SitSleep
     7400048: HorseRiderIdle
     7400050: HorseRiderWhip
+    7400052: DeadPos
     9500000: //RootNode
     13700000: Cube_000
   materials:
@@ -1469,6 +1470,66 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: DeadPos
+      takeName: DeadPos
+      firstFrame: -1
+      lastFrame: 0
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

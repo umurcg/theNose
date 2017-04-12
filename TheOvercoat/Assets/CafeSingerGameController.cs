@@ -37,19 +37,19 @@ public class CafeSingerGameController : GameController {
     {
         WhoIsTalking.self.setCameraComponent(CameraObj.GetComponent<Camera>());
 
-        //Register kovalev to see throug objects script
-        SeeCharacterThroughObjects scto = city.GetComponent<SeeCharacterThroughObjects>();
-        scto.registerToTargets(Kovalev);
+        ////Register kovalev to see throug objects script
+        //SeeCharacterThroughObjects scto = city.GetComponent<SeeCharacterThroughObjects>();
+        //scto.registerToTargets(Kovalev);
 
-        //Change camera to cafe singer camera
-        scto.changeCamera(CameraObj);
+        ////Change camera to cafe singer camera
+        //scto.changeCamera(CameraObj);
 
 
         cam.orthographicSize = 30;
 
         //Debug.Log("CafeSingerController");
         Kovalev.transform.position = kovalevStartPoint.transform.position;
-        kovalevCC.navmashagent.SetDestination(mirror.transform.position+mirror.transform.up*1);
+        kovalevCC.navmashagent.SetDestination(mirror.transform.position-mirror.transform.up*1);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Kovalev));
 
         

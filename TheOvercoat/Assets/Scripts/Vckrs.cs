@@ -31,9 +31,9 @@ public class Vckrs : MonoBehaviour
 
     }
 
-    public static IEnumerator<float> waitUntilStop(GameObject obj, float tol=0.000001f)
+    public static IEnumerator<float> waitUntilStop(GameObject obj, float tol = 0.000001f)
     {
-      
+
         Vector3 pos = obj.transform.position;
         yield return Timing.WaitForSeconds(0.5f);
         while (Vector3.Distance(obj.transform.position, pos) > tol)
@@ -85,6 +85,36 @@ public class Vckrs : MonoBehaviour
     }
 
 
+
+
+    public static IEnumerator<float> _TweenRootFunc(GameObject go, Vector3 aim, float factor, float lowestLimitSpeed)
+    {
+
+
+        Vector3 initialPosition = go.transform.position;
+
+        float ratio = 0;
+
+        float delta = Vector3.Distance(go.transform.position, aim);
+
+        float speed = factor * Vector3.Distance(go.transform.position, aim) / delta;
+        speed = Mathf.Clamp(speed, lowestLimitSpeed,speed);
+
+        while (ratio < 1)
+        {
+            ratio += Time.deltaTime * speed;
+            go.transform.position = Vector3.Lerp(initialPosition, aim, ratio);
+            speed = factor * (Mathf.Abs(Vector3.Distance(go.transform.position, aim))) / delta;
+            yield return 0;
+
+        }
+        go.transform.position = aim;
+
+        yield break;
+    }
+
+
+
     public static IEnumerator<float> _Tween(GameObject go, Vector3 aim, float speed)
     {
 
@@ -108,9 +138,12 @@ public class Vckrs : MonoBehaviour
         yield break;
     }
 
-     //Lerp position with heigh.
-     //Height depends on sin function
-    public static IEnumerator<float> _TweenSinHeight(GameObject go, Vector3 aim, float speed, float maxHeight=1)
+
+
+
+    //Lerp position with heigh.
+    //Height depends on sin function
+    public static IEnumerator<float> _TweenSinHeight(GameObject go, Vector3 aim, float speed, float maxHeight = 1)
     {
 
         Vector3 initialPosition = go.transform.position;
@@ -123,14 +156,14 @@ public class Vckrs : MonoBehaviour
 
             Vector3 newPosition = Vector3.Lerp(initialPosition, aim, ratio);
             //Debug.Log(Mathf.Sin(3.14f*ratio));
-            newPosition += Vector3.up * Mathf.Sin(3.14f * ratio)*maxHeight;
+            newPosition += Vector3.up * Mathf.Sin(3.14f * ratio) * maxHeight;
             go.transform.position = newPosition;
 
             yield return 0;
 
         }
         go.transform.position = aim;
-        
+
 
     }
 
@@ -290,75 +323,42 @@ public class Vckrs : MonoBehaviour
     }
 
 
-
+    //These are for orthographic
 
     public static IEnumerator<float> _cameraSize(Camera cam, float size, float speed)
     {
 
-        bool isOrthographic = cam.orthographic;
 
-        if (isOrthographic)
+        if (cam.orthographicSize > size)
         {
 
-            if (cam.orthographicSize > size)
+            while (cam.orthographicSize > size)
             {
-
-                while (cam.orthographicSize > size)
-                {
-                    cam.orthographicSize -= Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.orthographicSize = size;
-
+                cam.orthographicSize -= Time.deltaTime * speed;
+                yield return 0;
             }
-            else
-            {
-
-                while (cam.orthographicSize < size)
-                {
-                    //print("increase");
-                    cam.orthographicSize += Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.orthographicSize = size;
-            }
+            cam.orthographicSize = size;
 
         }
         else
         {
 
-            if (cam.fieldOfView > size)
+            while (cam.orthographicSize < size)
             {
-
-                while (cam.fieldOfView > size)
-                {
-                    cam.fieldOfView -= Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.fieldOfView = size;
-
+                //print("increase");
+                cam.orthographicSize += Time.deltaTime * speed;
+                yield return 0;
             }
-            else
-            {
-
-                while (cam.fieldOfView < size)
-                {
-                    //print("increase");
-                    cam.fieldOfView += Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.fieldOfView = size;
-            }
+            cam.orthographicSize = size;
         }
+
+    
+    
     }
 
     public static IEnumerator<float> _cameraSizeRootFunc(Camera cam, float size, float factor, float limitSpeed=0.2f)
     {
-        bool isOrthographic = cam.orthographic;
-
-        if (isOrthographic)
-        {
-
+   
             float speed = factor;
             float delta = Mathf.Abs(cam.orthographicSize - size);
 
@@ -389,40 +389,10 @@ public class Vckrs : MonoBehaviour
                 cam.orthographicSize = size;
             }
 
-        }else
-        {
-
-            float speed = factor;
-            float delta = Mathf.Abs(cam.fieldOfView - size);
-
-            if (cam.fieldOfView > size)
-            {
-
-                while (cam.fieldOfView > size)
-                {
-                    speed = factor * (Mathf.Abs(cam.fieldOfView - size)) / delta;
-                    speed = Mathf.Clamp(speed, limitSpeed, speed);
-                    cam.fieldOfView -= Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.fieldOfView = size;
-
-            }
-            else
-            {
-
-                while (cam.fieldOfView < size)
-                {
-                    //print("increase");
-                    speed = factor * (Mathf.Abs(cam.fieldOfView - size)) / delta;
-                    speed = Mathf.Clamp(speed, speed, limitSpeed);
-                    cam.fieldOfView += Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.fieldOfView = size;
-            }
-        }
+   
     }
+
+    
 
 
     public static IEnumerator<float> _fadeObject(GameObject obj, float speed, bool fullFade=false)
@@ -433,8 +403,33 @@ public class Vckrs : MonoBehaviour
         Color textureColor = rend.material.color;
         float a = textureColor.a;
 
+        IEnumerator<float> handler;
+        if (a == 1)
+        {
+            handler = Timing.RunCoroutine(_fadeObjectOut(obj, speed, fullFade));
+        }else
+        {
+            handler = Timing.RunCoroutine(_fadeObjectIn(obj, speed, fullFade));
+        }
+
+        yield return Timing.WaitUntilDone(handler);
+
+        yield break;
+
+    }
+
+    public static IEnumerator<float> _fadeObjectIn(GameObject obj, float speed, bool fullFade = false)
+    {
+
+        Renderer rend = obj.GetComponent<Renderer>();
+        Color textureColor = rend.material.color;
+        float a = textureColor.a;
+
+        //If it is already visible in then break
+        if (a == 1) yield break;
+
         //It is for changing rendered mode at right time
-        bool willBeTransparent= (a==1) ? true : false;
+        bool willBeTransparent = false;
         StandardShaderUtils.BlendMode mode = (fullFade) ? StandardShaderUtils.BlendMode.Fade : StandardShaderUtils.BlendMode.Transparent;
 
         if (willBeTransparent)
@@ -456,7 +451,38 @@ public class Vckrs : MonoBehaviour
             rend.material.color = textureColor;
 
         }
-        else
+
+        if (!willBeTransparent)
+        {
+            StandardShaderUtils.ChangeRenderMode(rend.material, StandardShaderUtils.BlendMode.Opaque);
+        }
+
+        yield break;
+    }
+
+
+    public static IEnumerator<float> _fadeObjectOut(GameObject obj, float speed, bool fullFade = false)
+    {
+
+
+        Renderer rend = obj.GetComponent<Renderer>();
+        Color textureColor = rend.material.color;
+        float a = textureColor.a;
+
+        //If object is already faded
+        if (a == 0) yield break;
+
+        //It is for changing rendered mode at right time
+        bool willBeTransparent = true;
+        StandardShaderUtils.BlendMode mode = (fullFade) ? StandardShaderUtils.BlendMode.Fade : StandardShaderUtils.BlendMode.Transparent;
+
+        if (willBeTransparent)
+        {
+            StandardShaderUtils.ChangeRenderMode(rend.material, mode);
+        }
+
+
+        if(a==1)
         {
             while (a > 0)
             {

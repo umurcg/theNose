@@ -12,8 +12,8 @@ using System.Linq;
 public class GlobalController : MonoBehaviour {
 
 
-    public enum Scenes {MainMenu=0 ,City=1,IvanHouse=2,KovalevHouse=3,PoliceStation=4,Newspaper=5,Church=6,Doctor=7,PrisonerGame=8, None=9 };
-
+    public enum Scenes {MainMenu=0 ,City=1,IvanHouse=2,KovalevHouse=3,PoliceStation=4,Newspaper=5,Church=6,Doctor=7,PrisonerGame=8,Atolye=9, None=10 };
+    
     public static GlobalController Instance;
     
     //Language settings
@@ -172,7 +172,7 @@ public int setDebugListToLevelIndex;
         {
             GlobalController.Instance.maxSceneList = new List<int>();
         }
-
+        
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         if (sceneList.Count > 0)
         {
@@ -396,7 +396,7 @@ public int setDebugListToLevelIndex;
         if (!usedGameControllers.Contains(gc))
         {
             usedGameControllers.Add(gc);
-            Debug.Log(gc);
+            //Debug.Log(gc);
         }
         //if (!maxUsedGameController.Contains(gc)) maxUsedGameController.Add(gc);
 
@@ -475,8 +475,8 @@ public int setDebugListToLevelIndex;
 
     private void Update()
     {
-        foreach (string s in usedGameControllers)
-            Debug.Log(s);
+        //foreach (string s in usedGameControllers)
+        //    Debug.Log(s);
     }
 
 }

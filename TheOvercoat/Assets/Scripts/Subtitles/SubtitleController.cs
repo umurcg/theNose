@@ -169,13 +169,17 @@ public class SubtitleController : MonoBehaviour {
 
         //Debug.Log("Subtitle is started");
 
-        Debug.Log(subtitleTexts.Length);
+        //Debug.Log(subtitleTexts.Length);
 
         text.text = subtitleTexts[0];
         index = 0;
         if (pcc != null)
-            pcc.StopToWalk ();
-
+        {
+            pcc.StopToWalk();
+        }else
+        {
+            Debug.Log("PCC is null");
+        }
         ClickTrigger.disabled = true;
         this.enabled = true;
 

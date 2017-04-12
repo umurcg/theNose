@@ -28,7 +28,7 @@ public class EnterSceneGameController : GameController{
 
         //At enter scene blackscreen shouldn't fade in automatically
         if(blackScreen.script!=null)
-        blackScreen.script.fadeInAtStart = false;  //race condition
+            blackScreen.script.fadeInAtStart = false;  //race condition
 
         if (player != null)
         {
@@ -40,7 +40,7 @@ public class EnterSceneGameController : GameController{
         ivanNma = ivan.GetComponent<NavMeshAgent>();
         kovalevNma = kovalev.GetComponent<NavMeshAgent>();
         cam = cameraObj.GetComponent<Camera>();
-        cam.orthographicSize = 1000;
+        
 
         ivanAnim = ivan.GetComponent<Animator>();
         kovalevAnim = kovalev.GetComponent<Animator>();
@@ -57,10 +57,10 @@ public class EnterSceneGameController : GameController{
         {
             Debug.Log("Couldnt find who is talking script");
         }
-        //Debug.Log("into");
-        if(enabled)
-        Timing.RunCoroutine(_intro());
-        //Timing.RunCoroutine(Vckrs._fadeObject(building, 1f, true));
+
+        if (enabled)
+            Timing.RunCoroutine(_intro());
+
 
 
     }
@@ -93,7 +93,7 @@ public class EnterSceneGameController : GameController{
 
         IEnumerator<float> fadeHandler= blackScreen.script.fadeIn();
         //Timing.RunCoroutine(Vckrs._cameraSize(cam, 10, 20/*0.7f*/));
-        Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, 55,1f/*0.7f*/));
+
 
         //yield return Timing.WaitUntilDone(fadeHandler);
 
@@ -102,14 +102,36 @@ public class EnterSceneGameController : GameController{
         //bookAnim.SetBool("")
         bigBook.GetComponent<BookAC>().openBook();
 
-        while (cam.orthographicSize!=10 || narSubtitle.text!="")
+        cam.orthographicSize = 1000;
+
+        if (cam.orthographic)
         {
-            yield return 0;
+
+            Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, 55, 1f/*0.7f*/));
+
+            while (cam.orthographicSize != 10 || narSubtitle.text != "")
+            {
+                yield return 0;
+            }
+        }else
+        {
+
+            //TODO solve far terrain issue
+            float far = cam.farClipPlane;
+            cam.farClipPlane = 10000;
+
+            float camMoveSpeed = 0.1f;
+            Vector3 aim = cam.transform.position;
+            cam.transform.position = cam.transform.position - cam.transform.forward * 8000;
+            handlerHolder = Timing.RunCoroutine(Vckrs._TweenRootFunc(cam.gameObject, aim, camMoveSpeed, 5f));
+            yield return Timing.WaitUntilDone(handlerHolder);
+
+            cam.farClipPlane = far;
         }
 
 
         ivanNma.SetDestination(aims.transform.GetChild(0).position);
-        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan, 0));
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan));
         Timing.RunCoroutine(Vckrs._fadeObject(building, 1f,false));
         sc.callSubtitleWithIndex(3);
         yield return Timing.WaitUntilDone(handlerHolder);
@@ -123,7 +145,7 @@ public class EnterSceneGameController : GameController{
 
         ivanAnim.SetBool("Hands", false);
         ivanNma.SetDestination(aims.transform.GetChild(1).position);
-        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan, 0));
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan));
         yield return Timing.WaitUntilDone(handlerHolder);
 
 

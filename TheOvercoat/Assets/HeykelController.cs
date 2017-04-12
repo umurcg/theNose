@@ -15,8 +15,10 @@ public class HeykelController : MonoBehaviour {
 
     GameObject master;
     public float capsuleRadius=1f;
+    bool dontShootMaster = true;
 
     float timer;
+    
 
     private void Awake()
     {
@@ -77,7 +79,7 @@ public class HeykelController : MonoBehaviour {
 
         //Debug.Log((Vector3.Distance(planarMaster, planarTarget)
         //    + Vector3.Distance(planarMaster, planarPostion)) + " " + (AA + BB / 2));
-        if (Vector3.Distance(planarMaster, planarTarget)
+        if (dontShootMaster && Vector3.Distance(planarMaster, planarTarget)
             + Vector3.Distance(planarMaster, planarPostion) < (AA + BB / 2))
         {
             //Debug.Log("Dont shoot master!");
@@ -121,7 +123,7 @@ public class HeykelController : MonoBehaviour {
         spawnedRock.transform.position = transform.position + transform.forward;
         RockScript rs = spawnedRock.GetComponent<RockScript>();
         rs.creator = gameObject;
-        rs.setMessage(gameController.gameObject, "damage", damageAmount);
+        rs.reciever = gameController.gameObject;
 
         return spawnedRock;
     }
@@ -138,8 +140,13 @@ public class HeykelController : MonoBehaviour {
     public void Explode()
     {
         Debug.Log("I died " + gameObject.name);
+        gameController.removeHeykel(this);
         Destroy(gameObject);
     }
 
+    public void shootMaster(bool shoot)
+    {
+        dontShootMaster = !shoot;
+    }
 
 }

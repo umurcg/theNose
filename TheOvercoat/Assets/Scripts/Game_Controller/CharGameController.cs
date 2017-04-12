@@ -18,12 +18,14 @@ public class CharGameController : MonoBehaviour {
 
     //Camera type
 
+ 
+
     public enum cameraType
     {
         Ortographic = 0,
         Perspective = 1
     }
-    cameraType camType= cameraType.Perspective;
+    public cameraType camType= cameraType.Perspective;
 
     ////For matching doors
     static int lastDoorId;
@@ -55,10 +57,12 @@ public class CharGameController : MonoBehaviour {
     
     void setPositionToDoor(Scene scene, LoadSceneMode mode)
     {
-        //Debug.Log("Setting position to door");
+        //Debug.Log("Setting position to door "+lastDoorId);
 
         //Get active char
         GameObject activeChar = getActiveCharacter();
+
+        if (activeChar == null) return;
 
         //Disable nav mesh
         NavMeshAgent nma = activeChar.GetComponent < NavMeshAgent > ();
@@ -133,6 +137,7 @@ public class CharGameController : MonoBehaviour {
 
         if (doorScript.getSpawnPositionAndRotation(out spawnPos, out spawnRot))
         {
+           
             movePlayer(spawnPos);
             getActiveCharacter().transform.rotation = spawnRot;
         }
