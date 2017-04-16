@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using MovementEffects;
 
 //This script deals with self destroy of rocks
 //Also it holds creater, so creater can't shoot itself.
@@ -14,6 +15,7 @@ public class RockScript : MonoBehaviour {
     public float enemyDamage = 25f;
 
     public GameObject reciever;
+    public GameObject particle;
 
 
     // Use this for initialization
@@ -35,17 +37,55 @@ public class RockScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collision)
     {
-        
-        
+        //Debug.Log("hit object " + collision.gameObject.name+" create name is "+creator.name);
+
+        if (collision.gameObject == creator)
+        {
+            //Debug.Log("I hit creater");
+            return;
+        }
+
+        //Debug.Log("Didnt return");
+
         if (collision.transform.tag == "Player")
         {
-            reciever.SendMessage("damage",playerDamage);
+            reciever.SendMessage("damage", playerDamage);
+
+            //Impact force
+            GameObject player = collision.gameObject;
+            Timing.RunCoroutine(Vckrs.addImpactForceCC(player, Vckrs.eliminiteY(player.transform.position) - Vckrs.eliminiteY(transform.position)*-1));
+        
+            explode();
 
         } else if (collision.transform.tag == "Enemy")
         {
 
             reciever.SendMessage("damageEnemy", enemyDamage);
+            explode();
+        } else if (collision.transform.tag == "Sculpture")
+        {
+            collision.gameObject.SendMessage("Explode");
+            explode();
+        } else if (collision.transform.tag == "Floor")
+        {
+            explode();
         }
+
+        //Destroy after it hits something
+  
+    }
+
+    public void explode()
+    {
+        //Debug.Log("explod");
+        if (particle != null)
+        {
+            GameObject spawnedParticle = Instantiate(particle) as GameObject;
+            spawnedParticle.transform.position = transform.position;
+            spawnedParticle.SetActive(true);
+        }
+        Destroy(gameObject);
+
     }
 
 }

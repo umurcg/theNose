@@ -67,6 +67,13 @@ ModelImporter:
     7400048: HorseRiderIdle
     7400050: HorseRiderWhip
     7400052: DeadPos
+    7400054: Dead
+    7400056: ScultprutePos1
+    7400058: ScultprutePos2
+    7400060: ScultprutePos3
+    7400062: ScultprutePos4
+    7400064: ScultprutePos5
+    7400066: handIsTied
     9500000: //RootNode
     13700000: Cube_000
   materials:
@@ -713,7 +720,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: NewEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1471,8 +1485,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: DeadPos
-      takeName: DeadPos
+      name: Dead
+      takeName: Dead
       firstFrame: -1
       lastFrame: 0
       wrapMode: 0
@@ -1482,6 +1496,366 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ScultprutePos1
+      takeName: ScultprutePos1
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ScultprutePos2
+      takeName: ScultprutePos2
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ScultprutePos3
+      takeName: ScultprutePos3
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ScultprutePos4
+      takeName: ScultprutePos4
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ScultprutePos5
+      takeName: ScultprutePos5
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: handIsTied
+      takeName: handIsTied
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

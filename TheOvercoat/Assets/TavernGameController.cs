@@ -54,13 +54,15 @@ public class TavernGameController : GameController {
 
         Timing.RunCoroutine(Vckrs._lookTo(player, tarkovksy.transform.position - player.transform.position, 1f));
 
+        
+
         while (Vector3.Distance(tarkovksy.transform.position, aim) > 2)
         {
             //Debug.Log(Vector3.Distance(tarkovksy.transform.position, aim)); //TODO look at here
             yield return 0;
         }
        
-        //Debug.Log("Calling");
+        Debug.Log("Calling subtitle");
         sc.callSubtitleWithIndex(0);
         while (subtitle.text != "")
         {

@@ -8,6 +8,7 @@ public class SculpturerGameController : GameController {
 
     public GameObject playerInitialPos;
     public GameObject sculpturer;
+    public GameObject ropeGame;
     public float healthOfPlayer = 100;
     float health;
     float sculpHealth;
@@ -32,13 +33,14 @@ public class SculpturerGameController : GameController {
 
     public override void Start()
     {
-        
+        base.Start();
         CharGameController.movePlayer(playerInitialPos.transform.position);
+        playerAnim.SetBool("HandsAreTied", true);
         enableHeykels(false);
         base.Start();
 
-        //Timing.RunCoroutine(innerSpeech());
-        win();
+        Timing.RunCoroutine(innerSpeech());
+        
 
     }
 
@@ -51,8 +53,10 @@ public class SculpturerGameController : GameController {
 
     }
 
-    void startGame()
+    public void startGame()
     {
+        unlockPlayer();
+        playerAnim.SetBool("HandsAreTied", false);
         sculpturer.GetComponent<SculpturerAI>().enabled = true;
         enableHeykels(true);
         Transform canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
@@ -83,6 +87,8 @@ public class SculpturerGameController : GameController {
 
     IEnumerator<float> innerSpeech()
     {
+
+
         //Look each other
         player.transform.LookAt(new Vector3(sculpturer.transform.position.x, player.transform.position.y, sculpturer.transform.position.z));
         sculpturer.transform.LookAt(new Vector3(player.transform.position.x, sculpturer.transform.position.y, player.transform.position.z));
@@ -102,9 +108,7 @@ public class SculpturerGameController : GameController {
 
         //Timing.KillCoroutines(handlerHolder);
 
-        unlockPlayer();
-
-        startGame();
+        ropeGame.GetComponent<RopeGameController>().enabled = true;
 
         yield break;
     }

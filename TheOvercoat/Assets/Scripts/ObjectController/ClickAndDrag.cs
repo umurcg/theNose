@@ -8,8 +8,15 @@ using System.Collections;
 
 public class ClickAndDrag : MonoBehaviour {
 
-	bool touched=false;
+
+    static bool holdingAnObject = false;
+
+    [HideInInspector]
+    public bool touched=false;
 	public float speed=10f;
+
+
+    
 
 	//public Vector3 offset ;
 
@@ -24,6 +31,9 @@ public class ClickAndDrag : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+        
 		if (Input.GetMouseButton (0)) {
 
 			if (touched)
@@ -32,17 +42,19 @@ public class ClickAndDrag : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 
-			if (Physics.Raycast (ray, out hit)) {
+			if (!holdingAnObject && Physics.Raycast (ray, out hit)) {
 				
 				if (hit.transform == transform) {
-			
-					touched = true;
+
+                    holdingAnObject = true;
+                    touched = true;
 				}
 			}
 		
 
 		}else if (Input.GetMouseButtonUp (0)) {
 
+            holdingAnObject = false;
 			touched = false;
 		}
 

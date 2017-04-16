@@ -6,7 +6,9 @@ using System.Collections.Generic;
 
 public class GeneralDebugScript : GameController {
 
-    string prisonerGC = "PoliceStationPrisoner";
+    //string prisonerGC = "PoliceStationPrisoner";
+    public GameObject other;
+
 
 	// Use this for initialization
 	public override void Start () {
@@ -14,21 +16,39 @@ public class GeneralDebugScript : GameController {
         //Timing.RunCoroutine(subtitleCaller());
         //SceneManager.LoadScene(3);
 
-        if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(prisonerGC))
-        {
-            sc.callSubtitleWithIndex(0);
-        }else
-        {
-            sc.callSubtitleWithIndex(1);
-        }
+        //if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(prisonerGC))
+        //{
+        //    sc.callSubtitleWithIndex(0);
+        //}else
+        //{
+        //    sc.callSubtitleWithIndex(1);
+        //}
         
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        Debug.Log(Vector3.Distance(other.transform.position, transform.position));
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other == this.other)
+        {
+            Debug.Log("Insiiiiiiiiiiiiiiide");
+       
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other == this.other)
+        {
+            Debug.Log("Exiiiiiiiiiiiit");
+        }
+    }
 
     //IEnumerator<float> subtitleCaller()
     //{

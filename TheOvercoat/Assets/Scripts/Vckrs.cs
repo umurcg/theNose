@@ -901,6 +901,29 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     {
         return new Vector3(vector.x, 0, vector.z);
     }
+
+    //Adds impact effect using character controller
+    public static IEnumerator<float> addImpactForceCC(GameObject subjectOfForce, Vector3 force, float mass=1)
+    {
+        
+        Debug.Log(force);
+        //Time.timeScale = 0;
+        Vector3 impact = force / mass;
+        CharacterController cc = subjectOfForce.GetComponent<CharacterController>();
+
+        while (impact.magnitude > 0)
+        {
+            cc.Move(impact * Time.deltaTime);
+            impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
+
+            yield return 0;
+        }
+
+        yield break;
+
+    }
+
+    
     
 
 }

@@ -95,7 +95,7 @@ public class SculpturerAI : GameController, IClickAction {
         Vector3 randomDirection = Random.insideUnitSphere * randomMovementRadius;
         randomDirection += transform.position;
         NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius, 1);
+        NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius,nma.areaMask);
         Vector3 finalPosition = hit.position;
         nma.SetDestination(finalPosition);
         timer = timeBetweenRandomMovements;
@@ -202,7 +202,7 @@ public class SculpturerAI : GameController, IClickAction {
     {
         Debug.Log("Shoot with alci");
         oneHeykelIsLeft = shoot;
-        GetComponent<CapsuleCollider>().radius = 2;
+        GetComponent<SphereCollider>().radius = 2;
     }
 
     public override void Action()

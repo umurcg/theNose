@@ -11,7 +11,7 @@ public class DeadManGameController : GameController {
     public override void Start()
     {
         base.Start();
-
+        CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight();
         Timing.RunCoroutine(dialogue());
     }
 
