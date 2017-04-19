@@ -36,6 +36,16 @@ public class CursorImageScript : MonoBehaviour
 
     Camera currentCamera;
 
+    //TODO right whole script again
+    //Use this dictionary for cursors havng most priority. 
+    Dictionary<string, Texture2D> tagCursorPair;
+
+
+    private void Awake()
+    {
+        tagCursorPair = new Dictionary<string, Texture2D>();
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -98,9 +108,7 @@ public class CursorImageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        //Debug.Log(player.name);
+                        
 
         //If external texture is not null then just put it no matter what
         if (externalTexture != null)
@@ -112,8 +120,6 @@ public class CursorImageScript : MonoBehaviour
 
 
         //First look at char subtitile. If it is empty then raycast.
-
-
         if (subt != null)
         {
 
@@ -125,7 +131,6 @@ public class CursorImageScript : MonoBehaviour
             }
 
         }
-        //else Debug.Log("Subtitle is null");
 
         if (forceToDefault)
         {
@@ -150,6 +155,17 @@ public class CursorImageScript : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayers))
         {
             //Debug.Log(hit.transform.gameObject.name + " " + hit.transform.tag + " " + hit.transform.gameObject.layer);
+
+            //Look for dictinary in here. Dictionary hs most priority.
+            foreach(KeyValuePair<string, Texture2D> pair in tagCursorPair)
+            {
+                if (hit.transform.tag == pair.Key)
+                {
+                    Cursor.SetCursor(pair.Value, Vector2.zero, CursorMode.Auto);
+                    return;
+                }
+            }
+
 
             //Even player can't move if object have this tag, it will change cursor to activeObject
             if (hit.transform.tag== "ActiveEvenCantWalk")
@@ -262,6 +278,16 @@ public class CursorImageScript : MonoBehaviour
         //Debug.Log("Reseting external cursor");
         //DestroyImmediate(externalTexture);
 
+    }
+
+    public void addTagCursorPair(string tag, Texture2D pair)
+    {
+        tagCursorPair.Add(tag, pair);
+    }
+
+    public void removeTagCursorPairWithTag(string tag)
+    {
+        tagCursorPair.Remove(tag);
     }
 
 }

@@ -16,6 +16,7 @@ public class RopeGameController : MonoBehaviour {
     public float scaleDeltaOI = 5f;
     public float minDistanceBetweenOI=10f;
     public GameObject sculpturerGameContr;
+    public Texture2D stickTexture;
 
     List<GameObject> ropes;
     List<GameObject> torus;
@@ -54,6 +55,20 @@ public class RopeGameController : MonoBehaviour {
         }
 
 	}
+
+
+    private void OnEnable()
+    {
+        if (stickTexture != null)
+            CharGameController.getOwner().GetComponent<CursorImageScript>().addTagCursorPair(I.tag, stickTexture);
+    }
+
+    private void OnDisable()
+    {
+
+        if (stickTexture != null)
+            CharGameController.getOwner().GetComponent<CursorImageScript>().removeTagCursorPairWithTag(I.tag);
+    }
 
     IEnumerator<float> createNodes()
     {

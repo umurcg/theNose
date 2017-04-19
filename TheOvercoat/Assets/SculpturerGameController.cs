@@ -28,6 +28,7 @@ public class SculpturerGameController : GameController {
 	public override void Awake () {
         base.Awake();
         heykels = new List<HeykelController>();
+        
        
 	}
 
@@ -39,8 +40,9 @@ public class SculpturerGameController : GameController {
         enableHeykels(false);
         base.Start();
 
-        Timing.RunCoroutine(innerSpeech());
-        
+        //Timing.RunCoroutine(innerSpeech());
+        startGame();
+
 
     }
 
@@ -53,10 +55,23 @@ public class SculpturerGameController : GameController {
 
     }
 
+
     public void startGame()
     {
-        unlockPlayer();
+        Timing.RunCoroutine(_startGame());
+    }
+
+    IEnumerator<float> _startGame()
+    {
+        
         playerAnim.SetBool("HandsAreTied", false);
+
+        //Subt
+        sc.callSubtitleWithIndex(1);
+        while (subtitle.text != "") yield return 0;
+
+        unlockPlayer();
+
         sculpturer.GetComponent<SculpturerAI>().enabled = true;
         enableHeykels(true);
         Transform canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
@@ -66,6 +81,8 @@ public class SculpturerGameController : GameController {
 
         health = healthOfPlayer;
         healthBar.fillAmount = health/healthOfPlayer;
+
+        yield break;
     }
 
     void oneHeykelIsLeft()
@@ -170,7 +187,7 @@ public class SculpturerGameController : GameController {
 
     IEnumerator<float> lost()
     {
-        sc.callSubtitleWithIndex(1);
+        sc.callSubtitleWithIndex(2);
         while (subtitle.text != "") yield return 0;
 
         Debug.Log("Lost");
@@ -206,7 +223,7 @@ public class SculpturerGameController : GameController {
         
 
         yield return 0;
-        sc.callSubtitleWithIndex(2);
+        sc.callSubtitleWithIndex(3);
 
         while (subtitle.text != "") yield return 0;
 

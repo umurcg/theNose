@@ -15,7 +15,9 @@ public class SculpturerAI : GameController, IClickAction {
     public float timeBetweenSubtitles = 10f;
     public float subtDuration=3f;
 
+    public GameObject kova;
 
+    Animator anim;
 
     float subtTimer;
     float timer;
@@ -30,6 +32,13 @@ public class SculpturerAI : GameController, IClickAction {
     public float timeBetweenShots = 5f;
     float shotTimer;
 
+
+    public override void Awake()
+    {
+        base.Awake();
+        anim = GetComponent<Animator>();
+    }
+
     // Use this for initialization
 
     SubtitleController sub;
@@ -41,6 +50,9 @@ public class SculpturerAI : GameController, IClickAction {
         sub= GetComponent<SubtitleController>();
         subtTimer = timeBetweenSubtitles;
         shotTimer = timeBetweenShots;
+
+        Timing.RunCoroutine(shootAlci());
+
 	}
 	
 	// Update is called once per frame
@@ -184,6 +196,21 @@ public class SculpturerAI : GameController, IClickAction {
         handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(gameObject, player, 1f));
         yield return Timing.WaitUntilDone(handlerHolder);
 
+        kova.SetActive(true);
+
+        anim.SetTrigger("Spill");
+
+
+        //while (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spill") || anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+        //{
+        //    Debug.Log(anim.GetCurrentAnimatorStateInfo(0).IsName("Spill"));
+        //    Debug.Log(anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        //    yield return 0;
+        //}
+        Timing.WaitForSeconds(1f);
+        
+        
+
         alci.transform.position = transform.position;
         alci.transform.rotation = transform.rotation;
 
@@ -192,8 +219,10 @@ public class SculpturerAI : GameController, IClickAction {
 
         while (ps.isPlaying) yield return 0;
 
+
         shooting = false;
         shotTimer = timeBetweenShots;
+        kova.SetActive(false);
 
         yield break;
     }
