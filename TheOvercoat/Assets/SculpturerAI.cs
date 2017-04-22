@@ -51,7 +51,7 @@ public class SculpturerAI : GameController, IClickAction {
         subtTimer = timeBetweenSubtitles;
         shotTimer = timeBetweenShots;
 
-        Timing.RunCoroutine(shootAlci());
+        //Timing.RunCoroutine(shootAlci());
 
 	}
 	

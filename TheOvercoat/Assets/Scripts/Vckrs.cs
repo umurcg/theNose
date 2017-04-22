@@ -506,6 +506,57 @@ public class Vckrs : MonoBehaviour
         yield break;
     }
 
+    public static void makeObjectTransparent(GameObject obj, bool fullFade = false)
+    {
+
+
+        Renderer rend = obj.GetComponent<Renderer>();
+        Color textureColor = rend.material.color;
+        float a = textureColor.a;
+
+        //It is for changing rendered mode at right time
+        bool willBeTransparent = true;
+        StandardShaderUtils.BlendMode mode = (fullFade) ? StandardShaderUtils.BlendMode.Fade : StandardShaderUtils.BlendMode.Transparent;
+
+        if (willBeTransparent)
+        {
+            StandardShaderUtils.ChangeRenderMode(rend.material, mode);
+        }
+
+
+        textureColor.a = 0;
+        rend.material.color = textureColor;
+
+        if (!willBeTransparent)
+        {
+            StandardShaderUtils.ChangeRenderMode(rend.material, StandardShaderUtils.BlendMode.Opaque);
+        }
+
+
+    }
+
+
+
+    public static void makeObjectOpaque(GameObject obj)
+    {
+
+
+        Renderer rend = obj.GetComponent<Renderer>();
+        Color textureColor = rend.material.color;
+        float a = textureColor.a;
+
+      
+  
+        textureColor.a = 1;
+        rend.material.color = textureColor;
+
+    
+            StandardShaderUtils.ChangeRenderMode(rend.material, StandardShaderUtils.BlendMode.Opaque);
+        
+
+
+    }
+
     public static void setAlpha<T>(GameObject obj, float a) where T : MaskableGraphic
     {
           a = Mathf.Clamp(a, 0, 1);

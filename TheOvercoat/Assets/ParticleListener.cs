@@ -8,7 +8,8 @@ public class ParticleListener : MonoBehaviour
     ParticleSystem ps;
     public GameObject sgcController;
     SculpturerGameController sgc;
-    public float particleForFreez = 20;
+    public int damage = 25;
+    public float particlforDamage = 5;
 
     // these lists are used to contain the particles which match
     // the trigger conditions each frame.
@@ -30,11 +31,11 @@ public class ParticleListener : MonoBehaviour
         int numOfParticlesInside = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, inside);
         //int numExit = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, exit);
 
-        Debug.Log("Number of particle inside " + numOfParticlesInside);
+        //Debug.Log("Number of particle inside " + numOfParticlesInside);
 
-        if (numOfParticlesInside>particleForFreez)
+        if (numOfParticlesInside> particlforDamage)
         {
-            sgc.freezeKovalev();
+            sgc.damageEnemy(damage);
         }
 
         // re-assign the modified particles back into the particle system

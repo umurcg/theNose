@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000010148841354}
+  m_IsPrefabParent: 1
+--- !u!1 &1000010148841354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011571869260}
+  - 33: {fileID: 33000014007282794}
+  - 23: {fileID: 23000011574517426}
+  - 95: {fileID: 95000012081761854}
+  - 114: {fileID: 114000010506559862}
+  - 114: {fileID: 114000010566052516}
+  - 114: {fileID: 114000014156176364}
+  - 114: {fileID: 114000010002360678}
+  m_Layer: 0
+  m_Name: BirdGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000011571869260
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010148841354}
+  m_LocalRotation: {x: -0.0075679687, y: 0.8289201, z: 0.5592033, w: -0.011218504}
+  m_LocalPosition: {x: 43.732185, y: -3.4769635, z: 15.657868}
+  m_LocalScale: {x: 30.29758, y: 30.2976, z: 30.297604}
+  m_LocalEulerAnglesHint: {x: -67.935005, y: 184.01599, z: -3.7230003}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!23 &23000011574517426
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010148841354}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &33000014007282794
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010148841354}
+  m_Mesh: {fileID: 4300002, guid: 780a4136c3195f84bb55aee13778ea02, type: 3}
+--- !u!95 &95000012081761854
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010148841354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 37bd11f65e2847b45bae0ab8a786c188, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010002360678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010148841354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24a96c0faf661044b42ae3e65364dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 0.3
+  numberOfEdges: 39
+--- !u!114 &114000010506559862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010148841354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd0cf2aae5e90849b251545140d8023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScale: 1
+  maxScale: 20
+  scaleSpeed: 20
+  axisName: Mouse ScrollWheel
+--- !u!114 &114000010566052516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010148841354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bb12f4e17721c40a911991c368e659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotateButton: 1
+  rotateSpeed: 250
+  invertXY: 0
+  rotateAround: {fileID: 0}
+--- !u!114 &114000014156176364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010148841354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e607a0dc2c97b214d88d82ad1e018137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verticesObject: {fileID: 0}
+  verticesTag: Vertex
+  scale: 1

@@ -14,6 +14,7 @@ public class SculpturerGameController : GameController {
     float sculpHealth;
     List<HeykelController> heykels;
     public GameObject healthBarPrefab;
+    public Material freezeMaterial;
     Image healthBar;
     Image healthBarSculp;
 
@@ -40,18 +41,25 @@ public class SculpturerGameController : GameController {
         enableHeykels(false);
         base.Start();
 
-        //Timing.RunCoroutine(innerSpeech());
-        startGame();
-
-
+        Timing.RunCoroutine(innerSpeech());
+        //startGame();
+       
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (healthBar != null && health <= 0) die();
+        if (healthBar != null && health <= 0)
+        {
+            die();
+            enabled = false;
+        }
 
-        if (healthBarSculp != null && sculpHealth <= 0) win();
+        if (healthBarSculp != null && sculpHealth <= 0)
+        {
+            win();
+            enabled = false;
+        }
 
     }
 
@@ -126,7 +134,7 @@ public class SculpturerGameController : GameController {
         //Timing.KillCoroutines(handlerHolder);
 
         ropeGame.GetComponent<RopeGameController>().enabled = true;
-
+        //Timing.RunCoroutine(lost());
         yield break;
     }
     
@@ -187,13 +195,36 @@ public class SculpturerGameController : GameController {
 
     IEnumerator<float> lost()
     {
+        pcc.StopToWalk();
+  
+
+
+        Renderer playerRenderer=null;
+        for(int i=0;i<player.transform.childCount;i++)
+            if(player.transform.GetChild(i).gameObject.activeSelf && player.transform.GetChild(i).GetComponent<Renderer>()) playerRenderer =player.transform.GetChild(i).GetComponent<Renderer>();
+
+        Material originalMat = playerRenderer.material;
+        playerRenderer.material = freezeMaterial;
+
+
+        player.GetComponent<BasicCharAnimations>().enabled = false;
+        playerAnim.speed = 0;
+
+        sculpturer.GetComponent<SculpturerAI>().enabled = false;
+        Timing.RunCoroutine(Vckrs._lookTo(sculpturer, player, 1f));
+
         sc.callSubtitleWithIndex(2);
         while (subtitle.text != "") yield return 0;
 
         Debug.Log("Lost");
         LoadScene ls=GetComponent<LoadScene>();
         ls.Scene = GlobalController.Scenes.Atolye;
-        ls.Load();
+        handlerHolder=Timing.RunCoroutine( ls._Load());
+
+        yield return Timing.WaitUntilDone(handlerHolder);
+        playerAnim.speed = 1;
+        player.GetComponent<BasicCharAnimations>().enabled = true;
+        playerRenderer.material = originalMat;
 
     }
 
@@ -203,15 +234,15 @@ public class SculpturerGameController : GameController {
         Timing.RunCoroutine(lost());
     }
 
-    public void freezeKovalev()
-    {
-        Debug.Log("Freeze");
-        pcc.StopToWalk();
-        //Alciyla kapla
-        Timing.RunCoroutine(lost());
+    //public void freezeKovalev()
+    //{
+    //    Debug.Log("Freeze");
+    //    pcc.StopToWalk();
+    //    //Alciyla kapla
+    //    Timing.RunCoroutine(lost());
 
 
-    }
+    //}
 
     public void outerSpeech()
     {
