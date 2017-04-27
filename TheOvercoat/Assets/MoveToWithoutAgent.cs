@@ -74,6 +74,7 @@ public class MoveToWithoutAgent : MonoBehaviour {
 
     public IEnumerator<float> _lookAndGo(Vector3 aim)
     {
+        //Debug.Log("Look and go");
         stop();
 
         float dist = Vector3.Distance(aim, transform.position);
@@ -86,6 +87,8 @@ public class MoveToWithoutAgent : MonoBehaviour {
         yield return Timing.WaitUntilDone(localHandler);
         handler = Timing.RunCoroutine(Vckrs._Tween(gameObject, aim, time));
         yield return Timing.WaitUntilDone(handler);
+
+        //Debug.Log("Finished look and go");
 
         yield break;
     }

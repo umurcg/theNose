@@ -3,20 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 
+//This script makes object fade in fade out when it is enabled and disabled repectivvely
 public class FadeEnableDisable : MonoBehaviour {
 
     public float fadeSpeed = 1f;
-    
-	// Use this for initialization
-	void Start () {
+    Renderer rend;
+    // Use this for initialization
+    void Start () {
+
+        //Debug.Log("Enabled");
+        Vckrs.makeObjectTransparent(gameObject, true);
         Enable();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
+
+    private void OnEnable()
+    {
+
+    }
+
+    private void OnDisable()
+    {
+        Disable();
+    }
 
     public void Disable()
     {
@@ -30,9 +44,9 @@ public class FadeEnableDisable : MonoBehaviour {
 
     public IEnumerator<float> _Disable()
     {
-        if (!gameObject.activeSelf) yield break;
+        
 
-        IEnumerator<float> handler = Vckrs._fadeObject(gameObject, fadeSpeed, true);
+        IEnumerator<float> handler = Timing.RunCoroutine(Vckrs._fadeObject(gameObject, fadeSpeed, true));
 
         yield return Timing.WaitUntilDone(handler);
 
@@ -45,9 +59,9 @@ public class FadeEnableDisable : MonoBehaviour {
 
     public IEnumerator<float> _Enable()
     {
-        if (gameObject.activeSelf) yield break;
+        
 
-        IEnumerator<float> handler = Vckrs._fadeObject(gameObject, fadeSpeed, true);
+        IEnumerator<float> handler =Timing.RunCoroutine(Vckrs._fadeObject(gameObject, fadeSpeed, true));
 
 
         yield return Timing.WaitUntilDone(handler);

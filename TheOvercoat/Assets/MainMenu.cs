@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEditor;
+
 using MovementEffects;
 
 public class MainMenu : MonoBehaviour {
@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour {
     public TextAsset sceneDescriptions;
     public TextAsset sceneCharacters;
 
-    static string momentsImageDirectory="Assets/Textures/MomentsImages/";
+    static string momentsImageDirectory="MomentsImages/";
 
     //CharacterController cc;
 
@@ -33,6 +33,8 @@ public class MainMenu : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //TextAsset asdasdasd = Resources.Load("Text") as TextAsset;
+        //if (asdasdasd) { Debug.Log("Found text"); } else { Debug.Log("No text"); }
 
         ////Disable main player character controller
         //cc= CharGameController.getActiveCharacter().GetComponent<CharacterController>();
@@ -56,8 +58,9 @@ public class MainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+
+    }
 
     public void startButton()
     {
@@ -304,7 +307,7 @@ public class MainMenu : MonoBehaviour {
 
         Image buttonImage = button.GetComponent<Image>();
         Text buttonText = button.GetComponentInChildren<Text>();
-        Sprite momentImage=(Sprite) AssetDatabase.LoadAssetAtPath(momentsImageDirectory + episodeID+".jpg", typeof(Sprite));
+        Sprite momentImage=(Sprite)Resources.Load(momentsImageDirectory + episodeID, typeof(Sprite));
         if (!momentImage) Debug.Log("Couldn't find momentImage");
                 
         buttonImage.sprite = momentImage;

@@ -966,6 +966,7 @@ GameObject:
   - 114: {fileID: 114000012349219652}
   - 114: {fileID: 114000013945706278}
   - 114: {fileID: 114000010639551300}
+  - 114: {fileID: 114000011688363034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1755,7 +1756,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.17, y: 1, z: -1.67}
+  m_LocalPosition: {x: 193.5, y: -0.89, z: 425.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2693,7 +2694,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 5
+  near clip plane: -40
   far clip plane: 1004.68
   field of view: 10
   orthographic: 1
@@ -3960,6 +3961,24 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &114000011688363034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013127924312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d8252d10dc8d4488569d552713736e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SeeThrougWallsMat: {fileID: 2100000, guid: fb218bdc2654a5d418cf39fdebf9dc7b, type: 2}
+  tags:
+  - Buildings
+  ignoreRaycast:
+    serializedVersion: 2
+    m_Bits: 0
+  player: {fileID: 0}
 --- !u!114 &114000011872457654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4044,6 +4063,7 @@ MonoBehaviour:
   assignPlayerAutomatically: 1
   damper: 4
   relativePosition: {x: 0, y: 0, z: 0}
+  defaultRelative: {x: -90, y: 75, z: 90}
 --- !u!114 &114000012589669922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4055,14 +4075,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f195f4c89763a449ba035e4c632c056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  languageSetting: 0
+  languageSetting: 1
   audioLevel: 1
   usedGameControllers: []
   sceneList: 
   maxSceneList: 
-  debugSceneList: 01000000
+  debugSceneList: 
   fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
-  setDebugListToLevelIndex: 1
+  setDebugListToLevelIndex: 6
 --- !u!114 &114000012654939820
 MonoBehaviour:
   m_ObjectHideFlags: 1

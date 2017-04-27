@@ -156,6 +156,7 @@ public class CursorImageScript : MonoBehaviour
         {
             //Debug.Log(hit.transform.gameObject.name + " " + hit.transform.tag + " " + hit.transform.gameObject.layer);
 
+            if(tagCursorPair!=null)
             //Look for dictinary in here. Dictionary hs most priority.
             foreach(KeyValuePair<string, Texture2D> pair in tagCursorPair)
             {

@@ -14,7 +14,7 @@ public class LetterController : MonoBehaviour {
     public int numberOfLines;
     public GameObject lineObject;
 
-    public float linePivotY,linePivotX;
+    public float linePivotYratio,linePivotXratio;
 
     public List<int> skipLines=new List<int>();
 
@@ -46,8 +46,8 @@ public class LetterController : MonoBehaviour {
             RectTransform srt = spawnedObj.GetComponent<RectTransform>();
             float height = srt.sizeDelta.y;
 
-            float x = linePivotX + rt.sizeDelta.x / 2;
-            float y = linePivotY + rt.sizeDelta.y - (i+numberOfSkip )* height;
+            float x = linePivotXratio*Screen.width + rt.sizeDelta.x / 2;
+            float y = linePivotYratio*Screen.height + rt.sizeDelta.y - (i+numberOfSkip )* height;
 
             //Debug.Log( x.ToString()+" "+ y.ToString());
 
@@ -76,6 +76,7 @@ public class LetterController : MonoBehaviour {
         }
 
         if ((FillType==fillType.KeyboardInput&& Input.anyKeyDown) || (FillType == fillType.Time)) {
+            Debug.Log("pressed");
             Image currentLine = lines[currentLineIndex];
             currentLine.fillAmount -= Time.deltaTime * fillSpeed;
 

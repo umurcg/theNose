@@ -45,7 +45,7 @@ public class HideUnhideButton : MonoBehaviour {
 
         public IEnumerator<float> _activate()
          {
-        Debug.Log("Activating");
+        //Debug.Log("Activating");
         //is active or not
         bool isActive = gameObject.activeSelf;
         if (isActive) yield break;

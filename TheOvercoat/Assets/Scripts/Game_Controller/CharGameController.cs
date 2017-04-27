@@ -207,6 +207,11 @@ public class CharGameController : MonoBehaviour {
 
           }
 
+        //If owner has see through walls scr'pt update 't
+        SeeBehindWall3 sbw = cgc.GetComponentInChildren<SeeBehindWall3>();
+        if (sbw) sbw.updateTarget();
+
+
         if (character == null) Debug.Log("Could't find character while trying to activate it " + characterName);
         return character;
                 
@@ -239,6 +244,10 @@ public class CharGameController : MonoBehaviour {
 
 
         }
+
+        //If owner has see through walls scr'pt update 't
+        SeeBehindWall3 sbw = cgc.GetComponentInChildren<SeeBehindWall3>();
+        if (sbw) sbw.updateTarget();
 
     }
 

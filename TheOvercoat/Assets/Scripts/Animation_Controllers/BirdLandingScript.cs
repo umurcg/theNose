@@ -181,5 +181,9 @@ public class BirdLandingScript : MonoBehaviour {
         mwa.enabled = !isLanded;
     }
 
+    public bool isBirdOnLand()
+    {
+        return isLanded;
+    }
 
 }

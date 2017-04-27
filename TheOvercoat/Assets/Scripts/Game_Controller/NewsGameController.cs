@@ -9,6 +9,7 @@ public class NewsGameController : GameController {
 
     int numberOfRegister;
     Conv convType;
+    public GameObject girtyObj;
 
 	// Use this for initialization
 	public override void Start () {
@@ -20,12 +21,13 @@ public class NewsGameController : GameController {
 
         //Check for girty
         GirtController gc= CharGameController.getOwner().GetComponentInChildren<GirtController>();
-        if (gc != null)
+        string girtyController = "Citygirty";
+        if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(girtyController))
         {
             setConversation(Conv.FoundGirt);
 
-            //Enable girty. By default charcontroller disables every character excepts main at awake
-            gc.gameObject.SetActive(true);
+            //Enable girty.
+            girtyObj.gameObject.SetActive(true);
             //Set girtys position
             gc.transform.position = player.transform.position - Vector3.right + Vector3.up;
 

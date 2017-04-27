@@ -105,6 +105,7 @@ public class ChurchTellerGameController : GameController {
 
         registerAsUsed();
 
+
         Destroy(gameObject);
 
         yield break;

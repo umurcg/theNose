@@ -10,7 +10,7 @@ public class girtyBeFriendsScript : MonoBehaviour {
 	void Start () {
         girty = new characterComponents(gameObject);
         player = CharGameController.getActiveCharacter();
-        transform.parent = CharGameController.getOwner().transform;
+        //transform.parent = CharGameController.getOwner().transform;
         GetComponent<RandomWalkAndAnimate>().enabled = false;
 
         girty.animator.SetBool("Bark", false);

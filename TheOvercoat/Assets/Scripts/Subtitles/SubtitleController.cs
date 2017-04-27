@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using UnityEngine.UI;
 using System.IO;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class SubtitleController : MonoBehaviour {
 
@@ -30,7 +29,7 @@ public class SubtitleController : MonoBehaviour {
     {
         //If text asset is not assigned then find it atuomatically using file name generator
         if (textAsset == null) assignTextAsset();
-
+        //subtitleTexts = AllSubtitles.Split('\n');
 
     }
 
@@ -40,10 +39,15 @@ public class SubtitleController : MonoBehaviour {
         //At start import texts from text asset
         if (textAsset != null) importFromTextFile();
 
+
+
         if (subtitle == null)
         {
 
             text = SubtitleFade.subtitles["CharacterSubtitle"];
+
+            
+
         }
         else
         {
@@ -229,7 +233,7 @@ public class SubtitleController : MonoBehaviour {
             if (allControllers[i] == this) scriptIndex = i;
         }
 
-        fileName = EditorSceneManager.GetActiveScene().name + "_" + gameObject.name + "_" + scriptIndex+".txt";
+        fileName = SceneManager.GetActiveScene().name + "_" + gameObject.name + "_" + scriptIndex/*+".txt"*/;
         //Debug.Log(fileName);
     }
 
@@ -239,7 +243,7 @@ public class SubtitleController : MonoBehaviour {
     //It exports subtitles as TR while all subtitles that is assigned to subtitleTexts by hand is turkish.
     public void exportToTextFile()
     {
-        string directory = Application.dataPath + "/" + folderName + "/" + fileName;
+        string directory = Application.dataPath + "/Resources/" + folderName + "/" + fileName;
         //string directory = "Assets/" + folderName + "/" + fileName;
         var writer = File.CreateText(directory);
         string[] allLines = subtitleTexts;
@@ -311,7 +315,12 @@ public class SubtitleController : MonoBehaviour {
 
         //Debug.Log("Assigning text file");
         createFileName();
-        textAsset = AssetDatabase.LoadAssetAtPath("Assets/" + folderName + "/" + fileName, typeof(TextAsset)) as TextAsset;
+
+
+
+        //textAsset = UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/" + folderName + "/" + fileName, typeof(TextAsset)) as TextAsset;
+        textAsset = Resources.Load(folderName + "/" + fileName, typeof(TextAsset)) as TextAsset;
+        
 
         //If text asset isn't found then export current text to file if it is not null 
         if (textAsset == null && subtitleTexts.Length > 0)
@@ -319,8 +328,15 @@ public class SubtitleController : MonoBehaviour {
             Debug.Log("Couldn't found text asset. So exporting current subtitleTets to text asset and assigning to again");
             exportToTextFile();
             //Try to assign again after creating it
-            textAsset = AssetDatabase.LoadAssetAtPath("Assets/" + folderName + "/" + fileName, typeof(TextAsset)) as TextAsset;
+            textAsset = Resources.Load(folderName + "/" + fileName, typeof(TextAsset)) as TextAsset;
+
+            if (!textAsset) Debug.Log("FUUUUUUUUUUUUUUUCK" +  folderName + " / " + fileName);
+
         }
+        else {
+            //Debug.Log("Foun text");
+        }
+
     }
 
 
@@ -328,7 +344,7 @@ public class SubtitleController : MonoBehaviour {
     int findLine(string line)
     {
         
-        StreamReader theReader = new StreamReader(Application.dataPath + "/" + folderName + "/" + fileName);
+        StreamReader theReader = new StreamReader(Application.dataPath + "/Resources/" + folderName + "/" + fileName+".txt");
 
         string wholeFile = theReader.ReadToEnd();
         string[] lines = wholeFile.Split('\n');
@@ -349,7 +365,7 @@ public class SubtitleController : MonoBehaviour {
     int findLine(int startIndex,string line)
     {
 
-        StreamReader theReader = new StreamReader(Application.dataPath + "/" + folderName + "/" + fileName);
+        StreamReader theReader = new StreamReader(Application.dataPath + "/Resources/" + folderName + "/" + fileName + ".txt");
 
         string wholeFile = theReader.ReadToEnd();
         string[] lines = wholeFile.Split('\n');

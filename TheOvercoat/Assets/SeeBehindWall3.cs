@@ -11,7 +11,7 @@ public class SeeBehindWall3 : MonoBehaviour {
     Camera cam;
     Material originalMat;
     Renderer rend;
-    GameObject player;
+    public GameObject player;
 
 
 	// Use this for initialization
@@ -36,27 +36,35 @@ public class SeeBehindWall3 : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        //Debug.Log(player.name);
+
         RaycastHit hit;
         Ray ray = new Ray(transform.position, player.transform.position-transform.position);
 
         if (Physics.Raycast(ray,out hit)) { 
         
-            Debug.Log(hit.transform.tag);
+            //Debug.Log(hit.transform.tag);
             if (System.Array.IndexOf(tags,hit.transform.tag)==-1 && canSeeThroughWalls)
             {
                 //Recover material
                 rend.material = originalMat;
                 canSeeThroughWalls = false;
-                Debug.Log("Original Mat");
+                //Debug.Log("Original Mat");
             }else if(System.Array.IndexOf(tags, hit.transform.tag) != -1 && !canSeeThroughWalls)
             {
                 //Assign material
                 rend.material = SeeThrougWallsMat;
                 canSeeThroughWalls = true;
-                Debug.Log("You can see");
+                //Debug.Log("You can see");
             }
         }
 
 	
 	}
+
+    public void updateTarget()
+    {
+        player = CharGameController.getActiveCharacter();
+
+    }
 }

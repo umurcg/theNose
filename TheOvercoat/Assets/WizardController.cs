@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class WizardController : GameController {
 
     public GameObject throne;
+    public GameObject birdGame;
     characterComponents pontiffCC;
 
     // Use this for initialization
@@ -68,13 +69,20 @@ public class WizardController : GameController {
         while (subtitle.text != "") yield return 0;
 
 
+        birdGame.SetActive(true);
 
-        Timing.RunCoroutine(loadCity());
+
+        //Timing.RunCoroutine(loadCity());
 
 
     }
 
-    IEnumerator<float> loadCity()
+    public void loadCity()
+    {
+        Timing.RunCoroutine(_loadCity());
+    }
+
+    IEnumerator<float> _loadCity()
     {
         yield return 0;
 

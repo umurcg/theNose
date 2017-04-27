@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using MovementEffects;
 
 public class BridGameController : MonoBehaviour {
-
-    public GameObject hintButton;
+        
     public GameObject uiText;
     public GameObject lowPolyBird;
     public GameObject highPolyBird;
+    public GameObject wizard;
     public float fadeSpeed = 0.3f;
 
     Text uiT;
@@ -27,11 +27,16 @@ public class BridGameController : MonoBehaviour {
         initialRot = transform.rotation;
         uiT = uiText.GetComponent<Text>();
         score();
+        uiText.transform.parent.gameObject.SetActive(true);
         
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    private void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (debug)
         {
             debug = false;
@@ -59,6 +64,8 @@ public class BridGameController : MonoBehaviour {
     
     IEnumerator<float> _win()
     {
+        fadeEveryChild();
+
         //Rotate to initial rotation
         float ratio=0;
         Quaternion lastRot = transform.rotation;
@@ -98,8 +105,20 @@ public class BridGameController : MonoBehaviour {
 
         yield return Timing.WaitForSeconds(1f);
 
-        
 
+        wizard.GetComponent<WizardController>().loadCity();
+
+    }
+
+    void fadeEveryChild()
+    {
+        
+        Renderer[] rends = GetComponentsInChildren<Renderer>();
+        Debug.Log("nUMBER of renderers " + rends.Length);
+        foreach (Renderer r in rends)
+        {
+            Timing.RunCoroutine(Vckrs._fadeObjectOut(r, 1f, true));
+        }
     }
 
 

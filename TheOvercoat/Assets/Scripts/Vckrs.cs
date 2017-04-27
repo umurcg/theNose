@@ -463,8 +463,6 @@ public class Vckrs : MonoBehaviour
 
     public static IEnumerator<float> _fadeObjectOut(GameObject obj, float speed, bool fullFade = false)
     {
-
-
         Renderer rend = obj.GetComponent<Renderer>();
         Color textureColor = rend.material.color;
         float a = textureColor.a;
@@ -505,6 +503,50 @@ public class Vckrs : MonoBehaviour
 
         yield break;
     }
+
+    public static IEnumerator<float> _fadeObjectOut(Renderer rend, float speed, bool fullFade = false)
+    {
+
+        Color textureColor = rend.material.color;
+        float a = textureColor.a;
+
+        //If object is already faded
+        if (a == 0) yield break;
+
+        //It is for changing rendered mode at right time
+        bool willBeTransparent = true;
+        StandardShaderUtils.BlendMode mode = (fullFade) ? StandardShaderUtils.BlendMode.Fade : StandardShaderUtils.BlendMode.Transparent;
+
+        if (willBeTransparent)
+        {
+            StandardShaderUtils.ChangeRenderMode(rend.material, mode);
+        }
+
+
+        if (a == 1)
+        {
+            while (a > 0)
+            {
+                a -= Time.deltaTime * speed;
+                textureColor.a = a;
+                rend.material.color = textureColor;
+                yield return 0;
+            }
+            textureColor.a = 0;
+            rend.material.color = textureColor;
+
+        }
+
+
+
+        if (!willBeTransparent)
+        {
+            StandardShaderUtils.ChangeRenderMode(rend.material, StandardShaderUtils.BlendMode.Opaque);
+        }
+
+        yield break;
+    }
+
 
     public static void makeObjectTransparent(GameObject obj, bool fullFade = false)
     {

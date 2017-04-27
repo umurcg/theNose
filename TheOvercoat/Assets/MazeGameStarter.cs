@@ -80,14 +80,23 @@ public class MazeGameStarter : GameController, IClickAction {
         CharacterMouseLook cml = player.GetComponent<CharacterMouseLook>();
         cml.enabled = false;
 
+
+
         //Wait for bird to go to start position
-        while (Vector3.Distance(player.transform.position, starterPos.transform.position) > 0.1f) yield return 0;
+        while (!player.GetComponent<BirdLandingScript>().isBirdOnLand())
+        {
+            //Debug.Log(Vector3.Distance(player.transform.position, starterPos.transform.position));
+            yield return 0;
+
+        }
 
         BirdLandingScript bls = player.GetComponent<BirdLandingScript>();
         bls.setAsLanded(true);
 
         handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(player, nosePefab, 1f));
         yield return Timing.WaitUntilDone(handlerHolder);
+
+        Debug.Log("Calling first subt");
 
         sc.callSubtitleWithIndex(0);
         while (subtitle.text != "") yield return 0;
@@ -159,8 +168,9 @@ public class MazeGameStarter : GameController, IClickAction {
         yield break;
     }
 
-    public void Action()
+    public override void Action()
     {
+        base.Action();
         Timing.RunCoroutine(_startMazeGame());
         //When start make remove tag so it can't be started again
         transform.tag = "Untagged";

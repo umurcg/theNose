@@ -12,7 +12,7 @@ public class GirtController : GameController {
     Animator animDog;
     NavMeshAgent girtyNma;
     bool girtyGame = false;
-    public GameObject streetAreas;
+    public GameObject road;
     public GameObject randomWalkSphere;
     
 	// Use this for initialization
@@ -71,7 +71,7 @@ public class GirtController : GameController {
         {
 
             //Find RandomPosition on mesh
-            GameObject streetArea = streetAreas.transform.GetChild(Random.Range(0, streetAreas.transform.childCount)).gameObject;
+            GameObject streetArea =/* road.transform.GetChild(Random.Range(0, road.transform.childCount)).gameObject;*/ road;
             Vector3 randomPositionInBox = Vckrs.generateRandomPositionInBox(streetArea);
 
             //Cast navmesh
@@ -115,6 +115,7 @@ public class GirtController : GameController {
         sc.callSubtitleWithIndex(1);
         GetComponent<girtyBeFriendsScript>().enabled = true;
         girtyPetGameCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        registerAsUsed();
         Destroy(GetComponent<SphereCollider>());
     }
 

@@ -154,6 +154,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
             yield return null;
         }
 
+        //Debug.Log("COllidingssssss");
 
         Timing.KillCoroutines(handler);
         stopToWalk();
@@ -195,6 +196,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
             agent.SetDestination(pos);
         }else
         {
+            Debug.Log("Setting dest");
             mtwagent.setDestination(pos);
         }
     }

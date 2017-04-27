@@ -41,12 +41,12 @@ public class CheatScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Application.isEditor)
-        {
+        //if (Application.isEditor)
+        //{
             if (Input.GetKey(KeyCode.T)) Timing.RunCoroutine(setScaleDuringPlay());
             if (Input.GetKey(KeyCode.C)) Timing.RunCoroutine(setSpeedDuringPlay());
             if (Input.GetKey(KeyCode.N)) loadNextLevel();
-        }
+        
     }
 
     void loadNextLevel()
