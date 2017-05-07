@@ -54,6 +54,7 @@ public class SeeBehindWall3 : MonoBehaviour {
             {
                 //Assign material
                 rend.material = SeeThrougWallsMat;
+                randomizeMaterialColor(SeeThrougWallsMat);
                 canSeeThroughWalls = true;
                 //Debug.Log("You can see");
             }
@@ -66,5 +67,13 @@ public class SeeBehindWall3 : MonoBehaviour {
     {
         player = CharGameController.getActiveCharacter();
 
+    }
+
+    void randomizeMaterialColor(Material mat)
+    {
+        Color random = Random.ColorHSV();
+        random.a = 1;
+
+        mat.SetColor("_OutlineColor", random);
     }
 }

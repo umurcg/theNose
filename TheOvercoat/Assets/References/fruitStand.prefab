@@ -591,7 +591,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013483013418}
-  m_LocalRotation: {x: -0.64078814, y: 0.26759613, z: -0.2798597, w: 0.66291887}
+  m_LocalRotation: {x: -0.6407882, y: 0.26759616, z: -0.27985972, w: 0.6629189}
   m_LocalPosition: {x: 0.5759475, y: 1.541737, z: 0.8005851}
   m_LocalScale: {x: 0.049946405, y: 0.04994639, z: 0.04994639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -658,7 +658,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010609869476}
-  m_LocalRotation: {x: -0.64078814, y: 0.26759613, z: -0.2798597, w: 0.66291887}
+  m_LocalRotation: {x: -0.6407882, y: 0.26759616, z: -0.27985972, w: 0.6629189}
   m_LocalPosition: {x: 0.89668965, y: 1.5012286, z: 0.6520405}
   m_LocalScale: {x: 0.049946405, y: 0.04994639, z: 0.04994639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -804,7 +804,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011795308446}
-  m_LocalRotation: {x: -0.64078814, y: 0.26759613, z: -0.2798597, w: 0.66291887}
+  m_LocalRotation: {x: -0.6407882, y: 0.26759616, z: -0.27985972, w: 0.6629189}
   m_LocalPosition: {x: 0.89668965, y: 1.5012286, z: 0.33713987}
   m_LocalScale: {x: 0.049946405, y: 0.04994639, z: 0.04994639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -844,7 +844,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012942468320}
-  m_LocalRotation: {x: -0.64078814, y: 0.26759613, z: -0.2798597, w: 0.66291887}
+  m_LocalRotation: {x: -0.6407882, y: 0.26759616, z: -0.27985972, w: 0.6629189}
   m_LocalPosition: {x: 0.5759475, y: 1.541737, z: 0.24060528}
   m_LocalScale: {x: 0.049946405, y: 0.04994639, z: 0.04994639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -970,7 +970,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014155744278}
-  m_LocalRotation: {x: -0.64078814, y: 0.26759613, z: -0.2798597, w: 0.66291887}
+  m_LocalRotation: {x: -0.6407882, y: 0.26759616, z: -0.27985972, w: 0.6629189}
   m_LocalPosition: {x: 0.9305403, y: 1.5773771, z: 0.93387735}
   m_LocalScale: {x: 0.049946405, y: 0.04994639, z: 0.04994639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1591,6 +1591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - 'Tezgahtar: Hey sen dur orada!'
   - "Tezgahtar: Sen ne koydun \xF6yle armutlar\u0131n aras\u0131na."
@@ -1608,7 +1609,6 @@ MonoBehaviour:
     burdan uzakla\u015F.\nIvan: Arkada\u015F ne k\u0131z\u0131yorsun hemen. Yerde
     buldum senin tezgah\u0131ndan d\xFC\u015Fm\xFC\u015Ft\xFCr diye geri koydum.\nIvan:
     Bu devirde iyilik de yaram\u0131yor kimseye."
-  subtitle: {fileID: 0}
   ifDesroyItself: 1
   releaseAfterSub: 0
 --- !u!114 &114000011075001180
@@ -1634,8 +1634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286c7de26d8198c479e3a5fdba1ce96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisabledAtStart: 0
+  uniqueId: 
   salesclerk: {fileID: 1000013206805792}
   noseCopy: {fileID: 1000011723644450}
+  specificLocation: {fileID: 0}
   moveAwayDistance: 3
 --- !u!135 &135000012881719908
 SphereCollider:

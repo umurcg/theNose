@@ -151,7 +151,9 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         {
             passenger.transform.parent = null;
         }
-        passenger.GetComponent<BasicCharAnimations>().enabled = true;
+
+        if (bca) bca.enabled = true;
+        //passenger.GetComponent<BasicCharAnimations>().enabled = true;
 
         //Update camera follower
         //CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();

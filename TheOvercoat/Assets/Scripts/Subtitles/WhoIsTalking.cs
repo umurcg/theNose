@@ -20,6 +20,11 @@ public class WhoIsTalking : MonoBehaviour
     Camera cameraComponent;
 
 
+    private void Awake()
+    {
+ 
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -44,6 +49,9 @@ public class WhoIsTalking : MonoBehaviour
                 }
             }
 
+
+
+
         //Add player character to dictionary
         GameObject player = CharGameController.getActiveCharacter();
         if (player)
@@ -51,6 +59,10 @@ public class WhoIsTalking : MonoBehaviour
             if(!characters.ContainsKey(player.name))
             characters.Add(player.name, player);
 
+
+        }else
+        {
+            Debug.Log("Player is null");
         }
 
         baloon = transform.GetChild(0).gameObject;
@@ -75,12 +87,11 @@ public class WhoIsTalking : MonoBehaviour
 
         if (text.text == "")
         {
-            baloon.SetActive(false);
 
-        }
-        else if (text.text == "???")
-        {
-            //TO DO ???
+         
+            if(baloon.activeSelf) baloon.SetActive(false);
+            mumbling(null);
+
         }
         else
         {
@@ -92,9 +103,13 @@ public class WhoIsTalking : MonoBehaviour
 
             if (characters.ContainsKey(key))
             {
-       
-                baloon.SetActive(true);
+
+                mumbling(characters[key]);
+
                 if (cameraComponent == null) return;
+
+                if (baloon.activeSelf == false) baloon.SetActive(true);
+
                 Vector2 ActualPosition = cameraComponent.WorldToScreenPoint(characters[key].transform.position);
                 Vector2 newPosition = new Vector2(ActualPosition.x + Screen.width / 32, ActualPosition.y + Screen.height / 16);
                 baloon.transform.position = newPosition;
@@ -102,7 +117,10 @@ public class WhoIsTalking : MonoBehaviour
             else
             {
 
-                baloon.SetActive(false);
+
+                if (baloon.activeSelf)  baloon.SetActive(false);
+                mumbling(null);
+
 
 
             }
@@ -117,6 +135,29 @@ public class WhoIsTalking : MonoBehaviour
             }
         }
 
+
+    }
+
+    GameObject lastMumbledPerson;
+
+    void mumbling(GameObject mumbleOwner)
+    {
+        if(mumbleOwner==null)
+        {
+            ConversationAudio.deactivateAudioConv();
+            lastMumbledPerson = null;
+            return;
+        }
+
+        if (lastMumbledPerson != null && lastMumbledPerson != mumbleOwner) ConversationAudio.deactivateAudioConv();        
+
+        //Activate mumble sound
+        ConversationAudio ca = mumbleOwner.GetComponent<ConversationAudio>();
+        if (ca)
+        {
+            ca.activateAudioConv();
+            lastMumbledPerson = ca.gameObject;
+        }
 
     }
 
@@ -137,5 +178,6 @@ public class WhoIsTalking : MonoBehaviour
     {
         cameraComponent = cam;
     }
+
 
 }

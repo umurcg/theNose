@@ -15,7 +15,8 @@ public class CityGameController : MonoBehaviour {
     public GameObject deadManGameController;
 
     public GameObject streetAreas;
-    
+
+    public AudioClip innerSpeechMusic;
 
 	// Awake function is for registering current scene. It sets scene according to storyline
 	void Awake () {
@@ -149,6 +150,7 @@ public class CityGameController : MonoBehaviour {
 
     void berberShopScene()
     {
+        
         Debug.Log("Berber shop");
         CharGameController.deactivateAllCharacters();
         CharGameController.deactivateCamera();

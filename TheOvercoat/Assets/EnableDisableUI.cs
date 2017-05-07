@@ -59,8 +59,8 @@ public class EnableDisableUI : MonoBehaviour {
     {
 
         //is active or not
-        bool isActive = gameObject.activeSelf;
-        if (!isActive) yield break;
+        //bool isActive = gameObject.activeSelf;
+        //if (!isActive) yield break;
 
         //Set each objects alpha to 1 just in case
         foreach (MaskableGraphic mg in mgs) Vckrs.setAlpha<MaskableGraphic>(mg.gameObject, 1);
@@ -82,12 +82,12 @@ public class EnableDisableUI : MonoBehaviour {
 
     public IEnumerator<float> _activate()
     {
-        Debug.Log("Activating");
+   
 
         //is active or not
-        bool isActive = gameObject.activeSelf;
-        if (isActive) yield break;
-
+        //bool isActive = gameObject.activeSelf;
+        //if (isActive) yield break;
+        Debug.Log("Activating");
         //Set each objects alpha to 1 just in case
         foreach (MaskableGraphic mg in mgs) Vckrs.setAlpha<MaskableGraphic>(mg.gameObject, 0);
 
@@ -96,11 +96,14 @@ public class EnableDisableUI : MonoBehaviour {
 
         IEnumerator<float> handler = null;
 
+        //UnityEditor.EditorApplication.isPaused = true;
+
         foreach (MaskableGraphic mg in mgs) handler = Timing.RunCoroutine(Vckrs._fadeInfadeOut<MaskableGraphic>(mg.gameObject, 1f));
 
         //Wait for last coroutine finishes its job which means wait for fading
         yield return Timing.WaitUntilDone(handler);
-
+      
+        gameObject.SetActive(true);
 
         yield break;
 

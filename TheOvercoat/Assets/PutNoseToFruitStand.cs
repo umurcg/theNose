@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 
-public class PutNoseToFruitStand : GameController, IClickAction, IClickActionDifferentPos
+public class PutNoseToFruitStand : GameController,  IClickActionDifferentPos
 {
 
     public GameObject salesclerk;

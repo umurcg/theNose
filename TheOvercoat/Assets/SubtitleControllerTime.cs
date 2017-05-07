@@ -8,33 +8,83 @@ public class SubtitleControllerTime : SubtitleController {
     public enum timeMode {automatic,manual };
     public timeMode TimeMode;
 
-   
+    
     public float timeInhibator=13;
     float[] automaticTimerArray;
 
     float timer = 0;
+    
+    AudioSource narratorAudioSource;
+    GlobalController.Language language;
+
+
+    //This is dictionary to clip list for each language
+    [System.Serializable]
+    public struct AudioClips
+    {
+        public GlobalController.Language language;
+        public AudioClip[] clips;
+    }
+
+
+    //Clips must have same length with subtitles.
+    public AudioClips[] clips;
+
+    //Get clip list according to language
+    AudioClips findAudioClipsWithLanguage(GlobalController.Language lan)
+    {
+        if (clips == null || clips.Length == 0) return new AudioClips();
+        foreach (AudioClips c in clips) if (c.language == lan) return c;
+        return new AudioClips();
+    }
+
 
     // Use this for initialization
-    new void Start () {
+    public override void Start () {
+         
         if (textAsset != null) importFromTextFile();
 
-        if (subtitle == null) subtitle = SubtitleFade.subtitles["NarratorSubtitle"].gameObject;
+        text = SubtitleFade.subtitles["NarratorSubtitle"];
 
+        //If couldnt find subtitle with SubtitleFade get it with tag
+        if (text == null)
+        {
+            text = getNarSubt();
+            Debug.Log("Getting narrator subtitle with tag");
+        }
 
-        text = subtitle.GetComponent<Text>();
         if (text == null)
         {
            
             print("PUT THE SUBTITLE YOU FAGGOT");
         }
         index = -1;
+
+
+        //Get language 
+        language= GlobalController.Instance.languageSetting;
+
+        narratorAudioSource = CharGameController.getOwner().GetComponents<AudioSource>()[2];
+
+
+        //If number of clips doesnt match subtitle length destroy clips
+        int lengthOfSubtitles = subtitleTexts.Length;
+        AudioClips currentLanguageClips = findAudioClipsWithLanguage(language);
+        if (currentLanguageClips.clips == null || currentLanguageClips.clips.Length == 0 || currentLanguageClips.clips.Length != lengthOfSubtitles)
+        {
+                //Debug.Log("Audio clip length and subtitle length are not mathc each other. So canceling audio clips");
+                clips = null;
+        }
+        
+       
         this.enabled = false;
         
+
         
     }
-	
-	// Update is called once per frame
-	new void Update () {
+
+    // Update is called once per frame
+    protected override void Update () {
         //print(timer);
 
         if (timer > 0)
@@ -48,12 +98,18 @@ public class SubtitleControllerTime : SubtitleController {
                 
                 index++;
                 text.text = subtitleTexts[index];
+                setNarratorAudio(index);
                 assignTimer();
+
+                
 
             }else if(timer<=0)
             {
                 timer = 0;
                 text.text = "";
+
+                clearNarratorAudio();
+
                 ISubtitleFinishFunction sff = GetComponent<ISubtitleFinishFunction>();
                 if (sff != null)
                 {
@@ -103,6 +159,7 @@ public class SubtitleControllerTime : SubtitleController {
 
         index = 0;
         text.text = subtitleTexts[index];
+        setNarratorAudio(index);
         assignTimer();
 
     }
@@ -140,4 +197,19 @@ public class SubtitleControllerTime : SubtitleController {
 
        
     }
+
+    void setNarratorAudio(int index)
+    {
+        if (clips==null || clips.Length!=0 ) return;
+        Debug.Log(clips.Length);
+        if (!narratorAudioSource) Debug.Log("No audio source");
+        narratorAudioSource.clip = findAudioClipsWithLanguage(language).clips[index];
+        narratorAudioSource.Play();
+    }
+
+    void clearNarratorAudio()
+    {
+        narratorAudioSource.clip = null;
+    }
+
 }

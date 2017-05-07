@@ -44,7 +44,7 @@ public class MainMenu : MonoBehaviour {
         if (/*!GlobalController.Instance.LoadData() */true) //For now it is always disabled.
         {
 
-            Debug.Log("Loaaaaaaaaaaaading");
+            //Debug.Log("Loaaaaaaaaaaaading");
 
             //TODO Load data here
             //If loaded scene list is empty then there shouldn't be any moment, so disable the continue and moments button
@@ -71,12 +71,14 @@ public class MainMenu : MonoBehaviour {
     public void settings()
     {
         hideUnhideMainButtons(true);
-        HideUnhideButton[] hubs = subsettingsMenu.GetComponentsInChildren< HideUnhideButton >();
-        //Debug.Log(hubs.Length);
-        foreach(HideUnhideButton hub in hubs)
-        {
-            hub.activate();
-        }
+        subsettingsMenu.GetComponent<EnableDisableUI>().activate();
+
+        //HideUnhideButton[] hubs = subsettingsMenu.GetComponentsInChildren< HideUnhideButton >();
+        ////Debug.Log(hubs.Length);
+        //foreach(HideUnhideButton hub in hubs)
+        //{
+        //    hub.activate();
+        //}
 
     }
 
@@ -116,14 +118,15 @@ public class MainMenu : MonoBehaviour {
 
             var newButton = Instantiate(DynamicButton/*, momentsSubMenu.transform*/) as GameObject;
             newButton.transform.SetParent(momentsSubMenu.transform);
+            
 
             newButton.SetActive(false);
 
-            if (newButton.GetComponent<RectTransform>().childCount == 0)
-            {
-                Debug.Log("Button doesn't have text");
-                return;
-            }
+            //if (newButton.GetComponent<RectTransform>().childCount == 0)
+            //{
+            //    Debug.Log("Button doesn't have text");
+            //    return;
+            //}
 
             //Set image of button and text
             fillDynamicButton(newButton,i);
@@ -300,22 +303,23 @@ public class MainMenu : MonoBehaviour {
     }
 
     //Fills dynamic button with image and changes its text to scene name
+    //I canceled scene image
     //Also assigns listener for button
     void fillDynamicButton(GameObject button, int episodeID)
     {
         string[] descriptionLines = sceneDescriptions.text.Split('\n');
 
-        Image buttonImage = button.GetComponent<Image>();
+        //Image buttonImage = button.GetComponent<Image>();
         Text buttonText = button.GetComponentInChildren<Text>();
-        Sprite momentImage=(Sprite)Resources.Load(momentsImageDirectory + episodeID, typeof(Sprite));
-        if (!momentImage) Debug.Log("Couldn't find momentImage");
+        //Sprite momentImage=(Sprite)Resources.Load(momentsImageDirectory + episodeID, typeof(Sprite));
+        //if (!momentImage) Debug.Log("Couldn't find momentImage");
                 
-        buttonImage.sprite = momentImage;
+        //buttonImage.sprite = momentImage;
         buttonText.text = descriptionLines[episodeID];
 
   
         button.GetComponent<Button>().onClick.AddListener(delegate () { loadScene((GlobalController.Scenes)GlobalController.Instance.sceneList[episodeID],episodeID); });
-
+        button.GetComponent<HideUnhideButton>().activate();
     }
 
     

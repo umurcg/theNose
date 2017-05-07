@@ -110,8 +110,8 @@ public int setDebugListToLevelIndex;
 
         if (debugSceneList.Length!=0 && sceneList.Count==0)
         {
-            if (Application.isEditor)
-            {
+            //if (Application.isEditor)
+            //{
                 foreach (Scenes sce in debugSceneList)
                 {
 
@@ -119,7 +119,7 @@ public int setDebugListToLevelIndex;
                     maxSceneList.Add((int)sce);
                 }
                 debugSceneList = new Scenes[0];
-            }
+            //}
         }
 
         usedGameControllers = new List<string>();
@@ -467,7 +467,7 @@ public int setDebugListToLevelIndex;
         int lengthOfGC = gc.Length;
         foreach (string ugc in usedGameControllers)
         {
-            if (gc == ugc.Substring(0, lengthOfGC)) return true;
+            if (gc.Length>=ugc.Length  && gc == ugc.Substring(0, lengthOfGC)) return true;
         }
 
         return false;

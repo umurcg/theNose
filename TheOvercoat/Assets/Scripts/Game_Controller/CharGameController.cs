@@ -17,9 +17,6 @@ public class CharGameController : MonoBehaviour {
     public enum hand { LeftHand,RightHand};
 
     //Camera type
-
- 
-
     public enum cameraType
     {
         Ortographic = 0,
@@ -178,7 +175,7 @@ public class CharGameController : MonoBehaviour {
                 return child.gameObject;
             }
         }
-
+        Debug.Log("Retturning null");
         return null;
 
      }
@@ -480,6 +477,5 @@ public class CharGameController : MonoBehaviour {
         return cgc.camType;
     }
 
-    
 
 }

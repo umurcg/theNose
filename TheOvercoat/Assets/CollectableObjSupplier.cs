@@ -72,13 +72,13 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
                 //Debug.Log("You can't uncollect");
 
                 //Set cursor
-                if (cis) cis.externalTexture = outsideOfRadius;
+                if (cis) cis.setExternalTexture(outsideOfRadius);
                 
             }else
             {
                 //Debug.Log("You can collect");
 
-                if (cis) cis.externalTexture = insideOfRadius;
+                if (cis) cis.setExternalTexture(insideOfRadius);
 
                 if (Input.GetButtonUp("Uncollect"))
                 {
@@ -165,7 +165,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
         collectedObjs.Remove(objectToSpawn);
 
         //Check for cursor
-        if (collectedObjs.Count == 0 && cis) cis.externalTexture = null;
+        if (collectedObjs.Count == 0 && cis) cis.resetExternalCursor();
 
         refreshMessage();
     }
@@ -173,7 +173,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
     public void clearInventory()
     {
         collectedObjs.Clear();
-        if(cis) cis.externalTexture = null;
+        if(cis) cis.resetExternalCursor();
 
         refreshMessage();
     }

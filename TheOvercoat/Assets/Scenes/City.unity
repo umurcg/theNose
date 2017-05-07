@@ -796,6 +796,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc7b98a345a6c2d4e974bdf69163699a, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc7b98a345a6c2d4e974bdf69163699a, type: 3}
   m_IsPrefabParent: 0
@@ -848,6 +852,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &20462098
 Animator:
   serializedVersion: 3
@@ -978,6 +983,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &28670898
 Animator:
   serializedVersion: 3
@@ -1157,6 +1163,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8a6d6a8a187652f49af33b25827b6325, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a6d6a8a187652f49af33b25827b6325, type: 3}
   m_IsPrefabParent: 0
@@ -1323,6 +1333,10 @@ Prefab:
     - target: {fileID: 400000, guid: bb0655677a93ca14cb2d97c1631d0afa, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.8935852
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb0655677a93ca14cb2d97c1631d0afa, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0655677a93ca14cb2d97c1631d0afa, type: 3}
@@ -1584,6 +1598,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &42547894
 Animator:
   serializedVersion: 3
@@ -1968,6 +1983,10 @@ Prefab:
     - target: {fileID: 100000, guid: b489c89c7d67c2143862a0b0c429d9eb, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b489c89c7d67c2143862a0b0c429d9eb, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b489c89c7d67c2143862a0b0c429d9eb, type: 3}
@@ -2519,6 +2538,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 80e8fdc4f5ca3f7449bbfc9b01a7304d, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80e8fdc4f5ca3f7449bbfc9b01a7304d, type: 3}
   m_IsPrefabParent: 0
@@ -2684,6 +2707,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &73428117
 Animator:
   serializedVersion: 3
@@ -2861,6 +2885,10 @@ Prefab:
     - target: {fileID: 400000, guid: b831e4cd254a2ba4d9011e402fe83796, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.3438785
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b831e4cd254a2ba4d9011e402fe83796, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b831e4cd254a2ba4d9011e402fe83796, type: 3}
@@ -3280,7 +3308,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1853026460}
     m_Modifications:
     - target: {fileID: 400000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3288,7 +3316,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3312,7 +3340,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3320,11 +3348,11 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
     - target: {fileID: 400000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4931872
+      value: 1.4931874
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4931873
+      value: 1.4931877
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
       propertyPath: m_LocalScale.z
@@ -3337,6 +3365,10 @@ Prefab:
     - target: {fileID: 400000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 38.398003
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
@@ -3379,7 +3411,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1853026460}
     m_Modifications:
     - target: {fileID: 400000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3387,7 +3419,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3411,7 +3443,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 98
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3423,7 +3455,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4886916
+      value: 1.488693
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
       propertyPath: m_LocalScale.y
@@ -3437,6 +3469,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+    - target: {fileID: 100000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
   m_IsPrefabParent: 0
@@ -3951,6 +3987,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 85da466cc3b8199438eddc34b2de9760, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85da466cc3b8199438eddc34b2de9760, type: 3}
   m_IsPrefabParent: 0
@@ -4046,7 +4086,7 @@ Transform:
   - {fileID: 1360149231}
   - {fileID: 715175764}
   m_Father: {fileID: 2065898199}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!114 &108067269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4150,6 +4190,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1612171985}
   m_RootOrder: 0
+--- !u!4 &111508659 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
+  m_PrefabInternal: {fileID: 2077394061}
 --- !u!1001 &112547057
 Prefab:
   m_ObjectHideFlags: 0
@@ -4574,6 +4618,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &130364592
 Animator:
   serializedVersion: 3
@@ -4977,7 +5022,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1853026460}
     m_Modifications:
     - target: {fileID: 400000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4985,7 +5030,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5009,7 +5054,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 94
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5029,11 +5074,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2748159
+      value: 1.2748164
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2748159
+      value: 1.2748164
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
@@ -6503,6 +6552,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f037bd79e86534a4a9c4f2c739534b90, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f037bd79e86534a4a9c4f2c739534b90, type: 3}
   m_IsPrefabParent: 0
@@ -6895,6 +6948,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &174378112
 Animator:
   serializedVersion: 3
@@ -7099,6 +7153,86 @@ Transform:
   - {fileID: 1048082548}
   m_Father: {fileID: 776007246}
   m_RootOrder: 1
+--- !u!1 &179690410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 179690415}
+  - 20: {fileID: 179690414}
+  - 124: {fileID: 179690413}
+  - 92: {fileID: 179690412}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!92 &179690412
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 179690410}
+  m_Enabled: 1
+--- !u!124 &179690413
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 179690410}
+  m_Enabled: 1
+--- !u!20 &179690414
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 179690410}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 1
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
+--- !u!4 &179690415
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 179690410}
+  m_LocalRotation: {x: 0.07584892, y: 0, z: 0, w: 0.99711937}
+  m_LocalPosition: {x: 51.9, y: 2.3, z: -53.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 8.7, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1630089466}
+  m_Father: {fileID: 0}
+  m_RootOrder: 32
 --- !u!1 &179862950
 GameObject:
   m_ObjectHideFlags: 0
@@ -7398,6 +7532,10 @@ Prefab:
     - target: {fileID: 100000, guid: 549f92819e573264086c3cdab63508c5, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 549f92819e573264086c3cdab63508c5, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 549f92819e573264086c3cdab63508c5, type: 3}
@@ -8037,12 +8175,12 @@ MonoBehaviour:
   AllSubtitles: "\u0130\u015Fte az da olsa sayg\u0131de\u011Fer Ivan Yakovlevi\xE7'i
     tan\u0131m\u0131\u015F oldunuz. \n\u015Eimdi garip ve olas\u0131 d\u0131\u015F\u0131
     hikayemize ba\u015Fl\u0131yabiliriz.\nKim bilir belki de ba\u015Flam\u0131\u015F\u0131zd\u0131r..."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &197953948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8062,7 +8200,6 @@ MonoBehaviour:
     en iyisini yapt\u0131m.\nKovalev: Bir de \u015Fu utanmazl\u0131\u011F\u0131n var.\nKovalev:
     Sen hi\xE7 adam olmayacks\u0131n Ivan Yakovlevi\xE7. Al \u015Fu paray\u0131, hemen
     gitmem laz\u0131m."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &197953949
@@ -8082,7 +8219,6 @@ MonoBehaviour:
   AllSubtitles: "Kovalev: \xD6ff gene y\xFCz\xFCm \xE7izik i\xE7inde kalm\u0131\u015F.\nKovalev:
     Neden sana geliyorum ki hala?\nKovalev: \u0130ki yan sokakta berber Ivan Gon\xE7arov
     daha hayat\u0131nda kan g\xF6stermemi\u015F m\xFC\u015Fterilerine."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &197953950
@@ -8102,7 +8238,6 @@ MonoBehaviour:
   AllSubtitles: "Ivan: Heh burdaym\u0131\u015F. Nas\u0131l girdin sen buraya namussuz?\r\nIvan:
     Neyse hemen bal\u015Fl\u0131yorum Bay Kovalev.Hi\xE7 merak etmeyin iki dakikada
     halletmi\u015F olaca\u011F\u0131m."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &197953951
@@ -8120,7 +8255,6 @@ MonoBehaviour:
   textAsset: {fileID: 0}
   subtitleTexts: []
   AllSubtitles: "Ivan: Buralarda bir yerde olmas\u0131 laz\u0131m."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &197953952
@@ -8142,7 +8276,6 @@ MonoBehaviour:
     \xFCyesinin kar\u0131s\u0131 ve bana s\u0131r\u0131ls\u0131klam a\u015F\u0131kt\u0131r.\nKovalev:
     Yine de bir rus beyfendisi olarak soka\u011Fa t\u0131ra\u015Fs\u0131z \xE7\u0131kmak
     yak\u0131\u015F\u0131 kalmaz.\r\nKovalev: Hadi ba\u015Fla art\u0131k!"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &197953953
@@ -8161,7 +8294,6 @@ MonoBehaviour:
   subtitleTexts: []
   AllSubtitles: "Ivan: Allah allah. Nereye kayboldu bu lanet b\u0131\xE7ak.\r\nIvan:
     Demin \u015Furaya koymu\u015Ftum."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &197953954
@@ -8180,12 +8312,12 @@ MonoBehaviour:
   subtitleTexts: []
   AllSubtitles: "Heralde anlam\u0131\u015Fs\u0131n\u0131zd\u0131r ne yapaca\u011F\u0131n\u0131z\u0131.\nAncak
     l\xFCtfen dikkat edin. Bay Kovalev'in y\xFCz\xFCnde yara b\u0131rakmak istemeyiz.\n"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &197953955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8203,12 +8335,12 @@ MonoBehaviour:
   AllSubtitles: "Burada b\xF6lmek istiyorum.\nOrada rahat koltu\u011Funuzda oturarak
     zavall\u0131 Ivan\u0131n neler \xE7ekti\u011Fi hakk\u0131nda en ufak fikriniz
     olmamas\u0131 \xE7ok yanl\u0131\u015F!\n\u015Eimd sizi biraz empati yapmaya zorl\u0131yaca\u011F\u0131m."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &197953956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8255,12 +8387,12 @@ MonoBehaviour:
     edece\u011Finizin aksine...\nBir saniye\nAnlat\u0131\u015F bi\xE7imim \xE7ok k\xF6t\xFC.
     B\xF6yle bir hikaye bu kadar k\xF6t\xFC bir ba\u015Flang\u0131c\u0131 hak etmiyor.
     \nEn iyisi size b\u0131rak\u0131y\u0131m. Kendiniz g\xF6r\xFCn."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &197953958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8328,9 +8460,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4339c19df221e54f82d5be009e52747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.01
+  threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!195 &197953962
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8398,9 +8531,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4339c19df221e54f82d5be009e52747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.01
+  threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!195 &197953966
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8998,6 +9132,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 35290d59e856d604888f896bba78bac0, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35290d59e856d604888f896bba78bac0, type: 3}
   m_IsPrefabParent: 0
@@ -9349,6 +9487,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &221036272
 Animator:
   serializedVersion: 3
@@ -9946,7 +10085,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010168090892, guid: 7058b84692a013b4d9bb558f0934fe28, type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7058b84692a013b4d9bb558f0934fe28, type: 2}
@@ -9986,7 +10125,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1853026460}
     m_Modifications:
     - target: {fileID: 400000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9994,7 +10133,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.97
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10018,7 +10157,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 92
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10038,11 +10177,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.0804236
+      value: 2.0804238
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.0804236
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
@@ -10164,6 +10307,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &235874609
 Animator:
   serializedVersion: 3
@@ -10762,6 +10906,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &247526789
 Animator:
   serializedVersion: 3
@@ -10902,6 +11047,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &250648939
 Animator:
   serializedVersion: 3
@@ -10969,6 +11115,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &253938695
 Animator:
   serializedVersion: 3
@@ -11131,7 +11278,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 75ff697703de53a4b84b9a563caff3aa, type: 3}
       propertyPath: m_RootOrder
-      value: 33
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 75ff697703de53a4b84b9a563caff3aa, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11252,6 +11399,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &260257998
 Animator:
   serializedVersion: 3
@@ -11363,6 +11511,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 261130172}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &261837052 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012032019048, guid: fed93d56c6857df4c94beb57c5f659fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073393543}
+--- !u!114 &261837058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 261837052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a51012a8d30954cb66cfe6cf8fccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorImage: {fileID: 2800000, guid: 6a962c7711e97f54fbc2118236fc3b32, type: 3}
 --- !u!1 &262311137
 GameObject:
   m_ObjectHideFlags: 0
@@ -11766,6 +11931,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6143538479fc70c4faa38e0e4a798326, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6143538479fc70c4faa38e0e4a798326, type: 3}
   m_IsPrefabParent: 0
@@ -12098,6 +12267,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &270106494
 Animator:
   serializedVersion: 3
@@ -12179,7 +12349,7 @@ Transform:
   - {fileID: 2132600668}
   - {fileID: 1688757304}
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 18
 --- !u!1 &271330093
 GameObject:
   m_ObjectHideFlags: 0
@@ -12260,6 +12430,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &271331952
 Animator:
   serializedVersion: 3
@@ -12939,6 +13110,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &285689684
 Animator:
   serializedVersion: 3
@@ -13147,6 +13319,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0a688dd34e9bbd540b3139ea6e0df6c4, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a688dd34e9bbd540b3139ea6e0df6c4, type: 3}
   m_IsPrefabParent: 0
@@ -13175,7 +13351,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 638742698}
     m_Modifications:
     - target: {fileID: 400000, guid: f9a4efae07360254aab6e03b3386bf55, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13207,7 +13383,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f9a4efae07360254aab6e03b3386bf55, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f9a4efae07360254aab6e03b3386bf55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13219,11 +13395,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f9a4efae07360254aab6e03b3386bf55, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.73605764
+      value: 0.7360575
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f9a4efae07360254aab6e03b3386bf55, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.73605746
+      value: 0.7360574
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f9a4efae07360254aab6e03b3386bf55, type: 3}
       propertyPath: m_LocalScale.z
@@ -14357,6 +14533,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!195 &313262736
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14917,6 +15094,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!1 &323749765
 GameObject:
   m_ObjectHideFlags: 0
@@ -15635,6 +15813,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6143538479fc70c4faa38e0e4a798326, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6143538479fc70c4faa38e0e4a798326, type: 3}
   m_IsPrefabParent: 0
@@ -15782,6 +15964,10 @@ Prefab:
     - target: {fileID: 100000, guid: c892588a589b12645bb421f33e7efa7e, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c892588a589b12645bb421f33e7efa7e, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c892588a589b12645bb421f33e7efa7e, type: 3}
@@ -16527,6 +16713,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1368157735}
   m_RootOrder: 0
+--- !u!4 &363688047 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 40e0e849863cfbb408ae61e6fcbea1d3, type: 3}
+  m_PrefabInternal: {fileID: 91825032}
 --- !u!1 &365000059
 GameObject:
   m_ObjectHideFlags: 0
@@ -16628,6 +16818,10 @@ Prefab:
     - target: {fileID: 400000, guid: 459371cb3cdde744d955befe6d75b3e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.765181
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 459371cb3cdde744d955befe6d75b3e0, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 459371cb3cdde744d955befe6d75b3e0, type: 3}
@@ -16809,6 +17003,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &372408409
 Animator:
   serializedVersion: 3
@@ -17517,7 +17712,7 @@ Animator:
 Camera:
   m_PrefabParentObject: {fileID: 20000014287620988, guid: dd651778041846143b79e2a904c465fc,
     type: 2}
-  m_PrefabInternal: {fileID: 1272441851}
+  m_PrefabInternal: {fileID: 1142606626}
 --- !u!1 &386925780
 GameObject:
   m_ObjectHideFlags: 0
@@ -17781,6 +17976,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 926ce9544a739f140a7a2e2ae9d5b476, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 926ce9544a739f140a7a2e2ae9d5b476, type: 3}
   m_IsPrefabParent: 0
@@ -17870,6 +18069,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ac6c43905303acb4e9cf26082421a915, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac6c43905303acb4e9cf26082421a915, type: 3}
   m_IsPrefabParent: 0
@@ -17926,6 +18129,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &398852398
 Animator:
   serializedVersion: 3
@@ -18390,6 +18594,10 @@ Prefab:
     - target: {fileID: 100000, guid: f5e84d820902d634fa2f374f44e1d3ad, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f5e84d820902d634fa2f374f44e1d3ad, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5e84d820902d634fa2f374f44e1d3ad, type: 3}
@@ -19063,6 +19271,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8024eb5a48ecf164e9b6ef6927ea6f11, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8024eb5a48ecf164e9b6ef6927ea6f11, type: 3}
   m_IsPrefabParent: 0
@@ -19254,6 +19466,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &421460482
 Animator:
   serializedVersion: 3
@@ -20124,7 +20337,6 @@ MonoBehaviour:
     street: Baksana kad\u0131n\u0131n teki \xE7\u0131km\u0131\u015F sandalyeleri dans
     ettiriyor.\r\n-Man in the street: \xC7ok garip bi zamanda ya\u015F\u0131yoruz.
     Bakal\u0131m ba\u015Fka neler g\xF6rece\u011Fiz.\r\n"
-  subtitle: {fileID: 0}
   ifDesroyItself: 1
   releaseAfterSub: 1
 --- !u!114 &438612413
@@ -20209,6 +20421,10 @@ Prefab:
     - target: {fileID: 100000, guid: dc7b98a345a6c2d4e974bdf69163699a, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc7b98a345a6c2d4e974bdf69163699a, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc7b98a345a6c2d4e974bdf69163699a, type: 3}
@@ -20326,6 +20542,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &442278210
 Animator:
   serializedVersion: 3
@@ -20685,6 +20902,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &448578810
 Animator:
   serializedVersion: 3
@@ -20923,6 +21141,10 @@ Prefab:
     - target: {fileID: 100000, guid: d456878c135cbec46ba7d090a68b247a, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d456878c135cbec46ba7d090a68b247a, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d456878c135cbec46ba7d090a68b247a, type: 3}
@@ -21475,6 +21697,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &468295853
 Animator:
   serializedVersion: 3
@@ -21621,7 +21844,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1853026460}
     m_Modifications:
     - target: {fileID: 400000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21629,7 +21852,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1
+      value: 1.1000001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21653,7 +21876,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 91
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
       propertyPath: m_LocalScale.x
@@ -21661,11 +21884,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3432457
+      value: 1.3432462
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3432457
+      value: 1.3432462
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21679,6 +21902,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+    - target: {fileID: 100000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
   m_IsPrefabParent: 0
@@ -21896,12 +22123,12 @@ MonoBehaviour:
     bir varl\u0131k olan St Petersburg \u015Fehri sokaklar\u0131yla ona burundan kurtulmak
     i\xE7in milyonlarca se\xE7enek sunuyordu. \r\nTek yapmas\u0131 gereken aynas\u0131zlardan
     birine yakalanmadan, burundan ona bir daha geri d\xF6nmeyecek \u015Fekilde  kurtulmakt\u0131. "
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &483355906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22026,6 +22253,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &486611365
 Animator:
   serializedVersion: 3
@@ -22114,7 +22342,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011617717024, guid: f623e8992f2e1c745927aed75b01d6ce, type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114000013511412170, guid: f623e8992f2e1c745927aed75b01d6ce,
         type: 2}
@@ -22256,7 +22484,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000014110607336, guid: b858f825c88460642b646413866e6452, type: 2}
       propertyPath: m_RootOrder
-      value: 28
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 114000012760543740, guid: b858f825c88460642b646413866e6452,
         type: 2}
@@ -23505,6 +23733,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 508b04ed5b792cd49b2a809a83d51fb8, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 508b04ed5b792cd49b2a809a83d51fb8, type: 3}
   m_IsPrefabParent: 0
@@ -23689,6 +23921,10 @@ Prefab:
     - target: {fileID: 100000, guid: c3681126ba019a94e811c7f799b08d9d, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c3681126ba019a94e811c7f799b08d9d, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3681126ba019a94e811c7f799b08d9d, type: 3}
@@ -24257,6 +24493,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 82e6ee9ef05eec0418853403fbc8a106, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82e6ee9ef05eec0418853403fbc8a106, type: 3}
   m_IsPrefabParent: 0
@@ -24785,6 +25025,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &570501466
 Animator:
   serializedVersion: 3
@@ -24933,7 +25174,7 @@ Transform:
   - {fileID: 349809710}
   - {fileID: 1993801287}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 9
 --- !u!1001 &576557841
 Prefab:
   m_ObjectHideFlags: 0
@@ -25097,6 +25338,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &580055396
 Animator:
   serializedVersion: 3
@@ -25224,6 +25466,10 @@ Prefab:
       propertyPath: m_Name
       value: building03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22618c82fa9037746b26739e67d3132e, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22618c82fa9037746b26739e67d3132e, type: 3}
   m_IsPrefabParent: 0
@@ -25327,6 +25573,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &582264756
 Animator:
   serializedVersion: 3
@@ -25825,6 +26072,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &595047971
 Animator:
   serializedVersion: 3
@@ -26875,6 +27123,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: de8e94a1c53472942b7a1ca6a8aaf6d8, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de8e94a1c53472942b7a1ca6a8aaf6d8, type: 3}
   m_IsPrefabParent: 0
@@ -27126,15 +27378,36 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 638742697}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1549616094}
   - {fileID: 1909548832}
   - {fileID: 1074574396}
+  - {fileID: 1644461680}
+  - {fileID: 2004791035}
+  - {fileID: 1885018506}
+  - {fileID: 1104789509}
   m_Father: {fileID: 2065898199}
-  m_RootOrder: 3
+  m_RootOrder: 2
+--- !u!1 &638951224 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011652463366, guid: fed93d56c6857df4c94beb57c5f659fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073393543}
+--- !u!114 &638951230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638951224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a51012a8d30954cb66cfe6cf8fccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorImage: {fileID: 2800000, guid: 6a962c7711e97f54fbc2118236fc3b32, type: 3}
 --- !u!1 &638999005
 GameObject:
   m_ObjectHideFlags: 0
@@ -27314,6 +27587,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 85da466cc3b8199438eddc34b2de9760, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85da466cc3b8199438eddc34b2de9760, type: 3}
   m_IsPrefabParent: 0
@@ -27480,6 +27757,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fedbc376c76627647a82ce05ce755929, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fedbc376c76627647a82ce05ce755929, type: 3}
   m_IsPrefabParent: 0
@@ -27626,6 +27907,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &650465639
 Animator:
   serializedVersion: 3
@@ -27933,6 +28215,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2a6fa5f934a5bdd438c60dd9715b54b7, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a6fa5f934a5bdd438c60dd9715b54b7, type: 3}
   m_IsPrefabParent: 0
@@ -28006,6 +28292,10 @@ Prefab:
     - target: {fileID: 100000, guid: d08eabf67f16b044a9c82ede69c4952f, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d08eabf67f16b044a9c82ede69c4952f, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d08eabf67f16b044a9c82ede69c4952f, type: 3}
@@ -28125,6 +28415,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &664695085
 Animator:
   serializedVersion: 3
@@ -28303,7 +28594,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010282070120, guid: 3d7c6ea79edef4b4d8ae19e50f996ef6, type: 2}
       propertyPath: m_RootOrder
-      value: 35
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 114000012676442878, guid: 3d7c6ea79edef4b4d8ae19e50f996ef6,
         type: 2}
@@ -28467,7 +28758,7 @@ RectTransform:
   m_Children:
   - {fileID: 739263389}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 11
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -28596,6 +28887,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 401312733}
   m_RootOrder: 0
+--- !u!4 &674589565 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
+  m_PrefabInternal: {fileID: 1926000531}
 --- !u!1 &676247748
 GameObject:
   m_ObjectHideFlags: 0
@@ -29985,7 +30280,6 @@ MonoBehaviour:
   AllSubtitles: "-Andrey T.: Vay! Fikrini de\u011Fi\u015Ftirmi\u015Fsin. Gel yan\u0131ma
     \u015F\xF6yle otur da felekten bir ka\xE7 saat \xE7alal\u0131m.\r\n-Ivan: Sadece
     bir bira Andrey. Hemen i\u015Fime d\xF6nmem laz\u0131m."
-  subtitle: {fileID: 1770912036}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!23 &712353171
@@ -30052,7 +30346,6 @@ MonoBehaviour:
     T.: Hahaha, sen de iyice yumu\u015Fakla\u015Ft\u0131n Praskovyan\u0131n d\u0131rd\u0131rlar\u0131n\u0131
     \xE7eke \xE7eke.\r\n-Andrey T.: \u0130yi keyfin bilir. \xD6nemli i\u015Flerin
     erken biterse u\u011Fra. Kap\u0131m\u0131z hep a\xE7\u0131k."
-  subtitle: {fileID: 1770912036}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &712353174
@@ -30102,7 +30395,6 @@ MonoBehaviour:
   - "-Ivan: Seni ilgilendirmez. Hadi s\xF6le biralar\u0131."
   AllSubtitles: "-Andrey T.: Elinde ki ne?\r\n-Ivan: Seni ilgilendirmez. Hadi s\xF6le
     biralar\u0131."
-  subtitle: {fileID: 1770912036}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &712353177
@@ -30131,7 +30423,6 @@ MonoBehaviour:
     sen u\xE7mu\u015Fsun bu sefer. Ama g\xFCzel bir bak\u0131\u015F a\xE7\u0131s\u0131.
     Renkler g\xF6zlerimizin notas\u0131...\r\n-Ivan: Beni\u011Fm gitmem laz\u0131m.
     \xC7ok i\u015Fim var. \xC7ok u\u011Fursuz bir g\xFCn. \r\n-Ivan: \xC7ok u\u011Fursuz..."
-  subtitle: {fileID: 1770912036}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!1 &714116420
@@ -31224,6 +31515,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &758987842
 Animator:
   serializedVersion: 3
@@ -31709,6 +32001,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a26650772068d7b4bb7c02ce80a575cf, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a26650772068d7b4bb7c02ce80a575cf, type: 3}
   m_IsPrefabParent: 0
@@ -31992,6 +32288,10 @@ Prefab:
     - target: {fileID: 100000, guid: b99bb96966476814b9cd524d8e50e272, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b99bb96966476814b9cd524d8e50e272, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b99bb96966476814b9cd524d8e50e272, type: 3}
@@ -32947,7 +33247,7 @@ Transform:
   - {fileID: 1666484049}
   - {fileID: 883674409}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 14
 --- !u!1 &794699828
 GameObject:
   m_ObjectHideFlags: 0
@@ -33724,6 +34024,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce0ff951ee560254bad38dded58966c9, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce0ff951ee560254bad38dded58966c9, type: 3}
   m_IsPrefabParent: 0
@@ -33887,6 +34191,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
@@ -34057,6 +34365,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &824477680
 Animator:
   serializedVersion: 3
@@ -35005,6 +35314,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 2.059344
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 444f4adbcbb3c6442aed1870653cee38, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 444f4adbcbb3c6442aed1870653cee38, type: 3}
   m_IsPrefabParent: 0
@@ -35240,6 +35553,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &853890076
 Animator:
   serializedVersion: 3
@@ -35716,12 +36030,12 @@ MonoBehaviour:
     bir varl\u0131k olan St Petersburg \u015Fehri sokaklar\u0131yla ona burundan kurtulmak
     i\xE7in milyonlarca se\xE7enek sunuyordu. \r\nTek yapmas\u0131 gereken aynas\u0131zlardan
     birine yakalanmadan, burundan ona bir daha geri d\xF6nmeyecek \u015Fekilde  kurtulmakt\u0131. "
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &859943442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35827,6 +36141,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &861695398
 Animator:
   serializedVersion: 3
@@ -37055,7 +37370,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 895828661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.916, y: 1.369, z: -0.717}
+  m_LocalPosition: {x: 1.79, y: 0.32, z: -0.717}
   m_LocalScale: {x: 0.2995152, y: 0.29951516, z: 0.29951516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -37515,6 +37830,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &899872819
 Animator:
   serializedVersion: 3
@@ -38025,7 +38341,7 @@ Transform:
   - {fileID: 438612410}
   - {fileID: 2124996348}
   m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_RootOrder: 26
 --- !u!1 &915740906
 GameObject:
   m_ObjectHideFlags: 0
@@ -38145,6 +38461,10 @@ Prefab:
     - target: {fileID: 100000, guid: a82e731c800addc48a716cb8987f351d, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a82e731c800addc48a716cb8987f351d, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a82e731c800addc48a716cb8987f351d, type: 3}
@@ -38320,7 +38640,7 @@ Transform:
   - {fileID: 2112323313}
   - {fileID: 1714467772}
   m_Father: {fileID: 2065898199}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &928245603
 GameObject:
   m_ObjectHideFlags: 0
@@ -38639,6 +38959,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
   m_IsPrefabParent: 0
@@ -38707,7 +39031,7 @@ Transform:
   - {fileID: 1074157125}
   - {fileID: 1260745644}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 17
 --- !u!1 &936652371
 GameObject:
   m_ObjectHideFlags: 0
@@ -38869,6 +39193,10 @@ Prefab:
     - target: {fileID: 100000, guid: 5a45ce9f75de9bf4f9d5545c00708b3c, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5a45ce9f75de9bf4f9d5545c00708b3c, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a45ce9f75de9bf4f9d5545c00708b3c, type: 3}
@@ -39360,6 +39688,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0d351ecd9ccd60b47b455efcb93bce8a, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d351ecd9ccd60b47b455efcb93bce8a, type: 3}
   m_IsPrefabParent: 0
@@ -39580,7 +39912,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 39b0589713685ef4a938d221751d86ec, type: 3}
       propertyPath: m_RootOrder
-      value: 42
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 39b0589713685ef4a938d221751d86ec, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -41228,6 +41560,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 90a9c28ef1a19384fa0f05d99a2952c9, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90a9c28ef1a19384fa0f05d99a2952c9, type: 3}
   m_IsPrefabParent: 0
@@ -41370,7 +41706,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 39c4793a287ded641ab5c83bfe1e2fab, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 39c4793a287ded641ab5c83bfe1e2fab, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -41579,6 +41915,10 @@ Prefab:
     - target: {fileID: 100000, guid: f78928d3b8089bc41ac62d31cfb7f06f, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f78928d3b8089bc41ac62d31cfb7f06f, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f78928d3b8089bc41ac62d31cfb7f06f, type: 3}
@@ -41799,6 +42139,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1013386358
 Animator:
   serializedVersion: 3
@@ -41943,12 +42284,29 @@ Transform:
   - {fileID: 1392478049}
   m_Father: {fileID: 1017583442}
   m_RootOrder: 0
+--- !u!1 &1023219911 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012579573764, guid: fed93d56c6857df4c94beb57c5f659fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073393543}
+--- !u!114 &1023219917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1023219911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a51012a8d30954cb66cfe6cf8fccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorImage: {fileID: 2800000, guid: 6a962c7711e97f54fbc2118236fc3b32, type: 3}
 --- !u!1001 &1024556292
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 638742698}
     m_Modifications:
     - target: {fileID: 400004, guid: b315251fd2bd8234b824e412ea6cf9fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -41964,15 +42322,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b315251fd2bd8234b824e412ea6cf9fc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b315251fd2bd8234b824e412ea6cf9fc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b315251fd2bd8234b824e412ea6cf9fc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b315251fd2bd8234b824e412ea6cf9fc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -41980,7 +42338,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b315251fd2bd8234b824e412ea6cf9fc, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b315251fd2bd8234b824e412ea6cf9fc, type: 3}
       propertyPath: m_LocalScale.x
@@ -42136,6 +42494,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1026626117
 Animator:
   serializedVersion: 3
@@ -42247,7 +42606,7 @@ Transform:
   - {fileID: 1332798574}
   - {fileID: 2000169734}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 10
 --- !u!1001 &1029497656
 Prefab:
   m_ObjectHideFlags: 0
@@ -42651,6 +43010,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1036254534
 Animator:
   serializedVersion: 3
@@ -43875,12 +44235,12 @@ MonoBehaviour:
     \xE7\u0131km\u0131\u015Ft\u0131r ve nehrin i\xE7inde y\xFCzenlerin hayat\u0131
     b\xF6yle bir o\u011Fla\u011Fan\xFCst\xFC hikayeden sonra bile hemen eski haline
     d\xF6nm\xFC\u015Ft\xFCr."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &1058481629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43905,7 +44265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDisabledAtStart: 1
-  uniqueId: 
+  uniqueId: 6f5f1381-b86a-4f0a-b6d3-653f4a60156e
   cameraObj: {fileID: 762603493}
   cameraInitialPosition: {fileID: 1072926834}
   kovalev: {fileID: 197953946}
@@ -43933,7 +44293,6 @@ MonoBehaviour:
   - "Kovalev: Peki, haydi bakal\u0131m.\r"
   AllSubtitles: "Kovalev: Hemen s\xF6yler, ellerin temiz mi?\r\nIvan: Temiz efendim.\r\nKovalev:
     Yalanc\u0131!\r\nIvan: Vallahi temiz.\r\nKovalev: Peki, haydi bakal\u0131m.\r\n"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1058481632
@@ -44001,12 +44360,12 @@ MonoBehaviour:
     bu kadar vakit verilmesi... Ancak hayatta da b\xF6yle garip olaylar yok mudur?
     Hem bu oyunda da insan\u0131n kendini buldu\u011Fu noktalar yok mudur? Kim bilir
     belki vard\u0131r. Bin de bir bile olsa vard\u0131r."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!1001 &1060481931
 Prefab:
   m_ObjectHideFlags: 0
@@ -44828,6 +45187,115 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0
   speed: 0.5
+--- !u!1001 &1073393543
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.86320686
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.6184196
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.104568005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013640513930, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013640513930, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011813674196, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011813674196, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011813674196, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013737024128, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013737024128, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011964444124, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011964444124, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011964444124, guid: fed93d56c6857df4c94beb57c5f659fa,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &1073393544 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012581010022, guid: fed93d56c6857df4c94beb57c5f659fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073393543}
+--- !u!114 &1073393545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1073393544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a51012a8d30954cb66cfe6cf8fccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorImage: {fileID: 2800000, guid: 6a962c7711e97f54fbc2118236fc3b32, type: 3}
 --- !u!1001 &1074157124
 Prefab:
   m_ObjectHideFlags: 0
@@ -45050,6 +45518,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1078034489
 Animator:
   serializedVersion: 3
@@ -45151,6 +45620,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1079161041
 Animator:
   serializedVersion: 3
@@ -45265,6 +45735,10 @@ Prefab:
     - target: {fileID: 100000, guid: 14825ab6f39beb743a72b9f5f39b7dea, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 14825ab6f39beb743a72b9f5f39b7dea, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14825ab6f39beb743a72b9f5f39b7dea, type: 3}
@@ -45501,6 +45975,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1090006767
 Animator:
   serializedVersion: 3
@@ -45593,6 +46068,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
@@ -46018,6 +46497,10 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.5341398, y: 0.050460815, z: -0.046869457}
     m_Extent: {x: 1.3918271, y: 0.9120437, z: 0.5872806}
   m_DirtyAABB: 0
+--- !u!4 &1104789509 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: f9a4efae07360254aab6e03b3386bf55, type: 3}
+  m_PrefabInternal: {fileID: 289066281}
 --- !u!1 &1107300188
 GameObject:
   m_ObjectHideFlags: 0
@@ -46777,6 +47260,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1132166976
 Animator:
   serializedVersion: 3
@@ -46969,6 +47453,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1134658949
 Animator:
   serializedVersion: 3
@@ -47415,6 +47900,58 @@ Transform:
   - {fileID: 352770751}
   m_Father: {fileID: 421460480}
   m_RootOrder: 0
+--- !u!1001 &1142606626
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 48.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011046392726, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: threshold
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011046392726, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: timeBeforeStopAnimation
+      value: 0.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: dd651778041846143b79e2a904c465fc, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1144806923
 GameObject:
   m_ObjectHideFlags: 0
@@ -47464,6 +48001,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1144806926
 Animator:
   serializedVersion: 3
@@ -47617,6 +48155,10 @@ Prefab:
     - target: {fileID: 100000, guid: c3e520ee87d7f1e419dc549126d8c3ad, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c3e520ee87d7f1e419dc549126d8c3ad, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3e520ee87d7f1e419dc549126d8c3ad, type: 3}
@@ -47862,6 +48404,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1157185346
 Animator:
   serializedVersion: 3
@@ -48153,6 +48696,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 797452e4aa997574eb09c13e4511d64d, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 797452e4aa997574eb09c13e4511d64d, type: 3}
   m_IsPrefabParent: 0
@@ -48334,6 +48881,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6cf4b43697f253249af1e58a058a7f20, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6cf4b43697f253249af1e58a058a7f20, type: 3}
   m_IsPrefabParent: 0
@@ -48451,6 +49002,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1175288190
 Animator:
   serializedVersion: 3
@@ -50150,6 +50702,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3b869a0f1b0868842918acfd0b76faf9, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b869a0f1b0868842918acfd0b76faf9, type: 3}
   m_IsPrefabParent: 0
@@ -50368,6 +50924,10 @@ Prefab:
     - target: {fileID: 100000, guid: acd00ad81f00d7e42bf282f155c7005a, type: 3}
       propertyPath: m_Name
       value: building11 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: acd00ad81f00d7e42bf282f155c7005a, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acd00ad81f00d7e42bf282f155c7005a, type: 3}
@@ -51049,6 +51609,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1231705887
 Animator:
   serializedVersion: 3
@@ -51344,6 +51905,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8f54953b963a1be4382d0367bd3eb213, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f54953b963a1be4382d0367bd3eb213, type: 3}
   m_IsPrefabParent: 0
@@ -51535,7 +52100,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_RootOrder: 31
 --- !u!1 &1239880889
 GameObject:
   m_ObjectHideFlags: 0
@@ -52654,6 +53219,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 134.751
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cb0fd4b8b8a3f204699289eb08637c85, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb0fd4b8b8a3f204699289eb08637c85, type: 3}
   m_IsPrefabParent: 0
@@ -53052,48 +53621,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 381967106}
   m_RootOrder: 0
---- !u!1001 &1272441851
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 193.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 425.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dd651778041846143b79e2a904c465fc, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1274416078
 Prefab:
   m_ObjectHideFlags: 0
@@ -53131,7 +53658,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012589711840, guid: 8b3af1de52d31e846a6020d908c77f7e, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1000013067790522, guid: 8b3af1de52d31e846a6020d908c77f7e, type: 2}
       propertyPath: m_IsActive
@@ -53578,7 +54105,6 @@ MonoBehaviour:
     hayat\u0131nda ilerlersin k\xFC\xE7\xFCk ku\u015F. Ben ilerleyece\u011Fim. Kaderime
     ba\u015Far\u0131s\u0131zl\u0131klar kaz\u0131nm\u0131\u015F olsa da ilerleyece\u011Fim.
     \r\nBurun: \xC7\xFCnk\xFC tek yapabilece\u011Fim \u015Fey bu."
-  subtitle: {fileID: 1770912036}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1284117523
@@ -53962,6 +54488,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1294695372
 Animator:
   serializedVersion: 3
@@ -54047,6 +54574,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e49b617b2a21f814da42daa166cb99ae, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e49b617b2a21f814da42daa166cb99ae, type: 3}
   m_IsPrefabParent: 0
@@ -54120,6 +54651,10 @@ Prefab:
     - target: {fileID: 100000, guid: af3cfa7d1142bfe4b8322b53d1af9e08, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: af3cfa7d1142bfe4b8322b53d1af9e08, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af3cfa7d1142bfe4b8322b53d1af9e08, type: 3}
@@ -54452,6 +54987,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f086b9e18e0f429449c70ff727368d72, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f086b9e18e0f429449c70ff727368d72, type: 3}
   m_IsPrefabParent: 0
@@ -54631,6 +55170,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1306695675
 Animator:
   serializedVersion: 3
@@ -54731,6 +55271,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1309698229
 Animator:
   serializedVersion: 3
@@ -54815,6 +55356,10 @@ Prefab:
     - target: {fileID: 100000, guid: cc193f092a22bd943be55d18a72bcab5, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cc193f092a22bd943be55d18a72bcab5, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc193f092a22bd943be55d18a72bcab5, type: 3}
@@ -54920,6 +55465,10 @@ Prefab:
     - target: {fileID: 100000, guid: b2be564e7f58e3c47b0b603f7b23907a, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b2be564e7f58e3c47b0b603f7b23907a, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2be564e7f58e3c47b0b603f7b23907a, type: 3}
@@ -55406,6 +55955,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 2.710585
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22618c82fa9037746b26739e67d3132e, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22618c82fa9037746b26739e67d3132e, type: 3}
   m_IsPrefabParent: 0
@@ -55458,6 +56011,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1330660493
 Animator:
   serializedVersion: 3
@@ -56369,6 +56923,23 @@ Transform:
   - {fileID: 1563821443}
   m_Father: {fileID: 1003852498}
   m_RootOrder: 1
+--- !u!1 &1354791623 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000014277427702, guid: fed93d56c6857df4c94beb57c5f659fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073393543}
+--- !u!114 &1354791628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1354791623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a51012a8d30954cb66cfe6cf8fccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorImage: {fileID: 2800000, guid: 6a962c7711e97f54fbc2118236fc3b32, type: 3}
 --- !u!1 &1356778223
 GameObject:
   m_ObjectHideFlags: 0
@@ -56448,6 +57019,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1356960763
 Animator:
   serializedVersion: 3
@@ -56621,7 +57193,7 @@ Transform:
   - {fileID: 777405070}
   - {fileID: 1251081768}
   m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_RootOrder: 28
 --- !u!1 &1361997467
 GameObject:
   m_ObjectHideFlags: 0
@@ -56914,9 +57486,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4339c19df221e54f82d5be009e52747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.1
+  threshold: 0
   animName: flyForward
   speedFactor: 0.25
+  timeBeforeStopAnimation: 0.5
 --- !u!1 &1366757379
 GameObject:
   m_ObjectHideFlags: 0
@@ -57681,6 +58254,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5daf1042a42db6e46a9577883310f050, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5daf1042a42db6e46a9577883310f050, type: 3}
   m_IsPrefabParent: 0
@@ -57860,6 +58437,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1382798645
 Animator:
   serializedVersion: 3
@@ -57979,6 +58557,10 @@ Prefab:
     - target: {fileID: 100000, guid: a2d5ae8200339f9449528918d424b3e6, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a2d5ae8200339f9449528918d424b3e6, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2d5ae8200339f9449528918d424b3e6, type: 3}
@@ -58193,6 +58775,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1388071645
 Animator:
   serializedVersion: 3
@@ -58364,7 +58947,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011617717024, guid: f623e8992f2e1c745927aed75b01d6ce, type: 2}
       propertyPath: m_RootOrder
-      value: 27
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114000013511412170, guid: f623e8992f2e1c745927aed75b01d6ce,
         type: 2}
@@ -58439,7 +59022,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 638742698}
     m_Modifications:
     - target: {fileID: 400000, guid: 326f2a8cbdcf426458f197098caa649c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58471,7 +59054,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 326f2a8cbdcf426458f197098caa649c, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: 326f2a8cbdcf426458f197098caa649c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -58499,7 +59082,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 326f2a8cbdcf426458f197098caa649c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.50795
+      value: 2.5079498
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 326f2a8cbdcf426458f197098caa649c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -59083,7 +59666,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ab436e23cbb05cc4791cc73dfaae0c93, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ab436e23cbb05cc4791cc73dfaae0c93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -59283,6 +59866,10 @@ Prefab:
     - target: {fileID: 100000, guid: c979bcdb4f83e6642b7e9b8ba74e45de, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c979bcdb4f83e6642b7e9b8ba74e45de, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c979bcdb4f83e6642b7e9b8ba74e45de, type: 3}
@@ -59505,6 +60092,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 651d2f51209443f47b1e1d3d71a55987, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 651d2f51209443f47b1e1d3d71a55987, type: 3}
   m_IsPrefabParent: 0
@@ -59579,6 +60170,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6b37aa226fa4734448c62e10f54219d0, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b37aa226fa4734448c62e10f54219d0, type: 3}
   m_IsPrefabParent: 0
@@ -59621,7 +60216,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1853026460}
     m_Modifications:
     - target: {fileID: 400000, guid: 6ac2f7232ca19b64baad984cd9700179, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59629,7 +60224,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ac2f7232ca19b64baad984cd9700179, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.66
+      value: 2.54
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ac2f7232ca19b64baad984cd9700179, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59653,7 +60248,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ac2f7232ca19b64baad984cd9700179, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 96
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 6ac2f7232ca19b64baad984cd9700179, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -59678,6 +60273,10 @@ Prefab:
     - target: {fileID: 400000, guid: 6ac2f7232ca19b64baad984cd9700179, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.7090967
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ac2f7232ca19b64baad984cd9700179, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ac2f7232ca19b64baad984cd9700179, type: 3}
@@ -59900,7 +60499,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -90.047, y: 180, z: -60.487}
   m_Children: []
   m_Father: {fileID: 2065898199}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!65 &1444791337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60092,6 +60691,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1883997295}
   m_RootOrder: 0
+--- !u!4 &1449490496 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 816635c484e65ea439fcb3c6e0500161, type: 3}
+  m_PrefabInternal: {fileID: 136479989}
 --- !u!1 &1450891919
 GameObject:
   m_ObjectHideFlags: 0
@@ -60611,6 +61214,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.2567157
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9eb06b24265dfd04999d1ba9634cb4c9, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9eb06b24265dfd04999d1ba9634cb4c9, type: 3}
   m_IsPrefabParent: 0
@@ -61016,6 +61623,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.26222
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ea354816e3fb0cc46ba56f62015ad86e, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea354816e3fb0cc46ba56f62015ad86e, type: 3}
   m_IsPrefabParent: 0
@@ -61146,6 +61757,10 @@ Prefab:
     - target: {fileID: 100000, guid: e3c16f3913a98dc449619c8c6403a97b, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e3c16f3913a98dc449619c8c6403a97b, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3c16f3913a98dc449619c8c6403a97b, type: 3}
@@ -61286,6 +61901,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 66d54eb96ccc89343be27a73fc6e39bb, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66d54eb96ccc89343be27a73fc6e39bb, type: 3}
   m_IsPrefabParent: 0
@@ -61424,6 +62043,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1482441304
 Animator:
   serializedVersion: 3
@@ -61775,6 +62395,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 55153f8b1639aa64bb344da4b1bcc3ea, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55153f8b1639aa64bb344da4b1bcc3ea, type: 3}
   m_IsPrefabParent: 0
@@ -61922,6 +62546,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1497000803
 Animator:
   serializedVersion: 3
@@ -62042,6 +62667,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
@@ -62761,6 +63390,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1511906841
 Animator:
   serializedVersion: 3
@@ -62889,7 +63519,6 @@ MonoBehaviour:
   AllSubtitles: "\u0130\u015Fte say\u0131n oyuncu,  tam burada hikayemiz birden kesilir.\n\u0130nsani
     ger\xE7ekten merak i\xE7inde b\u0131raksa da...\nIvan'\u0131n bundan sonra ba\u015F\u0131na
     gelicekler herkes i\xE7in muammada kal\u0131cakt\u0131r."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray:
@@ -62897,6 +63526,7 @@ MonoBehaviour:
   - 1
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &1514217653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62945,7 +63575,6 @@ MonoBehaviour:
     bana onurla hizmet veren.\nPolis: \u015Eimdi do\u011Fru s\xF6yle bakal\u0131m.
     Bundan b\xF6yle kolay kurtulamazs\u0131n.\nIvan: ...\nPolis: Neyse anla\u015F\u0131ld\u0131.
     Gel benimle bunlar\u0131 karakolda konu\u015Fucaz."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1514217654
@@ -62967,7 +63596,6 @@ MonoBehaviour:
   AllSubtitles: 'Polis: Sen! Buraya gel.
 
 '
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1514217655
@@ -62988,7 +63616,6 @@ MonoBehaviour:
   - "-Ivan: Umar\u0131m neva nehrinin bal\u0131klar\u0131na yem olursun."
   AllSubtitles: "-Ivan: Elveda lanet olas\u0131ca \u015Fey.\n-Ivan: Umar\u0131m neva
     nehrinin bal\u0131klar\u0131na yem olursun."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1514217656
@@ -63109,7 +63736,7 @@ Transform:
   - {fileID: 1828897929}
   - {fileID: 963594254}
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 19
 --- !u!114 &1514217663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63194,6 +63821,10 @@ Prefab:
     - target: {fileID: 400000, guid: acd00ad81f00d7e42bf282f155c7005a, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5369555
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: acd00ad81f00d7e42bf282f155c7005a, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acd00ad81f00d7e42bf282f155c7005a, type: 3}
@@ -63560,6 +64191,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1522189147
 Animator:
   serializedVersion: 3
@@ -63785,6 +64417,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1527326512
 Animator:
   serializedVersion: 3
@@ -63852,6 +64485,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1528010170
 Animator:
   serializedVersion: 3
@@ -63970,6 +64604,10 @@ Prefab:
     - target: {fileID: 100000, guid: d006949178ed0b6468aeb6b408257336, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d006949178ed0b6468aeb6b408257336, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d006949178ed0b6468aeb6b408257336, type: 3}
@@ -65412,7 +66050,7 @@ Transform:
   - {fileID: 1736517811}
   - {fileID: 2027634201}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 13
 --- !u!1 &1568435173
 GameObject:
   m_ObjectHideFlags: 0
@@ -65607,7 +66245,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dc03d8e4042fe3d489f5f6e1f3ff4f3a, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: dc03d8e4042fe3d489f5f6e1f3ff4f3a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -66632,6 +67270,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0753630b03c4e694cb888dd97488499c, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0753630b03c4e694cb888dd97488499c, type: 3}
   m_IsPrefabParent: 0
@@ -66739,6 +67381,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1594042854
 Animator:
   serializedVersion: 3
@@ -66857,6 +67500,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f0457c739c4224f48890cd58fa6a8c6b, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0457c739c4224f48890cd58fa6a8c6b, type: 3}
   m_IsPrefabParent: 0
@@ -66961,6 +67608,10 @@ Prefab:
     - target: {fileID: 100000, guid: 46d4de4938c06844f9cd80d793b5846d, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 46d4de4938c06844f9cd80d793b5846d, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46d4de4938c06844f9cd80d793b5846d, type: 3}
@@ -68082,6 +68733,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1618796692
 Animator:
   serializedVersion: 3
@@ -68216,6 +68868,10 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: 55b02aa571ef8bf43a29cf7838c8881e, type: 3}
+--- !u!4 &1621493461 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 358755c7103aaeb49812a770d776017f, type: 3}
+  m_PrefabInternal: {fileID: 90777611}
 --- !u!1 &1622561871
 GameObject:
   m_ObjectHideFlags: 0
@@ -68643,6 +69299,102 @@ Transform:
   - {fileID: 1783266227}
   m_Father: {fileID: 1485340010}
   m_RootOrder: 0
+--- !u!1 &1630089465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000012904246304, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1630089466}
+  - 108: {fileID: 1630089469}
+  - 114: {fileID: 1630089468}
+  - 114: {fileID: 1630089467}
+  m_Layer: 0
+  m_Name: Sun (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1630089466
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000010290038120, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1630089465}
+  m_LocalRotation: {x: 0.2511121, y: 0.19847514, z: 0.13447432, w: 0.9377991}
+  m_LocalPosition: {x: 12.900002, y: -0.00000047683716, z: -44.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 24.654001, y: 28.922, z: 22.555}
+  m_Children: []
+  m_Father: {fileID: 179690415}
+  m_RootOrder: 0
+--- !u!114 &1630089467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000013090218250, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1630089465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fe89b43d9dd984fb51b9ad2bea7c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 1
+--- !u!114 &1630089468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011188354656, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1630089465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eec3833d473bc443b2e28e6a900424f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxIntensity: 1
+  minIntensity: 0.3
+  speed: 0.5
+--- !u!108 &1630089469
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 108000011704737064, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1630089465}
+  m_Enabled: 1
+  serializedVersion: 7
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1001 &1631534632
 Prefab:
   m_ObjectHideFlags: 0
@@ -68680,7 +69432,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011617717024, guid: f623e8992f2e1c745927aed75b01d6ce, type: 2}
       propertyPath: m_RootOrder
-      value: 24
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114000013511412170, guid: f623e8992f2e1c745927aed75b01d6ce,
         type: 2}
@@ -68972,6 +69724,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1637882771
 Animator:
   serializedVersion: 3
@@ -69148,6 +69901,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1985815}
   m_RootOrder: 0
+--- !u!4 &1644461680 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400008, guid: 19556244762e27c4da852734df672708, type: 3}
+  m_PrefabInternal: {fileID: 1860946052}
 --- !u!1 &1644684863
 GameObject:
   m_ObjectHideFlags: 0
@@ -69658,6 +70415,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a1369024612dd6b4db361f3288424478, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1369024612dd6b4db361f3288424478, type: 3}
   m_IsPrefabParent: 0
@@ -69884,6 +70645,10 @@ Prefab:
     - target: {fileID: 400000, guid: a1be9f74d506d8c48afe871a4c0cf232, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5369557
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a1be9f74d506d8c48afe871a4c0cf232, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1be9f74d506d8c48afe871a4c0cf232, type: 3}
@@ -70565,6 +71330,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 1.3644941
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0f0f507486f60a94ca619fd734323f06, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f0f507486f60a94ca619fd734323f06, type: 3}
   m_IsPrefabParent: 0
@@ -70638,6 +71407,10 @@ Prefab:
     - target: {fileID: 100000, guid: d9a45478b3be7b34487eb5de6fb259f4, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d9a45478b3be7b34487eb5de6fb259f4, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d9a45478b3be7b34487eb5de6fb259f4, type: 3}
@@ -71693,77 +72466,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1701809029}
   m_Mesh: {fileID: 4300000, guid: 4d58270b36da6db4fb6f57c5d3f0d462, type: 3}
---- !u!1 &1705095701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1705095702}
-  - 218: {fileID: 1705095704}
-  - 154: {fileID: 1705095703}
-  m_Layer: 0
-  m_Name: CityTerrain (1)
-  m_TagString: Floor
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1705095702
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1705095701}
-  m_LocalRotation: {x: -0, y: -0, z: -0.000000014901161, w: 1}
-  m_LocalPosition: {x: -283.00003, y: -31.999928, z: -470}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 2065898199}
-  m_RootOrder: 1
---- !u!154 &1705095703
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1705095701}
-  m_Material: {fileID: 0}
-  m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: ca9acb6e3cd63344e82d9ea12321d6c8, type: 2}
-  m_EnableTreeColliders: 1
---- !u!218 &1705095704
-Terrain:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1705095701}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_TerrainData: {fileID: 15600000, guid: ca9acb6e3cd63344e82d9ea12321d6c8, type: 2}
-  m_TreeDistance: 2000
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
-  m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
-  m_HeightmapMaximumLOD: 0
-  m_CastShadows: 1
-  m_DrawHeightmap: 1
-  m_DrawTreesAndFoliage: 1
-  m_ReflectionProbeUsage: 1
-  m_MaterialType: 3
-  m_LegacySpecular:
-    serializedVersion: 2
-    rgba: 4286545791
-  m_LegacyShininess: 0.078125
-  m_MaterialTemplate: {fileID: 2100000, guid: 85fc9c6eacbec8e43b571f26c1e61253, type: 2}
-  m_BakeLightProbesForTrees: 1
-  m_ScaleInLightmap: 0.0512
-  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1707430781
 GameObject:
   m_ObjectHideFlags: 0
@@ -72014,6 +72716,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1712323792
 Animator:
   serializedVersion: 3
@@ -72261,7 +72964,6 @@ MonoBehaviour:
     ekmekten \xE7\u0131km\u0131\u015F burunu? Yumu\u015Fam\u0131\u015Ft\u0131r o ekme\u011Fin
     i\xE7inde.\r\n-Satici: Arkada\u015F\u0131na s\xF6ylesen iyi olur polise yakalanmadan
     ondan kurtulsun yoksa ba\u015F\u0131na i\u015F al\u0131r."
-  subtitle: {fileID: 0}
   ifDesroyItself: 1
   releaseAfterSub: 1
 --- !u!1001 &1723351257
@@ -72364,6 +73066,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1723591969
 Animator:
   serializedVersion: 3
@@ -72668,6 +73371,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1735956583
 Animator:
   serializedVersion: 3
@@ -73063,6 +73767,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1741375890
 Animator:
   serializedVersion: 3
@@ -73329,6 +74034,10 @@ Prefab:
     - target: {fileID: 100000, guid: 050ae60248ee4dc4daede53653b3e0ce, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 050ae60248ee4dc4daede53653b3e0ce, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 050ae60248ee4dc4daede53653b3e0ce, type: 3}
@@ -73942,6 +74651,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4180d4319ddbe8f40987c54cb444943a, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4180d4319ddbe8f40987c54cb444943a, type: 3}
   m_IsPrefabParent: 0
@@ -74218,7 +74931,6 @@ MonoBehaviour:
   AllSubtitles: "Kovalev: Lanet olsun hava da kararm\u0131\u015F. Eve gitsem iyi olacak
     daha fazla ba\u015F\u0131m\u0131 belaya sokmadan. Tanr\u0131m sen bana yard\u0131m
     et."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!1 &1767999601
@@ -74458,11 +75170,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 386379abfb044fb4299cf5ebfa757a60, type: 3}
   m_PrefabInternal: {fileID: 1770859014}
---- !u!1 &1770912036 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000010555714094, guid: fed93d56c6857df4c94beb57c5f659fa,
-    type: 2}
-  m_PrefabInternal: {fileID: 2059501533}
 --- !u!1 &1773465819
 GameObject:
   m_ObjectHideFlags: 0
@@ -74765,6 +75472,10 @@ Prefab:
     - target: {fileID: 100000, guid: 0d351ecd9ccd60b47b455efcb93bce8a, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0d351ecd9ccd60b47b455efcb93bce8a, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d351ecd9ccd60b47b455efcb93bce8a, type: 3}
@@ -75121,6 +75832,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1792836912
 Animator:
   serializedVersion: 3
@@ -75534,7 +76246,7 @@ Transform:
   - {fileID: 1974257139}
   - {fileID: 399972371}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 4
 --- !u!1 &1805330999
 GameObject:
   m_ObjectHideFlags: 0
@@ -75621,12 +76333,12 @@ MonoBehaviour:
     yorumlar\u0131, o konuma sahip olan t\xFCm bireyler \xFCstlerine al\u0131r. O
     nedenle Kovalev hakk\u0131n yorumlar\u0131n\u0131z\u0131 kendiniz \xE7\u0131karman\u0131z
     daha sa\u011Fl\u0131kl\u0131 olur. "
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &1805331002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75718,7 +76430,6 @@ MonoBehaviour:
     at arabas\u0131 y\xFCz\xFCnden.\r\n\u2026\r\nKovalev: \u015Eimdi oldu. Tanr\u0131m
     ne kadar yak\u0131\u015F\u0131kl\u0131y\u0131m. Ke\u015Fke hep kendimi d\u0131\u015Far\u0131dan
     g\xF6rebilsem. \u015Eimdi bayanlar beni g\xF6r\xFCnce ne kadar heyecanlan\u0131caklar. "
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1805331007
@@ -75780,7 +76491,6 @@ MonoBehaviour:
     Tabii ki Bayan \xC7ehtareva. Her \u015Feyden once ben sizin rahat olman\u0131z\u0131
     isterim. \r\n-Kovalev: \u0130zninizle ben bir lavaboyu kullanca\u011F\u0131m.
     Bu st. persburgun caddeleri bazen insan\u0131 toz ve pislik i\xE7inde b\u0131rakabiliyor."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1805331008
@@ -75842,7 +76552,6 @@ MonoBehaviour:
     de\u011Filim. Ve size haketti\u011Finiz bir hayat\u0131 sunacak seviyeye gelmeden
     sizle evlenemem. Belki baban\u0131za bu konudan bahsedersiniz. Belki \u015Fubede
     tan\u0131d\u0131klar\u0131 vard\u0131r. Ve belki\u2026"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1805331010
@@ -75865,12 +76574,12 @@ MonoBehaviour:
     Bence oyuncular\u0131m\u0131z Kovalevi yeterince tan\u0131m\u0131\u015F oldu.
     O nedenle sizleri s\u0131kmadan hikayemizin as\u0131l b\xF6l\xFCm\xFCne ge\xE7mek
     daha mant\u0131kl\u0131."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &1805331011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76270,6 +76979,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d2ebac2f251e084aaf23660106a6ac2, type: 3}
   m_IsPrefabParent: 0
@@ -76573,6 +77286,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1824333223
 Animator:
   serializedVersion: 3
@@ -76779,6 +77493,10 @@ Prefab:
     - target: {fileID: 400000, guid: 05d5530de0518264390541a31573840e, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.5965058
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 05d5530de0518264390541a31573840e, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05d5530de0518264390541a31573840e, type: 3}
@@ -77278,6 +77996,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 613019f0fecc01043adfa9d890e65964, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 613019f0fecc01043adfa9d890e65964, type: 3}
   m_IsPrefabParent: 0
@@ -77415,7 +78137,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010567717024, guid: e39ac2bfa2633e64e8d57db589127a0e, type: 2}
       propertyPath: m_RootOrder
-      value: 34
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 114000011833690576, guid: e39ac2bfa2633e64e8d57db589127a0e,
         type: 2}
@@ -77640,6 +78362,10 @@ Prefab:
     - target: {fileID: 100000, guid: 9c878264b92397b46919fe3cf07c513b, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9c878264b92397b46919fe3cf07c513b, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c878264b92397b46919fe3cf07c513b, type: 3}
@@ -78033,8 +78759,16 @@ Transform:
   - {fileID: 1850878408}
   - {fileID: 636343643}
   - {fileID: 71340302}
+  - {fileID: 2125077003}
+  - {fileID: 2110249065}
+  - {fileID: 111508659}
+  - {fileID: 1449490496}
+  - {fileID: 674589565}
+  - {fileID: 2117121335}
+  - {fileID: 1621493461}
+  - {fileID: 363688047}
   m_Father: {fileID: 2065898199}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &1854156292
 GameObject:
   m_ObjectHideFlags: 0
@@ -78114,6 +78848,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1854923884
 Animator:
   serializedVersion: 3
@@ -78434,7 +79169,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 638742698}
     m_Modifications:
     - target: {fileID: 400008, guid: 19556244762e27c4da852734df672708, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78466,7 +79201,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 19556244762e27c4da852734df672708, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2300002, guid: 19556244762e27c4da852734df672708, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -78478,15 +79213,15 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
     - target: {fileID: 400008, guid: 19556244762e27c4da852734df672708, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.1627562
+      value: 2.1627564
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 19556244762e27c4da852734df672708, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.162757
+      value: 2.1627584
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 19556244762e27c4da852734df672708, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.162757
+      value: 2.1627579
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 19556244762e27c4da852734df672708, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -78920,6 +79655,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ed8785e600e877d40a6c7f374c1840a3, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed8785e600e877d40a6c7f374c1840a3, type: 3}
   m_IsPrefabParent: 0
@@ -79305,7 +80044,7 @@ Transform:
   - {fileID: 1297957909}
   - {fileID: 315125917}
   m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_RootOrder: 29
 --- !u!1 &1883997294
 GameObject:
   m_ObjectHideFlags: 0
@@ -79367,6 +80106,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 934998901}
   m_RootOrder: 0
+--- !u!4 &1885018506 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400004, guid: b315251fd2bd8234b824e412ea6cf9fc, type: 3}
+  m_PrefabInternal: {fileID: 1024556292}
 --- !u!1 &1886247333
 GameObject:
   m_ObjectHideFlags: 0
@@ -79422,7 +80165,6 @@ MonoBehaviour:
   AllSubtitles: "Kovalev: Ben buna yakla\u015Famam, \u0131s\u0131r\u0131cak bu beni!\nKovalev:
     Ama bir \u015Fekilde gazeteye g\xF6t\xFCrmek zorunday\u0131m.\nKovalev: Hay allah!
     Ne yapsam?"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1886292575
@@ -79452,7 +80194,6 @@ MonoBehaviour:
   subtitleTexts:
   - "Kovalev: Takip et bakal\u0131m bacaks\u0131z!"
   AllSubtitles: "Kovalev: Takip et bakal\u0131m bacaks\u0131z!"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!114 &1886292580
@@ -80279,9 +81020,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4339c19df221e54f82d5be009e52747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.01
+  threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!114 &1902942240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80608,6 +81350,23 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: a82e731c800addc48a716cb8987f351d, type: 3}
+--- !u!1 &1919847671 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012992316026, guid: fed93d56c6857df4c94beb57c5f659fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073393543}
+--- !u!114 &1919847676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919847671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a51012a8d30954cb66cfe6cf8fccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorImage: {fileID: 2800000, guid: 6a962c7711e97f54fbc2118236fc3b32, type: 3}
 --- !u!1 &1922930186
 GameObject:
   m_ObjectHideFlags: 0
@@ -80657,6 +81416,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1922930189
 Animator:
   serializedVersion: 3
@@ -80741,7 +81501,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1853026460}
     m_Modifications:
     - target: {fileID: 400000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
       propertyPath: m_LocalPosition.x
@@ -80749,7 +81509,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1000004
+      value: 1.0999997
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
       propertyPath: m_LocalPosition.z
@@ -80773,7 +81533,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -80785,20 +81545,24 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4035331
+      value: 1.4035336
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4035335
+      value: 1.4035339
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4035335
+      value: 1.4035339
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+    - target: {fileID: 100000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5bb651a25badfe4baaee56e1a436180, type: 3}
   m_IsPrefabParent: 0
@@ -82395,6 +83159,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1960286256
 Animator:
   serializedVersion: 3
@@ -83375,6 +84140,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 38b581a057390304394c55500ecafe88, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38b581a057390304394c55500ecafe88, type: 3}
   m_IsPrefabParent: 0
@@ -83891,7 +84660,7 @@ Transform:
   - {fileID: 380395931}
   - {fileID: 1243394420}
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 27
 --- !u!1 &1990424000
 GameObject:
   m_ObjectHideFlags: 0
@@ -84173,6 +84942,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 01135dccb992a6e4b83af0e120c53386, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01135dccb992a6e4b83af0e120c53386, type: 3}
   m_IsPrefabParent: 0
@@ -84260,6 +85033,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &1993594984
 Animator:
   serializedVersion: 3
@@ -84481,6 +85255,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 1.7402843
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9eb06b24265dfd04999d1ba9634cb4c9, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9eb06b24265dfd04999d1ba9634cb4c9, type: 3}
   m_IsPrefabParent: 0
@@ -84594,7 +85372,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dde4948a323ffa040916111bb9d26036, type: 3}
       propertyPath: m_RootOrder
-      value: 32
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: dde4948a323ffa040916111bb9d26036, type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -85116,6 +85894,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0
   speed: 0.5
+--- !u!4 &2004791035 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 326f2a8cbdcf426458f197098caa649c, type: 3}
+  m_PrefabInternal: {fileID: 1392165144}
 --- !u!1 &2005179039
 GameObject:
   m_ObjectHideFlags: 0
@@ -86334,6 +87116,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c0c524e4b798a8f44a8f489d62eaa795, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0c524e4b798a8f44a8f489d62eaa795, type: 3}
   m_IsPrefabParent: 0
@@ -86601,6 +87387,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &2044099740
 Animator:
   serializedVersion: 3
@@ -86944,118 +87731,16 @@ Transform:
   - {fileID: 855703622}
   m_Father: {fileID: 1080154111}
   m_RootOrder: 1
---- !u!1001 &2059501533
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.86320686
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.6184196
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.104568005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010967035408, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
-      propertyPath: m_RootOrder
-      value: 37
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013737024128, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013737024128, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011964444124, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011964444124, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011964444124, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013640513930, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013640513930, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011813674196, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011813674196, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011813674196, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010898577314, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010898577314, guid: fed93d56c6857df4c94beb57c5f659fa,
-        type: 2}
-      propertyPath: fadeInAtStart
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: fed93d56c6857df4c94beb57c5f659fa, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &2059501534 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010441525432, guid: fed93d56c6857df4c94beb57c5f659fa,
     type: 2}
-  m_PrefabInternal: {fileID: 2059501533}
+  m_PrefabInternal: {fileID: 1073393543}
 --- !u!1 &2059501535 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000012543461106, guid: fed93d56c6857df4c94beb57c5f659fa,
     type: 2}
-  m_PrefabInternal: {fileID: 2059501533}
+  m_PrefabInternal: {fileID: 1073393543}
 --- !u!1 &2060352424
 GameObject:
   m_ObjectHideFlags: 0
@@ -87201,14 +87886,13 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1516641431}
-  - {fileID: 1705095702}
   - {fileID: 1853026460}
   - {fileID: 638742698}
   - {fileID: 1444791336}
   - {fileID: 108067268}
   - {fileID: 927671580}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 2
 --- !u!114 &2065898200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87257,6 +87941,7 @@ MonoBehaviour:
   outroScene: {fileID: 1058481626}
   deadManGameController: {fileID: 1767158368}
   streetAreas: {fileID: 1990140988}
+  innerSpeechMusic: {fileID: 0}
 --- !u!1 &2066464652
 GameObject:
   m_ObjectHideFlags: 0
@@ -87594,7 +88279,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1853026460}
     m_Modifications:
     - target: {fileID: 400000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -87602,7 +88287,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.45
+      value: 12.65
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -87626,19 +88311,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 93
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.099275
+      value: 2.0992756
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.0992746
+      value: 2.0992754
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.0992746
+      value: 2.0992756
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -87652,6 +88337,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+    - target: {fileID: 100000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aaeae6f721ebf5444b59e7aa0e61d2c5, type: 3}
   m_IsPrefabParent: 0
@@ -87909,7 +88598,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010171386954, guid: 305aa50db71a6ab4ea27eda1f84b09b5, type: 2}
       propertyPath: m_RootOrder
-      value: 36
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 114000012688734596, guid: 305aa50db71a6ab4ea27eda1f84b09b5,
         type: 2}
@@ -88188,6 +88877,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &2092751142
 Animator:
   serializedVersion: 3
@@ -89014,6 +89704,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1828897929}
   m_RootOrder: 0
+--- !u!4 &2110249065 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: ad63b9220cdace944b837804b88ac1c3, type: 3}
+  m_PrefabInternal: {fileID: 232744840}
 --- !u!1 &2111344880
 GameObject:
   m_ObjectHideFlags: 0
@@ -89063,6 +89757,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &2111344883
 Animator:
   serializedVersion: 3
@@ -89382,6 +90077,10 @@ Transform:
   - {fileID: 351349634}
   m_Father: {fileID: 993495867}
   m_RootOrder: 2
+--- !u!4 &2117121335 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 6ac2f7232ca19b64baad984cd9700179, type: 3}
+  m_PrefabInternal: {fileID: 1432081757}
 --- !u!1 &2117811782
 GameObject:
   m_ObjectHideFlags: 0
@@ -89478,6 +90177,10 @@ Prefab:
     - target: {fileID: 100000, guid: d5afff1a9aa3f944b9725e85c65d6bfc, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d5afff1a9aa3f944b9725e85c65d6bfc, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5afff1a9aa3f944b9725e85c65d6bfc, type: 3}
@@ -89589,6 +90292,10 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 43a097c279de02f4c91cab137e986114, type: 3}
   m_PrefabInternal: {fileID: 856104885}
+--- !u!4 &2125077003 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: abb764c14f4124e46989d8fc4eb1faab, type: 3}
+  m_PrefabInternal: {fileID: 471875651}
 --- !u!1 &2125208713
 GameObject:
   m_ObjectHideFlags: 0
@@ -89704,6 +90411,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &2129429435
 Animator:
   serializedVersion: 3
@@ -90142,6 +90850,23 @@ Transform:
   - {fileID: 1172083932}
   m_Father: {fileID: 237797729}
   m_RootOrder: 1
+--- !u!1 &2132303489 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012434971730, guid: fed93d56c6857df4c94beb57c5f659fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073393543}
+--- !u!114 &2132303495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2132303489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a51012a8d30954cb66cfe6cf8fccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorImage: {fileID: 2800000, guid: 6a962c7711e97f54fbc2118236fc3b32, type: 3}
 --- !u!1 &2132366837
 GameObject:
   m_ObjectHideFlags: 0
@@ -90222,6 +90947,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.5
 --- !u!95 &2132506996
 Animator:
   serializedVersion: 3
@@ -90603,6 +91329,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fd230308819ab6447974a39b322210fa, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd230308819ab6447974a39b322210fa, type: 3}
   m_IsPrefabParent: 0
@@ -90926,6 +91656,10 @@ Prefab:
     - target: {fileID: 100000, guid: d5afff1a9aa3f944b9725e85c65d6bfc, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d5afff1a9aa3f944b9725e85c65d6bfc, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5afff1a9aa3f944b9725e85c65d6bfc, type: 3}

@@ -57,18 +57,18 @@ public class RopeGameController : MonoBehaviour {
 	}
 
 
-    private void OnEnable()
-    {
-        if (stickTexture != null)
-            CharGameController.getOwner().GetComponent<CursorImageScript>().addTagCursorPair(I.tag, stickTexture);
-    }
+    //private void OnEnable()
+    //{
+    //    if (stickTexture != null)
+    //        CharGameController.getOwner().GetComponent<CursorImageScript>().addTagCursorPair(I.tag, stickTexture);
+    //}
 
-    private void OnDisable()
-    {
+    //private void OnDisable()
+    //{
 
-        if (stickTexture != null)
-            CharGameController.getOwner().GetComponent<CursorImageScript>().removeTagCursorPairWithTag(I.tag);
-    }
+    //    if (stickTexture != null)
+    //        CharGameController.getOwner().GetComponent<CursorImageScript>().removeTagCursorPairWithTag(I.tag);
+    //}
 
     IEnumerator<float> createNodes()
     {

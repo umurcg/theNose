@@ -178,12 +178,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "-Ivan: Elveda lanet olas\u0131ca \u015Fey."
   - "-Ivan: Umar\u0131m neva nehrinin bal\u0131klar\u0131na yem olursun."
   AllSubtitles: "-Ivan: Elveda lanet olas\u0131ca \u015Fey.\n-Ivan: Umar\u0131m neva
     nehrinin bal\u0131klar\u0131na yem olursun."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &114000011333507410
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startAutomatic: 0
 --- !u!114 &114000011835557698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "Ivan: G\xFCnayd\u0131n efendim. Ne kadar g\xFCzel bir g\xFCn."
   - "Polis: Hay\u0131r, hay\u0131r. Efendim diye bir \u015Fey yok. S\xF6yle bakal\u0131m
@@ -256,7 +258,6 @@ MonoBehaviour:
     bana onurla hizmet veren.\nPolis: \u015Eimdi do\u011Fru s\xF6yle bakal\u0131m.
     Bundan b\xF6yle kolay kurtulamazs\u0131n.\nIvan: ...\nPolis: Neyse anla\u015F\u0131ld\u0131.
     Gel benimle bunlar\u0131 karakolda konu\u015Fucaz."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &114000012083065632
@@ -270,9 +271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42681b2798a7f4418a506cdf5e2f223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InterfaceType: 1
+  CallType: 0
   owner: {fileID: 1000014022124728}
+  passParameter: {fileID: 0}
   methodName: throwNose
+  destroySelf: 0
 --- !u!114 &114000013141673056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -284,13 +287,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - 'Polis: Hey!'
   - 'Polis: Sen! Buraya gel.'
   AllSubtitles: 'Polis: Sen! Buraya gel.
 
 '
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &114000013464344344
@@ -304,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "-Narrator: \u0130\u015Fte say\u0131n oyuncu,  tam burada hikayemiz birden kesilir."
   - "-Narrator: \u0130nsani ger\xE7ekten merak i\xE7inde b\u0131raksa da..."
@@ -312,7 +316,6 @@ MonoBehaviour:
   AllSubtitles: "\u0130\u015Fte say\u0131n oyuncu,  tam burada hikayemiz birden kesilir.\n\u0130nsani
     ger\xE7ekten merak i\xE7inde b\u0131raksa da...\nIvan'\u0131n bundan sonra ba\u015F\u0131na
     gelicekler herkes i\xE7in muammada kal\u0131cakt\u0131r."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray:
@@ -320,6 +323,7 @@ MonoBehaviour:
   - 1
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &114000013789432066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,9 +335,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4a4b3e425b6e54db67786b133264e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisabledAtStart: 0
+  uniqueId: 
   police: {fileID: 0}
   trigger: {fileID: 1000012663546044}
-  blackScreen: {fileID: 0}
+  shallNotPass: {fileID: 0}
+  singerCafe: {fileID: 0}
+  nehir: {fileID: 0}
 --- !u!114 &114000013978007502
 MonoBehaviour:
   m_ObjectHideFlags: 1

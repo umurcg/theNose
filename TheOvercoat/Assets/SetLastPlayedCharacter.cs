@@ -11,7 +11,7 @@ public class SetLastPlayedCharacter : MonoBehaviour {
     void Start () {
         if (GlobalController.Instance.sceneList.Count == 0) return;
         string character = characters.text.Split('\n')[GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1]];
-        Debug.Log("Character is " + character);
+        Debug.Log("Character is " + character+" "+ GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1]);
         charObj=CharGameController.setCharacter(character.Trim());
         relativePos = transform.position - charObj.transform.position;
 	}

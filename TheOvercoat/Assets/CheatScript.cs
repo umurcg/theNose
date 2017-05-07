@@ -46,6 +46,7 @@ public class CheatScript : MonoBehaviour {
             if (Input.GetKey(KeyCode.T)) Timing.RunCoroutine(setScaleDuringPlay());
             if (Input.GetKey(KeyCode.C)) Timing.RunCoroutine(setSpeedDuringPlay());
             if (Input.GetKey(KeyCode.N)) loadNextLevel();
+            if (Input.GetKey(KeyCode.J)) takeScreenShot();
         
     }
 
@@ -245,6 +246,14 @@ public class CheatScript : MonoBehaviour {
         if (localSpeed > 0) cck.speed = localSpeed;
 
         yield break;
+    }
+
+    void takeScreenShot()
+    {
+
+        string directory = "_"+System.DateTime.Now.ToString() + ".jpg";
+        Application.CaptureScreenshot(directory,4);
+        Debug.Log("Screen shot is saved to " + directory);
     }
 
 }

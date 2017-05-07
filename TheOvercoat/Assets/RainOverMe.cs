@@ -60,6 +60,8 @@ public class RainOverMe : MonoBehaviour {
 
         spawnedObject.transform.position = new Vector3(Random.Range(minX, maxX), upY + 5, mainChar.transform.position.z);
 
+        spawnedObject.SetActive(true);
+
         ConstantForce cf = spawnedObject.AddComponent<ConstantForce>();
         cf.force = new Vector3(0, -Random.Range(minLinearForce, maxLinerForce), 0);
         cf.torque = new Vector3(Random.Range(minTorque, maxTorque), Random.Range(minTorque, maxTorque), Random.Range(minTorque, maxTorque));
@@ -81,6 +83,8 @@ public class RainOverMe : MonoBehaviour {
         float upY = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Random.Range( Screen.height, Screen.height+50), 0)).y;
         float maxX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
         float minX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
+
+        spawnedObject.SetActive(true);
 
         spawnedObject.transform.position = new Vector3(Random.Range(minX, maxX), upY + 5, mainChar.transform.position.z);
 

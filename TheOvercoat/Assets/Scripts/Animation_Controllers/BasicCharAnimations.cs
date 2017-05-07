@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using MovementEffects;
 
 //_BasicCharAnimation.cs
 //_Dependent to: 
@@ -10,28 +12,35 @@ using System.Collections;
 
 
 public class BasicCharAnimations : MonoBehaviour {
-    public float threshold=0f;
+    public float threshold=0.01f;
     public string animName="Walk";
     Vector3 lastPosition;
     Animator anim;
     AnimationClip walk;
     public float speedFactor = 0.5f;
 
-    float angle;
-    Quaternion lastRotate;
-    float rotTreshold = 0.05f;
+    //float angle;
+    //Quaternion lastRotate;
+    //float rotTreshold = 0.05f;
+
+    //After movement stop a timer will be triggered for preventing odd walks.
+    public float timeBeforeStopAnimation=0.1f;
+
+    bool stoped;
+    IEnumerator<float> handler=null;
+
 	// Use this for initialization
 	void Awake () {
         anim = GetComponent<Animator>();
       
-        lastRotate = transform.rotation;
+        //lastRotate = transform.rotation;
             
         
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         if(lastPosition==Vector3.zero) lastPosition = transform.position;
 
@@ -42,22 +51,52 @@ public class BasicCharAnimations : MonoBehaviour {
 
 
 		if (dist > threshold) {
-			anim.speed = speed;
-            //print(dist);
-			anim.SetBool (animName, dist > threshold);
+
+            if (handler != null)
+            {
+                Timing.KillCoroutines(handler);
+                handler = null;
+            }
+
+            anim.speed = speed;
+			anim.SetBool (animName,true);
+            stoped = false;
+
+        
  
 		} 
         else
         {
-            anim.SetBool(animName, false);
-            anim.speed = 1;
+            if(handler==null) handler=Timing.RunCoroutine(stopAnim());
         }
 
 
+
         lastPosition = transform.position;
-        lastRotate = transform.rotation;
+        //lastRotate = transform.rotation;
 
 
 
 	}
+
+    IEnumerator<float> stopAnim()
+    {
+
+        float timer = timeBeforeStopAnimation;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return 0;
+        }
+
+        anim.SetBool(animName, false);
+        anim.speed = 1;
+        stoped = true;
+
+        handler = null;
+
+    }
+    
+    
+
 }

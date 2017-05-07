@@ -14,37 +14,45 @@ public class CursorImageScript : MonoBehaviour
 
     //public float xOffset, yOffset = 10;
     public Texture2D defaultTexture;
-    public Texture2D disabled;
     public Texture2D floor;
     public Texture2D activeObject;
-    public Texture2D grab;
+    public Texture2D frontierObject;
     public Texture2D nextSubtitle;
-    
+    public Texture2D draw;
+    public Texture2D button;
 
+    Texture2D currentCursor;
+
+
+    [HideInInspector]
     public Texture2D externalTexture;
 
     public LayerMask ignoreLayers;
 
+    public bool printShootedTag=false;
+
+    [HideInInspector]
     public bool forceToDefault = false;
 
     RaycastHit lastHit;
 
     GameObject player;
     MoveTo mt;
+    NavMeshAgent playerAgent;
 
     Text subt;
 
     Camera currentCamera;
 
-    //TODO right whole script again
-    //Use this dictionary for cursors havng most priority. 
-    Dictionary<string, Texture2D> tagCursorPair;
+    ////TODO right whole script again
+    ////Use this dictionary for cursors havng most priority. 
+    //Dictionary<string, Texture2D> tagCursorPair;
 
 
-    private void Awake()
-    {
-        tagCursorPair = new Dictionary<string, Texture2D>();
-    }
+    //private void Awake()
+    //{
+    //    tagCursorPair = new Dictionary<string, Texture2D>();
+    //}
 
     // Use this for initialization
     void Start()
@@ -54,10 +62,10 @@ public class CursorImageScript : MonoBehaviour
 
     }
 
-    public void testDelegate()
-    {
-        Debug.Log("Yes your ddelegate method works");
-    }
+    //public void testDelegate()
+    //{
+    //    Debug.Log("Yes your ddelegate method works");
+    //}
 
     void OnEnable()
     {
@@ -73,10 +81,25 @@ public class CursorImageScript : MonoBehaviour
 
     void newSceneIsLoad(Scene scene, LoadSceneMode mode)
     {
+        updatePlayerVariables();
+        updateSubtitle();
+        Vckrs.doItAfterFrame(assignCamera,3);
+        //assignCamera();
+
+    }
+
+    void updatePlayerVariables()
+    {
         //Debug.Log("Getting new move to ");
         player = CharGameController.getActiveCharacter();
         if (player != null)
+        {
             mt = player.GetComponent<MoveTo>();
+            playerAgent = player.GetComponent<NavMeshAgent>();
+        }
+    }
+    void updateSubtitle()
+    {
         if (SubtitleFade.subtitles != null)
         {
             if (SubtitleFade.subtitles.ContainsKey("CharacterSubtitle"))
@@ -84,12 +107,7 @@ public class CursorImageScript : MonoBehaviour
                 subt = SubtitleFade.subtitles["CharacterSubtitle"];
             }
         }
-
-        Vckrs.doItAfterFrame(assignCamera,3);
-        //assignCamera();
-
     }
-
 
     void assignCamera()
     {
@@ -114,7 +132,7 @@ public class CursorImageScript : MonoBehaviour
         if (externalTexture != null)
         {
             //Debug.Log("External texture is not null");
-            Cursor.SetCursor(externalTexture, Vector2.zero, CursorMode.Auto);
+            setCursor(externalTexture);
             return;
         }
 
@@ -122,11 +140,10 @@ public class CursorImageScript : MonoBehaviour
         //First look at char subtitile. If it is empty then raycast.
         if (subt != null)
         {
-
             //Debug.Log("Subtitile is not null");
             if (subt.text != "")
             {
-                Cursor.SetCursor(nextSubtitle, Vector2.zero, CursorMode.Auto);
+                setCursor(nextSubtitle);
                 return;
             }
 
@@ -134,7 +151,7 @@ public class CursorImageScript : MonoBehaviour
 
         if (forceToDefault)
         {
-            Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
+            setCursor(defaultTexture);
             return;
         }
 
@@ -146,103 +163,83 @@ public class CursorImageScript : MonoBehaviour
             return;
         }
 
+
+        if (raycastFor2d())
+        {
+            //Debug.Log("Button is hit");
+            return;
+        }
+
         Ray ray = currentCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
-        //LayerMask mask = (1 << 8);
-        ////mask = (1 << 2);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayers))
         {
             //Debug.Log(hit.transform.gameObject.name + " " + hit.transform.tag + " " + hit.transform.gameObject.layer);
 
-            if(tagCursorPair!=null)
-            //Look for dictinary in here. Dictionary hs most priority.
-            foreach(KeyValuePair<string, Texture2D> pair in tagCursorPair)
+            //if(tagCursorPair!=null)
+            ////Look for dictinary in here. Dictionary hs most priority.
+            //foreach(KeyValuePair<string, Texture2D> pair in tagCursorPair)
+            //{
+            //    if (hit.transform.tag == pair.Key)
+            //    {
+            //        Cursor.SetCursor(pair.Value, Vector2.zero, CursorMode.Auto);
+            //        return;
+            //    }
+            //}
+
+            string shootedTag = hit.transform.tag;
+
+            if (printShootedTag) Debug.Log(shootedTag);
+
+            switch (shootedTag)
             {
-                if (hit.transform.tag == pair.Key)
-                {
-                    Cursor.SetCursor(pair.Value, Vector2.zero, CursorMode.Auto);
-                    return;
-                }
-            }
+                case "Floor":
 
+                    //Debug.Log("chekc avabilirty" + checkAvaiblity() + " reachblity " + isPositionReachabel(hit.point));
 
-            //Even player can't move if object have this tag, it will change cursor to activeObject
-            if (hit.transform.tag== "ActiveEvenCantWalk")
-            {
-
-                Cursor.SetCursor(activeObject, Vector2.zero, CursorMode.Auto);
-                return;
-            } 
-
-            else if (hit.transform.tag == "ActiveObject" || hit.transform.tag=="ActiveObjectOnlyCursor")
-            {
-                if (!checkAvaiblity())
-                {
-                    Cursor.SetCursor(disabled, Vector2.zero, CursorMode.Auto);
-                    return;
-                }
-
-                Cursor.SetCursor(activeObject, Vector2.zero, CursorMode.Auto);
-
-            } 
-            else if (hit.transform.tag == "Floor")
-            {
-
-                if (!checkAvaiblity())
-                {
-                    Cursor.SetCursor(disabled, Vector2.zero, CursorMode.Auto);
-                    return;
-                }
-
-                //Check is reachable if player is active
-                if (player != null)
-                {
-                    //Vckrs.testPosition(hit.point);
-                    //Debug.Log("Player is not null");
-
-                    NavMeshHit nmHit;
-                    if (NavMesh.SamplePosition(hit.point, out nmHit, 0.1f, NavMesh.AllAreas))
+                    if (checkAvaiblity() && isPositionReachabel(hit.point))
                     {
-                        //Debug.Log("There is navmesh");
-                        Cursor.SetCursor(floor, Vector2.zero, CursorMode.Auto);
-                    }
-                    else
+                        setCursor(floor);
+                    }else if(checkAvaiblity())
                     {
-                        //Debug.Log("There is no navmesh");
-                        Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
+                        setCursor(defaultTexture);
                     }
-                }
-                else
-                {
-                    Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
-                }
+                    break;
 
+                case "ActiveObject":
 
-            }
-            else if (hit.transform.tag == "Grab")
-            {
+                    setCursor(activeObject);
+                    break;
+                case "Grab":
 
-                Cursor.SetCursor(grab, Vector2.zero, CursorMode.Auto);
-            }
+                    setCursor(frontierObject);
+                    break;
+
+                case "Draw":
+
+                    setCursor(draw);
+                    break;
+
        
-            else
-            {
-                if (!checkAvaiblity())
-                {
-                    //Debug.Log("is not avaible");
-                    Cursor.SetCursor(disabled, Vector2.zero, CursorMode.Auto);
-                    return;
-                }
+                default:
+                    setCursor(defaultTexture);
 
-                Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
+                    break;
 
+                    
             }
 
+            return;
+
+          
         }
 
 
+
+
+        setCursor(defaultTexture);
+        
 
     }
 
@@ -273,6 +270,11 @@ public class CursorImageScript : MonoBehaviour
 
     }
 
+    public void setExternalTexture(Texture2D texture)
+    {
+        externalTexture = texture;
+    }
+
     public void resetExternalCursor()
     {
         externalTexture = null;
@@ -281,14 +283,136 @@ public class CursorImageScript : MonoBehaviour
 
     }
 
-    public void addTagCursorPair(string tag, Texture2D pair)
+    //public void addTagCursorPair(string tag, Texture2D pair)
+    //{
+    //    tagCursorPair.Add(tag, pair);
+    //}
+
+    //public void removeTagCursorPairWithTag(string tag)
+    //{
+    //    tagCursorPair.Remove(tag);
+    //}
+    
+    bool isPositionReachabel(Vector3 position)
     {
-        tagCursorPair.Add(tag, pair);
+        if (player == null)
+        {
+            updatePlayerVariables();
+            Debug.Log("player is bull");
+            return false;
+        }
+      
+
+       //Vckrs.testPosition(hit.point);
+       //Debug.Log("Player is not null");
+
+       NavMeshHit nmHit;
+        return (NavMesh.SamplePosition(position, out nmHit, 2f, playerAgent.areaMask));
+                
     }
 
-    public void removeTagCursorPairWithTag(string tag)
+    void setCursor(Texture2D cursor)
     {
-        tagCursorPair.Remove(tag);
+        if (currentCursor == cursor) return;
+
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        currentCursor = cursor;
+    }
+
+
+    bool raycastFor2d()
+    {
+        //Now raycast for 2d objects
+
+        RaycastHit2D hit2d = Physics2D.Raycast(currentCamera.transform.position, Input.mousePosition);
+
+        if (hit2d.collider != null)
+        {
+   
+            if (hit2d.transform.gameObject.tag == "Button")
+            {
+                //Debug.Log("2D tag is " + hit2d.transform.gameObject.tag);
+                setCursor(button);
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
+
+
+//    //Even player can't move if object have this tag, it will change cursor to activeObject
+//    if (hit.transform.tag== "ActiveEvenCantWalk")
+//    {
+
+//        Cursor.SetCursor(activeObject, Vector2.zero, CursorMode.Auto);
+//        return;
+//    } 
+
+//    else if (hit.transform.tag == "ActiveObject" || hit.transform.tag=="ActiveObjectOnlyCursor")
+//    {
+//        if (!checkAvaiblity())
+//        {
+//            Cursor.SetCursor(disabled, Vector2.zero, CursorMode.Auto);
+//            return;
+//        }
+
+//        Cursor.SetCursor(activeObject, Vector2.zero, CursorMode.Auto);
+
+//    } 
+//    else if (hit.transform.tag == "Floor")
+//    {
+
+//        if (!checkAvaiblity())
+//        {
+//            Cursor.SetCursor(disabled, Vector2.zero, CursorMode.Auto);
+//            return;
+//        }
+
+//        //Check is reachable if player is active
+//        if (player != null)
+//        {
+//            //Vckrs.testPosition(hit.point);
+//            //Debug.Log("Player is not null");
+
+//            NavMeshHit nmHit;
+//            if (NavMesh.SamplePosition(hit.point, out nmHit, 0.1f, NavMesh.AllAreas))
+//            {
+//                //Debug.Log("There is navmesh");
+//                Cursor.SetCursor(floor, Vector2.zero, CursorMode.Auto);
+//            }
+//            else
+//            {
+//                //Debug.Log("There is no navmesh");
+//                Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
+//            }
+//        }
+//        else
+//        {
+//            Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
+//        }
+
+
+//    }
+//    else if (hit.transform.tag == "Grab")
+//    {
+
+//        Cursor.SetCursor(grab, Vector2.zero, CursorMode.Auto);
+//    }
+
+//    else
+//    {
+//        if (!checkAvaiblity())
+//        {
+//            //Debug.Log("is not avaible");
+//            Cursor.SetCursor(disabled, Vector2.zero, CursorMode.Auto);
+//            return;
+//        }
+
+//        Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
+
+//    }
+
+//}

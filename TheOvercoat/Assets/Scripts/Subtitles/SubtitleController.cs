@@ -16,7 +16,7 @@ public class SubtitleController : MonoBehaviour {
     public string[] subtitleTexts;
     public string AllSubtitles;
 
-    public GameObject subtitle;
+
     protected Text text;
     
 	PlayerComponentController pcc;
@@ -39,21 +39,15 @@ public class SubtitleController : MonoBehaviour {
         //At start import texts from text asset
         if (textAsset != null) importFromTextFile();
 
+        text = SubtitleFade.subtitles["CharacterSubtitle"];
 
-
-        if (subtitle == null)
+        //If couldnt find subtitle with SubtitleFade get it with tag
+        if (text == null)
         {
-
-            text = SubtitleFade.subtitles["CharacterSubtitle"];
-
-            
-
+            text=getCharSubt();
+            Debug.Log("Getting char subtitle with tag");
         }
-        else
-        {
 
-            text = subtitle.GetComponent<Text>();
-        }
         if (text == null)
         {
             Debug.Log("No text here");
@@ -66,10 +60,10 @@ public class SubtitleController : MonoBehaviour {
         if(player!=null)
         pcc = player.GetComponent<PlayerComponentController>();
 
-        //idunow
+        //Update funct'on shouldn't while subtitle is not active
         this.enabled = false;
 
-        
+
 
     }
 
@@ -191,15 +185,20 @@ public class SubtitleController : MonoBehaviour {
     }
 
 
-    public void setCharSubtitle()
+    public Text getCharSubt()
     {
-        subtitle = GameObject.FindGameObjectWithTag("CharacterSubtitle");
+        GameObject subObj = GameObject.FindGameObjectWithTag("CharacterSubtitle");
+        if (subObj != null) return subObj.GetComponent<Text>();
+        return null;
 
     }
 
-    public void setNarSubtitle()
+    public Text getNarSubt ()
     {
-        subtitle = GameObject.FindGameObjectWithTag("NarratorSubtitle");
+        GameObject subObj = GameObject.FindGameObjectWithTag("NarratorSubtitle");
+        if (subObj != null) return subObj.GetComponent<Text>();
+        return null;
+
 
     }
 
@@ -343,10 +342,10 @@ public class SubtitleController : MonoBehaviour {
     //Returns line of input string if it is exist
     int findLine(string line)
     {
-        
-        StreamReader theReader = new StreamReader(Application.dataPath + "/Resources/" + folderName + "/" + fileName+".txt");
 
-        string wholeFile = theReader.ReadToEnd();
+        //StreamReader theReader = new StreamReader(Application.dataPath + "/Resources/" + folderName + "/" + fileName+".txt");
+
+        string wholeFile =/* theReader.ReadToEnd();*/ textAsset.text;
         string[] lines = wholeFile.Split('\n');
 
         for (int i = 0; i < lines.Length; i++)
@@ -365,9 +364,9 @@ public class SubtitleController : MonoBehaviour {
     int findLine(int startIndex,string line)
     {
 
-        StreamReader theReader = new StreamReader(Application.dataPath + "/Resources/" + folderName + "/" + fileName + ".txt");
+        //StreamReader theReader = new StreamReader(Application.dataPath + "/Resources/" + folderName + "/" + fileName + ".txt");
 
-        string wholeFile = theReader.ReadToEnd();
+        string wholeFile =/* theReader.ReadToEnd();*/ textAsset.text;
         string[] lines = wholeFile.Split('\n');
         string[] sublines = new string[lines.Length - startIndex];
 

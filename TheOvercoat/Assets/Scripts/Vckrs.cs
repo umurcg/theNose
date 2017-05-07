@@ -601,10 +601,13 @@ public class Vckrs : MonoBehaviour
 
     public static void setAlpha<T>(GameObject obj, float a) where T : MaskableGraphic
     {
+       
           a = Mathf.Clamp(a, 0, 1);
           T t = obj.GetComponent<T>();
           Color textureColor = t.color;
           textureColor.a=a;
+        t.color = textureColor;
+        //Debug.Log("setting " + obj.name + " invisible" + textur);
     }
 
 

@@ -18,6 +18,7 @@ public class IvanHouseGameController : GameController {
         if (GlobalController.Instance == null)
         {
             Debug.Log("No global controller instance");
+            return;
         }
 
         if (GlobalController.Instance.sceneList.Count != 1 || GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 1] != (int)GlobalController.Scenes.City)
@@ -66,11 +67,11 @@ public class IvanHouseGameController : GameController {
     IEnumerator<float> _wakeUpScene()
     {
 
-        GameObject canvas=GameObject.FindGameObjectWithTag("TutorialCanvas");
-        if (canvas != null)
-        {
-            canvas.GetComponent<TutorailCanvas>().startFullTutorial(10f);
-        }
+        //GameObject canvas=GameObject.FindGameObjectWithTag("TutorialCanvas");
+        //if (canvas != null)
+        //{
+        //    canvas.GetComponent<TutorailCanvas>().startFullTutorial(10f);
+        //}
 
         //Debug.Log("Wakeupscene");
         //fading in;

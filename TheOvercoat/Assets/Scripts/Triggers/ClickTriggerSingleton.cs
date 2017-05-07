@@ -131,13 +131,11 @@ public class ClickTriggerSingleton : MonoBehaviour {
     IEnumerator setAim(GameObject aim)
     {
         if (checkIsColliding(aim))
-        {
-          
+        {          
             callAction(aim);
             yield break;
         }
-
-
+        
     
         IEnumerator<float> handler= Timing.RunCoroutine(walkToTarget(aim));
 

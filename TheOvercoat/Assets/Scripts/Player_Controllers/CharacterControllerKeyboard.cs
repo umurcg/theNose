@@ -27,7 +27,7 @@ public class CharacterControllerKeyboard : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //TODO fix bug that appears while camera rotating and player is moving. For now I prevent player to move while camera rotates
         //if (rotator && rotator.rotating) return;
