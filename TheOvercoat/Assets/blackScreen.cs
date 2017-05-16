@@ -15,10 +15,12 @@ public class blackScreen : MonoBehaviour {
    
     void Awake()
     {
-        //if (obj != null || script != null) Destroy(this);
+        if (obj != null || script != null) Destroy(this);
 
         obj = gameObject;
         script = this;
+
+        Debug.Log("Hi");
 
         RectTransform rt = GetComponent<RectTransform>();
         //rt.rect.Set(0,0, Screen.width,Screen.height);

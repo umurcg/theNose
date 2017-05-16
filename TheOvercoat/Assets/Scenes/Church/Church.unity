@@ -109,8 +109,8 @@ Transform:
   - {fileID: 1384492439}
   - {fileID: 1094478782}
   - {fileID: 867816281}
-  - {fileID: 1236387577}
   - {fileID: 52553196}
+  - {fileID: 1236387577}
   - {fileID: 720006998}
   m_Father: {fileID: 0}
   m_RootOrder: 17
@@ -345,7 +345,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 124965}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!114 &52553197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,7 +1219,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010181152532, guid: e1107bc3e24b90945b51676c4aade360, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1000010971514230, guid: e1107bc3e24b90945b51676c4aade360, type: 2}
       propertyPath: m_Name
@@ -1390,7 +1390,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a23aea507e75c84ebc154a0fed3ae11, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 2a23aea507e75c84ebc154a0fed3ae11, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1497,7 +1497,6 @@ MonoBehaviour:
     \r\nKovalev: Ama yanl\u0131\u015F bir \u015Fey yapm\u0131\u015F olmal\u0131y\u0131m
     ki, her \u015Feyimi elimden ald\u0131n sen benim.\r\nKovalev: L\xFCtfen yalvar\u0131r\u0131m
     bir i\u015Faret g\xF6ster. Herhangi bir \u015Fey. Ne olursa yapaca\u011F\u0131m.\r\n"
-  subtitle: {fileID: 0}
   ifDesroyItself: 1
   releaseAfterSub: 0
 --- !u!114 &341879134
@@ -1529,7 +1528,6 @@ MonoBehaviour:
     oldu\u011Funa inan\u0131yorum. Hatta \u015F\xFCphelendi\u011Fim insanlar vard\u0131
     ama sonradan anlad\u0131m ki onlar de\u011Filmi\u015F.\r\nRahip: Ne oldu, anlat
     \xE7ocu\u011Fum.\r\nKovalev: Anlatmaktansa g\xF6steriyim size rahip.\r"
-  subtitle: {fileID: 0}
   ifDesroyItself: 1
   releaseAfterSub: 0
 --- !u!114 &341879135
@@ -1576,7 +1574,6 @@ MonoBehaviour:
     rahip. Yeter ki bana burnumu bul. Yeter ki bu lanetten kurtulup eski m\xFCkemmel
     hayat\u0131ma geri d\xF6neyim.\r\nRahip: A\u015F\u015Fa\u011F\u0131 in. Sana yolu
     g\xF6stericem. Orada arad\u0131\u011F\u0131n\u0131 bulacaks\u0131n."
-  subtitle: {fileID: 0}
   ifDesroyItself: 1
   releaseAfterSub: 0
 --- !u!136 &341879136
@@ -1619,7 +1616,6 @@ MonoBehaviour:
   subtitleTexts:
   - "Rahip: Buradan in. A\u015Fa\u011F\u0131da bekliyor olacak seni."
   AllSubtitles: "Rahip: Buradan in. A\u015Fa\u011F\u0131da bekliyor olacak seni."
-  subtitle: {fileID: 0}
   ifDesroyItself: 1
   releaseAfterSub: 1
 --- !u!4 &341879142
@@ -2374,8 +2370,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.1
 --- !u!1 &483517479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,6 +2509,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b99a0a5998b2736429fd2a2fd1d01c5e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &486569338 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 7278bf437ef0d7442a9e3983695a8fad, type: 3}
+  m_PrefabInternal: {fileID: 2081692815}
 --- !u!4 &488584306 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 71d0757bcecef094fa74e599e91fc6a3, type: 3}
@@ -2630,7 +2632,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 645b18387ba9bdd4d867b477e3cc04eb, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 645b18387ba9bdd4d867b477e3cc04eb, type: 3}
       propertyPath: m_LocalScale.x
@@ -2690,8 +2692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913f32517e284de4e931115648ee59a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelMusicClip: {fileID: 8300000, guid: 5b67033590c4cf04496cba3fad655717, type: 3}
-  preserveLastSceneMusic: 0
+  levelMusics: []
 --- !u!4 &547891826
 Transform:
   m_ObjectHideFlags: 0
@@ -3055,26 +3056,6 @@ MonoBehaviour:
   - {fileID: 709583546}
   - {fileID: 930995425}
   - {fileID: 421260531}
-  - {fileID: 1602579483}
-  - {fileID: 234675914}
-  - {fileID: 577190088}
-  - {fileID: 2066356153}
-  - {fileID: 401123446}
-  - {fileID: 721454728}
-  - {fileID: 1412543648}
-  - {fileID: 0}
-  - {fileID: 1206871921}
-  - {fileID: 511456856}
-  - {fileID: 1710797644}
-  - {fileID: 812678134}
-  - {fileID: 0}
-  - {fileID: 386764365}
-  - {fileID: 1342225335}
-  - {fileID: 1557123731}
-  - {fileID: 1130941735}
-  - {fileID: 1403161871}
-  - {fileID: 1993298316}
-  - {fileID: 63147878}
   - {fileID: 1943822556}
   - {fileID: 1428032208}
   - {fileID: 1367642037}
@@ -3091,26 +3072,41 @@ MonoBehaviour:
   - {fileID: 68994900}
   - {fileID: 1022488107}
   - {fileID: 2005545053}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 2047626509}
   - {fileID: 543462352}
   - {fileID: 892155027}
   - {fileID: 1235705815}
   - {fileID: 1202958377}
   - {fileID: 284206491}
-  - {fileID: 0}
   - {fileID: 78726501}
   - {fileID: 944634671}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1368242602}
   - {fileID: 2142001290}
   - {fileID: 947875537}
   - {fileID: 682880895}
   - {fileID: 411488548}
+  - {fileID: 1602579483}
+  - {fileID: 234675914}
+  - {fileID: 577190088}
+  - {fileID: 2066356153}
+  - {fileID: 401123446}
+  - {fileID: 721454728}
+  - {fileID: 1412543648}
+  - {fileID: 1206871921}
+  - {fileID: 511456856}
+  - {fileID: 1710797644}
+  - {fileID: 812678134}
+  - {fileID: 386764365}
+  - {fileID: 1342225335}
+  - {fileID: 1557123731}
+  - {fileID: 1130941735}
+  - {fileID: 1403161871}
+  - {fileID: 1993298316}
+  - {fileID: 63147878}
+  - {fileID: 1990879302}
+  - {fileID: 1535394787}
+  - {fileID: 486569338}
+  - {fileID: 729456588}
 --- !u!1001 &613965561
 Prefab:
   m_ObjectHideFlags: 0
@@ -3772,6 +3768,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 90418393a577d1b4ba8257e6aabdd713, type: 3}
   m_PrefabInternal: {fileID: 722455443}
+--- !u!1 &729456588 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 645b18387ba9bdd4d867b477e3cc04eb, type: 3}
+  m_PrefabInternal: {fileID: 522115123}
 --- !u!1 &775624969 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010148841354, guid: 4a40b500fdc5ac142b8ae4020ca8dd64,
@@ -5149,7 +5149,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012932656190, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4000012932656190, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -5801,7 +5801,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 152700337c8cb6f4a82734f85348ba4d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 152700337c8cb6f4a82734f85348ba4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7073,7 +7073,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c345097baa804484cae2018ce54d473f, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: c345097baa804484cae2018ce54d473f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7102,6 +7102,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c345097baa804484cae2018ce54d473f, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1535394787 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: c345097baa804484cae2018ce54d473f, type: 3}
+  m_PrefabInternal: {fileID: 1535394786}
 --- !u!1001 &1542328135
 Prefab:
   m_ObjectHideFlags: 0
@@ -7436,7 +7440,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bfdf0793eae63e74797317ed6004b5bd, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bfdf0793eae63e74797317ed6004b5bd, type: 3}
       propertyPath: m_LocalScale.x
@@ -7560,23 +7564,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dbc0542b528e8f34c941c5789bda1bb3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.4999993
+      value: -0.49999934
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dbc0542b528e8f34c941c5789bda1bb3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5000006
+      value: -0.50000066
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dbc0542b528e8f34c941c5789bda1bb3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.49999976
+      value: -0.4999998
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dbc0542b528e8f34c941c5789bda1bb3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5000003
+      value: 0.50000036
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dbc0542b528e8f34c941c5789bda1bb3, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dbc0542b528e8f34c941c5789bda1bb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -8323,7 +8327,6 @@ MonoBehaviour:
     ederim. Bu \u015Feyleri atlat\u0131y\u0131m size y\xFCkl\xFC -tabi beni sarsmayacak
     \u015Fekilde- bir \xF6d\xFCl verece\u011Fim.\r\nPontiff: \u0130stemez senin zehirli
     paran\u0131. \r\nPontiff: Ge\xE7 otur \u015Furaya."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1773820516
@@ -8366,7 +8369,6 @@ MonoBehaviour:
     Bazen i\xE7inde bulundu\u011Fun komplike durumlar\u0131, biraz uzakla\u015Farak
     kolayca \xE7\xF6zebilirsin.\r\nPontiff: Tek yapman gereken birazc\u0131k uzakla\u015Fmak.
     Sonra t\xFCm sorunlar\u0131n yava\u015F yava\u015F \xE7\xF6z\xFCme kavu\u015Facak.\r"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1773820517
@@ -8381,8 +8383,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &1773820518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8402,7 +8406,6 @@ MonoBehaviour:
   AllSubtitles: "Pontiff: Neden geldin buraya? O pis iblis kan\u0131nla tanr\u0131n\u0131n
     evini nas\u0131l kirletmeye c\xFCret edersin. KONU\u015E!\r\nKovalev: Ne diyorsun
     sen. Benim kim oldu\u011Fu\r"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1773820519
@@ -8449,7 +8452,7 @@ Transform:
   - {fileID: 586747183}
   - {fileID: 1425939656}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
 --- !u!114 &1773820522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8660,7 +8663,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3aa5b986d7450294c95d441f4ed952b5, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3aa5b986d7450294c95d441f4ed952b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9021,7 +9024,7 @@ Transform:
   - {fileID: 305723811}
   - {fileID: 1043386976}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
 --- !u!1 &1934319408
 GameObject:
   m_ObjectHideFlags: 0
@@ -9129,7 +9132,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b99a0a5998b2736429fd2a2fd1d01c5e, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b99a0a5998b2736429fd2a2fd1d01c5e, type: 2}
@@ -9171,7 +9174,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0c9837ec51989946b0ed9d3ade7f721, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0c9837ec51989946b0ed9d3ade7f721, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9200,6 +9203,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0c9837ec51989946b0ed9d3ade7f721, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1990879302 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: d0c9837ec51989946b0ed9d3ade7f721, type: 3}
+  m_PrefabInternal: {fileID: 1990879301}
 --- !u!1 &1993298316 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 90418393a577d1b4ba8257e6aabdd713, type: 3}
@@ -9423,7 +9430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7278bf437ef0d7442a9e3983695a8fad, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7278bf437ef0d7442a9e3983695a8fad, type: 3}
       propertyPath: m_LocalScale.x
@@ -9618,7 +9625,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
 --- !u!1 &2142001290 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 248a7b2d571daaa45ace94793c02bc48, type: 3}

@@ -51,7 +51,9 @@ public class GirtyPetGameScript : MonoBehaviour {
     //Message recieve and message to send when win condition is triggered
     public GameObject messageReciever;
     public string message;
-          
+
+
+    IEnumerator<float> runHandler;
 
     void Awake()
     {
@@ -216,7 +218,7 @@ public class GirtyPetGameScript : MonoBehaviour {
         timer = timeToApproach;
         
         //Run boy run
-        Timing.RunCoroutine(run(transform.position, findOppositeDirectionOfMouse() * runAwayMagnitude));
+        run(transform.position, findOppositeDirectionOfMouse() * runAwayMagnitude);
 
     }
 
@@ -239,7 +241,7 @@ public class GirtyPetGameScript : MonoBehaviour {
             float deltaMouse = Vector3.Distance(localMousePosition, Input.mousePosition);
             if (deltaMouse > 0.25f)
             {                   
-                Timing.RunCoroutine(run(transform.position, findOppositeDirectionOfMouse() * runAwayMagnitude));
+                run(transform.position, findOppositeDirectionOfMouse() * runAwayMagnitude);
 
                 //Execure coroutine
                 yield break;
@@ -268,11 +270,17 @@ public class GirtyPetGameScript : MonoBehaviour {
         return dirInPlane;
     }
 
-   IEnumerator<float> run(Vector3 from, Vector3 aim)
-    {               
-        //If already running exit coroutine
-        if (running) yield break;
 
+    void run(Vector3 from, Vector3 aim)
+    {
+        //If already running exit coroutine
+        if (running) return;
+
+        runHandler = Timing.RunCoroutine(_run(from, aim));
+    }
+
+   IEnumerator<float> _run(Vector3 from, Vector3 aim)
+    {               
         //Set running boolean
         running = true;
  
@@ -301,6 +309,13 @@ public class GirtyPetGameScript : MonoBehaviour {
         yield break;
     }
 
+    //Stops run coroutine
+    void stopRun()
+    {
+        Timing.KillCoroutines(runHandler);
+        running = false;
+    }
+
     //Checks girty in screen, if not moves it to other side of screen and make it walk to in to screen a little bit
     public void checkObjInScreen(GameObject obj)
     {
@@ -311,12 +326,14 @@ public class GirtyPetGameScript : MonoBehaviour {
         if (objScreenPos.x > Screen.width+tol)
         {
             obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector2(0, objScreenPos.y));
-            Timing.RunCoroutine(run(transform.position, mainCamera.gameObject.transform.right*tol));
+            stopRun();
+            run(transform.position, mainCamera.gameObject.transform.right*tol);
         }
         else if (objScreenPos.x < 0 - tol)
         {
             obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector2(Screen.width, objScreenPos.y));
-            Timing.RunCoroutine(run(transform.position, - mainCamera.gameObject.transform.right*tol));
+            stopRun();
+            run(transform.position, - mainCamera.gameObject.transform.right*tol);
         }
 
         objScreenPos = mainCamera.WorldToScreenPoint(obj.transform.position);
@@ -324,13 +341,15 @@ public class GirtyPetGameScript : MonoBehaviour {
         if (objScreenPos.y > Screen.height + tol)
         {
             obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector2(objScreenPos.x, 0));
-            Timing.RunCoroutine(run(transform.position, mainCamera.gameObject.transform.up*tol));
+            stopRun();
+            run(transform.position, mainCamera.gameObject.transform.up*tol);
         }
         else if (objScreenPos.y < 0 - tol)
         {
 
             obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector2(objScreenPos.x, Screen.height));
-            Timing.RunCoroutine(run(transform.position, - mainCamera.gameObject.transform.up*tol));
+            stopRun();
+            run(transform.position, - mainCamera.gameObject.transform.up*tol);
         }
 
     }

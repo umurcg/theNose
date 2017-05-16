@@ -5,7 +5,8 @@ using System.Collections;
 //This scripts enable user to match to vertex that are child of onwer object.
 public class VertexPair : MonoBehaviour {
 
-    LineRenderer lr;
+    //LineRenderer lr;
+    LineRendererCylinder lrc;
     GameObject v1, v2;
 
     GameObject selectedVertex;
@@ -19,10 +20,19 @@ public class VertexPair : MonoBehaviour {
 
     public Texture2D cursor;
 
+
 	// Use this for initialization
 	void Start () {
-        lr=GetComponent<LineRenderer>();
-        lr.SetVertexCount(0);
+        //lr=GetComponent<LineRenderer>();
+        //lr.SetVertexCount(0);
+
+        lrc = new GameObject().AddComponent<LineRendererCylinder>();
+        lrc.gameObject.transform.parent = transform.parent.parent;
+
+        //Disable cylinder while vertex is not chosen
+        lrc.cylinder.SetActive(false);
+        lrc.radiusOfCylinder=0.3f;
+
         v1 = transform.GetChild(0).gameObject;
         v2 = transform.GetChild(1).gameObject;
         cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
@@ -49,7 +59,7 @@ public class VertexPair : MonoBehaviour {
                         if (hit.transform.gameObject != selectedVertex)
                         {
                             //Set position to second vertex because player drawed the edge
-                            lr.SetPosition(1, hit.transform.position);
+                            lrc.SetPosition(1, hit.transform.position);
                             edgeDrawed();
                             return;
                         }
@@ -57,9 +67,12 @@ public class VertexPair : MonoBehaviour {
                     else
                     {
                         Debug.Log("You picked a vertex");
-                            lr.SetVertexCount(2);
-                            lr.SetPosition(0, hit.transform.position);
-                            selectedVertex = hit.transform.gameObject;
+                        //lr.SetVertexCount(2);
+                        //Enable cylinder
+                        lrc.cylinder.SetActive(true);
+
+                        lrc.SetPosition(0, hit.transform.position);
+                        selectedVertex = hit.transform.gameObject;
 
                     }
                 }
@@ -83,17 +96,17 @@ public class VertexPair : MonoBehaviour {
             }
         }
 
-        if (selectedVertex!=null) lr.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (selectedVertex!=null) lrc.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
         //Update lines in rotation
         if (!edgeIsDrawed && selectedVertex != null)
         {
-            lr.SetPosition(0, selectedVertex.transform.position);
+            lrc.SetPosition(0, selectedVertex.transform.position);
         }else if (edgeIsDrawed)
         {
-            lr.SetPosition(0, selectedVertex.transform.position);
+            lrc.SetPosition(0, selectedVertex.transform.position);
             GameObject otherVertex = (selectedVertex == v1) ? v2 : v1;
-            lr.SetPosition(1, otherVertex.transform.position);
+            lrc.SetPosition(1, otherVertex.transform.position);
         }
         
 
@@ -110,12 +123,16 @@ public class VertexPair : MonoBehaviour {
         if (messageReciever == null) return;
 
         messageReciever.SendMessage(message);
+
+
     }
 
     void resetLine()
     {
         selectedVertex = null;
-        lr.SetVertexCount(0);
+        lrc.cylinder.SetActive(false);
+
+        //lr.SetVertexCount(0);
         
     }
 }

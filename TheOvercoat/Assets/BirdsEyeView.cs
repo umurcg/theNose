@@ -31,8 +31,8 @@ public class BirdsEyeView : MonoBehaviour {
     float initialSize;
 
     Dictionary<GameObject, Vector3> doorNames;
-   
-
+    
+    bool cameraInMovement = false;
     bool isBirdEye = false;
 
     void Awake()
@@ -88,7 +88,7 @@ public class BirdsEyeView : MonoBehaviour {
 
         if (!isBirdEye)
         {
-            if (Input.GetButtonDown("Map"))
+            if (!cameraInMovement && Input.GetButtonDown("Map"))
             {
                 //Debug.Log("Map");
                 goToBirdEye(false);
@@ -96,7 +96,7 @@ public class BirdsEyeView : MonoBehaviour {
         }
         else
         {
-            if (Input.GetButtonDown("Map"))
+            if (!cameraInMovement && Input.GetButtonDown("Map"))
             {
                 //Debug.Log("Map");
                 getBackToOriginal(Vector3.zero);
@@ -178,6 +178,7 @@ public class BirdsEyeView : MonoBehaviour {
         Vector3 aimPosition = new Vector3(50,0,0);
         Quaternion aimRotation = Quaternion.Euler(90, 0, 0);
 
+        cameraInMovement = true;
 
         float ratio = 0;
         while (ratio < 1)
@@ -198,6 +199,9 @@ public class BirdsEyeView : MonoBehaviour {
 
         //yield return Timing.WaitForSeconds(5f);
         //Timing.RunCoroutine(getBackToOriginal());
+
+        cameraInMovement = false;
+
         yield break;
 
     }
@@ -211,7 +215,7 @@ public class BirdsEyeView : MonoBehaviour {
                 string doorName = attachStat.Value.doorName;
                 Vector3 doorPos = attachStat.Value.transform.position;
                 GameObject UIDoorName = Instantiate(uiTextPrefab, mainCanvas.transform, false) as GameObject;
-                UIDoorName.GetComponent<Text>().text = doorName;
+                UIDoorName.GetComponentInChildren<Text>().text = doorName;
                 Debug.Log(doorName);
                 //UIDoorName.transform.position = GetComponent<Camera>().WorldToScreenPoint(doorPos);
                 doorNames.Add(UIDoorName, doorPos);
@@ -265,6 +269,8 @@ public class BirdsEyeView : MonoBehaviour {
 
     IEnumerator<float> _getBackToOriginal(Vector3 resultPos)
     {
+        cameraInMovement = true;
+
         clearUI();
 
         isBirdEye = false;
@@ -293,6 +299,8 @@ public class BirdsEyeView : MonoBehaviour {
             messageReciever.SendMessage(message, resultPos);
 
         setStreetsActive(false);
+
+        cameraInMovement = false;
 
         yield break;
 

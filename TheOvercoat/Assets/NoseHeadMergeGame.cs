@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //This script is controller for merge nose head game
 public class NoseHeadMergeGame : MonoBehaviour {
@@ -10,6 +11,8 @@ public class NoseHeadMergeGame : MonoBehaviour {
     public string message;
 
     public bool debugSkipGame = false;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +39,10 @@ public class NoseHeadMergeGame : MonoBehaviour {
         if (messageReciever == null) return;
 
         messageReciever.SendMessage(message);
+
+        //Clear edge objects
+        LineRendererCylinder[] lrcs = transform.parent.GetComponentsInChildren<LineRendererCylinder>();
+        foreach (LineRendererCylinder lrc in lrcs) Destroy(lrc.gameObject);
     }
 
     public void increaseDrawedEdges()
@@ -43,6 +50,7 @@ public class NoseHeadMergeGame : MonoBehaviour {
         numberOfDrawedEdges++;
     }
 
+    
 
 
 }

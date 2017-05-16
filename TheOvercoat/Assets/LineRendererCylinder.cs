@@ -4,7 +4,9 @@ using System.Collections;
 //Draw cylinder with start point and end point like line renderer
 public class LineRendererCylinder : MonoBehaviour {
 
-    GameObject cylinder;
+    [HideInInspector]
+    public GameObject cylinder;
+
     public Material mat;
     public Vector3 startPoint = new Vector3(0, 0, 0);
     public Vector3 endPoint = new Vector3(0, 0, 1);
@@ -78,6 +80,8 @@ public class LineRendererCylinder : MonoBehaviour {
             //Debug.Log("Assigning end posint as "+pos);
             endPoint = pos;
         }
+
+        updateStartPointAndEndPoint();
     }
      
 }

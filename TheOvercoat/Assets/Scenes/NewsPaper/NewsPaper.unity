@@ -127,7 +127,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 9957a2ba3a69b454ab60107f066e4e2d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 9957a2ba3a69b454ab60107f066e4e2d, type: 3}
       propertyPath: m_Controller
@@ -156,8 +156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.1
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.1
 --- !u!1 &146796662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,10 +1016,6 @@ RectTransform:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 212f1aa57693f5c4a8d7ec8b5ffda080, type: 3}
   m_PrefabInternal: {fileID: 1424126552}
---- !u!1 &577680277 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 141228, guid: ceec570ea80dde442932325ffdb0f567, type: 2}
-  m_PrefabInternal: {fileID: 1635375621}
 --- !u!1001 &579084651
 Prefab:
   m_ObjectHideFlags: 0
@@ -1986,7 +1984,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010181152532, guid: e1107bc3e24b90945b51676c4aade360, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4000010181152532, guid: e1107bc3e24b90945b51676c4aade360, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2231,6 +2229,22 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1079775484 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: 4beafc1895c107f4eab0f420be29c974, type: 3}
+  m_PrefabInternal: {fileID: 1277921172}
+--- !u!64 &1079775488
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1079775484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300004, guid: 4beafc1895c107f4eab0f420be29c974, type: 3}
 --- !u!4 &1101361086 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a13a78930863cfa498ef25cfbcff5a12, type: 3}
@@ -2398,7 +2412,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012932656190, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4000012932656190, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2544,6 +2558,10 @@ Prefab:
     - target: {fileID: 100004, guid: 4beafc1895c107f4eab0f420be29c974, type: 3}
       propertyPath: m_NavMeshLayer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 4beafc1895c107f4eab0f420be29c974, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4beafc1895c107f4eab0f420be29c974, type: 3}
@@ -3179,7 +3197,6 @@ MonoBehaviour:
     de bunla m\u0131 u\u011Fra\u015Faca\u011F\u0131m. \u0130\u015Fimin ne kadar ivedik
     oldu\u011Funu biliyor musunuz?\r\nEdit\xF6r: Elimden ba\u015Fka bir \u015Fey gelmez.
     Ak\u015Fama kadar bekliyorum."
-  subtitle: {fileID: 577680277}
   ifDesroyItself: 1
   releaseAfterSub: 1
 --- !u!114 &1683578479
@@ -3329,7 +3346,6 @@ MonoBehaviour:
     B\u0130R \u015EEY \xC7EKEMEM BEN!\r\nKovalev: Lanet ya\u011Fs\u0131n gazetenize.
     Basir bir duyuru yapam\u0131yacaksam neye yarars\u0131n\u0131z ki?\r\nKovalev
     \xE7\u0131kar."
-  subtitle: {fileID: 577680277}
   ifDesroyItself: 1
   releaseAfterSub: 1
 --- !u!114 &1683578483
@@ -3347,7 +3363,6 @@ MonoBehaviour:
   subtitleTexts:
   - "Edit\xF6r: \xDCzg\xFCn\xFCm, dedi\u011Fim gibi size yard\u0131m edemem."
   AllSubtitles: "Edit\xF6r: \xDCzg\xFCn\xFCm, dedi\u011Fim gibi size yard\u0131m edemem."
-  subtitle: {fileID: 577680277}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!114 &1683578484
@@ -3369,7 +3384,6 @@ MonoBehaviour:
   AllSubtitles: "Edit\xF6r: Hala k\xF6pe\u011Fi bulmam\u0131\u015Fs\u0131n\u0131z.
     K\xF6pe\u011Fi bulmadan duyurunuzu gazeteye koyamam.\nEdit\xF6r: Unutmay\u0131n
     tek baca\u011F\u0131 olmayan bir k\xF6pek. "
-  subtitle: {fileID: 577680277}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!1 &1700205438

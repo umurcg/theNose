@@ -35,9 +35,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010181152532}
   - 95: {fileID: 95000010224496518}
-  - 195: {fileID: 195000011098771790}
-  - 114: {fileID: 114000013480112052}
   - 114: {fileID: 114000012309306706}
+  - 114: {fileID: 114000010758626514}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -277,10 +276,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010971514230}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -52.477615, y: 23.294506, z: -107.808716}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.7190986, z: -0, w: 0.69490814}
+  m_LocalPosition: {x: -0.85, y: -1, z: 5.06}
+  m_LocalScale: {x: 1.0000161, y: 1, z: 1.0000161}
+  m_LocalEulerAnglesHint: {x: 0, y: 91.90301, z: 0}
   m_Children:
   - {fileID: 4000010133457258}
   - {fileID: 4000012285195362}
@@ -496,6 +495,24 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010758626514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010971514230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37bea06c74f5d644399150e06e1fae3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshes:
+  - {fileID: 4300000, guid: 9fdaec7c736ee3542a595dae3f2d4e80, type: 3}
+  - {fileID: 4300000, guid: 4d74d7dd072ed8948ba7dd4e19f00845, type: 3}
+  - {fileID: 4300000, guid: e96edfaaba06d0c47869191affc3ef64, type: 3}
+  - {fileID: 4300000, guid: 43c84b7c0880c944498230b5e26d8c7a, type: 3}
+  - {fileID: 4300000, guid: af2f9635efb743243b158d10fbddbd56, type: 3}
+  - {fileID: 4300000, guid: eff7ae2f086b42c4aa1c6c44ef153548, type: 3}
 --- !u!114 &114000012309306706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,23 +525,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
---- !u!114 &114000013480112052
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010971514230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 426679576e34e534381a1933169ff2d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
-  waitBetweenWalks: 1
-  tolerance: 0
-  axis: 2
+  timeBeforeStopAnimation: 0.5
 --- !u!137 &137000010185609272
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -538,7 +542,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 96a77aed599a54d4aab2be5c0951473c, type: 2}
+  - {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -579,23 +583,3 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.57017094, y: 0.1430099, z: -0.021045804}
     m_Extent: {x: 1.3557959, y: 0.6473261, z: 0.56145686}
   m_DirtyAABB: 0
---- !u!195 &195000011098771790
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010971514230}
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Speed: 3
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4

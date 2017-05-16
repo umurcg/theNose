@@ -39,11 +39,16 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
     CursorImageScript cis;
 
 
+
+
 	// Use this for initialization
 	void Start () {
         collectedObjs = new List<GameObject>();
         cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
-	}
+
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -82,6 +87,9 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
 
                 if (Input.GetButtonUp("Uncollect"))
                 {
+              
+
+                    
                     uncollect(hit.point);
                 }
 
@@ -209,7 +217,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
                 text.text = "";
             }else
             {
-                text.text = countMessage + " " + collectedObjs.Count +"/n"+additionalTutorialString;
+                text.text = countMessage + " " + collectedObjs.Count +'\n'+additionalTutorialString;
             }
         }
          

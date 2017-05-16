@@ -23,6 +23,7 @@ public class CameraFollower : MonoBehaviour {
     public Vector3 defaultRelative = new Vector3(-90f, 75f, 90f);
    
     float xRotation;
+    bool lockCamRotation = false;
 
 
     //GameObject primitiveCube;
@@ -70,6 +71,8 @@ public class CameraFollower : MonoBehaviour {
 
     public void rotater()
     {
+        if (lockCamRotation) return;
+
         //After setting all position and rotation for player movement, check for ratator
         //Debug.Log(Input.GetAxis("CameraRotator"));
         if (Input.GetAxis("CameraRotator") != 0)
@@ -173,5 +176,10 @@ public class CameraFollower : MonoBehaviour {
         yield break;
     }
 
+
+    public void lockCameraRotation(bool b)
+    {
+        lockCamRotation = b;
+    }
 
 }

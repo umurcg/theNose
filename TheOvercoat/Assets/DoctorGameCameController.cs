@@ -31,7 +31,7 @@ public class DoctorGameCameController : GameController {
         handlerHolder=Timing.RunCoroutine(chair.GetComponent<WalkLookAnim>()._getUp());
         yield return Timing.WaitUntilDone(handlerHolder);
 
-        handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(doctor, Vector3.Lerp(player.transform.position, doctor.transform.position, 0.5f)));
+        handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(doctor, Vector3.Lerp(player.transform.position, doctor.transform.position, 0.8f)));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         sc.callSubtitleWithIndex(1);

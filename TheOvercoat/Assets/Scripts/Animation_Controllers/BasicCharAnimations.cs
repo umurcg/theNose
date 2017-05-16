@@ -13,6 +13,11 @@ using MovementEffects;
 
 public class BasicCharAnimations : MonoBehaviour {
     public float threshold=0.01f;
+
+    //In some cases object canbe moved by scritps with too much distance. In that case walk animation shouldn't be triggered while it also effects
+    //speed of animation.
+    public float maxDelta = 5f;
+
     public string animName="Walk";
     Vector3 lastPosition;
     Animator anim;
@@ -38,46 +43,76 @@ public class BasicCharAnimations : MonoBehaviour {
         
 
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
 
-        if(lastPosition==Vector3.zero) lastPosition = transform.position;
+
+    private void Update()
+    {
+        if (lastPosition == Vector3.zero) lastPosition = transform.position;
 
         float dist = Vector3.Distance(transform.position, lastPosition);
-        float speed =speedFactor* dist / Time.deltaTime;
+        float speed = speedFactor * dist / Time.deltaTime;
 
         //float rotation = Quaternion.Angle(transform.rotation, lastRotate);
 
 
-		if (dist > threshold) {
-
-            if (handler != null)
-            {
-                Timing.KillCoroutines(handler);
-                handler = null;
-            }
-
+        if (dist > threshold)
+        {
             anim.speed = speed;
-			anim.SetBool (animName,true);
-            stoped = false;
+            //print(dist);
+            anim.SetBool(animName, dist > threshold);
 
-        
- 
-		} 
+        }
         else
         {
-            if(handler==null) handler=Timing.RunCoroutine(stopAnim());
+            anim.SetBool(animName, false);
+            anim.speed = 1;
         }
 
 
-
         lastPosition = transform.position;
-        //lastRotate = transform.rotation;
+        
+    }
+
+
+    //// Update is called once per frame
+    //void FixedUpdate () {
+
+    //       if(lastPosition==Vector3.zero) lastPosition = transform.position;
+
+    //       float dist = Vector3.Distance(transform.position, lastPosition);
+    //       float speed =speedFactor* dist / Time.deltaTime;
+
+    //       //float rotation = Quaternion.Angle(transform.rotation, lastRotate);
+
+
+    //	if (dist > threshold && dist<maxDelta) {
+
+    //           if (handler != null)
+    //           {
+    //               Timing.KillCoroutines(handler);
+    //               handler = null;
+    //           }
+
+    //           anim.SetBool(animName, true);
+    //           anim.speed = speed;
+    //           stoped = false;
 
 
 
-	}
+    //	} 
+    //       else
+    //       {
+    //           if(handler==null) handler=Timing.RunCoroutine(stopAnim());
+    //       }
+
+
+
+    //       lastPosition = transform.position;
+    //       //lastRotate = transform.rotation;
+
+
+
+    //}
 
     IEnumerator<float> stopAnim()
     {

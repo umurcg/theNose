@@ -66,7 +66,7 @@ public class CharGameController : MonoBehaviour {
         if(nma) nma.enabled = false;
 
         //If lastdoorid is not 0 then set player position to it
-        if (lastDoorId != 0)
+        if (lastDoorId != 0 && OpenDoorLoad.doors.ContainsKey(lastDoorId))
         {
             setPlayerPositionToDoor(OpenDoorLoad.doors[lastDoorId]);
 

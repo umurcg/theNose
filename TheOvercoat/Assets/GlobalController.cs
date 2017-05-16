@@ -467,7 +467,7 @@ public int setDebugListToLevelIndex;
         int lengthOfGC = gc.Length;
         foreach (string ugc in usedGameControllers)
         {
-            if (gc.Length>=ugc.Length  && gc == ugc.Substring(0, lengthOfGC)) return true;
+            if (gc.Length<ugc.Length  && gc == ugc.Substring(0, lengthOfGC)) return true;
         }
 
         return false;

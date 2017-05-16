@@ -74,6 +74,7 @@ GameObject:
   - 114: {fileID: 114000012307171772}
   - 114: {fileID: 114000013734819988}
   - 114: {fileID: 114000013077625132}
+  - 208: {fileID: 208000012558786676}
   m_Layer: 0
   m_Name: horse
   m_TagString: ActiveObject
@@ -2450,8 +2451,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.1
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.65
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000011734493358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2464,8 +2467,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.03
+  maxDelta: 5
   animName: Moving
   speedFactor: 0.2
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000012307171772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2508,7 +2513,6 @@ MonoBehaviour:
   subtitleTexts:
   - "-Arabac\u0131: Merhaba efendim. Nereye s\xFCreyim?"
   AllSubtitles: "-Arabac\u0131: Merhaba efendim. Nereye s\xFCreyim?"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &114000013699976182
@@ -2549,8 +2553,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.03
+  maxDelta: 5
   animName: Moving
   speedFactor: 0.2
+  timeBeforeStopAnimation: 0.1
 --- !u!136 &136000010406146468
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2623,7 +2629,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 84cc9850b33048149bab73143657e37e, type: 2}
+  - {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2643,7 +2649,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: 7629a6420c33bdb4996bba4d4d9988d6, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b727c6f1c1b1c53448d7206f6856ca6b, type: 3}
   m_Bones:
   - {fileID: 4000011067288814}
   - {fileID: 4000011052742882}
@@ -2825,3 +2831,18 @@ NavMeshAgent:
   m_BaseOffset: -0.02
   m_WalkableMask: 64
   m_ObstacleAvoidanceType: 0
+--- !u!208 &208000012558786676
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010247453072}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.4, y: 1.14, z: 7.55}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.22, y: 2, z: -3.2}
+  m_TimeToStationary: 0.5

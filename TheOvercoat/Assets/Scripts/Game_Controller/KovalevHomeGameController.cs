@@ -135,16 +135,38 @@ public class KovalevHomeGameController : GameController {
         //Move player to starting position
         CharGameController.movePlayer(StartingPoint.transform.position);
 
-        if (!playerAnim) yield return 0;
+        if (!playerAnim)
+        {
+            
+            yield return 0;
+            
+        }
+
+        Debug.Log("Lie animation");
 
         playerAnim.SetTrigger("Lie");
+
+
 
         pcc.StopToWalk();
 
         player.GetComponent<CharacterController>().enabled = false;
 
 
+
+        //BasicCharAnimations bca = player.GetComponent<BasicCharAnimations>();
+        //bca.enabled = false;
+
         playerAnim.SetTrigger("GetUp");
+
+
+
+        //yield return 0;
+
+        //UnityEditor.EditorApplication.isPaused = true;
+
+
+        //yield return 0;
 
         yield return Timing.WaitForSeconds(3f);
 

@@ -41,7 +41,7 @@ public class TavernGameController : GameController {
     {
         
   
-        Debug.Log("Tavern game");
+        //Debug.Log("Tavern game");
         pcc.StopToWalk();
         Vector3 aim = door.transform.position + door.transform.forward * 3;
 
@@ -54,13 +54,15 @@ public class TavernGameController : GameController {
 
         Timing.RunCoroutine(Vckrs._lookTo(player, tarkovksy.transform.position - player.transform.position, 1f));
 
-        
+        handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(tarkovksy));
 
-        while (Vector3.Distance(tarkovksy.transform.position, aim) > 2)
-        {
-            //Debug.Log(Vector3.Distance(tarkovksy.transform.position, aim)); //TODO look at here
-            yield return 0;
-        }
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        //while (Vector3.Distance(tarkovksy.transform.position, aim) > 2)
+        //{
+        //    //Debug.Log(Vector3.Distance(tarkovksy.transform.position, aim)); //TODO look at here
+        //    yield return 0;
+        //}
        
         Debug.Log("Calling subtitle");
         sc.callSubtitleWithIndex(0);

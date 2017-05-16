@@ -261,7 +261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010605981730
 GameObject:
   m_ObjectHideFlags: 1
@@ -426,6 +426,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 224000011177345804}
+  - 222: {fileID: 222000010500022472}
+  - 114: {fileID: 114000010907192658}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -2013,7 +2015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013483789998
 GameObject:
   m_ObjectHideFlags: 1
@@ -2113,7 +2115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013786521316
 GameObject:
   m_ObjectHideFlags: 1
@@ -4351,7 +4353,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010136149522}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -4786,7 +4788,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013195720594}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -5105,7 +5107,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376645852}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -5163,7 +5165,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014224267496}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -6549,8 +6551,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000010114890266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6746,6 +6750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "\u0130\u015Fte tam bu an da kovalevin g\xF6z\xFCne bir \u015Fey tak\u0131l\u0131r.
     \r"
@@ -6754,12 +6759,12 @@ MonoBehaviour:
   AllSubtitles: "\u0130\u015Fte tam bu an da kovalevin g\xF6z\xFCne bir \u015Fey tak\u0131l\u0131r.
     \r\nKovalev gibi \xE7apk\u0131n bir erke\u011Fin mant\u0131\u011F\u0131n\u0131n
     kalbine s\xF6z ge\xE7irmesini bekliyemezsiniz heralde.\r"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &114000010728592696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6772,8 +6777,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.65
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000010732488260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6802,11 +6809,43 @@ MonoBehaviour:
   passenger: {fileID: 1000012292824702}
   AnimType: 0
   animationName: Sit
+  wayPoints: {fileID: 1000011575083864}
   isPassengerPlayer: 0
   carierFront: {fileID: 1000013018910108}
   carierBack: {fileID: 1000011868973702}
   mountDebug: 0
   unmountDebug: 0
+  carierChoices: {fileID: 1000013389504694, guid: eac99548cd10d734cbda101e634351b2,
+    type: 2}
+  unmountButton: {fileID: 1000011863215994, guid: ba633c273d424684bae8d3dd49c01489,
+    type: 2}
+--- !u!114 &114000010907192658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010883967476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 958c97bfeb795d8499f0345698d5450b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114000010952922272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6996,7 +7035,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 67b594cb89aca9a4390651072c4f3c5a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -7210,6 +7249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "Bir de bu olaylar\u0131n aras\u0131nda burnun nas\u0131l ka\xE7t\u0131\u011F\u0131na
     bak\u0131n.\r"
@@ -7222,12 +7262,12 @@ MonoBehaviour:
     gidiyor.\r\n\rAcaba  Kovalev nas\u0131l burunu bir yerde kapana k\u0131st\u0131rabilir?
     \r\n\rVe birden Kovalev'in akl\u0131nda bir fikir belirir. Kovalev pis kokularla
     dolu bir \u015Fehirde bir burun kovalamaktad\u0131r. Avantaj \u015Fimdi ona ge\xE7mi\u015Ftir. "
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &114000011999004462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7239,6 +7279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "Kovalev: Tamam gidece\u011Fim yan\u0131na. Ba\u015Fka yapabilece\u011Fim bir
     \u015Fey yok. Belki her \u015Feyin mant\u0131kl\u0131 bir a\xE7\u0131klamas\u0131
@@ -7246,7 +7287,6 @@ MonoBehaviour:
   AllSubtitles: "Kovalev: Tamam gidece\u011Fim yan\u0131na. Ba\u015Fka yapabilece\u011Fim
     bir \u015Fey yok. Belki her \u015Feyin mant\u0131kl\u0131 bir a\xE7\u0131klamas\u0131
     vard\u0131r."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!114 &114000012012229992
@@ -7367,10 +7407,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - 'Kovalev: Nasiiil?'
   AllSubtitles: 'Kovalev: Nasiiil?'
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &114000012357271800
@@ -7441,6 +7481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "Kovalev: Bu nas\u0131l olur? Bu benim burnum.\r"
   - "Kovalev: Hemde bu giysi bu \u015Fapka. Bu bir dan\u0131\u015Ftay olmal\u0131!\r"
@@ -7457,7 +7498,6 @@ MonoBehaviour:
     y\xFCksek r\xFCtbeli birine.\r\nKovalev: Siz benim burnumsunuz y\xFCz\xFCme geri
     d\xF6n\xFCn m\xFC diyece\u011Fim?\r\nKovalev: Sa\xE7mal\u0131klar\u0131 ne kadar
     daha da sa\xE7mala\u015Ft\u0131rabilirim acaba?"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &114000012701726246
@@ -7526,13 +7566,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "-Kovalev: Aman tanr\u0131m! Nas\u0131l aradan s\u0131yr\u0131l\u0131p ka\xE7t\u0131?\r"
   - "-Kovalev: Hi\xE7 bir \u015Fekilde bulamam ki \u015Fimdi onu.\r"
   - "\r-Kovalev: Buralarda \xE7ok gezinmemem laz\u0131m her an tan\u0131d\u0131k biri
     beni g\xF6rebilir. "
   AllSubtitles: 
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!114 &114000012865809312
@@ -7601,8 +7641,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.03
+  maxDelta: 5
   animName: Moving
   speedFactor: 0.2
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000013148745400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7642,6 +7684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDisabledAtStart: 0
+  uniqueId: a3490951-5209-4b46-8118-98228cf1a705
   Horse: {fileID: 1000011128348836}
   Nose: {fileID: 1000012292824702}
   trash: {fileID: 0}
@@ -7785,8 +7828,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000013640999828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7809,6 +7854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
   subtitleTexts:
   - "-Burun: BU KOKU! MAHVED\u0130YOR BEN\u0130!!\r"
   - "-Kovalev: .... \xF6h\xF6m, Efendim\r"
@@ -7857,7 +7903,6 @@ MonoBehaviour:
     anlad\u0131\u011F\u0131m kadar\u0131yla tamamen farkl\u0131 departmanda \xE7al\u0131\u015F\u0131yorsun.
     Benim gibi y\xFCksek r\xFCtbeden biri sizin gibi dairede \xE7al\u0131\u015Fan
     bir adamla i\u015Fi ne olabilir ki?\n"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &114000013697248946
@@ -7872,8 +7917,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.03
+  maxDelta: 5
   animName: Moving
   speedFactor: 0.2
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000013700323588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7983,8 +8030,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.01
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.2
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000014105573898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8016,7 +8065,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 67b594cb89aca9a4390651072c4f3c5a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -9209,6 +9258,12 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -1.7040001, y: 0.93200004, z: -0.637}
   m_TimeToStationary: 0.5
+--- !u!222 &222000010500022472
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010883967476}
 --- !u!222 &222000012861495012
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -9246,16 +9301,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014245936144}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00007221678}
+  m_LocalScale: {x: 0.55206203, y: 1.6729904, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000011177345804}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0.00006246567}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011123277514
@@ -9264,16 +9319,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014120329312}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000036811623}
+  m_LocalScale: {x: 0.55206203, y: 1.6729904, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000011177345804}
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61.3, y: -0}
+  m_AnchoredPosition: {x: 33.841393, y: 0.000066280365}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011177345804
@@ -9283,8 +9338,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010883967476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000046253}
+  m_LocalScale: {x: 1.8113914, y: 0.59773207, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224000010151910874}

@@ -39,6 +39,7 @@ GameObject:
   - 114: {fileID: 114000012309306706}
   - 114: {fileID: 114000011613938110}
   - 143: {fileID: 143000013756580456}
+  - 114: {fileID: 114000013459644702}
   m_Layer: 0
   m_Name: BotRandomMoving
   m_TagString: Bot
@@ -522,8 +523,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.1
+--- !u!114 &114000013459644702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010971514230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94646dd84001f0a42af7f81ae7fb7fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonPeople: {fileID: 1000010137985544, guid: fd9ade00fae0e5049b605f7b34cebcc5,
+    type: 2}
+  gender: 2
 --- !u!137 &137000010185609272
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -537,7 +554,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 96a77aed599a54d4aab2be5c0951473c, type: 2}
+  - {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

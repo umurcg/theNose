@@ -28,8 +28,21 @@ public class GirlGameController : MonoBehaviour {
     GameObject playerObject;
 
 
+    private void OnEnable()
+    {
+        CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
+        if (cf) cf.lockCameraRotation(true);
+    }
+
+    private void OnDisable()
+    {
+
+        CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
+        if (cf) cf.lockCameraRotation(false);
+    }
+
     // Use this for initialization
-	void Start () {
+    void Start () {
         //float aimObjectTimer = aimObjectTime;
         //float obstacleTimer = obstacleTime;
         score = scoreObj.GetComponent<Text>();
