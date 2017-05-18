@@ -13,12 +13,17 @@ public class EnterSceneGameController : GameController{
     NavMeshAgent ivanNma, kovalevNma;
     Animator ivanAnim, kovalevAnim;
 
+    public GameObject videoPlayerObj;
+    public MovieTexture enterVideo;
+    VideoPlayer videoPlayer;
+
+    public bool recordVideo;
 
     public override void Awake()
     {
         base.Awake();
+        videoPlayer = videoPlayerObj.GetComponent<VideoPlayer>();
 
-     
     }
 
     // Use this for initialization
@@ -58,6 +63,7 @@ public class EnterSceneGameController : GameController{
             Debug.Log("Couldnt find who is talking script");
         }
 
+        
         if (enabled)
             Timing.RunCoroutine(_intro());
 
@@ -79,19 +85,21 @@ public class EnterSceneGameController : GameController{
     IEnumerator<float> _intro()
     {
         yield return 0;
-        
+
 
         //Force to default cursor while this scene is not interactive
         CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = true;
 
 
-        yield return Timing.WaitForSeconds(5f);
 
-        sc.callSubtitleWithIndexTime(0);
+
+
+        
+
 
         //yield return Timing.WaitForSeconds(25);
 
-        IEnumerator<float> fadeHandler= blackScreen.script.fadeIn();
+
         //Timing.RunCoroutine(Vckrs._cameraSize(cam, 10, 20/*0.7f*/));
 
 
@@ -100,35 +108,62 @@ public class EnterSceneGameController : GameController{
         //bigBook.SetActive(true);
         //Animator bookAnim = bigBook.GetComponent<Animator>();
         //bookAnim.SetBool("")
-        bigBook.GetComponent<BookAC>().openBook();
 
-        cam.orthographicSize = 1000;
 
-        if (cam.orthographic)
+        if (recordVideo)
         {
 
-            Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, 55, 1f/*0.7f*/));
+            GetComponent<RecordVideo>().enabled = true;
+            
+            yield return Timing.WaitForSeconds(5f);
 
-            while (cam.orthographicSize != 10 || narSubtitle.text != "")
+            IEnumerator<float> fadeHandler = blackScreen.script.fadeIn();
+
+            bigBook.GetComponent<BookAC>().openBook();
+
+            cam.orthographicSize = 1000;
+
+            if (cam.orthographic)
             {
-                yield return 0;
+
+                Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, 55, 1f/*0.7f*/));
+
+                while (cam.orthographicSize != 10 || narSubtitle.text != "")
+                {
+                    yield return 0;
+                }
             }
+            else
+            {
+
+                //TODO solve far terrain issue
+                float far = cam.farClipPlane;
+                cam.farClipPlane = 10000;
+
+                float camMoveSpeed = 0.1f;
+                Vector3 aim = cam.transform.position;
+                cam.transform.position = cam.transform.position - cam.transform.forward * 8000;
+                handlerHolder = Timing.RunCoroutine(Vckrs._TweenRootFunc(cam.gameObject, aim, camMoveSpeed, 5f));
+                yield return Timing.WaitUntilDone(handlerHolder);
+
+                cam.farClipPlane = far;
+            }
+
         }else
         {
+            blackScreen.script.setAsTransparent();
 
-            //TODO solve far terrain issue
-            float far = cam.farClipPlane;
-            cam.farClipPlane = 10000;
+            videoPlayer.mt = enterVideo;
+            videoPlayer.play();
 
-            float camMoveSpeed = 0.1f;
-            Vector3 aim = cam.transform.position;
-            cam.transform.position = cam.transform.position - cam.transform.forward * 8000;
-            handlerHolder = Timing.RunCoroutine(Vckrs._TweenRootFunc(cam.gameObject, aim, camMoveSpeed, 5f));
-            yield return Timing.WaitUntilDone(handlerHolder);
+            yield return 0;
 
-            cam.farClipPlane = far;
+            yield return Timing.WaitForSeconds(5f);
+            sc.callSubtitleWithIndexTime(0);
+
+            while (videoPlayer.isPlaying) yield return 0;
+          
         }
-
 
         ivanNma.SetDestination(aims.transform.GetChild(0).position);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan));

@@ -1761,7 +1761,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.04, y: -0.89, z: -61}
+  m_LocalPosition: {x: 48.04, y: -0.89, z: 49.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_Children:
@@ -3960,8 +3960,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.1
+  maxDelta: 5
   animName: flyForward
   speedFactor: 0.25
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000010531166356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4057,8 +4059,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.01
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000011113696416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4167,8 +4171,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.01
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000011959196130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4258,9 +4264,9 @@ MonoBehaviour:
   usedGameControllers: []
   sceneList: 
   maxSceneList: 
-  debugSceneList: 010000000000000001000000000000000000000000000000
+  debugSceneList: 0100000002000000
   fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
-  setDebugListToLevelIndex: 6
+  setDebugListToLevelIndex: 2
 --- !u!114 &114000012654939820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4440,8 +4446,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.01
+  maxDelta: 5
   animName: Walk
   speedFactor: 0.5
+  timeBeforeStopAnimation: 0.1
 --- !u!114 &114000013396119478
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -11,14 +11,19 @@ public class randomMovement : MonoBehaviour {
     float timer;
 	SphereCollider sc;
 
+    bool optimized = true;
+
 	void Awake () {
 
         changeDirection = true;
 		sc = transform.parent.GetComponent<SphereCollider> ();
+
+        if (optimized) enabled = false;
+
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 
         if (changeDirection)
         {
@@ -34,5 +39,41 @@ public class randomMovement : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation , targetRotation, speed * Time.deltaTime*4);
       
 	}
-   
+
+
+    //These part is for optimization
+
+    private void OnBecameVisible()
+    {
+
+        if (!optimized) return;
+
+#if UNITY_EDITOR
+        if (Camera.current && Camera.current.name == "SceneCamera")
+            return;
+        #endif
+
+                //Debug.Log("Became visile");
+
+                enabled = true;
+
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (!optimized) return;
+
+
+        #if UNITY_EDITOR
+        if (Camera.current && Camera.current.name == "SceneCamera")
+                    return;
+        #endif
+
+                //Debug.Log("Became invisible");
+
+                enabled = false;
+
+    }
+
+
 }

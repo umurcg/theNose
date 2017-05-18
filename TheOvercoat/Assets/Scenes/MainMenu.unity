@@ -214,16 +214,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4e99f3938860824a82a8d075420e853, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &111146734
+--- !u!1 &234338745 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: e4e99f3938860824a82a8d075420e853, type: 3}
+  m_PrefabInternal: {fileID: 5387894}
+--- !u!4 &234338749 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: e4e99f3938860824a82a8d075420e853, type: 3}
+  m_PrefabInternal: {fileID: 5387894}
+--- !u!1 &383024146
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 111146735}
-  - 114: {fileID: 111146737}
-  - 114: {fileID: 111146736}
+  - 4: {fileID: 383024149}
+  - 114: {fileID: 383024148}
+  - 114: {fileID: 383024147}
   m_Layer: 0
   m_Name: Reporter
   m_TagString: Untagged
@@ -231,36 +239,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &111146735
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 111146734}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
---- !u!114 &111146736
+--- !u!114 &383024147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 111146734}
+  m_GameObject: {fileID: 383024146}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6767a180de870304caa2013b2772dd62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &111146737
+--- !u!114 &383024148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 111146734}
+  m_GameObject: {fileID: 383024146}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 600c02144c4813244abd262cbcbe8825, type: 3}
@@ -304,14 +299,19 @@ MonoBehaviour:
   maxSize: 20
   numOfCircleToShow: 1
   Initialized: 0
---- !u!1 &234338745 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: e4e99f3938860824a82a8d075420e853, type: 3}
-  m_PrefabInternal: {fileID: 5387894}
---- !u!4 &234338749 stripped
+--- !u!4 &383024149
 Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: e4e99f3938860824a82a8d075420e853, type: 3}
-  m_PrefabInternal: {fileID: 5387894}
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 383024146}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &434888096
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +391,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1 &496893761 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010109351266, guid: dd651778041846143b79e2a904c465fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 2039919223}
+--- !u!114 &496893762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 496893761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e55935352b4df0428a02fa4c83e37d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &568826824
 Prefab:
   m_ObjectHideFlags: 0
@@ -496,52 +512,52 @@ Prefab:
     - target: {fileID: 224000012541347992, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012541347992, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011674837210, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011674837210, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011674837210, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012031414310, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012031414310, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011633755806, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011633755806, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011633755806, guid: 61380229c3d781e4eaba46bdc3cd6a23,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61380229c3d781e4eaba46bdc3cd6a23, type: 2}
@@ -1661,7 +1677,7 @@ RectTransform:
   m_Children:
   - {fileID: 1586721477}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}

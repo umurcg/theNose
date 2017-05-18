@@ -11,7 +11,7 @@ using MovementEffects;
 //It triggers idle animation when object doesnt move.
 
 
-public class BasicCharAnimations : MonoBehaviour {
+public class BasicCharAnimations : MonoBehaviour{
     public float threshold=0.01f;
 
     //In some cases object canbe moved by scritps with too much distance. In that case walk animation shouldn't be triggered while it also effects
@@ -34,19 +34,26 @@ public class BasicCharAnimations : MonoBehaviour {
     bool stoped;
     IEnumerator<float> handler=null;
 
+
+    
+
 	// Use this for initialization
 	void Awake () {
         anim = GetComponent<Animator>();
-      
+
+        addOptimization();
+
         //lastRotate = transform.rotation;
-            
-        
+
+ 
 
 	}
 
 
     private void Update()
     {
+
+        
         if (lastPosition == Vector3.zero) lastPosition = transform.position;
 
         float dist = Vector3.Distance(transform.position, lastPosition);
@@ -131,7 +138,17 @@ public class BasicCharAnimations : MonoBehaviour {
         handler = null;
 
     }
-    
-    
+
+    //This funciton adds optimization script to renderer object.
+    //It makes disable and enable animation and update functiion of this sciprt when renderer invisible and visible respectevly.
+    void addOptimization()
+    {
+        if (GetComponentInChildren<DisableEnableBACInParent>()) return; 
+
+        Renderer rend=GetComponent<Renderer>();
+        if (!rend) rend= GetComponentInChildren<Renderer>();
+
+        rend.gameObject.AddComponent<DisableEnableBACInParent>();
+    }
 
 }

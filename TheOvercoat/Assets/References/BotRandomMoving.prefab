@@ -40,6 +40,7 @@ GameObject:
   - 114: {fileID: 114000011613938110}
   - 143: {fileID: 143000013756580456}
   - 114: {fileID: 114000013459644702}
+  - 114: {fileID: 114000010493228738}
   m_Layer: 0
   m_Name: BotRandomMoving
   m_TagString: Bot
@@ -176,6 +177,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012285195362}
   - 137: {fileID: 137000010185609272}
+  - 114: {fileID: 114000012435195988}
+  - 114: {fileID: 114000013944552124}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -498,6 +501,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010493228738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010971514230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d42fdb788559648891613983acb0f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011613938110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,6 +541,17 @@ MonoBehaviour:
   animName: Walk
   speedFactor: 0.5
   timeBeforeStopAnimation: 0.1
+--- !u!114 &114000012435195988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012215886718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209cc64a4199d4a48b0d63f02df4916b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013459644702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,6 +566,17 @@ MonoBehaviour:
   commonPeople: {fileID: 1000010137985544, guid: fd9ade00fae0e5049b605f7b34cebcc5,
     type: 2}
   gender: 2
+--- !u!114 &114000013944552124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012215886718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c015c0cd439894d84267c118d62b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137000010185609272
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -631,4 +667,4 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 64
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1

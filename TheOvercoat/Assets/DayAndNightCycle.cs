@@ -65,10 +65,20 @@ public class DayAndNightCycle : MonoBehaviour {
             {
                 intensity += Time.deltaTime * speed;
                 light.intensity = intensity;
+
+                broadCastLightChange();
+
                 yield return 0;
             }
-            intensity=maxIntensity;
+
+            broadCastLightChange();
+
+            intensity =maxIntensity;
             light.intensity = intensity;
+
+
+         
+
             yield break;
         }
         else
@@ -77,11 +87,28 @@ public class DayAndNightCycle : MonoBehaviour {
             {
                 intensity -= Time.deltaTime * speed;
                 light.intensity = intensity;
+
+                broadCastLightChange();
+
                 yield return 0;
             }
             intensity = minIntensity;
             light.intensity = intensity;
+
+            broadCastLightChange();
+
             yield break;
         }
     }
+
+
+    static void broadCastLightChange()
+    {
+
+        foreach (GameObject l in AutoLightScript.allLightsInScene)
+        {
+            l.GetComponent<AutoLightScript>().lightIsChanging();
+        }
+    }
+
 }

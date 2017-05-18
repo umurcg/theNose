@@ -9,6 +9,12 @@ public interface IClickAction{
 
 }
 
+public interface IVisibility
+{
+    void onVisible();
+    void onInvisible();
+}
+
 public interface IClickActionDifferentPos
 {
     Vector3 giveMePosition();
