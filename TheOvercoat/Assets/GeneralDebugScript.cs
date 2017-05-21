@@ -4,15 +4,15 @@ using UnityEngine.SceneManagement;
 using MovementEffects;
 using System.Collections.Generic;
 
-public class GeneralDebugScript : GameController {
+public class GeneralDebugScript : MonoBehaviour {
 
     //string prisonerGC = "PoliceStationPrisoner";
     public GameObject other;
 
 
 	// Use this for initialization
-	public override void Start () {
-        base.Start();
+	public  void Start () {
+        //base.Start();
         //Timing.RunCoroutine(subtitleCaller());
         //SceneManager.LoadScene(3);
 
@@ -23,32 +23,37 @@ public class GeneralDebugScript : GameController {
         //{
         //    sc.callSubtitleWithIndex(1);
         //}
+        Debug.Log("Hi");
+        LODGroup lod = other.GetComponent<LODGroup>();
         
+
+        Timing.RunCoroutine(Vckrs._fadeObjectOut(other, 10));
+
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(Vector3.Distance(other.transform.position, transform.position));
+        //Debug.Log(Vector3.Distance(other.transform.position, transform.position));
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other == this.other)
-        {
-            Debug.Log("Insiiiiiiiiiiiiiiide");
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other == this.other)
+    //    {
+    //        Debug.Log("Insiiiiiiiiiiiiiiide");
        
-        }
-    }
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other == this.other)
-        {
-            Debug.Log("Exiiiiiiiiiiiit");
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other == this.other)
+    //    {
+    //        Debug.Log("Exiiiiiiiiiiiit");
+    //    }
+    //}
 
     //IEnumerator<float> subtitleCaller()
     //{

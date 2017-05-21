@@ -9,14 +9,14 @@ public class TutorailCanvas : MonoBehaviour {
     
     public bool debug;
 
-    [System.Serializable]
-    public struct scenesAndTutorials
-    {
-        public int sceneIndex;
-        public GameObject[] tutorials;
-    }
+    //[System.Serializable]
+    //public struct scenesAndTutorials
+    //{
+    //    public int sceneIndex;
+    //    public GameObject[] tutorials;
+    //}
 
-    public scenesAndTutorials[] sat;
+    //public scenesAndTutorials[] sat;
 
     //Dictionary<int, int[]> sceneIndexToTutorialIndex;
 
@@ -40,38 +40,38 @@ public class TutorailCanvas : MonoBehaviour {
 
 
 
-        //}
-        Timing.RunCoroutine(activateTutorialAccordingToScene());
+        ////}
+        //Timing.RunCoroutine(activateTutorialAccordingToScene());
 
 	}
 
-    IEnumerator<float> activateTutorialAccordingToScene()
-    {
+    //IEnumerator<float> activateTutorialAccordingToScene()
+    //{
         
-        int index = GlobalController.Instance.sceneList.Count - 1;
-        Debug.Log("scene is " + index);
-        scenesAndTutorials mySat=new scenesAndTutorials();
+    //    int index = GlobalController.Instance.sceneList.Count - 1;
+    //    Debug.Log("scene is " + index);
+    //    scenesAndTutorials mySat=new scenesAndTutorials();
 
-        //Check if index in struct
-        foreach(scenesAndTutorials s in sat)
-        {
-            if (s.sceneIndex == index) mySat = s;
-        }
+    //    //Check if index in struct
+    //    foreach(scenesAndTutorials s in sat)
+    //    {
+    //        if (s.sceneIndex == index) mySat = s;
+    //    }
 
-        if (mySat.tutorials == null || mySat.tutorials.Length == 0) yield break ;
+    //    if (mySat.tutorials == null || mySat.tutorials.Length == 0) yield break ;
 
-        foreach (GameObject tut in mySat.tutorials)
-        {
-            IEnumerator<float> handler = Timing.RunCoroutine(_startTutorial(tut));
-            yield return Timing.WaitUntilDone(handler);
+    //    foreach (GameObject tut in mySat.tutorials)
+    //    {
+    //        IEnumerator<float> handler = Timing.RunCoroutine(_startTutorial(tut));
+    //        yield return Timing.WaitUntilDone(handler);
 
-        }
+    //    }
 
 
 
-        yield break;
+    //    yield break;
         
-    }
+    //}
 
 	
 	// Update is called once per frame
@@ -125,4 +125,22 @@ public class TutorailCanvas : MonoBehaviour {
         obj.SetActive(false);
 
     }
+
+    public void startTutorial(int[] indexes, float duration = 5f)
+    {
+        Timing.RunCoroutine(_startTutorial(indexes, duration));
+    }
+
+    IEnumerator<float> _startTutorial(int[] indexes, float duration = 5f)
+    {        
+
+        foreach(int i in indexes)
+        {
+            IEnumerator<float> handler= Timing.RunCoroutine(_startTutorial(i, duration));
+            yield return Timing.WaitUntilDone(handler);
+        }
+        yield break;
+
+    }
+
 }

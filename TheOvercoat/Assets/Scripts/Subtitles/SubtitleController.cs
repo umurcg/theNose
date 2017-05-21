@@ -172,12 +172,12 @@ public class SubtitleController : MonoBehaviour {
         text.text = subtitleTexts[0];
         index = 0;
         if (pcc != null)
-        {
+        //{
             pcc.StopToWalk();
-        }else
-        {
-            Debug.Log("PCC is null");
-        }
+        //}else
+        //{
+        //    Debug.Log("PCC is null");
+        //}
         ClickTrigger.disabled = true;
         this.enabled = true;
 

@@ -13,6 +13,7 @@ public class BuildingImporter : AssetPostprocessor
 
     static string folder = "Assets/Models(blend)/Yapılar/";
     static string fileExtension = ".blend";
+    public static Material buildingMaterial;
 
     // Use this for initialization
     void Start () {
@@ -55,6 +56,7 @@ public class BuildingImporter : AssetPostprocessor
 
                     importer.meshCompression = ModelImporterMeshCompression.High;
                     importer.importNormals = ModelImporterNormals.None;
+                    importer.importMaterials = false;
 
                 }
 

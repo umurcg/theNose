@@ -7,22 +7,24 @@ using UnityEngine.SceneManagement;
 
 public class EnterSceneGameController : GameController{
 
-    public GameObject  building, ivan, kovalev, head, aims,cameraObj, sun, bigBook;
+    public GameObject  building, ivan, kovalev, head, aims,cameraObj, sun, bigBook, tutorials;
+
+
 
     Camera cam;
     NavMeshAgent ivanNma, kovalevNma;
     Animator ivanAnim, kovalevAnim;
 
-    public GameObject videoPlayerObj;
-    public MovieTexture enterVideo;
-    VideoPlayer videoPlayer;
+    //public GameObject videoPlayerObj;
+    //public MovieTexture enterVideo;
+    //VideoPlayer videoPlayer;
 
-    public bool recordVideo;
+    //public bool recordVideo;
 
     public override void Awake()
     {
         base.Awake();
-        videoPlayer = videoPlayerObj.GetComponent<VideoPlayer>();
+        //videoPlayer = videoPlayerObj.GetComponent<VideoPlayer>();
 
     }
 
@@ -93,10 +95,6 @@ public class EnterSceneGameController : GameController{
 
 
 
-
-        
-
-
         //yield return Timing.WaitForSeconds(25);
 
 
@@ -110,60 +108,68 @@ public class EnterSceneGameController : GameController{
         //bookAnim.SetBool("")
 
 
-        if (recordVideo)
+        //if (recordVideo)
+        //{
+
+        //VRCapture.VRCapture.Instance.StartCapture();
+
+        sc.callSubtitleWithIndexTime(0);
+
+        yield return Timing.WaitForSeconds(5f);
+        
+        IEnumerator<float> fadeHandler = blackScreen.script.fadeIn();
+
+        bigBook.GetComponent<BookAC>().openBook();
+
+        cam.orthographicSize = 1000;
+
+        if (cam.orthographic)
         {
 
-            GetComponent<RecordVideo>().enabled = true;
-            
-            yield return Timing.WaitForSeconds(5f);
+            Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, 55, 1f/*0.7f*/));
 
-            IEnumerator<float> fadeHandler = blackScreen.script.fadeIn();
-
-            bigBook.GetComponent<BookAC>().openBook();
-
-            cam.orthographicSize = 1000;
-
-            if (cam.orthographic)
+            while (cam.orthographicSize != 10 || narSubtitle.text != "")
             {
-
-                Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, 55, 1f/*0.7f*/));
-
-                while (cam.orthographicSize != 10 || narSubtitle.text != "")
-                {
-                    yield return 0;
-                }
+                yield return 0;
             }
-            else
-            {
-
-                //TODO solve far terrain issue
-                float far = cam.farClipPlane;
-                cam.farClipPlane = 10000;
-
-                float camMoveSpeed = 0.1f;
-                Vector3 aim = cam.transform.position;
-                cam.transform.position = cam.transform.position - cam.transform.forward * 8000;
-                handlerHolder = Timing.RunCoroutine(Vckrs._TweenRootFunc(cam.gameObject, aim, camMoveSpeed, 5f));
-                yield return Timing.WaitUntilDone(handlerHolder);
-
-                cam.farClipPlane = far;
-            }
-
-        }else
-        {
-            blackScreen.script.setAsTransparent();
-
-            videoPlayer.mt = enterVideo;
-            videoPlayer.play();
-
-            yield return 0;
-
-            yield return Timing.WaitForSeconds(5f);
-            sc.callSubtitleWithIndexTime(0);
-
-            while (videoPlayer.isPlaying) yield return 0;
-          
         }
+        else
+        {
+
+            //TODO solve far terrain issue
+            float far = cam.farClipPlane;
+            cam.farClipPlane = 10000;
+
+            float camMoveSpeed = 0.1f;
+            Vector3 aim = cam.transform.position;
+            cam.transform.position = cam.transform.position - cam.transform.forward * 8000;
+            handlerHolder = Timing.RunCoroutine(Vckrs._TweenRootFunc(cam.gameObject, aim, camMoveSpeed, 5f));
+            yield return Timing.WaitUntilDone(handlerHolder);
+
+            cam.farClipPlane = far;
+        }
+
+        //VRCapture.VRCapture.Instance.StopCapture();
+
+        //}
+        //else
+        //{
+        //    blackScreen.script.setAsTransparent();
+
+        //    videoPlayer.mt = enterVideo;
+        //    videoPlayer.play();
+
+        //    yield return 0;
+
+        //    yield return Timing.WaitForSeconds(5f);
+        //    sc.callSubtitleWithIndexTime(0);
+
+        //    while (videoPlayer.isPlaying) yield return 0;
+
+        //}
+
+
+        tutorials.GetComponent<TutorailCanvas>().startTutorial(5);
 
         ivanNma.SetDestination(aims.transform.GetChild(0).position);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan));
@@ -237,6 +243,8 @@ public class EnterSceneGameController : GameController{
         {
             yield return 0;
         }
+
+        tutorials.GetComponent<TutorailCanvas>().startTutorial(3);
 
         RemoveSquares rs = head.transform.GetChild(1).GetComponent<RemoveSquares>();
         rs.enabled = true;
