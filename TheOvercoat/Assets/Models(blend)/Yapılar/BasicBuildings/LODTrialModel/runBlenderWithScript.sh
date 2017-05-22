@@ -1,3 +1,3 @@
 #!/bin/bash
-
-blender b03.blend --background --python decimateAsNewVersion.py
+blender b03.blend --background --python createLOD.py
+read

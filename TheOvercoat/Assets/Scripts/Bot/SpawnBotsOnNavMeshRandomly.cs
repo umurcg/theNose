@@ -57,7 +57,7 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
         SphereCollider sc = GetComponent<SphereCollider>();
         Vector3 pos = sc.center+ transform.position+ sc.radius * Random.insideUnitSphere;
         NavMeshHit nmh;
-        NavMeshAgent nma = obj.GetComponent<NavMeshAgent>();
+        NavMeshAgent nma = obj.GetComponentInChildren<NavMeshAgent>();
         if (NavMesh.SamplePosition(pos, out nmh, sc.radius,nma.areaMask)) {
             return nmh.position;
         }
@@ -97,7 +97,7 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
         for (int i=0;i<nearPositions.Length;i++)
         {
             NavMeshHit nmh;
-            NavMeshAgent nma = obj.GetComponent<NavMeshAgent>();
+            NavMeshAgent nma = obj.GetComponentInChildren<NavMeshAgent>();
             if (NavMesh.SamplePosition(nearPositions[i], out nmh, distanceToObj*2, nma.areaMask))
             {
                 //If founded position is near of current position this mean this way is note include in navMesh

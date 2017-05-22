@@ -13,13 +13,22 @@ public class CityGameController : MonoBehaviour {
     public GameObject churchBirdPosition;
     public GameObject outroScene;
     public GameObject deadManGameController;
+    public GameObject trailer;
 
     public GameObject streetAreas;
 
     public AudioClip innerSpeechMusic;
 
+    
+
 	// Awake function is for registering current scene. It sets scene according to storyline
 	void Awake () {
+
+        if (trailer.activeSelf)
+        {
+            enabled = false;
+            return;
+        }
 
 
         if (GlobalController.Instance != null)

@@ -173,7 +173,7 @@ public class EnterSceneGameController : GameController{
 
         ivanNma.SetDestination(aims.transform.GetChild(0).position);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan));
-        Timing.RunCoroutine(Vckrs._fadeObject(building, 1f,false));
+        Timing.RunCoroutine(Vckrs._fadeObject(building.GetComponent<GetActiveObjectLOD>().getActiveObject(), 1f,false));
         sc.callSubtitleWithIndex(3);
         yield return Timing.WaitUntilDone(handlerHolder);
         ivanAnim.SetBool("Hands", true);

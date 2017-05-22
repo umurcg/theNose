@@ -54,7 +54,7 @@ public class MoveRandomlyOnNavMesh : MonoBehaviour {
         nma.Resume();
         nma.SetDestination(pos);
 
-        while (Vector3.Distance(pos, transform.position) > 0.01f) yield return 0;
+        while (Vector3.Distance(pos, transform.position) > 3f) yield return 0;
         walking = false;
 
         yield break;

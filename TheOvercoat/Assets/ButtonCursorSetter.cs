@@ -40,6 +40,7 @@ public class ButtonCursorSetter : MonoBehaviour {
 
     public void recoverCursor()
     {
+        if(cis)
         cis.resetExternalCursor();
     }
 

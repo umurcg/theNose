@@ -1019,6 +1019,18 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
 
     }
 
+
+    public static float randomSign()
+    {
+        int random = Random.Range(0, 2);
+        if (random == 0)
+        {
+            return -1;
+        }else
+        {
+            return 1;
+        }
+    }
     
     
 
