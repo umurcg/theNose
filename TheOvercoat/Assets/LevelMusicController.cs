@@ -55,5 +55,12 @@ public class LevelMusicController : MonoBehaviour {
 
     }
 
+    public void setMusicManually(AudioClip clip)
+    {
+        if (musicSource == null) musicSource = CharGameController.getOwner().GetComponent<AudioSource>();
+        musicSource.clip = clip;
+        musicSource.Play();
+    }
+
 
 }

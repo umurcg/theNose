@@ -2,6 +2,7 @@
 using System.Collections;
 
 //This script spawns a objec from one sid of box collider and destroys it from other side. Also it controls the movement of object
+//You can use gameobjects for ibndicating start and end positions
 
 public class BoatSc : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class BoatSc : MonoBehaviour {
 
     public enum axis { x,y,z};
     public axis Axis;
+
+    public GameObject position1, position2;
 
     GameObject spawnedObject;
     Vector3 aim;
@@ -38,29 +41,54 @@ public class BoatSc : MonoBehaviour {
 
     void spawn()
     {
-        Vector3 unitVector=Vector3.zero;
 
-        switch (Axis)
+
+        if (position1 != null && position2 != null)
         {
-            case axis.x:
-                unitVector = Vector3.right;
-                break;
-            case axis.y:
-                unitVector = Vector3.up;
-                break;
-            case axis.z:
-                unitVector = Vector3.forward;
-                break;
-        }
+            int randomInt = Random.Range(0, 2);
+            if (randomInt == 0)
+            {
+                aim = position1.transform.position;
+                startPos = position2.transform.position;
+            }
+            else
+            {
 
-        float randomSign = Vckrs.randomSign();
-        startPos = transform.TransformPoint(randomSign*unitVector/2);
-        aim = transform.TransformPoint(-randomSign * unitVector / 2);
+                aim = position2.transform.position;
+                startPos = position1.transform.position;
+            }
+
+
+        }
+        else
+        {
+
+            Vector3 unitVector = Vector3.zero;
+
+            switch (Axis)
+            {
+                case axis.x:
+                    unitVector = Vector3.right;
+                    break;
+                case axis.y:
+                    unitVector = Vector3.up;
+                    break;
+                case axis.z:
+                    unitVector = Vector3.forward;
+                    break;
+            }
+
+            float randomSign = Vckrs.randomSign();
+            startPos = transform.TransformPoint(randomSign * unitVector / 2);
+            aim = transform.TransformPoint(-randomSign * unitVector / 2);
+
+        }
 
         spawnedObject= Instantiate(boat);
         //spawnedObject.transform.parent = transform;
         spawnedObject.transform.position = startPos;
-
+        spawnedObject.transform.rotation = Quaternion.LookRotation(aim - startPos);
+        
        
         
     }

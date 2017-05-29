@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
+
 
 public class SetLodValues : MonoBehaviour {
 
@@ -9,15 +9,21 @@ public class SetLodValues : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
     public void disableLODS()
     {
+#if UNITY_EDITOR
+
+
         for (int i = 0; i < edges.Length; i++)
         {
             edges[i] = Mathf.Clamp(edges[i], 0, 100);
@@ -30,24 +36,33 @@ public class SetLodValues : MonoBehaviour {
 
             //Debug.Log(lodGroup.);
 
-            SerializedObject obj = new SerializedObject(l);
 
-            SerializedProperty valArrProp = obj.FindProperty("m_LODs.Array");
+            UnityEditor.SerializedObject obj = new UnityEditor.SerializedObject(l);
+
+            UnityEditor.SerializedProperty valArrProp = obj.FindProperty("m_LODs.Array");
             for (int i = 0; valArrProp.arraySize > i; i++)
             {
-                SerializedProperty sHeight = obj.FindProperty("m_LODs.Array.data[" + i.ToString() + "].screenRelativeHeight");
+                UnityEditor.SerializedProperty sHeight = obj.FindProperty("m_LODs.Array.data[" + i.ToString() + "].screenRelativeHeight");
                 sHeight.doubleValue = 0;
 
             }
             obj.ApplyModifiedProperties();
 
+      
+
+
 
         }
+
+#endif
     }
 
     public void setValues()
     {
-        for(int i=0;i<edges.Length;i++)
+
+
+#if UNITY_EDITOR
+        for (int i=0;i<edges.Length;i++)
         {
             edges[i] = Mathf.Clamp(edges[i], 0, 100);
         }
@@ -59,12 +74,12 @@ public class SetLodValues : MonoBehaviour {
 
             //Debug.Log(lodGroup.);
 
-            SerializedObject obj = new SerializedObject(l);
+            UnityEditor.SerializedObject obj = new UnityEditor.SerializedObject(l);
 
-            SerializedProperty valArrProp = obj.FindProperty("m_LODs.Array");
+            UnityEditor.SerializedProperty valArrProp = obj.FindProperty("m_LODs.Array");
             for (int i = 0; valArrProp.arraySize > i; i++)
             {
-                SerializedProperty sHeight = obj.FindProperty("m_LODs.Array.data[" + i.ToString() + "].screenRelativeHeight");
+                UnityEditor.SerializedProperty sHeight = obj.FindProperty("m_LODs.Array.data[" + i.ToString() + "].screenRelativeHeight");
                 sHeight.doubleValue = edges[i]/100;
           
             }
@@ -72,5 +87,6 @@ public class SetLodValues : MonoBehaviour {
 
 
         }
+#endif
     }
 }

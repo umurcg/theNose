@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using MovementEffects;
 using System.Linq;
+using System;
 
 //Static list that is attached to MainCamera
 //It is never destroyed
@@ -15,6 +16,8 @@ public class GlobalController : MonoBehaviour {
     public enum Scenes {MainMenu=0 ,City=1,IvanHouse=2,KovalevHouse=3,PoliceStation=4,Newspaper=5,Church=6,Doctor=7,PrisonerGame=8,Atolye=9, None=10 };
     
     public static GlobalController Instance;
+
+    public bool startAtFullScreen = false;
     
     //Language settings
     public enum Language { ENG=0, TR=1, RUS=2};
@@ -83,6 +86,9 @@ public int setDebugListToLevelIndex;
 
     void Awake()
     {
+
+        //if (startAtFullScreen) StartAtFullScreen();
+
         //Kill all mec before starting new scene
         Timing.KillAllCoroutines();
 
@@ -126,6 +132,12 @@ public int setDebugListToLevelIndex;
         //maxUsedGameController = usedGameControllers;
         
     }
+
+    //private void StartAtFullScreen()
+    //{
+    //    //Debug.Log(Screen.currentResolution);
+    //    Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
+    //}
 
     void Start()
     {
