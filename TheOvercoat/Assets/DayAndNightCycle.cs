@@ -8,7 +8,7 @@ using MovementEffects;
 public class DayAndNightCycle : MonoBehaviour {
 
     
-    //public bool debugNight, debugDay;
+    public bool debugNight, debugDay;
     public float maxIntensity = 1;
     public float minIntensity = 0;
     public float speed = 1;
@@ -26,17 +26,18 @@ public class DayAndNightCycle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //if (debugDay)
-        //{
-        //    debugDay = false;
-        //    makeDay();
+        if (debugDay)
+        {
+            debugDay = false;
+            makeDay();
 
-        //}else if (debugNight)
-        //{
-        //    debugNight = false;
-        //    makeNight();
-        //}
-	}
+        }
+        else if (debugNight)
+        {
+            debugNight = false;
+            makeNight();
+        }
+    }
 
     public void makeNight()
     {

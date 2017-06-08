@@ -16,6 +16,8 @@ public class CharGameController : MonoBehaviour {
     public static string nose = "Armature/Torso/Chest/Neck/Head/NosePosition";
     public enum hand { LeftHand,RightHand};
 
+    public bool coverKovalevFace = false;
+
     //Camera type
     public enum cameraType
     {
@@ -49,9 +51,16 @@ public class CharGameController : MonoBehaviour {
 
     }
 
+    private void Start()
+    {
+#if UNITY_EDITOR
+        if (coverKovalevFace) coverKovalevsFace();
+#endif
+    }
+
     //Called when new scene is load
     //It gets last visited scene and looks a door to that scene. And set position of player to it while player came from that door.
-    
+
     void setPositionToDoor(Scene scene, LoadSceneMode mode)
     {
         //Debug.Log("Setting position to door "+lastDoorId);

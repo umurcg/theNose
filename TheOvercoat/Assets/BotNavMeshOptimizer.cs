@@ -9,7 +9,9 @@ public class BotNavMeshOptimizer : MonoBehaviour, IVisibility {
 
     void Awake()
     {
-       nma=GetComponent<NavMeshAgent>();
+
+
+        nma=GetComponent<NavMeshAgent>();
     }
     
     public void onInvisible()

@@ -14,9 +14,6 @@ using MovementEffects;
 public class BasicCharAnimations : MonoBehaviour{
     public float threshold=0.01f;
 
-    //In some cases object canbe moved by scritps with too much distance. In that case walk animation shouldn't be triggered while it also effects
-    //speed of animation.
-    public float maxDelta = 5f;
 
     public string animName="Walk";
     Vector3 lastPosition;
@@ -24,33 +21,34 @@ public class BasicCharAnimations : MonoBehaviour{
     AnimationClip walk;
     public float speedFactor = 0.5f;
 
-    //float angle;
-    //Quaternion lastRotate;
-    //float rotTreshold = 0.05f;
 
-    //After movement stop a timer will be triggered for preventing odd walks.
-    public float timeBeforeStopAnimation=0.1f;
-
-    bool stoped;
-    IEnumerator<float> handler=null;
-
-
+    public int delayForStop = 50;
+    int timer=0;
     
 
 	// Use this for initialization
 	void Awake () {
         anim = GetComponent<Animator>();
 
-        addOptimization();
+        
+
+#if UNITY_EDITOR
+        //Debug.Log("It is in editor");
+      
+        return;
+#else
+    
+          addOptimization();
+#endif
 
         //lastRotate = transform.rotation;
 
- 
-
-	}
 
 
-    private void Update()
+    }
+
+
+    private void FixedUpdate()
     {
 
         
@@ -61,18 +59,33 @@ public class BasicCharAnimations : MonoBehaviour{
 
         //float rotation = Quaternion.Angle(transform.rotation, lastRotate);
 
+        //if (gameObject == CharGameController.getActiveCharacter())
+        //{
+        //    Debug.Log("Gameobject: " + gameObject.name + " Dist is " + dist + " threshold is " + threshold);
+        //    if (dist <= threshold && timer>delayForStop) { Debug.Log("STOPPINGGG"); }
+        //}
 
         if (dist > threshold)
         {
             anim.speed = speed;
             //print(dist);
-            anim.SetBool(animName, dist > threshold);
+            anim.SetBool(animName, true);
 
-        }
-        else
+
+        }        
+        else if(anim.GetBool(animName)==true)
         {
-            anim.SetBool(animName, false);
-            anim.speed = 1;
+            if (timer < delayForStop)
+            {
+                timer++;
+            }
+            else
+            {
+                timer = 0;
+                anim.speed = 1;
+                anim.SetBool(animName, false);
+
+            }
         }
 
 
@@ -81,63 +94,6 @@ public class BasicCharAnimations : MonoBehaviour{
     }
 
 
-    //// Update is called once per frame
-    //void FixedUpdate () {
-
-    //       if(lastPosition==Vector3.zero) lastPosition = transform.position;
-
-    //       float dist = Vector3.Distance(transform.position, lastPosition);
-    //       float speed =speedFactor* dist / Time.deltaTime;
-
-    //       //float rotation = Quaternion.Angle(transform.rotation, lastRotate);
-
-
-    //	if (dist > threshold && dist<maxDelta) {
-
-    //           if (handler != null)
-    //           {
-    //               Timing.KillCoroutines(handler);
-    //               handler = null;
-    //           }
-
-    //           anim.SetBool(animName, true);
-    //           anim.speed = speed;
-    //           stoped = false;
-
-
-
-    //	} 
-    //       else
-    //       {
-    //           if(handler==null) handler=Timing.RunCoroutine(stopAnim());
-    //       }
-
-
-
-    //       lastPosition = transform.position;
-    //       //lastRotate = transform.rotation;
-
-
-
-    //}
-
-    IEnumerator<float> stopAnim()
-    {
-
-        float timer = timeBeforeStopAnimation;
-        while (timer > 0)
-        {
-            timer -= Time.deltaTime;
-            yield return 0;
-        }
-
-        anim.SetBool(animName, false);
-        anim.speed = 1;
-        stoped = true;
-
-        handler = null;
-
-    }
 
     //This funciton adds optimization script to renderer object.
     //It makes disable and enable animation and update functiion of this sciprt when renderer invisible and visible respectevly.

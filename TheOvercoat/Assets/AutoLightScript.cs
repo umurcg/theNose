@@ -46,6 +46,9 @@ public class AutoLightScript : MonoBehaviour {
         globalLight = sun.GetComponent<Light>();
         danc = sun.GetComponent<DayAndNightCycle>();
 
+
+        lightIsChanging();
+
     }
 	
 

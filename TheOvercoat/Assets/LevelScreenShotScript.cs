@@ -6,6 +6,10 @@ using System.Collections;
 //It takes screen shot at start of level and save it as caption for this level. Those screenshots will  be used in moments section of main menu.
 public class LevelScreenShotScript : MonoBehaviour {
 
+    
+    public int multiplier = 1;
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -18,8 +22,14 @@ public class LevelScreenShotScript : MonoBehaviour {
 
     public void takeScreenShot()
     {
+
         string directory = /*"/Assets/Textures/MomentsImages/" + */(int)(GlobalController.getPreviousScene()) + ".jpg";
-        Application.CaptureScreenshot(directory);
+
+
+         
+        Application.CaptureScreenshot(directory,multiplier);
+
+        
         Debug.Log("Screen shot is saved to " + directory);
     }
 }

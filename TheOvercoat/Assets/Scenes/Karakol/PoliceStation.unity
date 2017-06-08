@@ -137,6 +137,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -0.001
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 249dd6c9c3207e94f80b1f060c6a1709, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 249dd6c9c3207e94f80b1f060c6a1709, type: 3}
   m_IsPrefabParent: 0
@@ -1641,11 +1645,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71710d5e295aaf649bb2c29701031bcb, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &381925117 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011971717354, guid: ed3c0beb67d9de2448cebcf328709a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 441182255}
 --- !u!1001 &389440088
 Prefab:
   m_ObjectHideFlags: 0
@@ -3901,7 +3900,6 @@ MonoBehaviour:
     bey.\nMemur: Komisere geldi\u011Finizi s\xF6yliyece\u011Fim hi\xE7 merak\u0131n\u0131z
     olmas\u0131n. \u0130sminiz neydi?\nKovalev: Kovalev. Hmen bana u\u011Framas\u0131n\u0131
     s\xF6ylerseniz sevinirim."
-  subtitle: {fileID: 0}
   ifDesroyItself: 1
   releaseAfterSub: 1
 --- !u!114 &797948321
@@ -3985,7 +3983,6 @@ MonoBehaviour:
   subtitleTexts:
   - "Memur: Komisere gelece\u011Finizi s\xF6yliyece\u011Fim merak etmeyin."
   AllSubtitles: "Memur: Komisere gelece\u011Finizi s\xF6yliyece\u011Fim merak etmeyin."
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!1001 &806952882
@@ -4960,6 +4957,32 @@ MonoBehaviour:
   time: 0
   animationParameter: 0
   parameterName: SitPosition
+--- !u!114 &1048802125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1048802121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94646dd84001f0a42af7f81ae7fb7fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonPeople: {fileID: 1000010137985544, guid: fd9ade00fae0e5049b605f7b34cebcc5,
+    type: 2}
+  gender: 0
+--- !u!114 &1048802126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1048802121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcf59bc676323e4687da9e33dda97d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialToAssin: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
 --- !u!1001 &1060141459
 Prefab:
   m_ObjectHideFlags: 0
@@ -5121,7 +5144,6 @@ MonoBehaviour:
   subtitleTexts:
   - 'SleepingGuard: Zzzzzz'
   AllSubtitles: 'SleepingGuard: Zzzzzz'
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!114 &1111031613
@@ -6485,7 +6507,6 @@ MonoBehaviour:
   subtitleTexts:
   - 'Sleeping Police Man: Zzzzzz'
   AllSubtitles: 'Sleeping Police Man: Zzzzzz'
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!135 &1481821223
@@ -6825,7 +6846,6 @@ MonoBehaviour:
     kotrol etmen laz\u0131m."
   AllSubtitles: "-Man in prison: Dedi\u011Fim gibi. \xD6nce kul\xFCbeye gidip neler
     oldu\u011Funu kotrol etmen laz\u0131m."
-  subtitle: {fileID: 381925117}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!114 &1552021476
@@ -6847,7 +6867,6 @@ MonoBehaviour:
   - "BUradan bir hikaye \xE7ikar"
   AllSubtitles: "-Kovalev: Hey! Neden buradasin\n-Man in prison: Birini \xF6ld\xFCrd\xFCm\nbla
     bla bla\nBUradan bir hikaye \xE7ikar"
-  subtitle: {fileID: 0}
   ifDesroyItself: 1
   releaseAfterSub: 1
 --- !u!114 &1552021477
@@ -6945,6 +6964,7 @@ MonoBehaviour:
   threshold: 0
   animName: Walk
   speedFactor: 0.5
+  delayForStop: 50
 --- !u!4 &1573172064 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 2b6c409d41d03c341890d3c282708876, type: 3}
@@ -7244,6 +7264,32 @@ MonoBehaviour:
   time: 0
   animationParameter: 0
   parameterName: SitPosition
+--- !u!114 &1648147314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1648147310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94646dd84001f0a42af7f81ae7fb7fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonPeople: {fileID: 1000010137985544, guid: fd9ade00fae0e5049b605f7b34cebcc5,
+    type: 2}
+  gender: 0
+--- !u!114 &1648147315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1648147310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcf59bc676323e4687da9e33dda97d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialToAssin: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
 --- !u!1001 &1658132370
 Prefab:
   m_ObjectHideFlags: 0
@@ -7481,7 +7527,6 @@ MonoBehaviour:
   subtitleTexts:
   - 'Polis: Hey! Sen! Dur orada.'
   AllSubtitles: 
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!114 &1708090186
@@ -7561,7 +7606,6 @@ MonoBehaviour:
     \u0130sterseniz di\u011Fer polislerle g\xF6r\xFC\u015Febilirsiniz.\r\nKovalev:
     Hay\u0131r! B\xF6yle m\xFChim bir meseleyi alt r\xFCtbeli memurlarla payla\u015Famam.
     \r\nKovalev: Siz u\u011Frad\u0131\u011F\u0131m\u0131 s\xF6ylersiniz.\r\n"
-  subtitle: {fileID: 0}
   ifDesroyItself: 0
   releaseAfterSub: 1
 --- !u!1001 &1735504960
@@ -7611,6 +7655,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -0.001
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 249dd6c9c3207e94f80b1f060c6a1709, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 249dd6c9c3207e94f80b1f060c6a1709, type: 3}
   m_IsPrefabParent: 0
@@ -8096,6 +8144,32 @@ MonoBehaviour:
   time: 0
   animationParameter: 0
   parameterName: SitPosition
+--- !u!114 &1920165772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1920165768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94646dd84001f0a42af7f81ae7fb7fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonPeople: {fileID: 1000010137985544, guid: fd9ade00fae0e5049b605f7b34cebcc5,
+    type: 2}
+  gender: 0
+--- !u!114 &1920165773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1920165768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcf59bc676323e4687da9e33dda97d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialToAssin: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
 --- !u!1001 &1922180297
 Prefab:
   m_ObjectHideFlags: 0
@@ -8318,6 +8392,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -0.001
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 249dd6c9c3207e94f80b1f060c6a1709, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 249dd6c9c3207e94f80b1f060c6a1709, type: 3}
   m_IsPrefabParent: 0
@@ -8339,6 +8417,32 @@ MonoBehaviour:
   time: 0
   animationParameter: 0
   parameterName: SitPosition
+--- !u!114 &2034050741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2034050737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94646dd84001f0a42af7f81ae7fb7fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonPeople: {fileID: 1000010137985544, guid: fd9ade00fae0e5049b605f7b34cebcc5,
+    type: 2}
+  gender: 0
+--- !u!114 &2034050742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2034050737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcf59bc676323e4687da9e33dda97d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialToAssin: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
 --- !u!1001 &2068891137
 Prefab:
   m_ObjectHideFlags: 0
