@@ -42,8 +42,12 @@ public class SculpturerGameController : GameController {
         base.Start();
 
         Timing.RunCoroutine(innerSpeech());
+
+        //lockPlayer();
+        //ropeGame.GetComponent<RopeGameController>().enabled = true;
+
         //startGame();
-       
+
     }
 
     // Update is called once per frame

@@ -79,7 +79,7 @@ public class RopeGameController : MonoBehaviour {
             GameObject spawnObject = Instantiate(ropeObject) as GameObject;
             spawnObject.transform.parent = _3DCanvas.transform;
 
-            spawnObject.transform.position = cam.ScreenToWorldPoint(new Vector2(Screen.width * 1 / 10 + Screen.width * 1 / 10 * i, Screen.height * 4 / 5));
+            spawnObject.transform.position = cam.ScreenToWorldPoint(new Vector2(Screen.width * 1 / 10 + Screen.width * 1 / 10 * i, Screen.height * 9/10));
 
             ropes.Add(spawnObject);
 
