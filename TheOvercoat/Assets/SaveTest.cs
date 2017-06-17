@@ -11,13 +11,15 @@ public class SaveTest : GameController, IClickAction{
 
     public override void Action()
     {
-        if (isUsed())
+        if (!isUsed())
         {
             sc.callSubtitleWithIndex(0);
+            registerAsUsed();
 
         }else
         {
             sc.callSubtitleWithIndex(1);
+            
         }
     }
 

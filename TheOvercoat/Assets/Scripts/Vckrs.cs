@@ -1032,7 +1032,10 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
         }
     }
     
-    
+    public static Vector2 centerOfScreen()
+    {
+        return new Vector2(Screen.width/2,Screen.height/2);
+    }
 
 }
 

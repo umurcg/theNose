@@ -23,6 +23,8 @@ public class MainMenu : MonoBehaviour {
 
     static string momentsImageDirectory="MomentsImages/";
 
+    public GameObject askPrompt;
+
     //CharacterController cc;
 
     void Awake()
@@ -64,8 +66,33 @@ public class MainMenu : MonoBehaviour {
 
     public void startButton()
     {
+        if (GlobalController.Instance.sceneList.Count != 0)
+        {
+            //ask overriding data
+            GameObject ask=Instantiate(askPrompt);
+            ask.transform.parent = transform;
+            ask.transform.position = Vckrs.centerOfScreen();
+            EnableDisableUI edui = ask.GetComponent<EnableDisableUI>();
+            edui.activate();
+
+            AskPrompt prompt = ask.GetComponent<AskPrompt>();
+            prompt.setPromptText("Your previous game will be overriden. Are you sure that you want to start new game?");
+
+            prompt.yesButton.GetComponent<Button>().onClick.AddListener(newGame);
+            
+               
+        }
+
+
+
+    }
+
+
+    void newGame()
+    {
+
         GlobalController.Instance.clearSceneList();
-       SceneManager.LoadScene((int)GlobalController.Instance.fullGameSceneList[0]);
+        SceneManager.LoadScene((int)GlobalController.Instance.fullGameSceneList[0]);
     }
 
     public void settings()
@@ -269,6 +296,14 @@ public class MainMenu : MonoBehaviour {
         hideUnhideMainButtons(false);
     }
 
+    public void returnFromSettings()
+    {
+
+        subsettingsMenu.GetComponent<EnableDisableUI>().deactivate();
+        hideUnhideMainButtons(false);
+
+    }
+
     public void exit()
     {
         Debug.Log("Quiting");
@@ -277,6 +312,7 @@ public class MainMenu : MonoBehaviour {
 
     public void loadLastLevel()
     {
+        
         GlobalController.Instance.LoadData();
         List<int> sceneList = GlobalController.Instance.sceneList;
         Timing.RunCoroutine(_loadScene((GlobalController.Scenes)sceneList[sceneList.Count - 1],sceneList.Count));

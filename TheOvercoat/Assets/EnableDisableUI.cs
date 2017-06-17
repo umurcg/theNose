@@ -80,6 +80,39 @@ public class EnableDisableUI : MonoBehaviour {
 
     }
 
+
+    public void deactivateAndDestroy()
+    {
+        Timing.RunCoroutine(_deactivateAndDestroy());
+    }
+
+    public IEnumerator<float> _deactivateAndDestroy()
+    {
+
+        //is active or not
+        //bool isActive = gameObject.activeSelf;
+        //if (!isActive) yield break;
+
+        //Set each objects alpha to 1 just in case
+        foreach (MaskableGraphic mg in mgs) Vckrs.setAlpha<MaskableGraphic>(mg.gameObject, 1);
+
+        IEnumerator<float> handler = null;
+
+        foreach (MaskableGraphic mg in mgs) handler = Timing.RunCoroutine(Vckrs._fadeInfadeOut<MaskableGraphic>(mg.gameObject, 1f));
+
+        //Wait for last coroutine finishes its job which means wait for fading
+        yield return Timing.WaitUntilDone(handler);
+
+        //Disable all children
+        Vckrs.disableAllChildren(transform);
+
+        Destroy(gameObject);
+
+        yield break;
+
+    }
+
+
     public IEnumerator<float> _activate()
     {
    
@@ -108,5 +141,7 @@ public class EnableDisableUI : MonoBehaviour {
         yield break;
 
     }
+
+
 
 }

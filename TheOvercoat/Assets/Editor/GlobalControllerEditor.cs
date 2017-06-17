@@ -21,6 +21,13 @@ public class GlobalControllerEditor : Editor
             script.loadNextScene();
 
         }
+
+
+        if (GUILayout.Button("Remove save file "))
+        {
+            script.removeSaveData();
+
+        }
         //if (GUILayout.Button("Set full game scene list to default "))
         //{
         //    script.setDebugListToIndex();

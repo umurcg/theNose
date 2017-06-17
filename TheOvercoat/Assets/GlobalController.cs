@@ -219,7 +219,13 @@ public int setDebugListToLevelIndex;
     }
 
 
-	
+	public void removeSaveData()
+    {
+
+        Debug.Log("Deleting file");
+        File.Delete(Application.persistentDataPath + "/Saves/save.vkcrs");
+    }
+
 
     public bool SaveData()
     {      
