@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 using MovementEffects;
+using UnityEngine.Events;
 
 public class MainMenu : MonoBehaviour {
     public GameObject DynamicButton;
@@ -78,7 +79,12 @@ public class MainMenu : MonoBehaviour {
             AskPrompt prompt = ask.GetComponent<AskPrompt>();
             prompt.setPromptText("Your previous game will be overriden. Are you sure that you want to start new game?");
 
-            prompt.yesButton.GetComponent<Button>().onClick.AddListener(newGame);
+            prompt.assignYesFunctionalities(new UnityAction[] {newGame});
+            prompt.assignNoFunctionalities(new UnityAction[] { unhideMainButtons });
+
+            hideMainButtons();
+
+            //prompt.yesButton.GetComponent<Button>().onClick.AddListener(newGame);
             
                
         }
@@ -337,6 +343,10 @@ public class MainMenu : MonoBehaviour {
             }
 
     }
+
+    void hideMainButtons() { hideUnhideMainButtons(true); }
+    void unhideMainButtons() { hideUnhideMainButtons(false); }
+
 
     //Fills dynamic button with image and changes its text to scene name
     //I canceled scene image

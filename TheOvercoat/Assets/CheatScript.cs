@@ -52,10 +52,13 @@ public class CheatScript : MonoBehaviour {
 
     void loadNextLevel()
     {
+
+        //Debug.Log("Laoding next level");
         //There is exception at one scene where ivan throws nose. In that scene, scene actualyy is not changed but it fades out and fades in so
         //This if condition checks that player is in that scene and calls a specific function making effect like scene change
         if (GlobalController.getPreviousScene()==GlobalController.Scenes.IvanHouse)
         {
+            //Debug.Log("Previous scene is ivanhous");
             //Bridge game controller have owner objects having floor tag so we find it with that tag
             GameObject[] flootObjects=GameObject.FindGameObjectsWithTag("Floor");
             BridgeGameController bgc=null;
@@ -68,23 +71,28 @@ public class CheatScript : MonoBehaviour {
             
 
             if (bgc) {
-                //Debug.Log("Triggering change scen from bgc");
+                Debug.Log("Triggering change scen from bgc");
                 Timing.RunCoroutine(bgc.GetComponent<BridgeGameController>().changeScene());
                 return;
             }else
             {
-                //Debug.Log("Couldny found bgc");
+                Debug.Log("Couldny found bgc");
             }
 
             
         }
 
+        //Debug.Log("door count is "+OpenDoorLoad.doors.Count);
+
         if (OpenDoorLoad.doors.Count == 1)
         {
             //Debug.Log("Door count is 1");
+  
+
             Dictionary<int, OpenDoorLoad> doors = OpenDoorLoad.doors;
             foreach (KeyValuePair<int, OpenDoorLoad> door in doors)
             {
+                //Debug.Log("Door name is " + door.Value.Scene);
                 door.Value.debugLoad=true;
                 return;
             }
@@ -110,7 +118,7 @@ public class CheatScript : MonoBehaviour {
 
         } else{
 
-            //Debug.Log("Loading next scene directly");
+            Debug.Log("Loading next scene directly");
             GlobalController.Instance.loadNextScene();
         }
     }

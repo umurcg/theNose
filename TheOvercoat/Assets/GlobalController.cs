@@ -233,7 +233,7 @@ public int setDebugListToLevelIndex;
         if (!Directory.Exists(Application.persistentDataPath + "/Saves"))
         {
             Directory.CreateDirectory(Application.persistentDataPath + "/Saves");
-            return false;
+            
         }
 
 

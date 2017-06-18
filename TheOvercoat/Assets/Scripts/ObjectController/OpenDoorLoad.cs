@@ -51,7 +51,9 @@ public class OpenDoorLoad : LoadScene {
             Debug.Log("There cant be more than one door having same index in scene. Check it. Door id is " + doorId);
             return;
         }
-        doors[doorId] = this;
+
+        //Debug.Log("Registering " + Scene);
+        doors.Add(doorId,this);
 
         if (doorName == null) doorName = Scene.ToString();
 
@@ -144,8 +146,11 @@ public class OpenDoorLoad : LoadScene {
 
     void OnDisable()
     {
-        if (doors.Count > 0)
-            doors.Clear();
+
+
+        doors.Remove(doorId);
+
+
     }
      
     //Opens all the scene doors that player went previously
