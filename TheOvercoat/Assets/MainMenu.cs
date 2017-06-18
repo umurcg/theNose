@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour {
 
     void Awake()
     {
-        mainMenuButtons = new GameObject[] { continueButton, exitButton, settingsButton, momentsButton, newgameButton };
+        mainMenuButtons = new GameObject[] { continueButton, exitButton, settingsButton, /*momentsButton,*/ newgameButton };
                
     }
 
@@ -51,10 +51,16 @@ public class MainMenu : MonoBehaviour {
 
             //TODO Load data here
             //If loaded scene list is empty then there shouldn't be any moment, so disable the continue and moments button
-            if (GlobalController.Instance.sceneList.Count == 0)
+            //if (GlobalController.Instance.sceneList.Count == 0)
+            //{
+            //    continueButton.GetComponent<Button>().interactable = false;
+            //    momentsButton.GetComponent<Button>().interactable = false;
+            //}
+
+
+            if (!GlobalController.Instance.isSaveDataAvaible())
             {
                 continueButton.GetComponent<Button>().interactable = false;
-                momentsButton.GetComponent<Button>().interactable = false;
             }
         }
     }
@@ -67,7 +73,7 @@ public class MainMenu : MonoBehaviour {
 
     public void startButton()
     {
-        if (GlobalController.Instance.sceneList.Count != 0)
+        if (GlobalController.Instance.isSaveDataAvaible())
         {
             //ask overriding data
             GameObject ask=Instantiate(askPrompt);
@@ -85,8 +91,12 @@ public class MainMenu : MonoBehaviour {
             hideMainButtons();
 
             //prompt.yesButton.GetComponent<Button>().onClick.AddListener(newGame);
-            
-               
+
+
+        }
+        else
+        {
+            newGame();
         }
 
 
@@ -239,13 +249,16 @@ public class MainMenu : MonoBehaviour {
         }
 
         //Trim game controllers that are after current episodeID
-        //TODO think about that design
-        trimGameControllers(episodeID);
+        //It should be called while laoding a episode from moments menu. So commenting this right now. Call this in the function that loads scenes from moments
+        //trimGameControllers(episodeID);
 
 
         SceneManager.LoadScene((int)scene);
     }
 
+
+    //Trims game controllers that are not part of episodes that are played before this episode.
+    //It must called while loading game from moments.
     void trimGameControllers(int episodeID)
     {
 
@@ -321,7 +334,23 @@ public class MainMenu : MonoBehaviour {
         
         GlobalController.Instance.LoadData();
         List<int> sceneList = GlobalController.Instance.sceneList;
-        Timing.RunCoroutine(_loadScene((GlobalController.Scenes)sceneList[sceneList.Count - 1],sceneList.Count));
+
+        //Trim last index of sceneList because we are loading that scene and it shouldn't be registered right now
+        int sceneToLoad = sceneList[sceneList.Count - 1];
+        int episodeID=sceneList.Count;
+
+        GlobalController.Instance.sceneList.RemoveAt(GlobalController.Instance.sceneList.Count - 1);
+
+
+        Debug.Log("Scene list: ");
+        foreach (int i in sceneList)
+        {
+            Debug.Log(i);
+        }
+
+
+        //Time.timeScale = 0;
+        Timing.RunCoroutine(_loadScene((GlobalController.Scenes)sceneToLoad,episodeID));
         
     }
 

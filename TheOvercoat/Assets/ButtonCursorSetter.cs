@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 //While ui elements doesnt detected by corsorimage script this script will frce cis to change cursor to button cursor when mouse is over.
@@ -8,10 +9,13 @@ public class ButtonCursorSetter : MonoBehaviour {
 
     CursorImageScript cis;
     public Texture2D cursorImage;
+    Button buttonComp;
 
 	// Use this for initialization
 	void Start () {
         cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
+
+        buttonComp = GetComponent<Button>();
 
         EventTrigger trigger = gameObject.AddComponent<EventTrigger>();
 
@@ -34,7 +38,8 @@ public class ButtonCursorSetter : MonoBehaviour {
 
     public void changeCursor()
     {
-        cis.externalTexture = cursorImage;
+        if(buttonComp.IsInteractable())
+            cis.externalTexture = cursorImage;
         //Debug.Log("Mouse entered");
     }
 

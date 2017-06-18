@@ -35,16 +35,20 @@ abstract public class GameController : MonoBehaviour , IClickAction{
     // Initilize variables of game controller.
     public virtual  void Start () {
 
-        if(isUsed())
-        {
-            gameIsUsed();
-            return;
-        }
-
+   
         updateCharacterVariables();
 
-        assignSubtitles();
         sc = GetComponent<SubtitleCaller>();
+
+
+        assignSubtitles();
+
+        if (isUsed())
+        {
+            gameIsUsed();
+
+        }
+
 
         ////TODO test it
         //if (activateCondition.Length != 0)

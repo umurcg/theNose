@@ -43,7 +43,7 @@ public class CityGameController : MonoBehaviour {
 
             if (checkSideStories()) return;
 
-            if (sceneList.Count > 0)
+            if (sceneList.Count > 1)
             {
                 //Get last index of sceneList
                 int lastSceneIndex = sceneList[sceneList.Count - 1];
@@ -53,6 +53,8 @@ public class CityGameController : MonoBehaviour {
                 //If last scene is city then make last scene previous scene
                 if (lastSceneIndex == (int)GlobalController.Scenes.City)
                 {
+                
+
                    lastSceneIndex= sceneList[sceneList.Count - 2];
                 }
 

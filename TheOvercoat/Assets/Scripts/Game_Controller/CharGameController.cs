@@ -213,6 +213,8 @@ public class CharGameController : MonoBehaviour {
 
           }
 
+        getCamera().GetComponent<CameraFollower>().target = getActiveCharacter();
+
         //If owner has see through walls scr'pt update 't
         SeeBehindWall3 sbw = cgc.GetComponentInChildren<SeeBehindWall3>();
         if (sbw) sbw.updateTarget();
@@ -250,6 +252,8 @@ public class CharGameController : MonoBehaviour {
 
 
         }
+
+        getCamera().GetComponent<CameraFollower>().target = getActiveCharacter();
 
         //If owner has see through walls scr'pt update 't
         SeeBehindWall3 sbw = cgc.GetComponentInChildren<SeeBehindWall3>();

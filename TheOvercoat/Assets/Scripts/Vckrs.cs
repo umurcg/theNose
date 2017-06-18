@@ -1037,6 +1037,14 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
         return new Vector2(Screen.width/2,Screen.height/2);
     }
 
+    //public static void printList(List<Object> list)
+    //{
+    //    foreach (Object obj in list)
+    //    {
+    //        print(obj);
+    //    }
+    //}
+
 }
 
 

@@ -242,12 +242,12 @@ public int setDebugListToLevelIndex;
                 
 
 
-        formatter.Serialize(saveFile, maxSceneList);
+        formatter.Serialize(saveFile, sceneList);
         formatter.Serialize(saveFile, usedGameControllers);
         
         saveFile.Close();
         
-        //Debug.Log("Saved");
+        Debug.Log("Saved to "+ Application.persistentDataPath + "/Saves/save.vkcrs");
         return true;
     }
 
@@ -278,6 +278,12 @@ public int setDebugListToLevelIndex;
         Debug.Log("Loaded");
 
         return true;
+    }
+
+
+    public bool isSaveDataAvaible()
+    {
+        return File.Exists(Application.persistentDataPath + "/Saves/save.vkcrs");
     }
 
     //Unnecesseary
