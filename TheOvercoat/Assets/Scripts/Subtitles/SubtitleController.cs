@@ -259,6 +259,8 @@ public class SubtitleController : MonoBehaviour {
 
         writer.Close();
 
+        Debug.Log("Subtitle is exported as " + directory);
+
     }
 
     //Imports subtitle text according to language setting

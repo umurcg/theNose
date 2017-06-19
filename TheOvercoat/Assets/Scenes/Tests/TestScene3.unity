@@ -314,6 +314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6640f9beb62d88428a5e880c478b26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainButtons: {fileID: 0}
+  settingsSubMenu: {fileID: 0}
+  pauseMenuText: {fileID: 0}
 --- !u!114 &348688052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,6 +598,14 @@ Prefab:
       propertyPath: languageSetting
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000014093701332, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011785493192, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd651778041846143b79e2a904c465fc, type: 2}
   m_IsPrefabParent: 0
@@ -791,7 +802,6 @@ MonoBehaviour:
   textAsset: {fileID: 0}
   subtitleTexts: []
   AllSubtitles: 
-  subtitle: {fileID: 315382808}
   ifDesroyItself: 0
   releaseAfterSub: 0
 --- !u!4 &1289185282
@@ -818,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2df56e23b20ccf418f927c5bc0b5b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDisabledAtStart: 0
+  other: {fileID: 0}
 --- !u!114 &1289185284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,12 +845,12 @@ MonoBehaviour:
   - "ben t\xFCrk\xE7e narratorum"
   - "asl\u0131nda bakarsan \xE7ok yorgunum"
   AllSubtitles: "ben t\xFCrk\xE7e narratorum\nasl\u0131nda bakarsan \xE7ok yorgunum"
-  subtitle: {fileID: 2072843407}
   ifDesroyItself: 0
   releaseAfterSub: 0
   manualTimerArray: []
   TimeMode: 0
   timeInhibator: 13
+  clips: []
 --- !u!114 &1289185285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,6 +1593,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55fb4fe52749444da7aaee11a6244f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &2032609681
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010493554022, guid: 019d67a5f18c73a4dbce52dc50e88638, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.5243163
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010493554022, guid: 019d67a5f18c73a4dbce52dc50e88638, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010493554022, guid: 019d67a5f18c73a4dbce52dc50e88638, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -5.2103043
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010493554022, guid: 019d67a5f18c73a4dbce52dc50e88638, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010493554022, guid: 019d67a5f18c73a4dbce52dc50e88638, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010493554022, guid: 019d67a5f18c73a4dbce52dc50e88638, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010493554022, guid: 019d67a5f18c73a4dbce52dc50e88638, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010493554022, guid: 019d67a5f18c73a4dbce52dc50e88638, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 019d67a5f18c73a4dbce52dc50e88638, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2072843407
 GameObject:
   m_ObjectHideFlags: 0
