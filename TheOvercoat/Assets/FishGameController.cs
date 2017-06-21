@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using MovementEffects;
 
 public class FishGameController : MonoBehaviour {
 
@@ -42,7 +43,11 @@ public class FishGameController : MonoBehaviour {
     float timer = 0;
 
     public DenizEfeGameController degc;
-    
+
+
+    MoveObjectToFocus motf;
+
+
 
     // Use this for initialization
     void Start () {
@@ -59,6 +64,8 @@ public class FishGameController : MonoBehaviour {
         finishButton.GetComponentInChildren<Text>().text = "Finish Fishing";
         finishButtonComp.onClick.AddListener(finishGame);
         finishButtonComp.interactable = false;
+
+        motf = GetComponent<MoveObjectToFocus>();
 
 
     }
@@ -79,6 +86,7 @@ public class FishGameController : MonoBehaviour {
             {
                 Stage = stage.foundFish;
                 frc.fishFound();
+
             }
         }
         else
