@@ -31,6 +31,8 @@ public class CursorImageScript : MonoBehaviour
 
     public bool printShootedTag=false;
 
+    public bool printShootedName = false;
+
     [HideInInspector]
     public bool forceToDefault = false;
 
@@ -191,6 +193,7 @@ public class CursorImageScript : MonoBehaviour
             string shootedTag = hit.transform.tag;
 
             if (printShootedTag) Debug.Log(shootedTag);
+            if (printShootedName) Debug.Log(hit.transform.name);
 
             switch (shootedTag)
             {
