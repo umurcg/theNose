@@ -13,7 +13,7 @@ using System;
 public class GlobalController : MonoBehaviour {
 
 
-    public enum Scenes {MainMenu=0 ,City=1,IvanHouse=2,KovalevHouse=3,PoliceStation=4,Newspaper=5,Church=6,Doctor=7,PrisonerGame=8,Atolye=9, None=10 };
+    public enum Scenes {MainMenu=0 ,City=1,IvanHouse=2,KovalevHouse=3,PoliceStation=4,Newspaper=5,Church=6,Doctor=7,PrisonerGame=8,Atolye=9,OsmanBey=10, None=11 };
     
     public static GlobalController Instance;
 

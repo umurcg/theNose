@@ -13,6 +13,9 @@ public class DayAndNightCycle : MonoBehaviour {
     public float minIntensity = 0;
     public float speed = 1;
 
+    [HideInInspector]
+    public bool isNight = false;
+
 	// Use this for initialization
 	void Start () {
         Light l = GetComponent<Light>();
@@ -43,7 +46,9 @@ public class DayAndNightCycle : MonoBehaviour {
     {
         Light l = GetComponent<Light>();
         l.intensity = maxIntensity;
+        isNight = true;
         Timing.RunCoroutine(_changeLight(speed,l,minIntensity,maxIntensity));
+
     }
 
 
@@ -52,7 +57,9 @@ public class DayAndNightCycle : MonoBehaviour {
     {
         Light l = GetComponent<Light>();
         l.intensity = minIntensity;
+        isNight = false;
         Timing.RunCoroutine(_changeLight(speed, l,minIntensity,maxIntensity));
+        
     }
 
     public static IEnumerator<float> _changeLight(float speed, Light light, float minIntensity, float maxIntensity)

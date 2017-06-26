@@ -17,6 +17,8 @@ public class CharGameController : MonoBehaviour {
     public enum hand { LeftHand,RightHand};
 
     public bool coverKovalevFace = false;
+    public bool positionToDoor = true;
+
 
     //Camera type
     public enum cameraType
@@ -63,6 +65,10 @@ public class CharGameController : MonoBehaviour {
 
     void setPositionToDoor(Scene scene, LoadSceneMode mode)
     {
+#if UNITY_EDITOR
+        if (!positionToDoor) return;
+#endif
+
         //Debug.Log("Setting position to door "+lastDoorId);
 
         //Get active char

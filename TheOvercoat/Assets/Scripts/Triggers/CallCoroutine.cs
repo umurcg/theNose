@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, IDirectClick, IWalkLookAnim
 {
@@ -11,6 +12,15 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
     public Object passParameter;
     public string methodName;
     public bool destroySelf = false;
+
+    //Check for subtitle. Click action shouldn't work while subtitle is not empty
+    public bool preventClickActionWithSubtitle = true;
+    Text subtitle;
+
+    private void Awake()
+    {
+        subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
+    }
 
     public void call()
     {
@@ -36,8 +46,8 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
 
     public void Action()
     {
-        print("action");
-        if(CallType==callType.ClickAction)
+        //print("action");
+        if(CallType==callType.ClickAction && (!preventClickActionWithSubtitle || subtitle==null || (subtitle.text=="")))
         call();
     }
     
@@ -49,7 +59,7 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
 
     public void directClick()
     {
-        Debug.Log("Direct click");
+        //Debug.Log("Direct click");
         if (CallType == callType.DirectClick)
             call();
     }

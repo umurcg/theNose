@@ -81,7 +81,16 @@ public class Sevval : GameController, IClickAction {
         yield break;
 
     }
-    
 
+
+    public override void deactivateController()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
+
+    public override void activateController()
+    {
+        transform.parent.gameObject.gameObject.SetActive(true);
+    }
 
 }

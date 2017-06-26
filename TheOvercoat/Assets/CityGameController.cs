@@ -5,7 +5,9 @@ using MovementEffects;
 
 //City includes lots of scenes and games. So when this script starts it looks player's sceneList and decide how to initilize city.
 public class CityGameController : MonoBehaviour {
-    public GameObject berberShop, Crowd,  bar, jokeGroup, bridge, fruitStad, cat,  ivanCityController, maze;
+    public GameObject berberShop, Crowd, bar, jokeGroup, bridge, fruitStad, cat, ivanCityController, maze;
+    public DenizEfeGameController degc;
+    public Sevval sev;
     public GameObject[] ivanScenePolice;
     public GameObject lookAtMeNowTrigger, NoseGame;
     public GameObject SingerCafe;
@@ -142,6 +144,11 @@ public class CityGameController : MonoBehaviour {
         //In city player hould have enabled bird eye view script. so enable it you fucking idiot
         BirdsEyeView bev = CharGameController.getCamera().GetComponent<BirdsEyeView>();
         bev.enabled = true;
+
+
+        //For side missions that can Kovalev play 
+        if (CharGameController.getActiveCharacter().name == "Kovalev") activateKovalevStories();
+
 
     }
 
@@ -397,4 +404,23 @@ public class CityGameController : MonoBehaviour {
         return false;   
     }
  
+
+    void activateKovalevStories()
+    {
+        bool isNight = CharGameController.getSun().GetComponent<DayAndNightCycle>().isNight;
+
+        if (isNight)
+        {
+            //Ali game
+        }
+        else
+        {
+
+            sev.activateController();
+            degc.activateController();
+            //Can game
+            //Reyhan game
+        }
+    }
+
 }

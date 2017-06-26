@@ -19,6 +19,8 @@ public class BirdsEyeView : MonoBehaviour {
     public GameObject mainCanvas;
     public GameObject uiTextPrefab;
 
+    public GameObject streetParent;
+
     List<GameObject> areaList;
     public float maxSize = 50f;
     public float speed = 0.1f;
@@ -51,7 +53,7 @@ public class BirdsEyeView : MonoBehaviour {
     void OnEnable()
     {
         areaList = new List<GameObject>();
-        GameObject streetParent = GameObject.FindGameObjectWithTag("Street");
+ 
 
 
         for (int i = 0; i < streetParent.transform.childCount; i++)

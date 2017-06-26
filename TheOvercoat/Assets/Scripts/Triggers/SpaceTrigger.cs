@@ -2,18 +2,35 @@
 using System.Collections;
 
 public class SpaceTrigger : MonoBehaviour {
-	IClickAction iclick;
-	public bool colliding;
+
+    public KeyCode[] keys =new KeyCode[]{KeyCode.Space,KeyCode.Joystick1Button0 };
+
+
+    //GameObject that is inside collider
+    IClickAction focusScr;
+    GameObject focusObj;
+
 	// Use this for initialization
 	void Start () {
-		iclick = GetComponent<IClickAction> ();
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//Input.GetKeyDown(Interaction)
-		if (Input.GetKeyDown(KeyCode.Space)&&colliding) {
-			iclick.Action ();
+        bool b = false;
+
+        foreach(KeyCode k in keys)
+        {
+            b = b || Input.GetKeyDown(k);
+        }
+
+        if (b)
+        {
+            Debug.Log("Presseeeeed");
+        }
+
+		if (/*Input.GetAxis("InteractionKeyboard")==1*/ b && focusScr!= null && focusObj!=null) {
+            focusScr.Action();
 		}
         
 
@@ -21,18 +38,22 @@ public class SpaceTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		colliding = (col.tag == "Player");
+        if (col.tag == "ActiveObject")
+        {
+            focusScr = col.gameObject.GetComponent<IClickAction>();
+            focusObj = col.gameObject;
+        }
 	}
 
 	void OnTriggerExit(Collider col){
-		colliding = !(col.tag == "Player");
+
+        if (col.gameObject == focusObj)
+        {
+            focusObj = null;
+            focusScr = null;
+        }
 	}
 
-    void OnMouseDown()
-    {
-        if(colliding&&iclick!=null)
-        iclick.Action();
-    }
 
 
 }

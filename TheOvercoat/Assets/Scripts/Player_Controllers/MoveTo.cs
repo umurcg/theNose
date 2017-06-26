@@ -43,19 +43,28 @@ public class MoveTo : MonoBehaviour
             debug = false;
         }
 
-        if (Input.anyKey)
+        //Debug.Log(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0);
+
+
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
-        
+            //print("keyboard");
+            if (agent.isOnNavMesh)
+                agent.Stop();
+
+
+        }
+       
+
+    if (Input.anyKey)
+        {
+
             //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || 
             //    Input.GetKey(KeyCode.UpArrow)  || Input.GetKey(KeyCode.DownArrow)||Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.LeftArrow))
-            if(Input.GetAxis("Horizontal")!=0||Input.GetAxis("Vertical")!=0)
-            {
-                //print("keyboard");
-                if (agent.isOnNavMesh)
-                    agent.Stop();
 
-
-            }   else if (Input.GetMouseButtonDown(0))
+        
+            if (Input.GetMouseButtonDown(0))
             {
                 //print("mouse");
                 RaycastHit hit;
@@ -64,7 +73,7 @@ public class MoveTo : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, ignoreMasks))
 
                 {
-                    //Debug.Log(hit.transform.name);
+                    Debug.Log(hit.transform.name);
                     if (hit.transform.CompareTag("Floor"))
                     {
                         //Debug.Log("Walking");
@@ -73,7 +82,7 @@ public class MoveTo : MonoBehaviour
                         if (agent.isOnNavMesh)
                         {
 
-
+                            //Debug.Log("Walk");
                             agent.destination = hit.point;
                         }
                     }

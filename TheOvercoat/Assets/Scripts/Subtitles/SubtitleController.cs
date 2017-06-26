@@ -102,7 +102,8 @@ public class SubtitleController : MonoBehaviour {
             
             if (index < subtitleTexts.Length)
             {
-                if (Input.GetMouseButtonDown(0))
+                
+                if (Input.GetMouseButtonDown(0) || Input.GetAxis("InteractionKeyboard")==1)
                 {
                     //Debug.Log("You pressed to mouse");
                     index++;

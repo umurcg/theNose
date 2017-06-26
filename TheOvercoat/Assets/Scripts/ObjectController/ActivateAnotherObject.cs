@@ -59,6 +59,12 @@ public class ActivateAnotherObject : MonoBehaviour, IFinishedSwitching, IClickAc
                 ChangeMaterial cm = (ChangeMaterial)(script);
                 cm.change();
             }
+
+            if(script is SwapMaterials)
+            {
+                ((SwapMaterials)script).activate();
+            }
+
         }
 
 

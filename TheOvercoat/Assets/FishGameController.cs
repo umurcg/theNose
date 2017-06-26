@@ -261,6 +261,9 @@ public class FishGameController : MonoBehaviour {
     {
         if (degc) degc.fishingGameIsFinished();
         gameObject.SetActive(false);
+
+        finishButton.SetActive(false);
+
     }
 
 }

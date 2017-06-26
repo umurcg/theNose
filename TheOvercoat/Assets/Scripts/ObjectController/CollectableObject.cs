@@ -82,6 +82,9 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 	// Update is called once per frame
 
 	void Collect(){
+
+        Debug.Log("Collecting");
+
 		CollectableObject.collected.Add (gameObject);
 		if (onHand == false) {
 			gameObject.SetActive(false);
@@ -170,29 +173,6 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 			rb.useGravity=b;
 		}
 
-	}
-
-
-
-
-	void Update () {
-
-
-
-//		if (Input.GetMouseButtonUp (0)) {
-//			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-//			RaycastHit hit;
-//
-//			if (Physics.Raycast (ray, out hit)) {
-//				
-//				if (hit.transform == transform) {
-//					
-//					Collect ();
-//				}
-//
-//			}
-//	
-//		}
 	}
 
 
