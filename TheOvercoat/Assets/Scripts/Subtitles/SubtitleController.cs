@@ -151,7 +151,7 @@ public class SubtitleController : MonoBehaviour {
 
    public virtual void startSubtitle()
     {
-
+        
         if (text == null) Debug.Log("No text");
         //Debug.Log(subtitleTexts.Length);
 
@@ -160,8 +160,10 @@ public class SubtitleController : MonoBehaviour {
             text = SubtitleFade.subtitles["CharacterSubtitle"];
         }
 
+        text.fontStyle = FontStyle.Normal;
+
         //if (text == null) Debug.Log("No text again");
-        
+
 
         //If subtitle text is not null dont start subtitle.
         if (text.text != "") return;

@@ -7,6 +7,7 @@ public class SubtitleControllerTime : SubtitleController {
     public float[] manualTimerArray;
     public enum timeMode {automatic,manual };
     public timeMode TimeMode;
+    public bool narrator = true;
 
     
     public float timeInhibator=13;
@@ -44,7 +45,16 @@ public class SubtitleControllerTime : SubtitleController {
          
         if (textAsset != null) importFromTextFile();
 
-        text = SubtitleFade.subtitles["NarratorSubtitle"];
+        if (narrator)
+        {
+            text = SubtitleFade.subtitles["NarratorSubtitle"];
+        }
+        else
+        {
+            text= SubtitleFade.subtitles["CharacterSubtitle"];
+            
+        }
+    
 
         //If couldnt find subtitle with SubtitleFade get it with tag
         if (text == null)
@@ -145,6 +155,7 @@ public class SubtitleControllerTime : SubtitleController {
     public new void startSubtitle()
     {
         //Debug.Log("starting subtitles, obj name " + name);
+        text.fontStyle = FontStyle.Italic;
 
         this.enabled = true;
         if (TimeMode == timeMode.automatic)

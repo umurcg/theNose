@@ -143,7 +143,7 @@ public class CursorImageScript : MonoBehaviour
         if (subt != null)
         {
             //Debug.Log("Subtitile is not null");
-            if (subt.text != "")
+            if (subt.text != "" && subt.fontStyle==FontStyle.Normal)
             {
                 setCursor(nextSubtitle);
                 return;
