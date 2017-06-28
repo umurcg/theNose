@@ -175,6 +175,13 @@ public class SubtitleControllerTime : SubtitleController {
 
     }
 
+    public override void terminateSubtitle()
+    {
+        base.terminateSubtitle();
+        timer = 0;
+
+    }
+
     //fills time array
     void calculateTimes()
     {

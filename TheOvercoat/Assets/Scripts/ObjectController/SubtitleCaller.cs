@@ -10,6 +10,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
     //Start automatic when player clicks the object or start manually from script
     public bool startAutomatic = false;
 
+    SubtitleController activeController;
 
     //int currentIndex = 0;
 
@@ -33,6 +34,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         if (index < scs.Length)
         {
             scs[index].startSubtitle();
+            activeController = scs[index];
             //currentIndex = index;
         }
      }
@@ -46,6 +48,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         if (scs)
         {
             scs.startSubtitle();
+            activeController = scs;
         }
     }
 
@@ -57,7 +60,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         if (index < scs.Length)
         {
             scs[index].startSubtitle();
-
+            activeController = scs[index];
             //print(scs.Length);
             //currentIndex = index;
         }
@@ -72,6 +75,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         if (scs)
         {
             scs.startSubtitle();
+            activeController = scs;
         }
     }
 
@@ -79,6 +83,17 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
     public bool isAutomatic()
     {
         return startAutomatic;
+    }
+    
+    public SubtitleController getActiveController()
+    {
+        return activeController;
+    }
+
+    public void termianteCurrentController()
+    {
+        activeController.terminateSubtitle();
+        activeController = null;
     }
 
 }

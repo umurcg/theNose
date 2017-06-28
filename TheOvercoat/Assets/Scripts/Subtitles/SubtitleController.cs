@@ -25,6 +25,7 @@ public class SubtitleController : MonoBehaviour {
     public bool releaseAfterSub = false;
     protected int index;
 
+
     public virtual void Awake()
     {
         //If text asset is not assigned then find it atuomatically using file name generator
@@ -147,6 +148,13 @@ public class SubtitleController : MonoBehaviour {
         }
 
 	}
+
+    public virtual void terminateSubtitle()
+    {
+        index = -1;
+        text.text = "";
+        Debug.Log("terminating subt");
+    }
 
 
    public virtual void startSubtitle()

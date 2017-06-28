@@ -9,6 +9,7 @@ public class EnterTrigger : MonoBehaviour {
     public bool deleteAfterSendMessage = false;
     public bool onlyPlayerCanTrigger = true;
 
+    [HideInInspector]
     public bool enter=false;
 
     //Use this variables if you want to send message when trigger is activated.
