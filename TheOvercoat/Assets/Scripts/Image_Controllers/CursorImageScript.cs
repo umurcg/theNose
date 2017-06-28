@@ -46,6 +46,8 @@ public class CursorImageScript : MonoBehaviour
 
     Camera currentCamera;
 
+    public bool showCursor = true;
+
     ////TODO right whole script again
     ////Use this dictionary for cursors havng most priority. 
     //Dictionary<string, Texture2D> tagCursorPair;
@@ -128,7 +130,14 @@ public class CursorImageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-                        
+        checkForInputType();
+
+
+        if (!showCursor)
+        {
+            return;
+        }
+
 
         //If external texture is not null then just put it no matter what
         if (externalTexture != null)
@@ -339,6 +348,60 @@ public class CursorImageScript : MonoBehaviour
                 return true;
             }
         }
+
+        return false;
+    }
+
+
+    private void checkForInputType()
+    {
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        {
+            showCursor = true;
+            Cursor.visible = true;
+        }else if (isControlerInput())
+        {
+            showCursor = false;
+            Cursor.visible = false;
+        }
+
+    }
+
+
+
+
+    private bool isControlerInput()
+    {
+        bool gamePad = false;
+        for (int i = 0; i < 20; i++)
+        {
+            if (Input.GetKeyDown("joystick button " + i))
+            {
+                gamePad = true;
+            }
+        }
+
+
+        gamePad = gamePad || Input.GetAxis("GamePadL_X") != 0 || Input.GetAxis("GamePadL_Y") != 0 || Input.GetAxis("GamePadR_X") != 0 || Input.GetAxis("GamePadR_Y") != 0;
+
+
+        // joystick buttons
+        if (gamePad)
+        {
+            //Debug.Log("GamePAAAAAAAAD");
+            return true;
+
+        }
+
+        //// joystick axis
+        //if (Input.GetAxis("XC Left Stick X") != 0.0f ||
+        //   Input.GetAxis("XC Left Stick Y") != 0.0f ||
+        //   Input.GetAxis("XC Triggers") != 0.0f ||
+        //   Input.GetAxis("XC Right Stick X") != 0.0f ||
+        //   Input.GetAxis("XC Right Stick Y") != 0.0f)
+        //{
+        //    return true;
+        //}
 
         return false;
     }

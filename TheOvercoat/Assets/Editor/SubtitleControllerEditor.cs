@@ -6,6 +6,8 @@ using UnityEditor;
 [CustomEditor (typeof(SubtitleController),true)]
 public class SubtitleControllerEditor : Editor {
 
+    bool isNoticed = false;
+
     // Use this for initialization
 
     public SerializedProperty longStringProp;
@@ -23,7 +25,19 @@ public class SubtitleControllerEditor : Editor {
 
         DrawDefaultInspector ();
 
+        
+
         SubtitleController script = (SubtitleController)target;
+
+        if (!isNoticed && script.textAsset == null)
+        {
+            script.assignTextAsset();
+            if (script.textAsset == null)
+            {
+                Debug.Log("Can't find text asset");
+                isNoticed = true;
+            }
+        }
 
         if (GUILayout.Button("Export subtitles to Text Asset"))
         {

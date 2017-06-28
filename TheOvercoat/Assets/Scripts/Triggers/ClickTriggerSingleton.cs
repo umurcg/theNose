@@ -26,19 +26,19 @@ public class ClickTriggerSingleton : MonoBehaviour {
     public LayerMask ignoreMasks;
     PlayerComponentController pcc;
 
+    SpaceTrigger spaceTrigger;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         mtwagent = GetComponent<MoveToWithoutAgent>();
         pcc = GetComponent<PlayerComponentController>();
         //cml = GetComponent<CharacterMouseLook>();
+        spaceTrigger = GetComponent<SpaceTrigger>();
 
     }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+
 
     // Update is called once per frame
     void Update()
@@ -133,6 +133,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
         if (checkIsColliding(aim))
         {          
             callAction(aim);
+            spaceTrigger.clearFocus();
             yield break;
         }
         
@@ -161,6 +162,9 @@ public class ClickTriggerSingleton : MonoBehaviour {
         //Vckrs.testPosition(aim.transform.position);
 
         callAction(aim);
+
+        spaceTrigger.clearFocus();
+
         yield break;
     }
 

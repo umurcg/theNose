@@ -16,6 +16,9 @@ public class CharacterMouseLook : MonoBehaviour {
     //For without agent mode
     Vector3 prevPos;
 
+    bool mouseIsActive = true;
+
+
 	// Use this for initialization
 	void Start () {
         if(mode==Mode.withAgent)
@@ -37,6 +40,29 @@ public class CharacterMouseLook : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+        if (!mouseIsActive)
+        {
+            //Check for mouse movement
+
+            if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+            {
+                mouseIsActive = true;
+            }
+            else
+            {
+
+                return;
+            }
+
+        }
+
+        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            mouseIsActive = false;
+            return;
+        }
+
 
 
         if (timer > 0)
@@ -64,7 +90,7 @@ public class CharacterMouseLook : MonoBehaviour {
                 {
                     velocity = Vector3.Distance(transform.position, prevPos);   
                 }
-                if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && (velocity < 0.001 ))
+                if ((velocity < 0.001 ))
 
                     
                         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask))
