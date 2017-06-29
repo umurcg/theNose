@@ -496,5 +496,8 @@ public class CharGameController : MonoBehaviour {
         return cgc.camType;
     }
 
-
+    public OpenDoorLoad getLastVisitedDoor()
+    {
+        return OpenDoorLoad.doors[lastDoorId];
+    }
 }
