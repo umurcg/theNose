@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.IO;
+using System.Collections.Generic;
+using MovementEffects;
 
 public class SubtitleControllerTime : SubtitleController {
     public float[] manualTimerArray;
@@ -228,6 +230,51 @@ public class SubtitleControllerTime : SubtitleController {
     void clearNarratorAudio()
     {
         narratorAudioSource.clip = null;
+    }
+    public void randomSubtitle()
+    {
+        Timing.RunCoroutine(_randomSubtitle());
+    }
+
+    IEnumerator<float> _randomSubtitle()
+    {
+        Debug.Log("rANDOM SUBT");
+        text.fontStyle = FontStyle.Italic;
+        int subtIndex = Random.Range(0, subtitleTexts.Length);
+        string sub = subtitleTexts[subtIndex];
+        text.text = sub;
+
+        if (TimeMode == timeMode.automatic)
+        {
+            calculateTimes();
+        }
+        else if (manualTimerArray.Length != subtitleTexts.Length)
+        {
+            TimeMode = timeMode.automatic;
+            calculateTimes();
+            print("You set time array wrong. So I calculated times by myself. :/");
+        }
+
+        float t = 0;
+
+        if (TimeMode == timeMode.manual)
+        {
+            t = manualTimerArray[subtIndex];
+        }
+        else
+        {
+            t = automaticTimerArray[subtIndex];
+        }
+
+        while (t > 0)
+        {
+            t -= Time.deltaTime;
+            yield return 0;
+        }
+
+        text.text = "";
+
+        yield break;
     }
 
 }

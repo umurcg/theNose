@@ -96,4 +96,15 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         activeController = null;
     }
 
+    public void callRandomSubtTime(int index)
+    {
+        SubtitleControllerTime[] scs = GetComponents<SubtitleControllerTime>();
+
+        if (index < scs.Length)
+        {
+            scs[index].randomSubtitle();
+      
+        }
+    }
+
 }
