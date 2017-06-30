@@ -1122,8 +1122,36 @@ public static class StandardShaderUtils
     }
 }
 
+public class Timer
+{
+    float timer = 0;
+    float time = 0;
+
+    public Timer(float time)
+    {
+        this.time = time;
+        timer = time;
+    }
+
+    public bool ticTac(float delta)
+    {
+        timer -= delta;
+
+        if (timer <= 0)
+        {
+            timer = time;
+            return true;
+        }
+
+        return false;
+
+    }
+
+    
 
 
+
+}
  
 // public class ReadInputManager
 //{

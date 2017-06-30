@@ -238,7 +238,7 @@ public class SubtitleControllerTime : SubtitleController {
 
     IEnumerator<float> _randomSubtitle()
     {
-        Debug.Log("rANDOM SUBT");
+        //Debug.Log("rANDOM SUBT");
         text.fontStyle = FontStyle.Italic;
         int subtIndex = Random.Range(0, subtitleTexts.Length);
         string sub = subtitleTexts[subtIndex];

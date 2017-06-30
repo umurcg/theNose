@@ -58,7 +58,7 @@ public class CanSeeYou : MonoBehaviour {
 
     void iCanSeeYou(GameObject hitObj)
     {
-        Debug.Log("Gotchya "+hitObj.transform.name);
+        //Debug.Log("Gotchya "+hitObj.transform.name);
         if (reciever != null)
         {
             if (sendWithHittedObject)

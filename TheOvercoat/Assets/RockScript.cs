@@ -37,6 +37,8 @@ public class RockScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (enabled == false) return;
+
         //Debug.Log("hit object " + collision.gameObject.name+" create name is "+creator.name);
 
         if (collision.gameObject == creator)
