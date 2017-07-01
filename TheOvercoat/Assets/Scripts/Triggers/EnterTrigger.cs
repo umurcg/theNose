@@ -17,6 +17,8 @@ public class EnterTrigger : MonoBehaviour {
     public string message;
     public bool isRecieverActivePlayer=false;
 
+    bool playerInside = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -63,6 +65,9 @@ public class EnterTrigger : MonoBehaviour {
         
 
         if (col.tag == "Player"||!onlyPlayerCanTrigger){
+
+            playerInside = true;
+
             //Debug.Log("Player entered");
             enter = true;
             IEnterTrigger iet = GetComponent<IEnterTrigger>();
@@ -79,6 +84,8 @@ public class EnterTrigger : MonoBehaviour {
     {
         if (col.tag == "Player"||!onlyPlayerCanTrigger)
         {
+            playerInside = false;
+
             enter = false;
             IEnterTrigger iet = GetComponent<IEnterTrigger>();
             if (iet != null)   iet.exitTriggerAction(col);
@@ -87,6 +94,11 @@ public class EnterTrigger : MonoBehaviour {
 
         }
 
+    }
+
+    public bool isPlayerInside()
+    {
+        return playerInside;
     }
 
 }

@@ -7,7 +7,7 @@ public class SeeBehindWall3 : MonoBehaviour {
     public Material SeeThrougWallsMat;
     public string[] tags;
     public LayerMask ignoreRaycast;
-    bool canSeeThroughWalls;
+    bool canSeeThroughWalls=false;
     Camera cam;
     Material originalMat;
     Renderer rend;
@@ -20,7 +20,7 @@ public class SeeBehindWall3 : MonoBehaviour {
 
 
 	}
-
+    
     private void Start()
     {
         player = CharGameController.getActiveCharacter();
@@ -41,19 +41,23 @@ public class SeeBehindWall3 : MonoBehaviour {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, player.transform.position-transform.position);
 
-        if (Physics.Raycast(ray,out hit)) { 
-        
+        if (Physics.Raycast(ray,out hit)) {
+
             //Debug.Log(hit.transform.tag);
+   
             if (System.Array.IndexOf(tags,hit.transform.tag)==-1 && canSeeThroughWalls)
             {
+                //Debug.Log(hit.transform.name + " " + hit.transform.tag);
                 //Recover material
-                rend.material = originalMat;
+                AssignMaterialToChildren.assignToAllChildren(originalMat, player);
                 canSeeThroughWalls = false;
                 //Debug.Log("Original Mat");
-            }else if(System.Array.IndexOf(tags, hit.transform.tag) != -1 && !canSeeThroughWalls)
+            }
+            else if(System.Array.IndexOf(tags, hit.transform.tag) != -1 && !canSeeThroughWalls)
             {
+                //Debug.Log(hit.transform.name + " " + hit.transform.tag);
                 //Assign material
-                rend.material = SeeThrougWallsMat;
+                AssignMaterialToChildren.assignToAllChildren(SeeThrougWallsMat, player);
                 randomizeMaterialColor(SeeThrougWallsMat);
                 canSeeThroughWalls = true;
                 //Debug.Log("You can see");

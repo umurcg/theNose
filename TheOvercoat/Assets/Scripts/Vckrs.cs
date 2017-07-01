@@ -9,6 +9,8 @@ using UnityEditor;
 
 //Animation type enum. Use this enum for taking actions according to animation parameter type.
 public enum AnimType { Trigger, Boolean, Int,Float };
+public enum Axis { X,Y,Z};
+public enum Plane { XY,XZ,YZ};
 
 
 public class Vckrs : MonoBehaviour
@@ -1046,6 +1048,30 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     //    }
     //}
 
+
+
+    public static Vector3 getRandomPosInCircle(Vector3 center, float radius, Plane p)
+    {
+        Vector2 randomPos = Random.insideUnitCircle * radius;
+
+        if (p == Plane.XY)
+        {
+            return (new Vector3(randomPos.x, randomPos.y,0)) + center;
+
+        }else if (p == Plane.XZ)
+        {
+            return (new Vector3(randomPos.x, 0, randomPos.y)) + center;
+        }
+        else
+        {
+            return (new Vector3( 0, randomPos.x, randomPos.y)) + center;
+        }
+
+    
+
+    }
+
+
 }
 
 
@@ -1148,7 +1174,10 @@ public class Timer
     }
 
     
-
+    public void resetTimet()
+    {
+        timer = time;
+    }
 
 
 }

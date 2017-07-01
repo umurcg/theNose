@@ -7,10 +7,15 @@ public class AssignMaterialToChildren : MonoBehaviour
 
     public void assignToAllChildren()
     {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        for(int i = 0; i < renderers.Length; i++)
+        assignToAllChildren(materialToAssin, gameObject);
+    }
+
+    public static void assignToAllChildren(Material mat, GameObject obj)
+    {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < renderers.Length; i++)
         {
-            renderers[i].material = materialToAssin;
+            renderers[i].material = mat;
         }
     }
 

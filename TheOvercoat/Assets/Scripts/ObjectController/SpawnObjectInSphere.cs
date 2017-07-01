@@ -36,4 +36,8 @@ public class SpawnObjectInSphere : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
+
+
 }

@@ -18,8 +18,11 @@ public class DrunkManAI : MonoBehaviour {
     public GameObject handPos;
     public float maxAngle = 70;
     public float minAngle = 30;
+    public DrunkManGameController dmgc;
 
     public string shootAnimationName;
+
+    public float maxDistWhenCatchPlayer = 10f;
 
     GameObject player;
     CanSeeYou cya;
@@ -42,15 +45,18 @@ public class DrunkManAI : MonoBehaviour {
     NavMeshAgent agent;
 
 
-
+    EnterTrigger et;
 
     // Use this for initialization
     void Start () {
         cya = GetComponent<CanSeeYou>();
         sc = GetComponent<SubtitleCaller>();
 
+        et = walkArea.GetComponent<EnterTrigger>();
+
         talkTimer = new Timer(timeBetweenTalks);
         walkTimer = new Timer(timeBetweenWalks);
+        shootTimer = new Timer(timeShoots);
 
         prevPos = transform.position;
 
@@ -59,7 +65,7 @@ public class DrunkManAI : MonoBehaviour {
         player = CharGameController.getActiveCharacter();
 
         anim = GetComponent<Animator>();
-        Timing.RunCoroutine(shoot(player.transform.position));
+        
 
 	}
 	
@@ -69,7 +75,8 @@ public class DrunkManAI : MonoBehaviour {
 
         if (playerIsSeen)
         {
-            transform.LookAt(player.transform);
+
+            shootPlayer();
         }
         else
         {
@@ -89,7 +96,7 @@ public class DrunkManAI : MonoBehaviour {
             sc.callRandomSubtTime(0);
         }
 
-        Debug.Log(Vector3.Distance(transform.position, prevPos));
+        //Debug.Log(Vector3.Distance(transform.position, prevPos));
 
         if (Vector3.Distance(transform.position,prevPos)<=0.001f)
         {
@@ -103,6 +110,27 @@ public class DrunkManAI : MonoBehaviour {
 
     }
 
+
+    void shootPlayer()
+    {
+        Quaternion aimRot=Quaternion.LookRotation(player.transform.position - transform.position, Vector3.up);
+        transform.rotation = Quaternion.Lerp(transform.rotation, aimRot,Time.deltaTime);
+
+        if (Vector3.Distance(player.transform.position, transform.position) > maxDistWhenCatchPlayer)
+        {
+            agent.SetDestination(player.transform.position);
+
+        }
+
+        if (shootTimer.ticTac(Time.deltaTime))
+        {
+            Timing.RunCoroutine(shoot(player.transform.position));
+        }
+
+        
+    }
+
+
     Vector3 generatePos()
     {
         Vector3 castedPos;
@@ -113,14 +141,18 @@ public class DrunkManAI : MonoBehaviour {
 
     public void sawPlayer()
     {
+        if (!et.isPlayerInside()) return;
+
         Debug.Log("Saw player");
         cya.enabled = false;
+        playerIsSeen = true;
     }
 
     public void lostPlayer()
     {
         Debug.Log("Lost player");
         cya.enabled = true;
+        playerIsSeen = false;
     }
 
     IEnumerator<float> shoot(Vector3 pos)
@@ -128,6 +160,7 @@ public class DrunkManAI : MonoBehaviour {
         GameObject bottle = Instantiate(bottlePrefab);
         bottle.transform.parent = handPos.transform;
         bottle.transform.localPosition = Vector3.zero;
+        
 
 
                        
@@ -178,6 +211,8 @@ public class DrunkManAI : MonoBehaviour {
 
         bottle.transform.parent = null;
 
+        bottle.tag = "Untagged";
+
         //Make non kinematic before applying force
         rb.isKinematic = false;
         rb.useGravity = true;
@@ -185,6 +220,8 @@ public class DrunkManAI : MonoBehaviour {
         RockScript rs = bottle.GetComponent<RockScript>();
         rs.creator = gameObject;
         rs.enabled = true;
+
+        rs.reciever = dmgc.gameObject;
 
         yield return 0;
 
