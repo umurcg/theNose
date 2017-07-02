@@ -68,9 +68,11 @@ public class DrunkManGameController : MonoBehaviour {
 	}
 
 
-    public void playerDamage(float damage)
+    public void damage(float damageValue)
     {
-        kovalevHealth -= damage;
+        if (enabled == false) return;
+
+        kovalevHealth -= damageValue;
         if (kovalevHealth <= 0) lost();
 
         kovalevPS.setPoint(kovalevHealth);
@@ -79,6 +81,8 @@ public class DrunkManGameController : MonoBehaviour {
 
     public void damageEnemy(float damage)
     {
+        if (enabled == false) return;
+
         drunkManHealth -= damage;
         if (drunkManHealth <= 0) win();
 

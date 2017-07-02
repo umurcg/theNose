@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using MovementEffects;
 
 
 //_CollectableObject.cs
@@ -15,8 +16,8 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 	public static List<GameObject> collected;
 	// Use this for initialization
 	public bool onHand=false;
-	Transform rightHand;
-	Transform leftHand;
+    static Transform rightHand;
+    static Transform leftHand;
     
 	Transform player;
 	public GameObject[] placeholders;
@@ -53,9 +54,8 @@ public class CollectableObject : MonoBehaviour, IClickAction {
             return;
         }
 
-        //Get hands from chargameController
-        rightHand = CharGameController.getHand(CharGameController.hand.RightHand).transform;
-        leftHand = CharGameController.getHand(CharGameController.hand.LeftHand).transform;
+        assignHands();
+
         //List<Transform> children = Vckrs.getAllChildren(player);
 
         //foreach (Transform c in children)
@@ -175,7 +175,78 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 
 	}
 
+    public static IEnumerator<float> goAndCollectObject(NavMeshAgent agent, GameObject objectToCollect, Vector3 unCollectPositionOffset, bool onhand=true)
+    {
+        Vector3 posOnNavmesh = objectToCollect.transform.position;
+        Vckrs.findNearestPositionOnNavMesh(posOnNavmesh,agent.areaMask,20f,out posOnNavmesh);
 
+        agent.SetDestination(posOnNavmesh);
+        agent.Resume();
+
+        IEnumerator<float> handler= Timing.RunCoroutine(Vckrs.waitUntilStop(agent.gameObject));
+        yield return Timing.WaitUntilDone(handler);
+
+        if (CollectableObject.collected != null) CollectableObject.collected.Add(objectToCollect);
+
+        MeshCollider ms = objectToCollect.GetComponent<MeshCollider>();
+
+        assignHands();
+
+        if (onhand == false)
+        {
+            objectToCollect.SetActive(false);
+        }
+        else
+        {
+
+            if (ms) ms.enabled = false;
+
+            if (rightHand.childCount == 0)
+            {
+
+                objectToCollect.transform.parent = rightHand;
+
+                objectToCollect.transform.localPosition = unCollectPositionOffset;
+            }
+            else if (leftHand.childCount == 0)
+            {
+                objectToCollect.transform.parent = leftHand;
+
+                objectToCollect.transform.localPosition = unCollectPositionOffset;
+
+            }
+            else
+            {
+
+                rightHand.GetChild(0).gameObject.SetActive(false);
+                objectToCollect.transform.parent = rightHand;
+                objectToCollect.transform.localPosition = unCollectPositionOffset;
+
+            }
+
+            //transform.localScale = originalScale + scale;
+
+
+
+        }
+
+        agent.gameObject.SetActive(true);
+
+        //foreach (GameObject placeholder in placeholders){
+        //    gameObject.SetActive(true);
+        //}
+
+
+    }
    
+
+    static void assignHands()
+    {
+        if (rightHand == null || leftHand == null)
+        {
+            rightHand = CharGameController.getHand(CharGameController.hand.RightHand).transform;
+            leftHand = CharGameController.getHand(CharGameController.hand.LeftHand).transform;
+        }
+    }
 
 }

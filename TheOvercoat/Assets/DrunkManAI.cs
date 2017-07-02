@@ -65,6 +65,7 @@ public class DrunkManAI : MonoBehaviour {
         player = CharGameController.getActiveCharacter();
 
         anim = GetComponent<Animator>();
+
         
 
 	}

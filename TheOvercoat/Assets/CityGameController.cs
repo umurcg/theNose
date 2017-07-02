@@ -8,6 +8,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject berberShop, Crowd, bar, jokeGroup, bridge, fruitStad, cat, ivanCityController, maze;
     public Cancanfly ccf;
     public DenizEfeGameController degc;
+    public DrunkManGameSceneController dmgsc;
     public Sevval sev;
     public GameObject[] ivanScenePolice;
     public GameObject lookAtMeNowTrigger, NoseGame;
@@ -234,6 +235,8 @@ public class CityGameController : MonoBehaviour {
         {
             Debug.Log("Going doctor");
 
+            dmgsc.activateController();
+
             OpenDoorLoad doctoDoor=OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.Doctor);
             OpenDoorLoad kovaevDoor= OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse);
 
@@ -241,7 +244,7 @@ public class CityGameController : MonoBehaviour {
             kovaevDoor.playerCanOpen = true;
 
             //Make night
-            CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight();
+            CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight(true);
 
             CharGameController.coverKovalevsFace();
 

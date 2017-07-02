@@ -42,24 +42,39 @@ public class DayAndNightCycle : MonoBehaviour {
         }
     }
 
-    public void makeNight()
+    public void makeNight(bool instantly = false)
     {
         Light l = GetComponent<Light>();
         l.intensity = maxIntensity;
         isNight = true;
-        Timing.RunCoroutine(_changeLight(speed,l,minIntensity,maxIntensity));
-
+        if (instantly)
+        {
+            l.intensity = minIntensity;
+            broadCastLightChange();
+        }
+        else
+        {
+            Timing.RunCoroutine(_changeLight(speed, l, minIntensity, maxIntensity));
+        }
     }
 
 
 
-    public void makeDay()
+    public void makeDay(bool instantly = false)
     {
         Light l = GetComponent<Light>();
         l.intensity = minIntensity;
         isNight = false;
-        Timing.RunCoroutine(_changeLight(speed, l,minIntensity,maxIntensity));
-        
+
+        if (instantly)
+        {
+            l.intensity = maxIntensity;
+            broadCastLightChange();
+        }
+        else
+        {
+            Timing.RunCoroutine(_changeLight(speed, l, minIntensity, maxIntensity));
+        }
     }
 
     public static IEnumerator<float> _changeLight(float speed, Light light, float minIntensity, float maxIntensity)
@@ -123,5 +138,7 @@ public class DayAndNightCycle : MonoBehaviour {
             l.GetComponent<AutoLightScript>().lightIsChanging();
         }
     }
+
+    
 
 }

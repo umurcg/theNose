@@ -42,6 +42,8 @@ public class ObjectSpawnerContinously : MonoBehaviour {
 
         if (NavMesh.SamplePosition(spawnPos, out hit, 100f, NavMesh.AllAreas/*NavMesh.GetAreaFromName("Street")*/))
         {
+
+            if (prefab == null) Debug.Log("prefdab is null");
             GameObject spawnedOBJ=Instantiate(prefab);
             spawnedOBJ.transform.position = hit.position;
             spawnedObjects.Add(spawnedOBJ);
@@ -68,6 +70,10 @@ public class ObjectSpawnerContinously : MonoBehaviour {
         spawn();
     }
 
+    public List<GameObject> getSpawnedObjects()
+    {
+        return spawnedObjects;
+    }
 
 }
 

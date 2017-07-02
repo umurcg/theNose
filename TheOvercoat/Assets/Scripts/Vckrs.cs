@@ -857,6 +857,43 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
 
     }  
 
+    public static GameObject findNearestObjectToPos(Vector3 pos, GameObject[] objects)
+    {
+        GameObject nearesrObj=null;
+        float minDistance = Mathf.Infinity;
+        foreach(GameObject obj in objects)
+        {
+            float dis = Vector3.Distance(obj.transform.position, pos);
+            if (minDistance < dis)
+            {
+                nearesrObj = obj;
+                minDistance = dis;
+            }
+        }
+
+        return nearesrObj;
+
+    }
+
+    public static GameObject findNearestObjectToPos(Vector3 pos, List<GameObject> objects)
+    {
+        GameObject nearesrObj = null;
+        float minDistance = Mathf.Infinity;
+        foreach (GameObject obj in objects)
+        {
+            float dis = Vector3.Distance(obj.transform.position, pos);
+            if (minDistance > dis)
+            {
+                nearesrObj = obj;
+                minDistance = dis;
+            }
+        }
+
+        if (nearesrObj == null) Debug.Log("Couldn't fin nearest object");
+
+        return nearesrObj;
+
+    }
 
     void testGenerateRandomPosition()
     {
@@ -1095,7 +1132,7 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     public static IEnumerator<float> addImpactForceCC(GameObject subjectOfForce, Vector3 force, float mass=1)
     {
         
-        Debug.Log(force);
+        //Debug.Log(force);
         //Time.timeScale = 0;
         Vector3 impact = force / mass;
         CharacterController cc = subjectOfForce.GetComponent<CharacterController>();

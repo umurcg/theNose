@@ -25,17 +25,22 @@ public class ShootWithBottle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        initilize();
+	}
+	
+    void initilize()
+    {
         handPosition = CharGameController.getHand(CharGameController.hand.LeftHand);
         cam = CharGameController.getCamera().GetComponent<Camera>();
 
         player = CharGameController.getActiveCharacter();
 
-        cml =player.GetComponent<CharacterMouseLook>();
+        cml = player.GetComponent<CharacterMouseLook>();
 
-        anim=player.GetComponent<Animator>();
+        anim = player.GetComponent<Animator>();
+    }
 
-	}
-	
 	// Update is called once per frame
 	void Update () {
 
@@ -84,15 +89,22 @@ public class ShootWithBottle : MonoBehaviour {
 
 	}
 
-    IEnumerator<float> shoot(Vector3 pos)
+    public IEnumerator<float> shoot(Vector3 pos, float shootAngle=0f, GameObject bottle=null)
     {
-        GameObject bottle = handPosition.transform.GetChild(0).gameObject;
+        if(bottle==null)
+             bottle = handPosition.transform.GetChild(0).gameObject;
+
+        if (player == null) initilize();
+
         Rigidbody rb = bottle.GetComponent<Rigidbody>();
 
 
         //Random shoot angle
         //float shootAngle = Random.Range(minAngle, maxAngle);
-        float shootAngle = (maxAngle - minAngle) * (1-(velocity / 100)) + minAngle;
+        if (shootAngle == 0)
+        {
+            shootAngle = (maxAngle - minAngle) * (1 - (velocity / 100)) + minAngle;
+        }
 
         //Debug.Log(shootAngle);
 
@@ -121,7 +133,7 @@ public class ShootWithBottle : MonoBehaviour {
         //    yield break; ;
         //}
 
-
+        
         cml.enabled = false;
 
         anim.SetTrigger(shootAnimationName);
