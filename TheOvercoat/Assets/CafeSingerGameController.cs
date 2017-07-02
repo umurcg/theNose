@@ -9,8 +9,12 @@ public class CafeSingerGameController : GameController {
 
     characterComponents kovalevCC;
     Camera cam;
-	// Use this for initialization
-	public override void Start () {
+
+    float zoomAmount = 20;
+    CameraController cc;
+
+    // Use this for initialization
+    public override void Start () {
         base.Start();
 
         Debug.Log("Cafe singer start");
@@ -22,6 +26,8 @@ public class CafeSingerGameController : GameController {
 
         //Set camera object rotation
         CameraObj.transform.eulerAngles = new Vector3(30, 135, 0);
+
+        cc =  CameraObj.GetComponent<CameraController>();
 
         Timing.RunCoroutine(_start());
 
@@ -45,15 +51,20 @@ public class CafeSingerGameController : GameController {
         //scto.changeCamera(CameraObj);
 
 
-        cam.orthographicSize = 30;
+        //cam.orthographicSize = 30;
+
+        cc.zoomOut(zoomAmount);
 
         //Debug.Log("CafeSingerController");
         Kovalev.transform.position = kovalevStartPoint.transform.position;
         kovalevCC.navmashagent.SetDestination(mirror.transform.position-mirror.transform.up*1);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Kovalev));
 
-        
-        Timing.RunCoroutine(Vckrs._cameraSize(cam, 10, 0.5f));
+
+        //Timing.RunCoroutine(Vckrs._cameraSize(cam, 10, 0.5f));
+
+
+        Timing.RunCoroutine(cc._smoothZoomIn(zoomAmount,1f));
 
 
         //Narrtor subtitle
@@ -110,7 +121,8 @@ public class CafeSingerGameController : GameController {
 
         sc.callSubtitleWithIndexTime(1);
 
-        Timing.RunCoroutine(Vckrs._cameraSize(cam, 30, 0.5f));
+        //Timing.RunCoroutine(Vckrs._cameraSize(cam, 30, 0.5f));
+        Timing.RunCoroutine(cc._smoothZoomOut(zoomAmount, 1f));
 
         while (SubtitleFade.subtitles["NarratorSubtitle"].text != "") yield return 0;
 

@@ -447,6 +447,9 @@ public class CharGameController : MonoBehaviour {
     public static void coverKovalevsFace()
     {
         GameObject player = getActiveCharacter();
+
+        if (player == null) return;
+
         if (player.name != "Kovalev") return;
 
         GameObject paper = searchThroughHands("paper");

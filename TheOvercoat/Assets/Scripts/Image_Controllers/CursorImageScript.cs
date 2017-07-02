@@ -267,8 +267,13 @@ public class CursorImageScript : MonoBehaviour
         }else
         {
             //FOR BIRD
-            MoveToWithoutAgent mtwa = CharGameController.getActiveCharacter().GetComponent<MoveToWithoutAgent>();
-            if (mtwa && mtwa.enabled) return true; 
+
+            GameObject player = CharGameController.getActiveCharacter();
+            if (player!=null)
+            {
+                MoveToWithoutAgent mtwa = player.GetComponent<MoveToWithoutAgent>();
+                if (mtwa && mtwa.enabled) return true;
+            }
         }
 
         //If mt is null this means player couldn't be found. So it assumes player (real player) can still make interactive actions.

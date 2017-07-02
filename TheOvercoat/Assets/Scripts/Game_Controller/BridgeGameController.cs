@@ -17,6 +17,8 @@ public class BridgeGameController : GameController {
     bool disabled;
     //public bool activate;
 
+    CameraController cc;
+
 	// Use this for initialization
 	public override void Start () {
         base.Start();
@@ -40,6 +42,7 @@ public class BridgeGameController : GameController {
             this.enabled = false;
             return;
         }
+
 
 
         bc =GetComponent<BoxCollider>();
@@ -197,7 +200,10 @@ public class BridgeGameController : GameController {
         CameraFollower cf = cam.GetComponent<CameraFollower>();
         cf.enabled = false;
 
-        Timing.RunCoroutine(Vckrs._cameraSize(Camera.main, 40, 0.5f));
+        cc = cam.GetComponent<CameraController>();
+
+        //Timing.RunCoroutine(Vckrs._cameraSize(Camera.main, 40, 0.5f));
+        cc.smoothZoomOut(40, 0.5f);
         sc.callSubtitleWithIndexTime(0);
 
                  

@@ -25,12 +25,20 @@ public class SeeBehindWall3 : MonoBehaviour {
     {
         player = CharGameController.getActiveCharacter();
 
+        if (player == null)
+        {
+            enabled = false;
+            return;
+        }
+
         for (int i = 0; i < player.transform.childCount; i++)
         {
             rend = player.transform.GetChild(i).GetComponent<Renderer>();
         }
 
         originalMat = rend.material;
+
+        
     }
 
     // Update is called once per frame

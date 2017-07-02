@@ -327,165 +327,165 @@ public class Vckrs : MonoBehaviour
     }
 
 
-    public static void setCameraSize(Camera cam, float size)
-    {
-        if (cam.orthographic)
-        {
-            cam.orthographicSize = size;
-        }
-        else
-        {
-            cam.transform.position = cam.transform.position - cam.transform.forward * size * cameraConvertSizeToDistance;
-        }
-    }
+    //public static void setCameraSize(Camera cam, float size)
+    //{
+    //    if (cam.orthographic)
+    //    {
+    //        cam.orthographicSize = size;
+    //    }
+    //    else
+    //    {
+    //        cam.transform.position = cam.transform.position - cam.transform.forward * size * cameraConvertSizeToDistance;
+    //    }
+    //}
 
-    public static IEnumerator<float> _cameraSize(Camera cam, float size, float speed)
-    {
+    //public static IEnumerator<float> _cameraSize(Camera cam, float size, float speed)
+    //{
 
-        if (cam.orthographic)
-        {
+    //    if (cam.orthographic)
+    //    {
 
-            if (cam.orthographicSize > size)
-            {
+    //        if (cam.orthographicSize > size)
+    //        {
 
-                while (cam.orthographicSize > size)
-                {
-                    cam.orthographicSize -= Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.orthographicSize = size;
+    //            while (cam.orthographicSize > size)
+    //            {
+    //                cam.orthographicSize -= Time.deltaTime * speed;
+    //                yield return 0;
+    //            }
+    //            cam.orthographicSize = size;
 
-            }
-            else
-            {
+    //        }
+    //        else
+    //        {
 
-                while (cam.orthographicSize < size)
-                {
-                    //print("increase");
-                    cam.orthographicSize += Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.orthographicSize = size;
-            }
-        }
-        else
-        {
+    //            while (cam.orthographicSize < size)
+    //            {
+    //                //print("increase");
+    //                cam.orthographicSize += Time.deltaTime * speed;
+    //                yield return 0;
+    //            }
+    //            cam.orthographicSize = size;
+    //        }
+    //    }
+    //    else
+    //    {
 
-            while (size > 0)
-            {
+    //        while (size > 0)
+    //        {
 
-                cam.transform.position += cam.transform.forward * Time.deltaTime * speed * cameraConvertSizeToDistance;
-                size -= Time.deltaTime * speed * cameraConvertSizeToDistance;
-                yield return 0;
+    //            cam.transform.position += cam.transform.forward * Time.deltaTime * speed * cameraConvertSizeToDistance;
+    //            size -= Time.deltaTime * speed * cameraConvertSizeToDistance;
+    //            yield return 0;
 
-            }
-            //if (cam.fieldOfView > size)
-            //{
+    //        }
+    //        //if (cam.fieldOfView > size)
+    //        //{
 
-            //    while (cam.fieldOfView > size)
-            //    {
-            //        cam.fieldOfView -= Time.deltaTime * speed;
-            //        yield return 0;
-            //    }
-            //    cam.fieldOfView = size;
+    //        //    while (cam.fieldOfView > size)
+    //        //    {
+    //        //        cam.fieldOfView -= Time.deltaTime * speed;
+    //        //        yield return 0;
+    //        //    }
+    //        //    cam.fieldOfView = size;
 
-            //}
-            //else
-            //{
+    //        //}
+    //        //else
+    //        //{
 
-            //    while (cam.fieldOfView < size)
-            //    {
-            //        //print("increase");
-            //        cam.fieldOfView += Time.deltaTime * speed;
-            //        yield return 0;
-            //    }
-            //    cam.fieldOfView = size;
-            //}
+    //        //    while (cam.fieldOfView < size)
+    //        //    {
+    //        //        //print("increase");
+    //        //        cam.fieldOfView += Time.deltaTime * speed;
+    //        //        yield return 0;
+    //        //    }
+    //        //    cam.fieldOfView = size;
+    //        //}
 
-        }
+    //    }
     
     
-    }
+    //}
 
-    public static IEnumerator<float> _cameraSizeRootFunc(Camera cam, float size, float factor, float limitSpeed=0.2f)
-    {
+    //public static IEnumerator<float> _cameraSizeRootFunc(Camera cam, float size, float factor, float limitSpeed=0.2f)
+    //{
    
-            float speed = factor;
-            float delta = Mathf.Abs(cam.orthographicSize - size);
+    //        float speed = factor;
+    //        float delta = Mathf.Abs(cam.orthographicSize - size);
 
 
-        if (cam.orthographic)
-        {
-            if (cam.orthographicSize > size)
-            {
+    //    if (cam.orthographic)
+    //    {
+    //        if (cam.orthographicSize > size)
+    //        {
 
-                while (cam.orthographicSize > size)
-                {
-                    speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
-                    speed = Mathf.Clamp(speed, limitSpeed, speed);
-                    cam.orthographicSize -= Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.orthographicSize = size;
+    //            while (cam.orthographicSize > size)
+    //            {
+    //                speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
+    //                speed = Mathf.Clamp(speed, limitSpeed, speed);
+    //                cam.orthographicSize -= Time.deltaTime * speed;
+    //                yield return 0;
+    //            }
+    //            cam.orthographicSize = size;
 
-            }
-            else
-            {
+    //        }
+    //        else
+    //        {
 
-                while (cam.orthographicSize < size)
-                {
-                    //print("increase");
-                    speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
-                    speed = Mathf.Clamp(speed, speed, limitSpeed);
-                    cam.orthographicSize += Time.deltaTime * speed;
-                    yield return 0;
-                }
-                cam.orthographicSize = size;
-            }
+    //            while (cam.orthographicSize < size)
+    //            {
+    //                //print("increase");
+    //                speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
+    //                speed = Mathf.Clamp(speed, speed, limitSpeed);
+    //                cam.orthographicSize += Time.deltaTime * speed;
+    //                yield return 0;
+    //            }
+    //            cam.orthographicSize = size;
+    //        }
 
-        }
-        else
-        {
-
-
-            while (size > 0)
-            {
-
-                cam.transform.position += cam.transform.forward * Time.deltaTime * speed * cameraConvertSizeToDistance;
-                size -= Time.deltaTime * speed * cameraConvertSizeToDistance;
-                yield return 0;
-
-            }
-            //if (cam.fieldOfView > size)
-            //{
-
-            //    while (cam.fieldOfView > size)
-            //    {
-            //        speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
-            //        speed = Mathf.Clamp(speed, limitSpeed, speed);
-            //        cam.orthographicSize -= Time.deltaTime * speed;
-            //        yield return 0;
-            //    }
-            //    cam.fieldOfView = size;
-
-            //}
-            //else
-            //{
-
-            //    while (cam.fieldOfView < size)
-            //    {
-            //        //print("increase");
-            //        speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
-            //        speed = Mathf.Clamp(speed, speed, limitSpeed);
-            //        cam.fieldOfView += Time.deltaTime * speed;
-            //        yield return 0;
-            //    }
-            //    cam.fieldOfView = size;
-            //}
+    //    }
+    //    else
+    //    {
 
 
-        }
-    }
+    //        while (size > 0)
+    //        {
+
+    //            cam.transform.position += cam.transform.forward * Time.deltaTime * speed * cameraConvertSizeToDistance;
+    //            size -= Time.deltaTime * speed * cameraConvertSizeToDistance;
+    //            yield return 0;
+
+    //        }
+    //        //if (cam.fieldOfView > size)
+    //        //{
+
+    //        //    while (cam.fieldOfView > size)
+    //        //    {
+    //        //        speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
+    //        //        speed = Mathf.Clamp(speed, limitSpeed, speed);
+    //        //        cam.orthographicSize -= Time.deltaTime * speed;
+    //        //        yield return 0;
+    //        //    }
+    //        //    cam.fieldOfView = size;
+
+    //        //}
+    //        //else
+    //        //{
+
+    //        //    while (cam.fieldOfView < size)
+    //        //    {
+    //        //        //print("increase");
+    //        //        speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
+    //        //        speed = Mathf.Clamp(speed, speed, limitSpeed);
+    //        //        cam.fieldOfView += Time.deltaTime * speed;
+    //        //        yield return 0;
+    //        //    }
+    //        //    cam.fieldOfView = size;
+    //        //}
+
+
+    //    }
+    //}
 
     
 

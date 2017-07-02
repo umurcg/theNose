@@ -147,9 +147,10 @@ public class CityGameController : MonoBehaviour {
         BirdsEyeView bev = CharGameController.getCamera().GetComponent<BirdsEyeView>();
         bev.enabled = true;
 
+        GameObject player = CharGameController.getActiveCharacter();
 
         //For side missions that can Kovalev play 
-        if (CharGameController.getActiveCharacter().name == "Kovalev") activateKovalevStories();
+        if (player!=null && player.name == "Kovalev") activateKovalevStories();
 
 
     }

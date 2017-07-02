@@ -15,6 +15,8 @@ public class EnterSceneGameController : GameController{
     NavMeshAgent ivanNma, kovalevNma;
     Animator ivanAnim, kovalevAnim;
 
+    CameraController cc;
+
     //public GameObject videoPlayerObj;
     //public MovieTexture enterVideo;
     //VideoPlayer videoPlayer;
@@ -47,6 +49,7 @@ public class EnterSceneGameController : GameController{
         ivanNma = ivan.GetComponent<NavMeshAgent>();
         kovalevNma = kovalev.GetComponent<NavMeshAgent>();
         cam = cameraObj.GetComponent<Camera>();
+        cc = cameraObj.GetComponent<CameraController>();
         
 
         ivanAnim = ivan.GetComponent<Animator>();
@@ -121,33 +124,47 @@ public class EnterSceneGameController : GameController{
 
         bigBook.GetComponent<BookAC>().openBook();
 
-        cam.orthographicSize = 1000;
+        float zoomAmount = 1500;
 
-        if (cam.orthographic)
-        {
+        cc.zoomOut(zoomAmount);
 
-            Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, 55, 1f/*0.7f*/));
+        //cam.orthographicSize = 1000;
 
-            while (cam.orthographicSize != 10 || narSubtitle.text != "")
-            {
-                yield return 0;
-            }
-        }
-        else
-        {
+        IEnumerator<float> handler = Timing.RunCoroutine(cc._smoothZoomInFromVeryFar(zoomAmount, 80, 5));
+        float far = cam.farClipPlane;
+        cam.farClipPlane = 10000;
 
-            //TODO solve far terrain issue
-            float far = cam.farClipPlane;
-            cam.farClipPlane = 10000;
+        yield return Timing.WaitUntilDone(handler);
 
-            float camMoveSpeed = 0.1f;
-            Vector3 aim = cam.transform.position;
-            cam.transform.position = cam.transform.position - cam.transform.forward * 8000;
-            handlerHolder = Timing.RunCoroutine(Vckrs._TweenRootFunc(cam.gameObject, aim, camMoveSpeed, 5f));
-            yield return Timing.WaitUntilDone(handlerHolder);
+        cam.farClipPlane = far;
 
-            cam.farClipPlane = far;
-        }
+        //if (cam.orthographic)
+        //{
+
+        //    Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, 55, 1f/*0.7f*/));
+
+        //    while (cam.orthographicSize != 10 || narSubtitle.text != "")
+        //    {
+        //        yield return 0;
+        //    }
+        //}
+        //else
+        //{
+
+        //    //TODO solve far terrain issue
+
+
+        //    float camMoveSpeed = 0.1f;
+        //    Vector3 aim = cam.transform.position;
+        //    cam.transform.position = cam.transform.position - cam.transform.forward * 8000;
+        //    handlerHolder = Timing.RunCoroutine(Vckrs._TweenRootFunc(cam.gameObject, aim, camMoveSpeed, 5f));
+        //    yield return Timing.WaitUntilDone(handlerHolder);
+
+        
+        //}
+
+        
+
 
         //VRCapture.VRCapture.Instance.StopCapture();
 
@@ -305,7 +322,9 @@ public class EnterSceneGameController : GameController{
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(kovalev, 0));
 
 
-        Timing.RunCoroutine(Vckrs._cameraSize(cam, 30, 1f));
+        //Timing.RunCoroutine(Vckrs._cameraSize(cam, 30, 1f));
+
+        Timing.RunCoroutine(cc._smoothZoomOut(30, 1f));
 
         sc.callSubtitleWithIndexTime(3);
 

@@ -34,7 +34,11 @@ public class CheatScript : MonoBehaviour {
         //    enabled = false;
         //    return;
         //}
-        cck = CharGameController.getActiveCharacter().GetComponent<CharacterControllerKeyboard>();
+
+        GameObject player = CharGameController.getActiveCharacter();
+
+        if (player == null)
+               cck = player.GetComponent<CharacterControllerKeyboard>();
 
 	}
 	

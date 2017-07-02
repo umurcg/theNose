@@ -8,6 +8,7 @@ public class OutroGameController : GameController {
     public GameObject cameraObj,cameraInitialPosition , kovalev, ivan, berberShop, building, ivanAim;
     characterComponents kovCC, ivanCC;
 
+    CameraController cc;
 
     Vector3 berberShopPos;
 
@@ -19,6 +20,8 @@ public class OutroGameController : GameController {
 
         ivanCC = new characterComponents(ivan);
         kovCC = new characterComponents(kovalev);
+
+        cc = cameraObj.GetComponent<CameraController>();
 
         outro();
 
@@ -50,8 +53,14 @@ public class OutroGameController : GameController {
 
         //Make camera zoom in
         Camera camScr = cameraObj.GetComponent<Camera>();
-        camScr.orthographicSize = 20;
-        Timing.RunCoroutine(Vckrs._cameraSize(camScr, 10, 0.3f));
+
+        //Debug.Log("Zooming out");
+
+        float zoomAmount = 10;
+        //camScr.orthographic = 20;
+        cc.zoomOut(zoomAmount);
+        //Timing.RunCoroutine(Vckrs._cameraSize(camScr, 10, 0.3f));
+        cc.smoothZoomIn(zoomAmount,0.3f);
 
         //Set camera intiial pso
         cameraObj.transform.position = cameraInitialPosition.transform.position;
@@ -73,7 +82,8 @@ public class OutroGameController : GameController {
         while (subtitle.text != "") yield return 0;
 
         sc.callSubtitleWithIndexTime(1);
-        handlerHolder=Timing.RunCoroutine(Vckrs._cameraSize(camScr, 50, 1f));
+        //handlerHolder=Timing.RunCoroutine(Vckrs._cameraSize(camScr, 50, 1f));
+        handlerHolder = Timing.RunCoroutine(cc._smoothZoomOut(50,1f));
 
         yield return Timing.WaitForSeconds(3f);
         Timing.RunCoroutine(Vckrs._fadeObject(building, 1f, false));

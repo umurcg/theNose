@@ -32,8 +32,8 @@ public class CameraController : MonoBehaviour {
 
     CameraFollower cf;
 
-    //Test values
-    public float testZoomIn, testZoomOut,  testSmoothSpeed, testMinSpeed;
+    ////Test values
+    //public float testZoomIn, testZoomOut,  testSmoothSpeed, testMinSpeed;
 
     private void OnEnable()
     {
@@ -86,8 +86,10 @@ public class CameraController : MonoBehaviour {
 
     public void zoomOut(float zoomAmount)
     {
-
+        if(cf)
         cf.enabled = false;
+
+        if(cam==null) cam = gameObject.GetComponent<Camera>();
 
         if (cam.orthographic)
         {
@@ -99,15 +101,18 @@ public class CameraController : MonoBehaviour {
             cam.transform.position -= cam.transform.forward * zoomAmount * sizeToDistance;
         }
 
-
-        cf.updateRelative();
-        cf.enabled = true;
+        if (cf)
+        {
+            cf.updateRelative();
+            cf.enabled = true;
+        }
     }
 
 
     public void zoomIn(float zoomAmount)
     {
-        cf.enabled = false;
+        if (cf)
+            cf.enabled = false;
 
         if (cam.orthographic )
         {
@@ -121,14 +126,18 @@ public class CameraController : MonoBehaviour {
                 cam.transform.position += cam.transform.forward * zoomAmount * sizeToDistance;
         }
 
-        cf.updateRelative();
-        cf.enabled = true;
+        if (cf)
+        {
+            cf.updateRelative();
+            cf.enabled = true;
+        }
     }
 
 
     public void defaultZoom()
     {
-        cf.enabled = false;
+        if (cf)
+            cf.enabled = false;
 
         cam.orthographicSize = defaultSize;
 
@@ -137,8 +146,11 @@ public class CameraController : MonoBehaviour {
 
         transform.position += forwardDir * (dist - defaultDistance);
 
-        cf.updateRelative();
-        cf.enabled = true;
+        if (cf)
+        {
+            cf.updateRelative();
+            cf.enabled = true;
+        }
     }
 
     public void updateFocus()
@@ -262,51 +274,51 @@ public class CameraController : MonoBehaviour {
 
 
 
-[CustomEditor(typeof(CameraController), true)]
-public class CameraControllerEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        CameraController script = (CameraController)target;
-        if (GUILayout.Button("TestDefault zoom "))
-        {
-            script.defaultZoom();
+//[CustomEditor(typeof(CameraController), true)]
+//public class CameraControllerEditor : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        DrawDefaultInspector();
+//        CameraController script = (CameraController)target;
+//        if (GUILayout.Button("TestDefault zoom "))
+//        {
+//            script.defaultZoom();
 
-        }
+//        }
 
-        if (GUILayout.Button("Test zoom in"))
-        {
-            script.zoomIn(script.testZoomIn);
-        }
-
-
-        if (GUILayout.Button("Test zoom out"))
-        {
-            script.zoomOut(script.testZoomOut);
-        }
+//        if (GUILayout.Button("Test zoom in"))
+//        {
+//            script.zoomIn(script.testZoomIn);
+//        }
 
 
-        if (GUILayout.Button("Test smooth zoom in"))
-        {
-            script.smoothZoomIn(script.testZoomIn,script.testSmoothSpeed);
-        }
+//        if (GUILayout.Button("Test zoom out"))
+//        {
+//            script.zoomOut(script.testZoomOut);
+//        }
 
 
-        if (GUILayout.Button("Test smooth zoom out"))
-        {
-            script.smoothZoomOut(script.testZoomOut, script.testSmoothSpeed);
-        }
-
-        if (GUILayout.Button("Test smooth zoom in from very far"))
-        {
-            script.smoothZoomInFromVeryFar(script.testZoomIn, script.testSmoothSpeed, script.testMinSpeed);
-        }
+//        if (GUILayout.Button("Test smooth zoom in"))
+//        {
+//            script.smoothZoomIn(script.testZoomIn,script.testSmoothSpeed);
+//        }
 
 
-        if (GUILayout.Button("Test smooth zoom out to very far"))
-        {
-            script.smoothZoomOutToVeryFar(script.testZoomOut, script.testSmoothSpeed, script.testMinSpeed);
-        }
-    }
-}
+//        if (GUILayout.Button("Test smooth zoom out"))
+//        {
+//            script.smoothZoomOut(script.testZoomOut, script.testSmoothSpeed);
+//        }
+
+//        if (GUILayout.Button("Test smooth zoom in from very far"))
+//        {
+//            script.smoothZoomInFromVeryFar(script.testZoomIn, script.testSmoothSpeed, script.testMinSpeed);
+//        }
+
+
+//        if (GUILayout.Button("Test smooth zoom out to very far"))
+//        {
+//            script.smoothZoomOutToVeryFar(script.testZoomOut, script.testSmoothSpeed, script.testMinSpeed);
+//        }
+//    }
+//}
