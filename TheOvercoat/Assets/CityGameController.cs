@@ -232,6 +232,8 @@ public class CityGameController : MonoBehaviour {
         //If scene list contains church then it means kovalev must go to doctor else it should meet with nose
         if (GlobalController.isScnListContains(GlobalController.Scenes.Church))
         {
+            Debug.Log("Going doctor");
+
             OpenDoorLoad doctoDoor=OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.Doctor);
             OpenDoorLoad kovaevDoor= OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse);
 

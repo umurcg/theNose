@@ -21,6 +21,7 @@ public class ShootWithBottle : MonoBehaviour {
 
     GameObject player;
     CharacterMouseLook cml;
+    public DrunkManGameController dmgc;
 
 	// Use this for initialization
 	void Start () {
@@ -59,6 +60,8 @@ public class ShootWithBottle : MonoBehaviour {
             }
 
         }
+
+        dmgc.setVelocityUI(velocity / 100);
 
         //Debug.Log(velocity);
 

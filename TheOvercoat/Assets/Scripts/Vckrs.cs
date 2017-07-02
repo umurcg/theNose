@@ -403,6 +403,10 @@ public class Vckrs : MonoBehaviour
        
 
         Renderer rend = obj.GetComponent<Renderer>();
+
+
+        if (!rend) rend = obj.GetComponentInChildren<Renderer>();
+
         Color textureColor = rend.material.color;
         float a = textureColor.a;
 
@@ -425,6 +429,9 @@ public class Vckrs : MonoBehaviour
     {
 
         Renderer rend = obj.GetComponent<Renderer>();
+
+        if (!rend) rend = obj.GetComponentInChildren<Renderer>();
+
         Color textureColor = rend.material.color;
         float a = textureColor.a;
 
@@ -467,6 +474,11 @@ public class Vckrs : MonoBehaviour
     public static IEnumerator<float> _fadeObjectOut(GameObject obj, float speed, bool fullFade = false)
     {
         Renderer rend = obj.GetComponent<Renderer>();
+
+        if (!rend) rend = obj.GetComponentInChildren<Renderer>();
+
+        //Debug.Log(rend.material.name);
+
         Color textureColor = rend.material.color;
         float a = textureColor.a;
 
@@ -766,6 +778,52 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     }
 
 
+    public static IEnumerator<float> _changeLight(float speed, Light light, float intensity)
+    {
+
+        float currentIntesity = light.intensity;
+
+
+
+        if (currentIntesity<intensity)
+        {
+            while (currentIntesity < intensity)
+            {
+                currentIntesity += Time.deltaTime * speed;
+                light.intensity = currentIntesity;
+
+          
+                yield return 0;
+            }
+                       
+
+            currentIntesity = intensity;
+            light.intensity = currentIntesity;
+            
+
+            yield break;
+        }
+        else
+        {
+            while (currentIntesity > intensity)
+            {
+                currentIntesity -= Time.deltaTime * speed;
+                light.intensity = currentIntesity;
+
+        
+
+                yield return 0;
+            }
+            currentIntesity = intensity;
+            light.intensity = currentIntesity;
+
+          
+
+            yield break;
+        }
+    }
+
+
     public static IEnumerator<float> InstantiateIn(GameObject obj, float delay, Vector3 pos)
     {
         yield return Timing.WaitForSeconds(delay);
@@ -930,6 +988,38 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
 
     }
 
+    //Generates random position on floor which seen by camera
+    public static bool generateRandomVisiblePosition(Camera cam, string floorTag, out Vector3 result)
+    {
+        Vector2 randomPos = randomPosOnScreen(10);
+        //Debug.Log(randomPos);
+        Ray ray=cam.ScreenPointToRay(randomPos);
+        RaycastHit hit;
+
+        if(Physics.Raycast(ray,out hit))
+        {
+            //Debug.Log(hit.transform.name);
+            if (hit.transform.tag == floorTag)
+            {
+                result = hit.point;
+                return true;
+            }
+            else
+            {
+                result = Vector3.zero;
+                return false;
+            }
+        }
+        else
+        {
+            Debug.Log("Couldbt ray cast");
+            result = Vector3.zero;
+            return false;
+        }
+
+
+    }
+
 
     //Sets object position outside of camera with trying to find suitable place on navmesh. 
     //It generates tries to find position between tow circle areas like a torus
@@ -1038,6 +1128,19 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     public static Vector2 centerOfScreen()
     {
         return new Vector2(Screen.width/2,Screen.height/2);
+    }
+
+    public static Vector2 screenRatioToPosition(float width,float height)
+    {
+        width=Mathf.Clamp(width, 0, 1);
+        height = Mathf.Clamp(height, 0, 1);
+
+        return new Vector2(width * Screen.width, height * Screen.height);
+    }
+
+    public static Vector2 randomPosOnScreen(float offset=0)
+    {
+        return new Vector2(Random.Range(0 + offset, Screen.width - offset), Random.Range(0 + offset, Screen.height - offset));
     }
 
     //public static void printList(List<Object> list)

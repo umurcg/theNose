@@ -7,6 +7,7 @@ public class TutorailCanvas : MonoBehaviour {
 
     public GameObject[] basicTutorials;
     
+    
     public bool debug;
 
     //[System.Serializable]

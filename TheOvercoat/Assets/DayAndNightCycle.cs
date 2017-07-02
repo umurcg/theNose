@@ -112,6 +112,11 @@ public class DayAndNightCycle : MonoBehaviour {
 
     static void broadCastLightChange()
     {
+        if (AutoLightScript.allLightsInScene == null)
+        {
+            Debug.Log("No object having autolightScript");
+            return;
+        }
 
         foreach (GameObject l in AutoLightScript.allLightsInScene)
         {
