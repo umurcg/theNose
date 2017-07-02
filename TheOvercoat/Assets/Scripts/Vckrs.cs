@@ -15,6 +15,7 @@ public enum Plane { XY,XZ,YZ};
 
 public class Vckrs : MonoBehaviour
 {
+    static float cameraConvertSizeToDistance = 6;
 
 
     public static IEnumerator<float> _setLightIntensity(GameObject light, float speed, float intensity)
@@ -326,35 +327,82 @@ public class Vckrs : MonoBehaviour
     }
 
 
-    //These are for orthographic
+    public static void setCameraSize(Camera cam, float size)
+    {
+        if (cam.orthographic)
+        {
+            cam.orthographicSize = size;
+        }
+        else
+        {
+            cam.transform.position = cam.transform.position - cam.transform.forward * size * cameraConvertSizeToDistance;
+        }
+    }
 
     public static IEnumerator<float> _cameraSize(Camera cam, float size, float speed)
     {
 
-
-        if (cam.orthographicSize > size)
+        if (cam.orthographic)
         {
 
-            while (cam.orthographicSize > size)
+            if (cam.orthographicSize > size)
             {
-                cam.orthographicSize -= Time.deltaTime * speed;
-                yield return 0;
-            }
-            cam.orthographicSize = size;
 
+                while (cam.orthographicSize > size)
+                {
+                    cam.orthographicSize -= Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.orthographicSize = size;
+
+            }
+            else
+            {
+
+                while (cam.orthographicSize < size)
+                {
+                    //print("increase");
+                    cam.orthographicSize += Time.deltaTime * speed;
+                    yield return 0;
+                }
+                cam.orthographicSize = size;
+            }
         }
         else
         {
 
-            while (cam.orthographicSize < size)
+            while (size > 0)
             {
-                //print("increase");
-                cam.orthographicSize += Time.deltaTime * speed;
-                yield return 0;
-            }
-            cam.orthographicSize = size;
-        }
 
+                cam.transform.position += cam.transform.forward * Time.deltaTime * speed * cameraConvertSizeToDistance;
+                size -= Time.deltaTime * speed * cameraConvertSizeToDistance;
+                yield return 0;
+
+            }
+            //if (cam.fieldOfView > size)
+            //{
+
+            //    while (cam.fieldOfView > size)
+            //    {
+            //        cam.fieldOfView -= Time.deltaTime * speed;
+            //        yield return 0;
+            //    }
+            //    cam.fieldOfView = size;
+
+            //}
+            //else
+            //{
+
+            //    while (cam.fieldOfView < size)
+            //    {
+            //        //print("increase");
+            //        cam.fieldOfView += Time.deltaTime * speed;
+            //        yield return 0;
+            //    }
+            //    cam.fieldOfView = size;
+            //}
+
+        }
     
     
     }
@@ -365,6 +413,9 @@ public class Vckrs : MonoBehaviour
             float speed = factor;
             float delta = Mathf.Abs(cam.orthographicSize - size);
 
+
+        if (cam.orthographic)
+        {
             if (cam.orthographicSize > size)
             {
 
@@ -392,7 +443,48 @@ public class Vckrs : MonoBehaviour
                 cam.orthographicSize = size;
             }
 
-   
+        }
+        else
+        {
+
+
+            while (size > 0)
+            {
+
+                cam.transform.position += cam.transform.forward * Time.deltaTime * speed * cameraConvertSizeToDistance;
+                size -= Time.deltaTime * speed * cameraConvertSizeToDistance;
+                yield return 0;
+
+            }
+            //if (cam.fieldOfView > size)
+            //{
+
+            //    while (cam.fieldOfView > size)
+            //    {
+            //        speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
+            //        speed = Mathf.Clamp(speed, limitSpeed, speed);
+            //        cam.orthographicSize -= Time.deltaTime * speed;
+            //        yield return 0;
+            //    }
+            //    cam.fieldOfView = size;
+
+            //}
+            //else
+            //{
+
+            //    while (cam.fieldOfView < size)
+            //    {
+            //        //print("increase");
+            //        speed = factor * (Mathf.Abs(cam.orthographicSize - size)) / delta;
+            //        speed = Mathf.Clamp(speed, speed, limitSpeed);
+            //        cam.fieldOfView += Time.deltaTime * speed;
+            //        yield return 0;
+            //    }
+            //    cam.fieldOfView = size;
+            //}
+
+
+        }
     }
 
     

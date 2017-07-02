@@ -12,6 +12,9 @@ public class Trailer : MonoBehaviour {
     public GameObject trailerIcon;
     public float zoomSpeed = 60;
     Camera cam;
+   
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +26,9 @@ public class Trailer : MonoBehaviour {
         trailerIcon.SetActive(false);
 
         bigBook.GetComponent<BookAC>().openBook();
-        cam.orthographicSize = 1000;
+
+        Vckrs.setCameraSize(cam, 1000);
+
         Timing.RunCoroutine(Vckrs._cameraSizeRootFunc(cam, 10, zoomSpeed, 1f/*0.7f*/));
 
         CharGameController.getOwner().GetComponent<LevelMusicController>().setMusicManually(trailerMusic);
