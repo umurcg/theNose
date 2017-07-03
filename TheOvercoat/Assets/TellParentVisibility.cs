@@ -33,10 +33,10 @@ public class TellParentVisibility : MonoBehaviour {
 
     private void OnBecameVisible()
     {
-#if UNITY_EDITOR
-        if (Camera.current && Camera.current.name == "SceneCamera")
-            return;
-#endif
+//#if UNITY_EDITOR
+//        if (Camera.current && Camera.current.name == "SceneCamera")
+//            return;
+//#endif
 
         foreach (IVisibility s in scripts) s.onVisible();
         
@@ -46,10 +46,10 @@ public class TellParentVisibility : MonoBehaviour {
     private void OnBecameInvisible()
     {
 
-#if UNITY_EDITOR
-        if (Camera.current && Camera.current.name == "SceneCamera")
-            return;
-#endif
+//#if UNITY_EDITOR
+//        if (Camera.current && Camera.current.name == "SceneCamera")
+//            return;
+//#endif
         foreach (IVisibility s in scripts) s.onInvisible();
 
 
