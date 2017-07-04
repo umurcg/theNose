@@ -13,7 +13,7 @@ public class MaterialPropertyAutomaticSlider : MonoBehaviour {
 	public float speed=1;
 	float brightness=0;
 	bool open=true;
-	public string matPropert = "_Glossiness";
+	public string matPropert = "_Metallic";
 
 	// Use this for initialization
 	void Start () {

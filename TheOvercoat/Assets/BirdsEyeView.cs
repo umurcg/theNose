@@ -32,6 +32,8 @@ public class BirdsEyeView : MonoBehaviour {
     Quaternion initialRotation;
     float initialSize;
 
+    public float height = 300;
+
     Dictionary<GameObject, Vector3> doorNames;
     
     bool cameraInMovement = false;
@@ -177,10 +179,12 @@ public class BirdsEyeView : MonoBehaviour {
         initialRotation = transform.rotation;
         initialSize = cam.orthographicSize;
 
-        Vector3 aimPosition = new Vector3(50,0,0);
+        Vector3 aimPosition = new Vector3(0,height,0);
         Quaternion aimRotation = Quaternion.Euler(90, 0, 0);
 
         cameraInMovement = true;
+
+        
 
         float ratio = 0;
         while (ratio < 1)
@@ -189,6 +193,8 @@ public class BirdsEyeView : MonoBehaviour {
 
             transform.position= Vector3.Lerp(initialPosition, aimPosition, ratio);
             transform.rotation = Quaternion.Slerp(initialRotation, aimRotation, ratio);
+
+            //if(cam.orthographic)
             cam.orthographicSize = Mathf.Lerp(initialSize, maxSize,ratio);
 
             ratio += Time.deltaTime * speed;
@@ -289,7 +295,9 @@ public class BirdsEyeView : MonoBehaviour {
 
             transform.position = Vector3.Lerp(curPos,initialPosition, ratio);
             transform.rotation = Quaternion.Slerp(curRot, initialRotation, ratio);
-            cam.orthographicSize = Mathf.Lerp(maxSize, initialSize,  ratio);
+
+            //if (cam.orthographic)
+                cam.orthographicSize = Mathf.Lerp(maxSize, initialSize,  ratio);
 
             ratio += Time.deltaTime * speed;
             yield return 0;

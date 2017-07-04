@@ -90,12 +90,14 @@ public class JokeGroupGameController : GameController {
 
         yield return Timing.WaitForSeconds(1.5f);
 
-        subtitle.text = "-Marko: Bak şimdi anlatıyorum. ";
-        yield return Timing.WaitForSeconds(2);
-        subtitle.text="-Marko: Zegin bir adam hastanede doğan yeni çocuğunun haberini bekliyormuş...";
-        yield return Timing.WaitForSeconds(5);
-        subtitle.text = "";
-        yield return Timing.WaitForSeconds(5);
+        sc.callSubtitleWithIndexTime(0);
+        //subtitle.text = "-Marko: Bak şimdi anlatıyorum. ";
+        //yield return Timing.WaitForSeconds(2);
+        //subtitle.text = "-Marko: Zegin bir adam hastanede doğan yeni çocuğunun haberini bekliyormuş...";
+
+        while (subtitle.text != "") yield return 0;
+
+        yield return Timing.WaitUntilDone(Vckrs.waitUntilStop(marco));
 
         marco.SetActive(false);
         zoria.SetActive(false);

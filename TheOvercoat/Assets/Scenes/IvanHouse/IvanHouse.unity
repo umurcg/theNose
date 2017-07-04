@@ -445,6 +445,21 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: dea229af67259b643b33d5d06d5b09d1, type: 3}
   m_PrefabInternal: {fileID: 1920528519}
+--- !u!114 &273419092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 273419087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93bcfa3f529dee43bb75b7d8e194e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonActiveMat: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+  activeMat: {fileID: 2100000, guid: 71ef2eaa84333614a901a16ecf95dcc8, type: 2}
+  activeObjectTag: ActiveObject
+  controlChildren: 0
 --- !u!114 &273419093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,20 +513,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.99
   m_Center: {x: -0.1205215, y: 0, z: -0.17205748}
---- !u!114 &273419098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 273419087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c1f9039fac4e8147b3b5cec526eac61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  matList:
-  - {fileID: 2100000, guid: 71ef2eaa84333614a901a16ecf95dcc8, type: 2}
-  index: 0
 --- !u!1 &284206843 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000012649769180, guid: fed93d56c6857df4c94beb57c5f659fa,
@@ -711,7 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAsset: {fileID: 0}
+  textAsset: {fileID: 4900000, guid: 05df0b5c7e648e340b474722c4ed62d7, type: 3}
   subtitleTexts:
   - "Praskovaya Osipovna: P\u015F\u015F\u015Ft! Uyan sarho\u015F herif."
   - 'Ivan: Heee  '
@@ -747,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAsset: {fileID: 0}
+  textAsset: {fileID: 4900000, guid: 52f07a3c7aca14c44bc06fc53862398d, type: 3}
   subtitleTexts:
   - "Ivan: G\xFCnayd\u0131n Pravksovya Osipovna. Kahvalt\u0131m\u0131 haz\u0131rlar
     m\u0131s\u0131n?"
@@ -805,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAsset: {fileID: 0}
+  textAsset: {fileID: 4900000, guid: 1baa53dcfdadf4e4aba166f935cd2e37, type: 3}
   subtitleTexts:
   - 'Ivan: Bu bir...'
   - 'Ivan: burun?'
@@ -867,7 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAsset: {fileID: 0}
+  textAsset: {fileID: 4900000, guid: 3496ba59a6410714c9b130b56980ecd1, type: 3}
   subtitleTexts:
   - 'Ivan: ???'
   - "Praskovaya Osipovna: TANRI A\u015EKINA!!!!!"
@@ -885,7 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAsset: {fileID: 4900000, guid: 3496ba59a6410714c9b130b56980ecd1, type: 3}
+  textAsset: {fileID: 4900000, guid: 37cdfbc9245bdf24185763d41ed407e4, type: 3}
   subtitleTexts: []
   AllSubtitles: 
   ifDesroyItself: 0
@@ -1214,6 +1215,10 @@ Prefab:
       propertyPath: m_TagString
       value: Grab
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 7c6e1180ec3c29e48aedd5a438c3ab01, type: 3}
+      propertyPath: m_TagString
+      value: Grab
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c6e1180ec3c29e48aedd5a438c3ab01, type: 3}
   m_IsPrefabParent: 0
@@ -1534,7 +1539,6 @@ MonoBehaviour:
   sitAtStart: 0
   lockSit: 0
   animParameter: 1
-  chairText: {fileID: 2800000, guid: d2e215ee3d601c74a9951732d23f993d, type: 3}
 --- !u!136 &725893111
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2533,7 +2537,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013713371292, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
       propertyPath: m_TagString
-      value: Untagged
+      value: ActiveObject
       objectReference: {fileID: 0}
     - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
         type: 2}
@@ -2590,9 +2594,20 @@ Prefab:
       propertyPath: matList.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 71ef2eaa84333614a901a16ecf95dcc8, type: 2}
+    - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
+        type: 2}
+      propertyPath: activeMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 71ef2eaa84333614a901a16ecf95dcc8, type: 2}
+    - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
+        type: 2}
+      propertyPath: nonActiveMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
     m_RemovedComponents:
     - {fileID: 114000012274506568, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
     - {fileID: 114000010015108164, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
+    - {fileID: 114000012631363982, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1435419713

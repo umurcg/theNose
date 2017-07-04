@@ -147,8 +147,8 @@ public class TavernGameController : GameController {
     {
         foreach(GameObject obj in drunkBuildings)
         {
-            Renderer rend=obj.GetComponent<Renderer>();
-            if (rend != null)
+            Renderer[] rends=obj.GetComponentsInChildren<Renderer>();
+            foreach (Renderer rend in rends)
             {
                 rend.material = drunkMaterial;
             }
@@ -163,8 +163,8 @@ public class TavernGameController : GameController {
 
         foreach (GameObject obj in drunkBuildings)
         {
-            Renderer rend = obj.GetComponent<Renderer>();
-            if (rend != null)
+            Renderer[] rends = obj.GetComponentsInChildren<Renderer>();
+            foreach (Renderer rend in rends)
             {
                 rend.material = normalMaterial;
             }

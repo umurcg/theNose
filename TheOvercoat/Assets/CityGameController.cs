@@ -18,6 +18,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject outroScene;
     public GameObject deadManGameController;
     public GameObject trailer;
+    public GameObject horseCariers;
 
     public GameObject streetAreas;
 
@@ -214,6 +215,8 @@ public class CityGameController : MonoBehaviour {
         player.GetComponent<Animator>().SetTrigger("GetOffContinue");
         player.GetComponent<Animator>().SetBool("GetOffBed", false);
         //player.GetComponent<PlayerComponentController>().ContinueToWalk();
+
+        horseCariers.SetActive(false);
 
         //Activae policemans
         foreach(GameObject police in ivanScenePolice)

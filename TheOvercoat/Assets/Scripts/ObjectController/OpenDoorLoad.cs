@@ -15,6 +15,11 @@ public class OpenDoorLoad : LoadScene {
     public int doorId;
     public GameObject spawnObject;
 
+    public Material nonActiveMat;
+    public Material activeMat;
+    bool active = false;
+    Renderer[] renderers;
+
     //ForMapUI
     public string doorName;
 
@@ -59,10 +64,14 @@ public class OpenDoorLoad : LoadScene {
 
         if (spawnObject == null && transform.childCount>0) spawnObject = transform.GetChild(0).gameObject;
 
+        renderers = GetComponentsInChildren<Renderer>();
+
     }
 
     // Update is called once per frame
     void Update () {
+
+        checkMaterial();
 
         if (debugLoad)
         {
@@ -100,6 +109,30 @@ public class OpenDoorLoad : LoadScene {
             enabled = false;
         }
 
+    }
+
+
+    void checkMaterial()
+    {
+        if (nonActiveMat == null || activeMat == null) return;
+
+        if (!active && playerCanOpen)
+        {
+            Debug.Log("Making object active");
+            foreach (Renderer rend in renderers)
+            {
+                rend.material = activeMat;
+            }
+            active = true;
+        }
+        else if (active && !playerCanOpen)
+        {
+            foreach (Renderer rend in renderers)
+            {
+                rend.material = nonActiveMat;
+            }
+            active = false;
+        }
     }
 
 

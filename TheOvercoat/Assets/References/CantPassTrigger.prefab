@@ -24,6 +24,8 @@ GameObject:
   - 23: {fileID: 23000012388422962}
   - 114: {fileID: 114000012760543740}
   - 114: {fileID: 114000010731453796}
+  - 114: {fileID: 114000010625534126}
+  - 114: {fileID: 114000011564306450}
   m_Layer: 2
   m_Name: CantPassTrigger
   m_TagString: Untagged
@@ -37,9 +39,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013651805002}
-  m_LocalRotation: {x: -0.49712795, y: -0.5028504, z: -0.50268996, w: 0.49730074}
-  m_LocalPosition: {x: 18.99, y: 0.28063488, z: 43.5}
-  m_LocalScale: {x: 13.766274, y: 2.2969365, z: 5.6126623}
+  m_LocalRotation: {x: 0.000005275011, y: -0.0002310276, z: -0.7115194, w: 0.7026665}
+  m_LocalPosition: {x: -0.88998556, y: -0.00029820623, z: 11.186912}
+  m_LocalScale: {x: 1.6605097, y: 0.38595718, z: 5.6126623}
   m_LocalEulerAnglesHint: {x: -89.953, y: 0, z: -90.59901}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,6 +94,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.97, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010625534126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013651805002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startAutomatic: 0
 --- !u!114 &114000010731453796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +124,27 @@ MonoBehaviour:
   messageReciever: {fileID: 0}
   message: abort
   isRecieverActivePlayer: 1
+--- !u!114 &114000011564306450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013651805002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAsset: {fileID: 4900000, guid: da7e2ae90d227ca4e8e7b9b949d0e561, type: 3}
+  subtitleTexts: []
+  AllSubtitles: 
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+  manualTimerArray: []
+  TimeMode: 0
+  narrator: 1
+  timeInhibator: 13
+  clips: []
 --- !u!114 &114000012760543740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,10 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5acb0ae75829c634985f4ee6f7b195de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "-Ivan: Oradan gitmezsem daha iyi. \u015Eu \u015Faka yapan ahmakla kar\u015F\u0131la\u015Fmak
-    istemiyorum."
-  subtitle: {fileID: 0}
   duration: 3
   speed: 0.05
-  subtitleWait: 3
   waitBeforeMove: 3

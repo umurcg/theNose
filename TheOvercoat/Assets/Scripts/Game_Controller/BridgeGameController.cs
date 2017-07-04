@@ -239,11 +239,13 @@ public class BridgeGameController : GameController {
     void OnTriggerEnter()
     {
         onBridge = true;
+        trigger.tag = "ActiveObject";
     }
 
     void OnTriggerExit()
     {
         onBridge = false;
+        trigger.tag = "Untagged";
     }
 
     public override void activateController()

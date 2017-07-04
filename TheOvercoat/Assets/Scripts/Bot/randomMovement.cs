@@ -48,10 +48,10 @@ public class randomMovement : MonoBehaviour {
 
         if (!optimized) return;
 
-#if UNITY_EDITOR
-        if (Camera.current && Camera.current.name == "SceneCamera")
-            return;
-        #endif
+//#if UNITY_EDITOR
+//        if (Camera.current && Camera.current.name == "SceneCamera")
+//            return;
+//        #endif
 
                 //Debug.Log("Became visile");
 
@@ -64,10 +64,10 @@ public class randomMovement : MonoBehaviour {
         if (!optimized) return;
 
 
-        #if UNITY_EDITOR
-        if (Camera.current && Camera.current.name == "SceneCamera")
-                    return;
-        #endif
+        //#if UNITY_EDITOR
+        //if (Camera.current && Camera.current.name == "SceneCamera")
+        //            return;
+        //#endif
 
                 //Debug.Log("Became invisible");
 

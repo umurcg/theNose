@@ -12,19 +12,20 @@ public class ShallNotPass : MonoBehaviour
 {
 
 
-    public string message;
+    //public string message;
     public float duration = 3;
     public float speed = 0.05f;
-    public float subtitleWait = 3;
+    //public float subtitleWait = 3;
     public float waitBeforeMove = 3;
     bool hasStartedCouretine= false;
-    Text subtitle;
+
+    SubtitleCaller sc;
+      
 
     // Use this for initialization
     void Start()
     {
-        subtitle = SubtitleFade.subtitles["CharacterSubtitle"];
-        if (!subtitle) Debug.Log("Couldnt find character subtitle.");
+        sc = GetComponent<SubtitleCaller>();
     }
 
     // Update is called once per frame
@@ -38,11 +39,12 @@ public class ShallNotPass : MonoBehaviour
         if (col.tag == "Player" &&    (hasStartedCouretine == false))
         {
             hasStartedCouretine = true;
-            if (message != null&&subtitle!=null)
-            {
-                StartCoroutine(InvokeSubtitle(subtitle,message));
+            sc.callSubtitleWithIndexTime(0);
+            //if (message != null&&subtitle!=null)
+            //{
+            //    StartCoroutine(InvokeSubtitle(subtitle,message));
 
-            }
+            //}
            
             StartCoroutine(Rotate(col.gameObject,180f));
 
@@ -52,18 +54,18 @@ public class ShallNotPass : MonoBehaviour
 
     }
    
-    IEnumerator InvokeSubtitle(Text sub, string txt)
-    {
+    //IEnumerator InvokeSubtitle(Text sub, string txt)
+    //{
 
-        sub.text = txt;
-        float time = 3;
-        while (time > 0)
-        {
-            time -= Time.deltaTime;
-            yield return null;
-        }
-        sub.text = "";
-    }
+    //    sub.text = txt;
+    //    float time = 3;
+    //    while (time > 0)
+    //    {
+    //        time -= Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    sub.text = "";
+    //}
 
     
 

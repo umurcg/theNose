@@ -163,7 +163,7 @@ public class IvanHouseGameController : GameController {
         
         
 
-        while (narSubtitle.text!=" ")
+        while (narSubtitle.text!="")
         {
             yield return 0;
 
@@ -173,11 +173,11 @@ public class IvanHouseGameController : GameController {
         pcc.StopToWalk();
 
 
-        BigBread.transform.position = Camera.main.gameObject.transform.position+ Camera.main.gameObject.transform.forward;
+        //BigBread.transform.position = Camera.main.gameObject.transform.position+ Camera.main.gameObject.transform.forward;
         BigBread.SetActive(true);
 
 
-        sc.callSubtitleWithIndexTime(0);
+        sc.callSubtitleWithIndexTime(1);
 
 
     }
@@ -267,8 +267,8 @@ public class IvanHouseGameController : GameController {
 
         playerAnim.SetBool("Hands", false);
 
-        ActivateAnotherObject.Disable(drawer);
-        ActivateAnotherObject.Activate(door);
+        //ActivateAnotherObject.Disable(drawer);
+        //ActivateAnotherObject.Activate(door);
         door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
 
         pcc.ContinueToWalk();

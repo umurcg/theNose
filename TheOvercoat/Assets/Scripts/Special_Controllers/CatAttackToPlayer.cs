@@ -104,7 +104,9 @@ public class CatAttackToPlayer : GameController, IClickAction {
         pcc.StopToWalk();
         playerCC.enabled = false;
         Timing.RunCoroutine(Vckrs._lookTo(player, transform.position-player.transform.position, 1f));
-        charSubt.text = "Ivan: Gel pisi pisi... Bak leziz bir şey var burada."; //TODO remove magic string
+        //charSubt.text = "Ivan: Gel pisi pisi... Bak leziz bir şey var burada."; //TODO remove magic string
+        sc.callSubtitleWithIndexTime(0);
+
 
 
         rwb.enabled = false;
@@ -112,7 +114,9 @@ public class CatAttackToPlayer : GameController, IClickAction {
 
         IEnumerator<float> handler=Timing.RunCoroutine(Vckrs._lookTo(gameObject, player.transform.position-gameObject.transform.position, 1f));
         yield return Timing.WaitUntilDone(handler);
-        yield return Timing.WaitForSeconds(2);
+
+        while (narSubtitle.text != "") yield return 0;
+
         
         catNose.SetActive(true);
 
