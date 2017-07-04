@@ -47,11 +47,27 @@ public class CheatScript : MonoBehaviour {
 
         //if (Application.isEditor)
         //{
-            if (Input.GetKey(KeyCode.T)) Timing.RunCoroutine(setScaleDuringPlay());
-            if (Input.GetKey(KeyCode.C)) Timing.RunCoroutine(setSpeedDuringPlay());
-            if (Input.GetKey(KeyCode.N)) loadNextLevel();
-            if (Input.GetKey(KeyCode.J)) takeScreenShot();
-        
+            if (Input.GetKeyDown(KeyCode.T)) Timing.RunCoroutine(setScaleDuringPlay());
+            if (Input.GetKeyDown(KeyCode.C)) Timing.RunCoroutine(setSpeedDuringPlay());
+            if (Input.GetKeyDown(KeyCode.N)) loadNextLevel();
+            if (Input.GetKeyDown(KeyCode.J)) takeScreenShot();
+            if (Input.GetKeyDown(KeyCode.O)) changeCameraType();
+
+    }
+
+
+    void changeCameraType()
+    {
+        if (CharGameController.getCameraType() == CharGameController.cameraType.Ortographic)
+        {
+
+            CharGameController.setCameraType(CharGameController.cameraType.Perspective);
+        }
+        else
+        {
+            CharGameController.setCameraType(CharGameController.cameraType.Ortographic);
+        }
+
     }
 
     void loadNextLevel()
