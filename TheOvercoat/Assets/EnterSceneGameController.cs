@@ -10,6 +10,7 @@ public class EnterSceneGameController : GameController{
     public GameObject  building, ivan, kovalev, head, aims,cameraObj, sun, bigBook, tutorials;
 
 
+    public float orthographicZoomAmount, perspectiveZoomAmount;
 
     Camera cam;
     NavMeshAgent ivanNma, kovalevNma;
@@ -55,6 +56,7 @@ public class EnterSceneGameController : GameController{
         ivanAnim = ivan.GetComponent<Animator>();
         kovalevAnim = kovalev.GetComponent<Animator>();
 
+        kovalevAnim.SetBool("Sit", true);
 
         WhoIsTalking wit = subtitle.GetComponent<WhoIsTalking>();
         if (wit != null)
@@ -124,7 +126,16 @@ public class EnterSceneGameController : GameController{
 
         bigBook.GetComponent<BookAC>().openBook();
 
-        float zoomAmount = 1500;
+        float zoomAmount;
+        if (cam.orthographic)
+        {
+            zoomAmount = orthographicZoomAmount;
+        }
+        else
+        {
+            zoomAmount = perspectiveZoomAmount;
+        }
+ 
 
         cc.zoomOut(zoomAmount);
 
@@ -190,7 +201,7 @@ public class EnterSceneGameController : GameController{
 
         ivanNma.SetDestination(aims.transform.GetChild(0).position);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan));
-        Timing.RunCoroutine(Vckrs._fadeObject(building.GetComponent<GetActiveObjectLOD>().getActiveObject(), 1f,false));
+        Timing.RunCoroutine(Vckrs._fadeObject(building.GetComponent<GetActiveObjectLOD>().getActiveObject(), 1f));
         sc.callSubtitleWithIndex(3);
         yield return Timing.WaitUntilDone(handlerHolder);
         ivanAnim.SetBool("Hands", true);
@@ -280,7 +291,7 @@ public class EnterSceneGameController : GameController{
         ivanAnim.SetBool("Hands", false);
         kovalevAnim.SetBool("Sit", false);
 
-        handlerHolder= Timing.RunCoroutine(Vckrs._Tween(kovalev, kovalev.transform.position + kovalev.transform.forward, 1f));
+        handlerHolder= Timing.RunCoroutine(Vckrs._Tween(kovalev, kovalev.transform.position + kovalev.transform.forward*0.4f, 1f));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         kovalevNma.enabled = true;

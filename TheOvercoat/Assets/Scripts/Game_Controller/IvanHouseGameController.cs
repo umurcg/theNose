@@ -161,17 +161,24 @@ public class IvanHouseGameController : GameController {
         co.UnCollect(BreadPH.transform.position);
         sc.callSubtitleWithIndexTime(0);
         
-        while (narSubtitle.text[0] != ' ')
+        
+
+        while (narSubtitle.text!=" ")
         {
             yield return 0;
 
         }
+
+
         pcc.StopToWalk();
 
 
         BigBread.transform.position = Camera.main.gameObject.transform.position+ Camera.main.gameObject.transform.forward;
         BigBread.SetActive(true);
-    
+
+
+        sc.callSubtitleWithIndexTime(0);
+
 
     }
 
@@ -193,7 +200,7 @@ public class IvanHouseGameController : GameController {
 
         praskovayaAnim.SetBool("Hands", false);
 
-        sc.callSubtitleWithIndex(3);
+        sc.callSubtitleWithIndex(4);
         while (subtitle.text != "")
         {
             yield return 0;
@@ -230,7 +237,7 @@ public class IvanHouseGameController : GameController {
 
 
 
-        sc.callSubtitleWithIndex(4);
+        sc.callSubtitleWithIndex(5);
         while (subtitle.text != "")
         {
             yield return 0;

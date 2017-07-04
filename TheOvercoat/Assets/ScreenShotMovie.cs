@@ -12,20 +12,20 @@ public class ScreenShotMovie : MonoBehaviour
 
     void Start()
     {
-        // Set the playback framerate!
-        // (real time doesn't influence time anymore)
-        Time.captureFramerate = frameRate;
+        //// Set the playback framerate!
+        //// (real time doesn't influence time anymore)
+        //Time.captureFramerate = frameRate;
 
-        // Find a folder that doesn't exist yet by appending numbers!
-        realFolder = folder;
-        int count = 1;
-        while (System.IO.Directory.Exists(realFolder))
-        {
-            realFolder = folder + count;
-            count++;
-        }
-        // Create the folder
-        System.IO.Directory.CreateDirectory(realFolder);
+        //// Find a folder that doesn't exist yet by appending numbers!
+        //realFolder = folder;
+        //int count = 1;
+        //while (System.IO.Directory.Exists(realFolder))
+        //{
+        //    realFolder = folder + count;
+        //    count++;
+        //}
+        //// Create the folder
+        //System.IO.Directory.CreateDirectory(realFolder);
     }
 
     void Update()

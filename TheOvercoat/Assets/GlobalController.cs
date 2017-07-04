@@ -10,6 +10,9 @@ using System;
 
 //Static list that is attached to MainCamera
 //It is never destroyed
+
+public enum inputTye {Keyboard, Gamepad};
+
 public class GlobalController : MonoBehaviour {
 
 
@@ -18,6 +21,9 @@ public class GlobalController : MonoBehaviour {
     public static GlobalController Instance;
 
     public bool startAtFullScreen = false;
+
+
+    public inputTye Input=inputTye.Keyboard;
     
     //Language settings
     public enum Language { ENG=0, TR=1, RUS=2};
@@ -375,6 +381,16 @@ public int setDebugListToLevelIndex;
         Scenes prevScene = (GlobalController.Scenes)Instance.sceneList[Instance.sceneList.Count - 2];
         //Debug.Log(prevScene);
         return prevScene;
+    }
+
+    public inputTye getInputType()
+    {
+        return Instance.Input;
+    }
+
+    public void setInputType(int type)
+    {
+        Input =(inputTye) type;
     }
 
     public  Language getLangueSetting()

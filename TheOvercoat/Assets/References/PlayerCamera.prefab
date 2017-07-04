@@ -1761,7 +1761,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.04, y: -0.89, z: -98}
+  m_LocalPosition: {x: 4.17, y: 1, z: -1.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_Children:
@@ -3989,6 +3989,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nearOrt: -40
   farOrt: 2000
+  nearPers: 5
+  farPers: 1000
+  sizeToDistance: 9
+  focus: {fileID: 0}
 --- !u!114 &114000010698145436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4100,6 +4104,7 @@ MonoBehaviour:
   maxIntensity: 1
   minIntensity: 0.3
   speed: 0.5
+  isNight: 0
 --- !u!114 &114000011269651312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4125,6 +4130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66860cee2466eb94fa59623c23bf469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiplier: 1
 --- !u!114 &114000011367231086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4197,7 +4203,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 260
   printShootedTag: 0
+  printShootedName: 0
   forceToDefault: 0
+  showCursor: 1
 --- !u!114 &114000012006399516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4259,12 +4267,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startAtFullScreen: 1
+  Input: 0
   languageSetting: 0
   audioLevel: 1
   usedGameControllers: []
   sceneList: 
   maxSceneList: 
-  debugSceneList: 010000000200000001000000030000000100000004000000
+  debugSceneList: 01000000
   fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
   setDebugListToLevelIndex: 6
 --- !u!114 &114000012654939820
@@ -4502,6 +4511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coverKovalevFace: 1
+  positionToDoor: 1
   camType: 0
 --- !u!114 &114000013936666282
 MonoBehaviour:
@@ -4533,6 +4543,7 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   uiTextPrefab: {fileID: 1000011656113242, guid: a2bdf3582c4058b43acf28564cb8d440,
     type: 2}
+  streetParent: {fileID: 0}
   maxSize: 200
   speed: 0.5
   mask:

@@ -4,6 +4,7 @@ using System.Collections;
 public class CanvasCameraSetter : MonoBehaviour {
 
     Canvas canvas;
+    public float planeDistane = 50;
 
     void Awake()
     {
@@ -36,5 +37,8 @@ public class CanvasCameraSetter : MonoBehaviour {
             Debug.Log("Assigning current camera");
             canvas.worldCamera = CameraController.activeCamera.GetComponent<Camera>();
         }
+
+        canvas.planeDistance = planeDistane;
+
     }
 }

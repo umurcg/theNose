@@ -50,7 +50,7 @@ using System.Linq;
 
 
 
-        if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetButtonDown("InteractionButton"))
         {
             RaycastHit hitInfo = new RaycastHit();
             //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
