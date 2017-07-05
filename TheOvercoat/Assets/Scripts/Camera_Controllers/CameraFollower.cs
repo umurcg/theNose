@@ -59,20 +59,26 @@ public class CameraFollower : MonoBehaviour {
 
         ghost = target.transform.position;
         //ghostObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //ghostObject.name = "ghost";
         //ghostObject.GetComponent<Collider>();
+
+        Debug.Log("Finishing start function "+gameObject.name);
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (target)
+        //Debug.Log("Updating " + gameObject.name);
+        if (target!=null)
         {
+           
             rotater();
             follow();
 
-
-            
+        }
+        else
+        {
+            Debug.Log("target is null " + gameObject.name);
         }
 
         //ghostObject.transform.position = ghost;
@@ -141,7 +147,7 @@ public class CameraFollower : MonoBehaviour {
         //}
         //else
         //{
-            Debug.Log("LERPİNG");
+            //Debug.Log("LERPİNG");
             transform.position = Vector3.Lerp(transform.position, wantedPosition, damper * Time.deltaTime);
             ghost = transform.position - relativePosition;
 
@@ -156,7 +162,7 @@ public class CameraFollower : MonoBehaviour {
 
     public void updateRelative()
     {
-        Debug.Log("Updating relative");
+        //Debug.Log("Updating relative");
         //Vector3 playerMove = target.transform.position + relativePosition - transform.position;
 
         //Debug.Log("UPDATING RELATIVE");

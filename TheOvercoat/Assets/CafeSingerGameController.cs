@@ -25,7 +25,7 @@ public class CafeSingerGameController : GameController {
         cam = CameraObj.GetComponent<Camera>();
 
         //Set camera object rotation
-        CameraObj.transform.eulerAngles = new Vector3(30, 135, 0);
+        //CameraObj.transform.eulerAngles = new Vector3(30, 135, 0);
 
         cc =  CameraObj.GetComponent<CameraController>();
 
@@ -41,6 +41,10 @@ public class CafeSingerGameController : GameController {
 
     IEnumerator<float> _start()
     {
+
+
+        //Time.timeScale = 0;
+        
         WhoIsTalking.self.setCameraComponent(CameraObj.GetComponent<Camera>());
 
         ////Register kovalev to see throug objects script
@@ -50,10 +54,15 @@ public class CafeSingerGameController : GameController {
         ////Change camera to cafe singer camera
         //scto.changeCamera(CameraObj);
 
+        //cam.orthographic = true;
+        //yield return 0;
+        //cam.orthographic = false;
 
         //cam.orthographicSize = 30;
 
         cc.zoomOut(zoomAmount);
+
+    
 
         //Debug.Log("CafeSingerController");
         //Kovalev.transform.position = kovalevStartPoint.transform.position;
@@ -65,8 +74,10 @@ public class CafeSingerGameController : GameController {
 
         //Timing.RunCoroutine(Vckrs._cameraSize(cam, 10, 0.5f));
 
+        yield return 0;
 
-        Timing.RunCoroutine(cc._smoothZoomIn(zoomAmount,1f));
+
+        Timing.RunCoroutine(cc._smoothZoomIn(zoomAmount, 1f));
 
 
         //Narrtor subtitle
@@ -76,14 +87,19 @@ public class CafeSingerGameController : GameController {
         yield return Timing.WaitUntilDone(handlerHolder);
 
 
-        while (Vector3.Distance(Kovalev.transform.position,mirror.transform.position)<3)
+        while (Vector3.Distance(Kovalev.transform.position,mirror.transform.position)>3)
         {
             yield return 0;
         }
 
+        
+
         //Kovalev mirror talk
         handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(Kovalev, mirror,1f));
         yield return Timing.WaitUntilDone(handlerHolder);
+
+        while (narSubtitle.text != "") yield return 0;
+
         sc.callSubtitleWithIndex(1);
 
         while (subtitle.text != "") yield return 0;

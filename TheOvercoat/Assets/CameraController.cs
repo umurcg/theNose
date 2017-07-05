@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour {
     float defaultDistance;
     float defaultSize;
 
-    Vector3 playerPrevPos;
+    //Vector3 playerPrevPos;
 
     public bool doNotTryToBeSingleton = false;
 
@@ -61,7 +61,7 @@ public class CameraController : MonoBehaviour {
 
         cf = GetComponent<CameraFollower>();
 
-        playerPrevPos = Vector3.zero;
+        //playerPrevPos = Vector3.zero;
 
         if (cameraTypeDropDown!=null)
             cameraSet = cameraTypeDropDown.GetComponent<Dropdown>();
@@ -70,7 +70,7 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(activeCamera.gameObject.name);
+        //Debug.Log(activeCamera.gameObject.name);
 
         if (activeCamera != this && !doNotTryToBeSingleton) activeCamera = this;
         
@@ -118,7 +118,7 @@ public class CameraController : MonoBehaviour {
             cam.transform.position -= cam.transform.forward * zoomAmount * sizeToDistance;
         }
 
-        if (playerPrevPos != Vector3.zero) transform.position += focus.transform.position - playerPrevPos;
+        //if (playerPrevPos != Vector3.zero) transformposition += focus.transform.position - playerPrevPos;
 
 
         if (cf)
@@ -131,8 +131,8 @@ public class CameraController : MonoBehaviour {
 
     public void zoomIn(float zoomAmount)
     {
-        if (cf)
-            cf.enabled = false;
+        //if (cf)
+        //    cf.enabled = false;
 
         if (cam.orthographic )
         {
@@ -146,21 +146,21 @@ public class CameraController : MonoBehaviour {
                 cam.transform.position += cam.transform.forward * zoomAmount * sizeToDistance;
         }
 
-        if (playerPrevPos != Vector3.zero) transform.position += focus.transform.position - playerPrevPos;
+        //if (playerPrevPos != Vector3.zero) transform.position += focus.transform.position - playerPrevPos;
 
 
         if (cf)
         {
             cf.updateRelative();
-            cf.enabled = true;
+            //cf.enabled = true;
         }
     }
 
 
     public void defaultZoom()
     {
-        if (cf)
-            cf.enabled = false;
+        //if (cf)
+        //    cf.enabled = false;
 
         cam.orthographicSize = defaultSize;
 
@@ -173,7 +173,7 @@ public class CameraController : MonoBehaviour {
         if (cf)
         {
             cf.updateRelative();
-            cf.enabled = true;
+            //cf.enabled = true;
         }
     }
 
@@ -212,14 +212,14 @@ public class CameraController : MonoBehaviour {
 
         float totalZoom=0;
 
-        playerPrevPos = focus.transform.position;
+        //playerPrevPos = focus.transform.position;
 
         while (totalZoom <= zoomAmount)
         {
             totalZoom += Time.deltaTime * speed;
             zoomOut(Time.deltaTime * speed);
     
-            playerPrevPos = focus.transform.position;
+            //playerPrevPos = focus.transform.position;
 
             yield return 0;
         }
@@ -228,7 +228,7 @@ public class CameraController : MonoBehaviour {
 
         enableCameraSettings();
 
-        playerPrevPos = Vector3.zero;
+        //playerPrevPos = Vector3.zero;
 
         yield break;
     }
@@ -238,14 +238,14 @@ public class CameraController : MonoBehaviour {
         disableCameraSettings();
 
         float totalZoom = 0;
-        playerPrevPos = focus.transform.position;
+        //playerPrevPos = focus.transform.position;
 
         while (totalZoom <= zoomAmount)
         {
             totalZoom += Time.deltaTime * speed;
             zoomIn(Time.deltaTime * speed);
 
-            playerPrevPos = focus.transform.position;
+            //playerPrevPos = focus.transform.position;
 
             yield return 0;
         }
@@ -255,7 +255,7 @@ public class CameraController : MonoBehaviour {
 
         enableCameraSettings();
 
-        playerPrevPos = Vector3.zero;
+        //playerPrevPos = Vector3.zero;
 
         yield break;
     }

@@ -39,6 +39,7 @@ public class SettingsListeners : MonoBehaviour {
         audioSlider.onValueChanged.AddListener(delegate { GlobalController.Instance.setAudioLevel(audioSlider.value); });
         musicSlider.onValueChanged.AddListener(delegate { GlobalController.Instance.setMusicLevel(musicSlider.value); });
         dropDown.onValueChanged.AddListener(delegate { GlobalController.Instance.setLanguageSetting(dropDown.value); });
+
         if (inputDropDown)  inputDropDown.onValueChanged.AddListener(delegate { GlobalController.Instance.setInputType(inputDropDown.value); });
 
         //Debug.Log("hİİİİİİİİİİİİİİİİİİ");

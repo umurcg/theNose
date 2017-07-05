@@ -405,6 +405,17 @@ public int setDebugListToLevelIndex;
         //Change current visible texts
         DynamicLanguageTexts.updateAllCurrentVisibleTexts();
 
+        //Update who is talking dictionary
+        if (WhoIsTalking.self != null)
+        {
+            foreach(KeyValuePair<string,GameObject> pair in WhoIsTalking.self.characters)
+            {
+                RegisterToSubtitleList register= pair.Value.GetComponent<RegisterToSubtitleList>();
+                if (register) register.refreshName();
+            }
+        }
+
+
         Debug.Log("Language is " + languageSetting);
         //Instance.languageSetting = lan;
     }
