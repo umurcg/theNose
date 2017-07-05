@@ -16,6 +16,7 @@ public class CameraFollower : MonoBehaviour {
     public bool assignPlayerAutomatically=true;
     public float damper = 0;
 
+    public string axis = "CameraRotator";
 
     public Vector3 relativePosition;
 
@@ -23,8 +24,12 @@ public class CameraFollower : MonoBehaviour {
     public Vector3 defaultRelative = new Vector3(-90f, 75f, 90f);
    
     float xRotation;
-    bool lockCamRotation = false;
+    public bool lockCamRotation = false;
 
+    //Vector3 prevPos;
+
+    Vector3 ghost;
+    //GameObject ghostObject;
 
     //GameObject primitiveCube;
     //public Vector3 relativePositionBeforeDisabling;
@@ -44,29 +49,47 @@ public class CameraFollower : MonoBehaviour {
         }
 
 
+        //prevPos = target.transform.position;
+
         fixRelativeToDefault();
         //updateRelative();
         xRotation = transform.eulerAngles.x;
 
         transform.position = target.transform.position+relativePosition;
 
-
+        ghost = target.transform.position;
+        //ghostObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //ghostObject.GetComponent<Collider>();
 
     }
 	
 	// Update is called once per frame
-	void LateUpdate () {
+	void Update () {
 
         if (target)
         {
-            
-            follow();
             rotater();
+            follow();
+
+
+            
         }
 
-        
+        //ghostObject.transform.position = ghost;
+        //preserveXRotation();
+
+
+        //prevPos = target.transform.position;
+
 
         //Debug.Log(relativePosition);
+    }
+
+    void preserveXRotation()
+    {
+        Quaternion rot = transform.rotation;
+        rot.x = 30;
+        transform.rotation = rot;
     }
 
     public void rotater()
@@ -75,12 +98,16 @@ public class CameraFollower : MonoBehaviour {
 
         //After setting all position and rotation for player movement, check for ratator
         //Debug.Log(Input.GetAxis("CameraRotator"));
-        if (Input.GetAxis("CameraRotator") != 0)
+        if (Input.GetAxis(axis) != 0)
         {
 
             //Debug.Log("Rotating");
-            var wantedRotation = rotatorSpeed * Input.GetAxis("CameraRotator");
-            transform.RotateAround(/*getFocus()*/ target.transform.position, target.transform.up, Time.deltaTime * rotatorSpeed * wantedRotation);
+            var wantedRotation = rotatorSpeed * Input.GetAxis(axis);
+            //transform.RotateAround(/*getFocus()*/ target.transform.position, target.transform.up, Time.deltaTime * rotatorSpeed * wantedRotation);
+            transform.RotateAround(/*getFocus()*/ ghost, target.transform.up, Time.deltaTime * rotatorSpeed * wantedRotation);
+
+            //transform.position += target.transform.position - prevPos;
+
             updateRelative();
 
         }
@@ -102,10 +129,25 @@ public class CameraFollower : MonoBehaviour {
     {
         //Set position according to relative position
         Vector3 wantedPosition = relativePosition + target.transform.position;
-        //transform.position = wantedPosition;
-        transform.position = Vector3.Lerp(transform.position, wantedPosition, damper * Time.deltaTime);
 
-        transform.LookAt(target.transform.position);
+
+
+        //if camera rotator is active then doesn't lerp directly change position because lerping 
+        //makes camera to looses its focus 
+        //if (Input.GetAxis(axis) != 0)
+        //{
+
+        //    transform.position = wantedPosition;
+        //}
+        //else
+        //{
+            Debug.Log("LERPİNG");
+            transform.position = Vector3.Lerp(transform.position, wantedPosition, damper * Time.deltaTime);
+            ghost = transform.position - relativePosition;
+
+        //}
+
+        transform.LookAt(ghost);
 
         ////Preserve euler angles x
         //transform.rotation = Quaternion.Euler(30, transform.eulerAngles.y, 0);
@@ -114,10 +156,12 @@ public class CameraFollower : MonoBehaviour {
 
     public void updateRelative()
     {
+        Debug.Log("Updating relative");
         //Vector3 playerMove = target.transform.position + relativePosition - transform.position;
 
         //Debug.Log("UPDATING RELATIVE");
-        relativePosition = transform.position - target.transform.position;
+        //relativePosition = transform.position - target.transform.position;
+        relativePosition = transform.position - ghost;
     }
 
     public void updateTarget()

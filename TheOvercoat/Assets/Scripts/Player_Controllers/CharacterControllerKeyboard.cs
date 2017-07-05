@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 
+[RequireComponent(typeof(CharacterController))]
 public class CharacterControllerKeyboard : MonoBehaviour {
 
     CharacterController cc;

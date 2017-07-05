@@ -56,8 +56,10 @@ public class CafeSingerGameController : GameController {
         cc.zoomOut(zoomAmount);
 
         //Debug.Log("CafeSingerController");
-        Kovalev.transform.position = kovalevStartPoint.transform.position;
+        //Kovalev.transform.position = kovalevStartPoint.transform.position;
         kovalevCC.navmashagent.SetDestination(mirror.transform.position-mirror.transform.up*1);
+
+  
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Kovalev));
 
 
@@ -73,8 +75,14 @@ public class CafeSingerGameController : GameController {
         //Wait for finis walk
         yield return Timing.WaitUntilDone(handlerHolder);
 
+
+        while (Vector3.Distance(Kovalev.transform.position,mirror.transform.position)<3)
+        {
+            yield return 0;
+        }
+
         //Kovalev mirror talk
-        handlerHolder= Timing.RunCoroutine(Vckrs._lookTo(Kovalev, mirror,1f));
+        handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(Kovalev, mirror,1f));
         yield return Timing.WaitUntilDone(handlerHolder);
         sc.callSubtitleWithIndex(1);
 

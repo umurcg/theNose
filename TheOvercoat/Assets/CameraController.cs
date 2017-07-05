@@ -32,6 +32,8 @@ public class CameraController : MonoBehaviour {
     float defaultDistance;
     float defaultSize;
 
+    Vector3 playerPrevPos;
+
     public bool doNotTryToBeSingleton = false;
 
     Dropdown cameraSet;
@@ -39,7 +41,7 @@ public class CameraController : MonoBehaviour {
     CameraFollower cf;
 
     //Test values
-    ///*public*/ float testZoomIn, testZoomOut, testSmoothSpeed, testMinSpeed;
+    public float testZoomIn, testZoomOut, testSmoothSpeed, testMinSpeed;
 
     private void OnEnable()
     {
@@ -59,7 +61,9 @@ public class CameraController : MonoBehaviour {
 
         cf = GetComponent<CameraFollower>();
 
-        if(cameraTypeDropDown!=null)
+        playerPrevPos = Vector3.zero;
+
+        if (cameraTypeDropDown!=null)
             cameraSet = cameraTypeDropDown.GetComponent<Dropdown>();
 
     }
@@ -114,6 +118,9 @@ public class CameraController : MonoBehaviour {
             cam.transform.position -= cam.transform.forward * zoomAmount * sizeToDistance;
         }
 
+        if (playerPrevPos != Vector3.zero) transform.position += focus.transform.position - playerPrevPos;
+
+
         if (cf)
         {
             cf.updateRelative();
@@ -139,6 +146,9 @@ public class CameraController : MonoBehaviour {
                 cam.transform.position += cam.transform.forward * zoomAmount * sizeToDistance;
         }
 
+        if (playerPrevPos != Vector3.zero) transform.position += focus.transform.position - playerPrevPos;
+
+
         if (cf)
         {
             cf.updateRelative();
@@ -159,6 +169,7 @@ public class CameraController : MonoBehaviour {
 
         transform.position += forwardDir * (dist - defaultDistance);
 
+     
         if (cf)
         {
             cf.updateRelative();
@@ -200,15 +211,24 @@ public class CameraController : MonoBehaviour {
         disableCameraSettings();
 
         float totalZoom=0;
+
+        playerPrevPos = focus.transform.position;
+
         while (totalZoom <= zoomAmount)
         {
             totalZoom += Time.deltaTime * speed;
             zoomOut(Time.deltaTime * speed);
+    
+            playerPrevPos = focus.transform.position;
+
             yield return 0;
         }
 
         zoomIn(totalZoom - zoomAmount);
 
+        enableCameraSettings();
+
+        playerPrevPos = Vector3.zero;
 
         yield break;
     }
@@ -218,10 +238,15 @@ public class CameraController : MonoBehaviour {
         disableCameraSettings();
 
         float totalZoom = 0;
+        playerPrevPos = focus.transform.position;
+
         while (totalZoom <= zoomAmount)
         {
             totalZoom += Time.deltaTime * speed;
             zoomIn(Time.deltaTime * speed);
+
+            playerPrevPos = focus.transform.position;
+
             yield return 0;
         }
 
@@ -229,6 +254,8 @@ public class CameraController : MonoBehaviour {
         zoomOut(totalZoom - zoomAmount);
 
         enableCameraSettings();
+
+        playerPrevPos = Vector3.zero;
 
         yield break;
     }
@@ -239,6 +266,8 @@ public class CameraController : MonoBehaviour {
     public IEnumerator<float> _smoothZoomOutToVeryFar(float zoomAmount, float maxSpeed, float minSpeed = 0.2f)
     {
         disableCameraSettings();
+
+
 
         float totalZoom = 0;
         while (totalZoom <= zoomAmount)
@@ -257,6 +286,9 @@ public class CameraController : MonoBehaviour {
         zoomIn(totalZoom - zoomAmount);
 
         enableCameraSettings();
+
+
+
         yield break;
     }
 
@@ -309,51 +341,51 @@ public class CameraController : MonoBehaviour {
 
 
 
-//[CustomEditor(typeof(CameraController), true)]
-//public class CameraControllerEditor : Editor
-//{
-//    public override void OnInspectorGUI()
-//    {
-//        DrawDefaultInspector();
-//        CameraController script = (CameraController)target;
-//        if (GUILayout.Button("TestDefault zoom "))
-//        {
-//            script.defaultZoom();
+[CustomEditor(typeof(CameraController), true)]
+public class CameraControllerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        CameraController script = (CameraController)target;
+        if (GUILayout.Button("TestDefault zoom "))
+        {
+            script.defaultZoom();
 
-//        }
+        }
 
-//        if (GUILayout.Button("Test zoom in"))
-//        {
-//            script.zoomIn(script.testZoomIn);
-//        }
-
-
-//        if (GUILayout.Button("Test zoom out"))
-//        {
-//            script.zoomOut(script.testZoomOut);
-//        }
+        if (GUILayout.Button("Test zoom in"))
+        {
+            script.zoomIn(script.testZoomIn);
+        }
 
 
-//        if (GUILayout.Button("Test smooth zoom in"))
-//        {
-//            script.smoothZoomIn(script.testZoomIn, script.testSmoothSpeed);
-//        }
+        if (GUILayout.Button("Test zoom out"))
+        {
+            script.zoomOut(script.testZoomOut);
+        }
 
 
-//        if (GUILayout.Button("Test smooth zoom out"))
-//        {
-//            script.smoothZoomOut(script.testZoomOut, script.testSmoothSpeed);
-//        }
-
-//        if (GUILayout.Button("Test smooth zoom in from very far"))
-//        {
-//            script.smoothZoomInFromVeryFar(script.testZoomIn, script.testSmoothSpeed, script.testMinSpeed);
-//        }
+        if (GUILayout.Button("Test smooth zoom in"))
+        {
+            script.smoothZoomIn(script.testZoomIn, script.testSmoothSpeed);
+        }
 
 
-//        if (GUILayout.Button("Test smooth zoom out to very far"))
-//        {
-//            script.smoothZoomOutToVeryFar(script.testZoomOut, script.testSmoothSpeed, script.testMinSpeed);
-//        }
-//    }
-//}
+        if (GUILayout.Button("Test smooth zoom out"))
+        {
+            script.smoothZoomOut(script.testZoomOut, script.testSmoothSpeed);
+        }
+
+        if (GUILayout.Button("Test smooth zoom in from very far"))
+        {
+            script.smoothZoomInFromVeryFar(script.testZoomIn, script.testSmoothSpeed, script.testMinSpeed);
+        }
+
+
+        if (GUILayout.Button("Test smooth zoom out to very far"))
+        {
+            script.smoothZoomOutToVeryFar(script.testZoomOut, script.testSmoothSpeed, script.testMinSpeed);
+        }
+    }
+}
