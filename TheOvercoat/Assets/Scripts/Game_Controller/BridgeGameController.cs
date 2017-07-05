@@ -8,7 +8,7 @@ public class BridgeGameController : GameController {
 
     public GameObject police,trigger,/*blackScreen,*/ shallNotPass, singerCafe, nehir;
 
-    bool onBridge = false;
+    //bool onBridge = false;
     GameObject nose;
     BoxCollider bc;
     Rigidbody noseRB;
@@ -82,8 +82,8 @@ public class BridgeGameController : GameController {
             return;
         }
 
-        if (onBridge)
-        {
+        //if (onBridge)
+        //{
             //nose = player.transform.Find("ivan/Armature/Torso/Chest/Arm_L/Hand_L/nosePackage").gameObject;
             nose = CharGameController.getObjectOfHand("nosePackage",CharGameController.hand.LeftHand);
             if(nose == null)
@@ -94,10 +94,10 @@ public class BridgeGameController : GameController {
             noseRB = nose.GetComponent<Rigidbody>();
 
             Timing.RunCoroutine(_throwNose());
-        }else
-        {
-            Debug.Log("Not on bridge");
-        }
+        //}else
+        //{
+        //    Debug.Log("Not on bridge");
+        //}
         //if (nose == null)
         //    print("Couldn't find nose");
         //if (!onBridge)
@@ -238,13 +238,13 @@ public class BridgeGameController : GameController {
 
     void OnTriggerEnter()
     {
-        onBridge = true;
+        //onBridge = true;
         trigger.tag = "ActiveObject";
     }
 
     void OnTriggerExit()
     {
-        onBridge = false;
+        //onBridge = false;
         trigger.tag = "Untagged";
     }
 

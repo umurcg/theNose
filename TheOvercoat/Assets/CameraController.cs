@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 using System.Collections.Generic;
 using MovementEffects;
+using UnityEngine.UI;
 
 //This script controlles camera properties. At first place it is just written for getting camera type and setting accroding to that and also listtening settings changing.
 //But you can use it another purposes for camera later.
@@ -12,6 +13,8 @@ public class CameraController : MonoBehaviour {
 
     public static CameraController activeCamera;
     Camera cam;
+
+    public GameObject cameraTypeDropDown;
 
     //Orthographic clipping sizes
     public float nearOrt = -40;
@@ -29,11 +32,14 @@ public class CameraController : MonoBehaviour {
     float defaultDistance;
     float defaultSize;
 
+    public bool doNotTryToBeSingleton = false;
+
+    Dropdown cameraSet;
 
     CameraFollower cf;
 
-    ////Test values
-    //public float testZoomIn, testZoomOut,  testSmoothSpeed, testMinSpeed;
+    //Test values
+    ///*public*/ float testZoomIn, testZoomOut, testSmoothSpeed, testMinSpeed;
 
     private void OnEnable()
     {
@@ -52,11 +58,18 @@ public class CameraController : MonoBehaviour {
         defaultSize = cam.orthographicSize;
 
         cf = GetComponent<CameraFollower>();
-	}
+
+        if(cameraTypeDropDown!=null)
+            cameraSet = cameraTypeDropDown.GetComponent<Dropdown>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
+        Debug.Log(activeCamera.gameObject.name);
+
+        if (activeCamera != this && !doNotTryToBeSingleton) activeCamera = this;
+        
 	}
 
     public void updateCameraType()
@@ -184,6 +197,7 @@ public class CameraController : MonoBehaviour {
 
     public IEnumerator<float> _smoothZoomOut(float zoomAmount,float speed)
     {
+        disableCameraSettings();
 
         float totalZoom=0;
         while (totalZoom <= zoomAmount)
@@ -201,6 +215,7 @@ public class CameraController : MonoBehaviour {
 
     public IEnumerator<float> _smoothZoomIn(float zoomAmount, float speed)
     {
+        disableCameraSettings();
 
         float totalZoom = 0;
         while (totalZoom <= zoomAmount)
@@ -213,6 +228,8 @@ public class CameraController : MonoBehaviour {
 
         zoomOut(totalZoom - zoomAmount);
 
+        enableCameraSettings();
+
         yield break;
     }
 
@@ -221,7 +238,7 @@ public class CameraController : MonoBehaviour {
 
     public IEnumerator<float> _smoothZoomOutToVeryFar(float zoomAmount, float maxSpeed, float minSpeed = 0.2f)
     {
-
+        disableCameraSettings();
 
         float totalZoom = 0;
         while (totalZoom <= zoomAmount)
@@ -239,14 +256,14 @@ public class CameraController : MonoBehaviour {
 
         zoomIn(totalZoom - zoomAmount);
 
-
+        enableCameraSettings();
         yield break;
     }
 
 
     public IEnumerator<float> _smoothZoomInFromVeryFar(float zoomAmount, float maxSpeed, float minSpeed = 0.2f)
     {
-        
+        disableCameraSettings();
 
         float totalZoom = 0;
         while (totalZoom <= zoomAmount)
@@ -265,10 +282,28 @@ public class CameraController : MonoBehaviour {
 
         zoomOut(totalZoom - zoomAmount);
 
-
+        enableCameraSettings();
         yield break;
     }
 
+    public static void disableCameraSettings()
+    {
+        Debug.Log("Dİsable");
+        if (activeCamera.cameraSet)
+        {
+            activeCamera.cameraSet.interactable = false;
+            Debug.Log("Deactivating setting");
+        }
+    }
+
+    public static void enableCameraSettings()
+    {
+        if (activeCamera.cameraSet)
+        {
+            activeCamera.cameraSet.interactable = true;
+            Debug.Log("Activating setting");
+        }
+    }
 
 }
 
@@ -301,7 +336,7 @@ public class CameraController : MonoBehaviour {
 
 //        if (GUILayout.Button("Test smooth zoom in"))
 //        {
-//            script.smoothZoomIn(script.testZoomIn,script.testSmoothSpeed);
+//            script.smoothZoomIn(script.testZoomIn, script.testSmoothSpeed);
 //        }
 
 

@@ -14,6 +14,8 @@ public class FadeInOutTrigger : MonoBehaviour {
     public GameObject objectToFade;
     IEnumerator<float> handler=null;
 
+    //public bool isTargetOnlyPlayer=false
+
 	// Use this for initialization
 	void Start () {
 	

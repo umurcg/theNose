@@ -1478,10 +1478,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012873117710}
-  m_LocalRotation: {x: 0.014724008, y: 0.01472401, z: -0.70695364, w: -0.70695335}
-  m_LocalPosition: {x: -14.9, y: -0.2, z: 56.2}
+  m_LocalRotation: {x: 0.013877429, y: 0.013876658, z: -0.7069707, w: -0.7069705}
+  m_LocalPosition: {x: 215.3, y: -0.20000005, z: 73.3}
   m_LocalScale: {x: 0.7108088, y: 0.71080905, z: 0.71080816}
-  m_LocalEulerAnglesHint: {x: 0, y: -272.317, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: -362.183, z: 90.00001}
   m_Children:
   - {fileID: 4000014293878326}
   - {fileID: 4000013657470968}
@@ -2286,7 +2286,7 @@ HingeJoint:
   m_Anchor: {x: -0.19, y: 0, z: 0.2}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.19000053, y: 0, z: 0.19999908}
+  m_ConnectedAnchor: {x: -0.18999943, y: 0, z: 0.20000634}
   m_UseSpring: 1
   m_Spring:
     spring: 0
@@ -2451,10 +2451,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.1
-  maxDelta: 5
   animName: Walk
   speedFactor: 0.65
-  timeBeforeStopAnimation: 0.1
+  delayForStop: 50
 --- !u!114 &114000011734493358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2467,10 +2466,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.03
-  maxDelta: 5
   animName: Moving
   speedFactor: 0.2
-  timeBeforeStopAnimation: 0.1
+  delayForStop: 50
 --- !u!114 &114000012307171772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2509,7 +2507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a62e15df7a9746aafa8e077f085af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAsset: {fileID: 0}
+  textAsset: {fileID: 4900000, guid: 02905b383ad704b429fe82fea3ceb227, type: 3}
   subtitleTexts:
   - "-Arabac\u0131: Merhaba efendim. Nereye s\xFCreyim?"
   AllSubtitles: "-Arabac\u0131: Merhaba efendim. Nereye s\xFCreyim?"
@@ -2553,10 +2551,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.03
-  maxDelta: 5
   animName: Moving
   speedFactor: 0.2
-  timeBeforeStopAnimation: 0.1
+  delayForStop: 50
 --- !u!136 &136000010406146468
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2829,7 +2826,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 4.43
   m_BaseOffset: -0.02
-  m_WalkableMask: 64
+  m_WalkableMask: 512
   m_ObstacleAvoidanceType: 0
 --- !u!208 &208000012558786676
 NavMeshObstacle:

@@ -17,6 +17,7 @@ public class BuildNavmesh : MonoBehaviour {
 
         foreach (GameObject obj in roads)
         {
+            if (obj == gameObject) continue;
             obj.SetActive(true);
         }  
 
@@ -25,6 +26,7 @@ public class BuildNavmesh : MonoBehaviour {
 
         foreach (GameObject obj in roads)
         {
+            if (obj == gameObject) continue;
             obj.SetActive(false);
         }
 #endif
