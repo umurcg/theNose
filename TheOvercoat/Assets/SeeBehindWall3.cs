@@ -9,7 +9,7 @@ public class SeeBehindWall3 : MonoBehaviour {
     public LayerMask ignoreRaycast;
     bool canSeeThroughWalls=false;
     Camera cam;
-    Material originalMat;
+    public Material originalMat;
     Renderer rend;
     public GameObject player;
 
@@ -36,6 +36,7 @@ public class SeeBehindWall3 : MonoBehaviour {
             rend = player.transform.GetChild(i).GetComponent<Renderer>();
         }
 
+        if(originalMat==null)
         originalMat = rend.material;
 
         

@@ -322,7 +322,9 @@ public class KovalevHomeGameController : GameController {
     {
         if (GlobalController.isScnListContains(GlobalController.Scenes.Church)) return;
 
-        Vckrs.DisableAnotherObject(Ivan);
+        Ivan.transform.tag = "Untagged";
+
+        //Vckrs.DisableAnotherObject(Ivan);
         Ivan.GetComponent<BasicCharAnimations>().enabled = true;
         IvanAlt.enabled = true;
 
@@ -680,9 +682,9 @@ public class KovalevHomeGameController : GameController {
             giveLetterToIvan();
        
         }
-        else
+        else if(khs==kovalevHomeScene.KovalevLoosesHisNose)
         {
-            callIvanComesWithPaper();
+            KovalevPickedPaper();
         }
     }
 

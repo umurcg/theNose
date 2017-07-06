@@ -126,10 +126,17 @@ public class NoseEncounterGameController : GameController {
 
         yield return Timing.WaitForSeconds(1f);
 
+        float originalDamper = cf.damper;
+
         //Set camera to nose
-        cf.changeTargetWithLerp(Nose,0.3f);
+        cf.damper = 2;
+        cf.changeTarget(Nose);
+
+        //cf.changeTargetWithLerp(Nose,0.3f);
 
         yield return Timing.WaitUntilDone(handlerHolder);
+
+
 
         hs.unmount();
 
@@ -155,7 +162,9 @@ public class NoseEncounterGameController : GameController {
 
         //Set camera to active character
         yield return Timing.WaitForSeconds(1f);
-        cf.changeTargetWithLerp(player, 0.3f);
+        //cf.changeTargetWithLerp(player, 0.3f);
+        cf.changeTarget(player);
+
 
         //Timing.RunCoroutine(Vckrs._lookTo(player, Nose, 1));
 
@@ -168,10 +177,13 @@ public class NoseEncounterGameController : GameController {
 
         while (subtitle.text != "") yield return 0;
 
+
         sc.callSubtitleWithIndex(1);
         while (subtitle.text != "") yield return 0;
 
         yield return Timing.WaitForSeconds(3f);
+
+        cf.damper = originalDamper;
 
         sc.callSubtitleWithIndex(2);
         while (subtitle.text != "") yield return 0;

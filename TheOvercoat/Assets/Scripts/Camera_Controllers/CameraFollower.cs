@@ -201,28 +201,31 @@ public class CameraFollower : MonoBehaviour {
     {
 
         //Stop update function
-        enabled = false;
+        //enabled = false;
 
 
-        Vector3 initialPosition = gameObject.transform.position;
+        //Vector3 initialPosition = gameObject.transform.position;
 
-        float ratio = 0;
-        while (ratio < 1)
-        {
-            //Debug.Log("Lerping");
-            ratio += Time.deltaTime * speed;
-            gameObject.transform.position = Vector3.Lerp(initialPosition, relativePosition+ obj.transform.position, ratio);
-            yield return 0;
+        //float ratio = 0;
+        //while (ratio < 1)
+        //{
+        //    //Debug.Log("Lerping");
+        //    ratio += Time.deltaTime * speed;
+        //    gameObject.transform.position = Vector3.Lerp(initialPosition, relativePosition+ obj.transform.position, ratio);
+        //    yield return 0;
 
-        }
-        gameObject.transform.position = relativePosition+ obj.transform.position;
+        //}
+        //gameObject.transform.position = relativePosition+ obj.transform.position;
+
+
+        damper = speed;
 
 
         changeTarget(obj);
 
 
         //Continue update function
-        enabled = true;
+        //enabled = true;
         yield break;
     }
 

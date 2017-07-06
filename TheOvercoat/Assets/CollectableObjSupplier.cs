@@ -22,8 +22,11 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
     public GameObject _3DPanel;
     public GameObject UI3Dicon;
 
-    public string countMessage;
-    public string additionalTutorialString;
+   public TextAsset countMessageTA;
+   public TextAsset additionalTutorialStringTA;
+    
+    string countMessage;
+    string additionalTutorialString;
 
     public enum animationType { Boolean, Trigger};
     public animationType AnimationType = animationType.Boolean;
@@ -46,7 +49,8 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
         collectedObjs = new List<GameObject>();
         cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
 
-
+        countMessage = Vckrs.getStringAccordingToLanguage((Language)GlobalController.Instance.getLangueSetting(), countMessageTA);
+        additionalTutorialString = Vckrs.getStringAccordingToLanguage((Language)GlobalController.Instance.getLangueSetting(), additionalTutorialStringTA);
 
     }
 	
@@ -147,6 +151,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
 
     }
 
+    [ContextMenu ("Supply")]
     void supply()
     {
         if (prefabs.Length == 0) return;

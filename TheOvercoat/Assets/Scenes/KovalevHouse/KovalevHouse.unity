@@ -2414,6 +2414,28 @@ MonoBehaviour:
   activeMat: {fileID: 2100000, guid: 71ef2eaa84333614a901a16ecf95dcc8, type: 2}
   activeObjectTag: ActiveObject
   controlChildren: 0
+--- !u!114 &718261039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 718261029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAsset: {fileID: 0}
+  subtitleTexts:
+  - "Kovalev: Hala yok. Her \u015Fey ger\xE7ekmi\u015F. Hala burunsuzum."
+  AllSubtitles: "Kovalev: Hala yok. Her \u015Fey ger\xE7ekmi\u015F. Hala burunsuzum."
+  ifDesroyItself: 0
+  releaseAfterSub: 1
+  manualTimerArray: []
+  TimeMode: 0
+  narrator: 0
+  timeInhibator: 13
+  clips: []
 --- !u!1001 &780117038
 Prefab:
   m_ObjectHideFlags: 0
@@ -2862,7 +2884,7 @@ MonoBehaviour:
   police: {fileID: 1599776378}
   policeNose: {fileID: 1919385914}
   headAttachNose: {fileID: 868026963}
-  khs: 3
+  khs: 4
 --- !u!114 &964300609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3249,7 +3271,7 @@ MonoBehaviour:
   AllSubtitles: "Kovalev: Allah allah, \xE7ok garip bir r\xFCyayd\u0131.\nKovalev:
     Hemen \xE7\u0131k\u0131p burunumu aramaya devam etmeliyim."
   ifDesroyItself: 0
-  releaseAfterSub: 0
+  releaseAfterSub: 1
 --- !u!82 &964300623
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4883,7 +4905,7 @@ MonoBehaviour:
   owner: {fileID: 964300599}
   passParameter: {fileID: 0}
   methodName: ivanAction
-  destroySelf: 1
+  destroySelf: 0
   preventClickActionWithSubtitle: 1
 --- !u!114 &1665565539
 MonoBehaviour:

@@ -11,6 +11,7 @@ using UnityEditor;
 public enum AnimType { Trigger, Boolean, Int,Float };
 public enum Axis { X,Y,Z};
 public enum Plane { XY,XZ,YZ};
+public enum Language { ENG=0, TR=1}
 
 
 public class Vckrs : MonoBehaviour
@@ -1302,7 +1303,127 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     
 
     }
+    
+    /// <summary>
+    /// extract string according to input language enum. text asset must be in the fallowing format
+    /// TR
+    /// string
+    /// -----
+    /// ENG
+    /// string
+    /// -----
+    /// </summary>
+    /// <param name="language"></param>
+    /// <param name="ta"></param>
+    public static string getStringAccordingToLanguage(Language language, TextAsset ta, string finishSignature = "-----")
+    {
+        
+        string languageCode = language.ToString();
 
+        //Debug.Log(languageCode);
+
+        int startIndex = findLine(languageCode,ta) + 1;
+        int finishIndex = findLine(startIndex, finishSignature,ta) - 1;
+
+
+        //If text asset doesn't have text for languge settings that user set, then import turkish subtitles by default. Because 
+        // I am sure there will be turkish subtitle. Because I am turk :)
+        if (startIndex > finishIndex || startIndex == 0)
+        {
+            //Debug.Log("Couldn't find subtite for " + languageCode + " in "+ fileName+" so importing turkish");
+            startIndex = findLine("TR",ta) + 1;
+            finishIndex = findLine(startIndex, finishSignature,ta) - 1;
+
+            //If stille couldn't find any subtitle from text asset then return and don't do aything
+            if (startIndex > finishIndex) return "";
+        }
+
+
+        //Debug.Log("start index is " + startIndex + " finish index is" + finishIndex);
+
+        return readLinesFromTA(startIndex, finishIndex, ta);
+    }
+
+
+    //Returns line of input string if it is exist, starting to search after startIndex.
+    public static int findLine(int startIndex, string line, TextAsset textAsset)
+    {
+
+        //StreamReader theReader = new StreamReader(Application.dataPath + "/Resources/" + folderName + "/" + fileName + ".txt");
+
+        string wholeFile =/* theReader.ReadToEnd();*/ textAsset.text;
+        string[] lines = wholeFile.Split('\n');
+        string[] sublines = new string[lines.Length - startIndex];
+
+        for (int i = 0; i < sublines.Length; i++)
+        {
+
+            sublines[i] = lines[startIndex + i];
+            //Debug.Log(sublines[i].Length+ " line is "+line.Length);
+            //Debug.Log(string.Compare(line, sublines[i].TrimEnd()));
+
+            if (string.Compare(line, sublines[i].TrimEnd()) == 0)
+            {
+                //Debug.Log("Returned " + (startIndex+ i));
+                return startIndex + i;
+
+            }
+        }
+
+        return -1;
+    }
+
+    //Returns line of input string if it is exist
+    public static int findLine(string line, TextAsset textAsset)
+    {
+
+        //StreamReader theReader = new StreamReader(Application.dataPath + "/Resources/" + folderName + "/" + fileName+".txt");
+
+        string wholeFile =/* theReader.ReadToEnd();*/ textAsset.text;
+        string[] lines = wholeFile.Split('\n');
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            if (string.Compare(line, lines[i].TrimEnd()) == 0)
+            {
+                return i;
+            }
+        }
+
+        //Debug.Log("Coduln2t fine line " + line + " in text asset");
+        return -1;
+    }
+
+    //Read lines from text asset with starting fromt startIndex and finishing at finishIndex lines.
+    public static string readLinesFromTA(int startIndex, int finishIndex, TextAsset ta)
+    {
+        string[] allLines = textFileToStringArray(ta);
+        string[] rangeLines = new string[finishIndex - startIndex + 1];
+
+        for (int i = 0; i < rangeLines.Length; i++)
+        {
+            rangeLines[i] = allLines[startIndex + i];
+            //Debug.Log(rangeLines[i]);
+        }
+
+        string result="";
+        foreach(string s in rangeLines)
+        {
+            result += s;
+        }
+
+        return result;
+
+    }
+    public static string[] textFileToStringArray(TextAsset ta)
+    {
+        string allText = ta.text;
+        string[] lines = allText.Split('\n');
+
+        //foreach (string line in lines) Debug.Log(line);
+
+        return lines;
+    }
 
 }
 
