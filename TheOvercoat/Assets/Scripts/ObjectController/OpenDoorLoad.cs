@@ -278,4 +278,13 @@ public class OpenDoorLoad : LoadScene {
 
     //}
 
+    public void openDoor()
+    {
+        open = true;
+    }
+    public void closeDoor()
+    {
+        close = true;
+    }
+
 }

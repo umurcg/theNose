@@ -6,15 +6,19 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class KovalevHomeGameController : GameController {
-    public GameObject CharSubt, Door, Ivan, Dolap, Paper, HandR, StartingPoint;
+    public GameObject  Door, Ivan, Dolap, Paper, HandR, StartingPoint;
 
-    public GameObject armChair, handMirror,  handMirrorBig, letterToSend, letterRecieved ,tableChair, police, headAttachNose;
+    public GameObject armChair, handMirror,  handMirrorBig, letterToSend, letterRecieved ,tableChair, police,policeNose ,headAttachNose;
    
 
-    Text charText;
+    //Text charText;
     NavMeshAgent IvanAgent;
     AlwaysLookTo IvanAlt;
     KeySlideCompletely ksc;
+
+    public enum kovalevHomeScene {KovalevLoosesHisNose,Church,Dream,JustExploring, None };
+    public kovalevHomeScene khs;
+
 
 
     // Use this for initialization
@@ -22,7 +26,7 @@ public class KovalevHomeGameController : GameController {
     {
         base.Awake();
                       
-        charText = CharSubt.GetComponent<Text>();
+
         sc = GetComponent<SubtitleCaller>();
         IvanAgent = Ivan.GetComponent<NavMeshAgent>();
         IvanAlt = Ivan.GetComponent<AlwaysLookTo>();
@@ -36,24 +40,31 @@ public class KovalevHomeGameController : GameController {
         else
         {
 
-            //First check game objects
-            if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("SculpturerGameSculpturerGameController")/*true*/)
+            if (khs == kovalevHomeScene.JustExploring)
             {
+                Door.GetComponent<OpenDoorLoad>().Unlock();
+                return;
+            }
+
+            //First check game objects
+            if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("SculpturerGameSculpturerGameController")/*true*/|| khs==kovalevHomeScene.Dream)
+            {
+                khs = kovalevHomeScene.Dream;
                 Timing.RunCoroutine( comingFromSculpturer());
                 return;
             }
 
             //If user coming for first time and didn't go church 
-                if (!GlobalController.isScnListContains(GlobalController.Scenes.KovalevHouse)
-                && !GlobalController.isScnListContains(GlobalController.Scenes.Church)
-                )
+                if ((!GlobalController.isScnListContains(GlobalController.Scenes.KovalevHouse) && !GlobalController.isScnListContains(GlobalController.Scenes.Church) && khs!=kovalevHomeScene.Church)  || khs==kovalevHomeScene.KovalevLoosesHisNose)
             {
+                khs = kovalevHomeScene.KovalevLoosesHisNose;
                 //Debug.Log("calling wake up");
                 callWakeUp();
                 return;
             } //If previous 2nd scene is church
-            else if (GlobalController.Instance.sceneList.Count>=2 &&  GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 2] == (int)GlobalController.Scenes.Church)
+            else if( (GlobalController.Instance.sceneList.Count>=2 &&  GlobalController.Instance.sceneList[GlobalController.Instance.sceneList.Count - 2] == (int)GlobalController.Scenes.Church)|| khs==kovalevHomeScene.Church )
             {
+                khs = kovalevHomeScene.Church;
                 //Debug.Log("Nose is FOUUUUND!");
                 Timing.RunCoroutine(noseIsFound());
                 //Timing.RunCoroutine(_finishedRecievedLetter());
@@ -61,6 +72,7 @@ public class KovalevHomeGameController : GameController {
             //PLayer comes here for just fun. Just open the door and leave everythink else normal
             else
             {
+                khs = kovalevHomeScene.JustExploring;
                 Door.GetComponent<OpenDoorLoad>().Unlock();
             }
            
@@ -111,7 +123,10 @@ public class KovalevHomeGameController : GameController {
 
     IEnumerator<float> _WakeUp()
     {
+        if (player == null) player = CharGameController.getActiveCharacter();
+
         CharGameController.movePlayer(Vector3.zero);
+     
 
         //wait one frame
         yield return 0;
@@ -134,6 +149,7 @@ public class KovalevHomeGameController : GameController {
 
         //Move player to starting position
         CharGameController.movePlayer(StartingPoint.transform.position);
+        player.transform.rotation = StartingPoint.transform.rotation;
 
         if (!playerAnim)
         {
@@ -152,7 +168,7 @@ public class KovalevHomeGameController : GameController {
 
         player.GetComponent<CharacterController>().enabled = false;
 
-
+        yield return Timing.WaitForSeconds(2f);
 
         //BasicCharAnimations bca = player.GetComponent<BasicCharAnimations>();
         //bca.enabled = false;
@@ -218,7 +234,7 @@ public class KovalevHomeGameController : GameController {
 
         sc.callSubtitleWithIndex(0);
 
-        while (charText.text != "")
+        while (subtitle.text != "")
         {
             //print(charText.text);
             yield return 0;
@@ -236,7 +252,7 @@ public class KovalevHomeGameController : GameController {
         Timing.RunCoroutine(Vckrs._lookTo(player, Ivan.transform.position - player.transform.position, 1f));
 
         sc.callSubtitleWithIndex(1);
-        while (charText.text != "")
+        while (subtitle.text != "")
         {
             //print(charText.text);
             yield return 0;
@@ -247,7 +263,7 @@ public class KovalevHomeGameController : GameController {
         playerNma.speed = 3f;
 
         sc.callSubtitleWithIndex(2);
-        while (charText.text != "")
+        while (subtitle.text != "")
         {
             yield return 0;
         }
@@ -256,7 +272,7 @@ public class KovalevHomeGameController : GameController {
         playerNma.Stop();
 
         sc.callSubtitleWithIndex(3);
-        while (charText.text != "")
+        while (subtitle.text != "")
         {
             yield return 0;
         }
@@ -287,7 +303,8 @@ public class KovalevHomeGameController : GameController {
         Debug.Log("Ivan comes with paper");
         IEnumerator<float> handler;
 
-        Vckrs.DisableAnotherObject(Dolap);
+        Dolap.tag = "Untagged";
+        //Vckrs.DisableAnotherObject(Dolap);
 
         Ivan.SetActive(true);
         Paper.SetActive(true);
@@ -348,9 +365,14 @@ public class KovalevHomeGameController : GameController {
 
 
         //Make kovalev sit to chair
+        
         WalkLookAnim wla = armChair.GetComponent<WalkLookAnim>();
+
+        playerAnim.speed = 1000;
         wla.lockSit = true;
-        Timing.RunCoroutine(wla._sit(true));
+        Timing.WaitUntilDone(Timing.RunCoroutine(wla._sit(true)));
+
+        playerAnim.speed = 1;
 
         sc.callSubtitleWithIndex(4);
         while (getSubt().text != "") yield return 0;
@@ -375,10 +397,11 @@ public class KovalevHomeGameController : GameController {
 
         //Player get up
         wla.getUp();
+        wla.lockSit = false;
 
         WalkLookAnim tcWLA = tableChair.GetComponent<WalkLookAnim>();
 
-        //Wait kovalet for sit 
+        //Wait kovalev for sit 
         while (!tcWLA.isSitting()) yield return 0;
 
         letterToSend.SetActive(true);
@@ -394,7 +417,7 @@ public class KovalevHomeGameController : GameController {
 
     IEnumerator<float> _finishedWriting()
     {
-        Paper.SetActive(true);
+        //Paper.SetActive(true);
 
         letterToSend.SetActive(false);
 
@@ -403,6 +426,7 @@ public class KovalevHomeGameController : GameController {
 
         yield return Timing.WaitForSeconds(3f);
 
+        Ivan.transform.LookAt(player.transform.position);
         IvanAlt.enabled = transform;        
         Ivan.transform.tag = "ActiveObject";
         
@@ -428,10 +452,10 @@ public class KovalevHomeGameController : GameController {
 
     IEnumerator<float> _giveLetterToIvan()
     {
-        Paper.SetActive(false);
+        //Paper.SetActive(false);
 
         //Check is in right point in story
-        if (!GlobalController.isScnListContains(GlobalController.Scenes.Church)) yield break;
+        //if (!GlobalController.isScnListContains(GlobalController.Scenes.Church)) yield break;
 
         sc.callSubtitleWithIndex(9);
         while (getSubt().text != "") yield return 0;
@@ -440,11 +464,14 @@ public class KovalevHomeGameController : GameController {
         IvanAlt.enabled = false;
 
         IvanAgent.SetDestination(Door.transform.position);
+   
 
         handlerHolder =  Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         Ivan.SetActive(false);
+
+        Door.GetComponent<OpenDoorLoad>().closeDoor();
 
         blackScreen.script.fadeOut();
 
@@ -460,10 +487,14 @@ public class KovalevHomeGameController : GameController {
         yield return Timing.WaitForSeconds(5f);
         
         Ivan.SetActive(true);
+        Ivan.tag = "Untagged";
+
         IvanAgent.SetDestination(Vector3.Lerp(Ivan.transform.position, player.transform.position, 0.7f));
 
-        Timing.KillCoroutines(handlerHolder);
 
+        Timing.KillCoroutines(handlerHolder);
+        Timing.RunCoroutine(Vckrs._lookTo(player, Ivan.transform.position, 1f));
+        
         sc.callSubtitleWithIndex(10);
 
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan));
@@ -493,6 +524,14 @@ public class KovalevHomeGameController : GameController {
 
         //Rang door
 
+        AudioSource source = GetComponent<AudioSource>();
+        source.Play();
+
+        //while (source.isPlaying) yield return 0;
+
+        yield return Timing.WaitForSeconds(3f);
+
+
         //Door is rang, Ivan goes to door
         handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(Ivan, Door.transform.position));
         yield return Timing.WaitUntilDone(handlerHolder);
@@ -501,14 +540,22 @@ public class KovalevHomeGameController : GameController {
 
         yield return Timing.WaitForSeconds(3f);
 
+        Ivan.transform.LookAt(player.transform);
         Ivan.SetActive(true);
 
         sc.callSubtitleWithIndex(12);
         while (subtitle.text != "") yield return 0;
 
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs._lookTo(Ivan, Door, 1f)));
+
+        Ivan.SetActive(false);
+
+        yield return Timing.WaitForSeconds(3f);
+
         //Police comes in 
         police.SetActive(true);
-        Ivan.SetActive(false);
+
+        Timing.RunCoroutine(Vckrs._lookTo(player, police, 1f));
 
         handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(police, player.transform.position+Vector3.forward*3));
         yield return Timing.WaitUntilDone(handlerHolder);
@@ -516,18 +563,26 @@ public class KovalevHomeGameController : GameController {
         sc.callSubtitleWithIndex(13);
         while (subtitle.text != "") yield return 0;
 
+        //swap
+
+        policeNose.SetActive(false);
+        CharGameController.getHand(CharGameController.hand.RightHand).transform.GetChild(1).gameObject.SetActive(true);
+
+        sc.callSubtitleWithIndex(14);
+        while (subtitle.text != "") yield return 0;
+
         handlerHolder = Timing.RunCoroutine(Vckrs._setDestination(police, Door.transform.position ));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         police.SetActive(false);
 
-        sc.callSubtitleWithIndex(14);
+        sc.callSubtitleWithIndex(15);
         while (subtitle.text != "") yield return 0;
 
         sc.callSubtitleWithIndexTime(1);
         while (narSubtitle.text != "") yield return 0;
 
-        sc.callSubtitleWithIndex(16);
+        sc.callSubtitleWithIndex(17);
         while (subtitle.text != "") yield return 0;
 
         headAttachNose.SetActive(true);
@@ -544,15 +599,16 @@ public class KovalevHomeGameController : GameController {
     {
         headAttachNose.SetActive(false);
         
-        sc.callSubtitleWithIndex(17);
+        sc.callSubtitleWithIndex(18);
         while (subtitle.text != "") yield return 0;
 
+        Ivan.transform.LookAt(player.transform.position);
         Ivan.SetActive(true);
         IvanAgent.SetDestination(Vector3.Lerp(Ivan.transform.position, player.transform.position, 0.7f));
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan));
         yield return Timing.WaitUntilDone(handlerHolder);
 
-        sc.callSubtitleWithIndex(18);
+        sc.callSubtitleWithIndex(19);
         while (subtitle.text != "") yield return 0;
 
         Door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
@@ -566,16 +622,20 @@ public class KovalevHomeGameController : GameController {
         yield return 0;
         Debug.Log("sCLUPTUREEEEEEER");
 
+        playerNma.enabled = false;
+
         //Move player to starting position
         CharGameController.movePlayer(StartingPoint.transform.position);
+        player.transform.rotation = StartingPoint.transform.rotation;
 
-        if (!playerAnim) yield return 0;
+        //if (!playerAnim) yield return 0;
 
         playerAnim.SetTrigger("Lie");
 
         pcc.StopToWalk();
 
-        player.GetComponent<CharacterController>().enabled = false;
+        yield return Timing.WaitForSeconds(2f);
+        //player.GetComponent<CharacterController>().enabled = false;
 
 
         playerAnim.SetTrigger("GetUp");
@@ -583,7 +643,7 @@ public class KovalevHomeGameController : GameController {
         yield return Timing.WaitForSeconds(2f);
 
 
-        IEnumerator<float> handler = Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position - player.transform.right * 1f - player.transform.up * 1.7f, 0.5f));
+        IEnumerator<float> handler = Timing.RunCoroutine(Vckrs._Tween(player, player.transform.position - player.transform.right * 1f - player.transform.up * 1.7f, 1.3f));
         yield return Timing.WaitUntilDone(handler);
 
 
@@ -600,13 +660,30 @@ public class KovalevHomeGameController : GameController {
         //yield return 0;
         //KovAgent = player.AddComponent<NavMeshAgent>();
 
+        playerNma.enabled = true;
+
         yield return Timing.WaitForSeconds(0.5f);
 
-        sc.callSubtitleWithIndex(19);
+        sc.callSubtitleWithIndex(20);
+
+        playerNma.enabled = true;
+
         Door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
 
         yield break;
     }
 
+    public void ivanAction()
+    {
+        if (khs == kovalevHomeScene.Church)
+        {
+            giveLetterToIvan();
+       
+        }
+        else
+        {
+            callIvanComesWithPaper();
+        }
+    }
 
 }

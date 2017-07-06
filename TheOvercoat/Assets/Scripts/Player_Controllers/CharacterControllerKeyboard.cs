@@ -11,7 +11,7 @@ public class CharacterControllerKeyboard : MonoBehaviour {
     public float speed = 3f;
     Vector3 move;
     public float rotateSpeed = 3f;
-    CameraRotator rotator;
+    //CameraRotator rotator;
 
 
     void Awake()
@@ -23,7 +23,7 @@ public class CharacterControllerKeyboard : MonoBehaviour {
 
      void Start()
     {
-        rotator = CharGameController.getCamera().GetComponent<CameraRotator>();
+        //rotator = CharGameController.getCamera().GetComponent<CameraRotator>();
     }
 
 

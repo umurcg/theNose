@@ -13,6 +13,7 @@ public class KovalevNoseAttachGame : MonoBehaviour {
 
     float fallingTimer;
 
+    CursorImageScript cis;
 
 
 	// Use this for initialization
@@ -26,7 +27,10 @@ public class KovalevNoseAttachGame : MonoBehaviour {
         GameObject player=CharGameController.getActiveCharacter();
         PlayerComponentController pcc=player.GetComponent<PlayerComponentController>();
         if (pcc) pcc.StopToWalk();
-        
+
+        cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
+        cis.externalTexture = cis.frontierObject;
+
     }
 
 
@@ -35,6 +39,7 @@ public class KovalevNoseAttachGame : MonoBehaviour {
         GameObject player = CharGameController.getActiveCharacter();
         PlayerComponentController pcc = player.GetComponent<PlayerComponentController>();
         if (pcc) pcc.ContinueToWalk();
+        cis.resetExternalCursor();
 
     }
 

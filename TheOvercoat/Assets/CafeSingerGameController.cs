@@ -66,7 +66,7 @@ public class CafeSingerGameController : GameController {
 
         //Debug.Log("CafeSingerController");
         //Kovalev.transform.position = kovalevStartPoint.transform.position;
-        kovalevCC.navmashagent.SetDestination(mirror.transform.position-mirror.transform.up*1);
+        kovalevCC.navmashagent.SetDestination(mirror.transform.position);
 
   
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Kovalev));
@@ -95,7 +95,7 @@ public class CafeSingerGameController : GameController {
         
 
         //Kovalev mirror talk
-        handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(Kovalev, mirror,1f));
+        handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(Kovalev, mirror.transform.parent.gameObject,1f));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         while (narSubtitle.text != "") yield return 0;

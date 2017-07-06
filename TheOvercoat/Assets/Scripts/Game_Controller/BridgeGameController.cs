@@ -239,13 +239,15 @@ public class BridgeGameController : GameController {
     void OnTriggerEnter()
     {
         //onBridge = true;
-        trigger.tag = "ActiveObject";
+        trigger.tag = "ActiveObjectOnlyCursor";
+        trigger.GetComponent<DirectClickScript>().enabled = true;
     }
 
     void OnTriggerExit()
     {
         //onBridge = false;
         trigger.tag = "Untagged";
+        trigger.GetComponent<DirectClickScript>().enabled = false;
     }
 
     public override void activateController()

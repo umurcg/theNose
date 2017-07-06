@@ -223,6 +223,16 @@ public class CursorImageScript : MonoBehaviour
 
                     setCursor(activeObject);
                     break;
+
+                case "ActiveObjectOnlyCursor":
+
+                    setCursor(activeObject);
+                    break;
+
+                case "ActiveEvenCantWalk":
+
+                    setCursor(activeObject);
+                    break;
                 case "Grab":
 
                     setCursor(frontierObject);

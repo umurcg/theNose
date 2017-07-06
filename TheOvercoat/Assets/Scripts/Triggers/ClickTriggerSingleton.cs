@@ -144,7 +144,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
         while (checkIsColliding(aim) == false)
         {
             //print("walking");
-            if (Input.anyKeyDown)
+            if (Input.GetAxis("Horizontal")!=0||Input.GetAxis("Vertical")!=0)
             {
                 Timing.KillCoroutines(handler);
                 stopToWalk();

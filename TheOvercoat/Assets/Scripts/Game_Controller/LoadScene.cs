@@ -37,7 +37,7 @@ public class LoadScene : MonoBehaviour {
 
     public virtual IEnumerator<float> _Load()
     {
-        if (fade)
+        if (fade && blackScreen.script!=null)
         {
             IEnumerator<float> handler = blackScreen.script.fadeOut();
             yield return Timing.WaitUntilDone(handler);

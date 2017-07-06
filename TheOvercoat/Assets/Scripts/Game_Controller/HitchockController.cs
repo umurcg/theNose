@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MovementEffects;
 using UnityEngine.UI;
 
-public class HitchockController : MonoBehaviour, IClickAction  {
+public class HitchockController : GameController, IClickAction  {
 
     public GameObject Camera,  MirrorPlane, /*KovMirrorPose,*/ GameController, CharController;
     GameObject MainCamera, Kovalev;
@@ -13,13 +13,16 @@ public class HitchockController : MonoBehaviour, IClickAction  {
 
     MirrorReflection mr;
 
+    KovalevHomeGameController khgc;
+
     HitchcockShot hs;
     // Use this for initialization
-    void Start () {
+    public override void Start () {
+        base.Start();
         hs = Camera.GetComponent<HitchcockShot>();
         mr = GetComponentInChildren<MirrorReflection>();
 
-
+        khgc = GameController.GetComponent<KovalevHomeGameController>();
     }
 	
 	// Update is called once per frame
@@ -41,6 +44,7 @@ public class HitchockController : MonoBehaviour, IClickAction  {
 
         Kovalev.GetComponent<NavMeshAgent>().Stop();
 
+        gameObject.transform.tag = "Untagged";
 
         yield return 0;
 
@@ -73,12 +77,28 @@ public class HitchockController : MonoBehaviour, IClickAction  {
             yield return 0;
         }
 
+        if (sc == null) Debug.Log("sc is nışş");
 
-        Text cs = CharController.GetComponent<Text>();
-        cs.text = "Kovalev: Aman Tanrım!";
 
-        yield return Timing.WaitForSeconds(5f);
+        bool kovalevLoosesHisNOse = false;
+        if (khgc.khs == KovalevHomeGameController.kovalevHomeScene.Dream)
+        {
+            sc.callSubtitleWithIndexTime(1);
+            while (subtitle.text != "") yield return 0;
 
+        }
+        else if (khgc.khs == KovalevHomeGameController.kovalevHomeScene.KovalevLoosesHisNose)
+        {
+            sc.callSubtitleWithIndexTime(0);
+            while (subtitle.text != "") yield return 0;
+
+            kovalevLoosesHisNOse = true;
+
+
+
+
+        }
+        //yield return Timing.WaitForSeconds(5f);
 
         MainCamera.SetActive(true);
         Kovalev.SetActive(true);
@@ -86,20 +106,23 @@ public class HitchockController : MonoBehaviour, IClickAction  {
 
         pcc.ContinueToWalk();
 
-        CallCoroutine cc = GetComponent<CallCoroutine>();
-        cc.call();
+        if (kovalevLoosesHisNOse)
+        {
+            CallCoroutine cc = GetComponent<CallCoroutine>();
+            cc.call();
+        }
 
         mr.enabled = false;
 
         Destroy(this);
-        gameObject.transform.tag = "Untagged";
+        
         
         yield break;
         
     }
 
 
-     public void Action(){
+     public override void Action(){
           Timing.RunCoroutine(_start());
       }
 

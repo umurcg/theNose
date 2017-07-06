@@ -35,7 +35,7 @@ public class MaterialController : MonoBehaviour {
 
     void setMaterialToRenderer(Material mat)
     {
-        if (controlChildren)
+        if (controlChildren|| ownerRenderer==null )
         {
             foreach (Renderer rend in renderers)
             {

@@ -250,7 +250,9 @@ public class CityGameController : MonoBehaviour {
             //Make night
             CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight(true);
 
-            CharGameController.coverKovalevsFace();
+            //CharGameController.coverKovalevsFace();
+            //activate nose in hand
+            CharGameController.getHand(CharGameController.hand.RightHand).transform.GetChild(1).gameObject.SetActive(true);
 
             //Reduce to spawnedObjects to 20
             streetAreas.GetComponent<SpawnBotsOnNavMeshRandomly>().spawnNumber = 20;
