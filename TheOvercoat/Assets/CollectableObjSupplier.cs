@@ -76,7 +76,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
             //Debug.Log("HitName: "+hit.transform.name  + "distance"+distance);
             
 
-            if (distance > radiusForUncollect)
+            if (distance > radiusForUncollect || hit.transform.tag!="Floor")
             {
                 //Debug.Log("You can't uncollect");
 
@@ -90,10 +90,8 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
                 if (cis) cis.setExternalTexture(insideOfRadius);
 
                 if (Input.GetButtonUp("Uncollect"))
-                {
-              
-
-                    
+                {       
+                                      
                     uncollect(hit.point);
                 }
 

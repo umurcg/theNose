@@ -262,12 +262,13 @@ public class NoseEncounterGameController : GameController {
 
     }
 
-
+    [ContextMenu("nose catched")]
     public void noseCatched()
     {
         Timing.RunCoroutine(_noseCatched());
     }
 
+ 
     IEnumerator<float> _noseCatched()
     {
         newspaper.SetActive(false);
@@ -275,6 +276,8 @@ public class NoseEncounterGameController : GameController {
 
         noseCC.navmashagent.Stop();
         Timing.RunCoroutine(Vckrs._lookTo(Nose,player,1f));
+
+        Timing.RunCoroutine(Vckrs._lookTo(player, Nose, 1f));
 
         pcc.StopToWalk();
         sc.callSubtitleWithIndex(3);

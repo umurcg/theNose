@@ -19,6 +19,8 @@ public class garsonContoller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(garsoncc==null) garsoncc = new characterComponents(garson);
+
         if (timer < 0)
         {
             int i = Random.Range(0, 2);

@@ -3,24 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 
+[RequireComponent (typeof(NavMeshAgent))]
 public class MoveRandomlyOnNavMesh : MonoBehaviour {
 
     public float radius;
     public float speed=3f;
     NavMeshAgent nma;
 
-    bool walking=false;
+    //bool walking=false;
+    IEnumerator<float> walkCoruitine;
 
     // Use this for initialization
     void Awake () {
 
         nma = GetComponent<NavMeshAgent>();
 
-        if (!nma)
-        {
-            Debug.Log("One of required components is empty");
-            enabled = false;
-        }
+        //if (!nma)
+        //{
+        //    //Debug.Log("One of required components is empty");
+        //    enabled = false;
+        //}
 
         nma.speed = speed;
        
@@ -29,7 +31,7 @@ public class MoveRandomlyOnNavMesh : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
        
-        if(!walking)
+        if(walkCoruitine==null)
         {
             //Get position on circle
             Vector3 randomPos= Vckrs.generateRandomPositionOnCircle(transform.position, radius);
@@ -37,7 +39,7 @@ public class MoveRandomlyOnNavMesh : MonoBehaviour {
             //Cast it to position on navmesh
             Vector3 castedPos;
             if(Vckrs.findNearestPositionOnNavMesh(randomPos, nma.areaMask, radius, out castedPos)){
-                Timing.RunCoroutine(_walkToPoint(castedPos));
+               walkCoruitine= Timing.RunCoroutine(_walkToPoint(castedPos));
             }
 
         }
@@ -48,19 +50,38 @@ public class MoveRandomlyOnNavMesh : MonoBehaviour {
 
     IEnumerator<float> _walkToPoint(Vector3 pos)
     {
-        if (!nma.isOnNavMesh) yield break;
+        while (!nma.isOnNavMesh)
+        {
+            saveMe();
+            yield return 0;
+        }
 
-        walking = true;
+        //walking = true;
         nma.Resume();
         nma.SetDestination(pos);
 
-        while (Vector3.Distance(pos, transform.position) > 3f) yield return 0;
-        walking = false;
+        Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject)));
+
+        walkCoruitine = null;
 
         yield break;
 
     }
 
+    bool saveMe()
+    {
+        Vector3 castedPos;
+        if (Vckrs.findNearestPositionOnNavMesh(transform.position, nma.areaMask, radius, out castedPos)) {
+            castedPos = transform.position;
+            return true;
+        }
+
+        Debug.Log("trying to save " + gameObject.name);
+
+        return false;
+
+
+    }
 
 
 }

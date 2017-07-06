@@ -79,8 +79,9 @@ public class GirlGameController : MonoBehaviour {
             obj.transform.position = transform.position;
 
             Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width),  Screen.height,0));
-            
-            obj.transform.rotation = Quaternion.LookRotation(transform.up);
+
+            //obj.transform.rotation = Quaternion.LookRotation(-1*transform.up);
+            obj.transform.rotation = transform.rotation;
             obj.transform.position = screenPosition;
             obj.transform.parent = transform;
             aimObjectTimer = aimObjectTime;

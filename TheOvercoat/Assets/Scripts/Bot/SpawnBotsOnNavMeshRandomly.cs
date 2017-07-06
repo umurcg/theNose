@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 
 //This is fucking smart
@@ -12,6 +13,7 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
     List<GameObject> spawnedObjects;
     public float minSpeed = 1;
     public float maxSpeed = 4;
+    public float radius;
 
     // Use this for initialization
     void Start()
@@ -52,19 +54,31 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
 
 
 
-    Vector3 getRandomPosOnMesh(GameObject obj)
+    Vector3 getRandomPosOnMesh(GameObject obj, int numberOfTry=50)
     {
-        SphereCollider sc = GetComponent<SphereCollider>();
-        Vector3 pos = sc.center+ transform.position+ sc.radius * Random.insideUnitSphere;
-        NavMeshHit nmh;
-        NavMeshAgent nma = obj.GetComponentInChildren<NavMeshAgent>();
-        if (NavMesh.SamplePosition(pos, out nmh, sc.radius,nma.areaMask)) {
-            return nmh.position;
-        }
-        else
+        //SphereCollider sc = GetComponent<SphereCollider>();
+
+        while (numberOfTry > 0)
         {
-            return Vector3.zero;
+            Vector3 pos = getRandomPosInCircle(transform.position, radius);
+            NavMeshHit nmh;
+            NavMeshAgent nma = obj.GetComponentInChildren<NavMeshAgent>();
+
+            //If it is last try then search in 1000
+            float radiusToSearch = (numberOfTry == 1) ? 1000 : 10;
+
+            if (NavMesh.SamplePosition(pos, out nmh, radiusToSearch, nma.areaMask))
+            {
+                return nmh.position;
+      
+            }
+      
+            numberOfTry -= 1;
         }
+
+
+        Debug.Log("Couldn't find proper position on navmesh");
+        return Vector3.zero;
 
     }
 
@@ -121,6 +135,31 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
 
     }
 
+    Vector3 getRandomPosInCircle(Vector3 center, float radius)
+    {
+        Vector2 randomPos = Random.insideUnitCircle * radius;
+        return (new Vector3(randomPos.x, 0, randomPos.y)) + center;
 
+    }
 
 }
+
+
+[CustomEditor(typeof(SpawnBotsOnNavMeshRandomly))]
+public class SpawnBotsOnNavMeshRandomlyEditor : Editor
+{
+
+    private SpawnBotsOnNavMeshRandomly script;
+
+    public void OnSceneGUI()
+    {
+        script = this.target as SpawnBotsOnNavMeshRandomly;
+        Handles.color = Color.red;
+        Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
+                                      , Vector3.up                   // normal
+                                      , script.radius);                              // radius
+    }
+}
+
+
+

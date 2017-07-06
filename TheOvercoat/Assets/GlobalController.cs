@@ -415,6 +415,14 @@ public int setDebugListToLevelIndex;
             }
         }
 
+        if (GetTextFromTA.allTexts != null)
+        {
+            foreach(GetTextFromTA script in GetTextFromTA.allTexts)
+            {
+                script.getString();
+            }
+        }
+
 
         Debug.Log("Language is " + languageSetting);
         //Instance.languageSetting = lan;

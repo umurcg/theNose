@@ -6,7 +6,7 @@ using MovementEffects;
 public class HeartGameObject : MonoBehaviour {
 
     public bool obstacle;
-    public float fallSpeed;
+    
     public int score;
     GirlGameController ggc;
 
@@ -23,10 +23,10 @@ public class HeartGameObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         destroyTime -= Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z)- transform.forward*Time.deltaTime*fallSpeed;
+   
 
         if (destroyTime < 0&&!obstacle)
-            DestroyObject(gameObject);
+            DestroyObject(transform.parent.gameObject);
 
         //if (debug)
         //{
@@ -50,7 +50,7 @@ public class HeartGameObject : MonoBehaviour {
             }
             else
             {
-                Destroy(gameObject);
+                Destroy(transform.parent.gameObject);
             }
         }
     }
@@ -109,7 +109,7 @@ public class HeartGameObject : MonoBehaviour {
             yield return 0;
         }
         transform.localScale = aimScale;
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
         ggc = transform.parent.GetComponent<GirlGameController>();
         Timing.RunCoroutine(ggc._finish(0f));
     }

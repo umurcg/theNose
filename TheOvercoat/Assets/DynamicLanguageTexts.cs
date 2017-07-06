@@ -26,7 +26,7 @@ public class DynamicLanguageTexts : MonoBehaviour {
         if (currentVisibleTexts != null && currentVisibleTexts.Contains(this)) currentVisibleTexts.Remove(this);
     }
 
-    void Awake()
+    protected virtual void Awake()
     {
         textComp = GetComponent<Text>();
 
@@ -45,7 +45,7 @@ public class DynamicLanguageTexts : MonoBehaviour {
 	
 	}
 
-    void updateText()
+    protected virtual void updateText()
     {
         string[] section= extractTextFromID(textID);
         if (section == null) return;
@@ -69,7 +69,7 @@ public class DynamicLanguageTexts : MonoBehaviour {
         }
     }
 
-    string findText(string[] section, GlobalController.Language lan)
+    protected string findText(string[] section, GlobalController.Language lan)
     {
             foreach(string s in section)
              {
@@ -84,7 +84,7 @@ public class DynamicLanguageTexts : MonoBehaviour {
     }
 
     //Returns line of input string if it is exist
-    string[] extractTextFromID(int id)
+    protected string[] extractTextFromID(int id)
     {
         string wholeFile = textAsset.text;
         string[] lines = wholeFile.Split('\n');

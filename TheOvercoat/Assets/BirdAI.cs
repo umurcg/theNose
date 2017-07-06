@@ -35,6 +35,9 @@ public class BirdAI : MonoBehaviour, IVisibility
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(timer==null) timer = new Timer(UnityEngine.Random.Range(minimumTime, maximumTime));
+
         cc.Move(transform.forward * speed * Time.deltaTime);
 
 
