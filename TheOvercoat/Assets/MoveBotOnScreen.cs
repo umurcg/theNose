@@ -2,7 +2,8 @@
 using System.Collections;
 
 [RequireComponent (typeof(NavMeshAgent))]
-public class MoveBotOnScreen : MonoBehaviour {
+public class MoveBotOnScreen : MonoBehaviour/*, IVisibility*/
+{
 
     public float timeBetweenMoves = 60f;
     Timer timer;
@@ -31,9 +32,22 @@ public class MoveBotOnScreen : MonoBehaviour {
 
     public void moveToScreen()
     {
-        Vckrs.setPositionToOutsideOfCameraAndOnNavmesh(gameObject, player.transform.position, 10, cam);
+        nma.enabled = false;
+        Debug.Log("Movinfg");
+        Vckrs.setPositionToOutsideOfCameraAndOnNavmesh(gameObject, player.transform.position, 100, cam,30,40);
         //Vector3 castedPos=Vector3.zero;
         //if(Vckrs.findNearestPositionOnNavMesh())
+        nma.enabled = true;
+    }
 
+
+    public void onVisible()
+    {
+        enabled = false;
+    }
+
+    public void onInvisible()
+    {
+        enabled = true;
     }
 }

@@ -49,7 +49,7 @@ public class BirdAI : MonoBehaviour, IVisibility
         }
         else if(waitingForBecomeInvisible)
         {
-            Debug.Log("Waitin");
+            //Debug.Log("Waitin");
         }
 
         if (timer.ticTac(Time.deltaTime))

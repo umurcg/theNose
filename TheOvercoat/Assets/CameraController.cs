@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour {
     Camera cam;
 
     public GameObject cameraTypeDropDown;
+    public GameObject canvas;
 
     //Orthographic clipping sizes
     public float nearOrt = -40;

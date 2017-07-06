@@ -32,7 +32,7 @@ public class ReyhanCityController : GameController {
 
         //Change way point at each mount so characters wont sit top of each other.
         //It is a bad design but still it works ;)
-        sitPosition = hs.wayPoints.transform.GetChild(hs.wayPoints.transform.childCount - 1).gameObject;
+        sitPosition = hs.wayPoints[0].transform.GetChild(hs.wayPoints[0].transform.childCount - 1).gameObject;
 
         Timing.RunCoroutine(goToCarier());
 

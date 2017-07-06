@@ -240,7 +240,9 @@ public class BirdsEyeView : MonoBehaviour {
     
         foreach (KeyValuePair<GameObject,Vector3> doorName in doorNames)
         {
-            doorName.Key.transform.position = GetComponent<Camera>().WorldToScreenPoint(doorName.Value);
+            Vector3 pos=GetComponent<Camera>().WorldToScreenPoint(doorName.Value);
+            pos.z = 0;
+            doorName.Key.transform.position = pos;
         }
     }
 

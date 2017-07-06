@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
-public class drunkManController : GameController {
+public class drunkManController : GameController,IVisibility {
 
     public float timeBetweenDrinks = 7.5f;
     MoveRandomlyOnNavMesh moveRand;
@@ -57,16 +58,14 @@ public class drunkManController : GameController {
 
 	}
 
-    private void OnBecameVisible()
+
+    public void onVisible()
     {
         enabled = true;
     }
 
-    private void OnBecameInvisible()
+    public void onInvisible()
     {
         enabled = false;
     }
-
-
-
 }

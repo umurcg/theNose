@@ -22,7 +22,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     public enum animType { Bool, Trigger };
     public animType AnimType = animType.Bool;
     public string animationName = "Sit";
-    public GameObject wayPoints;
+    public GameObject[] wayPoints;
     myTween mt;
 
     //Check this if passenger is not player
@@ -36,10 +36,13 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     CharacterControllerKeyboard cck;
 
+    public GameObject canvas;
+
     //Check is at dest
     Vector3 destination;
     bool checkDest = false;
 
+    public GameObject horseRoad;
 
     //Debug
     public bool mountDebug;
@@ -58,7 +61,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     // Use this for initialization
     void Awake() {  
         nma = GetComponent<NavMeshAgent>();
-        mt = wayPoints.GetComponent<myTween>();
+        //mt = wayPoints.GetComponent<myTween>();
         cc = GetComponent<Rigidbody>();
         carierBackcc = carierBack.GetComponent<Rigidbody>();
         carierFrontcc = carierFront.GetComponent<Rigidbody>();
@@ -129,7 +132,9 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         BasicCharAnimations bca = passenger.GetComponent<BasicCharAnimations>();
         if (bca) bca.enabled = true;
 
+        if (!mt) mt=nearestMT();
         mt.reverse = true;
+
         IEnumerator<float> handle = Timing.RunCoroutine(mt._tweenMEC(passenger, 2f));
         yield return Timing.WaitUntilDone(handle);
 
@@ -170,6 +175,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     {
         if(isPassengerPlayer) passenger= CharGameController.getActiveCharacter(); 
 
+        
+
         PlayerComponentController pcc = passenger.GetComponent<PlayerComponentController>();
         NavMeshAgent nmaPas = passenger.GetComponent<NavMeshAgent>();
 
@@ -182,6 +189,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
         if (pcc)
              pcc.StopToWalk();
+
+        mt = nearestMT();
 
         mt.reverse = false;
 
@@ -215,7 +224,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         Text subtitle=SubtitleFade.subtitles["CharacterSubtitle"];
         while (subtitle.text != "") yield return 0;
 
-        spawnedCarierChoice=Instantiate(carierChoices, mainCanvas.transform) as GameObject;
+        spawnedCarierChoice=Instantiate(carierChoices, canvas.transform) as GameObject;
         RectTransform rt = spawnedCarierChoice.GetComponent<RectTransform>();
         rt.position = new Vector2(Screen.width / 2 + rt.rect.width / 2, Screen.height * 1 / 3);
 
@@ -344,6 +353,43 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     public Vector3 giveMePosition()
     {
         //Debug.Log(wayPoints.transform.childCount);
-        return wayPoints.transform.GetChild(0).transform.position;
+        return nearestWayPoint().transform.GetChild(0).transform.position;
     }
+
+
+    GameObject nearestWayPoint()
+    {
+        GameObject wayPoint=null;
+        float minDistance = Mathf.Infinity;
+
+        foreach(GameObject wp in wayPoints)
+        {
+            GameObject child = wp.transform.GetChild(0).gameObject;
+            float dist = 0;
+
+            if (passenger == null)
+            {
+                GameObject player = CharGameController.getActiveCharacter();
+                dist = Vector3.Distance(player.transform.position, child.transform.position);
+            }
+            else
+            {
+                dist = Vector3.Distance(passenger.transform.position, child.transform.position);
+            }
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                wayPoint = wp;
+            }
+        }
+
+        return wayPoint;
+
+    }
+
+    myTween nearestMT()
+    {
+        return nearestWayPoint().GetComponent<myTween>();
+    }
+
 }
