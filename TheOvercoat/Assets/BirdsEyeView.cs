@@ -21,7 +21,7 @@ public class BirdsEyeView : MonoBehaviour {
 
     public GameObject streetParent;
 
-    List<GameObject> areaList;
+    //List<GameObject> areaList;
     public float maxSize = 50f;
     public float speed = 0.1f;
     public LayerMask mask;
@@ -54,14 +54,14 @@ public class BirdsEyeView : MonoBehaviour {
 
     void OnEnable()
     {
-        areaList = new List<GameObject>();
+        //areaList = new List<GameObject>();
  
 
 
-        for (int i = 0; i < streetParent.transform.childCount; i++)
-        {
-            areaList.Add(streetParent.transform.GetChild(i).gameObject);
-        }
+        //for (int i = 0; i < streetParent.transform.childCount; i++)
+        //{
+        //    areaList.Add(streetParent.transform.GetChild(i).gameObject);
+        //}
 
 
         doorNames = new Dictionary<GameObject, Vector3>();
@@ -70,7 +70,7 @@ public class BirdsEyeView : MonoBehaviour {
 
     void OnDisable()
     {
-        areaList = null;
+        //areaList = null;
         mainCanvas = null;
         doorNames = null;
     }
@@ -143,6 +143,13 @@ public class BirdsEyeView : MonoBehaviour {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit ,Mathf.Infinity,~mask))
             {
+
+                List<GameObject> areaList = new List<GameObject>();
+                for (int i = 0; i < streetParent.transform.childCount; i++)
+                    areaList.Add(streetParent.transform.GetChild(i).gameObject);
+
+                
+
               if(areaList.Contains(hit.transform.gameObject)){
 
                     if (Input.GetMouseButtonDown(0))
@@ -262,13 +269,15 @@ public class BirdsEyeView : MonoBehaviour {
         //    streetAreas.transform.GetChild(i).gameObject.SetActive(b);
         //}
 
-        foreach (GameObject area in areaList)
-            area.SetActive(b);
+        //foreach (GameObject area in areaList)
+        //    area.SetActive(b);
+        streetParent.SetActive(b);
     }
 
     bool areStreetsActive()
     {
-        return areaList[0].activeSelf;
+        //return areaList[0].activeSelf;
+        return streetParent.activeSelf;
     }
 
     public void getBackToOriginal(Vector3 resultPos)
@@ -307,9 +316,14 @@ public class BirdsEyeView : MonoBehaviour {
 
         disableEverythingExceptThis(true);
 
+
+
         if (resultPos != Vector3.zero)
+        {
+            //object[] values = { resultPos, true };
             messageReciever.SendMessage(message, resultPos);
 
+        }
         setStreetsActive(false);
 
         cameraInMovement = false;

@@ -270,12 +270,20 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
    
     }
 
-    public IEnumerator<float>  setDes(Vector3 pos, bool unmountOnFinish = true)
+    public IEnumerator<float>  setDes(Vector3 pos, bool unmountOnFinish=true)
     {
         Debug.Log("Set des");
         setDestHandler =Timing.RunCoroutine(_setDes(pos,unmountOnFinish));
         return setDestHandler;
        
+    }
+
+    public IEnumerator<float> setDesAndUnmount(Vector3 pos)
+    {
+        Debug.Log("Set des");
+        setDestHandler = Timing.RunCoroutine(_setDes(pos, true));
+        return setDestHandler;
+
     }
 
     IEnumerator<float> _setDes(Vector3 pos, bool unmountOnFinish=true)
@@ -286,7 +294,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
         GameObject activePlayer = CharGameController.getActiveCharacter();
 
-        GameObject orgTarget=null;
+        //GameObject orgTarget=null;
         
         //if (passenger == activePlayer) {
         //    //Set aim of camera follower to owner
