@@ -10,11 +10,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System.IO;
 
-public enum Painter_BrushMode { PAINT, DECAL, BINARY };
+public enum Painter_BrushMode { PAINT, BLACKWHOLE, BINARY };
 public class TexturePainter : MonoBehaviour {
 	public GameObject brushCursor,brushContainer; //The cursor that overlaps the model and our container for the brushes painted
 	public Camera sceneCamera,canvasCam;  //The camera that looks at the model, and the camera that looks at the canvas.
-	public GameObject paintBrush,starBrush,binaryBrush; // Cursor for the differen functions 
+	public GameObject paintBrush,blackWhole,binaryBrush; // Cursor for the differen functions 
 
 
 	public RenderTexture canvasTexture; // Render Texture that looks at our Base Texture and the painted brushes
@@ -73,8 +73,8 @@ public class TexturePainter : MonoBehaviour {
                     brushObj = (GameObject)Instantiate(binaryBrush);
                     brushObj.GetComponent<SpriteRenderer>().color = brushColor;
                     break;
-                case Painter_BrushMode.DECAL:
-                    brushObj = (GameObject)Instantiate(starBrush);
+                case Painter_BrushMode.BLACKWHOLE:
+                    brushObj = (GameObject)Instantiate(blackWhole);
                     brushObj.GetComponent<SpriteRenderer>().color = brushColor;
                     break;
 
@@ -94,7 +94,7 @@ public class TexturePainter : MonoBehaviour {
 			brushColor.a=brushSize*2.0f; // Brushes have alpha to have a merging effect when painted over.
 			brushObj.transform.parent=brushContainer.transform; //Add the brush to our container to be wiped later
 			brushObj.transform.localPosition=uvWorldPosition; //The position of the brush (in the UVMap)
-			brushObj.transform.localScale=Vector3.one*brushSize;//The size of the brush
+			brushObj.transform.localScale= brushObj.transform.localScale * brushSize;//The size of the brush
 		}
 
 		brushCounter++; //Add to the max brushes
@@ -171,8 +171,8 @@ public class TexturePainter : MonoBehaviour {
             case Painter_BrushMode.BINARY:
                 brushSprite = binaryBrush.GetComponent<SpriteRenderer>().sprite;
                 break;
-            case Painter_BrushMode.DECAL:
-                brushSprite = starBrush.GetComponent<SpriteRenderer>().sprite;
+            case Painter_BrushMode.BLACKWHOLE:
+                brushSprite = blackWhole.GetComponent<SpriteRenderer>().sprite;
                 break;
 
         }
@@ -181,7 +181,28 @@ public class TexturePainter : MonoBehaviour {
 	}
 	public void SetBrushSize(float newBrushSize){ //Sets the size of the cursor brush or decal
 		brushSize = newBrushSize;
-		brushCursor.transform.localScale = Vector3.one * brushSize;
+
+        Vector3 prefabScale=Vector3.zero;
+
+        switch (mode)
+        {
+            case Painter_BrushMode.PAINT:
+                prefabScale = paintBrush.transform.localScale;
+
+                break;
+            case Painter_BrushMode.BINARY:
+                prefabScale = binaryBrush.transform.localScale;
+    
+                break;
+            case Painter_BrushMode.BLACKWHOLE:
+                prefabScale = blackWhole.transform.localScale;
+               
+                break;
+
+        }
+
+
+        brushCursor.transform.localScale = prefabScale * brushSize;
 	}
 
 

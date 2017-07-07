@@ -6,7 +6,12 @@ public class GUIManager : MonoBehaviour {
 	public Slider sizeSlider;
 	public TexturePainter painter;
 
-	public void SetBrushMode(int newMode){
+    public void Start()
+    {
+        UpdateSizeSlider();
+    }
+
+    public void SetBrushMode(int newMode){
 
         Painter_BrushMode brushMode = Painter_BrushMode.PAINT;
 
@@ -19,7 +24,7 @@ public class GUIManager : MonoBehaviour {
                 brushMode = Painter_BrushMode.BINARY;
                 break;
             case 2:
-                brushMode = Painter_BrushMode.DECAL;
+                brushMode = Painter_BrushMode.BLACKWHOLE;
                 break;
         }
 
