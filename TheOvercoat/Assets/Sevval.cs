@@ -5,6 +5,7 @@ using MovementEffects;
 
 public class Sevval : GameController, IClickAction {
 
+    public GameObject paintingGame;
     Vector3 originalLook;
     Animator ac;
 
@@ -13,6 +14,8 @@ public class Sevval : GameController, IClickAction {
         base.Start();
         originalLook = transform.position + transform.forward;
         ac = GetComponent<Animator>();
+
+        startPainting();
 
      }
 
@@ -59,6 +62,12 @@ public class Sevval : GameController, IClickAction {
     public void finishPainting()
     {
         Timing.RunCoroutine(_finishPainting());
+    }
+
+    public void startPainting()
+    {
+        pcc.StopToWalk();
+        paintingGame.SetActive(true);
     }
 
 

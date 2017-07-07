@@ -338,7 +338,7 @@ public class TexturePainter : MonoBehaviour {
                 int length = file.Name.IndexOf(extension[0]) - indexOfNumber;
 
                 string number = file.Name.Substring(indexOfNumber, length);
-                Debug.Log(number);
+                //Debug.Log(number);
                 int i = int.Parse(number);
                 if (i > biggestIndex) biggestIndex = i;
             }

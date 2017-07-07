@@ -36,14 +36,13 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     CharacterControllerKeyboard cck;
 
-    public GameObject canvas;
+    //public GameObject canvas;
 
     //Check is at dest
     Vector3 destination;
     bool checkDest = false;
 
-    public GameObject horseRoad;
-
+    
     //Debug
     public bool mountDebug;
     public bool unmountDebug;
@@ -163,6 +162,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         //Update camera follower
         //CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
 
+        Timing.RunCoroutine(goToNearestPointInAreaMask(nma.areaMask));
+
         yield break;
     }
 
@@ -224,7 +225,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         Text subtitle=SubtitleFade.subtitles["CharacterSubtitle"];
         while (subtitle.text != "") yield return 0;
 
-        spawnedCarierChoice=Instantiate(carierChoices, canvas.transform) as GameObject;
+        spawnedCarierChoice=Instantiate(carierChoices, mainCanvas.transform) as GameObject;
         RectTransform rt = spawnedCarierChoice.GetComponent<RectTransform>();
         rt.position = new Vector2(Screen.width / 2 + rt.rect.width / 2, Screen.height * 1 / 3);
 
@@ -398,6 +399,70 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     myTween nearestMT()
     {
         return nearestWayPoint().GetComponent<myTween>();
+    }
+
+
+    //TODO make it with navmesh
+    IEnumerator<float> goToNearestPointInAreaMask(int areaMask)
+    {
+        //releaseForNavMeshController();
+        //int originalAreaMask = nma.areaMask;
+
+        //nma.areaMask = NavMesh.AllAreas;
+
+        //Vector3 castedPos;
+        //if (Vckrs.findNearestPositionOnNavMesh(transform.position, NavMesh.AllAreas, 5, out castedPos))
+        //{
+        //    gameObject.transform.position = castedPos;
+
+        //}
+
+
+        ////Time.timeScale = 0;
+        //yield return 0;
+
+
+        //if(Vckrs.findNearestPositionOnNavMesh(transform.position,areaMask,100,out castedPos))
+        //{
+        //    nma.SetDestination(castedPos);
+
+        //    yield return 0;
+
+        //    yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject)));
+
+        //}
+
+        //nma.areaMask = originalAreaMask;
+
+        //yield return 0;
+
+
+        Vector3 castedPos;
+        if (Vckrs.findNearestPositionOnNavMesh(transform.position, areaMask, 0.5f, out castedPos))
+        {
+            yield break;
+
+        }
+
+        releaseForUserController();
+
+
+        LookWalkDirection lwd = gameObject.AddComponent<LookWalkDirection>();
+
+        
+        if (Vckrs.findNearestPositionOnNavMesh(transform.position, areaMask, 100, out castedPos))
+        {
+            Debug.Log("going nearest direction");
+            yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs._Tween(gameObject, castedPos, 1f)));
+
+        }
+
+        Destroy(lwd);
+
+
+
+        freeze();
+
     }
 
 }

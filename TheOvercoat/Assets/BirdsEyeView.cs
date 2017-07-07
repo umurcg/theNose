@@ -39,6 +39,9 @@ public class BirdsEyeView : MonoBehaviour {
     bool cameraInMovement = false;
     bool isBirdEye = false;
 
+    CursorImageScript cis;
+    public Texture2D cursor;
+
     void Awake()
     {    
 
@@ -46,10 +49,13 @@ public class BirdsEyeView : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () { 
+    void Start () {
 
         //Timing.RunCoroutine(_goToBirdEye());
         //Timing.RunCoroutine(disableEnable());
+
+        cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
+
     }
 
     void OnEnable()
@@ -148,12 +154,18 @@ public class BirdsEyeView : MonoBehaviour {
                 for (int i = 0; i < streetParent.transform.childCount; i++)
                     areaList.Add(streetParent.transform.GetChild(i).gameObject);
 
-                
 
+                Debug.Log(hit.transform.name);
               if(areaList.Contains(hit.transform.gameObject)){
+
+
+
+                    if (cis) cis.externalTexture = cursor;
 
                     if (Input.GetMouseButtonDown(0))
                     {
+                        
+
                         Debug.Log("You are goint to " + hit.point);
                         getBackToOriginal(hit.point);
                         
@@ -161,6 +173,8 @@ public class BirdsEyeView : MonoBehaviour {
 
                 }else
                 {
+                    if(cis) cis.resetExternalCursor();
+
                     if (Input.GetMouseButtonDown(0))
                     
                         Debug.Log("Unavaible road");
@@ -288,6 +302,8 @@ public class BirdsEyeView : MonoBehaviour {
 
     IEnumerator<float> _getBackToOriginal(Vector3 resultPos)
     {
+        if (cis) cis.resetExternalCursor();
+
         cameraInMovement = true;
 
         clearUI();
