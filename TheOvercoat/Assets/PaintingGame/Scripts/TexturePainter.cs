@@ -10,11 +10,14 @@ using UnityEngine.UI;
 using System.Collections;
 using System.IO;
 
-public enum Painter_BrushMode { PAINT, BLACKWHOLE, BINARY };
+public enum Painter_BrushMode { PAINT, BLACKWHOLE, BINARY, DNA };
 public class TexturePainter : MonoBehaviour {
 	public GameObject brushCursor,brushContainer; //The cursor that overlaps the model and our container for the brushes painted
 	public Camera sceneCamera,canvasCam;  //The camera that looks at the model, and the camera that looks at the canvas.
-	public GameObject paintBrush,blackWhole,binaryBrush; // Cursor for the differen functions 
+                                          //public GameObject paintBrush,blackWhole,binaryBrush; // Cursor for the differen functions 
+
+    Texture2D originalCanvas;
+    public GameObject[] brushes;
 
 
 	public RenderTexture canvasTexture; // Render Texture that looks at our Base Texture and the painted brushes
@@ -33,13 +36,24 @@ public class TexturePainter : MonoBehaviour {
     private void OnEnable()
     {
         cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
-        cis.resetExternalCursor();
-        cis.enabled = false;
+        //cis.resetExternalCursor();
+        //cis.enabled = false;
+
+        cis.externalTexture = cis.activeObject;
+
+
+        //Cursor.visible = false;
+
+        originalCanvas = baseMaterial.mainTexture as Texture2D;
+
     }
 
     private void OnDisable()
     {
-        cis.enabled = true;
+        //cis.enabled = true;
+        cis.resetExternalCursor();
+
+        /*Cursor.visible = true*/;
     }
 
     private void Start()
@@ -63,35 +77,38 @@ public class TexturePainter : MonoBehaviour {
 		if(HitTestUVPosition(ref uvWorldPosition)){
 			GameObject brushObj=null;
 
-            switch (mode)
-            {
-                case Painter_BrushMode.PAINT:
-                    brushObj = (GameObject)Instantiate(paintBrush); //Paint a brush
-                    brushObj.GetComponent<SpriteRenderer>().color = brushColor; //Set the brush color
-                    break;
-                case Painter_BrushMode.BINARY:
-                    brushObj = (GameObject)Instantiate(binaryBrush);
-                    brushObj.GetComponent<SpriteRenderer>().color = brushColor;
-                    break;
-                case Painter_BrushMode.BLACKWHOLE:
-                    brushObj = (GameObject)Instantiate(blackWhole);
-                    brushObj.GetComponent<SpriteRenderer>().color = brushColor;
-                    break;
+            //switch (mode)
+            //{
+            //    case Painter_BrushMode.PAINT:
+            //        brushObj = (GameObject)Instantiate(paintBrush); //Paint a brush
+            //        brushObj.GetComponent<SpriteRenderer>().color = brushColor; //Set the brush color
+            //        break;
+            //    case Painter_BrushMode.BINARY:
+            //        brushObj = (GameObject)Instantiate(binaryBrush);
+            //        brushObj.GetComponent<SpriteRenderer>().color = brushColor;
+            //        break;
+            //    case Painter_BrushMode.BLACKWHOLE:
+            //        brushObj = (GameObject)Instantiate(blackWhole);
+            //        brushObj.GetComponent<SpriteRenderer>().color = brushColor;
+            //        break;
 
-            }
+            //}
 
-   //         if (mode==Painter_BrushMode.PAINT){
+            brushObj = (GameObject)Instantiate(brushes[(int)mode]);
+            brushObj.GetComponent<SpriteRenderer>().color = brushColor;
 
-			//	brushObj=(GameObject)Instantiate(paintBrush); //Paint a brush
-			//	brushObj.GetComponent<SpriteRenderer>().color=brushColor; //Set the brush color
-			//}
-			//else{
-			//	brushObj=(GameObject)Instantiate(starBrush); //Paint a decal
-			//}
+            //         if (mode==Painter_BrushMode.PAINT){
+
+            //	brushObj=(GameObject)Instantiate(paintBrush); //Paint a brush
+            //	brushObj.GetComponent<SpriteRenderer>().color=brushColor; //Set the brush color
+            //}
+            //else{
+            //	brushObj=(GameObject)Instantiate(starBrush); //Paint a decal
+            //}
 
 
 
-			brushColor.a=brushSize*2.0f; // Brushes have alpha to have a merging effect when painted over.
+            brushColor.a=brushSize*2.0f; // Brushes have alpha to have a merging effect when painted over.
 			brushObj.transform.parent=brushContainer.transform; //Add the brush to our container to be wiped later
 			brushObj.transform.localPosition=uvWorldPosition; //The position of the brush (in the UVMap)
 			brushObj.transform.localScale= brushObj.transform.localScale * brushSize;//The size of the brush
@@ -163,43 +180,46 @@ public class TexturePainter : MonoBehaviour {
 
         Sprite brushSprite = null;
 
-        switch (mode)
-        {
-            case Painter_BrushMode.PAINT:
-                brushSprite = paintBrush.GetComponent<SpriteRenderer>().sprite;
-                break;
-            case Painter_BrushMode.BINARY:
-                brushSprite = binaryBrush.GetComponent<SpriteRenderer>().sprite;
-                break;
-            case Painter_BrushMode.BLACKWHOLE:
-                brushSprite = blackWhole.GetComponent<SpriteRenderer>().sprite;
-                break;
+        //switch (mode)
+        //{
+        //    case Painter_BrushMode.PAINT:
+        //        brushSprite = paintBrush.GetComponent<SpriteRenderer>().sprite;
+        //        break;
+        //    case Painter_BrushMode.BINARY:
+        //        brushSprite = binaryBrush.GetComponent<SpriteRenderer>().sprite;
+        //        break;
+        //    case Painter_BrushMode.BLACKWHOLE:
+        //        brushSprite = blackWhole.GetComponent<SpriteRenderer>().sprite;
+        //        break;
 
-        }
+        //}
+
+        brushSprite = brushes[(int) mode].GetComponent<SpriteRenderer>().sprite;
 
         brushCursor.GetComponent<SpriteRenderer> ().sprite =brushSprite;
+        brushCursor.GetComponent<SpriteRenderer>().color = Color.black;
 	}
 	public void SetBrushSize(float newBrushSize){ //Sets the size of the cursor brush or decal
 		brushSize = newBrushSize;
 
-        Vector3 prefabScale=Vector3.zero;
+        Vector3 prefabScale = brushes[(int)mode].transform.localScale;
 
-        switch (mode)
-        {
-            case Painter_BrushMode.PAINT:
-                prefabScale = paintBrush.transform.localScale;
+        //switch (mode)
+        //{
+        //    case Painter_BrushMode.PAINT:
+        //        prefabScale = paintBrush.transform.localScale;
 
-                break;
-            case Painter_BrushMode.BINARY:
-                prefabScale = binaryBrush.transform.localScale;
+        //        break;
+        //    case Painter_BrushMode.BINARY:
+        //        prefabScale = binaryBrush.transform.localScale;
     
-                break;
-            case Painter_BrushMode.BLACKWHOLE:
-                prefabScale = blackWhole.transform.localScale;
+        //        break;
+        //    case Painter_BrushMode.BLACKWHOLE:
+        //        prefabScale = blackWhole.transform.localScale;
                
-                break;
+        //        break;
 
-        }
+        //}
 
 
         brushCursor.transform.localScale = prefabScale * brushSize;
@@ -335,6 +355,7 @@ public class TexturePainter : MonoBehaviour {
 
         Texture2D tex = baseMaterial.mainTexture as Texture2D;
 
+
         string directory = Application.persistentDataPath + "/Paintings";
         if (!Directory.Exists(directory))
             Directory.CreateDirectory(directory);
@@ -369,6 +390,8 @@ public class TexturePainter : MonoBehaviour {
 
 
         File.WriteAllBytes(Application.persistentDataPath + "/Paintings/" + fileName + (biggestIndex + 1) + extension, tex.EncodeToJPG());
+
+        baseMaterial.mainTexture = originalCanvas;
 
     }
 

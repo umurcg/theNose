@@ -15,7 +15,7 @@ public class Sevval : GameController, IClickAction {
         originalLook = transform.position + transform.forward;
         ac = GetComponent<Animator>();
 
-        startPainting();
+        //startPainting();
 
      }
 
@@ -38,6 +38,8 @@ public class Sevval : GameController, IClickAction {
 
         yield return Timing.WaitUntilDone(handlerHolder);
 
+
+
         if (firstTime)
         {
             sc.callSubtitleWithIndex(0);
@@ -52,8 +54,9 @@ public class Sevval : GameController, IClickAction {
             registerAsUsed();
 
         //Start painting
+        startPainting();
 
-        finishPainting();
+        //finishPainting();
 
         yield break;
 
@@ -74,8 +77,7 @@ public class Sevval : GameController, IClickAction {
     IEnumerator<float> _finishPainting()
     {
 
-
-        
+        paintingGame.SetActive(false);
 
         sc.callSubtitleWithIndex(1);
         while (subtitle.text != "") yield return 0;
@@ -86,6 +88,8 @@ public class Sevval : GameController, IClickAction {
         Timing.RunCoroutine(Vckrs._lookTo(gameObject, originalLook, 1f));
 
         pcc.ContinueToWalk();
+
+        
 
         yield break;
 

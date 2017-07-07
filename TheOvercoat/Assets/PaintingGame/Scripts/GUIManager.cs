@@ -13,22 +13,23 @@ public class GUIManager : MonoBehaviour {
 
     public void SetBrushMode(int newMode){
 
-        Painter_BrushMode brushMode = Painter_BrushMode.PAINT;
+        //Painter_BrushMode brushMode = Painter_BrushMode.PAINT;
 
-        switch (newMode)
-        {
-            case 0:
-                brushMode = Painter_BrushMode.PAINT;
-                break;
-            case 1:
-                brushMode = Painter_BrushMode.BINARY;
-                break;
-            case 2:
-                brushMode = Painter_BrushMode.BLACKWHOLE;
-                break;
-        }
+        //switch (newMode)
+        //{
+        //    case 0:
+        //        brushMode = Painter_BrushMode.PAINT;
+        //        break;
+        //    case 1:
+        //        brushMode = Painter_BrushMode.BINARY;
+        //        break;
+        //    case 2:
+        //        brushMode = Painter_BrushMode.BLACKWHOLE;
+        //        break;
+        //}
+        
 
-        painter.SetBrushMode (brushMode);
+        painter.SetBrushMode ((Painter_BrushMode)newMode);
 	}
 
 
