@@ -83,5 +83,10 @@ public class LineRendererCylinder : MonoBehaviour {
 
         updateStartPointAndEndPoint();
     }
+
+    public void changeRadius(float radius)
+    {
+        cylinder.transform.localScale = new Vector3(radius, cylinder.transform.localScale.y, radius);
+    }
      
 }

@@ -21,7 +21,8 @@ public class OpenDoorLoad : LoadScene {
     Renderer[] renderers;
 
     //ForMapUI
-    public string doorName;
+    public string doorNameENG;
+    public string doorNameTR;
 
     SkinnedMeshRenderer smr;
     float key = 0;
@@ -60,7 +61,9 @@ public class OpenDoorLoad : LoadScene {
         //Debug.Log("Registering " + Scene);
         doors.Add(doorId,this);
 
-        if (doorName == null) doorName = Scene.ToString();
+        if (doorNameTR == null) doorNameTR = Scene.ToString();
+        if (doorNameENG == null) doorNameENG = Scene.ToString();
+
 
         if (spawnObject == null && transform.childCount>0) spawnObject = transform.GetChild(0).gameObject;
 
@@ -285,6 +288,23 @@ public class OpenDoorLoad : LoadScene {
     public void closeDoor()
     {
         close = true;
+    }
+
+    public string getDoorName()
+    {
+        GlobalController.Language l = GlobalController.Instance.getLangueSetting();
+        if (l == GlobalController.Language.ENG)
+        {
+            return doorNameENG;
+        }else if (l == GlobalController.Language.TR)
+        {
+            return doorNameTR;    
+        }
+                
+
+        return "";
+        
+
     }
 
 }

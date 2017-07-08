@@ -7,6 +7,7 @@ public class MaterialController : MonoBehaviour {
     public Material activeMat;
     public string activeObjectTag = "ActiveObject";
     public bool controlChildren = false;
+    public bool controlSiblings = false;
 
     bool active = false;
     Renderer[] renderers;
@@ -35,6 +36,21 @@ public class MaterialController : MonoBehaviour {
 
     void setMaterialToRenderer(Material mat)
     {
+        if (controlSiblings)
+        {
+            Transform parent = transform.parent;
+
+            renderers = parent.GetComponentsInChildren<Renderer>();
+            foreach (Renderer rend in renderers)
+            {
+                rend.material = mat;
+            }
+
+            return;
+
+        }
+
+
         if (controlChildren|| ownerRenderer==null )
         {
             foreach (Renderer rend in renderers)

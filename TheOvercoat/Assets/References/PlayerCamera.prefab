@@ -1716,7 +1716,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.4, y: -0.89, z: 41.8}
+  m_LocalPosition: {x: -9, y: -0.89, z: 38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_Children:
@@ -3892,6 +3892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTypeDropDown: {fileID: 0}
+  canvas: {fileID: 0}
   nearOrt: -40
   farOrt: 2000
   nearPers: 3
@@ -4180,14 +4181,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAtFullScreen: 1
   Input: 0
-  languageSetting: 1
+  languageSetting: 0
   audioLevel: 1
   usedGameControllers: []
   sceneList: 
   maxSceneList: 
-  debugSceneList: 01000000020000000100000003000000
+  debugSceneList: 010000000200000001000000030000000100000004000000
   fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
-  setDebugListToLevelIndex: 4
+  setDebugListToLevelIndex: 6
 --- !u!114 &114000012654939820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4410,7 +4411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coverKovalevFace: 0
-  positionToDoor: 1
+  positionToDoor: 0
   camType: 0
 --- !u!114 &114000013936666282
 MonoBehaviour:
@@ -4438,7 +4439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageReciever: {fileID: 0}
-  message: setDes
+  message: setDesAndUnmount
   mainCanvas: {fileID: 0}
   uiTextPrefab: {fileID: 1000011656113242, guid: a2bdf3582c4058b43acf28564cb8d440,
     type: 2}
@@ -4452,6 +4453,7 @@ MonoBehaviour:
   minZ: -100
   scrollSpeed: 2
   height: 1500
+  cursor: {fileID: 2800000, guid: 5765d09619b886a458d06e8b8d814e19, type: 3}
 --- !u!114 &114000014250551094
 MonoBehaviour:
   m_ObjectHideFlags: 1

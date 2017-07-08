@@ -75,6 +75,7 @@ GameObject:
   - 114: {fileID: 114000013734819988}
   - 114: {fileID: 114000013077625132}
   - 208: {fileID: 208000012558786676}
+  - 114: {fileID: 114000014063028728}
   m_Layer: 0
   m_Name: horse
   m_TagString: ActiveObject
@@ -2921,6 +2922,21 @@ MonoBehaviour:
   s: 0
   reverse: 0
   mec: 0
+--- !u!114 &114000014063028728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010247453072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93bcfa3f529dee43bb75b7d8e194e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonActiveMat: {fileID: 2100000, guid: 41dedec14702f32498220a5f5e92d94b, type: 2}
+  activeMat: {fileID: 2100000, guid: 71ef2eaa84333614a901a16ecf95dcc8, type: 2}
+  activeObjectTag: ActiveObject
+  controlChildren: 1
 --- !u!114 &114000014202205014
 MonoBehaviour:
   m_ObjectHideFlags: 1

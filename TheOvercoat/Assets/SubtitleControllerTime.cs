@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using MovementEffects;
 
+[RequireComponent (typeof(SubtitleCaller))]
 public class SubtitleControllerTime : SubtitleController {
     public float[] manualTimerArray;
     public enum timeMode {automatic,manual };

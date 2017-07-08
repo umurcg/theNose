@@ -5,6 +5,7 @@ using System.Collections;
 public class BuildNavmesh : MonoBehaviour {
 
     public GameObject[] roads;
+    public MeshCollider[] meshColliders;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +22,19 @@ public class BuildNavmesh : MonoBehaviour {
             obj.SetActive(true);
         }  
 
+        foreach(MeshCollider mc in meshColliders)
+        {
+            mc.enabled = true;
+        }
+
 
         UnityEditor.NavMeshBuilder.BuildNavMesh();
+
+        foreach (MeshCollider mc in meshColliders)
+        {
+            mc.enabled = false;
+        }
+
 
         foreach (GameObject obj in roads)
         {

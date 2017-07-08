@@ -5,7 +5,7 @@ using MovementEffects;
 
 //City includes lots of scenes and games. So when this script starts it looks player's sceneList and decide how to initilize city.
 public class CityGameController : MonoBehaviour {
-    public GameObject berberShop, Crowd, bar, jokeGroup, bridge, fruitStad, cat, ivanCityController, maze;
+    public GameObject berberShop, Crowd, bar, jokeGroup, bridge, fruitStad,butcher,cat, ivanCityController, maze;
     public Cancanfly ccf;
     public DenizEfeGameController degc;
     public DrunkManGameSceneController dmgsc;
@@ -205,6 +205,7 @@ public class CityGameController : MonoBehaviour {
         bar.GetComponent<GameController>().activateController();
         jokeGroup.GetComponent<GameController>().activateController();
         fruitStad.GetComponent<GameController>().activateController();
+        butcher.tag = "ActiveObject";
         bridge.GetComponent<GameController>().activateController();
         cat.GetComponent<GameController>().activateController();
 

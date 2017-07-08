@@ -241,7 +241,7 @@ public class BirdsEyeView : MonoBehaviour {
         {
             if (!attachStat.Value.isLocked())
             {
-                string doorName = attachStat.Value.doorName;
+                string doorName = attachStat.Value.getDoorName();
                 Vector3 doorPos = attachStat.Value.transform.position;
                 GameObject UIDoorName = Instantiate(uiTextPrefab, mainCanvas.transform, false) as GameObject;
                 UIDoorName.GetComponentInChildren<Text>().text = doorName;

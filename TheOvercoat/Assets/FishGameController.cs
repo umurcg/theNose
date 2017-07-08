@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using MovementEffects;
 
-public class FishGameController : MonoBehaviour {
+public class FishGameController : GameController {
 
 
     public GameObject finishButton;
     Button finishButtonComp;
     public GameObject UI;
-
+    public Camera cam;
     enum stage {outsideOfWater, serachingForFish, foundFish };
     stage Stage = stage.outsideOfWater;
 
@@ -47,10 +47,20 @@ public class FishGameController : MonoBehaviour {
 
     MoveObjectToFocus motf;
 
+    CursorImageScript cis;
 
+    public Material lineMaterial;
+    public float lineRadius;
+
+    List<GameObject> linesObject;
+    Canvas canv;
 
     // Use this for initialization
-    void Start () {
+    public override void Start () {
+
+        base.Start();
+
+        cam = CharGameController.getCamera().GetComponent<Camera>();
 
         speeds = new List<float>();
         //lines = new List<Vector2>();
@@ -67,11 +77,33 @@ public class FishGameController : MonoBehaviour {
 
         motf = GetComponent<MoveObjectToFocus>();
 
+        linesObject = new List<GameObject>();
+
+        canv = GetComponent<Canvas>();
+
+#if UNITY_EDITOR
+
+        finishButtonComp.interactable = true;
+
+#endif
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
+        cis.externalTexture = cis.activeObject;
+    }
+
+    private void OnDisable()
+    {
+        cis.resetExternalCursor();
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+
 
         if (Stage == stage.outsideOfWater && Input.GetMouseButtonUp(0))
         {
@@ -89,17 +121,19 @@ public class FishGameController : MonoBehaviour {
 
             }
         }
-        else
+        else if(Stage==stage.foundFish)
         {
 
             if (Input.GetMouseButton(0))
             {
                 recordDif();
-               
+
             }
 
             if (Input.GetMouseButtonUp(0))
             {
+
+                eraseLine();
 
                 float speed = getMeanofList(speeds);
                 float curvature = calculateCurvature();
@@ -111,8 +145,34 @@ public class FishGameController : MonoBehaviour {
                 frc.catchFish();
                 Stage = stage.outsideOfWater;
 
-                bool condition = (speed > minSpeed && speed < maxSpeed) && (curvature < maxCurvature && curvature > minCuravture) && (totalLenght > minLength);
-                if (condition)
+
+                bool speedConition = (speed > minSpeed && speed < maxSpeed);
+                bool curvatureCondition = (curvature < maxCurvature && curvature > minCuravture);
+                bool lengthConition = (totalLenght > minLength);
+
+
+                if ((speed < minSpeed)) {
+                    sc.callSubtitleWithIndexTime(1);
+                 
+                }else if((speed > maxSpeed))
+                {
+                    sc.callSubtitleWithIndexTime(0);
+                }else if ((curvature > maxCurvature))
+                {
+                    sc.callSubtitleWithIndexTime(4);
+                }
+                else if (curvature < minCuravture)
+                {
+                    sc.callSubtitleWithIndexTime(3);
+                    
+                }
+                else if (!lengthConition) {
+                    sc.callSubtitleWithIndexTime(2);
+                    
+                }
+
+
+                if (speedConition && curvatureCondition && lengthConition)
                 {
                     catchedFish();
                 }
@@ -142,6 +202,8 @@ public class FishGameController : MonoBehaviour {
 
     void recordDif()
     {
+        
+
         if (prevMousePos == Vector2.zero)
         {
             prevMousePos = Input.mousePosition;
@@ -154,6 +216,30 @@ public class FishGameController : MonoBehaviour {
             float dif = Vector2.Distance((Vector2)Input.mousePosition, prevMousePos);
             totalLenght += dif;
             speeds.Add(dif/Time.deltaTime);
+
+
+            GameObject line = new GameObject();
+            LineRendererCylinder lrc = line.AddComponent<LineRendererCylinder>();
+
+            lrc.setStartAndPos(Input.mousePosition, prevMousePos);
+            lrc.setStartAndPos(cam.ScreenToWorldPoint(Input.mousePosition), cam.ScreenToWorldPoint(prevMousePos));
+
+
+
+            lrc.radiusOfCylinder = lineRadius;
+            lrc.changeRadius(lineRadius);
+
+            if (lineMaterial!=null) lrc.setMaterial(lineMaterial);
+
+            FadeAndDie  fad=line.AddComponent<FadeAndDie>();
+            fad.speed = 1f;
+            fad.fadeAndDie();
+
+            linesObject.Add(line);
+
+            line.transform.parent = canv.transform;
+
+            //GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = cam.ScreenToWorldPoint(Input.mousePosition);
 
             prevMousePos = Input.mousePosition;
         }
@@ -192,7 +278,7 @@ public class FishGameController : MonoBehaviour {
         {
             Vector2 line = choosenPoints[i] - choosenPoints[i - 1];
             lines.Add(line);
-            Debug.DrawLine(choosenPoints[i], choosenPoints[i - 1], Color.red, 1000000);
+            //Debug.DrawLine(choosenPoints[i], choosenPoints[i - 1], Color.red, 1000000);
         }
 
 
@@ -264,6 +350,16 @@ public class FishGameController : MonoBehaviour {
 
         finishButton.SetActive(false);
 
+    }
+
+    void eraseLine()
+    {
+        //foreach(GameObject obj in linesObject)
+        //{
+        //    Destroy(obj);
+        //}
+
+        linesObject.Clear();
     }
 
 }
