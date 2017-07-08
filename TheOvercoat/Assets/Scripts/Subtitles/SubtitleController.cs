@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
 
+[RequireComponent (typeof(SubtitleCaller))]
 public class SubtitleController : MonoBehaviour {
 
     
