@@ -62,8 +62,8 @@ public class EnterSceneGameController : GameController{
         if (wit != null)
         {
             wit.characters.Clear();
-            wit.characters.Add("Kovalev", kovalev);
-            wit.characters.Add(ivan.name, ivan);
+            wit.addCharacterToDict(kovalev,"Kovalev");
+            wit.addCharacterToDict(ivan.name, ivan);
             wit.setCameraComponent(cam);
         }else
         {

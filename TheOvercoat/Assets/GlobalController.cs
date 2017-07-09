@@ -408,10 +408,15 @@ public int setDebugListToLevelIndex;
         //Update who is talking dictionary
         if (WhoIsTalking.self != null)
         {
-            foreach(KeyValuePair<string,GameObject> pair in WhoIsTalking.self.characters)
+            foreach(KeyValuePair<string,List<GameObject>> pair in WhoIsTalking.self.characters)
             {
-                RegisterToSubtitleList register= pair.Value.GetComponent<RegisterToSubtitleList>();
-                if (register) register.refreshName();
+                foreach(GameObject chr in pair.Value)
+                {
+                    RegisterToSubtitleList register = chr.GetComponent<RegisterToSubtitleList>();
+                    if (register) register.refreshName();
+                }
+
+               
             }
         }
 

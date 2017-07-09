@@ -11,13 +11,15 @@ public class WhoIsTalking : MonoBehaviour
     //Singleton
     public static WhoIsTalking self;
 
-    public Dictionary<string, GameObject> characters;
+    public Dictionary<string, List<GameObject>> characters;
     public GameObject[] gameobjectsArray;
     Text text;
     GameObject baloon;
     public bool printLog = false;
     // public GameObject cameraGo;
     Camera cameraComponent;
+
+    GameObject player;
 
 
     private void Awake()
@@ -38,14 +40,15 @@ public class WhoIsTalking : MonoBehaviour
             self = this;
         }
 
-        characters = new Dictionary<string, GameObject>();
+        characters = new Dictionary<string, List<GameObject>>();
         text = GetComponent<Text>();
         if (gameobjectsArray.Length > 0)
             foreach (GameObject go in gameobjectsArray)
             {
                 if (go != null)
                 {
-                    characters.Add(go.name, go);
+                    addCharacterToDict(go, go.name);
+                    //characters.Add(go.name, go);
                 }
             }
 
@@ -53,11 +56,11 @@ public class WhoIsTalking : MonoBehaviour
 
 
         //Add player character to dictionary
-        GameObject player = CharGameController.getActiveCharacter();
+        player = CharGameController.getActiveCharacter();
         if (player)
         {
             if(!characters.ContainsKey(player.name))
-            characters.Add(player.name, player);
+            characters.Add(player.name,new List<GameObject>() { player });
 
 
         }else
@@ -104,13 +107,13 @@ public class WhoIsTalking : MonoBehaviour
             if (characters.ContainsKey(key))
             {
 
-                mumbling(characters[key]);
+                mumbling(getCharacter(key));
 
                 if (cameraComponent == null) return;
 
                 if (baloon.activeSelf == false) baloon.SetActive(true);
 
-                Vector2 ActualPosition = cameraComponent.WorldToScreenPoint(characters[key].transform.position);
+                Vector2 ActualPosition = cameraComponent.WorldToScreenPoint(getCharacter(key).transform.position);
                 Vector2 newPosition = new Vector2(ActualPosition.x + Screen.width / 32, ActualPosition.y + Screen.height / 16);
                 baloon.transform.position = newPosition;
             }
@@ -128,7 +131,7 @@ public class WhoIsTalking : MonoBehaviour
 
         if (printLog)
         {
-            foreach (KeyValuePair<string, GameObject> entry in characters)
+            foreach (KeyValuePair<string, List<GameObject>> entry in characters)
             {
                 Debug.Log(entry.Key);
                 printLog = false;
@@ -163,15 +166,40 @@ public class WhoIsTalking : MonoBehaviour
 
     public void addCharacterToDict(GameObject obj, string Name)
     {
-        if (!characters.ContainsKey(name) && !characters.ContainsValue(obj))
+        Debug.Log("Trying to register " + Name + " for " + obj.name);
+        List<GameObject> list = null;
+
+        if (!characters.ContainsKey(Name))
         {
-            characters.Add(Name, obj);
-            //Debug.Log("Registering " + obj.name + " to subtittle list");
-        } else if(characters.ContainsKey(name) && !characters.ContainsValue(obj))
-        {
-            Debug.Log("Replecaed " + obj.name);
-            characters[name] = obj;
+            Debug.Log("Creaating new list for " + obj.name);
+            list = new List<GameObject>();
+
         }
+        else
+        {
+            Debug.Log("Addint character to existing list for " + obj.name);
+            list = characters[Name];
+        }
+
+        if (!list.Contains(obj)) list.Add(obj);
+
+
+        characters[Name] = list;
+
+        //if (!characters.ContainsKey(name) && !characters.ContainsValue(obj))
+        //{
+        //    characters.Add(Name, obj);
+        //    //Debug.Log("Registering " + obj.name + " to subtittle list");
+        //} else if(characters.ContainsKey(name) && !characters.ContainsValue(obj))
+        //{
+        //    Debug.Log("Replecaed " + obj.name);
+        //    characters[name] = obj;
+        //}
+    }
+
+    public void addCharacterToDict(string Name,GameObject obj)
+    {
+        addCharacterToDict(obj, Name);
     }
 
     public void setCameraComponent(Camera cam)
@@ -179,5 +207,33 @@ public class WhoIsTalking : MonoBehaviour
         cameraComponent = cam;
     }
 
+
+    //Gets character game object from dictionary. If key has value list having only one elemnt it returns it.
+    //Else it calculates nearest character to player and returns it.
+    public GameObject getCharacter(string key)
+    {
+        if (!characters.ContainsKey(key) || characters[key].Count==0) return null;
+
+        if (characters[key].Count == 1) return characters[key][0];
+
+        float minDistance = Mathf.Infinity;
+        GameObject nearestChar = null;
+
+        List<GameObject> value = characters[key];
+
+        foreach (GameObject obj in value)
+        {
+            float dist = Vector3.Distance(player.transform.position, obj.transform.position);
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                nearestChar = obj;
+            }
+            
+        }
+
+        return nearestChar;
+
+    }
 
 }

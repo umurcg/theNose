@@ -402,6 +402,9 @@ public class SubtitleController : MonoBehaviour {
         return -1;
     }
 
+    void updateTextFileName()
+    {
 
+    }
 
 }

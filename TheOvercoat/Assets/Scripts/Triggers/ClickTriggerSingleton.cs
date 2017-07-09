@@ -163,7 +163,8 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
         callAction(aim);
 
-        spaceTrigger.clearFocus();
+        if(spaceTrigger)
+            spaceTrigger.clearFocus();
 
         yield break;
     }

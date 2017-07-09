@@ -100,6 +100,8 @@ public class GameControllerPoliceStation : GameController {
 
         Chair0.GetComponent<WalkLookAnim>().start();
 
+        Gaurd.transform.tag = "Untagged";
+
         yield break;
 
 
@@ -107,6 +109,7 @@ public class GameControllerPoliceStation : GameController {
 
     public void DestroyItSelf()
     {
+        Gaurd.transform.tag = "Untagged";
         Destroy(this);
     }
 
