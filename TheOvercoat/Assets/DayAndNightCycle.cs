@@ -12,9 +12,13 @@ public class DayAndNightCycle : MonoBehaviour {
     public float maxIntensity = 1;
     public float minIntensity = 0;
     public float speed = 1;
-
+    
     [HideInInspector]
     public bool isNight = false;
+
+    
+    [HideInInspector]
+    //public SpawnBotsOnNavMeshRandomly[] botScripts;
 
 	// Use this for initialization
 	void Start () {

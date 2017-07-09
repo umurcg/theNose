@@ -19,6 +19,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject deadManGameController;
     public GameObject trailer;
     public GameObject horseCariers;
+    public GameObject horseBots;
 
     public GameObject streetAreas;
 
@@ -261,8 +262,7 @@ public class CityGameController : MonoBehaviour {
             //activate nose in hand
             CharGameController.getHand(CharGameController.hand.RightHand).transform.GetChild(1).gameObject.SetActive(true);
 
-            //Reduce to spawnedObjects to 20
-            streetAreas.GetComponent<SpawnBotsOnNavMeshRandomly>().spawnNumber = 20;
+            clearStreets();
 
         }
         else
@@ -403,6 +403,8 @@ public class CityGameController : MonoBehaviour {
  
         CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight();
 
+        clearStreets();
+
         SculpturerCatchesKovalev sck = deadManGameController.GetComponent<SculpturerCatchesKovalev>();
         sck.activateController();
 
@@ -441,6 +443,19 @@ public class CityGameController : MonoBehaviour {
             ccf.activateController();
             //Reyhan game
         }
+    }
+
+    void clearStreets()
+    {
+        //Reduce to spawnedObjects to 20
+        SpawnBotsOnNavMeshRandomly[] spawnScripts = streetAreas.GetComponents<SpawnBotsOnNavMeshRandomly>();
+        foreach (SpawnBotsOnNavMeshRandomly script in spawnScripts)
+        {
+            script.destroyAllBots();
+        }
+
+        horseCariers.SetActive(false);
+        if (horseBots != null) horseBots.SetActive(false);
     }
 
 }

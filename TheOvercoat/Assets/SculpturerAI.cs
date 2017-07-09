@@ -173,8 +173,11 @@ public class SculpturerAI : GameController, IClickAction {
     IEnumerator<float> randomSubt()
     {
         Debug.Log("Random subt");
-        string randomSubt = sub.subtitleTexts[Random.Range(0, sub.subtitleTexts.Length)];
-        subtitle.text = randomSubt;
+        //string randomSubt = sub.subtitleTexts[Random.Range(0, sub.subtitleTexts.Length)];
+        //subtitle.text = randomSubt;
+
+        sc.callRandomSubtTime(0);
+
         float lsubtTimer = subtDuration;
         while (lsubtTimer > 0)
         {

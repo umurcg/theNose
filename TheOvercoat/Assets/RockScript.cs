@@ -41,7 +41,7 @@ public class RockScript : MonoBehaviour {
 
         //Debug.Log("hit object " + collision.gameObject.name+" create name is "+creator.name);
 
-        if (collision.gameObject == creator)
+        if (creator!=null && collision.gameObject == creator)
         {
             //Debug.Log("I hit creater");
             return;

@@ -144,12 +144,16 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
 
     public void destroyAllBots()
     {
-        foreach(GameObject obj in spawnedObjects)
+        if (spawnedObjects != null)
         {
-            Destroy(obj);
+            foreach (GameObject obj in spawnedObjects)
+            {
+                Destroy(obj);
+            }
+            spawnedObjects.Clear();
         }
 
-        spawnedObjects.Clear();
+  
 
         Destroy(this);
     }

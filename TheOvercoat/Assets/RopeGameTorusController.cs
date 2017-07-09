@@ -39,6 +39,7 @@ public class RopeGameTorusController : MonoBehaviour {
             {
                 changeMaterial(color.purple);
             }
+            //User release mouse button
             else
             {
                 //Debug.Log("inside but not touchign");
