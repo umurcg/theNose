@@ -10,7 +10,7 @@ public class GirtController : GameController {
 
     RandomWalkAndAnimate rwaa;
     Animator animDog;
-    NavMeshAgent girtyNma;
+    UnityEngine.AI.NavMeshAgent girtyNma;
     bool girtyGame = false;
     public GameObject road;
     public GameObject randomWalkSphere;
@@ -21,7 +21,7 @@ public class GirtController : GameController {
         rwaa = GetComponent<RandomWalkAndAnimate>();
         animDog=GetComponent<Animator>();
         GameObject player = CharGameController.getActiveCharacter();
-        girtyNma = GetComponent<NavMeshAgent>();
+        girtyNma = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
 
         //if (player == null)
@@ -75,8 +75,8 @@ public class GirtController : GameController {
             Vector3 randomPositionInBox = Vckrs.generateRandomPositionInBox(streetArea);
 
             //Cast navmesh
-            NavMeshHit nmh;
-            if( NavMesh.SamplePosition(randomPositionInBox,out nmh, 5, girtyNma.areaMask))
+            UnityEngine.AI.NavMeshHit nmh;
+            if( UnityEngine.AI.NavMesh.SamplePosition(randomPositionInBox,out nmh, 5, girtyNma.areaMask))
             {
                 randomPositionInBox = nmh.position;
             }

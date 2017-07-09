@@ -42,7 +42,7 @@ public class StopAndLookWhenNear : MonoBehaviour, INearObjectAciton {
 
     public void noAction()
     {
-    NavMeshAgent nma=    GetComponent<NavMeshAgent>();
+    UnityEngine.AI.NavMeshAgent nma=    GetComponent<UnityEngine.AI.NavMeshAgent>();
         WalkToFarestOfRoadBot wfr = GetComponent<WalkToFarestOfRoadBot>();
         AlwaysLookTo alt = GetComponent<AlwaysLookTo>();
         if (wfr != null)

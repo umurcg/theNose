@@ -25,7 +25,7 @@ public class LookAtMeNow : MonoBehaviour {
             AlwaysLookTo alt=triggeredObj.AddComponent<AlwaysLookTo>();
             alt.aim = CharGameController.getActiveCharacter();
 
-            NavMeshAgent nma = triggeredObj.GetComponent<NavMeshAgent>();
+            UnityEngine.AI.NavMeshAgent nma = triggeredObj.GetComponent<UnityEngine.AI.NavMeshAgent>();
             if (nma) nma.enabled = false;
 
             //Destroy(col.transform.gameObject);

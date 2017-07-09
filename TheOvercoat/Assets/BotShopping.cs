@@ -36,7 +36,7 @@ public class BotShopping : MonoBehaviour
             float random = Random.Range(0, 100);
             if (random < probabilityPercent)
             {
-                NavMeshAgent nma = other.gameObject.GetComponent<NavMeshAgent>();
+                UnityEngine.AI.NavMeshAgent nma = other.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
                 Timing.RunCoroutine(watchForSeconds(nma, shopTime));
 
 
@@ -57,7 +57,7 @@ public class BotShopping : MonoBehaviour
     }
 
 
-    IEnumerator<float> watchForSeconds(NavMeshAgent nma, float time)
+    IEnumerator<float> watchForSeconds(UnityEngine.AI.NavMeshAgent nma, float time)
     {
         if (!nma) yield break;
 

@@ -14,7 +14,7 @@ using UnityEngine.UI;
 public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos {
         
     public GameObject passenger;
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
 
     SubtitleCaller sc;
     
@@ -59,7 +59,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     // Use this for initialization
     void Awake() {  
-        nma = GetComponent<NavMeshAgent>();
+        nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
         //mt = wayPoints.GetComponent<myTween>();
         cc = GetComponent<Rigidbody>();
         carierBackcc = carierBack.GetComponent<Rigidbody>();
@@ -138,7 +138,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         yield return Timing.WaitUntilDone(handle);
 
         PlayerComponentController pcc = passenger.GetComponent<PlayerComponentController>();
-        NavMeshAgent nmaPas = passenger.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent nmaPas = passenger.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         if (nmaPas)
             nmaPas.enabled = true;
@@ -179,7 +179,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         
 
         PlayerComponentController pcc = passenger.GetComponent<PlayerComponentController>();
-        NavMeshAgent nmaPas = passenger.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent nmaPas = passenger.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         if (nmaPas)
         {
@@ -305,8 +305,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
 
         releaseForNavMeshController();
-        NavMeshHit myNavHit;
-        if (NavMesh.SamplePosition(pos, out myNavHit, 100, nma.areaMask))
+        UnityEngine.AI.NavMeshHit myNavHit;
+        if (UnityEngine.AI.NavMesh.SamplePosition(pos, out myNavHit, 100, nma.areaMask))
         {
             nma.SetDestination(myNavHit.position);
 

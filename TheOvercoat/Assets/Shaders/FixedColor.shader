@@ -1,4 +1,6 @@
-﻿Shader ".myShaders/Fixed Unlit"{
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader ".myShaders/Fixed Unlit"{
 	Properties{
 		_Color("Main Color", Color) = (1,0,0,1)
 		_MainTexture("Main Texture", 2D) = "white"{}
@@ -24,7 +26,7 @@
 		sampler2D _MainTexture;
 		v2f vert(appdata IN) {
 			v2f OUT;
-			OUT.pos = mul(UNITY_MATRIX_MVP, IN.vertices);
+			OUT.pos = UnityObjectToClipPos(IN.vertices);
 			OUT.texcoor = IN.texcoor;
 			return OUT;
 			//i am transfering some how

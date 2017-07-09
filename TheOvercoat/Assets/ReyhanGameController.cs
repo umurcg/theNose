@@ -52,11 +52,11 @@ public class ReyhanGameController : MonoBehaviour {
         //Vector3 garbagePos = (new Vector3(randomPos.x, 0, randomPos.y))+ transform.position;
         Vector3 garbagePos= getRandomPosInCircle(transform.position, radiusOfWholeArea);
         Debug.Log("Garabage pos is " + garbagePos);
-        NavMeshHit hit;
+        UnityEngine.AI.NavMeshHit hit;
 
     
 
-        if(NavMesh.SamplePosition(garbagePos,out hit, 10f,NavMesh.AllAreas/*NavMesh.GetAreaFromName("Street")*/))
+        if(UnityEngine.AI.NavMesh.SamplePosition(garbagePos,out hit, 10f,UnityEngine.AI.NavMesh.AllAreas/*NavMesh.GetAreaFromName("Street")*/))
         {
 
             List<GameObject> objList = garbageObjects.ToList<GameObject>();

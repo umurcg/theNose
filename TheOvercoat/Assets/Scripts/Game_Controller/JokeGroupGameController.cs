@@ -9,8 +9,8 @@ public class JokeGroupGameController : GameController {
 
     AlwaysLookTo marcoALT;
     AlwaysLookTo zoriaALT;
-    NavMeshAgent marcoNma;
-    NavMeshAgent zoriaNma;
+    UnityEngine.AI.NavMeshAgent marcoNma;
+    UnityEngine.AI.NavMeshAgent zoriaNma;
 
 
 
@@ -33,8 +33,8 @@ public class JokeGroupGameController : GameController {
 
         marcoALT = marco.GetComponent<AlwaysLookTo>();
         zoriaALT = zoria.GetComponent<AlwaysLookTo>();
-        marcoNma=marco.GetComponent<NavMeshAgent>();
-        zoriaNma=zoria.GetComponent<NavMeshAgent>();
+        marcoNma=marco.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        zoriaNma=zoria.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
     }
 	

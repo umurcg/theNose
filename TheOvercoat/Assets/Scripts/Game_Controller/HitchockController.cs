@@ -42,7 +42,7 @@ public class HitchockController : GameController, IClickAction  {
         PlayerComponentController pcc =Kovalev.GetComponent<PlayerComponentController>();
         pcc.StopToWalk();
 
-        Kovalev.GetComponent<NavMeshAgent>().Stop();
+        Kovalev.GetComponent<UnityEngine.AI.NavMeshAgent>().Stop();
 
         gameObject.transform.tag = "Untagged";
 

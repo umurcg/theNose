@@ -22,7 +22,7 @@ public class ObstacleObjectCollectableActionScript : MonoBehaviour, ICollectable
     {
         try
         {
-            GetComponent<NavMeshObstacle>().enabled = false;
+            GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = false;
         }
         catch
         {
@@ -33,7 +33,7 @@ public class ObstacleObjectCollectableActionScript : MonoBehaviour, ICollectable
     {
         try
         {
-            GetComponent<NavMeshObstacle>().enabled = true;
+            GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = true;
         }
         catch
         {

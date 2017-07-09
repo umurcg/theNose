@@ -28,8 +28,8 @@ public class NoseEncounterGameController : GameController {
     //SubtitleCaller ivanSc;
 
     //For tracing obstacle avoidence typ of player
-    ObstacleAvoidanceType playerInitialAvoidenceType;
-    ObstacleAvoidanceType nosesInitialAvoidenceType;
+    UnityEngine.AI.ObstacleAvoidanceType playerInitialAvoidenceType;
+    UnityEngine.AI.ObstacleAvoidanceType nosesInitialAvoidenceType;
 
     List<OpenDoorLoad> activeDoors;
 
@@ -146,8 +146,8 @@ public class NoseEncounterGameController : GameController {
 
 
         Vector3 pos = Vckrs.generateRandomPositionOnCircle(Nose.transform.position, 10f);
-        NavMeshHit nmh;
-        if((NavMesh.SamplePosition(pos, out nmh, 15f, noseCC.navmashagent.areaMask))){
+        UnityEngine.AI.NavMeshHit nmh;
+        if((UnityEngine.AI.NavMesh.SamplePosition(pos, out nmh, 15f, noseCC.navmashagent.areaMask))){
 
             noseCC.navmashagent.SetDestination(nmh.position);
         }else
@@ -226,14 +226,14 @@ public class NoseEncounterGameController : GameController {
         if (b)
         {
             playerInitialAvoidenceType = playerNma.obstacleAvoidanceType;
-            playerNma.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+            playerNma.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.NoObstacleAvoidance;
 
             nosesInitialAvoidenceType= noseCC.navmashagent.obstacleAvoidanceType;
-            noseCC.navmashagent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+            noseCC.navmashagent.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.HighQualityObstacleAvoidance;
         }
         else
         {
-           if(playerInitialAvoidenceType!=ObstacleAvoidanceType.NoObstacleAvoidance) playerNma.obstacleAvoidanceType = playerInitialAvoidenceType;
+           if(playerInitialAvoidenceType!=UnityEngine.AI.ObstacleAvoidanceType.NoObstacleAvoidance) playerNma.obstacleAvoidanceType = playerInitialAvoidenceType;
             noseCC.navmashagent.obstacleAvoidanceType = nosesInitialAvoidenceType;
         }
 
@@ -291,9 +291,9 @@ public class NoseEncounterGameController : GameController {
         setGirlPosition();
 
         Vector3 girlPosition = girl.transform.position;
-        NavMeshHit nmh;
+        UnityEngine.AI.NavMeshHit nmh;
 
-        if ((NavMesh.SamplePosition(girlPosition, out nmh, 10f, girl.GetComponent<NavMeshAgent>().areaMask)))
+        if ((UnityEngine.AI.NavMesh.SamplePosition(girlPosition, out nmh, 10f, girl.GetComponent<UnityEngine.AI.NavMeshAgent>().areaMask)))
         {
             girlPosition = nmh.position;
             
@@ -304,7 +304,7 @@ public class NoseEncounterGameController : GameController {
         girl.SetActive(true);
 
         
-        NavMeshAgent nmaGirls = girl.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent nmaGirls = girl.GetComponent<UnityEngine.AI.NavMeshAgent>();
         nmaGirls.Resume();
         nmaGirls.SetDestination(player.transform.position + player.transform.forward * 5);
 

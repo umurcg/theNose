@@ -8,7 +8,7 @@ public class ScriptClickTriggerOld : MonoBehaviour {
 
     Subtitle SubtitleScript;
     GameObject player;
-    NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
     SphereCollider colliderComponent;
     bool isInTrigger = false;
     bool isMoving = false;
@@ -28,7 +28,7 @@ public class ScriptClickTriggerOld : MonoBehaviour {
 
         SubtitleScript = GameObject.FindGameObjectWithTag("Subtitle").GetComponent<Subtitle>();
         player = GameObject.FindGameObjectWithTag("Player");
-        agent = player.GetComponent<NavMeshAgent>();
+        agent = player.GetComponent<UnityEngine.AI.NavMeshAgent>();
         colliderComponent = GetComponent<SphereCollider>();
 
     }

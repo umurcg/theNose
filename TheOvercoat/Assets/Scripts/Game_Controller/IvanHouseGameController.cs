@@ -8,7 +8,7 @@ public class IvanHouseGameController : GameController {
     public Vector3 ivanFirstPosition;
 
     Animator praskovayaAnim;
-    NavMeshAgent praskovayaNma;
+    UnityEngine.AI.NavMeshAgent praskovayaNma;
 
 
     public override void Awake()
@@ -50,7 +50,7 @@ public class IvanHouseGameController : GameController {
                 
         playerNma.enabled = false;
         praskovayaAnim = Praskovaya.GetComponent<Animator>();
-        praskovayaNma = Praskovaya.GetComponent<NavMeshAgent>();
+        praskovayaNma = Praskovaya.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         Timing.RunCoroutine(_wakeUpScene());
 

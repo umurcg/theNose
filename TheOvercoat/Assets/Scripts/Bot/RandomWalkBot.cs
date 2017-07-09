@@ -10,7 +10,7 @@ using System.Collections;
 public class RandomWalkBot : MonoBehaviour {
 	public GameObject obj;
 
-	protected NavMeshAgent nma;
+	protected UnityEngine.AI.NavMeshAgent nma;
 	protected Vector3 lastCheckedPos;
 	protected float timer=0;
 
@@ -20,7 +20,7 @@ public class RandomWalkBot : MonoBehaviour {
 
     public  void Start () {
         //base.Start();
-		nma = GetComponent<NavMeshAgent> ();
+		nma = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 			
 	}
 	

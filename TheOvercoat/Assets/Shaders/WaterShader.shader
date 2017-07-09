@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 // Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 
 
@@ -128,21 +130,21 @@ Shader "Trolltunga/LowPolyWaves 2.0"
 		}
 
 		g2f OUT;
-		OUT.pos = mul(UNITY_MATRIX_MVP, IN[0].pos);
+		OUT.pos = UnityObjectToClipPos(IN[0].pos);
 		OUT.norm = vn;
 		OUT.uv = IN[0].uv;
 		OUT.diffuseColor = ambientLighting + diffuseReflection;
 		OUT.specularColor = specularReflection;
 		triStream.Append(OUT);
 
-		OUT.pos = mul(UNITY_MATRIX_MVP, IN[1].pos);
+		OUT.pos = UnityObjectToClipPos(IN[1].pos);
 		OUT.norm = vn;
 		OUT.uv = IN[1].uv;
 		OUT.diffuseColor = ambientLighting + diffuseReflection;
 		OUT.specularColor = specularReflection;
 		triStream.Append(OUT);
 
-		OUT.pos = mul(UNITY_MATRIX_MVP, IN[2].pos);
+		OUT.pos = UnityObjectToClipPos(IN[2].pos);
 		OUT.norm = vn;
 		OUT.uv = IN[2].uv;
 		OUT.diffuseColor = ambientLighting + diffuseReflection;

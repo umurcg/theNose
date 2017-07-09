@@ -21,7 +21,7 @@ public class MeshToVertices : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         mesh = GetComponent<MeshFilter>().mesh;
-        mesh.Optimize();
+        ;
         //Debug.Log(mesh.vertexCount);
         //for (int i = 0; i < mesh.triangles.Length; i++)
         //{

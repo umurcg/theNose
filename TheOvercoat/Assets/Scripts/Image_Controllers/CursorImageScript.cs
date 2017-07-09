@@ -40,7 +40,7 @@ public class CursorImageScript : MonoBehaviour
 
     GameObject player;
     MoveTo mt;
-    NavMeshAgent playerAgent;
+    UnityEngine.AI.NavMeshAgent playerAgent;
 
     Text subt;
 
@@ -99,7 +99,7 @@ public class CursorImageScript : MonoBehaviour
         if (player != null)
         {
             mt = player.GetComponent<MoveTo>();
-            playerAgent = player.GetComponent<NavMeshAgent>();
+            playerAgent = player.GetComponent<UnityEngine.AI.NavMeshAgent>();
         }
     }
     void updateSubtitle()
@@ -333,8 +333,8 @@ public class CursorImageScript : MonoBehaviour
        //Vckrs.testPosition(hit.point);
        //Debug.Log("Player is not null");
 
-       NavMeshHit nmHit;
-        return (NavMesh.SamplePosition(position, out nmHit, 2f, playerAgent.areaMask));
+       UnityEngine.AI.NavMeshHit nmHit;
+        return (UnityEngine.AI.NavMesh.SamplePosition(position, out nmHit, 2f, playerAgent.areaMask));
                 
     }
 

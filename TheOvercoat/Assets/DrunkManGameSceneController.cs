@@ -10,7 +10,7 @@ public class DrunkManGameSceneController : GameController {
 
     [HideInInspector]
     Animator drunkManAnim;  
-    NavMeshAgent drunkNMA;
+    UnityEngine.AI.NavMeshAgent drunkNMA;
 
     characterComponents dm;
 
@@ -34,7 +34,7 @@ public class DrunkManGameSceneController : GameController {
     public override void Start () {
         base.Start();
 
-        drunkNMA = drunkManActor.GetComponent<NavMeshAgent>();
+        drunkNMA = drunkManActor.GetComponent<UnityEngine.AI.NavMeshAgent>();
         //showTimer = new Timer(timeBetweenShows);
 
         pointLight = drunkManActor.GetComponentInChildren<Light>();

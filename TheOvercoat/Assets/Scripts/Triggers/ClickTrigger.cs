@@ -6,7 +6,7 @@ public class ClickTrigger: MonoBehaviour {
    
 
     GameObject player;
-    NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
 
     public bool isInTrigger = false;
     bool isMoving = false;
@@ -30,7 +30,7 @@ public class ClickTrigger: MonoBehaviour {
     {
 
         player = GameObject.FindGameObjectWithTag("Player");
-        agent = player.GetComponent<NavMeshAgent>();
+        agent = player.GetComponent<UnityEngine.AI.NavMeshAgent>();
     
 		mouseLookScript = player.GetComponent<CharacterMouseLook> ();
 

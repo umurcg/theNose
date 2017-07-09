@@ -43,7 +43,7 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
         WalkToFarestOfRoadBot wtfrb = spawnedObject.GetComponent<WalkToFarestOfRoadBot>();
         if (wtfrb)
             wtfrb.obj = transform.gameObject;
-        NavMeshAgent nma = spawnedObject.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent nma = spawnedObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (nma != null)
         {
 
@@ -61,13 +61,13 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
         while (numberOfTry > 0)
         {
             Vector3 pos = getRandomPosInCircle(transform.position, radius);
-            NavMeshHit nmh;
-            NavMeshAgent nma = obj.GetComponentInChildren<NavMeshAgent>();
+            UnityEngine.AI.NavMeshHit nmh;
+            UnityEngine.AI.NavMeshAgent nma = obj.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
 
             //If it is last try then search in 1000
             float radiusToSearch = (numberOfTry == 1) ? 1000 : 10;
 
-            if (NavMesh.SamplePosition(pos, out nmh, radiusToSearch, nma.areaMask))
+            if (UnityEngine.AI.NavMesh.SamplePosition(pos, out nmh, radiusToSearch, nma.areaMask))
             {
                 return nmh.position;
       
@@ -110,9 +110,9 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
         //First find which way is not in navmesh if you couldn't fine it return null
         for (int i=0;i<nearPositions.Length;i++)
         {
-            NavMeshHit nmh;
-            NavMeshAgent nma = obj.GetComponentInChildren<NavMeshAgent>();
-            if (NavMesh.SamplePosition(nearPositions[i], out nmh, distanceToObj*2, nma.areaMask))
+            UnityEngine.AI.NavMeshHit nmh;
+            UnityEngine.AI.NavMeshAgent nma = obj.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
+            if (UnityEngine.AI.NavMesh.SamplePosition(nearPositions[i], out nmh, distanceToObj*2, nma.areaMask))
             {
                 //If founded position is near of current position this mean this way is note include in navMesh
                 if (Vector3.Distance(nmh.position, obj.transform.position) < distanceToObj/2)

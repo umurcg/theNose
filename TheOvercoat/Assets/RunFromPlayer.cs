@@ -16,7 +16,7 @@ public class RunFromPlayer : MonoBehaviour {
 
 
     GameObject player;
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
 
     float originalSpeed;
 
@@ -29,7 +29,7 @@ public class RunFromPlayer : MonoBehaviour {
 	void Start () {
 
         player = CharGameController.getActiveCharacter();
-        nma = GetComponent<NavMeshAgent>();
+        nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         originalSpeed = nma.speed;
         
@@ -95,8 +95,8 @@ public class RunFromPlayer : MonoBehaviour {
 
         Vector3 destination = transform.position + player.transform.forward * forwardValue;
         //Sample dest
-        NavMeshHit nmh;
-        if(NavMesh.SamplePosition(destination,out nmh, navMeshSampleRaidus, nma.areaMask))
+        UnityEngine.AI.NavMeshHit nmh;
+        if(UnityEngine.AI.NavMesh.SamplePosition(destination,out nmh, navMeshSampleRaidus, nma.areaMask))
         {
             //If dest is almost in navmesh leave it like that
         }
@@ -105,7 +105,7 @@ public class RunFromPlayer : MonoBehaviour {
 
             //Try to run in z direction
             destination = transform.position + Vector3.right * forwardValue;
-            if (NavMesh.SamplePosition(destination, out nmh, navMeshSampleRaidus, nma.areaMask))
+            if (UnityEngine.AI.NavMesh.SamplePosition(destination, out nmh, navMeshSampleRaidus, nma.areaMask))
             {
                 //If dest is almost in navmesh leave it like that
             } else

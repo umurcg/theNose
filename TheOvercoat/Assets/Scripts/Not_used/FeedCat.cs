@@ -6,7 +6,7 @@ public class FeedCat : MonoBehaviour, IClickAction {
 	GameObject nose;
 	GameObject player;
 	public GameObject playerNose;
-	NavMeshAgent nma;
+	UnityEngine.AI.NavMeshAgent nma;
 	RandomWalkBot rwb;
 
 	// Use this for initialization
@@ -14,7 +14,7 @@ public class FeedCat : MonoBehaviour, IClickAction {
 		nose=transform.GetChild(0).gameObject;
 		player = GameObject.FindGameObjectWithTag ("Player");
 		rwb = GetComponent<RandomWalkBot> ();
-		nma = GetComponent<NavMeshAgent> ();
+		nma = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 
 	}
 	

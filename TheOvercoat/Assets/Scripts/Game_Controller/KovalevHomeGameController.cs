@@ -12,7 +12,7 @@ public class KovalevHomeGameController : GameController {
    
 
     //Text charText;
-    NavMeshAgent IvanAgent;
+    UnityEngine.AI.NavMeshAgent IvanAgent;
     AlwaysLookTo IvanAlt;
     KeySlideCompletely ksc;
 
@@ -28,7 +28,7 @@ public class KovalevHomeGameController : GameController {
                       
 
         sc = GetComponent<SubtitleCaller>();
-        IvanAgent = Ivan.GetComponent<NavMeshAgent>();
+        IvanAgent = Ivan.GetComponent<UnityEngine.AI.NavMeshAgent>();
         IvanAlt = Ivan.GetComponent<AlwaysLookTo>();
 
         

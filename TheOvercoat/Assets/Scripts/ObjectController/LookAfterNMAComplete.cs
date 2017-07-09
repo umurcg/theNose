@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LookAfterNMAComplete : MonoBehaviour {
 
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
     public GameObject[] aims;
     bool didntRotate = true;
     
@@ -14,7 +14,7 @@ public class LookAfterNMAComplete : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        nma = GetComponent<NavMeshAgent>();
+        nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
         
 
 	}

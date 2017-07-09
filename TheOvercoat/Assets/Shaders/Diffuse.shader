@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 Shader ".myShaders/Diffuse"{
 	Properties{
@@ -31,7 +33,7 @@ Shader ".myShaders/Diffuse"{
 		
 		v2f vert(appdata IN) {
 			v2f OUT;
-			OUT.pos = mul(UNITY_MATRIX_MVP, IN.vertices);
+			OUT.pos = UnityObjectToClipPos(IN.vertices);
 			OUT.texcoor = IN.texcoor;
 			OUT.normal = mul(float4(IN.normal, 0.0), unity_ObjectToWorld).xyz; //takes normal of in value and makes it according to world coordinates
 			

@@ -272,7 +272,7 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
     {
         //Check for pcc
         PlayerComponentController pcc = subject.GetComponent<PlayerComponentController>();
-        NavMeshAgent nma = subject.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent nma = subject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         
         //if (!pcc||!nma) return;
 

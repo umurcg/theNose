@@ -28,7 +28,7 @@ public class BuildNavmesh : MonoBehaviour {
         }
 
 
-        UnityEditor.NavMeshBuilder.BuildNavMesh();
+        UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
 
         foreach (MeshCollider mc in meshColliders)
         {

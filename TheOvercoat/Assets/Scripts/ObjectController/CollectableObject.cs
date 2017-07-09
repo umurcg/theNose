@@ -175,7 +175,7 @@ public class CollectableObject : MonoBehaviour, IClickAction {
 
 	}
 
-    public static IEnumerator<float> goAndCollectObject(NavMeshAgent agent, GameObject objectToCollect, Vector3 unCollectPositionOffset, bool onhand=true)
+    public static IEnumerator<float> goAndCollectObject(UnityEngine.AI.NavMeshAgent agent, GameObject objectToCollect, Vector3 unCollectPositionOffset, bool onhand=true)
     {
         Vector3 posOnNavmesh = objectToCollect.transform.position;
         Vckrs.findNearestPositionOnNavMesh(posOnNavmesh,agent.areaMask,20f,out posOnNavmesh);

@@ -11,7 +11,7 @@ public class Pacing : MonoBehaviour {
     public bool makeFirstPositionSubjectPosition = true;
     float originalSpeed;
     PlayerComponentController pcc;
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
     public Vector3[] position;
     public GameObject[] goPositions;
     int index = 0;
@@ -43,7 +43,7 @@ public class Pacing : MonoBehaviour {
             pcc.StopToWalk();
         if (!nma)
         {
-            nma = GetComponent<NavMeshAgent>();
+            nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
             originalSpeed = nma.speed;
             nma.speed = speed;
         }

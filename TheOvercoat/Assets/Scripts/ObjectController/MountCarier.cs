@@ -19,13 +19,13 @@ public class MountCarier : MonoBehaviour {
     public bool unMount;
 
     CharacterController cc;
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
     Collider col;
 
     GameObject originalParent;
     // Use this for initialization
     void Start () {
-       nma= GetComponent<NavMeshAgent>();
+       nma= GetComponent<UnityEngine.AI.NavMeshAgent>();
         cc= GetComponent<CharacterController>();
         col = GetComponent<Collider>();
         originalParent = transform.parent.gameObject ;

@@ -54,7 +54,7 @@ public class Vckrs : MonoBehaviour
 
     public static IEnumerator<float> _setDestination(GameObject obj, Vector3 pos)
     {
-        NavMeshAgent agent = obj.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent agent = obj.GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (!agent) yield break;
 
         agent.SetDestination(pos);
@@ -231,7 +231,7 @@ public class Vckrs : MonoBehaviour
     //It uses nav mesh.
     static public IEnumerator<float> _pace(GameObject obj, Vector3 aim1, Vector3 aim2)
     {
-        NavMeshAgent nav = obj.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent nav = obj.GetComponent<UnityEngine.AI.NavMeshAgent>();
         nav.enabled = true;
         nav.Resume();
         nav.SetDestination(aim1);
@@ -317,7 +317,7 @@ public class Vckrs : MonoBehaviour
         cube.transform.position = pos;
     }
 
-    public static IEnumerator<float> followObject(NavMeshAgent agent, GameObject obj)
+    public static IEnumerator<float> followObject(UnityEngine.AI.NavMeshAgent agent, GameObject obj)
     {
         agent.Resume();
         while (true)
@@ -938,8 +938,8 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     //If fails returns false
     public static bool findNearestPositionOnNavMesh(Vector3 pos, int areaMask, float radiusToSearch, out Vector3 foundPosition)
     {
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(pos, out hit, radiusToSearch, areaMask))
+        UnityEngine.AI.NavMeshHit hit;
+        if (UnityEngine.AI.NavMesh.SamplePosition(pos, out hit, radiusToSearch, areaMask))
         {
             foundPosition = hit.position;
             return true;
@@ -1159,7 +1159,7 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
 
 
         //If object doesnt have navmesh then return null 
-        NavMeshAgent nma = obj.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent nma = obj.GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (nma == null) return false;
         if (smallRadius > bigRadius) return false;
         
@@ -1180,8 +1180,8 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
             position = Vector3.Lerp(positionLimit1, positionLimit2, Random.Range(0, 1));
 
             //Cast obj position to navmesh and check it is on navmesh
-            NavMeshHit nmh;
-            if ((NavMesh.SamplePosition(position, out nmh, 2f, nma.areaMask)))
+            UnityEngine.AI.NavMeshHit nmh;
+            if ((UnityEngine.AI.NavMesh.SamplePosition(position, out nmh, 2f, nma.areaMask)))
             {
                 position = nmh.position;
                 onNavmesh = true;
@@ -1434,14 +1434,14 @@ public class characterComponents
 {
     public GameObject player;
     public Animator animator;
-    public NavMeshAgent navmashagent;
+    public UnityEngine.AI.NavMeshAgent navmashagent;
 
 
     public characterComponents(GameObject p)
     {
         player = p;
         animator = p.GetComponent<Animator>();
-        navmashagent = p.GetComponent<NavMeshAgent>();
+        navmashagent = p.GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
 

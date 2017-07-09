@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WalkToFarestOfRoadBot : MonoBehaviour {
 	public GameObject obj;
-	NavMeshAgent nma;
+	UnityEngine.AI.NavMeshAgent nma;
 	Vector3 lastCheckedPos;
 	float timer=0;
 	public float waitBetweenWalks;
@@ -15,7 +15,7 @@ public class WalkToFarestOfRoadBot : MonoBehaviour {
 	public int axis = 1;
 
 	void Start () {
-		nma = GetComponent<NavMeshAgent> ();
+		nma = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 
 	}
 

@@ -77,7 +77,7 @@ public class CharGameController : MonoBehaviour {
         if (activeChar == null) return;
 
         //Disable nav mesh
-        NavMeshAgent nma = activeChar.GetComponent < NavMeshAgent > ();
+        UnityEngine.AI.NavMeshAgent nma = activeChar.GetComponent < UnityEngine.AI.NavMeshAgent > ();
         if(nma) nma.enabled = false;
 
         //If lastdoorid is not 0 then set player position to it

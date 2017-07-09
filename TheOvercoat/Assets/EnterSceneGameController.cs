@@ -13,7 +13,7 @@ public class EnterSceneGameController : GameController{
     public float orthographicZoomAmount, perspectiveZoomAmount;
 
     Camera cam;
-    NavMeshAgent ivanNma, kovalevNma;
+    UnityEngine.AI.NavMeshAgent ivanNma, kovalevNma;
     Animator ivanAnim, kovalevAnim;
 
     CameraController cc;
@@ -47,8 +47,8 @@ public class EnterSceneGameController : GameController{
             return;
         }
 
-        ivanNma = ivan.GetComponent<NavMeshAgent>();
-        kovalevNma = kovalev.GetComponent<NavMeshAgent>();
+        ivanNma = ivan.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        kovalevNma = kovalev.GetComponent<UnityEngine.AI.NavMeshAgent>();
         cam = cameraObj.GetComponent<Camera>();
         cc = cameraObj.GetComponent<CameraController>();
         

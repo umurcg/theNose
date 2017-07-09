@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CharacterMouseLook : MonoBehaviour {
     public float speed=3f;
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
 
     public enum Mode{withAgent,withoutAgent };
     public Mode mode = Mode.withAgent;
@@ -22,7 +22,7 @@ public class CharacterMouseLook : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         if(mode==Mode.withAgent)
-        nma = GetComponent<NavMeshAgent>();
+        nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         if (mode == Mode.withoutAgent)
             prevPos = transform.position;

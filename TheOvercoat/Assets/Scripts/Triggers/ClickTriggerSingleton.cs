@@ -13,7 +13,7 @@ using MovementEffects;
 
 public class ClickTriggerSingleton : MonoBehaviour {
 
-    NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
     //This is for bird
     MoveToWithoutAgent mtwagent;
 
@@ -30,7 +30,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         mtwagent = GetComponent<MoveToWithoutAgent>();
         pcc = GetComponent<PlayerComponentController>();
         //cml = GetComponent<CharacterMouseLook>();

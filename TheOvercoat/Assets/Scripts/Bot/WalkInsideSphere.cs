@@ -9,7 +9,7 @@ public class WalkInsideSphere : MonoBehaviour {
 
     float timer = -5;
     float threashold;
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
     Vector3 center;
     Vector3 prevPos = Vector3.zero;
 
@@ -20,7 +20,7 @@ public class WalkInsideSphere : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        nma = GetComponent<NavMeshAgent>();
+        nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
         center = transform.position;
     }
 	
@@ -68,8 +68,8 @@ public class WalkInsideSphere : MonoBehaviour {
         
 
         //Cast navmeshpos
-        NavMeshHit nmh;
-        if (NavMesh.SamplePosition(randomPos, out nmh, navMeshSampleRadius, nma.areaMask))
+        UnityEngine.AI.NavMeshHit nmh;
+        if (UnityEngine.AI.NavMesh.SamplePosition(randomPos, out nmh, navMeshSampleRadius, nma.areaMask))
         {
             return nmh.position;
         }else
@@ -104,8 +104,8 @@ public class WalkInsideSphere : MonoBehaviour {
         while (foundPos == Vector3.zero)
         {
             //Cast navmeshpos
-            NavMeshHit nmh;
-            if (NavMesh.SamplePosition(randomPos, out nmh, navMeshSampleRadius, nma.areaMask))
+            UnityEngine.AI.NavMeshHit nmh;
+            if (UnityEngine.AI.NavMesh.SamplePosition(randomPos, out nmh, navMeshSampleRadius, nma.areaMask))
             {
                 foundPos = nmh.position;
             }

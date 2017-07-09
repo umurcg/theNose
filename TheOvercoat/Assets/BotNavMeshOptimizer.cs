@@ -5,18 +5,18 @@ using System;
 //This script makes nav mesh agent highly optimized when agent is out of screen
 public class BotNavMeshOptimizer : MonoBehaviour, IVisibility {
 
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
 
     void Awake()
     {
 
 
-        nma=GetComponent<NavMeshAgent>();
+        nma=GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
     
     public void onInvisible()
     {
-        nma.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        nma.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.NoObstacleAvoidance;
         nma.autoBraking = false;
         nma.autoRepath = false;
         nma.autoRepath = false;
@@ -24,7 +24,7 @@ public class BotNavMeshOptimizer : MonoBehaviour, IVisibility {
 
     public void onVisible()
     {
-        nma.obstacleAvoidanceType = ObstacleAvoidanceType.LowQualityObstacleAvoidance;
+        nma.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.LowQualityObstacleAvoidance;
         nma.autoBraking = true;
         nma.autoRepath = true;
         nma.autoRepath = true;

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class HorseFreeze : MonoBehaviour {
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
     public GameObject carierFront;
     public GameObject carierBack;
     Rigidbody carierBackcc;
@@ -12,7 +12,7 @@ public class HorseFreeze : MonoBehaviour {
    
 	// Use this for initialization
 	void Start () {
-        nma = GetComponent<NavMeshAgent>();
+        nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
         cc = GetComponent<Rigidbody>();
         carierBackcc = carierBack.GetComponent<Rigidbody>();
         carierFrontcc = carierFront.GetComponent<Rigidbody>();

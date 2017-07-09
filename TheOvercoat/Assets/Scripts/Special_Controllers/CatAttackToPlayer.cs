@@ -9,7 +9,7 @@ public class CatAttackToPlayer : GameController, IClickAction {
     GameObject nose;
 
     //PlayerComponentController pcc;
-    NavMeshAgent catNma;
+    UnityEngine.AI.NavMeshAgent catNma;
     RandomWalkBot rwb;
     Text charSubt;
     Animator catAnim;
@@ -45,7 +45,7 @@ public class CatAttackToPlayer : GameController, IClickAction {
         }
 
 
-        catNma = GetComponent<NavMeshAgent>();
+        catNma = GetComponent<UnityEngine.AI.NavMeshAgent>();
         rwb = GetComponent<RandomWalkBot>();
         charSubt = SubtitleFade.subtitles["CharacterSubtitle"];
         catAnim = GetComponent<Animator>();

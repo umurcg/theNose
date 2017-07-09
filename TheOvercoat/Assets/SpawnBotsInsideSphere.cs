@@ -33,7 +33,7 @@ public class SpawnBotsInsideSphere : MonoBehaviour {
         spawnedObject.transform.localScale = Vector3.one;
         spawnedObject.transform.parent = transform;
         
-        NavMeshAgent nma = spawnedObject.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent nma = spawnedObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (nma != null)
         {
             nma.speed = navMeshSpeed;
@@ -45,9 +45,9 @@ public class SpawnBotsInsideSphere : MonoBehaviour {
     {
         SphereCollider sc = GetComponent<SphereCollider>();
         Vector3 pos = sc.center + transform.position + sc.radius * Random.insideUnitSphere;
-        NavMeshHit nmh;
-        NavMeshAgent nma = obj.GetComponent<NavMeshAgent>();
-        if (NavMesh.SamplePosition(pos, out nmh, sc.radius, nma.areaMask))
+        UnityEngine.AI.NavMeshHit nmh;
+        UnityEngine.AI.NavMeshAgent nma = obj.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (UnityEngine.AI.NavMesh.SamplePosition(pos, out nmh, sc.radius, nma.areaMask))
         {
             return nmh.position;
         }

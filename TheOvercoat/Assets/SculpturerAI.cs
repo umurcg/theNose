@@ -21,7 +21,7 @@ public class SculpturerAI : GameController, IClickAction {
 
     float subtTimer;
     float timer;
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
 
     Vector3 prevPos;
     float tolerance = 0.01f;
@@ -44,7 +44,7 @@ public class SculpturerAI : GameController, IClickAction {
     SubtitleController sub;
 	public override void Start () {
         base.Start();
-        nma = GetComponent<NavMeshAgent>();
+        nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
         timer = timeBetweenRandomMovements;
         prevPos = transform.position;
         sub= GetComponent<SubtitleController>();
@@ -106,8 +106,8 @@ public class SculpturerAI : GameController, IClickAction {
         nma.speed = randomWalkSpeed;
         Vector3 randomDirection = Random.insideUnitSphere * randomMovementRadius;
         randomDirection += transform.position;
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius,nma.areaMask);
+        UnityEngine.AI.NavMeshHit hit;
+        UnityEngine.AI.NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius,nma.areaMask);
         Vector3 finalPosition = hit.position;
         nma.SetDestination(finalPosition);
         timer = timeBetweenRandomMovements;
@@ -129,8 +129,8 @@ public class SculpturerAI : GameController, IClickAction {
         nma.speed = runFromPlayerSpeed;
         Vector3 destination = transform.position + player.transform.forward * runDistance;
         //Sample dest
-        NavMeshHit nmh;
-        if (NavMesh.SamplePosition(destination, out nmh, navMeshSampleRaidus, nma.areaMask))
+        UnityEngine.AI.NavMeshHit nmh;
+        if (UnityEngine.AI.NavMesh.SamplePosition(destination, out nmh, navMeshSampleRaidus, nma.areaMask))
         {
             //If dest is almost in navmesh leave it like that
             //Debug.Log("First attempt");
@@ -139,7 +139,7 @@ public class SculpturerAI : GameController, IClickAction {
         {
             //Try to run in z direction
             destination = transform.position + transform.right * runDistance;
-            if (NavMesh.SamplePosition(destination, out nmh, navMeshSampleRaidus, nma.areaMask))
+            if (UnityEngine.AI.NavMesh.SamplePosition(destination, out nmh, navMeshSampleRaidus, nma.areaMask))
             {
                 //Debug.Log("Second attempt");
                 //If dest is almost in navmesh leave it like that
@@ -147,7 +147,7 @@ public class SculpturerAI : GameController, IClickAction {
             else {
 
                 destination = transform.position - transform.right * runDistance;
-                if (NavMesh.SamplePosition(destination, out nmh, navMeshSampleRaidus, nma.areaMask))
+                if (UnityEngine.AI.NavMesh.SamplePosition(destination, out nmh, navMeshSampleRaidus, nma.areaMask))
                 {
                     //Debug.Log("Second attempt");
                     //If dest is almost in navmesh leave it like that

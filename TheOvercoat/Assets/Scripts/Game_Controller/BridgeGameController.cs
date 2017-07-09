@@ -12,7 +12,7 @@ public class BridgeGameController : GameController {
     GameObject nose;
     BoxCollider bc;
     Rigidbody noseRB;
-    NavMeshAgent policeNma;
+    UnityEngine.AI.NavMeshAgent policeNma;
 
     bool disabled;
     //public bool activate;
@@ -47,7 +47,7 @@ public class BridgeGameController : GameController {
 
         bc =GetComponent<BoxCollider>();
 
-        policeNma = police.GetComponent<NavMeshAgent>();
+        policeNma = police.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         //Vckrs.testPosition(new Vector3(bc.bounds.center.x, player.transform.position.y, player.transform.position.z + 5));
 

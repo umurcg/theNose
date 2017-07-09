@@ -32,7 +32,7 @@ public class PeopleWatch : MonoBehaviour {
             float random = Random.Range(0, 100);
             if (random < probabilityPercent)
             {
-                NavMeshAgent nma = other.gameObject.GetComponent<NavMeshAgent>();
+                UnityEngine.AI.NavMeshAgent nma = other.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
                 Timing.RunCoroutine(watchForSeconds(nma, watchTime, performer.transform.position));
 
 
@@ -53,7 +53,7 @@ public class PeopleWatch : MonoBehaviour {
     }
 
 
-    IEnumerator<float> watchForSeconds(NavMeshAgent nma, float time, Vector3 aim)
+    IEnumerator<float> watchForSeconds(UnityEngine.AI.NavMeshAgent nma, float time, Vector3 aim)
     {
         if (!nma) yield break;
 

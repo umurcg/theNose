@@ -6,7 +6,7 @@ public class PlayerComponentController : MonoBehaviour {
 	CharacterControllerKeyboard cck;
 	CharacterMouseLook cl;
 	CharacterController cc;
-	NavMeshAgent nma;
+	UnityEngine.AI.NavMeshAgent nma;
 
     bool bcanPlayerWalk = true;
 
@@ -51,7 +51,7 @@ public class PlayerComponentController : MonoBehaviour {
 		cck = GetComponent<CharacterControllerKeyboard>();
 		cl = GetComponent<CharacterMouseLook> ();
 		cc = GetComponent<CharacterController> ();
-		nma = GetComponent<NavMeshAgent> ();
+		nma = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 	}
 	
 	// Update is called once per frame

@@ -12,7 +12,7 @@ public class Jesus : GameController, IClickAction {
 
 
 
-    NavMeshAgent priestNma;
+    UnityEngine.AI.NavMeshAgent priestNma;
     Animator priestAnim;
 
     bool playerLookToPriest;
@@ -24,7 +24,7 @@ public class Jesus : GameController, IClickAction {
 
         CharGameController.coverKovalevsFace();
 
-        priestNma = priest.GetComponent<NavMeshAgent>();
+        priestNma = priest.GetComponent<UnityEngine.AI.NavMeshAgent>();
         priestAnim = priest.GetComponent<Animator>();
 
 

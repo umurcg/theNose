@@ -21,7 +21,7 @@ abstract public class GameController : MonoBehaviour , IClickAction{
     //public GlobalController.Scenes[] activateCondition;
 
     protected GameObject player;
-    protected NavMeshAgent playerNma;
+    protected UnityEngine.AI.NavMeshAgent playerNma;
     protected Animator playerAnim;
     protected SubtitleCaller sc;
     protected Text subtitle;
@@ -86,7 +86,7 @@ abstract public class GameController : MonoBehaviour , IClickAction{
         player = CharGameController.getActiveCharacter();
         if (player != null)
         {
-            playerNma = player.GetComponent<NavMeshAgent>();
+            playerNma = player.GetComponent<UnityEngine.AI.NavMeshAgent>();
             playerAnim = player.GetComponent<Animator>();
             pcc = player.GetComponent<PlayerComponentController>();
 

@@ -32,7 +32,7 @@ public class RunRandomlyFromObject: MonoBehaviour {
     public string finishObjectTag;
     public int maxNumber;
 
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
     float timer;
     Vector3 lastPos;
 
@@ -53,7 +53,7 @@ public class RunRandomlyFromObject: MonoBehaviour {
 
     void Start()
     {
-         nma= GetComponent<NavMeshAgent>();
+         nma= GetComponent<UnityEngine.AI.NavMeshAgent>();
         center = transform.position;
         if (chaser == null)
         {

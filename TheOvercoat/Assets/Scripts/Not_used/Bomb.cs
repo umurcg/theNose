@@ -12,7 +12,7 @@ public class Bomb : MonoBehaviour, IClickAction {
         print("bomb");
         
         Rigidbody rb=GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
-        GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         rb.AddExplosionForce(100000, transform.position-transform.up*5, 20);
 
     }

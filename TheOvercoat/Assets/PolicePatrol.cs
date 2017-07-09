@@ -15,7 +15,7 @@ public class PolicePatrol : MonoBehaviour {
     SubtitleCaller sc;
     WalkInsideSphere wis;
     float timer = 0;
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
     Vector3 center;
     Vector3 prevPos=Vector3.zero;
     PlayerComponentController pcc;
@@ -23,7 +23,7 @@ public class PolicePatrol : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        nma = GetComponent<NavMeshAgent>();
+        nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
         center = transform.position;
         wis = GetComponent<WalkInsideSphere>();
         sc = GetComponent<SubtitleCaller>();

@@ -56,7 +56,7 @@ public class GameControllerPoliceStation : GameController {
 
         trigger.SetActive(false);
         pcc.StopToWalk();
-        NavMeshAgent navKov = player.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent navKov = player.GetComponent<UnityEngine.AI.NavMeshAgent>();
         navKov.Stop();
 
 
@@ -70,7 +70,7 @@ public class GameControllerPoliceStation : GameController {
 
         yield return Timing.WaitForSeconds(1f);
 
-        NavMeshAgent guardnNma = Gaurd.GetComponent<NavMeshAgent>();
+        UnityEngine.AI.NavMeshAgent guardnNma = Gaurd.GetComponent<UnityEngine.AI.NavMeshAgent>();
         guardnNma.Resume();
         guardnNma.SetDestination(Vector3.Lerp(Gaurd.transform.position, player.transform.position, 0.7f));
        

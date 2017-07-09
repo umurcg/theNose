@@ -42,7 +42,7 @@ public class DrunkManAI : MonoBehaviour {
     SubtitleCaller sc;
     Vector3 prevPos;
 
-    NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
 
 
     EnterTrigger et;
@@ -60,7 +60,7 @@ public class DrunkManAI : MonoBehaviour {
 
         prevPos = transform.position;
 
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         player = CharGameController.getActiveCharacter();
 

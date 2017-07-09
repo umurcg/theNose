@@ -25,7 +25,7 @@ public class SpawnBotsOnTheRoad : MonoBehaviour {
 		WalkToFarestOfRoadBot wtfrb = spawnedObject.GetComponent<WalkToFarestOfRoadBot> ();
         if(wtfrb)
         wtfrb.obj = transform.gameObject;
-		NavMeshAgent nma= spawnedObject.GetComponent<NavMeshAgent>();
+		UnityEngine.AI.NavMeshAgent nma= spawnedObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
 		if(nma!=null){
 
 			nma.speed= Random.Range (minSpeed,maxSpeed);

@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 
-[RequireComponent (typeof(NavMeshAgent))]
+[RequireComponent (typeof(UnityEngine.AI.NavMeshAgent))]
 public class MoveRandomlyOnNavMesh : MonoBehaviour {
 
     public float radius;
     public float speed=3f;
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
 
     //bool walking=false;
     IEnumerator<float> walkCoruitine;
@@ -16,7 +16,7 @@ public class MoveRandomlyOnNavMesh : MonoBehaviour {
     // Use this for initialization
     void Awake () {
 
-        nma = GetComponent<NavMeshAgent>();
+        nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         //if (!nma)
         //{

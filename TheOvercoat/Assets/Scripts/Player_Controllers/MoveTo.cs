@@ -5,7 +5,7 @@ using System.Collections;
 public class MoveTo : MonoBehaviour
 {
     public GameObject prefab;
-    NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
     public GameObject[] aims;
 
     public LayerMask ignoreMasks;
@@ -19,7 +19,7 @@ public class MoveTo : MonoBehaviour
     }
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
     }
 

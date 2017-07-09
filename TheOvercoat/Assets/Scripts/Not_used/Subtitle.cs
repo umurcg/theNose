@@ -15,7 +15,7 @@ public class Subtitle : MonoBehaviour {
 
     //player for stopping player.
    public  GameObject player;
-    NavMeshAgent playerNavMesh;
+    UnityEngine.AI.NavMeshAgent playerNavMesh;
     CharacterControllerKeyboard cck;
     //original values
     float speed, rotationalS;
@@ -44,7 +44,7 @@ public class Subtitle : MonoBehaviour {
         color = new Color(ri.color.r,ri.color.g,ri.color.b,0f);
         ri.color = color;
 
-        playerNavMesh = player.GetComponent<NavMeshAgent>();
+        playerNavMesh = player.GetComponent<UnityEngine.AI.NavMeshAgent>();
         cck = player.GetComponent<CharacterControllerKeyboard>();
         speed = cck.speed;
         rotationalS = cck.rotateSpeed;

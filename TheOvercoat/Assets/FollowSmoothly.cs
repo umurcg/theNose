@@ -9,14 +9,14 @@ public class FollowSmoothly : MonoBehaviour {
     public float speed;
     public float offset;
 
-    NavMeshAgent nma;
+    UnityEngine.AI.NavMeshAgent nma;
 
 	// Use this for initialization
 	void Start () {
 
         if (usingNavmesh)
         {
-            nma = GetComponent<NavMeshAgent>();
+            nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
             nma.speed = speed;
 
         }

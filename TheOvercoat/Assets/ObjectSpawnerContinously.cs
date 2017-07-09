@@ -37,10 +37,10 @@ public class ObjectSpawnerContinously : MonoBehaviour {
     {
         Vector3 spawnPos = Vckrs.getRandomPosInCircle(transform.position, radius,Plane.XZ);
         //Debug.Log("Garabage pos is " + spawnPos);
-        NavMeshHit hit;
+        UnityEngine.AI.NavMeshHit hit;
         
 
-        if (NavMesh.SamplePosition(spawnPos, out hit, 100f, NavMesh.AllAreas/*NavMesh.GetAreaFromName("Street")*/))
+        if (UnityEngine.AI.NavMesh.SamplePosition(spawnPos, out hit, 100f, UnityEngine.AI.NavMesh.AllAreas/*NavMesh.GetAreaFromName("Street")*/))
         {
 
             if (prefab == null) Debug.Log("prefdab is null");
