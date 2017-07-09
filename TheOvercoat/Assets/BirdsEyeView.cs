@@ -55,6 +55,7 @@ public class BirdsEyeView : MonoBehaviour {
         //Timing.RunCoroutine(disableEnable());
 
         cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
+        streetParent = GameObject.FindGameObjectWithTag("Street").transform.Find("HorseRoads").gameObject;
 
     }
 
@@ -291,6 +292,11 @@ public class BirdsEyeView : MonoBehaviour {
     bool areStreetsActive()
     {
         //return areaList[0].activeSelf;
+        //if(streetParent==null) streetParent= GameObject.FindGameObjectWithTag("HorseRoads");
+
+        //if (streetParent == null) return false;
+
+
         return streetParent.activeSelf;
     }
 

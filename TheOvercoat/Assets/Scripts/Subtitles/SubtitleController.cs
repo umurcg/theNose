@@ -401,10 +401,36 @@ public class SubtitleController : MonoBehaviour {
 
         return -1;
     }
-
-    void updateTextFileName()
+    
+    [ContextMenu ("Update Text Asset Name")]
+    public void updateTextFileName()
     {
+#if UNITY_EDITOR
+        if (textAsset == null)
+        {
+          
+            Debug.Log("text asset is null");
+            return;
+        }
+        createFileName();
 
+        string dataPath = Application.dataPath;
+        dataPath = dataPath.Remove(dataPath.Length - "Assets".Length);
+
+        string path =dataPath + UnityEditor.AssetDatabase.GetAssetPath(textAsset);
+        string newPath = Application.dataPath + "/Resources/" + folderName + "/" + fileName+".txt";
+
+        path = path.Trim();
+        newPath = newPath.Trim();
+
+        Debug.Log("old file name is " + path + " new file name is " + newPath);
+
+        UnityEditor.AssetDatabase.RenameAsset(path, newPath);
+
+
+        Debug.Log("updated file name");
+
+#endif
     }
 
 }

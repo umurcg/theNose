@@ -46,6 +46,15 @@ public class CityGameController : MonoBehaviour {
             //    Debug.Log(i);
             //}
 
+
+            if (CharGameController.cgc != null)
+            {
+                //In city player hould have enabled bird eye view script. so enable it you fucking idiot
+                BirdsEyeView bev = CharGameController.getCamera().GetComponent<BirdsEyeView>();
+                bev.enabled = true;
+
+            }
+
             if (checkSideStories()) return;
 
             if (sceneList.Count > 1)
@@ -144,9 +153,6 @@ public class CityGameController : MonoBehaviour {
             Debug.Log("No global controller instace!!!!!!!!!!!");
         }
 
-        //In city player hould have enabled bird eye view script. so enable it you fucking idiot
-        BirdsEyeView bev = CharGameController.getCamera().GetComponent<BirdsEyeView>();
-        bev.enabled = true;
 
         GameObject player = CharGameController.getActiveCharacter();
 
@@ -411,6 +417,7 @@ public class CityGameController : MonoBehaviour {
         if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PrisonerGameDeadMan"))
         {
             foundDeadman();
+            OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse).playerCanOpen=true;
             return true;
         }
 
