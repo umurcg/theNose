@@ -366,10 +366,12 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     }
 
 
-    GameObject nearestWayPoint()
+    public GameObject nearestWayPoint()
     {
         GameObject wayPoint=null;
         float minDistance = Mathf.Infinity;
+
+        if (wayPoints.Length == 1) return wayPoints[0];
 
         foreach(GameObject wp in wayPoints)
         {

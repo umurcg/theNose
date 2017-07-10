@@ -122,7 +122,9 @@ public class GirtController : GameController {
     IEnumerator<float> triggerGirtyPetGame()
     {
         //Set camera of canvas
-        girtyPetGameCanvas.GetComponent<Canvas>().worldCamera = CharGameController.getCamera().GetComponent<Camera>();
+        //girtyPetGameCanvas.GetComponent<Canvas>().worldCamera = CharGameController.getCamera().GetComponent<Camera>();
+
+
         rwaa.enabled = false;
         girtyNma.Stop();
         Timing.RunCoroutine(Vckrs._lookTo(gameObject, player, 1f));
@@ -131,8 +133,8 @@ public class GirtController : GameController {
         sc.callSubtitleWithIndex(0);
         while (subtitle.text != "") yield return 0;
 
-        
-        girtyPetGameCanvas.transform.GetChild(0).gameObject.SetActive(true);
+        girtyPetGameCanvas.SetActive(true);
+        //girtyPetGameCanvas.transform.GetChild(0).gameObject.SetActive(true);
 
         yield return 0;
     }

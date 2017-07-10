@@ -269,7 +269,7 @@ public class IvanHouseGameController : GameController {
 
         //ActivateAnotherObject.Disable(drawer);
         //ActivateAnotherObject.Activate(door);
-        door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
+        door.GetComponent<OpenDoorLoad>().Unlock();
 
         pcc.ContinueToWalk();
         yield break;
@@ -284,7 +284,7 @@ public class IvanHouseGameController : GameController {
         bread.transform.position = BreadPH.transform.position;
         //bread.GetComponent<CollectableObject>().enabled = false;
         ActivateAnotherObject.Disable(bread);
-        door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
+        door.GetComponent<OpenDoorLoad>().Unlock();
         ActivateAnotherObject.Activate(door);
         Destroy(this);
 

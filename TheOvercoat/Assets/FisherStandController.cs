@@ -30,7 +30,7 @@ public class FisherStandController : GameController, IClickAction {
         bucket.GetComponent<SwapMaterials>().deactivate();
         bucket.transform.tag = "Untagged";
 
-        odl.playerCanOpen = true;
+        odl.Unlock();
 
         degc.gameObject.SetActive(false);
         

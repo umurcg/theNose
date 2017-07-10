@@ -501,6 +501,8 @@ public int setDebugListToLevelIndex;
             if (gc == trimEpisodeID( ugc)) count++;
         }
 
+        Debug.Log("This game controller registered " + count + " times");
+
         return count;
    }
 
@@ -517,7 +519,7 @@ public int setDebugListToLevelIndex;
         {
             //Trim episodeID of it while episode id is only used in trimmin while loading from moments
             string trimedEpisodeID = trimEpisodeID(s);
-            Debug.Log("Game Controller ID is "+trimedEpisodeID);
+            //Debug.Log("Game Controller ID is "+trimedEpisodeID);
 
             if (gc == trimedEpisodeID) return true;
             

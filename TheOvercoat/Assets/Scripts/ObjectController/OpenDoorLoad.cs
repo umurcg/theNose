@@ -33,11 +33,13 @@ public class OpenDoorLoad : LoadScene {
     public void Unlock()
     {
         playerCanOpen = true;
+        transform.tag = "ActiveObject";
     }
 
     public void Lock()
     {
         playerCanOpen = false;
+        transform.tag = "Untagged";
     }
 
     public bool isLocked()

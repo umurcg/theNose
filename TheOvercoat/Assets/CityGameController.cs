@@ -137,7 +137,7 @@ public class CityGameController : MonoBehaviour {
             //Games only can be activated with registered game controllers
             if (GlobalController.Instance.usedGameControllers.Count > 0)
             {
-                if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PoliceStationPrisoner")
+                if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("Prisoner_Mahkum")
                     && !GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PrisonerGameDeadMan")
                     )
                 {
@@ -201,7 +201,7 @@ public class CityGameController : MonoBehaviour {
         //cat.GetComponent<GameController>().isDisabledAtStart = false;
 
         //Unlock Ivan home door
-        OpenDoorLoad.doors[1].playerCanOpen = true;
+        OpenDoorLoad.doors[1].Unlock();
 
         ////Set active character to Ivan just in case
         CharGameController.setCharacter("Ivan");
@@ -252,8 +252,8 @@ public class CityGameController : MonoBehaviour {
             OpenDoorLoad doctoDoor=OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.Doctor);
             OpenDoorLoad kovaevDoor= OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse);
 
-            doctoDoor.playerCanOpen = true;
-            kovaevDoor.playerCanOpen = true;
+            doctoDoor.Unlock();
+            kovaevDoor.Unlock();
 
             //Make night
             CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight(true);
@@ -268,8 +268,8 @@ public class CityGameController : MonoBehaviour {
         else
         {
             //Unlock police door and kovalev door
-            OpenDoorLoad.doors[2].playerCanOpen = true;
-            OpenDoorLoad.doors[3].playerCanOpen = true;
+            OpenDoorLoad.doors[2].Unlock();
+            OpenDoorLoad.doors[3].Unlock();
 
             //Kovalev should cover his hands
             CharGameController.coverKovalevsFace();
@@ -288,9 +288,9 @@ public class CityGameController : MonoBehaviour {
     void comingFromPoliceStation()
     {
         //Unlock police door and kovalev door
-        OpenDoorLoad.doors[2].playerCanOpen = true;
-        OpenDoorLoad.doors[3].playerCanOpen = true;
-        OpenDoorLoad.doors[4].playerCanOpen = true;
+        OpenDoorLoad.doors[2].Unlock();
+        OpenDoorLoad.doors[3].Unlock();
+        OpenDoorLoad.doors[4].Unlock();
 
         //Force kovalev to cover his face
         CharGameController.coverKovalevsFace();
@@ -301,9 +301,9 @@ public class CityGameController : MonoBehaviour {
         //Girty handles its activation itself.
 
         //Unlock newspaper home door
-        OpenDoorLoad.doors[2].playerCanOpen = true;
-        OpenDoorLoad.doors[3].playerCanOpen = true;
-        OpenDoorLoad.doors[4].playerCanOpen = true;
+        OpenDoorLoad.doors[2].Unlock();
+        OpenDoorLoad.doors[3].Unlock();
+        OpenDoorLoad.doors[4].Unlock();
 
         //If coming from newspaper second time that player gave girty to newspaper 
         //So lets instantiate churchteller
@@ -419,7 +419,7 @@ public class CityGameController : MonoBehaviour {
         if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PrisonerGameDeadMan"))
         {
             foundDeadman();
-            OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse).playerCanOpen=true;
+            OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse).Unlock();
             return true;
         }
 

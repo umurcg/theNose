@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 //Creates reflection of garbage area in front of camera
 //User can move every object.
@@ -9,6 +10,7 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
 
     public GameObject canvas;
     public float scaleSize=30;
+    public Button closeButton;
     GameObject reflection;
     PlayerComponentController pcc;
 
@@ -19,6 +21,7 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
     {
         
     }
+
 
     public void createReflectionOnCamera()
     {
@@ -33,6 +36,10 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
         reflection.transform.localPosition = Vector3.zero;
         reflection.transform.LookAt(canvas.transform.position - canvas.transform.forward);
 
+        closeButton.gameObject.SetActive(true);
+        closeButton.onClick.AddListener(destroyReflection);
+        
+            
         //Add every child object move with mouse 
         for(int i = 0; i < reflection.transform.childCount; i++)
         {
@@ -63,7 +70,13 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
         Destroy(reflection);
         pcc.ContinueToWalk();
         gameObject.tag = "ActiveObject";
+
+        closeButton.gameObject.SetActive(false);
+        closeButton.onClick.RemoveAllListeners();
+
         enabled = false;
+
+
 
     }
 
@@ -74,6 +87,8 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
 
         pcc = CharGameController.getActiveCharacter().GetComponent<PlayerComponentController>();
         pcc.StopToWalk();
+
+        
 
         gameObject.tag = "Untagged";
 

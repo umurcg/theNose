@@ -11,6 +11,8 @@ public class NewsGameController : GameController {
     Conv convType;
     public GameObject girtyObj;
 
+    bool registered=false;
+
 	// Use this for initialization
 	public override void Start () {
         base.Start();
@@ -22,7 +24,11 @@ public class NewsGameController : GameController {
         //Check for girty
         GirtController gc= CharGameController.getOwner().GetComponentInChildren<GirtController>();
         string girtyController = "Citygirty";
-        if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(girtyController))
+
+
+
+
+        if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(girtyController) && numberOfRegister<2 )
         {
             setConversation(Conv.FoundGirt);
 
@@ -76,12 +82,14 @@ public class NewsGameController : GameController {
     public void callSubtitle()
     {
 
-        if (convType == Conv.ComignFirstTime)
+        if (convType == Conv.ComignFirstTime && !registered)
         {
             registerAsUsed();
-        }else if (convType == Conv.FoundGirt)
+            registered = true;
+        }else if (convType == Conv.FoundGirt && !registered)
         {
             GlobalController.Instance.registerGameControllerCanBeDuplicated(generateIDWithEpisodeID());
+            registered = true;
         }
 
         sc.callSubtitle();

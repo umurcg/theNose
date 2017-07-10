@@ -94,16 +94,22 @@ public class ChurchTellerGameController : GameController {
 
         while (subtitle.text != "") yield return 0;
 
-        ownerCC.navmashagent.SetDestination(player.transform.position - 50 * Vector3.forward);
+        Vector3 randomPos = Vckrs.generateRandomPositionOnCircle(transform.position, 200f);
 
-        timer = 10;
+        registerAsUsed();
+
+        Vckrs.findNearestPositionOnNavMesh(randomPos, ownerCC.navmashagent.areaMask, 50f, out randomPos);
+
+        ownerCC.navmashagent.SetDestination(randomPos);
+
+        timer = 30;
         while (timer > 0)
         {
             timer -= Time.deltaTime;
             yield return 0;
         }
 
-        registerAsUsed();
+
 
 
         Destroy(gameObject);

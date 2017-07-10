@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 
 //In this game, number of garbage area is created.
@@ -21,6 +22,7 @@ public class ReyhanGameController : MonoBehaviour {
     public Material obajectMaterial;
     public GameObject canvas;
     public GameObject treasure;
+    public Button closeButton;
     SphereCollider col;
 
 	// Use this for initialization
@@ -106,6 +108,8 @@ public class ReyhanGameController : MonoBehaviour {
             gac.enabled = false;
             gac.canvas = canvas;
             gac.rgc = this;
+
+            gac.closeButton = closeButton;
 
             gac.tag = "ActiveObject";
             SphereCollider sc=gac.gameObject.AddComponent<SphereCollider>();

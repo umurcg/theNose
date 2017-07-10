@@ -133,6 +133,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
         if (checkIsColliding(aim))
         {          
             callAction(aim);
+            if(spaceTrigger)
             spaceTrigger.clearFocus();
             yield break;
         }
@@ -285,7 +286,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
             if (ica != null)
             {
                 ica.Action();
-                Debug.Log("Calling action");
+                //Debug.Log("Calling action");
             }
         }
 

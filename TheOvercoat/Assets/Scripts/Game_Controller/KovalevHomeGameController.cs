@@ -334,7 +334,7 @@ public class KovalevHomeGameController : GameController {
         Vckrs.ActivateAnotherObject(Door);
         OpenDoorLoad od = Door.GetComponent<OpenDoorLoad>();
         od.otherCanOpen = false;
-        od.playerCanOpen = true;
+        od.Unlock();
 
 
 
@@ -613,8 +613,7 @@ public class KovalevHomeGameController : GameController {
         sc.callSubtitleWithIndex(19);
         while (subtitle.text != "") yield return 0;
 
-        Door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
-
+        Door.GetComponent<OpenDoorLoad>().Unlock();
         yield break;
     }
 
@@ -670,8 +669,7 @@ public class KovalevHomeGameController : GameController {
 
         playerNma.enabled = true;
 
-        Door.GetComponent<OpenDoorLoad>().playerCanOpen = true;
-
+        Door.GetComponent<OpenDoorLoad>().Unlock();
         yield break;
     }
 

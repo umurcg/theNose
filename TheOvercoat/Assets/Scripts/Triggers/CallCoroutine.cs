@@ -24,7 +24,7 @@ public class CallCoroutine : MonoBehaviour, IFinishedSwitching, IClickAction, ID
 
     public void call()
     {
-        Debug.Log("calling "+methodName);
+        //Debug.Log("calling "+methodName);
         if (passParameter == null)
         {
             owner.SendMessage(methodName);

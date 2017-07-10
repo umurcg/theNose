@@ -1425,6 +1425,17 @@ public class Vckrs : MonoBehaviour
         return lines;
     }
 
+    public static IEnumerator<float> destroyWhenOutScreen(GameObject obj)
+    {
+        Renderer rend = obj.GetComponentInChildren<Renderer>();
+
+        while (rend.isVisible) yield return 0;
+
+        Destroy(obj);
+
+
+    }
+
     public static IEnumerator<float> waitUntilFractionOfAnimation(Animator anim, float fraction, string animName, int animLayer=0){
 
         fraction = Mathf.Clamp(fraction, 0, 1);
