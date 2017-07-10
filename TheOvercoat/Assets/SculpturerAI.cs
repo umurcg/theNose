@@ -115,7 +115,7 @@ public class SculpturerAI : GameController, IClickAction {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !oneHeykelIsLeft)
         {
             runFromPlayer();
         }
@@ -241,8 +241,8 @@ public class SculpturerAI : GameController, IClickAction {
     {
         //base.Action();
 
-        transform.parent.gameObject.GetComponent<SculpturerGameController>().outerSpeech();
-        transform.tag = "Untagged";
+        //transform.parent.gameObject.GetComponent<SculpturerGameController>().outerSpeech();
+        //transform.tag = "Untagged";
     }
 
     

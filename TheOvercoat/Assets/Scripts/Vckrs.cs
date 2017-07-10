@@ -103,7 +103,7 @@ public class Vckrs : MonoBehaviour
         float delta = Vector3.Distance(go.transform.position, aim);
 
         float speed = factor * Vector3.Distance(go.transform.position, aim) / delta;
-        speed = Mathf.Clamp(speed, lowestLimitSpeed,speed);
+        speed = Mathf.Clamp(speed, lowestLimitSpeed, speed);
 
         while (ratio < 1)
         {
@@ -404,13 +404,13 @@ public class Vckrs : MonoBehaviour
     //        //}
 
     //    }
-    
-    
+
+
     //}
 
     //public static IEnumerator<float> _cameraSizeRootFunc(Camera cam, float size, float factor, float limitSpeed=0.2f)
     //{
-   
+
     //        float speed = factor;
     //        float delta = Mathf.Abs(cam.orthographicSize - size);
 
@@ -488,12 +488,12 @@ public class Vckrs : MonoBehaviour
     //    }
     //}
 
-    
 
 
-    public static IEnumerator<float> _fadeObject(GameObject obj, float speed, bool fullFade=false)
+
+    public static IEnumerator<float> _fadeObject(GameObject obj, float speed, bool fullFade = false)
     {
-       
+
 
         Renderer rend = obj.GetComponent<Renderer>();
 
@@ -507,7 +507,7 @@ public class Vckrs : MonoBehaviour
         if (a == 1)
         {
             handler = Timing.RunCoroutine(_fadeObjectOut(obj, speed, fullFade));
-        }else
+        } else
         {
             handler = Timing.RunCoroutine(_fadeObjectIn(obj, speed, fullFade));
         }
@@ -588,7 +588,7 @@ public class Vckrs : MonoBehaviour
         }
 
 
-        if(a==1)
+        if (a == 1)
         {
             while (a > 0)
             {
@@ -695,31 +695,31 @@ public class Vckrs : MonoBehaviour
         Color textureColor = rend.material.color;
         float a = textureColor.a;
 
-      
-  
+
+
         textureColor.a = 1;
         rend.material.color = textureColor;
 
-    
-            StandardShaderUtils.ChangeRenderMode(rend.material, StandardShaderUtils.BlendMode.Opaque);
-        
+
+        StandardShaderUtils.ChangeRenderMode(rend.material, StandardShaderUtils.BlendMode.Opaque);
+
 
 
     }
 
     public static void setAlpha<T>(GameObject obj, float a) where T : MaskableGraphic
     {
-       
-          a = Mathf.Clamp(a, 0, 1);
-          T t = obj.GetComponent<T>();
-          Color textureColor = t.color;
-          textureColor.a=a;
+
+        a = Mathf.Clamp(a, 0, 1);
+        T t = obj.GetComponent<T>();
+        Color textureColor = t.color;
+        textureColor.a = a;
         t.color = textureColor;
         //Debug.Log("setting " + obj.name + " invisible" + textur);
     }
 
 
-public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) where T: MaskableGraphic
+    public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) where T : MaskableGraphic
     {
         T t = obj.GetComponent<T>();
 
@@ -878,21 +878,21 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
 
 
 
-        if (currentIntesity<intensity)
+        if (currentIntesity < intensity)
         {
             while (currentIntesity < intensity)
             {
                 currentIntesity += Time.deltaTime * speed;
                 light.intensity = currentIntesity;
 
-          
+
                 yield return 0;
             }
-                       
+
 
             currentIntesity = intensity;
             light.intensity = currentIntesity;
-            
+
 
             yield break;
         }
@@ -903,14 +903,14 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
                 currentIntesity -= Time.deltaTime * speed;
                 light.intensity = currentIntesity;
 
-        
+
 
                 yield return 0;
             }
             currentIntesity = intensity;
             light.intensity = currentIntesity;
 
-          
+
 
             yield break;
         }
@@ -925,11 +925,11 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
         yield break;
 
     }
-    public static IEnumerator<float> InstantiateIn(GameObject obj, float delay, GameObject posObj,Vector3 offset)
+    public static IEnumerator<float> InstantiateIn(GameObject obj, float delay, GameObject posObj, Vector3 offset)
     {
         yield return Timing.WaitForSeconds(delay);
         GameObject spawnedObj = Instantiate(obj) as GameObject;
-        spawnedObj.transform.position = posObj.transform.position+offset;
+        spawnedObj.transform.position = posObj.transform.position + offset;
         yield break;
 
     }
@@ -948,13 +948,13 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
         foundPosition = Vector3.zero;
         return false;
 
-    }  
+    }
 
     public static GameObject findNearestObjectToPos(Vector3 pos, GameObject[] objects)
     {
-        GameObject nearesrObj=null;
+        GameObject nearesrObj = null;
         float minDistance = Mathf.Infinity;
-        foreach(GameObject obj in objects)
+        foreach (GameObject obj in objects)
         {
             float dis = Vector3.Distance(obj.transform.position, pos);
             if (minDistance < dis)
@@ -1062,7 +1062,7 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
 
     public static bool canCameraSeeObject(Vector3 pos, Camera cam)
     {
-        
+
         Vector3 screenPoint = cam.WorldToViewportPoint(pos);
         bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
         return onScreen;
@@ -1079,11 +1079,11 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
         for (int i = 0; i < parent.childCount; i++)
         {
             Transform child = parent.GetChild(i);
-            if(!exceptions.Contains(child))    parent.GetChild(i).gameObject.SetActive(false);
+            if (!exceptions.Contains(child)) parent.GetChild(i).gameObject.SetActive(false);
         }
 
     }
-    
+
     public static void enableAllChildren(Transform parent)
     {
         for (int i = 0; i < parent.childCount; i++) parent.GetChild(i).gameObject.SetActive(true);
@@ -1102,7 +1102,7 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
 
     public static void doItAfterFrame(myDelegate theDelegate, int frameCount)
     {
-        Timing.RunCoroutine(_doItAfterFrame(theDelegate,frameCount));
+        Timing.RunCoroutine(_doItAfterFrame(theDelegate, frameCount));
     }
 
     static IEnumerator<float> _doItAfterFrame(myDelegate theDelegate, int frameCount)
@@ -1123,10 +1123,10 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     {
         Vector2 randomPos = randomPosOnScreen(10);
         //Debug.Log(randomPos);
-        Ray ray=cam.ScreenPointToRay(randomPos);
+        Ray ray = cam.ScreenPointToRay(randomPos);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray,out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.transform.name);
             if (hit.transform.tag == floorTag)
@@ -1154,7 +1154,7 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     //Sets object position outside of camera with trying to find suitable place on navmesh. 
     //It generates tries to find position between tow circle areas like a torus
     //If it fails does nothing. It does in one frame so choose try number suitable.
-    public static bool setPositionToOutsideOfCameraAndOnNavmesh(GameObject obj, Vector3 center, int numberOfTrial,Camera cam, float smallRadius=30f, float bigRadius=50f)
+    public static bool setPositionToOutsideOfCameraAndOnNavmesh(GameObject obj, Vector3 center, int numberOfTrial, Camera cam, float smallRadius = 30f, float bigRadius = 50f)
     {
 
 
@@ -1162,16 +1162,16 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
         UnityEngine.AI.NavMeshAgent nma = obj.GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (nma == null) return false;
         if (smallRadius > bigRadius) return false;
-        
-        
 
-        
+
+
+
         bool onNavmesh = false;
         bool outsideOfCam = false;
 
         int trial = numberOfTrial;
 
-        Vector3 position=Vector3.zero;
+        Vector3 position = Vector3.zero;
 
         while ((!onNavmesh || !outsideOfCam) && trial > 0)
         {
@@ -1222,9 +1222,9 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     }
 
     //Adds impact effect using character controller
-    public static IEnumerator<float> addImpactForceCC(GameObject subjectOfForce, Vector3 force, float mass=1)
+    public static IEnumerator<float> addImpactForceCC(GameObject subjectOfForce, Vector3 force, float mass = 1)
     {
-        
+
         //Debug.Log(force);
         //Time.timeScale = 0;
         Vector3 impact = force / mass;
@@ -1249,26 +1249,26 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
         if (random == 0)
         {
             return -1;
-        }else
+        } else
         {
             return 1;
         }
     }
-    
+
     public static Vector2 centerOfScreen()
     {
-        return new Vector2(Screen.width/2,Screen.height/2);
+        return new Vector2(Screen.width / 2, Screen.height / 2);
     }
 
-    public static Vector2 screenRatioToPosition(float width,float height)
+    public static Vector2 screenRatioToPosition(float width, float height)
     {
-        width=Mathf.Clamp(width, 0, 1);
+        width = Mathf.Clamp(width, 0, 1);
         height = Mathf.Clamp(height, 0, 1);
 
         return new Vector2(width * Screen.width, height * Screen.height);
     }
 
-    public static Vector2 randomPosOnScreen(float offset=0)
+    public static Vector2 randomPosOnScreen(float offset = 0)
     {
         return new Vector2(Random.Range(0 + offset, Screen.width - offset), Random.Range(0 + offset, Screen.height - offset));
     }
@@ -1289,21 +1289,21 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
 
         if (p == Plane.XY)
         {
-            return (new Vector3(randomPos.x, randomPos.y,0)) + center;
+            return (new Vector3(randomPos.x, randomPos.y, 0)) + center;
 
-        }else if (p == Plane.XZ)
+        } else if (p == Plane.XZ)
         {
             return (new Vector3(randomPos.x, 0, randomPos.y)) + center;
         }
         else
         {
-            return (new Vector3( 0, randomPos.x, randomPos.y)) + center;
+            return (new Vector3(0, randomPos.x, randomPos.y)) + center;
         }
 
-    
+
 
     }
-    
+
     /// <summary>
     /// extract string according to input language enum. text asset must be in the fallowing format
     /// TR
@@ -1317,13 +1317,13 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
     /// <param name="ta"></param>
     public static string getStringAccordingToLanguage(Language language, TextAsset ta, string finishSignature = "-----")
     {
-        
+
         string languageCode = language.ToString();
 
         //Debug.Log(languageCode);
 
-        int startIndex = findLine(languageCode,ta) + 1;
-        int finishIndex = findLine(startIndex, finishSignature,ta) - 1;
+        int startIndex = findLine(languageCode, ta) + 1;
+        int finishIndex = findLine(startIndex, finishSignature, ta) - 1;
 
 
         //If text asset doesn't have text for languge settings that user set, then import turkish subtitles by default. Because 
@@ -1331,8 +1331,8 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
         if (startIndex > finishIndex || startIndex == 0)
         {
             //Debug.Log("Couldn't find subtite for " + languageCode + " in "+ fileName+" so importing turkish");
-            startIndex = findLine("TR",ta) + 1;
-            finishIndex = findLine(startIndex, finishSignature,ta) - 1;
+            startIndex = findLine("TR", ta) + 1;
+            finishIndex = findLine(startIndex, finishSignature, ta) - 1;
 
             //If stille couldn't find any subtitle from text asset then return and don't do aything
             if (startIndex > finishIndex) return "";
@@ -1406,8 +1406,8 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
             //Debug.Log(rangeLines[i]);
         }
 
-        string result="";
-        foreach(string s in rangeLines)
+        string result = "";
+        foreach (string s in rangeLines)
         {
             result += s;
         }
@@ -1423,6 +1423,22 @@ public static IEnumerator<float> _fadeInfadeOut<T>(GameObject obj, float speed) 
         //foreach (string line in lines) Debug.Log(line);
 
         return lines;
+    }
+
+    public static IEnumerator<float> waitUntilFractionOfAnimation(Animator anim, float fraction, string animName, int animLayer=0){
+
+        fraction = Mathf.Clamp(fraction, 0, 1);
+
+        while (!anim.GetCurrentAnimatorStateInfo(animLayer).IsName(animName) || anim.GetCurrentAnimatorStateInfo(animLayer).normalizedTime < fraction)
+        {
+            Debug.Log(anim.GetCurrentAnimatorStateInfo(animLayer).normalizedTime);
+
+            yield return 0;
+        }
+
+
+
+        yield break;
     }
 
 }

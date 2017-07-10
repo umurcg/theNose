@@ -15,8 +15,13 @@ public class SculpturerGameController : GameController {
     List<HeykelController> heykels;
     public GameObject healthBarPrefab;
     public Material freezeMaterial;
-    Image healthBar;
-    Image healthBarSculp;
+    PointBarScript healthBar;
+    PointBarScript healthBarSculp;
+
+    public Transform canvas;
+
+    string kovalevBarName, sculptrurerBarName;
+    
 
     //public GameObject target;
     //public GameObject source;
@@ -41,7 +46,24 @@ public class SculpturerGameController : GameController {
         enableHeykels(false);
         base.Start();
 
+        Language lan = (Language)GlobalController.Instance.getLangueSetting();
+        if (lan == Language.ENG)
+        {
+            kovalevBarName = "Kovalev Health";
+            sculptrurerBarName = "Sculpturer Health";
+        }
+        else
+        {
+            kovalevBarName = "Kovalev'in Cani";
+            sculptrurerBarName = "Heykeltirasin Cani";
+
+        }
+
+
         Timing.RunCoroutine(innerSpeech());
+        //win();
+
+
 
         //lockPlayer();
         //ropeGame.GetComponent<RopeGameController>().enabled = true;
@@ -86,13 +108,18 @@ public class SculpturerGameController : GameController {
 
         sculpturer.GetComponent<SculpturerAI>().enabled = true;
         enableHeykels(true);
-        Transform canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
-        healthBar=  ((GameObject)Instantiate(healthBarPrefab,canvas) as GameObject).GetComponent<Image>();
+
+        //Transform canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
+        healthBar=  ((GameObject)Instantiate(healthBarPrefab,canvas) as GameObject).GetComponent<PointBarScript>();
+        healthBar.gameObject.SetActive(true);
+        healthBar.setName(kovalevBarName);
+        healthBar.setLimits(healthOfPlayer, 0);
+
         RectTransform rt = healthBar.GetComponent<RectTransform>();
         rt.position =new Vector2( Screen.width * 4 / 5,Screen.height*4/5);
 
         health = healthOfPlayer;
-        healthBar.fillAmount = health/healthOfPlayer;
+        healthBar.setPoint(healthOfPlayer);
 
         yield break;
     }
@@ -101,15 +128,18 @@ public class SculpturerGameController : GameController {
     {
         heykels[0].shootMaster(true);
         sculpturer.GetComponent<SculpturerAI>().shootWithAlci(true);
+        
+        healthBarSculp = ((GameObject)Instantiate(healthBarPrefab, canvas) as GameObject).GetComponent<PointBarScript>();
+        healthBarSculp.gameObject.SetActive(true);
+        healthBarSculp.setName(sculptrurerBarName);
+        healthBarSculp.setLimits(healthOfPlayer, 0);
+        sculpHealth = healthOfPlayer;
+        healthBarSculp.setPoint(sculpHealth);
 
-        Transform canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
-        healthBarSculp = ((GameObject)Instantiate(healthBarPrefab, canvas) as GameObject).GetComponent<Image>();
-        healthBarSculp.transform.GetChild(0).GetComponent<Text>().text = "Enemy Health";
-        RectTransform rt = healthBar.GetComponent<RectTransform>();
+
+        RectTransform rt = healthBarSculp.GetComponent<RectTransform>();
         rt.position = new Vector2(Screen.width * 1 / 5, Screen.height * 4 / 5);
 
-        sculpHealth = healthOfPlayer;
-        healthBar.fillAmount = sculpHealth / healthOfPlayer;
 
 
     }
@@ -174,27 +204,79 @@ public class SculpturerGameController : GameController {
         }
     }
 
-    public void damage(int amount)
+    public void damage(float amount)
     {
+        //Debug.Log("Damagin " + amount);
         health -= amount;
-        healthBar.fillAmount = health/healthOfPlayer;
+        healthBar.setPoint(health);
     }
 
     public void damageEnemy(int amount)
     {
         Debug.Log("Enemy damage");
         sculpHealth -= amount;
-        healthBarSculp.fillAmount = sculpHealth/healthOfPlayer;
+        healthBarSculp.setPoint(sculpHealth);
 
     }
 
+    [ContextMenu("win")]
     void win()
+    {
+        Timing.RunCoroutine(_win());
+    }
+
+    IEnumerator<float> _win()
     {
         sculpturer.tag = "ActiveObject";
         sculpturer.GetComponent<SculpturerAI>().enabled = false;
         Debug.Log("Win");
-        
 
+        foreach(HeykelController H in heykels)
+        {
+            
+            if (H) H.enabled = false;
+        }
+
+
+        Animator sculpAnim = sculpturer.GetComponent<Animator>();
+
+
+        
+        sculpAnim.SetTrigger("die");
+        yield return 0;
+
+        //yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs.waitUntilFractionOfAnimation(sculpAnim, 1, "dirPart1")));
+
+        Timing.RunCoroutine(Vckrs._lookTo(player, sculpturer, 1f));
+
+        yield return Timing.WaitForSeconds(1);
+
+        //sculpAnim.speed = 0;
+
+
+        Debug.Log("animation is finished");
+
+        sc.callSubtitleWithIndex(3);
+        while (subtitle.text!="") yield return 0;
+
+
+
+        sculpAnim.SetTrigger("die");
+
+
+        yield return Timing.WaitForSeconds(2);
+
+        //Register before exiting scene so kovalev house will understand last game controller is this and arrange scen according to that
+        registerAsUsed();
+
+
+        LoadScene ls = GetComponent<LoadScene>();
+        ls.Scene = GlobalController.Scenes.KovalevHouse;
+        ls.Load();
+
+        //sculpAnim.speed = 1;
+
+        yield break;
     }
 
     IEnumerator<float> lost()
@@ -248,28 +330,35 @@ public class SculpturerGameController : GameController {
 
     //}
 
-    public void outerSpeech()
-    {
-        Timing.RunCoroutine(_outerSpeech());
-    }
+    //public void outerSpeech()
+    //{
+    //    Timing.RunCoroutine(_outerSpeech());
+    //}
 
-    IEnumerator<float> _outerSpeech()
-    {
+    //IEnumerator<float> _outerSpeech()
+    //{
         
 
-        yield return 0;
-        sc.callSubtitleWithIndex(3);
+    //    yield return 0;
+    //    sc.callSubtitleWithIndex(3);
 
-        while (subtitle.text != "") yield return 0;
+    //    while (subtitle.text != "") yield return 0;
 
-        //Register before exiting scene so kovalev house will understand last game controller is this and arrange scen according to that
-        registerAsUsed();
+    //    //Register before exiting scene so kovalev house will understand last game controller is this and arrange scen according to that
+    //    registerAsUsed();
 
 
-        LoadScene ls = GetComponent<LoadScene>();
-        ls.Scene = GlobalController.Scenes.KovalevHouse;
-        ls.Load();
+    //    LoadScene ls = GetComponent<LoadScene>();
+    //    ls.Scene = GlobalController.Scenes.KovalevHouse;
+    //    ls.Load();
 
+    //}
+
+    [ContextMenu ("full health")]
+    void fullHealth()
+    {
+        health = healthOfPlayer;
+        healthBar.setPoint(health);
     }
 
     

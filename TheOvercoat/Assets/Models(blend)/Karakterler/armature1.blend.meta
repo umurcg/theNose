@@ -82,6 +82,10 @@ ModelImporter:
     7400078: cry
     7400080: hit
     7400082: getUp
+    7400084: die
+    7400086: dirPart1
+    7400088: dieLoop
+    7400090: diePart2
     9500000: //RootNode
     13700000: Cube_000
   materials:
@@ -2385,6 +2389,186 @@ ModelImporter:
       - path: Cube_000
         weight: 1
       maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: dirPart1
+      takeName: dirPart1
+      firstFrame: -1
+      lastFrame: 53
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: dieLoop
+      takeName: dieLoop
+      firstFrame: -1
+      lastFrame: 251
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: diePart2
+      takeName: diePart2
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Floor
+        weight: 1
+      - path: Armature/Torso
+        weight: 1
+      - path: Armature/Torso/Chest
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R
+        weight: 1
+      - path: Armature/Torso/Chest/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Torso/Chest/Neck
+        weight: 1
+      - path: Armature/Torso/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R
+        weight: 1
+      - path: Armature/Torso/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     isReadable: 1

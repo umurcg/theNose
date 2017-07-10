@@ -120,6 +120,7 @@ public class HeykelController : MonoBehaviour {
 
 
         //float animFrame = 50;
+        
 
         while (!anim.GetCurrentAnimatorStateInfo(1).IsName("Throw") || anim.GetCurrentAnimatorStateInfo(1).normalizedTime < 0.7f)
         {
@@ -202,7 +203,7 @@ public class HeykelController : MonoBehaviour {
     {
         //When rock exits trigger make its first collider as non trigger
         RockScript rs = other.gameObject.GetComponent<RockScript>();
-        if (rs.creator == gameObject)
+        if (rs && rs.creator == gameObject)
         {
             SphereCollider rb = other.gameObject.GetComponents<SphereCollider>()[0];
             rb.isTrigger = false;

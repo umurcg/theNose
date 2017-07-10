@@ -183,7 +183,7 @@ public class RopeGameController : MonoBehaviour {
 
         if (maximumTry > 0)
         {
-            Debug.Log("lefft number of try is " + maximumTry);
+            //Debug.Log("lefft number of try is " + maximumTry);
             return cam.ScreenToWorldPoint(new Vector3(foundX, foundY, 0));
         }
 
