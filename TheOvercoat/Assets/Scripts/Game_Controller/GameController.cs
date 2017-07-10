@@ -120,12 +120,16 @@ abstract public class GameController : MonoBehaviour , IClickAction{
 
     //This function is called if game is activated by player. So if game is only should played, then you should
     //override this function according to your specfici game controller
-    public virtual void gameIsUsed() { }
+    public virtual void gameIsUsed() {
+
+        Debug.Log("This game is used " + gameObject.name);
+    }
 
 
     //Calling this functions saves that game controller is used and wont be used again.
     protected void registerAsUsed()
-    {        
+    {
+        //GlobalController.Instance.registerGameController(generateIDWithEpisodeID());
         GlobalController.Instance.registerGameController(generateIDWithEpisodeID());
     }
 
@@ -149,12 +153,13 @@ abstract public class GameController : MonoBehaviour , IClickAction{
 
     public string generateIDWithEpisodeID()
     {
-        return generateID() + "_" + getEpisodeID();
+        return generateID() + "#" + getEpisodeID();
     }
 
     //Episode ID is used for loading from moments. For example if user loads 5th episode, mainmenu script will erase gamecontrollers 
     //that are in the later episodes.
     //TODO think about this design
+    //For now it is disabled because it creates bug
     string getEpisodeID()
     {
         return (GlobalController.Instance.sceneList.Count).ToString();

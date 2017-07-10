@@ -457,7 +457,7 @@ public int setDebugListToLevelIndex;
 
     public void registerGameController(string gc)
     {
-        if (!usedGameControllers.Contains(gc))
+        if (!usedGameControllers.Contains(gc) && !isGameControllerIsUsed(trimEpisodeID(gc)))
         {
             usedGameControllers.Add(gc);
             //Debug.Log(gc);
@@ -506,7 +506,7 @@ public int setDebugListToLevelIndex;
 
     string trimEpisodeID(string gc)
     {
-        int index = gc.IndexOf('_');
+        int index = gc.IndexOf('#');
         return gc.Substring(0, index);
     }
 
@@ -516,8 +516,10 @@ public int setDebugListToLevelIndex;
         foreach(string s in usedGameControllers)
         {
             //Trim episodeID of it while episode id is only used in trimmin while loading from moments
+            string trimedEpisodeID = trimEpisodeID(s);
+            Debug.Log("Game Controller ID is "+trimedEpisodeID);
 
-            if (gc == trimEpisodeID(s)) return true;
+            if (gc == trimedEpisodeID) return true;
             
 
         

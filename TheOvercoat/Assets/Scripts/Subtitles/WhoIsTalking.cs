@@ -166,18 +166,18 @@ public class WhoIsTalking : MonoBehaviour
 
     public void addCharacterToDict(GameObject obj, string Name)
     {
-        Debug.Log("Trying to register " + Name + " for " + obj.name);
+        //Debug.Log("Trying to register " + Name + " for " + obj.name);
         List<GameObject> list = null;
 
         if (!characters.ContainsKey(Name))
         {
-            Debug.Log("Creaating new list for " + obj.name);
+            //Debug.Log("Creaating new list for " + obj.name);
             list = new List<GameObject>();
 
         }
         else
         {
-            Debug.Log("Addint character to existing list for " + obj.name);
+            //Debug.Log("Addint character to existing list for " + obj.name);
             list = characters[Name];
         }
 

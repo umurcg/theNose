@@ -102,6 +102,8 @@ public class GameControllerPoliceStation : GameController {
 
         Gaurd.transform.tag = "Untagged";
 
+        registerAsUsed();
+
         yield break;
 
 
@@ -110,7 +112,16 @@ public class GameControllerPoliceStation : GameController {
     public void DestroyItSelf()
     {
         Gaurd.transform.tag = "Untagged";
-        Destroy(this);
+
+        registerAsUsed();
+
+        Destroy(trigger);
+    }
+
+    public override void gameIsUsed()
+    {
+        base.gameIsUsed();
+        DestroyItSelf();
     }
 
 
