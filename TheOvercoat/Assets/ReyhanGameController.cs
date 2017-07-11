@@ -24,7 +24,11 @@ public class ReyhanGameController : MonoBehaviour {
     public GameObject canvas;
     public GameObject treasure;
     public GameObject buttonPrefab;
-    
+    public float reflectionScaleSize = 30;
+    public float spherecColliderRadiusGarbageArea = 3;
+
+    public GameObject messageReciever;
+    public string message;
 
     [HideInInspector]
     public GameObject spawnedButton;
@@ -91,11 +95,12 @@ public class ReyhanGameController : MonoBehaviour {
                 GameObject spawnedObj=Instantiate(randObj);
                 spawnedObj.transform.parent = garbageArea.transform;
                 spawnedObj.transform.position = garbObjPos;
-                spawnedObj.AddComponent<CapsuleCollider>();
+                spawnedObj.transform.rotation = Random.rotation;
+                //spawnedObj.AddComponent<CapsuleCollider>();
 
-                AssignMaterialToChildren assignMat= spawnedObj.AddComponent<AssignMaterialToChildren>();
-                assignMat.materialToAssin = obajectMaterial;
-                assignMat.assignToAllChildren();
+                //AssignMaterialToChildren assignMat= spawnedObj.AddComponent<AssignMaterialToChildren>();
+                //assignMat.materialToAssin = obajectMaterial;
+                //assignMat.assignToAllChildren();
 
 
 
@@ -109,11 +114,17 @@ public class ReyhanGameController : MonoBehaviour {
                 treasure = Instantiate(treasure);
                 treasure.transform.parent = garbageArea.transform;
                 treasure.transform.position = garbObjPos;
-                treasure.AddComponent<CapsuleCollider>();
+                treasure.transform.rotation = Random.rotation;
 
-                AssignMaterialToChildren assignMat = treasure.AddComponent<AssignMaterialToChildren>();
-                assignMat.materialToAssin = obajectMaterial;
-                assignMat.assignToAllChildren();
+                BroadcastOnClick broad = treasure.AddComponent<BroadcastOnClick>();
+                broad.reciever = gameObject;
+                broad.message = "foundTreasure";
+
+                //treasure.AddComponent<CapsuleCollider>();
+
+                //AssignMaterialToChildren assignMat = treasure.AddComponent<AssignMaterialToChildren>();
+                //assignMat.materialToAssin = obajectMaterial;
+                //assignMat.assignToAllChildren();
             }
 
 
@@ -126,7 +137,7 @@ public class ReyhanGameController : MonoBehaviour {
 
             gac.tag = "ActiveObject";
             SphereCollider sc=gac.gameObject.AddComponent<SphereCollider>();
-            sc.radius = radiusOfOneArea;
+            sc.radius = spherecColliderRadiusGarbageArea;
             sc.isTrigger = true;
 
             MaterialController mc = garbageArea.AddComponent<MaterialController>();
@@ -143,21 +154,6 @@ public class ReyhanGameController : MonoBehaviour {
     }
 
 
-    [CustomEditor(typeof(ReyhanGameController))]
-    public class customclassEditor : Editor
-    {
-        
-        private ReyhanGameController script;
-
-        public void OnSceneGUI()
-        {
-            script = this.target as ReyhanGameController;
-            Handles.color = Color.red;
-            Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
-                                          , script.transform.forward                       // normal
-                                          , script.radiusOfWholeArea);                              // radius
-        }
-    }
 
     Vector3 getRandomPosInCircle(Vector3 center,float radius)
     {
@@ -168,8 +164,25 @@ public class ReyhanGameController : MonoBehaviour {
 
     public void foundTreasure()
     {
+        messageReciever.SendMessage(message);
         gameObject.SetActive(false);
         
     }
 
+}
+
+[CustomEditor(typeof(ReyhanGameController))]
+public class customclassEditor : Editor
+{
+
+    private ReyhanGameController script;
+
+    public void OnSceneGUI()
+    {
+        script = this.target as ReyhanGameController;
+        Handles.color = Color.red;
+        Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
+                                      , script.transform.forward                       // normal
+                                      , script.radiusOfWholeArea);                              // radius
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class AssignMaterialToChildren : MonoBehaviour
 {
@@ -20,3 +21,17 @@ public class AssignMaterialToChildren : MonoBehaviour
     }
 
 }
+
+
+//[CustomEditor(typeof(AssignMaterialToChildren))]
+//public class AssignMaterialToChildrenEditor : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+
+//        DrawDefaultInspector();
+//        AssignMaterialToChildren script = (AssignMaterialToChildren)target;
+//        script.assignToAllChildren();
+
+//    }
+//}

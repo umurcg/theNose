@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GarbageAreaController : MonoBehaviour, IClickAction {
 
     public GameObject canvas;
-    public float scaleSize=30;
+    //public float scaleSize = 30;
     public GameObject closeButton;
     GameObject reflection;
     PlayerComponentController pcc;
@@ -36,13 +36,14 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
         //Prevent infinite loop
         Destroy(reflection.GetComponent<GarbageAreaController>());
         reflection.transform.parent = canvas.transform;
-        canvas.SetActive(true);
+        canvas.transform.GetChild(0).gameObject.SetActive(true);
 
-        reflection.transform.localScale = Vector3.one * scaleSize;
+        reflection.transform.localScale = Vector3.one * rgc.reflectionScaleSize;
         reflection.transform.localPosition = Vector3.zero;/* mainCam.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2,GlobalController.cameraForwardDistance));*/
         reflection.transform.LookAt(canvas.transform.position - canvas.transform.forward);
 
         Destroy(reflection.gameObject.GetComponent<MaterialController>());
+        Destroy(reflection.gameObject.GetComponent<Collider>());
 
         if (closeButton == null) closeButton = rgc.spawnedButton;
 
@@ -90,6 +91,8 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
         Debug.Log("Setting button deactive " + closeButton.name);
         closeButton.gameObject.SetActive(false);
         closeButton.GetComponent<Button>().onClick.RemoveAllListeners();
+
+        canvas.transform.GetChild(0).gameObject.SetActive(false);
 
         enabled = false;
 

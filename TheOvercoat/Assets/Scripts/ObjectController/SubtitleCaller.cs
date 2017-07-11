@@ -35,6 +35,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         {
             scs[index].startSubtitle();
             activeController = scs[index];
+            scs[index].caller = this;
             //currentIndex = index;
         }
      }
@@ -49,6 +50,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         {
             scs.startSubtitle();
             activeController = scs;
+            scs.caller = this;
         }
     }
 
@@ -61,6 +63,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         {
             scs[index].startSubtitle();
             activeController = scs[index];
+            scs[index].caller = this;
             //print(scs.Length);
             //currentIndex = index;
         }
@@ -76,6 +79,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         {
             scs.startSubtitle();
             activeController = scs;
+            scs.caller = this;
         }
     }
 
@@ -103,8 +107,21 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         if (index < scs.Length)
         {
             scs[index].randomSubtitle();
-      
+            scs[index].caller = this;
+
         }
+    }
+
+    public void eraseActiveController()
+    {
+        activeController = null;
+    }
+
+    public int getCurrentSubtIndex()
+    {
+        if (activeController) return activeController.getCurrentIndex();
+
+        return -1;
     }
 
 }

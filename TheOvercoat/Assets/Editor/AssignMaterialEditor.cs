@@ -12,7 +12,11 @@ public class AssignMaterialEditor : Editor
         
         DrawDefaultInspector();
 
+
+
         AssignMaterialToChildren script = (AssignMaterialToChildren)target;
+
+        script.assignToAllChildren();
 
         if (GUILayout.Button("Assign to all children"))
         {

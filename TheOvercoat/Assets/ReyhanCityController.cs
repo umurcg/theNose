@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class ReyhanCityController : GameController {
+public class ReyhanCityController : GameController, IClickAction {
 
 
     public bool debug = false;
@@ -16,31 +17,45 @@ public class ReyhanCityController : GameController {
     GameObject sitPosition;
     public GameObject girty;
     NavMeshAgent reyhanAgent;
+    public GameObject renc;
+
+    public GameObject canvas3D;
+    public GameObject canvas2D;
+    public GameObject padlock;
+    public GameObject buttonPrefab;
+    Camera maincam;
+
+
+    GameObject spawnedLock;
+    GameObject takeItButton;
+    GameObject leaveItButton;
 
     public override void Start()
     {
         base.Start();
 
-        bool firstGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("NewsPaperR.");
-        bool secondGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(generateIDWithEpisodeID());
+        //bool firstGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("NewsPaperR.");
+        //bool secondGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(generateIDWithEpisodeID());
 
-        if(firstGC && !secondGC || debug)
-        {
-            activateController();
-            Debug.Log("ACTIVATING REYHAN");
-        }
-        else
-        {
-            deactivateController();
-        }
+        //if(firstGC && !secondGC || debug)
+        //{
+        //    activateController();
+        //    Debug.Log("ACTIVATING REYHAN");
+        //}
+        //else
+        //{
+        //    deactivateController();
+        //}
 
-        //Change way point at each mount so characters wont sit top of each other.
-        //It is a bad design but still it works ;)
-        //sitPosition = hs.wayPoints[0].transform.GetChild(hs.wayPoints[0].transform.childCount - 1).gameObject;
+        ////Change way point at each mount so characters wont sit top of each other.
+        ////It is a bad design but still it works ;)
+        ////sitPosition = hs.wayPoints[0].transform.GetChild(hs.wayPoints[0].transform.childCount - 1).gameObject;
+
+        maincam = CharGameController.getMainCameraComponent();
 
         reyhanAgent = gameObject.GetComponent<NavMeshAgent>();
 
-        Timing.RunCoroutine(goToCarier());
+        //Timing.RunCoroutine(goToCarier());
 
 
 
@@ -187,6 +202,127 @@ public class ReyhanCityController : GameController {
         girty.SetActive(false);
         reyhanGameObject.SetActive(true);
 
+    }
+
+    [ContextMenu ("key is found")]
+    public void keyIsfound()
+    {
+        renc.transform.parent = null;
+        renc.transform.position = transform.position + transform.forward * 3;
+        renc.transform.LookAt(transform);
+        transform.LookAt(renc.transform);
+
+        
+        renc.SetActive(true);
+
+        gameObject.tag = "ActiveObject";
+    }
+
+    IEnumerator<float> reyhanLeavesKovalev()
+    {
+        gameObject.tag = "Untagged";
+
+    
+
+        sc.callSubtitleWithIndex(3);
+
+        while (sc.getCurrentSubtIndex() < 2) yield return 0;
+
+        Timing.RunCoroutine(Vckrs._lookTo(gameObject, player, 1f));
+        Timing.RunCoroutine(Vckrs._lookTo(renc, player, 1f));
+
+        while (subtitle.text != "") yield return 0;
+
+        if (!reyhanAgent.enabled) reyhanAgent.enabled = true; 
+
+        Vector3 randomPos = Vckrs.generateRandomPositionOnCircle(transform.position, 100f);
+        Vckrs.findNearestPositionOnNavMesh(randomPos, reyhanAgent.areaMask, 100f, out randomPos);
+        
+        NavMeshAgent rencNma = renc.GetComponent<NavMeshAgent>();
+        rencNma.SetDestination(randomPos + Vector3.forward * 3);
+        reyhanAgent.SetDestination(randomPos);
+
+        
+        reyhanAgent.isStopped = false;
+
+        yield return Timing.WaitForSeconds(7.5f);
+
+       
+
+        pcc.ContinueToWalk();
+
+        Vector3 initialPos = player.transform.position;
+
+        while (Vector3.Distance(initialPos, player.transform.position) < 30) yield return 0;
+
+       
+
+        Debug.Log("Find lock");
+        //Find lock on the floor
+
+        pcc.StopToWalk();
+        sc.callSubtitleWithIndex(4);
+        while (subtitle.text != "") yield return 0;
+
+        findLock();
+      
+
+        Destroy(renc);
+        Destroy(gameObject);
+
+
+        yield break;
+        
+    }
+
+    [ContextMenu ("find lock")]
+     void findLock() {
+
+        GameObject spawnedLock = Instantiate(padlock, canvas3D.transform) as GameObject;
+
+        spawnedLock.transform.position = maincam.ScreenToWorldPoint(Vckrs.centerOfScreen());
+        spawnedLock.transform.localScale = Vector3.one * 7;
+
+        takeItButton = Instantiate(buttonPrefab, canvas2D.transform) as GameObject;
+        leaveItButton = Instantiate(buttonPrefab, canvas2D.transform) as GameObject;
+
+        takeItButton.transform.position = Vckrs.screenRatioToPosition(0.75f, 0.3f);
+        leaveItButton.transform.position = Vckrs.screenRatioToPosition(0.25f, 0.3f);
+
+        takeItButton.GetComponent<DynamicLanguageTexts>().textID = 19;
+        leaveItButton.GetComponent<DynamicLanguageTexts>().textID = 18;
+
+        Button takeBut = takeItButton.GetComponent<Button>();
+        Button leaveBut = leaveItButton.GetComponent<Button>();
+
+        takeBut.onClick.AddListener(takeIt);
+        leaveBut.onClick.AddListener(leaveIt);
+
+
+    }
+
+    public void takeIt()
+    {
+        Debug.Log("TAKE İT");
+
+        Destroy(spawnedLock);
+        Destroy(takeItButton);
+        Destroy(leaveItButton);
+    }
+
+    public void leaveIt()
+    {
+        Debug.Log("Leave it");
+
+        Destroy(spawnedLock);
+        Destroy(takeItButton);
+        Destroy(leaveItButton);
+    }
+
+    public override void Action()
+    {
+        base.Action();
+        Timing.RunCoroutine(reyhanLeavesKovalev());
     }
 
 }

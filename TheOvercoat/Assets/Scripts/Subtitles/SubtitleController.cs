@@ -26,6 +26,8 @@ public class SubtitleController : MonoBehaviour {
     public bool releaseAfterSub = false;
     protected int index;
 
+    [HideInInspector]
+    public SubtitleCaller caller;
 
     public virtual void Awake()
     {
@@ -140,6 +142,9 @@ public class SubtitleController : MonoBehaviour {
                     Destroy(gameObject.GetComponent<SubtitleController>());
      
                 }
+
+                if (caller) caller.eraseActiveController();
+
                 this.enabled = false;
             }
         }
