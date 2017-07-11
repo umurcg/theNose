@@ -11,6 +11,8 @@ public class ReyhanCityController : GameController, IClickAction {
     public bool debug = false;
     public HorseScript hs;
     public GameObject reyhanGameObject;
+    public GameObject horseDest;
+
 
     //D'stance between characters when they sit
     public float sitPoisitonOffset;
@@ -34,28 +36,28 @@ public class ReyhanCityController : GameController, IClickAction {
     {
         base.Start();
 
-        //bool firstGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("NewsPaperR.");
-        //bool secondGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(generateIDWithEpisodeID());
+        bool firstGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("NewsPaperR.");
+        bool secondGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(generateIDWithEpisodeID());
 
-        //if(firstGC && !secondGC || debug)
-        //{
-        //    activateController();
-        //    Debug.Log("ACTIVATING REYHAN");
-        //}
-        //else
-        //{
-        //    deactivateController();
-        //}
+        if (firstGC && !secondGC || debug)
+        {
+            activateController();
+            Debug.Log("ACTIVATING REYHAN");
+        }
+        else
+        {
+            deactivateController();
+        }
 
-        ////Change way point at each mount so characters wont sit top of each other.
-        ////It is a bad design but still it works ;)
-        ////sitPosition = hs.wayPoints[0].transform.GetChild(hs.wayPoints[0].transform.childCount - 1).gameObject;
+        //Change way point at each mount so characters wont sit top of each other.
+        //It is a bad design but still it works ;)
+        //sitPosition = hs.wayPoints[0].transform.GetChild(hs.wayPoints[0].transform.childCount - 1).gameObject;
 
         maincam = CharGameController.getMainCameraComponent();
 
         reyhanAgent = gameObject.GetComponent<NavMeshAgent>();
 
-        //Timing.RunCoroutine(goToCarier());
+        Timing.RunCoroutine(goToCarier());
 
 
 
@@ -138,18 +140,21 @@ public class ReyhanCityController : GameController, IClickAction {
 
         yield return Timing.WaitUntilDone(handlerHolder);
 
-        hs.setDes(reyhanGameObject.transform.position,false);
+        hs.setDes(horseDest.transform.position,false);
 
         sc.callSubtitleWithIndexTime(0);
         while (sc.getActiveController().enabled) yield return 0;
 
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs.waitUntilStop(hs.gameObject)));
 
+        hs.isPassengerPlayer = true;
         yield return Timing.WaitUntilDone(hs.unmount());
 
         hs.passenger = gameObject;
 
         hs.animationName = "SitPosition";
+
+        hs.isPassengerPlayer = false;
 
         yield return Timing.WaitUntilDone(hs.unmount());
 
@@ -207,12 +212,18 @@ public class ReyhanCityController : GameController, IClickAction {
     [ContextMenu ("key is found")]
     public void keyIsfound()
     {
+        Debug.Log("KEEEEY IS FOUUUND");
         renc.transform.parent = null;
         renc.transform.position = transform.position + transform.forward * 3;
         renc.transform.LookAt(transform);
         transform.LookAt(renc.transform);
 
-        
+        //remove after look scripts.
+        AlwaysLookTo[] alts = GetComponents<AlwaysLookTo>();
+
+        foreach (AlwaysLookTo alt in alts) Destroy(alt);
+
+
         renc.SetActive(true);
 
         gameObject.tag = "ActiveObject";
@@ -267,9 +278,7 @@ public class ReyhanCityController : GameController, IClickAction {
         findLock();
       
 
-        Destroy(renc);
-        Destroy(gameObject);
-
+       
 
         yield break;
         
@@ -278,7 +287,10 @@ public class ReyhanCityController : GameController, IClickAction {
     [ContextMenu ("find lock")]
      void findLock() {
 
-        GameObject spawnedLock = Instantiate(padlock, canvas3D.transform) as GameObject;
+
+  
+
+        spawnedLock = Instantiate(padlock, canvas3D.transform) as GameObject;
 
         spawnedLock.transform.position = maincam.ScreenToWorldPoint(Vckrs.centerOfScreen());
         spawnedLock.transform.localScale = Vector3.one * 7;
@@ -308,6 +320,13 @@ public class ReyhanCityController : GameController, IClickAction {
         Destroy(spawnedLock);
         Destroy(takeItButton);
         Destroy(leaveItButton);
+
+        GameObject hang=player.transform.Find("Armature/Torso/Chest/Neck/lock").gameObject;
+        hang.SetActive(true);
+
+        Destroy(renc);
+        Destroy(gameObject);
+
     }
 
     public void leaveIt()
@@ -317,6 +336,10 @@ public class ReyhanCityController : GameController, IClickAction {
         Destroy(spawnedLock);
         Destroy(takeItButton);
         Destroy(leaveItButton);
+
+        Destroy(renc);
+        Destroy(gameObject);
+
     }
 
     public override void Action()

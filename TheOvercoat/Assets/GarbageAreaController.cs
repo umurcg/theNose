@@ -84,6 +84,8 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
 
     public void destroyReflection()
     {
+        if (reflection == null) return;
+
         Destroy(reflection);
         pcc.ContinueToWalk();
         gameObject.tag = "ActiveObject";
@@ -93,6 +95,8 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
         closeButton.GetComponent<Button>().onClick.RemoveAllListeners();
 
         canvas.transform.GetChild(0).gameObject.SetActive(false);
+
+        reflection = null;
 
         enabled = false;
 
@@ -114,5 +118,10 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
         
 
 
+    }
+
+    private void OnDisable()
+    {
+        destroyReflection();
     }
 }

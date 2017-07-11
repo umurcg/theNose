@@ -10,7 +10,7 @@ using UnityEngine.UI;
 //In one of those garbage area there will be a treasure.
 //User must find tat treasure with exploring gabage areas
 //Garbage areas will be on random position in sphere and it must be on a  valid navmesh area 
-public class ReyhanGameController : MonoBehaviour {
+public class ReyhanGameController : GameController {
 
 
     public GameObject[] garbageObjects;
@@ -37,8 +37,9 @@ public class ReyhanGameController : MonoBehaviour {
     SphereCollider col;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 
+        base.Start();
         if (numberOfGarbageInArea > garbageObjects.Length)
         {
             Debug.Log("You cant enter number of garbage number more than garbageObjects length");
@@ -65,6 +66,13 @@ public class ReyhanGameController : MonoBehaviour {
     {
         Destroy(spawnedButton);
     }
+
+    private void OnDisable()
+    {
+        Destroy(spawnedButton);
+    }
+
+
     void createGarbage(bool addTreasure)
     {
         //Vector2 randomPos =Random.insideUnitCircle * radiusOfWholeArea;
@@ -75,7 +83,7 @@ public class ReyhanGameController : MonoBehaviour {
 
     
 
-        if(UnityEngine.AI.NavMesh.SamplePosition(garbagePos,out hit, 10f,UnityEngine.AI.NavMesh.AllAreas/*NavMesh.GetAreaFromName("Street")*/))
+        if(UnityEngine.AI.NavMesh.SamplePosition(garbagePos,out hit, 10f, playerNma.areaMask/*NavMesh.GetAreaFromName("Street")*/))
         {
 
             List<GameObject> objList = garbageObjects.ToList<GameObject>();
@@ -119,6 +127,7 @@ public class ReyhanGameController : MonoBehaviour {
                 BroadcastOnClick broad = treasure.AddComponent<BroadcastOnClick>();
                 broad.reciever = gameObject;
                 broad.message = "foundTreasure";
+                broad.destroyAfterBC = true;
 
                 //treasure.AddComponent<CapsuleCollider>();
 

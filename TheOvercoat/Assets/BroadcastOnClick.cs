@@ -7,6 +7,7 @@ public class BroadcastOnClick : MonoBehaviour {
 
     public GameObject reciever;
     public string message;
+    public bool destroyAfterBC = false;
 
         
 
@@ -14,5 +15,7 @@ public class BroadcastOnClick : MonoBehaviour {
     {
         //Debug.Log("Broaadcaaast");
         reciever.SendMessage(message);
+        if (destroyAfterBC) Destroy(this);
+
     }
 }
