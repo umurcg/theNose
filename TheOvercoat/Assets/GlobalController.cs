@@ -48,6 +48,8 @@ public class GlobalController : MonoBehaviour {
     //Same logic with maxScne List. While loading a moment, mainplayer trims usedGameControllers. So this list holds nontrimmed format.
     //public List<string> maxUsedGameController;
 
+    //Forground object forward distance. This value will be used when insantiating object on forground. It indicates distance from camera.
+    public static float cameraForwardDistance = 100;
 
     //You can use this variable for starting game with specific sceneList in editor.
     public Scenes[] debugSceneList;

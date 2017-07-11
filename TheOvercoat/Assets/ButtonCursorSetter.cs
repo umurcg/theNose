@@ -49,6 +49,11 @@ public class ButtonCursorSetter : MonoBehaviour {
         cis.resetExternalCursor();
     }
 
+    private void OnDisable()
+    {
+        recoverCursor();
+    }
+
     private void OnDestroy()
     {
         recoverCursor();

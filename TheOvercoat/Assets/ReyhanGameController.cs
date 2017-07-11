@@ -20,9 +20,16 @@ public class ReyhanGameController : MonoBehaviour {
     public float radiusOfOneArea = 2f;
     public int navMesharea;
     public Material obajectMaterial;
+    public Material dyanmicObjectMaterial;
     public GameObject canvas;
     public GameObject treasure;
-    public Button closeButton;
+    public GameObject buttonPrefab;
+    
+
+    [HideInInspector]
+    public GameObject spawnedButton;
+    public Transform canvas2d;
+    
     SphereCollider col;
 
 	// Use this for initialization
@@ -40,14 +47,20 @@ public class ReyhanGameController : MonoBehaviour {
         {
             createGarbage(i==treasureIndex);
         }
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
+        spawnedButton = Instantiate(buttonPrefab, canvas2d);
+        spawnedButton.transform.position = Vckrs.screenRatioToPosition(0.7f, 0.3f);
+        spawnedButton.transform.localScale = Vector3.one*0.7f;
+        spawnedButton.GetComponent<DynamicLanguageTexts>().textID = 17;
+        spawnedButton.SetActive(false);
+
+
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(spawnedButton);
+    }
     void createGarbage(bool addTreasure)
     {
         //Vector2 randomPos =Random.insideUnitCircle * radiusOfWholeArea;
@@ -109,13 +122,18 @@ public class ReyhanGameController : MonoBehaviour {
             gac.canvas = canvas;
             gac.rgc = this;
 
-            gac.closeButton = closeButton;
+            gac.closeButton = spawnedButton;
 
             gac.tag = "ActiveObject";
             SphereCollider sc=gac.gameObject.AddComponent<SphereCollider>();
             sc.radius = radiusOfOneArea;
             sc.isTrigger = true;
 
+            MaterialController mc = garbageArea.AddComponent<MaterialController>();
+            mc.controlChildren = true;
+            mc.activeMat = dyanmicObjectMaterial;
+            mc.nonActiveMat = obajectMaterial;
+            
 
         }
         else

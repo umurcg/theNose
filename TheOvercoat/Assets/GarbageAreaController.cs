@@ -10,21 +10,27 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
 
     public GameObject canvas;
     public float scaleSize=30;
-    public Button closeButton;
+    public GameObject closeButton;
     GameObject reflection;
     PlayerComponentController pcc;
+
+    Camera mainCam;
+
+    CursorImageScript cis;
 
     [HideInInspector]
     public ReyhanGameController rgc;
 
-    private void Update()
+    private void Start()
     {
-        
+        mainCam = CharGameController.getCamera().GetComponent<Camera>();
     }
 
 
     public void createReflectionOnCamera()
     {
+        if(!mainCam) mainCam = CharGameController.getCamera().GetComponent<Camera>();
+
         reflection = Instantiate(gameObject);
 
         //Prevent infinite loop
@@ -33,15 +39,22 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
         canvas.SetActive(true);
 
         reflection.transform.localScale = Vector3.one * scaleSize;
-        reflection.transform.localPosition = Vector3.zero;
+        reflection.transform.localPosition = Vector3.zero;/* mainCam.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2,GlobalController.cameraForwardDistance));*/
         reflection.transform.LookAt(canvas.transform.position - canvas.transform.forward);
 
-        closeButton.gameObject.SetActive(true);
-        closeButton.onClick.AddListener(destroyReflection);
-        
-            
+        Destroy(reflection.gameObject.GetComponent<MaterialController>());
+
+        if (closeButton == null) closeButton = rgc.spawnedButton;
+
+        Debug.Log("Setting button active "+closeButton.name);
+        closeButton.SetActive(true);
+        closeButton.GetComponent<Button>().onClick.AddListener(destroyReflection);
+
+        cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
+
+
         //Add every child object move with mouse 
-        for(int i = 0; i < reflection.transform.childCount; i++)
+        for (int i = 0; i < reflection.transform.childCount; i++)
         {
             GameObject child = reflection.transform.GetChild(i).gameObject;
             child.name = child.name + "_reflection";
@@ -49,6 +62,9 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
             MoveWithMouseV2 mwm=child.AddComponent<MoveWithMouseV2>();
             mwm.canvas = canvas;
             //mwm.lerp = false;
+
+            //Cursor script
+            child.AddComponent<ChangeCursorWhenMouseOver>().text = cis.frontierObject;
 
             Debug.Log(gameObject.transform.GetChild(i).name);
 
@@ -71,8 +87,9 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
         pcc.ContinueToWalk();
         gameObject.tag = "ActiveObject";
 
+        Debug.Log("Setting button deactive " + closeButton.name);
         closeButton.gameObject.SetActive(false);
-        closeButton.onClick.RemoveAllListeners();
+        closeButton.GetComponent<Button>().onClick.RemoveAllListeners();
 
         enabled = false;
 
@@ -83,6 +100,9 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
     public void Action()
     {
         enabled = true;
+
+        gameObject.tag = "Untagged";
+
         createReflectionOnCamera();
 
         pcc = CharGameController.getActiveCharacter().GetComponent<PlayerComponentController>();
@@ -90,7 +110,6 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
 
         
 
-        gameObject.tag = "Untagged";
 
     }
 }
