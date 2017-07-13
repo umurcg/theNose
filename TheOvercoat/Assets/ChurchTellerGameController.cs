@@ -71,7 +71,8 @@ public class ChurchTellerGameController : GameController {
         //Wait for wfinish walking
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject));
         yield return Timing.WaitUntilDone(handlerHolder);
-        
+
+        while (subtitle.text != "") yield return 0;
 
         //Call subtitle.
         sc.callSubtitleWithIndex(1);
@@ -100,16 +101,28 @@ public class ChurchTellerGameController : GameController {
 
         Vckrs.findNearestPositionOnNavMesh(randomPos, ownerCC.navmashagent.areaMask, 50f, out randomPos);
 
+        ownerCC.navmashagent.isStopped = false;
         ownerCC.navmashagent.SetDestination(randomPos);
+
+
+        Renderer rend = ownerCC.player.GetComponentInChildren<Renderer>();
 
         timer = 30;
         while (timer > 0)
         {
             timer -= Time.deltaTime;
+
+            Debug.Log(rend.isVisible);
+
             yield return 0;
         }
 
 
+        yield return 0;
+
+        if (rend.isVisible == true) yield return 0;
+
+        Debug.Log("Albpran is destroyed");
 
 
         Destroy(gameObject);

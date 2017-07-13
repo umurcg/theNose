@@ -328,7 +328,9 @@ public class CursorImageScript : MonoBehaviour
             Debug.Log("player is bull");
             return false;
         }
-      
+
+
+        if (player.GetComponent<UnityEngine.AI.NavMeshAgent>() == null) return false;
 
        //Vckrs.testPosition(hit.point);
        //Debug.Log("Player is not null");

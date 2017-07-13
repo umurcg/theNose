@@ -47,6 +47,7 @@ public class ReyhanCityController : GameController, IClickAction {
         else
         {
             deactivateController();
+            return;
         }
 
         //Change way point at each mount so characters wont sit top of each other.
@@ -107,6 +108,7 @@ public class ReyhanCityController : GameController, IClickAction {
         }
 
         BroadcastOnClick bc = hs.gameObject.AddComponent<BroadcastOnClick>();
+        bc.destroyAfterBC = true;
         bc.reciever = gameObject;
         bc.message = "forcePlayerToCarier";
 
@@ -127,6 +129,8 @@ public class ReyhanCityController : GameController, IClickAction {
 
     IEnumerator<float> _forcePlayerToCarier()
     {
+
+        Debug.Log("Force player to carier");
 
         hs.gameObject.tag = "Untagged";
 

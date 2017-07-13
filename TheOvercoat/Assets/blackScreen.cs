@@ -20,7 +20,7 @@ public class blackScreen : MonoBehaviour {
         obj = gameObject;
         script = this;
 
-        Debug.Log("Hi");
+        //Debug.Log("Hi");
 
         RectTransform rt = GetComponent<RectTransform>();
         //rt.rect.Set(0,0, Screen.width*2,Screen.height*2);

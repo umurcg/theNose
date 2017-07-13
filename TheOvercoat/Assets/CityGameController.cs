@@ -63,7 +63,7 @@ public class CityGameController : MonoBehaviour {
                 //Get last index of sceneList
                 int lastSceneIndex = sceneList[sceneList.Count - 1];
 
-                Debug.Log("last scene is " + (GlobalController.Scenes)lastSceneIndex);
+                //Debug.Log("last scene is " + (GlobalController.Scenes)lastSceneIndex);
 
                 //If last scene is city then make last scene previous scene
                 if (lastSceneIndex == (int)GlobalController.Scenes.City)
@@ -101,7 +101,7 @@ public class CityGameController : MonoBehaviour {
                         break;
 
                     case (int)GlobalController.Scenes.Newspaper:
-                        Debug.Log("comingfrom newspaper");
+                        //Debug.Log("comingfrom newspaper");
                         comingFromNewspaper();
 
                         break;

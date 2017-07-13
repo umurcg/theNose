@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
+using System.Linq;
 
 //This class makes all objects that is assigned in array transparent and opaque.
 public class MakeTransparent : MonoBehaviour {
@@ -12,6 +13,7 @@ public class MakeTransparent : MonoBehaviour {
 
     public Material transparentMaterial;
     public GameObject[] objects;
+    List<Renderer> allRenderers;
 
     Material opaqueMaterial;
 
@@ -20,27 +22,55 @@ public class MakeTransparent : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
+        allRenderers = new List<Renderer>();
+
+	    foreach(GameObject obj in objects)
+        {
+            Renderer[] rends = obj.GetComponentsInChildren<Renderer>();
+            
+            allRenderers = allRenderers.Concat(rends).ToList<Renderer>();
+        }
 	}
 	
+    [ContextMenu ("Make Transparent")]
+    public void makeTransparent()
+    {
+        foreach (Renderer o in allRenderers)
+        {
+            makeTransparent(o.gameObject);
+        }
+    }
+
+    [ContextMenu("Make Opaque")]
+    public void makeOpaque()
+    {
+        foreach (Renderer o in allRenderers)
+        {
+            makeOpaque(o.gameObject);
+        }
+    }
+
 	// Update is called once per frame
 	void Update () {
 
 
         if (!prevBool && switchTransparent)
         {
-            foreach (GameObject o in objects)
+            foreach (Renderer o in allRenderers)
             {
-                makeTransparent(o);
+                makeTransparent(o.gameObject);
             }
             prevBool = switchTransparent;
         }
         else if (prevBool && !switchTransparent)
         {
-            foreach (GameObject o in objects)
+            foreach (Renderer o in allRenderers)
             {
-                makeOpaque(o);
+
+                makeOpaque(o.gameObject);
             }
+
             prevBool = switchTransparent;
         }
 
@@ -51,20 +81,13 @@ public class MakeTransparent : MonoBehaviour {
     {
         if(!isTransparent)
         {
-            foreach (GameObject o in objects)
-            {
-                makeTransparent(o);
-            }
+            makeTransparent();
 
             isTransparent = true;
         }
         else
         {
-            foreach (GameObject o in objects)
-            {
-              
-                makeOpaque(o);
-            }
+            makeOpaque();
 
             isTransparent = false;
         }

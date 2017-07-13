@@ -6,11 +6,11 @@ public class MoveTo : MonoBehaviour
 {
     public GameObject prefab;
     UnityEngine.AI.NavMeshAgent agent;
-    public GameObject[] aims;
+    //public GameObject[] aims;
 
     public LayerMask ignoreMasks;
 
-    public bool debug;
+    public bool printShootedObjects;
 
 
     void Awake()
@@ -28,20 +28,20 @@ public class MoveTo : MonoBehaviour
     }
 
 
-    public void setDestination(int aim) {
+    //public void setDestination(int aim) {
 
-        agent.Resume();
-        agent.destination = aims[aim].transform.position;
+    //    agent.Resume();
+    //    agent.destination = aims[aim].transform.position;
 
-    }
+    //}
 
     void Update()
     {
-        ////Event e = Event.current;
-        if (debug) {
-            setDestination(0);
-            debug = false;
-        }
+        //////Event e = Event.current;
+        //if (debug) {
+        //    setDestination(0);
+        //    debug = false;
+        //}
 
         //Debug.Log(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0);
 
@@ -73,7 +73,7 @@ public class MoveTo : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, ignoreMasks))
 
                 {
-                    //Debug.Log(hit.transform.name);
+                    Debug.Log(Vckrs.nameTagLayer(hit.transform.gameObject));
                     if (hit.transform.CompareTag("Floor"))
                     {
                         //Debug.Log("Walking");

@@ -47,7 +47,7 @@ public class BirdController : MonoBehaviour {
         float xAngle = transform.rotation.eulerAngles.x;
         float zAngle = transform.rotation.eulerAngles.z;
 
-        Debug.Log("hor: " + hor + " ver: " + ver + "elev: " + elev);
+        //Debug.Log("hor: " + hor + " ver: " + ver + "elev: " + elev);
 
         //Pause movement
         if (pauseMovement)

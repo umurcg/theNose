@@ -62,7 +62,7 @@ public class CameraFollower : MonoBehaviour {
         //ghostObject.name = "ghost";
         //ghostObject.GetComponent<Collider>();
 
-        Debug.Log("Finishing start function "+gameObject.name);
+        //Debug.Log("Finishing start function "+gameObject.name);
 
     }
 	

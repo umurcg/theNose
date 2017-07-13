@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
+//With this script you can build navmesh without enabling and disablig object that is created for specifyn areas.
+//Gameobjects and meshcolliders will be enabled and disabled.
 public class BuildNavmesh : MonoBehaviour {
 
     public GameObject[] roads;

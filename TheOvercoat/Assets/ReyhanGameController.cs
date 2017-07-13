@@ -78,7 +78,7 @@ public class ReyhanGameController : GameController {
         //Vector2 randomPos =Random.insideUnitCircle * radiusOfWholeArea;
         //Vector3 garbagePos = (new Vector3(randomPos.x, 0, randomPos.y))+ transform.position;
         Vector3 garbagePos= getRandomPosInCircle(transform.position, radiusOfWholeArea);
-        Debug.Log("Garabage pos is " + garbagePos);
+        //Debug.Log("Garabage pos is " + garbagePos);
         UnityEngine.AI.NavMeshHit hit;
 
     

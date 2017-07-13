@@ -87,14 +87,14 @@ public class CameraController : MonoBehaviour {
 
             if (type == CharGameController.cameraType.Ortographic)
             {
-                Debug.Log(gameObject.name + " setting ortho");
+                //Debug.Log(gameObject.name + " setting ortho");
                 cam.orthographic = true;
                 cam.farClipPlane = farOrt;
                 cam.nearClipPlane = nearOrt;
                 
             }else
             {
-                Debug.Log(gameObject.name + " setting perso");
+                //Debug.Log(gameObject.name + " setting perso");
                 cam.orthographic = false;
                 cam.nearClipPlane = nearPers;
                 cam.farClipPlane = farPers;

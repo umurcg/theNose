@@ -94,6 +94,21 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         return activeController;
     }
 
+    //return index of active subtitle controller. 
+    //Index is order of subtitle controller in owner object.
+    public int getActiveControllerIndex()
+    {
+        SubtitleController[] allSubtitlesAtOwner = GetComponents<SubtitleController>();
+        int index = 0;
+        foreach (SubtitleController c in allSubtitlesAtOwner)
+        {
+            if (activeController == c) return index;
+            index++;
+        }
+
+        return -1;
+    }
+
     public void termianteCurrentController()
     {
         activeController.terminateSubtitle();

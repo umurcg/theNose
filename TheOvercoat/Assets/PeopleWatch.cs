@@ -40,7 +40,7 @@ public class PeopleWatch : MonoBehaviour {
                 if (nma)
                 {
                     audience.Add(other.gameObject);
-                    Debug.Log("New audience!!!!" + other.name);
+                    //Debug.Log("New audience!!!!" + other.name);
                 }
             }
         }

@@ -39,8 +39,9 @@ public class Jesus : GameController, IClickAction {
 
 	}
 
-    public void Action()
+    public override void Action()
     {
+        base.Action();
         transform.tag = "Untagged";
         Timing.RunCoroutine(_pray());
 
@@ -140,6 +141,13 @@ public class Jesus : GameController, IClickAction {
         plane.transform.tag = "Untagged";
         plane.layer = 2;
     }
+
+    public void setPlaneTagToFloor()
+    {
+        plane.transform.tag = "Floor";
+        plane.layer = 0;
+    }
+
 
 
     public override void activateController()

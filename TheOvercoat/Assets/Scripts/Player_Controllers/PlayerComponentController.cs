@@ -25,6 +25,8 @@ public class PlayerComponentController : MonoBehaviour {
         cc.enabled = false;
         //nma.enabled = false;
 
+        if (nma) nma.isStopped = true; 
+
         bcanPlayerWalk = false;
 
 	}
@@ -40,6 +42,8 @@ public class PlayerComponentController : MonoBehaviour {
             cl.enabled = true;
         if (cc != null)
             cc.enabled = true;
+
+        if (nma) nma.isStopped = false;
 
         bcanPlayerWalk = true;
         

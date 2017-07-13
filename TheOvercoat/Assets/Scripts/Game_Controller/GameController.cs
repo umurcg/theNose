@@ -142,7 +142,7 @@ abstract public class GameController : MonoBehaviour , IClickAction{
     //If you wont override this in gamecontroller and just implement interaface in there, this function won't be called. Which gives you ability to ignore it.
     public virtual void Action()
     {
-        Debug.Log("parent controrller");
+        //Debug.Log("parent controrller");
         registerAsUsed();
     }
 

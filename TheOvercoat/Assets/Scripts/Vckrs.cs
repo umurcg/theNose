@@ -1452,6 +1452,11 @@ public class Vckrs : MonoBehaviour
         yield break;
     }
 
+    public static string nameTagLayer(GameObject obj)
+    {
+        return obj.name + " " + obj.tag + " " + obj.layer;
+    }
+
 }
 
 

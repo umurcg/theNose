@@ -41,7 +41,14 @@ public class SubtitleController : MonoBehaviour {
     public virtual void Start () {
 
         //At start import texts from text asset
-        if (textAsset != null) importFromTextFile();
+        if (textAsset != null)
+        {
+            importFromTextFile();
+        }
+        else
+        {
+            Debug.Log("There is no text file " + ToString());
+        }
 
         text = SubtitleFade.subtitles["CharacterSubtitle"];
 
@@ -162,11 +169,12 @@ public class SubtitleController : MonoBehaviour {
         Debug.Log("terminating subt");
     }
 
+    
 
    public virtual void startSubtitle()
     {
         
-        if (text == null) Debug.Log("No text");
+        if (text == null) Debug.Log("No text "+this.ToString());
         //Debug.Log(subtitleTexts.Length);
 
         if (text == null)
@@ -186,6 +194,14 @@ public class SubtitleController : MonoBehaviour {
 
         //Debug.Log(subtitleTexts.Length);
 
+        if (caller == null) caller = GetComponent<SubtitleCaller>();
+
+        if (subtitleTexts.Length == 0)
+        {
+            Debug.Log("Text array has zero length. GameObject name:" + gameObject.name +" index: " + getScriptIndex());
+            return;
+        }
+
         text.text = subtitleTexts[0];
         index = 0;
         if (pcc != null)
@@ -201,6 +217,20 @@ public class SubtitleController : MonoBehaviour {
         //Debug.Log("enabled subtitile");
     }
 
+
+    int getScriptIndex()
+    {
+        SubtitleController[] allSubtitlesAtOwner = GetComponents<SubtitleController>();
+        int index = 0;
+        foreach (SubtitleController c in allSubtitlesAtOwner)
+        {
+            if (c==this) return index;
+            index++;
+        }
+
+        return -1;
+
+    }
 
     public Text getCharSubt()
     {
@@ -301,7 +331,11 @@ public class SubtitleController : MonoBehaviour {
             finishIndex = findLine(startIndex, finishSignature) - 1;
 
             //If stille couldn't find any subtitle from text asset then return and don't do aything
-            if (startIndex > finishIndex) return;
+            if (startIndex > finishIndex)
+            {
+                Debug.Log("Can't extract subtitles from text asset file " + ToString());
+                return;
+            }
         }
 
 
@@ -343,7 +377,7 @@ public class SubtitleController : MonoBehaviour {
         //If text asset isn't found then export current text to file if it is not null 
         if (textAsset == null && subtitleTexts.Length > 0)
         {
-            Debug.Log("Couldn't found text asset. So exporting current subtitleTets to text asset and assigning to again");
+            Debug.Log("Couldn't found text asset. So exporting current subtitleTets to text asset and assigning to again "+this);
             exportToTextFile();
             //Try to assign again after creating it
             textAsset = Resources.Load(folderName + "/" + fileName, typeof(TextAsset)) as TextAsset;
@@ -406,7 +440,13 @@ public class SubtitleController : MonoBehaviour {
 
         return -1;
     }
-    
+
+    public override string ToString()
+    {
+        //return base.ToString();
+        return base.ToString() + " " + getScriptIndex();
+    }
+
     [ContextMenu ("Update Text Asset Name")]
     public void updateTextFileName()
     {
