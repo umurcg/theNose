@@ -20,6 +20,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject trailer;
     public GameObject horseCariers;
     public GameObject horseBots;
+    public FogGameController fogGAME;
 
     public GameObject streetAreas;
 
@@ -355,6 +356,9 @@ public class CityGameController : MonoBehaviour {
             BirdLandingScript bls = player.GetComponent<BirdLandingScript>();
             bls.setAsLandedBaked(true);
         }
+
+        //Enable fog game
+        fogGAME.activateController();
 
     }
 

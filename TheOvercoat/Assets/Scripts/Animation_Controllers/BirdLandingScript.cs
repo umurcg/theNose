@@ -172,6 +172,9 @@ public class BirdLandingScript : MonoBehaviour {
 
     public void setAsLandedBaked(bool isLanded)
     {
+        if(!animContoller) animContoller = GetComponent<Animator>();
+        if(!bc) bc = GetComponent<BirdController>();
+        if(!mwa) mwa = GetComponent<MoveToWithoutAgent>();
 
         animContoller.SetBool(landingAnimationName, isLanded);
         animContoller.SetBool(landingAnimationName+"Baked", true);

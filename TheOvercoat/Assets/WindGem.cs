@@ -19,9 +19,16 @@ public class WindGem : MonoBehaviour {
         if (!fc) Debug.Log("FC is null");
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "Player") ;
+        collect();
+    }
 
+    [ContextMenu("Collect")]
+    void collect()
+    {
         fc.gemIsCollected();
 
         Timing.RunCoroutine(_destroy());

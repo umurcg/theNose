@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FogGameController : MonoBehaviour {
+public class FogGameController : GameController {
 
     public GameObject Canvas3d;
     
@@ -19,8 +19,9 @@ public class FogGameController : MonoBehaviour {
     FogController[] fogs;
     int currentFogIndex=0;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         fogs = GetComponentsInChildren<FogController>();
         fogs[0].enabled = true;
 
@@ -80,6 +81,18 @@ public class FogGameController : MonoBehaviour {
 
     }
 
+
+    public override void activateController()
+    {
+        base.activateController();
+        gameObject.SetActive(true);
+    }
+
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        gameObject.SetActive(false);
+    }
 
 
 }

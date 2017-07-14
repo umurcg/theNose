@@ -110,7 +110,7 @@ public class CameraFollower : MonoBehaviour {
             //Debug.Log("Rotating");
             var wantedRotation = rotatorSpeed * Input.GetAxis(axis);
             //transform.RotateAround(/*getFocus()*/ target.transform.position, target.transform.up, Time.deltaTime * rotatorSpeed * wantedRotation);
-            transform.RotateAround(/*getFocus()*/ ghost, target.transform.up, Time.deltaTime * rotatorSpeed * wantedRotation);
+            transform.RotateAround(/*getFocus()*/ ghost, Vector3.up, Time.deltaTime * rotatorSpeed * wantedRotation);
 
             //transform.position += target.transform.position - prevPos;
 

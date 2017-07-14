@@ -7,15 +7,20 @@ using MovementEffects;
 public class BridGameController : MonoBehaviour {
         
     public GameObject uiText;
+    //public GameObject buttonPrefab;
+    public Transform canvas;
     public GameObject lowPolyBird;
     public GameObject highPolyBird;
     public GameObject wizard;
     public float fadeSpeed = 0.3f;
 
     Text uiT;
+    //Button button;
+
     public int maxHint;
     DrawEdgesBetweenVertices debv;
 
+    string textMessage = "";
 
     Quaternion initialRot;
 
@@ -25,13 +30,34 @@ public class BridGameController : MonoBehaviour {
 	void Awake () {
         debv=GetComponent<DrawEdgesBetweenVertices>();
         initialRot = transform.rotation;
-        uiT = uiText.GetComponent<Text>();
-        score();
-        uiText.transform.parent.gameObject.SetActive(true);
+        instantiateButtonAndText();
+
+         
+
+        
         
 	}
     private void Start()
     {
+        textMessage = GetComponent<DynamicLanguageTexts>().getTextForCurrentLanguage();
+
+        score();
+    }
+
+    void instantiateButtonAndText()
+    {
+        //GameObject b=Instantiate(buttonPrefab,canvas) as GameObject;
+        GameObject t = Instantiate(uiText, canvas) as GameObject;
+
+        DynamicLanguageTexts lantext = t.GetComponent<DynamicLanguageTexts>();
+        if (lantext) Destroy(lantext);
+
+        t.transform.position = Vckrs.screenRatioToPosition(0.25f, 0.75f);
+        //b.transform.position = t.transform.position - t.transform.up * Screen.height / 5;
+
+        uiT = t.GetComponentInChildren<Text>();
+        //button = b.GetComponentInChildren<Button>();
+
 
     }
 
@@ -52,10 +78,11 @@ public class BridGameController : MonoBehaviour {
     public void score()
     {
         //Update score
-        uiT.text="Remained number of edges is "+ debv.getRemainedNumberOfEdges();
+        uiT.text= textMessage + debv.getRemainedNumberOfEdges();
         Debug.Log("Score");
     }
 
+    [ContextMenu ("win")]
     public void win()
     {
         Timing.RunCoroutine(_win());

@@ -36,13 +36,13 @@ public class FogController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="Player")
+        if(other.tag=="Player" && fgc)
              fgc.inFog = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && fgc)
             fgc.inFog = false;
     }
 
@@ -85,6 +85,8 @@ public class FogController : MonoBehaviour {
 
         fgc.inFog = false;
         fgc.fogIsDestroyed(this);
+
+        Destroy(this);
 
         yield break;
     }

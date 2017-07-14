@@ -37,7 +37,7 @@ public class DynamicLanguageTexts : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        updateText();
+       if(textComp) updateText();
     }
 	
 	// Update is called once per frame
@@ -46,14 +46,19 @@ public class DynamicLanguageTexts : MonoBehaviour {
 	}
 
     protected virtual void updateText()
+    {        
+        textComp.text = getTextForCurrentLanguage();
+    }
+
+    public string getTextForCurrentLanguage()
     {
-        string[] section= extractTextFromID(textID);
-        if (section == null) return;
+        string[] section = extractTextFromID(textID);
+        if (section == null) return "";
 
         string text = findText(section, GlobalController.Instance.getLangueSetting());
-        if (text == null) return;
+        if (text == null) return "";
 
-        textComp.text = text;
+        return text;
     }
 
     public static void updateAllCurrentVisibleTexts()

@@ -61,7 +61,7 @@ public class DrawEdgesBetweenVertices : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.tag == "Vertex")
+            if (hit.transform.tag == "ActiveObject")
             {
                 if (selectedVertex == null)
                 {
