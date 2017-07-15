@@ -341,15 +341,17 @@ public class CityGameController : MonoBehaviour {
     void comingFromChurch()
     {
         Debug.Log("Coming from church");
-        OpenDoorLoad.openAllTheVisitedDoors();
+        //OpenDoorLoad.openAllTheVisitedDoors();
 
         //If active character is bird then set its position to churchTop
         GameObject player = CharGameController.getActiveCharacter();
         if (player.transform.name == "Bird")
         {
             Timing.RunCoroutine(moveBirdAfterOneFrame());
-            CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
-            //cf.updateRelative();
+
+            //////CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
+            //////cf.updateRelative();
+
             maze.GetComponent<GameController>().activateController();
 
             //Set bird as landed

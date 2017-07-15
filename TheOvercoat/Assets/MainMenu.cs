@@ -236,17 +236,17 @@ public class MainMenu : MonoBehaviour {
         menuCamera.SetActive(false);
         CharGameController.getCamera().SetActive(true);
 
-        string[] characters = sceneCharacters.text.Split('\n');
-        string characterToActivate = characters[episodeID];
-        if (characterToActivate != "Null")
-        {
-            Debug.Log("Character top activate " + characterToActivate);
-            CharGameController.setCharacter(characterToActivate.Trim());
+        //string[] characters = sceneCharacters.text.Split('\n');
+        //string characterToActivate = characters[episodeID];
+        //if (characterToActivate != "Null")
+        //{
+        //    Debug.Log("Character top activate " + characterToActivate);
+        //    CharGameController.setCharacter(characterToActivate.Trim());
 
 
-            CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
-            CharGameController.getCamera().GetComponent<CameraFollower>().fixRelativeToDefault();
-        }
+        //    CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
+        //    CharGameController.getCamera().GetComponent<CameraFollower>().fixRelativeToDefault();
+        //}
 
         //Trim game controllers that are after current episodeID
         //It should be called while laoding a episode from moments menu. So commenting this right now. Call this in the function that loads scenes from moments

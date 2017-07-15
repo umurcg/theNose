@@ -13,7 +13,7 @@ public class MazeGameStarter : GameController, IClickAction {
 
     public GameObject birdPrefab, nosePefab, spawner;
     public GameObject starterPos;
-
+            
     
     DayAndNightCycle danc;
     Light dancL;
@@ -77,9 +77,10 @@ public class MazeGameStarter : GameController, IClickAction {
         player = CharGameController.getActiveCharacter();
 
         //Disable character mouse look of bird
-        CharacterMouseLook cml = player.GetComponent<CharacterMouseLook>();
-        cml.enabled = false;
+        //CharacterMouseLook cml = player.GetComponent<CharacterMouseLook>();
+        //cml.enabled = false;
 
+        pcc.StopToWalk();
 
 
         //Wait for bird to go to start position
@@ -129,7 +130,8 @@ public class MazeGameStarter : GameController, IClickAction {
         birdPrefab.transform.rotation = oldRotation;
         enableDisableSkinnedMesh(birdPrefab, true);
 
-        
+        transform.gameObject.layer = 2;
+
         //Fade in
         handlerHolder = blackScreen.script.fadeIn();
         yield return Timing.WaitUntilDone(handlerHolder);
@@ -143,6 +145,8 @@ public class MazeGameStarter : GameController, IClickAction {
 
         //Start maze game
         transform.parent.GetComponent<MazeGameController>().enabled = true;
+
+
 
         yield return 0;
 
@@ -174,6 +178,7 @@ public class MazeGameStarter : GameController, IClickAction {
         Timing.RunCoroutine(_startMazeGame());
         //When start make remove tag so it can't be started again
         transform.tag = "Untagged";
+
         Debug.Log("startiing maze");
     }
 

@@ -5,8 +5,8 @@ using MovementEffects;
 using UnityEngine.UI;
 
 public class PolicePatrol : MonoBehaviour {
-    public float walkRadius = 5f;
-    public float waitBetweenWalks;
+    //public float walkRadius = 5f;
+    //public float waitBetweenWalks;
 
     //This message will be called when police catches player
     public GameObject catchMessageObject;

@@ -74,6 +74,8 @@ public class WhoIsTalking : MonoBehaviour
 
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -234,6 +236,23 @@ public class WhoIsTalking : MonoBehaviour
 
         return nearestChar;
 
+    }
+
+    //Returns whole character array if key is exists.
+    public List<GameObject> getAllCharacter(string key)
+    {
+        if (!characters.ContainsKey(key)) return null;
+
+        return characters[key];
+    }
+
+    public void removeCharacter(string key, GameObject obj)
+    {
+        if (!characters.ContainsKey(key)) return;
+
+        List<GameObject> objs = characters[key];
+
+        if (objs.Contains(obj)) characters[key].Remove(obj);
     }
 
 }

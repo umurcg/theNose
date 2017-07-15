@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FogGameController : GameController {
 
@@ -19,6 +20,10 @@ public class FogGameController : GameController {
     FogController[] fogs;
     int currentFogIndex=0;
 
+    GameObject birdInitialPos;
+
+    public GameObject finishBirdPosition;
+
     public override void Awake()
     {
         base.Awake();
@@ -32,6 +37,12 @@ public class FogGameController : GameController {
         windUI.transform.parent = Canvas3d.transform;
         windUI.transform.position = Canvas3d.transform.position + (Screen.width / 2) * 1 / 5 * windUI.transform.right + (Screen.height / 2) * 1 / 5 * windUI.transform.up;
     }
+
+    //public override void Start()
+    //{
+    //    base.Start();
+    //    finisGame();
+    //}
 
     // Update is called once per frame
     void Update () {
@@ -71,14 +82,17 @@ public class FogGameController : GameController {
         
     }
 
+    [ContextMenu ("Finish")]
     void finisGame()
     {
-
+        CharGameController.movePlayer(finishBirdPosition.transform.position);
+        gameObject.SetActive(false);
     }
 
+    [ContextMenu ("Restart")]
     void restartGame()
     {
-
+        GetComponent<LoadScene>().Load();
     }
 
 

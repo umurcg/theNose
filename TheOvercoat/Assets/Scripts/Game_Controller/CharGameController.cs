@@ -225,6 +225,7 @@ public class CharGameController : MonoBehaviour {
         SeeBehindWall3 sbw = cgc.GetComponentInChildren<SeeBehindWall3>();
         if (sbw) sbw.updateTarget();
 
+        getOwner().GetComponent<CursorImageScript>().updatePlayerVariables();
 
         if (character == null) Debug.Log("Could't find character while trying to activate it " + characterName);
         return character;

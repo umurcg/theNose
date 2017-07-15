@@ -252,6 +252,12 @@ public int setDebugListToLevelIndex;
 
         formatter.Serialize(saveFile, sceneList);
         formatter.Serialize(saveFile, usedGameControllers);
+
+        //Save player name 
+        string playerName = "";
+        
+        playerName = CharGameController.getActiveCharacter().name;
+        formatter.Serialize(saveFile, playerName);
         
         saveFile.Close();
         
@@ -277,6 +283,17 @@ public int setDebugListToLevelIndex;
         
         maxSceneList = (List<int>)formatter.Deserialize(saveFile);
         usedGameControllers = (List<string>)formatter.Deserialize(saveFile);
+
+        //Get player name and set active character as that player
+        string playerName = (string)formatter.Deserialize(saveFile);
+        if (playerName != "" && CharGameController.cgc != null)
+        {
+            Debug.Log("Setting character as " + playerName);
+            CharGameController.setCharacter(playerName);
+            CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
+            CharGameController.getCamera().GetComponent<CameraFollower>().fixRelativeToDefault();
+        }
+
 
         sceneList = maxSceneList;
         //usedGameControllers = maxUsedGameController;

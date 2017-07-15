@@ -21,6 +21,14 @@ public class RegisterToSubtitleList : MonoBehaviour {
 
 	}
 
+    private void OnDestroy()
+    {
+        if (key == null) return;
+
+        WhoIsTalking.self.removeCharacter(key, gameObject);
+    }
+
+    
 
     string getNameForLanguage()
     {

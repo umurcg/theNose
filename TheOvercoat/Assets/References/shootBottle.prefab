@@ -16,16 +16,15 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013294587940}
-  - 33: {fileID: 33000010487264188}
-  - 23: {fileID: 23000011435066588}
-  - 95: {fileID: 95000012608948820}
-  - 54: {fileID: 54000014213826710}
-  - 135: {fileID: 135000013286487870}
-  - 114: {fileID: 114000012024678710}
-  - 114: {fileID: 114000014219049196}
+  - component: {fileID: 4000013294587940}
+  - component: {fileID: 33000010487264188}
+  - component: {fileID: 23000011435066588}
+  - component: {fileID: 95000012608948820}
+  - component: {fileID: 54000014213826710}
+  - component: {fileID: 135000013286487870}
+  - component: {fileID: 114000014219049196}
   m_Layer: 0
   m_Name: shootBottle
   m_TagString: ActiveObject
@@ -42,10 +41,10 @@ Transform:
   m_LocalRotation: {x: -0.50575083, y: 0.4941822, z: -0.49418232, w: 0.50575083}
   m_LocalPosition: {x: 4.0600004, y: 0.14999998, z: -42.991}
   m_LocalScale: {x: 0.10338599, y: 0.10338599, z: 0.10338599}
-  m_LocalEulerAnglesHint: {x: -1.3110001, y: 90.00001, z: -90.00001}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.3110001, y: 90.00001, z: -90.00001}
 --- !u!23 &23000011435066588
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -60,7 +59,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 7fe8fa87fdd73d24eb894a569440e998, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -68,12 +69,13 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33000010487264188
 MeshFilter:
@@ -81,7 +83,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012419128946}
-  m_Mesh: {fileID: 4300000, guid: a15efc4a374d21b48b8f223da74920ec, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 386379abfb044fb4299cf5ebfa757a60, type: 3}
 --- !u!54 &54000014213826710
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -114,22 +116,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000012024678710
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012419128946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1df53f8d39e61e4448cd7421499b9285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHand: 1
-  placeholders: []
-  canBeCollectedAgain: 0
-  unCollectPositionOffset: {x: 0, y: 0, z: 0}
-  scale: {x: 1, y: 1, z: 1}
 --- !u!114 &114000014219049196
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,13 +4,13 @@ using System.Collections;
 public class PlayerComponentController : MonoBehaviour {
 	MoveTo moveto;
 	CharacterControllerKeyboard cck;
-	CharacterMouseLook cl;
-	CharacterController cc;
+	protected CharacterMouseLook cl;
+	protected CharacterController cc;
 	UnityEngine.AI.NavMeshAgent nma;
 
-    bool bcanPlayerWalk = true;
+    protected bool bcanPlayerWalk = true;
 
-	public void StopToWalk(){
+	public virtual void StopToWalk(){
 
         if (moveto!=null)
         moveto.enabled = false;
@@ -31,7 +31,7 @@ public class PlayerComponentController : MonoBehaviour {
 
 	}
 
-	public void ContinueToWalk(){
+	public virtual void ContinueToWalk(){
         //nma.enabled = true;
         if (moveto != null)
             moveto.enabled = true;
@@ -50,18 +50,15 @@ public class PlayerComponentController : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Awake () {
+	protected virtual void Awake () {
 		moveto = GetComponent<MoveTo>();
 		cck = GetComponent<CharacterControllerKeyboard>();
 		cl = GetComponent<CharacterMouseLook> ();
 		cc = GetComponent<CharacterController> ();
 		nma = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+
 
     public bool canPlayerWalk()
     {
@@ -69,18 +66,18 @@ public class PlayerComponentController : MonoBehaviour {
 
     }
 
-    public void pauseNma()
+    public virtual void pauseNma()
     {
         nma.Stop();
     }
 
-    public void disableNma()
+    public virtual void disableNma()
     {
         pauseNma();
         nma.enabled = false;
     }
 
-    public void enableNma()
+    public virtual void enableNma()
     {
         nma.enabled = true;
         nma.Resume();

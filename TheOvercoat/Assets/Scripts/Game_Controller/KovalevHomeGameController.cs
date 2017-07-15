@@ -101,7 +101,7 @@ public class KovalevHomeGameController : GameController {
         updateCharacterVariables();
 
         //I have to update omponents of cursor image script
-        CharGameController.getOwner().GetComponent<CursorImageScript>().updateComponents();
+        CharGameController.getOwner().GetComponent<CursorImageScript>().updatePlayerVariables();
 
         //Update chair subject
         tableChair.GetComponent<WalkLookAnim>().changeSubject(character);

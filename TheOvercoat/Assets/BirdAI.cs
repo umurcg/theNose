@@ -23,7 +23,18 @@ public class BirdAI : MonoBehaviour, IVisibility
 
     // Use this for initialization
     void Start () {
-        cam=CharGameController.getCamera().GetComponent<Camera>();
+
+        GameObject player=CharGameController.getActiveCharacter();
+
+        //If player is bird hen disable this object
+        if(player.GetComponent<BirdController>()!=null)
+        {
+            gameObject.SetActive(false);
+            return;
+
+        }
+
+        cam =CharGameController.getCamera().GetComponent<Camera>();
         cc = GetComponent<CharacterController>();
 
         timer = new Timer(UnityEngine.Random.Range(minimumTime, maximumTime));

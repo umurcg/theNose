@@ -30,6 +30,8 @@ public class LoadScene : MonoBehaviour {
         }
     }
     
+
+    [ContextMenu ("Load")]
     public void Load()
     {
         Timing.RunCoroutine(_Load());

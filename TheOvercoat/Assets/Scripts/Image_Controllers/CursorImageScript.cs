@@ -92,7 +92,7 @@ public class CursorImageScript : MonoBehaviour
 
     }
 
-    void updatePlayerVariables()
+    public void updatePlayerVariables()
     {
         //Debug.Log("Getting new move to ");
         player = CharGameController.getActiveCharacter();
@@ -102,6 +102,8 @@ public class CursorImageScript : MonoBehaviour
             playerAgent = player.GetComponent<UnityEngine.AI.NavMeshAgent>();
         }
     }
+
+
     void updateSubtitle()
     {
         if (SubtitleFade.subtitles != null)
@@ -220,7 +222,7 @@ public class CursorImageScript : MonoBehaviour
                     break;
 
                 case "ActiveObject":
-
+                    //Debug.Log("Active object");
                     setCursor(activeObject);
                     break;
 
@@ -290,12 +292,12 @@ public class CursorImageScript : MonoBehaviour
         return true;
     }
 
-    public void updateComponents()
-    {
-        player = CharGameController.getActiveCharacter();
-        mt = player.GetComponent<MoveTo>();
+    //public void updateComponents()
+    //{
+    //    player = CharGameController.getActiveCharacter();
+    //    mt = player.GetComponent<MoveTo>();
 
-    }
+    //}
 
     public void setExternalTexture(Texture2D texture)
     {
@@ -304,7 +306,8 @@ public class CursorImageScript : MonoBehaviour
 
     public void resetExternalCursor()
     {
-        externalTexture = null;
+        if(externalTexture!=null)
+           externalTexture = null;
         //Debug.Log("Reseting external cursor");
         //DestroyImmediate(externalTexture);
 
