@@ -1457,6 +1457,27 @@ public class Vckrs : MonoBehaviour
         return obj.name + " " + obj.tag + " " + obj.layer;
     }
 
+    public static T[] addToArray<T>(T[] array,T item){
+
+        T[] newArray = new T[array.Length + 1];
+        
+        for(int i = 0; i < newArray.Length; i++)
+        {
+            if (i == newArray.Length - 1)
+            {
+                newArray[i] = item;
+            }
+            else
+            {
+
+                newArray[i] = array[i];
+             }
+        }
+
+        return newArray;
+
+    }
+    
 }
 
 

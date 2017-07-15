@@ -199,6 +199,11 @@ public class DrunkManGameController : GameController {
         noseAtHand.SetActive(true);
         OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.Doctor).Unlock();
         OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse).Unlock();
+
+        //Recover ligth
+        DayAndNightCycle danc = CharGameController.getSun().GetComponent<DayAndNightCycle>();
+        danc.minIntensity = 0.1f;
+
         registerAsUsed();
 
 

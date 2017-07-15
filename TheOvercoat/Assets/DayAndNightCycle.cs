@@ -46,6 +46,7 @@ public class DayAndNightCycle : MonoBehaviour {
         }
     }
 
+    [ContextMenu ("Make night")]
     public void makeNight(bool instantly = false)
     {
         Light l = GetComponent<Light>();
@@ -63,7 +64,7 @@ public class DayAndNightCycle : MonoBehaviour {
     }
 
 
-
+    [ContextMenu ("Make day")]
     public void makeDay(bool instantly = false)
     {
         Light l = GetComponent<Light>();

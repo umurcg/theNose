@@ -289,8 +289,14 @@ public class DrunkManGameSceneController : GameController {
     {
         base.activateController();
         gameObject.SetActive(true);
-        
-        
+
+
+        //Make nights darker
+        DayAndNightCycle danc = CharGameController.getSun().GetComponent<DayAndNightCycle>();
+        danc.minIntensity = 0.1f;
+        //Make night
+        danc.makeNight(true);
+
     }
 
     public override void deactivateController()

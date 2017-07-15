@@ -149,8 +149,10 @@ public class ShootWithBottle : MonoBehaviour {
         RockScript rc = bottle.GetComponent<RockScript>();
         rc.enabled = true;
         rc.reciever = dmgc.gameObject;
-        
 
+        BroadCastOnDestroy bcod = bottle.AddComponent<BroadCastOnDestroy>();
+        bcod.addReciever(dmgc.dmai.gameObject);
+        bcod.addMessage("sawPlayer");
 
         yield return 0;
 

@@ -256,11 +256,6 @@ public class CityGameController : MonoBehaviour {
             doctoDoor.Unlock();
             kovaevDoor.Unlock();
 
-            //Make nights darker
-            DayAndNightCycle danc = CharGameController.getSun().GetComponent<DayAndNightCycle>();
-            danc.minIntensity = 0.1f;
-            //Make night
-            danc.makeNight(true);
 
             //CharGameController.coverKovalevsFace();
             //activate nose in hand
