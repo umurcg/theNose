@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
+//using UnityEditor;
 
 
 public class SetTagLayerRecursevly : MonoBehaviour {
@@ -56,9 +56,9 @@ public class SetTagLayerRecursevly : MonoBehaviour {
 
 
 
-
-[CustomEditor(typeof(SetTagLayerRecursevly), true)]
-public class SetTagLayerRecursevlyEditor : Editor
+#if UNITY_EDITOR
+[UnityEditor.CustomEditor(typeof(SetTagLayerRecursevly), true)]
+public class SetTagLayerRecursevlyEditor : UnityEditor.Editor
 {
     public override void OnInspectorGUI()
     {
@@ -77,3 +77,5 @@ public class SetTagLayerRecursevlyEditor : Editor
         }
     }
 }
+
+#endif

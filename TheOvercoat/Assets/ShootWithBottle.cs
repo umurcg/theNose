@@ -94,6 +94,8 @@ public class ShootWithBottle : MonoBehaviour {
         if(bottle==null)
              bottle = handPosition.transform.GetChild(0).gameObject;
 
+        
+
         if (player == null) initilize();
 
         Rigidbody rb = bottle.GetComponent<Rigidbody>();
@@ -161,7 +163,16 @@ public class ShootWithBottle : MonoBehaviour {
         //Vector3 shootDirection = (planarTarget - planarPostion).normalized * Mathf.Cos(angle) + Vector3.up * Mathf.Sin(angle);
         //Vector3 finalVelocity = shootDirection * shootSpeed;
 
-        bottle.transform.parent = null;
+    
+        CollectableObjectV2 co = bottle.GetComponent<CollectableObjectV2>();
+        if (co)
+        {
+            co.unCollect();
+        }
+        else
+        {
+            bottle.transform.parent = null;
+        }
 
         //Make non kinematic before applying force
         rb.isKinematic = false;

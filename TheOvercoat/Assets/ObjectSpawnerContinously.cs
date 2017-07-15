@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 
 //Spawns object in circle within radius
 //It keeps spawned objet count in constant number
@@ -78,9 +78,9 @@ public class ObjectSpawnerContinously : MonoBehaviour {
 }
 
 
-
-[CustomEditor(typeof(ObjectSpawnerContinously))]
-    public class ObjectSpawnerContinouslyEditor : Editor
+#if UNITY_EDITOR
+[UnityEditor.CustomEditor(typeof(ObjectSpawnerContinously))]
+    public class ObjectSpawnerContinouslyEditor : UnityEditor.Editor
     {
 
         private ObjectSpawnerContinously script;
@@ -88,11 +88,12 @@ public class ObjectSpawnerContinously : MonoBehaviour {
         public void OnSceneGUI()
         {
             script = this.target as ObjectSpawnerContinously;
-            Handles.color = Color.red;
-            Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
                                           , Vector3.up                    // normal
                                           , script.radius);                              // radius
         }
     }
 
 
+#endif

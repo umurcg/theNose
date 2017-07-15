@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 
-public class drunkManController : GameController,IVisibility {
+public class drunkManController : GameController {
 
     public float timeBetweenDrinks = 7.5f;
     MoveRandomlyOnNavMesh moveRand;
@@ -58,14 +58,18 @@ public class drunkManController : GameController,IVisibility {
 
 	}
 
+    
+    
 
-    public void onVisible()
+    public void OnTriggerEnter(Collider col)
     {
+        if(col.transform.tag=="Player")
         enabled = true;
     }
 
-    public void onInvisible()
+    public void OnTriggerExit(Collider col)
     {
-        enabled = false;
+        if (col.transform.tag == "Player")
+            enabled = false;
     }
 }

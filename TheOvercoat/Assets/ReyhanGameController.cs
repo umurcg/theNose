@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
+//using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
@@ -180,8 +180,10 @@ public class ReyhanGameController : GameController {
 
 }
 
-[CustomEditor(typeof(ReyhanGameController))]
-public class customclassEditor : Editor
+
+#if UNITY_EDITOR
+[UnityEditor.CustomEditor(typeof(ReyhanGameController))]
+public class customclassEditor : UnityEditor.Editor
 {
 
     private ReyhanGameController script;
@@ -189,9 +191,10 @@ public class customclassEditor : Editor
     public void OnSceneGUI()
     {
         script = this.target as ReyhanGameController;
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
                                       , script.transform.forward                       // normal
                                       , script.radiusOfWholeArea);                              // radius
     }
 }
+#endif

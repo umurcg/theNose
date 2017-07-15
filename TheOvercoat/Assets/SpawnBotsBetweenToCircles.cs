@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine.AI;
 
 public class SpawnBotsBetweenToCircles : MonoBehaviour {
@@ -76,10 +76,10 @@ public class SpawnBotsBetweenToCircles : MonoBehaviour {
 
     }
 }
+#if UNITY_EDITOR
 
-
-[CustomEditor(typeof(SpawnBotsBetweenToCircles))]
-public class SpawnBotsBetweenToCirclesEditor : Editor
+[UnityEditor.CustomEditor(typeof(SpawnBotsBetweenToCircles))]
+public class SpawnBotsBetweenToCirclesEditor : UnityEditor.Editor
 {
 
     private SpawnBotsBetweenToCircles script;
@@ -87,15 +87,17 @@ public class SpawnBotsBetweenToCirclesEditor : Editor
     public void OnSceneGUI()
     {
         script = this.target as SpawnBotsBetweenToCircles;
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
                                       , script.transform.forward                       // normal
                                       , script.radius1);                              // radius
 
 
-        Handles.color = Color.blue;
-        Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
+        UnityEditor.Handles.color = Color.blue;
+        UnityEditor.Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
                                       , script.transform.forward                       // normal
                                       , script.radius2);                              // radius
     }
 }
+
+#endif

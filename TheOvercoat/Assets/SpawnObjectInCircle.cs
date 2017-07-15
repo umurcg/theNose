@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 
 public class SpawnObjectInCircle : MonoBehaviour
 {
@@ -56,10 +56,11 @@ public class SpawnObjectInCircle : MonoBehaviour
 
 }
 
+#if UNITY_EDITOR
 
 
-[CustomEditor(typeof(SpawnObjectInCircle))]
-public class SpawnObjectInCircleEditor : Editor
+[UnityEditor.CustomEditor(typeof(SpawnObjectInCircle))]
+public class SpawnObjectInCircleEditor : UnityEditor.Editor
 {
 
     private SpawnObjectInCircle script;
@@ -67,11 +68,12 @@ public class SpawnObjectInCircleEditor : Editor
     public void OnSceneGUI()
     {
         script = this.target as SpawnObjectInCircle;
-        Handles.color = Color.blue;
-        Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
+        UnityEditor.Handles.color = Color.blue;
+        UnityEditor.Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
                                       , Vector3.up                    // normal
                                       , script.radius);                              // radius
     }
 }
 
 
+#endif

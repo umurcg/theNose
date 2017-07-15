@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 using System.Collections.Generic;
 using MovementEffects;
 using UnityEngine.UI;
@@ -341,9 +340,9 @@ public class CameraController : MonoBehaviour {
 }
 
 
-
-[CustomEditor(typeof(CameraController), true)]
-public class CameraControllerEditor : Editor
+#if UNITY_EDITOR
+[UnityEditor.CustomEditor(typeof(CameraController), true)]
+public class CameraControllerEditor : UnityEditor.Editor
 {
     public override void OnInspectorGUI()
     {
@@ -390,3 +389,5 @@ public class CameraControllerEditor : Editor
         }
     }
 }
+
+#endif

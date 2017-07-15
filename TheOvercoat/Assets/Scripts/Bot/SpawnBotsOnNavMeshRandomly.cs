@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 
 
 //This is fucking smart
@@ -160,9 +160,9 @@ public class SpawnBotsOnNavMeshRandomly : MonoBehaviour {
 
 }
 
-
-[CustomEditor(typeof(SpawnBotsOnNavMeshRandomly))]
-public class SpawnBotsOnNavMeshRandomlyEditor : Editor
+#if UNITY_EDITOR
+[UnityEditor.CustomEditor(typeof(SpawnBotsOnNavMeshRandomly))]
+public class SpawnBotsOnNavMeshRandomlyEditor : UnityEditor.Editor
 {
 
     private SpawnBotsOnNavMeshRandomly script;
@@ -170,12 +170,12 @@ public class SpawnBotsOnNavMeshRandomlyEditor : Editor
     public void OnSceneGUI()
     {
         script = this.target as SpawnBotsOnNavMeshRandomly;
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
                                       , Vector3.up                   // normal
                                       , script.radius);                              // radius
     }
 }
 
 
-
+#endif

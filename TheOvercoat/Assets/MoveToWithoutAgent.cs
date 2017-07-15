@@ -137,6 +137,7 @@ public class MoveToWithoutAgent : MonoBehaviour
 
     private void OnDisable()
     {
+        if(cis)
         cis.resetExternalCursor();
     }
 }

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54000014213826710}
   - component: {fileID: 135000013286487870}
   - component: {fileID: 114000014219049196}
+  - component: {fileID: 114967510223427630}
   m_Layer: 0
   m_Name: shootBottle
   m_TagString: ActiveObject
@@ -133,6 +134,19 @@ MonoBehaviour:
   enemyDamage: 25
   reciever: {fileID: 0}
   particle: {fileID: 1000012716981656, guid: a7ff47821786d634bb22bba70dc04219, type: 2}
+--- !u!114 &114967510223427630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012419128946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4789c298f75c23c4f87e1b647ee3f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hand: 2
+  scale: 1
 --- !u!135 &135000013286487870
 SphereCollider:
   m_ObjectHideFlags: 1

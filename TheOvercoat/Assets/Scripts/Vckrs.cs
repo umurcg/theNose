@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 using UnityEngine.UI;
-using UnityEditor;
+//using UnityEditor;
 //This is a module for generic methods, classes, enums and some other things.
 
 

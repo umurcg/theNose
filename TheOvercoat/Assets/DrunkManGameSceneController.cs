@@ -45,7 +45,10 @@ public class DrunkManGameSceneController : GameController {
 
         hideAndSeekHandler = Timing.RunCoroutine(_hideAndSeek());
         //Timing.RunCoroutine(encounter());
-        
+
+        dm.player.SetActive(true);
+        allGameObjects.SetActive(true);
+        GetComponent<ObjectSpawnerContinously>().enabled = true;
 
     }
 	

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 using System.Collections.Generic;
 using System;
 
@@ -135,8 +134,12 @@ public class BirdAI : MonoBehaviour, IVisibility
     }
 }
 
-[CustomEditor(typeof(BirdAI), true)]
-public class BirdAIEditor : Editor
+#if UNITY_EDITOR
+
+
+
+[UnityEditor.CustomEditor(typeof(BirdAI), true)]
+public class BirdAIEditor : UnityEditor.Editor
 {
     public override void OnInspectorGUI()
     {
@@ -150,3 +153,5 @@ public class BirdAIEditor : Editor
 
     }
 }
+
+#endif
