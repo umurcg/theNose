@@ -49,7 +49,7 @@ public class RockScript : MonoBehaviour {
 
         //Debug.Log("Didnt return");
 
-        if (collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player" && reciever!=null)
         {
             reciever.SendMessage("damage", playerDamage);
 
@@ -59,9 +59,9 @@ public class RockScript : MonoBehaviour {
         
             explode();
 
-        } else if (collision.transform.tag == "Enemy")
+        } else if (collision.transform.tag == "Enemy" && reciever!=null)
         {
-
+            
             reciever.SendMessage("damageEnemy", enemyDamage);
             explode();
         } else if (collision.transform.tag == "Sculpture")

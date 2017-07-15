@@ -1142,7 +1142,7 @@ public class Vckrs : MonoBehaviour
         }
         else
         {
-            Debug.Log("Couldbt ray cast");
+            //Debug.Log("Couldbt ray cast");
             result = Vector3.zero;
             return false;
         }

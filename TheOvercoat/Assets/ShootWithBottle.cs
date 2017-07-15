@@ -76,6 +76,7 @@ public class ShootWithBottle : MonoBehaviour {
             Ray r = cam.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(r,out hit, 1000f,~areaMask))
             {
+                //Debug.Log("Shoot point is " + Vckrs.nameTagLayer(hit.transform.gameObject));
                 //if(hit.transform.tag=="Floor"|| hit.transform.ta)
                 //{
                    Timing.RunCoroutine(shoot(hit.point));
@@ -93,14 +94,11 @@ public class ShootWithBottle : MonoBehaviour {
     {
         if(bottle==null)
              bottle = handPosition.transform.GetChild(0).gameObject;
-
-        
-
+         
         if (player == null) initilize();
 
         Rigidbody rb = bottle.GetComponent<Rigidbody>();
-
-
+        
         //Random shoot angle
         //float shootAngle = Random.Range(minAngle, maxAngle);
         if (shootAngle == 0)
@@ -117,35 +115,11 @@ public class ShootWithBottle : MonoBehaviour {
         Vector3 planarTarget = planarPos(pos);
         Vector3 planarPostion = planarPos(bottle.transform.position);
 
-        ////Check master and if he is on my shoot direction Dont shoot master!
-        //Vector3 planarMaster = planarPos(master.transform.position);
-        //float AA = Vector3.Distance(planarTarget, planarPostion);
-        //float B = capsuleRadius;
-        //float BB = B * 2;
-
-        //Debug.Log((Vector3.Distance(planarMaster, planarTarget)
-        //    + Vector3.Distance(planarMaster, planarPostion)) + " " + (AA + BB / 2));
-        //if (dontShootMaster && Vector3.Distance(planarMaster, planarTarget)
-        //    + Vector3.Distance(planarMaster, planarPostion) < (AA + BB / 2))
-        //{
-        //    //Debug.Log("Dont shoot master!");
-        //    //Master is front of me. So dont shoot!
-        //    shooting = false;
-        //    Destroy(spawnedRock);
-        //    yield break; ;
-        //}
-
-        
         cml.enabled = false;
 
         anim.SetTrigger(shootAnimationName);
 
         yield return 0;
-
-        //Debug.Log(anim.GetCurrentAnimatorStateInfo(3).IsName("Throw"));
-
-
-        //float animFrame = 50;
 
         while (!anim.GetCurrentAnimatorStateInfo(3).IsName("Throw") || anim.GetCurrentAnimatorStateInfo(3).normalizedTime < 0.7f)
         {
@@ -157,13 +131,7 @@ public class ShootWithBottle : MonoBehaviour {
         float yOffset = bottle.transform.position.y - pos.y;
 
         Vector3 finalVelocity = calculateVelocity(angle, planarTarget, bottle, yOffset);
-
-        //float angle = 0.5f * Mathf.Asin(Physics.gravity.magnitude * distance / (Mathf.Pow(shootSpeed, 2)));
-        //Debug.Log("Angle is " + angle*Mathf.Rad2Deg);
-        //Vector3 shootDirection = (planarTarget - planarPostion).normalized * Mathf.Cos(angle) + Vector3.up * Mathf.Sin(angle);
-        //Vector3 finalVelocity = shootDirection * shootSpeed;
-
-    
+            
         CollectableObjectV2 co = bottle.GetComponent<CollectableObjectV2>();
         if (co)
         {
@@ -178,13 +146,15 @@ public class ShootWithBottle : MonoBehaviour {
         rb.isKinematic = false;
         rb.useGravity = true;
 
-        bottle.GetComponent<RockScript>().enabled = true;
+        RockScript rc = bottle.GetComponent<RockScript>();
+        rc.enabled = true;
+        rc.reciever = dmgc.gameObject;
+        
+
 
         yield return 0;
 
         rb.AddForce(finalVelocity * rb.mass, ForceMode.Impulse);
-
-        //bottle.GetComponent<Collider>().isTrigger = false;
 
         cml.enabled = true;
 

@@ -16,11 +16,11 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 224000010071547742}
-  - 222: {fileID: 222000013141435496}
-  - 114: {fileID: 114000011446774080}
+  - component: {fileID: 224000010071547742}
+  - component: {fileID: 222000013141435496}
+  - component: {fileID: 114000011446774080}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -33,29 +33,29 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 224000013771727496}
-  - 222: {fileID: 222000013611196208}
-  - 114: {fileID: 114000013997497622}
-  - 114: {fileID: 114000011062349514}
+  - component: {fileID: 224000013771727496}
+  - component: {fileID: 222000013611196208}
+  - component: {fileID: 114000013997497622}
+  - component: {fileID: 114000011062349514}
   m_Layer: 0
   m_Name: PointBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013433724778
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 224000012868493162}
-  - 222: {fileID: 222000010600888830}
-  - 114: {fileID: 114000014292160102}
+  - component: {fileID: 224000012868493162}
+  - component: {fileID: 222000010600888830}
+  - component: {fileID: 114000014292160102}
   m_Layer: 0
   m_Name: PointBar (1)
   m_TagString: Untagged
@@ -68,11 +68,11 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 224000011273775472}
-  - 222: {fileID: 222000011986546328}
-  - 114: {fileID: 114000012913507366}
+  - component: {fileID: 224000011273775472}
+  - component: {fileID: 222000011986546328}
+  - component: {fileID: 114000012913507366}
   m_Layer: 0
   m_Name: Percantage
   m_TagString: Untagged
@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fbffb9d55d103d4e8482892f7f4a356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  point: 0
   percentage: {fileID: 114000012913507366}
   barName: {fileID: 114000011446774080}
   fill: {fileID: 114000014292160102}
@@ -249,13 +250,13 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000012868493162}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -198.5, y: -1.4}
+  m_AnchoredPosition: {x: -198.5, y: -1.4000001}
   m_SizeDelta: {x: 80.74, y: 76.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011273775472
@@ -267,13 +268,13 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000012868493162}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -111.5, y: 0.1}
+  m_AnchoredPosition: {x: 0.19999999, y: 0.099999994}
   m_SizeDelta: {x: 80.74, y: 76.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012868493162
@@ -285,12 +286,12 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224000011273775472}
   - {fileID: 224000010071547742}
   m_Father: {fileID: 224000013771727496}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -305,11 +306,11 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224000012868493162}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 955.51, y: 84.148}

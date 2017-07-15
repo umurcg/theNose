@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovementEffects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,9 @@ public class CollectableObjectV2 : MonoBehaviour, IClickAction{
 
     bool collected=false;
 
+    public Texture2D cursorTexture;
+    CursorImageScript cis;
+
     public void Action()
     {
         //Debug.Log("aCTİPOMN");
@@ -28,6 +32,7 @@ public class CollectableObjectV2 : MonoBehaviour, IClickAction{
     {
         col = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
+        cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
 
     }
 
@@ -81,7 +86,12 @@ public class CollectableObjectV2 : MonoBehaviour, IClickAction{
         transform.localScale = Vector3.one * scale;
         transform.localPosition = Vector3.zero;
 
+        //if (rb) rb.isKinematic = true;
+        //if (col) col.enabled = false;
+
         collected = true;
+
+        if (cursorTexture != null) cis.setExternalTexture(cursorTexture);
 
     }
 
@@ -105,15 +115,41 @@ public class CollectableObjectV2 : MonoBehaviour, IClickAction{
 
     public void unCollect()
     {
-        Debug.Log("Uncollected");
+        //Debug.Log("Uncollected");
         if(!isCollected()) return;
 
         if (rightHandObj == gameObject) rightHandObj = null;
         if (leftHandObj == gameObject) leftHandObj = null;
 
+
+
         transform.parent = null;
+
+
+        //if (rb) rb.isKinematic = true;
+        //if (col) col.enabled = false;
+
         collected = false;
+
+        if (cursorTexture != null) cis.resetExternalCursor();
     }
 
     public bool isCollected() { return collected; }
+    
+    public void goAndCollectObject(UnityEngine.AI.NavMeshAgent agent) { Timing.RunCoroutine(_goAndCollectObject(agent)); }
+
+    public IEnumerator<float> _goAndCollectObject(UnityEngine.AI.NavMeshAgent agent)
+    {
+        Vector3 posOnNavmesh = gameObject.transform.position;
+        Vckrs.findNearestPositionOnNavMesh(posOnNavmesh, agent.areaMask, 20f, out posOnNavmesh);
+
+        agent.SetDestination(posOnNavmesh);
+        agent.isStopped = false;
+
+        IEnumerator<float> handler = Timing.RunCoroutine(Vckrs.waitUntilStop(agent.gameObject));
+        yield return Timing.WaitUntilDone(handler);
+
+        collect();
+
+    }
 }

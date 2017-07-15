@@ -73,7 +73,7 @@ public class MoveTo : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, ignoreMasks))
 
                 {
-                    Debug.Log(Vckrs.nameTagLayer(hit.transform.gameObject));
+                    //Debug.Log(Vckrs.nameTagLayer(hit.transform.gameObject));
                     if (hit.transform.CompareTag("Floor"))
                     {
                         //Debug.Log("Walking");

@@ -7,6 +7,7 @@ public class DrunkManGameSceneController : GameController {
 
     public GameObject drunkManActor;
     public GameObject drunkManGame;
+    
 
     [HideInInspector]
     Animator drunkManAnim;  
@@ -30,6 +31,12 @@ public class DrunkManGameSceneController : GameController {
 
     IEnumerator<float> hideAndSeekHandler;
 
+
+    //These positions are saved at encounter function. 
+    //So when player lost game we wiil use them to restart game.
+    [HideInInspector]
+    public Vector3 kovalevEncPos, drunkManEncPos;
+
     // Use this for initialization
     public override void Start () {
         base.Start();
@@ -46,9 +53,6 @@ public class DrunkManGameSceneController : GameController {
         hideAndSeekHandler = Timing.RunCoroutine(_hideAndSeek());
         //Timing.RunCoroutine(encounter());
 
-        dm.player.SetActive(true);
-        allGameObjects.SetActive(true);
-        GetComponent<ObjectSpawnerContinously>().enabled = true;
 
     }
 	
@@ -185,6 +189,10 @@ public class DrunkManGameSceneController : GameController {
 
         drunkManActor.SetActive(false);
 
+        //Lock doctor door
+        OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.Doctor).Lock();
+        OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse).Lock();
+
         IEnumerator<float> bshandler= blackScreen.script.fadeIn();
         yield return Timing.WaitUntilDone(bshandler);
 
@@ -212,15 +220,13 @@ public class DrunkManGameSceneController : GameController {
     {
         yield return 0;
 
-  
-
-
+        kovalevEncPos = player.transform.position;
+        drunkManEncPos = dm.player.transform.position;
+        
         pcc.StopToWalk();
 
         Timing.RunCoroutine(Vckrs._lookTo(player, dm.player, 1f));
-
-
-
+        
         sc.callSubtitleWithIndex(0);
         while (subtitle.text != "") yield return 0;
 
@@ -228,30 +234,40 @@ public class DrunkManGameSceneController : GameController {
 
         GameObject nearestBottle = Vckrs.findNearestObjectToPos(player.transform.position, bottles);
 
-        RockScript rs = nearestBottle.GetComponent<RockScript>();
-        rs.reciever = gameObject;
+        //RockScript rs = nearestBottle.GetComponent<RockScript>();
+        //rs.reciever = gameObject;
 
-        IEnumerator<float> handler= Timing.RunCoroutine(CollectableObject.goAndCollectObject(playerNma, nearestBottle, Vector3.zero));
+        CollectableObjectV2 colObj = nearestBottle.GetComponent<CollectableObjectV2>();
+
+        colObj.cursorTexture = null;
+
+        //IEnumerator<float> handler= Timing.RunCoroutine(CollectableObject.goAndCollectObject(playerNma, nearestBottle, Vector3.zero));
+        IEnumerator<float> handler = Timing.RunCoroutine(colObj._goAndCollectObject(playerNma));
         yield return Timing.WaitUntilDone(handler);
 
         handler= Timing.RunCoroutine(Vckrs._lookTo(player, dm.player, 1f));
         yield return Timing.WaitUntilDone(handler);
 
+        colObj.unCollect();
 
         ShootWithBottle swb = GetComponent<ShootWithBottle>();
         handler=Timing.RunCoroutine(swb.shoot(dm.player.transform.position, 30f,nearestBottle));
-        //yield return Timing.WaitUntilDone(handler);
+        yield return Timing.WaitUntilDone(handler);
 
+        
+        yield return Timing.WaitForSeconds(1.5f);
+
+        Timing.RunCoroutine(startGame());
 
         yield break;
     }
 
-    public void damageEnemy()
-    {
-        //Debug.Log("Damage enemt");
-        Timing.RunCoroutine(startGame());
+    //public void damageEnemy()
+    //{
+    //    //Debug.Log("Damage enemt");
+    //    Timing.RunCoroutine(startGame());
 
-    }
+    //}
     
     IEnumerator<float> startGame()
     {
@@ -273,6 +289,8 @@ public class DrunkManGameSceneController : GameController {
     {
         base.activateController();
         gameObject.SetActive(true);
+        
+        
     }
 
     public override void deactivateController()

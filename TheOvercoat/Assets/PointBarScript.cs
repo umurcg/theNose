@@ -7,7 +7,7 @@ public class PointBarScript : MonoBehaviour {
     float maxPoint = 100;
     float minPoint = 0;
 
-    float point=0;
+    public float point=0;
 
     public Text percentage;
     public Text barName;
@@ -15,7 +15,10 @@ public class PointBarScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
+        updateUI();
+        
+
 	}
 	
 	// Update is called once per frame
@@ -33,6 +36,9 @@ public class PointBarScript : MonoBehaviour {
     {
         maxPoint = max;
         minPoint = min;
+
+        updateUI();
+
     }
 
     public void setName(string n)
