@@ -18,8 +18,10 @@ public class VertexPair : MonoBehaviour {
     public GameObject messageReciever;
     public string message;
 
-    public Texture2D cursor;
+    //public Texture2D cursor;
 
+    public float cylinderRadius = 0.1f;
+    //public Material cylinderMat;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +33,8 @@ public class VertexPair : MonoBehaviour {
 
         //Disable cylinder while vertex is not chosen
         lrc.cylinder.SetActive(false);
-        lrc.radiusOfCylinder=0.3f;
+        lrc.radiusOfCylinder= cylinderRadius;
+        
 
         v1 = transform.GetChild(0).gameObject;
         v2 = transform.GetChild(1).gameObject;
@@ -41,7 +44,7 @@ public class VertexPair : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        cis.externalTexture = null;
+        //cis.externalTexture = null;
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (!edgeIsDrawed && Physics.Raycast(ray, out hit))
@@ -49,7 +52,7 @@ public class VertexPair : MonoBehaviour {
             //Debug.Log(hit.transform.name + " "+ hit.transform.tag);
             if (hit.transform.gameObject == v1 || hit.transform.gameObject==v2)
             {
-                cis.externalTexture = cursor;
+                //cis.externalTexture = cursor;
 
                 if (Input.GetMouseButtonDown(0))
                 {

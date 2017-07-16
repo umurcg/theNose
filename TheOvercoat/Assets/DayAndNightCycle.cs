@@ -134,7 +134,7 @@ public class DayAndNightCycle : MonoBehaviour {
     {
         if (AutoLightScript.allLightsInScene == null)
         {
-            Debug.Log("No object having autolightScript");
+            //Debug.Log("No object having autolightScript");
             return;
         }
 

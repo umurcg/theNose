@@ -14,6 +14,9 @@ public class DoctorGameCameController : GameController {
         base.Start();
         doctorCC = new characterComponents(doctor);
         Timing.RunCoroutine(doctorTalks());
+
+        //Make night
+        CharGameController.getSun().GetComponent<DayAndNightCycle>().makeNight();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +27,8 @@ public class DoctorGameCameController : GameController {
     IEnumerator<float> doctorTalks()
     {
         yield return 0;
+
+        yield return Timing.WaitForSeconds(2f);
 
         sc.callSubtitleWithIndex(0);
         while (subtitle.text != "") yield return 0;
@@ -92,6 +97,8 @@ public class DoctorGameCameController : GameController {
 
         sc.callSubtitleWithIndex(4);
         while (subtitle.text != "") yield return 0;
+
+        registerAsUsed();
 
         GetComponent<LoadScene>().Load();
 

@@ -370,20 +370,29 @@ public class CityGameController : MonoBehaviour {
 
     void comingFromDoctor()
     {
-        Debug.Log("Coming from doctor");
 
-        //Deactivate player and camera
-        CharGameController.deactivateAllCharacters();
-        CharGameController.deactivateCamera();
+        //If kovalev talked with doctor
+        if (/*GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("DoctorGameController")*/true) {
+            Debug.Log("Coming from doctor");
 
-        //Disable enter scene controller script. Dont call deactivate method because it also deactivates kovalev camera and ivan which we need;
-        //For that we first call activate method enterSceneGameController and then disable it
-        EnterSceneGameController esgc = berberShop.GetComponent<EnterSceneGameController>();
-        esgc.activateController();
-        esgc.enabled = false;
+            //Deactivate player and camera
+            CharGameController.deactivateAllCharacters();
+            CharGameController.deactivateCamera();
 
-        //Activate outro scene
-        outroScene.GetComponent<OutroGameController>().activateController();
+            //Disable enter scene controller script. Dont call deactivate method because it also deactivates kovalev camera and ivan which we need;
+            //For that we first call activate method enterSceneGameController and then disable it
+            EnterSceneGameController esgc = berberShop.GetComponent<EnterSceneGameController>();
+            esgc.activateController();
+            esgc.enabled = false;
+
+            //Activate outro scene
+            outroScene.GetComponent<OutroGameController>().activateController();
+        }
+        else
+        {
+            OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.Doctor).Unlock();
+            OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse).Unlock();
+        }
     }
 
     void singerCafeScene()

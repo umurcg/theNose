@@ -190,7 +190,7 @@ public class CharGameController : MonoBehaviour {
                 return child.gameObject;
             }
         }
-        Debug.Log("Retturning null");
+        //Debug.Log("Retturning null");
         return null;
 
      }

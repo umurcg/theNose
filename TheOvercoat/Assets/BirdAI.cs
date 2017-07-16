@@ -48,6 +48,8 @@ public class BirdAI : MonoBehaviour, IVisibility
 
         if(timer==null) timer = new Timer(UnityEngine.Random.Range(minimumTime, maximumTime));
 
+        if (!cc) return;
+
         cc.Move(transform.forward * speed * Time.deltaTime);
 
 
