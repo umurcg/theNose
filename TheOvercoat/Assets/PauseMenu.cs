@@ -114,6 +114,8 @@ public class PauseMenu : MonoBehaviour {
     public void restartFunc()
     {
 
+        GlobalController.Instance.removeLastScene();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void settingsFunc()

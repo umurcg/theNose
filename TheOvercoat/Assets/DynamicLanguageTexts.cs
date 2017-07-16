@@ -19,6 +19,13 @@ public class DynamicLanguageTexts : MonoBehaviour {
     {
         if (currentVisibleTexts == null) currentVisibleTexts = new List<DynamicLanguageTexts>();
         currentVisibleTexts.Add(this);
+
+        textComp = GetComponent<Text>();
+
+        //If can't find text searchg it on children and assign first found component
+        if (!textComp) textComp = GetComponentInChildren<Text>();
+
+        if (textComp) updateText();
     }
 
     private void OnDisable()
@@ -28,16 +35,13 @@ public class DynamicLanguageTexts : MonoBehaviour {
 
     protected virtual void Awake()
     {
-        textComp = GetComponent<Text>();
-
-        //If can't find text searchg it on children and assign first found component
-        if (!textComp) textComp = GetComponentInChildren<Text>();
+   
 
     }
 
 	// Use this for initialization
 	void Start () {
-       if(textComp) updateText();
+
     }
 	
 	// Update is called once per frame

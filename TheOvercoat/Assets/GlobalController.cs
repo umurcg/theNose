@@ -339,6 +339,11 @@ public int setDebugListToLevelIndex;
         return sceneList[sceneList.Count - 1];
     }
 
+    public void removeLastScene()
+    {
+        sceneList.RemoveAt(getLastSceneInList());
+    }
+
     public void clearSceneList()
     {
         sceneList.Clear();
@@ -560,10 +565,6 @@ public int setDebugListToLevelIndex;
         return false;
     }
 
-    private void Update()
-    {
-        //foreach (string s in usedGameControllers)
-        //    Debug.Log(s);
-    }
+
 
 }

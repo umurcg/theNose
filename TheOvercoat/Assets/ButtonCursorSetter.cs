@@ -11,8 +11,11 @@ public class ButtonCursorSetter : MonoBehaviour {
     public Texture2D cursorImage;
     Button buttonComp;
 
-	// Use this for initialization
-	void Start () {
+    bool mousePressed = false;
+    bool recover = false;
+
+    // Use this for initialization
+    void Start () {
         cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
 
         buttonComp = GetComponent<Button>();
@@ -33,29 +36,50 @@ public class ButtonCursorSetter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        if (Input.GetMouseButtonDown(0)) mousePressed = true;
+        if (Input.GetMouseButtonUp(0)) mousePressed = false;
+
+        if(recover && !mousePressed)
+        {
+            if (cis)
+                cis.resetExternalCursor();
+
+            recover = false;
+        }
+
 	}
 
     public void changeCursor()
     {
-        if(buttonComp.IsInteractable())
+        if (buttonComp)
+        {
+            if (buttonComp.IsInteractable())
+                cis.externalTexture = cursorImage;
+        }
+        else
+        {
             cis.externalTexture = cursorImage;
-        //Debug.Log("Mouse entered");
+        }
+        
     }
 
     public void recoverCursor()
     {
-        if(cis)
-        cis.resetExternalCursor();
+        recover = true;
     }
 
     private void OnDisable()
     {
-        recoverCursor();
+        if (cis)
+            cis.resetExternalCursor();
+
     }
 
     private void OnDestroy()
     {
-        recoverCursor();
+        if (cis)
+            cis.resetExternalCursor();
+
     }
 }
