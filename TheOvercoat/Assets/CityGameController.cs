@@ -21,11 +21,10 @@ public class CityGameController : MonoBehaviour {
     public GameObject horseCariers;
     public GameObject horseBots;
     public FogGameController fogGAME;
-
     public GameObject streetAreas;
-
     public AudioClip innerSpeechMusic;
-
+    public TutorailCanvas tutorial;
+    
     
 
 	// Awake function is for registering current scene. It sets scene according to storyline
@@ -233,6 +232,9 @@ public class CityGameController : MonoBehaviour {
             police.SetActive(true);
         }
 
+        //Map tutorial
+        tutorial.startTutorial(TutorailCanvas.Tutorials.Map);
+
     }
 
 
@@ -355,6 +357,9 @@ public class CityGameController : MonoBehaviour {
             //Set bird as landed
             BirdLandingScript bls = player.GetComponent<BirdLandingScript>();
             bls.setAsLandedBaked(true);
+
+            tutorial.startTutorial(TutorailCanvas.Tutorials.Bird);
+
         }
 
         //Enable fog game

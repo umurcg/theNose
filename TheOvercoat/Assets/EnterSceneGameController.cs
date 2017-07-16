@@ -197,7 +197,7 @@ public class EnterSceneGameController : GameController{
         //}
 
 
-        tutorials.GetComponent<TutorailCanvas>().startTutorial(5);
+        tutorials.GetComponent<TutorailCanvas>().startTutorial(TutorailCanvas.Tutorials.Subtitle);
 
         ivanNma.SetDestination(aims.transform.GetChild(0).position);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(ivan));
@@ -272,7 +272,7 @@ public class EnterSceneGameController : GameController{
             yield return 0;
         }
 
-        tutorials.GetComponent<TutorailCanvas>().startTutorial(3);
+        tutorials.GetComponent<TutorailCanvas>().startTutorial(new TutorailCanvas.Tutorials[] {TutorailCanvas.Tutorials.MouseRotate,TutorailCanvas.Tutorials.MouseZoom });
 
         RemoveSquares rs = head.transform.GetChild(1).GetComponent<RemoveSquares>();
         rs.enabled = true;

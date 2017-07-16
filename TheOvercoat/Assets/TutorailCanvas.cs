@@ -5,7 +5,11 @@ using MovementEffects;
 
 public class TutorailCanvas : MonoBehaviour {
 
-    public GameObject[] basicTutorials;
+    public enum Tutorials {MouseMovement=0,KeyboardMovement=1, CameraRotator=2,InteractiveObjects=3,Subtitle=4,MouseRotate,MouseZoom,Map,Bird,Shoot }
+
+    public Tutorials[] basicTutorials;
+
+    //public GameObject[] basicTutorials;
     
     
     public bool debug;
@@ -79,38 +83,68 @@ public class TutorailCanvas : MonoBehaviour {
 	void Update () {
         if (debug == true)
         {
-            startFullTutorial();
+            startBasicTutorial();
             debug = false;
         }
     }
 
-    public void startFullTutorial( float duration = 5f)
+    public void fullTutorial(float duration = 5f)
     {
-        Debug.Log("Starting full tutorial");
-        Timing.RunCoroutine(_startFullTutorial( duration));
+        Timing.RunCoroutine(_fullTutorial(duration));
     }
 
 
-    IEnumerator<float> _startFullTutorial(float duration = 5f)
+    IEnumerator<float> _fullTutorial(float duration = 5f)
+    {
+
+        var tutorialIndexes=System.Enum.GetValues(typeof(Tutorials));
+
+        foreach(var index in tutorialIndexes)
+        {
+
+            //Even it is full tutorial bird tutorial contains spoiler. So while main char is not bird, bird tutorial will be passed.
+            if ( (int)index==(int)Tutorials.Bird && CharGameController.cgc != null && CharGameController.getActiveCharacter().name != "Bird")
+            {
+                Debug.Log("Passsing bird tutorial");
+                continue;
+            }
+
+
+            GameObject child = transform.GetChild((int)index).gameObject;
+            child.SetActive(true);
+            yield return Timing.WaitForSeconds(duration);
+            child.SetActive(false);
+        }
+
+    }
+
+    public void startBasicTutorial( float duration = 5f)
+    {
+        Debug.Log("Starting full tutorial");
+        Timing.RunCoroutine(_startBasicTutorial( duration));
+    }
+
+
+    IEnumerator<float> _startBasicTutorial(float duration = 5f)
     {
       
         for (int i = 0; i < basicTutorials.Length; i++)
         {
-            GameObject child =basicTutorials[i].gameObject;
+            GameObject child = transform.GetChild(i).gameObject;
             child.SetActive(true);
             yield return Timing.WaitForSeconds(duration);
             child.SetActive(false);
         }
     }
 
-    public void startTutorial(int index, float duration = 5f) {
-        Timing.RunCoroutine(_startTutorial(index,duration));
+    public void startTutorial(Tutorials tutorial, float duration = 5f) {
+        Timing.RunCoroutine(_startTutorial(tutorial,duration));
     }
 
-    IEnumerator<float> _startTutorial(int index, float duration = 5f)
+    IEnumerator<float> _startTutorial(Tutorials tutorial, float duration = 5f)
     {
-     
-            GameObject child = basicTutorials[index];
+
+            GameObject child = transform.GetChild((int)tutorial).gameObject;
             child.SetActive(true);
             yield return Timing.WaitForSeconds(duration);
             child.SetActive(false);
@@ -127,17 +161,17 @@ public class TutorailCanvas : MonoBehaviour {
 
     }
 
-    public void startTutorial(int[] indexes, float duration = 5f)
+    public void startTutorial(Tutorials[] tutorials, float duration = 5f)
     {
-        Timing.RunCoroutine(_startTutorial(indexes, duration));
+        Timing.RunCoroutine(_startTutorial(tutorials, duration));
     }
 
-    IEnumerator<float> _startTutorial(int[] indexes, float duration = 5f)
+    IEnumerator<float> _startTutorial(Tutorials[] tutorials, float duration = 5f)
     {        
 
-        foreach(int i in indexes)
+        foreach(Tutorials t in tutorials)
         {
-            IEnumerator<float> handler= Timing.RunCoroutine(_startTutorial(i, duration));
+            IEnumerator<float> handler= Timing.RunCoroutine(_startTutorial(t, duration));
             yield return Timing.WaitUntilDone(handler);
         }
         yield break;
