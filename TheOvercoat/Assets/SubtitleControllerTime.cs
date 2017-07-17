@@ -230,6 +230,7 @@ public class SubtitleControllerTime : SubtitleController {
 
     void clearNarratorAudio()
     {
+        if(narratorAudioSource)
         narratorAudioSource.clip = null;
     }
     public void randomSubtitle()

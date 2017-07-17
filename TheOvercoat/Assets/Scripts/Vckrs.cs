@@ -43,7 +43,7 @@ public class Vckrs : MonoBehaviour
         yield return Timing.WaitForSeconds(0.5f);
         while (Vector3.Distance(obj.transform.position, pos) > tol)
         {
-            //Debug.Log((Vector3.Distance(obj.transform.position, pos)));
+            //Debug.Log((Vector3.Distance(obj.transform.position, pos))+" "+Vckrs.nameTagLayer(obj));
             pos = obj.transform.position;
             yield return 0;
 

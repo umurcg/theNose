@@ -37,7 +37,7 @@ public class ConversationAudio : MonoBehaviour {
     {
         if (activeScript==this)
         {
-            Debug.Log("is playing ");
+            //Debug.Log("is playing ");
             return;
         }
 

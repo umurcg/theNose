@@ -149,6 +149,7 @@ public class CursorImageScript : MonoBehaviour
             return;
         }
 
+        if (subt == null) updateSubtitle();
 
         //First look at char subtitile. If it is empty then raycast.
         if (subt != null)
@@ -160,6 +161,10 @@ public class CursorImageScript : MonoBehaviour
                 return;
             }
 
+        }
+        else
+        {
+            Debug.Log("Subtitle is null");
         }
 
         if (forceToDefault)

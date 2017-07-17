@@ -6,6 +6,7 @@ using System;
 public class BotNavMeshOptimizer : MonoBehaviour, IVisibility {
 
     UnityEngine.AI.NavMeshAgent nma;
+    public bool inVisible;
 
     void Awake()
     {
@@ -16,6 +17,8 @@ public class BotNavMeshOptimizer : MonoBehaviour, IVisibility {
     
     public void onInvisible()
     {
+        inVisible = true;
+
         nma.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.NoObstacleAvoidance;
         nma.autoBraking = false;
         nma.autoRepath = false;
@@ -24,6 +27,8 @@ public class BotNavMeshOptimizer : MonoBehaviour, IVisibility {
 
     public void onVisible()
     {
+        inVisible = false;
+
         nma.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.LowQualityObstacleAvoidance;
         nma.autoBraking = true;
         nma.autoRepath = true;

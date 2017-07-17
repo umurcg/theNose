@@ -118,6 +118,8 @@ public class EnterSceneGameController : GameController{
 
         //VRCapture.VRCapture.Instance.StartCapture();
 
+        yield return Timing.WaitForSeconds(3f);
+
         sc.callSubtitleWithIndexTime(0);
 
         yield return Timing.WaitForSeconds(5f);

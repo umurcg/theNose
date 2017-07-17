@@ -14,7 +14,7 @@ public class SettingsListeners : MonoBehaviour {
     Slider audioSlider, musicSlider;
     Dropdown dropDown, camdropDown/*, inputDropDown*/;
 
-    public MuteButton muteButton;
+    //public MuteButton muteButton;
 
     //float previousMusicLevelBeforeMute;
 
