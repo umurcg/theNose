@@ -21,6 +21,8 @@ public class PauseMenu : MonoBehaviour {
 
     bool paused = false;
 
+    float musicLevel, audioLevel;
+
 	// Use this for initialization
 	void Start () {
         MBedUI = mainButtons.GetComponent<EnableDisableUI>();
@@ -65,12 +67,32 @@ public class PauseMenu : MonoBehaviour {
             Vckrs.enableAllChildren(mainButtons.transform);
             Time.timeScale = 0;
 
-        }else
+            //musicLevel = GlobalController.Instance.getMusicLevel();
+            //audioLevel = GlobalController.Instance.getAudioLevel();
+
+            ////Mute all sounds while game is paused
+            //GlobalController.Instance.setMusicLevel(0);
+            //GlobalController.Instance.setAudioLevel(0);
+
+            //Debug.Log("AFX source is placed as " + (GlobalController.Instance.gameObject.GetComponents<AudioSource>()[0] == GlobalController.Instance.afxSource));
+
+            GlobalController.Instance.musicSouce.Pause();
+            GlobalController.Instance.afxSource.Pause();
+
+
+        }
+        else
         {
             cis.resetExternalCursor();
             Vckrs.disableAllChildren(mainButtons.transform);
             Vckrs.disableAllChildren(settingsSubMenu.transform);
             Time.timeScale = 1;
+
+            //GlobalController.Instance.setMusicLevel(musicLevel);
+            //GlobalController.Instance.setAudioLevel(audioLevel);
+
+            GlobalController.Instance.musicSouce.UnPause();
+            GlobalController.Instance.afxSource.UnPause();
 
         }
 

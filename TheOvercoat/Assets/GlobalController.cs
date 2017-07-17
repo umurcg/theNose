@@ -28,8 +28,13 @@ public class GlobalController : MonoBehaviour {
     //Language settings
     public enum Language { ENG=0, TR=1, RUS=2};
     public Language languageSetting = Language.ENG;
+
     public float audioLevel = 1f;
-    //public float musicLevel=1f;
+    public float musicLevel = 1f;
+
+    public AudioSource afxSource;
+    public AudioSource musicSouce;
+
 
     //This list  will hold game controller  names that are used and won't be used again. For example some city games that only shoul
     //be played once.
@@ -457,17 +462,24 @@ public int setDebugListToLevelIndex;
         //Instance.languageSetting = lan;
     }
 
+    //Audio is affects
     public void setAudioLevel(float level)
     {
-        Debug.Log("Setting audio leve");
+        level = Mathf.Clamp(level, 0, 1);
         audioLevel = level;
+        afxSource.volume = audioLevel;
     }
 
+    //Music is musics. daaah
     public void setMusicLevel(float level)
     {
-        Debug.Log("Setting music");
-        GetComponent<AudioSource>().volume = Mathf.Clamp(level, 0, 1);
+        level = Mathf.Clamp(level, 0, 1);
+        musicLevel = level;
+        musicSouce.volume = musicLevel;
     }
+
+    
+    
 
     public float getAudioLevel()
     {
@@ -476,7 +488,7 @@ public int setDebugListToLevelIndex;
 
     public float getMusicLevel()
     {
-        return GetComponent<AudioSource>().volume;
+        return musicLevel;
     }
 
     public void registerGameController(string gc)
@@ -565,6 +577,10 @@ public int setDebugListToLevelIndex;
         return false;
     }
 
+    public LevelMusicController getMusicController()
+    {
+        return GetComponent<LevelMusicController>();
+    }
 
 
 }

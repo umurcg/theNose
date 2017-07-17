@@ -3,22 +3,18 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 
-//Handles music of the scenes
+//Handles music assignments of the scenes
+//[RequireComponent(typeof(AudioSource))]
 public class LevelMusicController : MonoBehaviour {
 
     //Muisc audio clips according to their scene index
     public AudioClip[] levelMusics;
     AudioSource musicSource;
-
-    
+        
 
 	// Use this for initialization
 	void Start () {
-
-        if (musicSource == null) musicSource = CharGameController.getOwner().GetComponent<AudioSource>();
-              
-
-        AudioSource source = CharGameController.getOwner().GetComponent<AudioSource>();
+                
         updateMusic();
 
 	}
@@ -27,6 +23,8 @@ public class LevelMusicController : MonoBehaviour {
     void OnEnable()
     {
         //Tell our 'registerToSceneList' function to start listening for a scene change as soon as this script is enabled.
+        assignMusicSource();
+
         SceneManager.sceneLoaded += updateMusic;
     }
 
@@ -43,10 +41,10 @@ public class LevelMusicController : MonoBehaviour {
 
     void updateMusic()
     {
-        if (musicSource == null) musicSource=CharGameController.getOwner().GetComponent<AudioSource>();
+        assignMusicSource();
         //if (musicSource == null) Debug.Log("Music source is null");
 
-            int sceneIndex=SceneManager.GetActiveScene().buildIndex;
+        int sceneIndex=SceneManager.GetActiveScene().buildIndex;
 
         if (sceneIndex >= levelMusics.Length) return;
 
@@ -55,9 +53,14 @@ public class LevelMusicController : MonoBehaviour {
 
     }
 
+    void assignMusicSource()
+    {
+        if (musicSource == null && GlobalController.Instance != null) musicSource = GlobalController.Instance.musicSouce;
+    }
+
     public void setMusicManually(AudioClip clip)
     {
-        if (musicSource == null) musicSource = CharGameController.getOwner().GetComponent<AudioSource>();
+        assignMusicSource();
         musicSource.clip = clip;
         musicSource.Play();
     }

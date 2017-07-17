@@ -64,7 +64,7 @@ public class MoveTo : MonoBehaviour
             //    Input.GetKey(KeyCode.UpArrow)  || Input.GetKey(KeyCode.DownArrow)||Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.LeftArrow))
 
         
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !ButtonCursorSetter.mouseIsOverButton)
             {
                 //print("mouse");
                 RaycastHit hit;

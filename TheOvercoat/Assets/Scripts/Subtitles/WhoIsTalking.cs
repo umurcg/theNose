@@ -19,6 +19,8 @@ public class WhoIsTalking : MonoBehaviour
     // public GameObject cameraGo;
     Camera cameraComponent;
 
+    bool mumbleingRightNow = false;
+
     GameObject player;
 
 
@@ -95,7 +97,7 @@ public class WhoIsTalking : MonoBehaviour
 
          
             if(baloon.activeSelf) baloon.SetActive(false);
-            mumbling(null);
+            if(mumbleingRightNow) mumbling(null);
 
         }
         else
@@ -124,7 +126,7 @@ public class WhoIsTalking : MonoBehaviour
 
 
                 if (baloon.activeSelf)  baloon.SetActive(false);
-                mumbling(null);
+                if (mumbleingRightNow) mumbling(null);
 
 
 
@@ -147,20 +149,27 @@ public class WhoIsTalking : MonoBehaviour
 
     void mumbling(GameObject mumbleOwner)
     {
-        if(mumbleOwner==null)
+        if(mumbleOwner==null && ConversationAudio.activeScript!=null)
         {
-            ConversationAudio.deactivateAudioConv();
+            ConversationAudio.activeScript.deactivateAudioConv();
             lastMumbledPerson = null;
+            mumbleingRightNow = false;
             return;
         }
 
-        if (lastMumbledPerson != null && lastMumbledPerson != mumbleOwner) ConversationAudio.deactivateAudioConv();        
+        if (lastMumbledPerson != null && lastMumbledPerson != mumbleOwner && ConversationAudio.activeScript != null)
+        {
+            ConversationAudio.activeScript.deactivateAudioConv();
+            mumbleingRightNow = false;
+
+        }
 
         //Activate mumble sound
         ConversationAudio ca = mumbleOwner.GetComponent<ConversationAudio>();
         if (ca)
         {
             ca.activateAudioConv();
+            mumbleingRightNow = true;
             lastMumbledPerson = ca.gameObject;
         }
 

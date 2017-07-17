@@ -34,6 +34,8 @@ public class DropdownLanguageController : DynamicLanguageTexts {
             string[] section = extractTextFromID(indexForDPElements[i]);
             if (section == null) return;
 
+            if (GlobalController.Instance == null) return;
+
             string text = findText(section, GlobalController.Instance.getLangueSetting());
             if (text == null) return;
 

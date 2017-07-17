@@ -39,17 +39,15 @@ GameObject:
   - component: {fileID: 4000011063175188}
   - component: {fileID: 114000013702181264}
   - component: {fileID: 114000012589669922}
-  - component: {fileID: 114000011269651312}
   - component: {fileID: 114000011113696416}
   - component: {fileID: 114000011959196130}
   - component: {fileID: 114000012814978802}
   - component: {fileID: 114000012746968342}
   - component: {fileID: 114000013936666282}
   - component: {fileID: 114000012795481580}
-  - component: {fileID: 82000012157847188}
-  - component: {fileID: 82000012559150748}
-  - component: {fileID: 82000014240017090}
   - component: {fileID: 114000011362822900}
+  - component: {fileID: 82843899583827920}
+  - component: {fileID: 82636277536640992}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -609,7 +607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011842745944
 GameObject:
   m_ObjectHideFlags: 1
@@ -1309,7 +1307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000014117282164
 GameObject:
   m_ObjectHideFlags: 1
@@ -3902,7 +3900,7 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013127924312}
   m_Enabled: 1
---- !u!82 &82000012157847188
+--- !u!82 &82636277536640992
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3982,7 +3980,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!82 &82000012559150748
+--- !u!82 &82843899583827920
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3992,90 +3990,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!82 &82000014240017090
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010109351266}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
+  m_Pitch: 1.5
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4586,20 +4504,6 @@ MonoBehaviour:
   minIntensity: 0.4
   speed: 0.5
   isNight: 0
---- !u!114 &114000011269651312
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010109351266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4423e97779af4b4583349d3296c27a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fade: 1
-  Scene: 3
-  debugLoad: 0
 --- !u!114 &114000011362822900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4753,10 +4657,13 @@ MonoBehaviour:
   Input: 0
   languageSetting: 0
   audioLevel: 1
+  musicLevel: 1
+  afxSource: {fileID: 82843899583827920}
+  musicSouce: {fileID: 82636277536640992}
   usedGameControllers: []
   sceneList: 
   maxSceneList: 
-  debugSceneList: 010000000200000001000000030000000100000004000000010000000500000001000000050000000100000006000000
+  debugSceneList: 01000000020000000100000003000000010000000400000001000000050000000100000005000000
   fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
   setDebugListToLevelIndex: 13
 --- !u!114 &114000012654939820

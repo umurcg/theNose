@@ -7,6 +7,10 @@ using UnityEngine.UI;
 //While ui elements doesnt detected by corsorimage script this script will frce cis to change cursor to button cursor when mouse is over.
 public class ButtonCursorSetter : MonoBehaviour {
 
+    //This boolean will be used when a action from click will be taken. Before taking action this boolean will be checked wheter or not use trying to click on a button or just
+    //playing game.
+    public static bool mouseIsOverButton = false;
+
     CursorImageScript cis;
     public Texture2D cursorImage;
     Button buttonComp;
@@ -55,18 +59,25 @@ public class ButtonCursorSetter : MonoBehaviour {
         if (buttonComp)
         {
             if (buttonComp.IsInteractable())
+            {
                 cis.externalTexture = cursorImage;
+               
+            }
         }
         else
         {
             cis.externalTexture = cursorImage;
         }
-        
+
+        mouseIsOverButton = true;
+
     }
 
     public void recoverCursor()
     {
         recover = true;
+
+        mouseIsOverButton = false;
     }
 
     private void OnDisable()

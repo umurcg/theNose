@@ -4,12 +4,14 @@ using System.Collections;
 //Deals with mumbling sounds
 public class ConversationAudio : MonoBehaviour {
 
+    public static ConversationAudio activeScript;
+
     public AudioClip audioClip;
 
     //[HideInInspector]
     static AudioSource source;
 
-    bool isPlaying;
+    //bool isPlaying;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +22,7 @@ public class ConversationAudio : MonoBehaviour {
         }
 
         ///Second audio source is for conversation.
-        if(!source)  source=CharGameController.getOwner().GetComponents<AudioSource>()[1];
+        if (!source) source = GlobalController.Instance.afxSource;
 
         if (!source)
         {
@@ -33,17 +35,30 @@ public class ConversationAudio : MonoBehaviour {
 	
     public void activateAudioConv()
     {
+        if (activeScript==this)
+        {
+            Debug.Log("is playing ");
+            return;
+        }
+
+        Debug.Log("Activating audio conv");
         if (audioClip==null || (source.clip == audioClip && source.isPlaying)) return;
 
         source.clip = audioClip;
         source.time = Random.Range(0, source.clip.length);
         source.Play();
-        isPlaying = true;
+        
+        activeScript = this;
     }
 
 
-    public static void deactivateAudioConv()
+    public void deactivateAudioConv()
     {
+        Debug.Log("deactiating audio conv");
+
+        activeScript = null;
+
+
         //Debug.Log("Deactivating");
         if (!source || source.clip==null) return;
         

@@ -77,7 +77,7 @@ public class SubtitleControllerTime : SubtitleController {
         //Get language 
         language= GlobalController.Instance.languageSetting;
 
-        narratorAudioSource = CharGameController.getOwner().GetComponents<AudioSource>()[2];
+
 
 
         //If number of clips doesnt match subtitle length destroy clips

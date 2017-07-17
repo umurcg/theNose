@@ -22,7 +22,8 @@
 	}
 		Blend SrcAlpha OneMinusSrcAlpha
 		CGPROGRAM
-#pragma surface surf Lambert
+#pragma surface surf Lambert Standard alpha
+#pragma target 4.0
 		struct Input
 	{
 		float2 uv_Control : TEXCOORD0;
