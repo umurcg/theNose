@@ -19,11 +19,12 @@ public class GetTextFromTA : MonoBehaviour {
 
     private void OnDisable()
     {
+        if(allTexts!=null)
         allTexts.Remove(this);
     }
 
     // Use this for initialization
-    void Awake () {
+    void Start () {
 
         t = GetComponent<Text>();
         getString();

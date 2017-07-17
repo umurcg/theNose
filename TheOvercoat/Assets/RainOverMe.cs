@@ -78,8 +78,11 @@ public class RainOverMe : MonoBehaviour {
     
     void spawnNewDropAtTop()
     {
+
+        //Get random object
         GameObject spawnedObject = Instantiate(prefabs[Random.Range(0, prefabs.Length)]) as GameObject;
 
+        //Borders
         float upY = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Random.Range( Screen.height, Screen.height+50), 0)).y;
         float maxX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
         float minX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, 0, 0)).x;

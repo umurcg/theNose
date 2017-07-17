@@ -26,6 +26,11 @@ public class MainMenu : MonoBehaviour {
 
     public GameObject askPrompt;
 
+    public GameObject cameraTypePrompt;
+    public TextAsset continuePropmtText;
+ 
+    GameObject spawnedAskPrompt;
+
     //CharacterController cc;
 
     void Awake()
@@ -76,16 +81,16 @@ public class MainMenu : MonoBehaviour {
         if (GlobalController.Instance.isSaveDataAvaible())
         {
             //ask overriding data
-            GameObject ask=Instantiate(askPrompt);
-            ask.transform.parent = transform;
-            ask.transform.position = Vckrs.centerOfScreen();
-            EnableDisableUI edui = ask.GetComponent<EnableDisableUI>();
+            spawnedAskPrompt = Instantiate(askPrompt);
+            spawnedAskPrompt.transform.parent = transform;
+            spawnedAskPrompt.transform.position = Vckrs.centerOfScreen();
+            EnableDisableUI edui = spawnedAskPrompt.GetComponent<EnableDisableUI>();
             edui.activate();
 
-            AskPrompt prompt = ask.GetComponent<AskPrompt>();
-            prompt.setPromptText("Your previous game will be overriden. Are you sure that you want to start new game?");
+            AskPrompt prompt = spawnedAskPrompt.GetComponent<AskPrompt>();
+            prompt.setPromptText(Vckrs.getStringAccordingToLanguage((Language)GlobalController.Instance.getLangueSetting(), continuePropmtText));
 
-            prompt.assignYesFunctionalities(new UnityAction[] {newGame});
+            prompt.assignYesFunctionalities(new UnityAction[] { activateCameraPrompt });
             prompt.assignNoFunctionalities(new UnityAction[] { unhideMainButtons });
 
             hideMainButtons();
@@ -103,8 +108,17 @@ public class MainMenu : MonoBehaviour {
 
     }
 
+    void activateCameraPrompt()
+    {
+        
+        cameraTypePrompt.SetActive(true);
+        Destroy(spawnedAskPrompt);
+        CharGameController.getActiveCharacter().SetActive(false);
+        
+    }
+    
 
-    void newGame()
+    public void newGame()
     {
 
         GlobalController.Instance.clearSceneList();
