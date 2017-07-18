@@ -44,7 +44,7 @@ public class CharacterControllerKeyboard : MonoBehaviour {
             cc.Move(move * speed * Time.deltaTime);
             if (move != Vector3.zero)
             {
-                Debug.Log("moving, amount: " + move * speed * Time.deltaTime);
+                //Debug.Log("moving, amount: " + move * speed * Time.deltaTime);
             }
 
         }

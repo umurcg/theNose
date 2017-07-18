@@ -41,7 +41,7 @@ public class ConversationAudio : MonoBehaviour {
             return;
         }
 
-        Debug.Log("Activating audio conv");
+        //Debug.Log("Activating audio conv");
         if (audioClip==null || (source.clip == audioClip && source.isPlaying)) return;
 
         source.clip = audioClip;
@@ -54,7 +54,7 @@ public class ConversationAudio : MonoBehaviour {
 
     public void deactivateAudioConv()
     {
-        Debug.Log("deactiating audio conv");
+        //Debug.Log("deactiating audio conv");
 
         activeScript = null;
 

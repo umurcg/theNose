@@ -10,10 +10,12 @@ using UnityEngine.UI;
 public class DirectClickScript : MonoBehaviour {
     IDirectClick idc;
     Text charSubt;
+    Camera mainCam;
 	// Use this for initialization
 	void Start () {
         idc = GetComponent<IDirectClick>();
-        charSubt= SubtitleFade.subtitles["CharacterSubtitle"]; 
+        charSubt= SubtitleFade.subtitles["CharacterSubtitle"];
+        mainCam = CharGameController.getMainCameraComponent();
     }
 	
 	// Update is called once per frame
@@ -27,13 +29,15 @@ public class DirectClickScript : MonoBehaviour {
 
             //Debug.Log("Clicked");
             RaycastHit hit;
-            if (Camera.main == null) return;
-            Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward);
+            //if (Camera.main == null) return;
+            //Ray ray = new Ray(mainCam.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward);
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                
+                //Debug.Log("Raycasted");
+                //Vckrs.printNameTagLayer(hit.transform.gameObject);
                 if(hit.transform.gameObject==gameObject){
-                    //Debug.Log(hit.transform.name);
+                    Debug.Log(hit.transform.name);
                     if (idc == null)
                     {
                         Debug.Log("There is no idirectClick script");

@@ -1457,6 +1457,11 @@ public class Vckrs : MonoBehaviour
         return obj.name + " " + obj.tag + " " + obj.layer;
     }
 
+    public static void printNameTagLayer(GameObject obj)
+    {
+        Debug.Log(nameTagLayer(obj));
+    }
+
     public static T[] addToArray<T>(T[] array,T item){
 
         T[] newArray = new T[array.Length + 1];
