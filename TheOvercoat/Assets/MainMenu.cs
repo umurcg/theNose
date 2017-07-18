@@ -67,6 +67,9 @@ public class MainMenu : MonoBehaviour {
             {
                 continueButton.GetComponent<Button>().interactable = false;
             }
+
+            //Move player to 000
+            CharGameController.movePlayer(Vector3.zero);
         }
     }
 	

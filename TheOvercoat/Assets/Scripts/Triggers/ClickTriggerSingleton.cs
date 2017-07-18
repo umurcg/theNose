@@ -26,7 +26,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
     public LayerMask ignoreMasks;
     PlayerComponentController pcc;
 
-    SpaceTrigger spaceTrigger;
+    //SpaceTrigger spaceTrigger;
 
     void Awake()
     {
@@ -34,7 +34,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
         mtwagent = GetComponent<MoveToWithoutAgent>();
         pcc = GetComponent<PlayerComponentController>();
         //cml = GetComponent<CharacterMouseLook>();
-        spaceTrigger = GetComponent<SpaceTrigger>();
+        //spaceTrigger = GetComponent<SpaceTrigger>();
 
     }
 
@@ -133,8 +133,8 @@ public class ClickTriggerSingleton : MonoBehaviour {
         if (checkIsColliding(aim))
         {          
             callAction(aim);
-            if(spaceTrigger)
-            spaceTrigger.clearFocus();
+            //if(spaceTrigger)
+            //spaceTrigger.clearFocus();
             yield break;
         }
         
@@ -164,15 +164,15 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
         callAction(aim);
 
-        if(spaceTrigger)
-            spaceTrigger.clearFocus();
+        //if(spaceTrigger)
+        //    spaceTrigger.clearFocus();
 
         yield break;
     }
 
     void stopToWalk()
     {
-        if (agent)
+        if (agent && agent.isOnNavMesh)
         {
             agent.Stop();
         }else

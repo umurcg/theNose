@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using MovementEffects;
 
 
 //Handles music assignments of the scenes
@@ -65,5 +67,27 @@ public class LevelMusicController : MonoBehaviour {
         musicSource.Play();
     }
 
+    //Play a sound affect
+    public static void playSoundEffect(AudioClip clip)
+    {
+        Timing.RunCoroutine(_playSoundEffect(clip));
+    }
+
+    static IEnumerator<float> _playSoundEffect(AudioClip clip){
+
+        AudioSource source = GlobalController.Instance.afxSource;
+        source.clip = clip;
+        source.loop = false;
+
+        
+        source.Play();
+
+        while (source.isPlaying) yield return 0;
+
+        source.clip = null;
+        source.loop = false;
+
+        yield break;
+    }
 
 }

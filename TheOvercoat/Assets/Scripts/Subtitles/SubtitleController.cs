@@ -24,6 +24,7 @@ public class SubtitleController : MonoBehaviour {
 
     public bool ifDesroyItself = false;
     public bool releaseAfterSub = false;
+    public bool untagAfterSub = false;
     protected int index;
 
     [HideInInspector]
@@ -134,7 +135,7 @@ public class SubtitleController : MonoBehaviour {
                 if(pcc!=null&&releaseAfterSub)
                 pcc.ContinueToWalk ();
 
-
+                
 
                 ISubtitleFinishFunction sff = GetComponent<ISubtitleFinishFunction>();
                 if (sff != null)

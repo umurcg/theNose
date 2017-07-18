@@ -20,6 +20,8 @@ public class CatAttackToPlayer : GameController, IClickAction {
     bool used = false;
     public bool debug;
 
+    public AudioClip catnoise;
+
 
 	//public float jumpTolerance = 0.5f;
 	//Vector3 initialPos;
@@ -183,6 +185,7 @@ public class CatAttackToPlayer : GameController, IClickAction {
     public void Jump()
     {
         Timing.RunCoroutine(Vckrs._TweenSinHeight(gameObject,player.transform.position,JumpSpeed,1));
+        LevelMusicController.playSoundEffect(catnoise);
     }
 
     //    IEnumerator<float> _Jump(){

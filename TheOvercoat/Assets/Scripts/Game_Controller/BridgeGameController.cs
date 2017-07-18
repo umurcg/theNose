@@ -114,7 +114,7 @@ public class BridgeGameController : GameController {
 
 
         trigger.GetComponent<DirectClickScript>().enabled = false;
-        //print("throwiiiiiiiiiiiing");
+        print("throwiiiiiiiiiiiing");
         IEnumerator<float> handler;
 
 

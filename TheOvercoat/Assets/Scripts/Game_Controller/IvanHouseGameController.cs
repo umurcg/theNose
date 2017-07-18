@@ -222,10 +222,17 @@ public class IvanHouseGameController : GameController {
             wla.lockSit = false;
             pcc.StopToWalk();
         }
-        
-       
+
+
+        //for (int i = 0; i < 10; i++) yield return 0;
+
 
         playerNma.enabled = true;
+
+        while (playerNma.isOnNavMesh == false) yield return 0;
+
+
+        playerNma.isStopped = false;
         playerNma.SetDestination(Nose.transform.position - Vector3.right);
 
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(player));
@@ -272,6 +279,9 @@ public class IvanHouseGameController : GameController {
         door.GetComponent<OpenDoorLoad>().Unlock();
 
         pcc.ContinueToWalk();
+
+        drawer.tag = "Untagged";
+
         yield break;
     }
     public override void activateController()

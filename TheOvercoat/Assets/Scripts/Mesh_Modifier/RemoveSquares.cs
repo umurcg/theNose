@@ -40,9 +40,9 @@ using System.Linq;
     void Update()
     {
 
-        //Debug.Log(mesh.triangles.Length+ " removged "+numberOfRemovedFaces);
+        Debug.Log(mesh.triangles.Length+ " removged "+numberOfRemovedFaces);
         //TODO remove magic number
-        if (mesh.triangles.Length <= 180)
+        if (mesh.triangles.Length <= 720)
         {
 
             finish();
@@ -222,8 +222,15 @@ using System.Linq;
 
             mesh.triangles = newt;
 
-
+        try
+        {
             this.gameObject.AddComponent<MeshCollider>();
+        }
+        catch(System.Exception e)
+        {
+            finish();
+            return;
+        }
 
               numberOfRemovedFaces++;
         }
@@ -319,7 +326,7 @@ using System.Linq;
         return SumOfAngles;
     }
 
-
+    [ContextMenu ("Finish")]
     void finish()
     {
         CallCoroutine cc = GetComponent<CallCoroutine>();

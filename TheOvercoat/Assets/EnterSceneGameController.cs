@@ -342,7 +342,8 @@ public class EnterSceneGameController : GameController{
         sc.callSubtitleWithIndexTime(3);
 
         yield return Timing.WaitForSeconds(2f);
-        Timing.RunCoroutine(Vckrs._fadeObject(building, 1f, false));
+        Timing.RunCoroutine(Vckrs._fadeObject(building.GetComponent<GetActiveObjectLOD>().getActiveObject(), 1f));
+        //Timing.RunCoroutine(Vckrs._fadeObject(building, 1f, false));
 
         while (narSubtitle.text != "")
         {
