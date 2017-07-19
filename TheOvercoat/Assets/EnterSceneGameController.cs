@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 public class EnterSceneGameController : GameController{
 
     public GameObject  building, ivan, kovalev, head, aims,cameraObj, sun, bigBook, tutorials;
+    public Terrain mainTerrain;
 
+    float originalBaseMapDistance;
 
     public float orthographicZoomAmount, perspectiveZoomAmount;
 
@@ -35,6 +37,11 @@ public class EnterSceneGameController : GameController{
     public override void Start () {
 
         base.Start();
+
+        //To prevent black areas in transparent areas increase base manp distance.
+        originalBaseMapDistance = mainTerrain.basemapDistance;
+        mainTerrain.basemapDistance = 8000;
+
 
         //At enter scene blackscreen shouldn't fade in automatically
         if(blackScreen.script!=null)
@@ -279,6 +286,7 @@ public class EnterSceneGameController : GameController{
         RemoveSquares rs = head.transform.GetChild(1).GetComponent<RemoveSquares>();
         rs.enabled = true;
 
+        mainTerrain.basemapDistance = originalBaseMapDistance;
 
     }
     public void outro()

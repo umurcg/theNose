@@ -20,6 +20,11 @@ public class HeartGameObject : MonoBehaviour {
         initialRot = transform.rotation;
 	}
 	
+    public void setGirlGameController(GirlGameController cont)
+    {
+        ggc = cont;
+    }
+
 	// Update is called once per frame
 	void Update () {
         destroyTime -= Time.deltaTime;
@@ -41,7 +46,7 @@ public class HeartGameObject : MonoBehaviour {
 
         if (col.tag == "Respawn")
         {
-            ggc = transform.parent.GetComponent<GirlGameController>();
+            //ggc = transform.parent.parent.GetComponent<GirlGameController>();
             ggc.scoreValue += score;
             ggc.updateScore();
             if (ggc.scoreValue < 0)

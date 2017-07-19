@@ -78,6 +78,9 @@ public class GirlGameController : MonoBehaviour {
             obj.transform.localScale= new Vector3(aimScale, aimScale, aimScale);
             obj.transform.position = transform.position;
 
+            HeartGameObject hgo = obj.GetComponentInChildren<HeartGameObject>();
+            hgo.setGirlGameController(this);
+
             Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width),  Screen.height,0));
 
             //obj.transform.rotation = Quaternion.LookRotation(-1*transform.up);
@@ -95,6 +98,9 @@ public class GirlGameController : MonoBehaviour {
             GameObject obj = Instantiate(obstacle);
             obj.transform.localScale = new Vector3(obsScale, obsScale, obsScale);
             obj.transform.position = transform.position;
+
+            HeartGameObject hgo = obj.GetComponent<HeartGameObject>();
+            hgo.setGirlGameController(this);
 
             Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), 30, 0));
 

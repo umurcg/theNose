@@ -47,7 +47,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     public bool mountDebug;
     public bool unmountDebug;
 
-    GameObject mainCanvas;
+    public GameObject mainCanvas;
     public GameObject carierChoices;
     public GameObject unmountButton;
 
@@ -55,7 +55,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     GameObject spawnedUnmountButton;
 
     IEnumerator<float> setDestHandler;
-    
+
+    Camera mainCam;
 
     // Use this for initialization
     void Awake() {  
@@ -66,11 +67,16 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         carierFrontcc = carierFront.GetComponent<Rigidbody>();
         sc = GetComponent<SubtitleCaller>();
         cck = GetComponent<CharacterControllerKeyboard>();
-        mainCanvas = GameObject.FindGameObjectWithTag("Canvas");
+        
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        mainCam = CharGameController.getMainCameraComponent();
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if (unmountDebug)
         {
@@ -227,7 +233,9 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
         spawnedCarierChoice=Instantiate(carierChoices, mainCanvas.transform) as GameObject;
         RectTransform rt = spawnedCarierChoice.GetComponent<RectTransform>();
-        rt.position = new Vector2(Screen.width / 2 + rt.rect.width / 2, Screen.height * 1 / 3);
+        rt.position = new Vector2(Screen.width / 2 + rt.rect.width / 2, Screen.height * 1f / 3);
+        //rt.position = Vckrs.screenRatioToPosition(0.5f, 0.3f);
+        //spawnedCarierChoice.transform.position = mainCam.ScreenToWorldPoint(Vckrs.screenRatioToPosition(0.5f, 0.3f));
 
         Button[] buttons = spawnedCarierChoice.GetComponentsInChildren<Button>();
         Button button1 = buttons[0];

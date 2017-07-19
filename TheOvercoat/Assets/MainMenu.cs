@@ -70,6 +70,8 @@ public class MainMenu : MonoBehaviour {
 
             //Move player to 000
             CharGameController.movePlayer(Vector3.zero);
+            GameObject player = CharGameController.getActiveCharacter();
+            player.transform.LookAt(menuCamera.transform);
         }
     }
 	

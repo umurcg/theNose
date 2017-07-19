@@ -73,6 +73,8 @@ public class PutNoseToFruitStand : GameController,  IClickActionDifferentPos
 
         pcc.ContinueToWalk();
 
+        transform.tag = "Untagged";
+
         Destroy(this);
         yield break;
 

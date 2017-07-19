@@ -9,8 +9,21 @@ using MovementEffects;
 //[RequireComponent(typeof(AudioSource))]
 public class LevelMusicController : MonoBehaviour {
 
+    [System.Serializable]
+    public struct sceneAndMusic
+    {
+        
+        public GlobalController.Scenes scene;
+        public AudioClip dayMusic;
+        public AudioClip nightMusic;
+    }
+
+
     //Muisc audio clips according to their scene index
-    public AudioClip[] levelMusics;
+    //public AudioClip[] levelMusics;
+
+    public sceneAndMusic[] SceneAndMusic;
+
     AudioSource musicSource;
         
 
@@ -22,6 +35,18 @@ public class LevelMusicController : MonoBehaviour {
 	}
 
 
+    sceneAndMusic getSceneAndMusicElementByScene(GlobalController.Scenes scene)
+    {
+        foreach(sceneAndMusic sam in SceneAndMusic)
+        {
+            if (sam.scene == scene) return sam;
+        }
+
+        sceneAndMusic nullSceneAndMusic = new sceneAndMusic();
+        nullSceneAndMusic.scene = GlobalController.Scenes.None;
+        return nullSceneAndMusic;
+    }
+        
     void OnEnable()
     {
         //Tell our 'registerToSceneList' function to start listening for a scene change as soon as this script is enabled.
@@ -44,13 +69,45 @@ public class LevelMusicController : MonoBehaviour {
     void updateMusic()
     {
         assignMusicSource();
-        //if (musicSource == null) Debug.Log("Music source is null");
+        if (musicSource == null)
+        {
+            Debug.Log("Music source is null");
+            return;
+        }
 
-        int sceneIndex=SceneManager.GetActiveScene().buildIndex;
+        GlobalController.Scenes currentScene =(GlobalController.Scenes) SceneManager.GetActiveScene().buildIndex;
 
-        if (sceneIndex >= levelMusics.Length) return;
+        sceneAndMusic currentStruct = getSceneAndMusicElementByScene(currentScene);
 
-        musicSource.clip = levelMusics[sceneIndex];
+        if ((currentStruct.scene == GlobalController.Scenes.None) || (currentStruct.dayMusic == null && currentStruct.nightMusic == null)) return;     
+
+        if (currentStruct.dayMusic==null && currentStruct.nightMusic != null)
+        {
+            musicSource.clip = currentStruct.nightMusic;
+            
+        }else if (currentStruct.dayMusic != null && currentStruct.nightMusic == null)
+        {
+            musicSource.clip = currentStruct.dayMusic;
+            
+        }else if (currentStruct.dayMusic != null && currentStruct.nightMusic != null)
+        {
+            if (CharGameController.getSun() != null && CharGameController.getSun().GetComponent<DayAndNightCycle>().isNight)
+            {
+                musicSource.clip = currentStruct.nightMusic;
+            }
+            else
+            {
+                musicSource.clip = currentStruct.dayMusic;
+            }
+        }
+
+        //int sceneIndex=SceneManager.GetActiveScene().buildIndex;
+
+        //if (sceneIndex >= levelMusics.Length) return;
+
+        //musicSource.clip = levelMusics[sceneIndex];
+
+        
         musicSource.Play();
 
     }

@@ -47,7 +47,11 @@ public class ButtonCursorSetter : MonoBehaviour {
         if(recover && !mousePressed)
         {
             if (cis)
+            {
                 cis.resetExternalCursor();
+                mouseIsOverButton = false;
+            }
+
 
             recover = false;
         }
@@ -61,15 +65,17 @@ public class ButtonCursorSetter : MonoBehaviour {
             if (buttonComp.IsInteractable())
             {
                 cis.externalTexture = cursorImage;
-               
+                mouseIsOverButton = true;
+
             }
         }
         else
         {
             cis.externalTexture = cursorImage;
+            mouseIsOverButton = true;
         }
 
-        mouseIsOverButton = true;
+
 
     }
 
@@ -77,20 +83,27 @@ public class ButtonCursorSetter : MonoBehaviour {
     {
         recover = true;
 
-        mouseIsOverButton = false;
+   
     }
 
     private void OnDisable()
     {
         if (cis)
+        {
             cis.resetExternalCursor();
-
+            
+        }
+        mouseIsOverButton = false;
     }
 
     private void OnDestroy()
     {
         if (cis)
+        {
             cis.resetExternalCursor();
+            
+        }
+        mouseIsOverButton = false;
 
     }
 }

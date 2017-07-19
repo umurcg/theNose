@@ -24,7 +24,7 @@ public class SubtitleController : MonoBehaviour {
 
     public bool ifDesroyItself = false;
     public bool releaseAfterSub = false;
-    public bool untagAfterSub = false;
+    //public bool untagAfterSub = false;
     protected int index;
 
     [HideInInspector]
@@ -105,16 +105,20 @@ public class SubtitleController : MonoBehaviour {
 
     // Update is called once per frame
     protected virtual void Update () {
-        //  print("index: "+index+"array: "+subtitleTexts.Length);
+        //Debug.Log("index: "+index+"array: "+subtitleTexts.Length);
 
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0)
+        {
+            //Debug.Log("Timse scale is zero");
+            return;
+        }
 
         if (index != -1)
         {
-            
+            //Debug.Log("index is not -1");
             if (index < subtitleTexts.Length)
             {
-                
+                //Debug.Log("LOOKİNG FOR INPUT"); 
                 if ((Input.GetMouseButtonDown(0) || Input.GetButtonDown("InteractionButton")) && !ButtonCursorSetter.mouseIsOverButton)
                 {
                     //Debug.Log("You pressed to mouse");

@@ -172,9 +172,9 @@ public class ClickTriggerSingleton : MonoBehaviour {
 
     void stopToWalk()
     {
-        if (agent && agent.isOnNavMesh)
+        if (agent)
         {
-            agent.Stop();
+            agent.SetDestination(agent.gameObject.transform.position);
         }else
         {
             mtwagent.stop();
