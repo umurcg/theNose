@@ -14,6 +14,8 @@ public class RunFromPlayer : MonoBehaviour {
     public GameObject eventReviever;
     public float catchDuration = 5f;
 
+    //Number of obstacle in sphere collider to catch nose
+    //public int numberOfObstacleToFinish=5;
 
     GameObject player;
     UnityEngine.AI.NavMeshAgent nma;
@@ -23,6 +25,10 @@ public class RunFromPlayer : MonoBehaviour {
     float catchTimer;
 
     public bool sendMessage;
+
+    //int numberOfObstacleInCollider;
+    bool obstacleInSphere = false;
+    bool playerInSphere = false;
 
 
 	// Use this for initialization
@@ -69,18 +75,45 @@ public class RunFromPlayer : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+
+        if (col.transform.tag == "Obstacle")
+        {
+            //Debug.Log("Obstacle In Sphere");
+            obstacleInSphere = true;
+        }
+
         //Debug.Log("Entered");
         if (col.transform.gameObject == player)
         {
+            //Debug.Log("PLayer In Sphere");
+            playerInSphere = true;
             Timing.RunCoroutine(_run());
-            catchTimer = 0.0001f;
         }
+
+        if (obstacleInSphere && playerInSphere)
+        {
+            
+            catchTimer = 0.0001f;
+        } 
 
     }
 
     void OnTriggerExit(Collider col)
     {
+        if (col.transform.tag == "Obstacle")
+        {
+            //Debug.Log("Obstacle is not in Sphere");
+            obstacleInSphere = false;
+        }
+
+        //Debug.Log("Entered");
         if (col.transform.gameObject == player)
+        {
+            //Debug.Log("Player is not in Sphere");
+            playerInSphere = false;
+        }
+
+        if (!obstacleInSphere || !playerInSphere)
         {
             //Stop timer
             catchTimer = 0;

@@ -42,9 +42,9 @@ public class NoseEncounterGameController : GameController {
         hs = Horse.GetComponent<HorseScript>();
         noseCC = new characterComponents(Nose);
 
-        //startNoseGame();
+        startNoseGame();
 
-        debugGirlGame();
+        //debugGirlGame();
 
 
         //enbaleTrashObjs(true);
