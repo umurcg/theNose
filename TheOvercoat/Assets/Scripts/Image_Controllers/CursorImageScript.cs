@@ -164,7 +164,7 @@ public class CursorImageScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Subtitle is null");
+            //Debug.Log("Subtitle is null");
         }
 
         if (forceToDefault)

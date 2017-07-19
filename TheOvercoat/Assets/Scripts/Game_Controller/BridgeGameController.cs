@@ -19,6 +19,9 @@ public class BridgeGameController : GameController {
 
     CameraController cc;
 
+    //For recovering building we need tavern game controller
+    public TavernGameController tgc;
+
 	// Use this for initialization
 	public override void Start () {
         base.Start();
@@ -225,6 +228,8 @@ public class BridgeGameController : GameController {
     {
         handlerHolder = blackScreen.script.fadeOut();
         yield return Timing.WaitUntilDone(handlerHolder);
+
+        tgc.recoverAllBuildings();
 
         CharGameController.getCamera().GetComponent<CameraFollower>().enabled = true;
         singerCafe.GetComponent<CafeSingerGameController>().activateController();

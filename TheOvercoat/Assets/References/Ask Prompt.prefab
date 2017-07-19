@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 224000012206489864}
   - component: {fileID: 222000013932302754}
   - component: {fileID: 114000011268301852}
+  - component: {fileID: 114475913588536990}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -74,6 +75,7 @@ GameObject:
   - component: {fileID: 224000012491062222}
   - component: {fileID: 222000014260656624}
   - component: {fileID: 114000011649390624}
+  - component: {fileID: 114547521127708806}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -273,7 +275,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: No
+  m_Text: 
 --- !u!114 &114000011402789466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,7 +320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Yes
+  m_Text: 
 --- !u!114 &114000011990278252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -460,6 +462,32 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114475913588536990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011310360460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505cfaf118ac8aa4ca38dd6903f95c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAsset: {fileID: 4900000, guid: 8998c571cc9ee1d46b90ac4f94b6c9f4, type: 3}
+  textID: 22
+--- !u!114 &114547521127708806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012404293618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505cfaf118ac8aa4ca38dd6903f95c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAsset: {fileID: 4900000, guid: 8998c571cc9ee1d46b90ac4f94b6c9f4, type: 3}
+  textID: 21
 --- !u!222 &222000010359941212
 CanvasRenderer:
   m_ObjectHideFlags: 1

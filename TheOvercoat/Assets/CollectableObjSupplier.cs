@@ -76,7 +76,7 @@ public class CollectableObjSupplier : MonoBehaviour, IClickAction {
             //Debug.Log("HitName: "+hit.transform.name  + "distance"+distance);
             
 
-            if (distance > radiusForUncollect || hit.transform.tag!="Floor")
+            if (distance > radiusForUncollect || (hit.transform.tag!="Floor"))
             {
                 //Debug.Log("You can't uncollect");
 

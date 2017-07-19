@@ -96,9 +96,45 @@ public class TavernGameController : GameController {
 
     public void ivanSitsBar()
     {
-        if (disabled) return;
-        Timing.RunCoroutine(_ivanSitsBar());
+        //if (disabled) return;
+        string charName = CharGameController.getActiveCharacter().gameObject.name;
+        if (charName == "Ivan")
+        {
+            Timing.RunCoroutine(_ivanSitsBar());
+        }
+        else if(charName!="Bird")
+        {
+            Timing.RunCoroutine(_justDrink());
+            //just drink
+        }
     }
+
+
+    IEnumerator<float> _justDrink()
+    {
+        chair.GetComponent<WalkLookAnim>().lockSit = true;
+
+        yield return Timing.WaitForSeconds(3);
+        sc.callSubtitleWithIndex(4);
+        while (subtitle.text != "") yield return 0;
+        yield return Timing.WaitForSeconds(2);
+        handlerHolder = blackScreen.script.fadeOut();
+        yield return Timing.WaitUntilDone(handlerHolder);
+
+        makeAllBuildingsDrunk();
+        Timing.RunCoroutine(Vckrs._fadeObject(tavernBuilding, 1f));
+
+        yield return Timing.WaitForSeconds(5);
+        bears.transform.GetChild(2).gameObject.SetActive(true);
+
+
+        handlerHolder = blackScreen.script.fadeIn();
+        yield return Timing.WaitUntilDone(handlerHolder);
+        chair.GetComponent<WalkLookAnim>().lockSit = false;
+        yield break;
+        yield break;
+    }
+
     IEnumerator<float> _ivanSitsBar()
     {
         chair.GetComponent<WalkLookAnim>().lockSit = true;
@@ -139,11 +175,12 @@ public class TavernGameController : GameController {
     {
 
         disabled = true;
+        bears.transform.GetChild(0).gameObject.SetActive(false);
         tarkovksy.SetActive(false);
 
     }
 
-    void makeAllBuildingsDrunk()
+    public void makeAllBuildingsDrunk()
     {
         foreach(GameObject obj in drunkBuildings)
         {
@@ -158,7 +195,7 @@ public class TavernGameController : GameController {
 
     }
 
-    void recoverAllBuildings()
+    public void recoverAllBuildings()
     {
 
         foreach (GameObject obj in drunkBuildings)

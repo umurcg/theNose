@@ -319,10 +319,10 @@ public class Vckrs : MonoBehaviour
 
     public static IEnumerator<float> followObject(UnityEngine.AI.NavMeshAgent agent, GameObject obj)
     {
-        agent.Resume();
-        while (true)
+        agent.isStopped = false;
+        while (agent.gameObject.activeSelf)
         {
-            agent.SetDestination(obj.transform.position);
+            if(agent.isOnNavMesh) agent.SetDestination(obj.transform.position);
             yield return 0;
         }
     }

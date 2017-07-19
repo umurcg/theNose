@@ -56,16 +56,26 @@ public class DynamicLanguageTexts : MonoBehaviour {
         if (GlobalController.Instance == null) return;
 
         textComp.text = getTextForCurrentLanguage();
+
+        //Debug.Log("Updating text. Text is " + getTextForCurrentLanguage());
     }
 
     public string getTextForCurrentLanguage()
     {
         
         string[] section = extractTextFromID(textID);
-        if (section == null) return "";
+        if (section == null)
+        {
+            Debug.Log("Couldnt foundt textID " + textID);
+            return "";
+        }
 
         string text = findText(section, GlobalController.Instance.getLangueSetting());
-        if (text == null) return "";
+        if (text == null)
+        {
+            Debug.Log("Couldnt found text for " + GlobalController.Instance.getLangueSetting().ToString());
+            return "";
+        }
 
         return text;
     }
