@@ -42,8 +42,13 @@ public class NoseEncounterGameController : GameController {
         hs = Horse.GetComponent<HorseScript>();
         noseCC = new characterComponents(Nose);
 
+        //startNoseGame();
+
+        debugGirlGame();
+
+
         //enbaleTrashObjs(true);
-        startNoseGame();
+
         //noseCatched();
         //setGirlPosition();
 
@@ -320,11 +325,9 @@ public class NoseEncounterGameController : GameController {
 
         IEnumerator<float> girlWalkHandler = Timing.RunCoroutine(Vckrs.waitUntilStop(girl, 0f));
         yield return Timing.WaitUntilDone(girlWalkHandler);
-        
-        subtitle.text = "Kovalev: Aman tanrım! Bu nasıl bir güzellik";
-       
 
-        subtitle.text = "";
+        Timing.RunCoroutine(Vckrs._lookTo(girl, player.transform.position, 1f));
+
         lookAtObject = null;
         //Timing.RunCoroutine(Vckrs._lookTo(player, girl.transform.position - player.transform.position, 2f));
         
@@ -377,6 +380,36 @@ public class NoseEncounterGameController : GameController {
         yield break;
 
     }
+
+    void debugGirlGame()
+    {
+
+        pcc.StopToWalk();
+
+        girlCanvas.SetActive(true);
+
+        //yield return 0;
+        //girlCanvas.GetComponent<GirlGameController>().setKovalevPositionToInitialPosition();
+
+        MovementWithKeyboard2D mwk2 = girlGameKov.GetComponent<MovementWithKeyboard2D>();
+
+        mwk2.speed = 0.05f;
+
+        //For movement to left
+        mwk2.scriptInput = -1;
+        //yield return Timing.WaitForSeconds(4f);
+
+        mwk2.scriptInput = 0;
+        mwk2.speed = 0.1f;
+
+        CharacterController gkcc = girlGameKov.GetComponent<CharacterController>();
+        gkcc.enabled = false;
+        gkcc.enabled = true;
+
+        GirlGameController ggc = girlCanvas.transform.GetComponent<GirlGameController>();
+        ggc.enabled = true;
+    }
+
 
     //Sets girl position to suitable place which is on navmesh and outside of camera but near of player
     //TODO make it static in vckrs

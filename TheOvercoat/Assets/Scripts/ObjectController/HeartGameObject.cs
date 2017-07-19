@@ -55,7 +55,15 @@ public class HeartGameObject : MonoBehaviour {
             }
             else
             {
-                Destroy(transform.parent.gameObject);
+                //ALLAH BELAMI VERSİN
+                if (obstacle)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Destroy(transform.parent.gameObject);
+                }
             }
         }
     }
@@ -74,7 +82,7 @@ public class HeartGameObject : MonoBehaviour {
         mwk.enabled = false;
 
         Timing.RunCoroutine(_rotateTo(initialRot, speed));
-        Timing.RunCoroutine(_goToMiddle(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)),0.3f));
+        Timing.RunCoroutine(_goToMiddle(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, ggc.distanceToCamera)),0.3f));
         Timing.RunCoroutine(_scaleUpTo(10f, 0.10f));
     }
 

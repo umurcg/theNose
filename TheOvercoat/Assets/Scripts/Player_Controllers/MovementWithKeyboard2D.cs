@@ -22,6 +22,9 @@ public class MovementWithKeyboard2D : MonoBehaviour {
 
     bool jumping=false;
 
+    [HideInInspector]
+    public float distanceToCam = 0;
+
     float y;
 
     // Use this for initialization
@@ -30,7 +33,7 @@ public class MovementWithKeyboard2D : MonoBehaviour {
         right = Camera.main.gameObject.transform.right;
         prevHorInputState = Input.GetAxis("Horizontal");
 
-        transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y, transform.position.z);
+        //transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, distanceToCam)).y, transform.position.z);
     }
 	
 	// Update is called once per frame
@@ -97,7 +100,7 @@ public class MovementWithKeyboard2D : MonoBehaviour {
             yield return 0;
         }
 
-        transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, distanceToCam )).y, transform.position.z);
 
         jumping = false;
     }

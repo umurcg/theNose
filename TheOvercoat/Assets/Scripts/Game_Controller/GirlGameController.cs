@@ -23,15 +23,27 @@ public class GirlGameController : MonoBehaviour {
     public float obstacleDelay=5f;
     RectTransform rt;
     Text score;
-    public float aimScale;
-    public float obsScale;
-    GameObject playerObject;
+    public float aimScalePersp;
+    public float obsScalePersp;
+    public float aimScaleOrth;
+    public float obsScaleOrth;
+    float aimScale, obsScale;
+
+    bool isPerspective = false;
+
+    public float distanceToCamera = 10f;
+    public GameObject kovalev;
+
+    Camera mainCam;
 
 
     private void OnEnable()
     {
         CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
         if (cf) cf.lockCameraRotation(true);
+
+        CameraController.disableCameraSettings();
+
     }
 
     private void OnDisable()
@@ -39,20 +51,44 @@ public class GirlGameController : MonoBehaviour {
 
         CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
         if (cf) cf.lockCameraRotation(false);
+
+        CameraController.enableCameraSettings();
     }
+
+
 
     // Use this for initialization
     void Start () {
-        //float aimObjectTimer = aimObjectTime;
-        //float obstacleTimer = obstacleTime;
+
+        mainCam = CharGameController.getMainCameraComponent();
+
+        if (!mainCam) Debug.Log("Main cam is null");
+
         score = scoreObj.GetComponent<Text>();
         rt = GetComponent<RectTransform>();
-        playerObject = transform.GetComponentInChildren<MovementWithKeyboard2D>().gameObject;
 
+        MovementWithKeyboard2D mwk = kovalev.GetComponent<MovementWithKeyboard2D>();
+        mwk.distanceToCam = distanceToCamera;
+
+        if (CharGameController.getCameraType() == CharGameController.cameraType.Ortographic)
+        {
+            isPerspective = false;
+            aimScale = aimScaleOrth;
+            obsScale = obsScaleOrth;
+        }
+        else
+        {
+            isPerspective = true;
+
+            aimScale = aimScalePersp;
+            obsScale = obsScalePersp;
+        }
 
         setKovalevPositionToInitialPosition();
 
-        CameraRotator bew = Camera.main.GetComponent<CameraRotator>();
+        
+
+        CameraRotator bew = mainCam.GetComponent<CameraRotator>();
         if (bew) bew.enabled = false;
     }
 	
@@ -81,7 +117,7 @@ public class GirlGameController : MonoBehaviour {
             HeartGameObject hgo = obj.GetComponentInChildren<HeartGameObject>();
             hgo.setGirlGameController(this);
 
-            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width),  Screen.height,0));
+            Vector3 screenPosition = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width),  Screen.height,distanceToCamera));
 
             //obj.transform.rotation = Quaternion.LookRotation(-1*transform.up);
             obj.transform.rotation = transform.rotation;
@@ -102,7 +138,7 @@ public class GirlGameController : MonoBehaviour {
             HeartGameObject hgo = obj.GetComponent<HeartGameObject>();
             hgo.setGirlGameController(this);
 
-            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), 30, 0));
+            Vector3 screenPosition = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Screen.height*0.05f, distanceToCamera));
 
             obj.transform.rotation = Quaternion.LookRotation(transform.up);
             obj.transform.position = screenPosition;
@@ -114,15 +150,15 @@ public class GirlGameController : MonoBehaviour {
         //{
         //    finish();
         //}
-        checkObjInScreen(playerObject);
+        checkObjInScreen(kovalev);
 
 
     }
 
     public void checkObjInScreen(GameObject obj)
     {
-        Vector3 rightLimit= Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
-        Vector3 leftLimit= Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 rightLimit= mainCam.ScreenToWorldPoint(new Vector3(Screen.width, 0, distanceToCamera));
+        Vector3 leftLimit= mainCam.ScreenToWorldPoint(new Vector3(0, 0, distanceToCamera));
 
         float width = Vector3.Distance(rightLimit, leftLimit);
 
@@ -166,7 +202,11 @@ public class GirlGameController : MonoBehaviour {
 
     public void setKovalevPositionToInitialPosition()
     {
-        transform.GetChild(0).gameObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
+        if(!mainCam) mainCam = CharGameController.getMainCameraComponent();
+        kovalev.transform.position =mainCam.ScreenToWorldPoint(new Vector3(Screen.width, 0, distanceToCamera));
+        //Time.timeScale = 0;
     }
+
+
 
 }
