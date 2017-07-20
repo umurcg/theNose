@@ -37,6 +37,18 @@ public class LoadScene : MonoBehaviour {
         Timing.RunCoroutine(_Load());
     }
 
+
+    public void Load(float delay)
+    {
+        Timing.RunCoroutine(_Load(delay));
+    }
+
+    public virtual IEnumerator<float> _Load(float delay)
+    {
+        yield return Timing.WaitForSeconds(delay);
+        Load();
+    }
+
     public virtual IEnumerator<float> _Load()
     {
         if (fade && blackScreen.script!=null)

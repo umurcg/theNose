@@ -18,6 +18,8 @@ public class AlwaysLookToCamera : MonoBehaviour {
 
         if (!cam) cam=Camera.main;
 
+        if (!cam) return;
+
         Quaternion aimRot = Quaternion.LookRotation(-cam.transform.forward, cam.transform.up);
         
         if (lerp)

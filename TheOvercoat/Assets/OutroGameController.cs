@@ -5,12 +5,15 @@ using MovementEffects;
 
 public class OutroGameController : GameController {
 
-    public GameObject cameraObj,cameraInitialPosition , kovalev, ivan, berberShop, building, ivanAim;
+    public GameObject cameraObj,cameraInitialPosition , kovalev, ivan, berberShop, building, ivanAim, credits;
     characterComponents kovCC, ivanCC;
 
     CameraController cc;
 
     Vector3 berberShopPos;
+
+    
+
 
 	// Use this for initialization
 	public override void Start () {
@@ -93,8 +96,16 @@ public class OutroGameController : GameController {
         Timing.RunCoroutine(blackScreen.script.fadeOut());
 
         while (narSubtitle.text != "") yield return 0;
-        
-        Application.Quit();
+
+        yield return Timing.WaitForSeconds(3f);
+
+        //Application.Quit();
+        credits.SetActive(true);
+        cameraObj.SetActive(false);
+
+        Timing.RunCoroutine(blackScreen.script.fadeIn());
+
+
 
         yield break;
     }
