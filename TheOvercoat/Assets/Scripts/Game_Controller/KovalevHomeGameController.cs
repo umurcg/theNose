@@ -241,7 +241,7 @@ public class KovalevHomeGameController : GameController {
         }
 
         Ivan.SetActive(true);
-        IvanAgent.SetDestination(player.transform.position + Vector3.forward * 5);
+        IvanAgent.SetDestination(player.transform.position + Vector3.forward * 2);
         
         handler = Timing.RunCoroutine(Vckrs.waitUntilStop(Ivan, 0.005f));
 
@@ -336,6 +336,7 @@ public class KovalevHomeGameController : GameController {
         od.otherCanOpen = false;
         od.Unlock();
 
+        sc.callSubtitleWithIndex(21);
 
 
         //ksc.disableWC();

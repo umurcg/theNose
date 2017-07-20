@@ -52,6 +52,7 @@ public class CheatScript : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.N)) loadNextLevel();
             if (Input.GetKeyDown(KeyCode.J)) takeScreenShot();
             if (Input.GetKeyDown(KeyCode.O)) changeCameraType();
+            if (Input.GetKeyDown(KeyCode.R)) continueToWalk();
 
     }
 
@@ -282,6 +283,11 @@ public class CheatScript : MonoBehaviour {
         string directory = "_"+System.DateTime.Now.ToString() + ".jpg";
         Application.CaptureScreenshot(directory,4);
         Debug.Log("Screen shot is saved to " + directory);
+    }
+
+    void continueToWalk()
+    {
+        CharGameController.getActiveCharacter().GetComponent<PlayerComponentController>().ContinueToWalk();
     }
 
 }
