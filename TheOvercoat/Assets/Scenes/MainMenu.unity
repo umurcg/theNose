@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18058379, g: 0.22607338, b: 0.30708838, a: 1}
+  m_IndirectSpecularColor: {r: 0.17647299, g: 0.22087981, b: 0.30319506, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1657,6 +1657,29 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61380229c3d781e4eaba46bdc3cd6a23, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &920080838 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012329982636, guid: 61380229c3d781e4eaba46bdc3cd6a23,
+    type: 2}
+  m_PrefabInternal: {fileID: 920080837}
+--- !u!114 &920080839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 920080838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4423e97779af4b4583349d3296c27a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: 1
+  Scene: 11
+  loadWithLoadingScreen: 1
+  canvasObj: {fileID: 1304248041}
+  loadingScreenPefab: {fileID: 1581991218439806, guid: aef9eafcb497238469398c63c6668e18,
+    type: 2}
+  debugLoad: 0
 --- !u!1 &953529964 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100024, guid: 152700337c8cb6f4a82734f85348ba4d, type: 3}
@@ -3570,7 +3593,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1835036792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 949985dc2a5ea624bb8abaed4b07f6ed, type: 3}
   m_Name: 
@@ -4231,6 +4254,10 @@ Prefab:
         type: 2}
       propertyPath: m_SkinWidth
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013127924312, guid: dd651778041846143b79e2a904c465fc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000011704692000, guid: dd651778041846143b79e2a904c465fc, type: 2}

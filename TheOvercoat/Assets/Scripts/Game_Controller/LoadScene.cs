@@ -10,6 +10,14 @@ public class LoadScene : MonoBehaviour {
     //public LoadMethod loadMethod;
     public bool fade = true;
     public GlobalController.Scenes Scene = GlobalController.Scenes.None;
+
+
+
+    public bool loadWithLoadingScreen = true;
+
+    public GameObject canvasObj;
+    public GameObject loadingScreenPefab;
+
     //public int index;
     //public string sceneName;
 
@@ -58,7 +66,30 @@ public class LoadScene : MonoBehaviour {
         }
 
 
-        SceneManager.LoadScene((int)Scene);
+        if (loadWithLoadingScreen)
+        {
+
+
+            //Instantiate Loading Screen
+            Debug.Log("Creating loading page");
+            GameObject spawned=Instantiate(loadingScreenPefab);
+
+
+            blackScreen.script.gameObject.SetActive(false);
+
+            AsyncOperation async = SceneManager.LoadSceneAsync((int)Scene);
+
+            while (!async.isDone) yield return 0;
+
+            Destroy(spawned);
+            //Destroy Loading Screen
+        }
+        else
+        {
+
+            SceneManager.LoadScene((int)Scene);
+
+        }
         //if (loadMethod == LoadMethod.Index)
         //{
         //    SceneManager.LoadScene(index);
@@ -68,5 +99,7 @@ public class LoadScene : MonoBehaviour {
         //}
         yield break;
     }
+
+  
 
 }

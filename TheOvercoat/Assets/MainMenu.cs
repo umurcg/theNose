@@ -31,11 +31,14 @@ public class MainMenu : MonoBehaviour {
  
     GameObject spawnedAskPrompt;
 
+    LoadScene load;
+
     //CharacterController cc;
 
     void Awake()
     {
         mainMenuButtons = new GameObject[] { continueButton, exitButton, settingsButton, /*momentsButton,*/ newgameButton };
+        load = GetComponent<LoadScene>();
                
     }
 
@@ -127,7 +130,10 @@ public class MainMenu : MonoBehaviour {
     {
 
         GlobalController.Instance.clearSceneList();
-        SceneManager.LoadScene((int)GlobalController.Instance.fullGameSceneList[0]);
+        //SceneManager.LoadScene((int)GlobalController.Instance.fullGameSceneList[0]);
+        load.Scene = GlobalController.Instance.fullGameSceneList[0];
+        load.Load();
+
     }
 
     public void settings()
@@ -272,7 +278,9 @@ public class MainMenu : MonoBehaviour {
         //trimGameControllers(episodeID);
 
 
-        SceneManager.LoadScene((int)scene);
+        //SceneManager.LoadScene((int)scene);
+        load.Scene = scene;
+        load.Load();
     }
 
 
