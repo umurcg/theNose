@@ -4,7 +4,6 @@ using System.Collections;
 public class Fall : MonoBehaviour {
 
     public float fallSpeed;
-
     public Space space = Space.World;
 
     // Use this for initialization
