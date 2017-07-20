@@ -10,7 +10,7 @@ public class CityGameController : MonoBehaviour {
     public DenizEfeGameController degc;
     public DrunkManGameSceneController dmgsc;
     public Sevval sev;
-    public GameObject[] ivanScenePolice;
+    public GameObject[] exclusiceObjectsForIvanScene;
     public GameObject lookAtMeNowTrigger, NoseGame;
     public GameObject SingerCafe;
     public GameObject friendTellsChurch;
@@ -22,7 +22,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject horseBots;
     public FogGameController fogGAME;
     public GameObject streetAreas;
-    public AudioClip innerSpeechMusic;
+    //public AudioClip innerSpeechMusic;
     public TutorailCanvas tutorial;
     
     
@@ -137,7 +137,7 @@ public class CityGameController : MonoBehaviour {
             //Games only can be activated with registered game controllers
             if (GlobalController.Instance.usedGameControllers.Count > 0)
             {
-                if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("Prisoner_Mahkum")
+                if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PoliceStationPrisoner_Mahkum")
                     && !GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PrisonerGameDeadMan")
                     )
                 {
@@ -227,7 +227,7 @@ public class CityGameController : MonoBehaviour {
         horseCariers.SetActive(false);
 
         //Activae policemans
-        foreach(GameObject police in ivanScenePolice)
+        foreach(GameObject police in exclusiceObjectsForIvanScene)
         {
             police.SetActive(true);
         }
@@ -434,7 +434,7 @@ public class CityGameController : MonoBehaviour {
     //If it finds a game controller returns true else returns false
     bool checkSideStories()
     {
-        if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PrisonerGameDeadMan"))
+        if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("PrisonerGameDeadMan") && !GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("AtolyeSculpturerGame"))
         {
             foundDeadman();
             OpenDoorLoad.getDoorSciptWithScene(GlobalController.Scenes.KovalevHouse).Unlock();

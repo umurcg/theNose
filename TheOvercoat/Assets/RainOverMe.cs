@@ -51,6 +51,9 @@ public class RainOverMe : MonoBehaviour {
 
     void spawnNewDropAtScreen()
     {
+        if (mainChar == null || mainChar.activeSelf == false) mainChar = CharGameController.getActiveCharacter();
+
+        if (mainChar == null) Debug.Log("main char is bull");
 
         GameObject spawnedObject = Instantiate(prefabs[Random.Range(0, prefabs.Length)]) as GameObject;
 
@@ -78,6 +81,7 @@ public class RainOverMe : MonoBehaviour {
     
     void spawnNewDropAtTop()
     {
+        if (mainChar == null || mainChar.activeSelf == false) mainChar = CharGameController.getActiveCharacter();
 
         //Get random object
         GameObject spawnedObject = Instantiate(prefabs[Random.Range(0, prefabs.Length)]) as GameObject;
