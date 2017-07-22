@@ -30,8 +30,8 @@ public class ShallNotPassV2 : MonoBehaviour {
     {
         if (col.gameObject==player)
         {
-            
-            sc.callSubtitleWithIndexTime(0);
+            if(sc && sc.countSubtitles()>0)
+                sc.callSubtitleWithIndexTime(0);
 
             Timing.RunCoroutine(goBack());
 

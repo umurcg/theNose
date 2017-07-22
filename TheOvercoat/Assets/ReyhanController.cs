@@ -9,6 +9,7 @@ public class ReyhanController : GameController {
     FollowSmoothly fs;
     Animator anim;
     BasicCharAnimations bca;
+    NewsGameController ngc;
 
     //// Update is called once per frame
     //void Update () {
@@ -36,6 +37,8 @@ public class ReyhanController : GameController {
 
         fs.target = CharGameController.getActiveCharacter();
         fs.enabled = true;
+
+        ngc.deactivateController();
 
         registerAsUsed();
 
@@ -71,6 +74,23 @@ public class ReyhanController : GameController {
     {
         base.gameIsUsed();
         gameObject.SetActive(false);
+
+        //Two condition
+        //If reythan game is compleetly finished than dont disable edito
+        //But if reyhan waiting at the door disable editor.
+    }
+
+    public override void activateController()
+    {
+        base.activateController();
+        transform.tag = "ActiveObject";
+        
+    }
+
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        transform.tag = "Untagged";
     }
 
 }

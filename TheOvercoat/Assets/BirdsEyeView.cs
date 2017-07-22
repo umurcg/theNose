@@ -27,6 +27,8 @@ public class BirdsEyeView : MonoBehaviour {
     public LayerMask mask;
     public float maxZ = 600f;
     public float minZ = -100f;
+    public float maxY = 200f;
+    public float minY = 0f;
     public float scrollSpeed = 2f;
     Vector3 initialPosition;
     Quaternion initialRotation;
@@ -116,26 +118,7 @@ public class BirdsEyeView : MonoBehaviour {
        
         if (isBirdEye)
         {
-            // scroll with mouse
-            if (Input.mousePosition.y < (Screen.height / 3))
-            {
-                if (transform.position.z > minZ)
-                {
-                    transform.position= new Vector3(transform.position.x, transform.position.y, transform.position.z-Time.deltaTime* scrollSpeed*50);
-                }
-                //Debug.Log("Alttasin");
-            }else if (Input.mousePosition.y > (2*Screen.height / 3))
-            {
-                if (transform.position.z < maxZ)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * scrollSpeed*50);
-                }
-                //Debug.Log("Usttesin");
-            }
-            else
-            {
-                //Debug.Log("Ortadasin");
-            }
+            scrollMap();
 
 
             //TODO add cancel button
@@ -148,7 +131,7 @@ public class BirdsEyeView : MonoBehaviour {
 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit ,Mathf.Infinity,~mask))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask))
             {
 
                 List<GameObject> areaList = new List<GameObject>();
@@ -157,7 +140,8 @@ public class BirdsEyeView : MonoBehaviour {
 
 
                 Debug.Log(hit.transform.name);
-              if(areaList.Contains(hit.transform.gameObject)){
+                if (areaList.Contains(hit.transform.gameObject))
+                {
 
 
 
@@ -165,26 +149,76 @@ public class BirdsEyeView : MonoBehaviour {
 
                     if (Input.GetMouseButtonDown(0))
                     {
-                        
+
 
                         Debug.Log("You are goint to " + hit.point);
                         getBackToOriginal(hit.point);
-                        
+
                     }
 
-                }else
+                }
+                else
                 {
-                    if(cis) cis.resetExternalCursor();
+                    if (cis) cis.resetExternalCursor();
 
                     if (Input.GetMouseButtonDown(0))
-                    
+
                         Debug.Log("Unavaible road");
                 }
             }
         }
-	}
+    }
 
-   
+    private void scrollMap()
+    {
+        // scroll with mouse Z AXIS
+        if (Input.mousePosition.y < (Screen.height / 3))
+        {
+            if (transform.position.z > minZ)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - Time.deltaTime * scrollSpeed * 50);
+            }
+            //Debug.Log("Alttasin");
+        }
+        else if (Input.mousePosition.y > (2 * Screen.height / 3))
+        {
+            if (transform.position.z < maxZ)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * scrollSpeed * 50);
+            }
+            //Debug.Log("Usttesin");
+        }
+        else
+        {
+            //Debug.Log("Ortadasin");
+        }
+
+
+
+        // scroll with mouse Y AXIS
+        if (Input.mousePosition.x < (Screen.width / 3))
+        {
+            if (transform.position.x > minY)
+            {
+                transform.position = new Vector3(transform.position.x - Time.deltaTime * scrollSpeed * 50, transform.position.y, transform.position.z );
+            }
+            //Debug.Log("Alttasin");
+        }
+        else if (Input.mousePosition.x > (2 * Screen.width / 3))
+        {
+            if (transform.position.x < maxY)
+            {
+                transform.position = new Vector3(transform.position.x + Time.deltaTime * scrollSpeed * 50, transform.position.y, transform.position.z);
+            }
+            //Debug.Log("Usttesin");
+        }
+        else
+        {
+            //Debug.Log("Ortadasin");
+        }
+
+    }
+
     public void goToBirdEye(bool showStreets)
     {
         Timing.RunCoroutine(_goToBirdEye(showStreets));

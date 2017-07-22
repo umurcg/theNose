@@ -139,4 +139,23 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
         return -1;
     }
 
+    public int countSubtitles()
+    {
+        return countCharSubtitles() + countNarSubtitles();
+    }
+
+    public int countCharSubtitles()
+    {
+        SubtitleController[] scs = GetComponents<SubtitleController>();
+
+        return scs.Length - countNarSubtitles();
+
+    }
+
+    public int countNarSubtitles()
+    {
+        SubtitleControllerTime[] scts = GetComponents<SubtitleControllerTime>();
+        return scts.Length;
+    }
+
 }

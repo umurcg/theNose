@@ -24,6 +24,8 @@ public class CityGameController : MonoBehaviour {
     public GameObject streetAreas;
     //public AudioClip innerSpeechMusic;
     public TutorailCanvas tutorial;
+    public Terrain terrain;
+    public float baseMapDistance = 3000;
     
     
 
@@ -36,6 +38,8 @@ public class CityGameController : MonoBehaviour {
             return;
         }
 
+
+        terrain.basemapDistance = baseMapDistance;
 
         if (GlobalController.Instance != null)
         {

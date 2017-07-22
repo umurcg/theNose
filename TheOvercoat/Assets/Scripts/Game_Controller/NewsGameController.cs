@@ -10,6 +10,8 @@ public class NewsGameController : GameController {
     int numberOfRegister;
     Conv convType;
     public GameObject girtyObj;
+    public ReyhanController reyhan;
+    public GameObject editor;
 
     bool registered=false;
 
@@ -86,10 +88,17 @@ public class NewsGameController : GameController {
         {
             registerAsUsed();
             registered = true;
+
+            reyhan.deactivateController();
+
         }else if (convType == Conv.FoundGirt && !registered)
         {
             GlobalController.Instance.registerGameControllerCanBeDuplicated(generateIDWithEpisodeID());
             registered = true;
+
+            reyhan.activateController();
+
+
         }
 
         sc.callSubtitle();
@@ -137,12 +146,18 @@ public class NewsGameController : GameController {
                 Destroy(GetComponents<SubtitleController>()[0]);
                 Destroy(GetComponents<SubtitleController>()[2]);
                 Destroy(GetComponents<SubtitleController>()[3]);
+
+                reyhan.deactivateController();
+
                 break;
 
             //Founrd girty
             case Conv.FoundGirt:
                 Destroy(GetComponents<SubtitleController>()[0]);
                 Destroy(GetComponents<SubtitleController>()[1]);
+
+                reyhan.deactivateController();
+
                 break;
 
 
@@ -156,6 +171,19 @@ public class NewsGameController : GameController {
 
                     }
 
+    }
+
+    public override void activateController()
+    {
+        base.activateController();
+        editor.transform.tag = "ActiveObject";
+
+    }
+
+    public override void deactivateController()
+    {
+        base.deactivateController();
+        editor.transform.tag = "Untagged";
     }
 
 }
