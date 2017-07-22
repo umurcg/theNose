@@ -8,6 +8,7 @@ public class GUIManager : MonoBehaviour {
 
     public void Start()
     {
+        sizeSlider.value = 0.5f;
         UpdateSizeSlider();
     }
 

@@ -11,6 +11,8 @@ public class AlwaysLookTo : MonoBehaviour {
     public Vector3 aimPos;
     public float speed=1;
 
+    public bool lerps = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -34,10 +36,15 @@ public class AlwaysLookTo : MonoBehaviour {
        // print(localAim);
         Quaternion aimRot = Quaternion.LookRotation( localAim- transform.position);
 
+        if (lerps)
+        {
 
-        
-        transform.rotation = Quaternion.Slerp(transform.rotation, aimRot, speed*Time.deltaTime);
-
+            transform.rotation = Quaternion.Slerp(transform.rotation, aimRot, speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.rotation = aimRot;
+        }
 
     }
 

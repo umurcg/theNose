@@ -1406,6 +1406,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: 1
   Scene: 1
+  loadWithLoadingScreen: 1
+  loadingScreenPefab: {fileID: 0}
+  minLoadingScreenDur: 3
   debugLoad: 0
 --- !u!1 &599256431 stripped
 GameObject:
@@ -2869,7 +2872,9 @@ MonoBehaviour:
   minScale: 2
   maxScale: 5
   scaleSpeed: 1
+  lerpSpeed: 5
   axisName: Mouse ScrollWheel
+  scaleLerp: 0
 --- !u!1001 &1380349172
 Prefab:
   m_ObjectHideFlags: 0
@@ -4348,6 +4353,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: 1
   Scene: 1
+  loadWithLoadingScreen: 1
+  loadingScreenPefab: {fileID: 1581991218439806, guid: aef9eafcb497238469398c63c6668e18,
+    type: 2}
+  minLoadingScreenDur: 3
   debugLoad: 0
   speed: 100
   otherCanOpen: 0

@@ -16,6 +16,9 @@ public class HitchockController : GameController, IClickAction  {
     KovalevHomeGameController khgc;
 
     HitchcockShot hs;
+
+    public AudioClip soundEffect;
+
     // Use this for initialization
     public override void Start () {
         base.Start();
@@ -38,6 +41,9 @@ public class HitchockController : GameController, IClickAction  {
 
         MainCamera.SetActive(false);
         Camera.SetActive(true);
+
+        //Play sound effect
+        LevelMusicController.playSoundEffect(soundEffect);
 
         PlayerComponentController pcc =Kovalev.GetComponent<PlayerComponentController>();
         pcc.StopToWalk();
@@ -113,6 +119,8 @@ public class HitchockController : GameController, IClickAction  {
         }
 
         mr.enabled = false;
+
+        LevelMusicController.clearSoundEffectFromSource();
 
         Destroy(this);
         

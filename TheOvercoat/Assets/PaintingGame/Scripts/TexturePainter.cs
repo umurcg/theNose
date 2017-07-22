@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.IO;
 
-public enum Painter_BrushMode { PAINT, BLACKWHOLE, BINARY, DNA };
+public enum Painter_BrushMode { PAINT, BLACKWHOLE, BINARY, DNA, CHURCH,NOSE,KEY,LOCK,SNAIL  };
 public class TexturePainter : MonoBehaviour {
 	public GameObject brushCursor,brushContainer; //The cursor that overlaps the model and our container for the brushes painted
 	public Camera sceneCamera,canvasCam;  //The camera that looks at the model, and the camera that looks at the canvas.
@@ -23,6 +23,7 @@ public class TexturePainter : MonoBehaviour {
 	public RenderTexture canvasTexture; // Render Texture that looks at our Base Texture and the painted brushes
 	public Material baseMaterial; // The material of our base texture (Were we will save the painted texture)
 
+    public GUIManager guiManager;
    
     Painter_BrushMode mode; //Our painter mode (Paint brushes or decals)
 
@@ -130,7 +131,12 @@ public class TexturePainter : MonoBehaviour {
 			brushCursor.transform.position =uvWorldPosition+brushContainer.transform.position;									
 		} else {
 			brushCursor.SetActive(false);
-		}		
+		}
+
+        //Update bursh size at every brush chagne
+        guiManager.UpdateSizeSlider();
+       
+
 	}
 	//Returns the position on the texuremap according to a hit in the mesh collider
 	bool HitTestUVPosition(ref Vector3 uvWorldPosition){

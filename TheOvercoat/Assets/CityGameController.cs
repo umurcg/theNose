@@ -392,6 +392,8 @@ public class CityGameController : MonoBehaviour {
 
             //Activate outro scene
             outroScene.GetComponent<OutroGameController>().activateController();
+
+            Crowd.GetComponent<GameController>().activateController();
         }
         else
         {

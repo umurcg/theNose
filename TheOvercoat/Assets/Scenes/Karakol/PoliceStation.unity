@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18058416, g: 0.22607382, b: 0.30708855, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -4654,6 +4654,7 @@ MonoBehaviour:
     s\xF6ylerseniz sevinirim."
   ifDesroyItself: 1
   releaseAfterSub: 1
+  caller: {fileID: 0}
 --- !u!114 &797948321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4789,6 +4790,7 @@ MonoBehaviour:
   AllSubtitles: "Memur: Komisere gelece\u011Finizi s\xF6yliyece\u011Fim merak etmeyin."
   ifDesroyItself: 0
   releaseAfterSub: 1
+  caller: {fileID: 0}
 --- !u!95 &797948330
 Animator:
   serializedVersion: 3
@@ -6264,6 +6266,7 @@ MonoBehaviour:
   AllSubtitles: 'SleepingGuard: Zzzzzz'
   ifDesroyItself: 0
   releaseAfterSub: 1
+  caller: {fileID: 0}
 --- !u!114 &1111031613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7328,6 +7331,12 @@ Prefab:
       propertyPath: Scene
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013131394720, guid: bad50e8768fee9147bf6e3620ffb667c,
+        type: 2}
+      propertyPath: loadingScreenPefab
+      value: 
+      objectReference: {fileID: 1581991218439806, guid: aef9eafcb497238469398c63c6668e18,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad50e8768fee9147bf6e3620ffb667c, type: 2}
   m_IsPrefabParent: 0
@@ -8407,6 +8416,7 @@ MonoBehaviour:
   AllSubtitles: 'Sleeping Police Man: Zzzzzz'
   ifDesroyItself: 0
   releaseAfterSub: 1
+  caller: {fileID: 0}
 --- !u!135 &1481821223
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9000,6 +9010,7 @@ MonoBehaviour:
     oldu\u011Funu kotrol etmen laz\u0131m."
   ifDesroyItself: 0
   releaseAfterSub: 1
+  caller: {fileID: 0}
 --- !u!114 &1552021476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9021,6 +9032,7 @@ MonoBehaviour:
     bla bla\nBUradan bir hikaye \xE7ikar"
   ifDesroyItself: 1
   releaseAfterSub: 1
+  caller: {fileID: 0}
 --- !u!114 &1552021477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9910,6 +9922,7 @@ MonoBehaviour:
   AllSubtitles: 
   ifDesroyItself: 0
   releaseAfterSub: 0
+  caller: {fileID: 0}
 --- !u!114 &1708090186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9990,6 +10003,7 @@ MonoBehaviour:
     \r\nKovalev: Siz u\u011Frad\u0131\u011F\u0131m\u0131 s\xF6ylersiniz.\r\n"
   ifDesroyItself: 0
   releaseAfterSub: 1
+  caller: {fileID: 0}
 --- !u!1 &1717318662
 GameObject:
   m_ObjectHideFlags: 0

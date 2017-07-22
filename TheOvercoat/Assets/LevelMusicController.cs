@@ -130,12 +130,28 @@ public class LevelMusicController : MonoBehaviour {
         Timing.RunCoroutine(_playSoundEffect(clip));
     }
 
-    static IEnumerator<float> _playSoundEffect(AudioClip clip){
+    static IEnumerator<float> _playSoundEffect(AudioClip clip, bool volueDownMusicWhilePlaying=true){
 
         AudioSource source = GlobalController.Instance.afxSource;
         source.clip = clip;
         source.loop = false;
 
+        AudioSource musicSouce = GlobalController.Instance.musicSouce;
+
+        float dimmedVolume = 0.3f;
+
+        if (musicSouce == null || musicSouce.volume<dimmedVolume) volueDownMusicWhilePlaying = false;
+        
+
+        IEnumerator<float> musicDimmer=null;
+        float originalVolume=0;
+
+        
+
+        if (volueDownMusicWhilePlaying) {
+            originalVolume = musicSouce.volume;
+            musicDimmer = Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSouce, dimmedVolume, 1f));
+         }
         
         source.Play();
 
@@ -144,7 +160,24 @@ public class LevelMusicController : MonoBehaviour {
         source.clip = null;
         source.loop = false;
 
+        if (volueDownMusicWhilePlaying)
+        {
+
+            if (musicDimmer != null)
+                yield return Timing.WaitUntilDone(musicDimmer);
+
+            Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSouce, originalVolume, 1f));
+
+        }
+
         yield break;
     }
+
+    public static void clearSoundEffectFromSource()
+    {
+        if (GlobalController.Instance.afxSource != null) GlobalController.Instance.afxSource.clip = null;
+    }
+
+
 
 }

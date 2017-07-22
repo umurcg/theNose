@@ -13,6 +13,8 @@ public class HeartGameObject : MonoBehaviour {
     public float destroyTime;
     public Quaternion initialRot;
 
+    public GameObject particle;
+
     //public bool debug;
 
 	// Use this for initialization
@@ -52,16 +54,22 @@ public class HeartGameObject : MonoBehaviour {
             if (ggc.scoreValue < 0)
             {
                 youWin();
-            }
+            } 
             else
             {
                 //ALLAH BELAMI VERSİN
                 if (obstacle)
                 {
+                
+                    particle.SetActive(true);
+                    particle.transform.SetParent(null);
                     Destroy(gameObject);
                 }
                 else
                 {
+           
+                    particle.SetActive(true);
+                    particle.transform.SetParent(null);
                     Destroy(transform.parent.gameObject);
                 }
             }
@@ -70,7 +78,7 @@ public class HeartGameObject : MonoBehaviour {
     
     void youWin()
     {
-
+        GetComponent<Collider>().enabled = false;
         RotateItself ri = GetComponent<RotateItself>();
         float speed = ri.speed;
         if (ri)
@@ -122,6 +130,10 @@ public class HeartGameObject : MonoBehaviour {
             yield return 0;
         }
         transform.localScale = aimScale;
+
+        particle.SetActive(true);
+        particle.transform.SetParent(null);
+
         Destroy(transform.parent.gameObject);
         ggc = transform.parent.GetComponent<GirlGameController>();
         Timing.RunCoroutine(ggc._finish(0f));

@@ -13,6 +13,8 @@ using System.Linq;
     Vector3 hitPosition;
     Vector3 normalh;
 
+    public AudioClip[] ahhVoices;
+
     int triNumber;
     
     List<int> removedInd;
@@ -255,6 +257,10 @@ using System.Linq;
     {
         GameObject obj = (GameObject)Instantiate(scar, pos, Quaternion.FromToRotation(Vector3.forward, normal));
         obj.transform.parent = transform;
+
+        //Playy sound effect
+        if(ahhVoices.Length>0)
+            LevelMusicController.playSoundEffect(ahhVoices[Random.Range(0, ahhVoices.Length)]);
 
     }
 

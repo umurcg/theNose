@@ -15,8 +15,9 @@ public class LoadScene : MonoBehaviour {
 
     public bool loadWithLoadingScreen = true;
 
-    public GameObject canvasObj;
+    //public GameObject canvasObj;
     public GameObject loadingScreenPefab;
+    public float minLoadingScreenDur = 3f;
 
     //public int index;
     //public string sceneName;
@@ -74,8 +75,10 @@ public class LoadScene : MonoBehaviour {
             Debug.Log("Creating loading page");
             GameObject spawned=Instantiate(loadingScreenPefab);
 
+            if(blackScreen.script!=null)
+                blackScreen.script.gameObject.SetActive(false);
 
-            blackScreen.script.gameObject.SetActive(false);
+            yield return Timing.WaitForSeconds(minLoadingScreenDur);
 
             AsyncOperation async = SceneManager.LoadSceneAsync((int)Scene);
 

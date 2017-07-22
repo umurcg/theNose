@@ -1482,7 +1482,26 @@ public class Vckrs : MonoBehaviour
         return newArray;
 
     }
-    
+
+    public static IEnumerator<float> smoothVolumeChange(AudioSource source, float aimVolume, float speed)
+    {
+        float ratio = 0;
+        float initialVolume = source.volume;
+
+        while (ratio < 1)
+        {
+            ratio += Time.deltaTime * speed;
+            source.volume=Mathf.Lerp(initialVolume, aimVolume, ratio);
+
+            yield return 0;
+        }
+
+        source.volume = aimVolume;
+
+        yield break;
+
+    }
+
 }
 
 

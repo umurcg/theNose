@@ -30,6 +30,7 @@ public class FishGameController : GameController {
 
 
     public GameObject fish;
+    MoveObjectToFocus motf;
 
     Vector2 prevMousePos;
 
@@ -45,7 +46,7 @@ public class FishGameController : GameController {
     public DenizEfeGameController degc;
 
 
-    MoveObjectToFocus motf;
+
 
     CursorImageScript cis;
 
@@ -55,12 +56,15 @@ public class FishGameController : GameController {
     List<GameObject> linesObject;
     Canvas canv;
 
+    float distToCam;
+
     // Use this for initialization
     public override void Start () {
 
         base.Start();
 
         cam = CharGameController.getCamera().GetComponent<Camera>();
+        distToCam = GlobalController.cameraForwardDistance;
 
         speeds = new List<float>();
         //lines = new List<Vector2>();
@@ -75,7 +79,7 @@ public class FishGameController : GameController {
         finishButtonComp.onClick.AddListener(finishGame);
         finishButtonComp.interactable = false;
 
-        motf = GetComponent<MoveObjectToFocus>();
+        motf = fish.GetComponent<MoveObjectToFocus>();
 
         linesObject = new List<GameObject>();
 
@@ -107,7 +111,10 @@ public class FishGameController : GameController {
 
         if (Stage == stage.outsideOfWater && Input.GetMouseButtonUp(0))
         {
+
             fish.SetActive(false);
+            motf.recover();
+
             frc.throwHook();
             Stage = stage.serachingForFish;
 
@@ -171,11 +178,15 @@ public class FishGameController : GameController {
                     
                 }
 
+//#if UNITY_EDITOR
 
+//                catchedFish();
+//#endif                
                 if (speedConition && curvatureCondition && lengthConition)
                 {
                     catchedFish();
                 }
+
 
                 speeds.Clear();
                 //lines.Clear();
@@ -222,7 +233,7 @@ public class FishGameController : GameController {
             LineRendererCylinder lrc = line.AddComponent<LineRendererCylinder>();
 
             lrc.setStartAndPos(Input.mousePosition, prevMousePos);
-            lrc.setStartAndPos(cam.ScreenToWorldPoint(Input.mousePosition), cam.ScreenToWorldPoint(prevMousePos));
+            lrc.setStartAndPos(cam.ScreenToWorldPoint(Input.mousePosition+Vector3.forward*distToCam), cam.ScreenToWorldPoint((Vector3)(prevMousePos)+ Vector3.forward * distToCam));
 
 
 
@@ -231,7 +242,7 @@ public class FishGameController : GameController {
 
             if (lineMaterial!=null) lrc.setMaterial(lineMaterial);
 
-            FadeAndDie  fad=line.AddComponent<FadeAndDie>();
+            FadeAndDie fad = line.AddComponent<FadeAndDie>();
             fad.speed = 1f;
             fad.fadeAndDie();
 
@@ -248,7 +259,11 @@ public class FishGameController : GameController {
 
     void catchedFish()
     {
+        Debug.Log("cATCHED FİSHJ");
         fish.SetActive(true);
+
+        //motf.move();
+        Timing.RunCoroutine(motf.move(5f));
         if (!finishButtonComp.IsInteractable())
             finishButtonComp.interactable = true;
     }

@@ -11,6 +11,15 @@ public class MovementWithKeyboard2D : MonoBehaviour {
     public float jumpHeight = 2f;
     public float jumpSpeed = 1f;
 
+    ////Different speeds for perspective and ortogrpahic
+    //public float ortSpeed = 3;
+    //public float persSpeed = 1.5f;
+    //public float jumpOrtSpeed = 1f;
+    //public float jumpPersSpeed = 0.5f;
+    //public float jumpPersHeight = 1f;
+
+    public float ortToPersRatio = 0.5f;
+
     //For controlling from script
     public float scriptInput;
 
@@ -29,9 +38,18 @@ public class MovementWithKeyboard2D : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-       forward = Camera.main.gameObject.transform.forward;
+        forward = Camera.main.gameObject.transform.forward;
         right = Camera.main.gameObject.transform.right;
         prevHorInputState = Input.GetAxis("Horizontal");
+
+        if (CharGameController.cgc.camType == CharGameController.cameraType.Ortographic)
+        {
+            speed = speed * ortToPersRatio;
+            rotateSpeed = rotateSpeed * ortToPersRatio;
+            jumpHeight = jumpHeight * ortToPersRatio;
+            jumpSpeed = jumpSpeed * ortToPersRatio;
+        }
+
 
         //transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, distanceToCam)).y, transform.position.z);
     }

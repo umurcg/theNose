@@ -29,8 +29,7 @@ public class WhoIsTalking : MonoBehaviour
  
     }
 
-    // Use this for initialization
-    void Start()
+    private void OnEnable()
     {
         if (self != null)
         {
@@ -41,34 +40,44 @@ public class WhoIsTalking : MonoBehaviour
             //Debug.Log("Creating new static object");
             self = this;
         }
-
         characters = new Dictionary<string, List<GameObject>>();
+    }
+
+    private void OnDisable()
+    {
+        if (self == this) self = null;
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+
         text = GetComponent<Text>();
-        if (gameobjectsArray.Length > 0)
-            foreach (GameObject go in gameobjectsArray)
-            {
-                if (go != null)
-                {
-                    addCharacterToDict(go, go.name);
-                    //characters.Add(go.name, go);
-                }
-            }
+        //if (gameobjectsArray.Length > 0)
+        //    foreach (GameObject go in gameobjectsArray)
+        //    {
+        //        if (go != null)
+        //        {
+        //            addCharacterToDict(go, go.name);
+        //            //characters.Add(go.name, go);
+        //        }
+        //    }
 
 
 
 
         //Add player character to dictionary
-        player = CharGameController.getActiveCharacter();
-        if (player)
-        {
-            if(!characters.ContainsKey(player.name))
-            characters.Add(player.name,new List<GameObject>() { player });
+        //player = CharGameController.getActiveCharacter();
+        //if (player)
+        //{
+        //    if(!characters.ContainsKey(player.name))
+        //    characters.Add(player.name,new List<GameObject>() { player });
 
 
-        }else
-        {
-            Debug.Log("Player is null");
-        }
+        //}else
+        //{
+        //    Debug.Log("Player is null");
+        //}
 
         baloon = transform.GetChild(0).gameObject;
         baloon.SetActive(false);

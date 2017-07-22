@@ -9,6 +9,8 @@ public class MuteButton : MonoBehaviour {
     public SettingsListeners settingListener;
     Image buttonImage;
 
+    public bool unmuteAtNewScene=true;
+
     bool muted = false;
 
 	// Use this for initialization
@@ -22,7 +24,10 @@ public class MuteButton : MonoBehaviour {
 
     private void Start()
     {
+        if (unmuteAtNewScene) unMute();
+
         muted = GlobalController.Instance.musicSouce.mute==true;
+              
         updateButton();
     }
 

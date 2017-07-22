@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 
 //This scripts registers object to subtitle list in whoistalking script
@@ -14,21 +15,45 @@ public class RegisterToSubtitleList : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-        key = getNameForLanguage();
-        WhoIsTalking.self.addCharacterToDict(gameObject, key);
-      
+        
+        register();
 
 	}
 
-    private void OnDestroy()
+    private void OnDisable()
     {
+        SceneManager.sceneLoaded -= register;
+
         if (key == null) return;
 
-        WhoIsTalking.self.removeCharacter(key, gameObject);
+        if(WhoIsTalking.self!=null)
+            WhoIsTalking.self.removeCharacter(key, gameObject);
+                
+    }
+
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += register;
     }
 
     
+
+    void register(Scene scene, LoadSceneMode mode)
+    {
+        register();
+        Debug.Log("New scene is load so registering to whoistalking again");
+    }
+
+
+    void register()
+    {
+        key = getNameForLanguage();
+
+        if (WhoIsTalking.self == null) Debug.Log("Null who is talking " + Vckrs.nameTagLayer(gameObject));
+
+        WhoIsTalking.self.addCharacterToDict(gameObject, key);
+    }
 
     string getNameForLanguage()
     {

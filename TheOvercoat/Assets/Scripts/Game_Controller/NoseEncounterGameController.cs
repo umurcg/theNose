@@ -33,6 +33,8 @@ public class NoseEncounterGameController : GameController {
 
     List<OpenDoorLoad> activeDoors;
 
+    public AudioClip encounterSoundEffect;
+
     // Use this for initialization
     public override void Start () {
         base.Start();
@@ -129,7 +131,11 @@ public class NoseEncounterGameController : GameController {
 
         sc.callSubtitleWithIndex(0);
 
+
         yield return Timing.WaitForSeconds(1f);
+
+        //Playe effect
+        LevelMusicController.playSoundEffect(encounterSoundEffect);
 
         float originalDamper = cf.damper;
 
@@ -323,10 +329,10 @@ public class NoseEncounterGameController : GameController {
 
         lookAtObject = girl;
 
-        IEnumerator<float> girlWalkHandler = Timing.RunCoroutine(Vckrs.waitUntilStop(girl, 0f));
+        IEnumerator<float> girlWalkHandler = Timing.RunCoroutine(Vckrs.waitUntilStop(girl));
         yield return Timing.WaitUntilDone(girlWalkHandler);
 
-        Timing.RunCoroutine(Vckrs._lookTo(girl, player.transform.position, 1f));
+        Timing.RunCoroutine(Vckrs._lookTo(girl, player, 1f));
 
         lookAtObject = null;
         //Timing.RunCoroutine(Vckrs._lookTo(player, girl.transform.position - player.transform.position, 2f));

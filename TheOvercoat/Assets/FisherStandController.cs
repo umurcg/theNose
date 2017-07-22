@@ -29,6 +29,7 @@ public class FisherStandController : GameController, IClickAction {
         bucket.GetComponent<CollectableObject>().UnCollect(uncollectPosition.transform.position);
         bucket.GetComponent<SwapMaterials>().deactivate();
         bucket.transform.tag = "Untagged";
+        bucket.transform.parent = null;
 
         odl.Unlock();
 
