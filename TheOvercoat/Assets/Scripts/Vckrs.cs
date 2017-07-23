@@ -1502,6 +1502,30 @@ public class Vckrs : MonoBehaviour
 
     }
 
+/// <summary>
+/// Assigns material all visible active renderers 
+/// returns first material before changing the firs active renderr
+/// </summary>
+/// <param name="obj"></param>
+/// <param name="mat"></param>
+/// <returns></returns>
+    public static Material assignMaterialToAllActiveRenderers(GameObject obj, Material mat)
+    {
+        Material originalMat=null;
+        Renderer[] rends = obj.GetComponentsInChildren<Renderer>();
+        foreach(Renderer r in rends)
+        {
+            if (r.enabled)
+            {
+                if (originalMat == null) originalMat = r.material;
+
+                Debug.Log("Assigning material " + mat.name + " to " + r.gameObject.name);
+                r.material = mat;
+            }
+        }
+
+        return originalMat;
+    }
 }
 
 

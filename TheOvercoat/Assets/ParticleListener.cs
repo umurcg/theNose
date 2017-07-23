@@ -9,26 +9,48 @@ public class ParticleListener : MonoBehaviour
     public GameObject sgcController;
     SculpturerGameController sgc;
     public float damage = 25;
-    //public float particlforDamage = 5;
+    public float colliderRadius = 2f;
+    public Vector3 colliderPos = Vector3.zero;
 
-    // these lists are used to contain the particles which match
-    // the trigger conditions each frame.
-    //List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
-    //List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
+    GameObject player;
+    SphereCollider sphereCollider;
+
     List<ParticleSystem.Particle> inside = new List<ParticleSystem.Particle>();
 
     void Start()
     {
         sgc = sgcController.GetComponent<SculpturerGameController>();
         ps = GetComponent<ParticleSystem>();
-        GameObject player = CharGameController.getActiveCharacter();
-        ps.trigger.SetCollider(0, player.transform);
+        player= CharGameController.getActiveCharacter();
+
+        createAndAssignCollider();
+
+    }
+
+    void createAndAssignCollider()
+    {
+
+
+        sphereCollider = GameObject.CreatePrimitive(PrimitiveType.Sphere).GetComponent<SphereCollider>();
+        sphereCollider.transform.parent = player.transform;
+        sphereCollider.isTrigger = true;
+        sphereCollider.GetComponent<MeshRenderer>().enabled = false;
+        sphereCollider.transform.localPosition = colliderPos;
+        sphereCollider.radius = colliderRadius;
+
+        ps.trigger.SetCollider(0, sphereCollider);
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(sphereCollider.gameObject);   
     }
 
 
-    
     void OnParticleTrigger()
     {
+
+
 
         ParticleSystem ps = GetComponent<ParticleSystem>();
 
@@ -48,7 +70,8 @@ public class ParticleListener : MonoBehaviour
             ParticleSystem.Particle p = enter[i];
             p.remainingLifetime = 0;
             //p.startColor = new Color32(255, 0, 0, 255);
-            //enter[i] = p;
+            enter[i] = p;
+            Debug.Log("dAMAGİNG");
             sgc.damage(damage);
 
         }

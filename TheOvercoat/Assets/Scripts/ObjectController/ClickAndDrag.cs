@@ -67,7 +67,7 @@ public class ClickAndDrag : MonoBehaviour {
 
 		//transform.position += new Vector3 (Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y"), 0) * Time.deltaTime * speed;
 			
-		transform.position=Vector3.Lerp(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition),Time.deltaTime*speed);
+		transform.position=Vector3.Lerp(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition+Vector3.forward*GlobalController.cameraForwardDistance),Time.deltaTime*speed);
 
 		//		if (Input.GetAxis ("Mouse X") !=0|| Input.GetAxis ("Mouse Y")!=0) {
 		//			transform.position += (transform.up/3-transform.forward)* Time.deltaTime*speed;

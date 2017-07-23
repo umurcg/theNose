@@ -53,6 +53,7 @@ public class CheatScript : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.J)) takeScreenShot();
             if (Input.GetKeyDown(KeyCode.O)) changeCameraType();
             if (Input.GetKeyDown(KeyCode.R)) continueToWalk();
+            if (Input.GetKeyDown(KeyCode.K)) openAllDoors();
 
     }
 
@@ -288,6 +289,11 @@ public class CheatScript : MonoBehaviour {
     void continueToWalk()
     {
         CharGameController.getActiveCharacter().GetComponent<PlayerComponentController>().ContinueToWalk();
+    }
+
+    void openAllDoors()
+    {
+        OpenDoorLoad.openAllDoors();
     }
 
 }

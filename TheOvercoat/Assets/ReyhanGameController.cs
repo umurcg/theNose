@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using MovementEffects;
 
 
 //In this game, number of garbage area is created.
@@ -173,9 +174,23 @@ public class ReyhanGameController : GameController {
 
     public void foundTreasure()
     {
+        Timing.RunCoroutine(_foundTreasure());               
+    }
+
+    IEnumerator<float> _foundTreasure()
+    {
+        MoveObjectToFocus motf=treasure.AddComponent<MoveObjectToFocus>();
+
+        motf.move();
+
+        yield return Timing.WaitForSeconds(2f);
+
+        while (!Input.GetMouseButtonDown(0)) yield return 0;
+
         messageReciever.SendMessage(message);
         gameObject.SetActive(false);
-        
+
+        yield break;
     }
 
 }

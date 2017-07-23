@@ -125,7 +125,7 @@ abstract public class GameController : MonoBehaviour , IClickAction{
         Debug.Log("This game is used " + gameObject.name);
     }
 
-
+    //[ContextMenu ("Register as used")]
     //Calling this functions saves that game controller is used and wont be used again.
     protected void registerAsUsed()
     {

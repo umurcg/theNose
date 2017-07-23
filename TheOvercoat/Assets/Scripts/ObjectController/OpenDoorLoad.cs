@@ -206,6 +206,19 @@ public class OpenDoorLoad : LoadScene {
 
     }
 
+    public static void openAllDoors()
+    {
+        List<int> sceneList = GlobalController.Instance.getCurrentSceneList();
+
+        foreach (KeyValuePair<int, OpenDoorLoad> door in doors)
+        {
+           
+                door.Value.playerCanOpen = true;
+            
+        }
+
+    }
+
     public static int getIndexWithScene(GlobalController.Scenes scene)
     {
         //Debug.Log("You are looking for door to " + scene.ToString());

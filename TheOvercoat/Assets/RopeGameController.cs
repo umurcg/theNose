@@ -71,7 +71,7 @@ public class RopeGameController : MonoBehaviour {
             GameObject spawnObject = Instantiate(ropeObject) as GameObject;
             spawnObject.transform.parent = _3DCanvas.transform;
 
-            spawnObject.transform.position = cam.ScreenToWorldPoint(new Vector2(Screen.width * 1 / 10 + Screen.width * 1 / 10 * i, Screen.height * 9/10));
+            spawnObject.transform.position = cam.ScreenToWorldPoint(new Vector3(Screen.width * 1 / 10 + Screen.width * 1 / 10 * i, Screen.height * 9/10,GlobalController.cameraForwardDistance));
 
             ropes.Add(spawnObject);
 
@@ -184,7 +184,7 @@ public class RopeGameController : MonoBehaviour {
         if (maximumTry > 0)
         {
             //Debug.Log("lefft number of try is " + maximumTry);
-            return cam.ScreenToWorldPoint(new Vector3(foundX, foundY, 0));
+            return cam.ScreenToWorldPoint(new Vector3(foundX, foundY, GlobalController.cameraForwardDistance));
         }
 
         return Vector3.zero;
@@ -197,7 +197,7 @@ public class RopeGameController : MonoBehaviour {
         float height = Random.Range(Screen.height/offset, Screen.height- Screen.height / offset);
         float width = Random.Range(Screen.width / offset, Screen.width - Screen.width / offset);
 
-        return cam.ScreenToWorldPoint(new Vector2(width, height));
+        return cam.ScreenToWorldPoint(new Vector3(width, height,GlobalController.cameraForwardDistance));
     }
 
 

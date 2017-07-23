@@ -111,6 +111,7 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
 
     public void termianteCurrentController()
     {
+        if (activeController == null) return;
         activeController.terminateSubtitle();
         activeController = null;
     }

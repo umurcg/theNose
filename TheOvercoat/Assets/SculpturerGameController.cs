@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class SculpturerGameController : GameController {
 
@@ -229,6 +230,7 @@ public class SculpturerGameController : GameController {
     {
         sculpturer.tag = "ActiveObject";
         sculpturer.GetComponent<SculpturerAI>().enabled = false;
+        sculpturer.GetComponent<NavMeshAgent>().isStopped = true;
         Debug.Log("Win");
 
         foreach(HeykelController H in heykels)
@@ -282,15 +284,17 @@ public class SculpturerGameController : GameController {
     IEnumerator<float> lost()
     {
         pcc.StopToWalk();
-  
 
 
-        Renderer playerRenderer=null;
-        for(int i=0;i<player.transform.childCount;i++)
-            if(player.transform.GetChild(i).gameObject.activeSelf && player.transform.GetChild(i).GetComponent<Renderer>()) playerRenderer =player.transform.GetChild(i).GetComponent<Renderer>();
 
-        Material originalMat = playerRenderer.material;
-        playerRenderer.material = freezeMaterial;
+        //Renderer playerRenderer=null;
+        //for(int i=0;i<player.transform.childCount;i++)
+        //    if(player.transform.GetChild(i).gameObject.activeSelf && player.transform.GetChild(i).GetComponent<Renderer>()) playerRenderer =player.transform.GetChild(i).GetComponent<Renderer>();
+
+
+        Material originalMat = Vckrs.assignMaterialToAllActiveRenderers(player, freezeMaterial);
+        //Material originalMat = playerRenderer.material;
+        //playerRenderer.material = freezeMaterial;
 
 
         player.GetComponent<BasicCharAnimations>().enabled = false;
@@ -298,6 +302,10 @@ public class SculpturerGameController : GameController {
 
         sculpturer.GetComponent<SculpturerAI>().enabled = false;
         Timing.RunCoroutine(Vckrs._lookTo(sculpturer, player, 1f));
+
+        sc.termianteCurrentController();
+
+        yield return 0;
 
         sc.callSubtitleWithIndex(2);
         while (subtitle.text != "") yield return 0;
@@ -307,10 +315,14 @@ public class SculpturerGameController : GameController {
         ls.Scene = GlobalController.Scenes.Atolye;
         handlerHolder=Timing.RunCoroutine( ls._Load());
 
-        yield return Timing.WaitUntilDone(handlerHolder);
+        //yield return Timing.WaitUntilDone(handlerHolder);
+        yield return Timing.WaitForSeconds(2);
+
         playerAnim.speed = 1;
         player.GetComponent<BasicCharAnimations>().enabled = true;
-        playerRenderer.material = originalMat;
+        //playerRenderer.material = originalMat;
+        //Debug.Log("Assigning original mat "+originalMat.name);
+        Vckrs.assignMaterialToAllActiveRenderers(player, originalMat);
 
     }
 

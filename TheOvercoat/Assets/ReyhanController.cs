@@ -9,7 +9,7 @@ public class ReyhanController : GameController {
     FollowSmoothly fs;
     Animator anim;
     BasicCharAnimations bca;
-    NewsGameController ngc;
+    public NewsGameController ngc;
 
     //// Update is called once per frame
     //void Update () {
@@ -78,6 +78,16 @@ public class ReyhanController : GameController {
         //Two condition
         //If reythan game is compleetly finished than dont disable edito
         //But if reyhan waiting at the door disable editor.
+
+        //If reyhan is compleetly finished rreyhncity controller will register itself
+        //so if it is note registered you can assume she is still at the door so you will disable edito
+        //but if it is registered then she is not at the door so you wont disable editor
+
+        if (!GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("CityR."))
+        {
+            ngc.deactivateController();
+        }
+
     }
 
     public override void activateController()

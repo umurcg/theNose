@@ -279,6 +279,9 @@ public class ReyhanCityController : GameController, IClickAction {
         sc.callSubtitleWithIndex(4);
         while (subtitle.text != "") yield return 0;
 
+        ////Register game controller
+        //registerAsUsed();
+
         findLock();
       
 
@@ -286,6 +289,12 @@ public class ReyhanCityController : GameController, IClickAction {
 
         yield break;
         
+    }
+
+    [ContextMenu ("Register game controller")]
+    void register()
+    {
+        registerAsUsed();
     }
 
     [ContextMenu ("find lock")]
@@ -350,6 +359,12 @@ public class ReyhanCityController : GameController, IClickAction {
     {
         base.Action();
         Timing.RunCoroutine(reyhanLeavesKovalev());
+    }
+
+    public override void gameIsUsed()
+    {
+        base.gameIsUsed();
+        deactivateController();
     }
 
 }

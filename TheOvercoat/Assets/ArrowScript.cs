@@ -46,7 +46,8 @@ public class ArrowScript : MonoBehaviour {
         rend = GetComponent<Renderer>();
 
         cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        cylinder.transform.parent = transform.parent;
+        //cylinder.transform.parent = transform.parent;
+
         Destroy(cylinder.GetComponent<Collider>());
         if (material != null) cylinder.GetComponent<Renderer>().material = material;
 
@@ -81,7 +82,7 @@ public class ArrowScript : MonoBehaviour {
         //cylinder.transform.parent = null;
         cylinder.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
         cylinder.transform.up = endPoint - startPoint;
-        cylinder.transform.localScale = new Vector3(radiusOfCylinder, length*4, radiusOfCylinder);
+        cylinder.transform.localScale = new Vector3(radiusOfCylinder, length, radiusOfCylinder);
         //cylinder.transform.parent = transform;
 
         Vector3 dir = endPoint - startPoint;
@@ -100,7 +101,7 @@ public class ArrowScript : MonoBehaviour {
 
         rb.AddForce(forceMultiplier*(endPoint - transform.position), ForceMode.Impulse);
         rb.useGravity = true;
-        //gravity.enabled = true;
+        gravity.enabled = true;
         //amar.enabled = true;
 
         cone.SetActive(false);
@@ -116,7 +117,7 @@ public class ArrowScript : MonoBehaviour {
         Debug.Log("Resetting");
 
         rb.useGravity = false;
-        //gravity.enabled = false;
+        gravity.enabled = false;
         rb.velocity = Vector3.zero;
         //amar.enabled = false;
 

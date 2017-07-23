@@ -57,9 +57,12 @@ public class BirdsEyeView : MonoBehaviour {
         //Timing.RunCoroutine(disableEnable());
 
         cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
-        streetParent = GameObject.FindGameObjectWithTag("Street").transform.Find("HorseRoads").gameObject;
+        
 
     }
+
+
+
 
     void OnEnable()
     {
@@ -75,6 +78,7 @@ public class BirdsEyeView : MonoBehaviour {
 
         doorNames = new Dictionary<GameObject, Vector3>();
         mainCanvas = GameObject.FindGameObjectWithTag("Canvas");
+        streetParent = GameObject.FindGameObjectWithTag("Street").transform.Find("HorseRoads").gameObject;
     }
 
     void OnDisable()
@@ -320,7 +324,8 @@ public class BirdsEyeView : MonoBehaviour {
 
         //foreach (GameObject area in areaList)
         //    area.SetActive(b);
-        streetParent.SetActive(b);
+        if(streetParent)
+            streetParent.SetActive(b);
     }
 
     bool areStreetsActive()
