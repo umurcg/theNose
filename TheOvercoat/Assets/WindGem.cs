@@ -22,8 +22,10 @@ public class WindGem : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") ;
-        collect();
+        if (other.tag == "Player" && fc.enabled)
+        {
+            collect();
+        }
     }
 
     [ContextMenu("Collect")]

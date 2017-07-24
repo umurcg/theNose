@@ -48,6 +48,9 @@ ModelImporter:
     7400002: FlyForward
     7400004: Idle
     7400006: Landing
+    7400008: Falling
+    7400010: Crash
+    7400012: FallingInitial
     9500000: //RootNode
     13700000: Cube
   materials:
@@ -60,6 +63,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -269,6 +274,204 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Falling
+      takeName: Falling
+      firstFrame: -1
+      lastFrame: 34
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 44
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/torso
+        weight: 1
+      - path: Armature/torso/leg_L
+        weight: 1
+      - path: Armature/torso/leg_R
+        weight: 1
+      - path: Armature/torso/neck
+        weight: 1
+      - path: Armature/torso/neck/head
+        weight: 1
+      - path: Armature/torso/tail
+        weight: 1
+      - path: Armature/torso/upperWing_L
+        weight: 1
+      - path: Armature/torso/upperWing_L/middleWing_L
+        weight: 1
+      - path: Armature/torso/upperWing_L/middleWing_L/downWing_L
+        weight: 1
+      - path: Armature/torso/upperWing_R
+        weight: 1
+      - path: Armature/torso/upperWing_R/middleWing_R
+        weight: 1
+      - path: Armature/torso/upperWing_R/middleWing_R/downWing_R
+        weight: 1
+      - path: Armature/wingIK_L
+        weight: 1
+      - path: Armature/wingIK_R
+        weight: 1
+      - path: Armature/wingShoulderIK_L
+        weight: 1
+      - path: Armature/wingShoulderIK_R
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crash
+      takeName: Crash
+      firstFrame: -1
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/torso
+        weight: 1
+      - path: Armature/torso/leg_L
+        weight: 1
+      - path: Armature/torso/leg_R
+        weight: 1
+      - path: Armature/torso/neck
+        weight: 1
+      - path: Armature/torso/neck/head
+        weight: 1
+      - path: Armature/torso/tail
+        weight: 1
+      - path: Armature/torso/upperWing_L
+        weight: 1
+      - path: Armature/torso/upperWing_L/middleWing_L
+        weight: 1
+      - path: Armature/torso/upperWing_L/middleWing_L/downWing_L
+        weight: 1
+      - path: Armature/torso/upperWing_R
+        weight: 1
+      - path: Armature/torso/upperWing_R/middleWing_R
+        weight: 1
+      - path: Armature/torso/upperWing_R/middleWing_R/downWing_R
+        weight: 1
+      - path: Armature/wingIK_L
+        weight: 1
+      - path: Armature/wingIK_R
+        weight: 1
+      - path: Armature/wingShoulderIK_L
+        weight: 1
+      - path: Armature/wingShoulderIK_R
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: FallingInitial
+      takeName: FallingInitial
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/torso
+        weight: 1
+      - path: Armature/torso/leg_L
+        weight: 1
+      - path: Armature/torso/leg_R
+        weight: 1
+      - path: Armature/torso/neck
+        weight: 1
+      - path: Armature/torso/neck/head
+        weight: 1
+      - path: Armature/torso/tail
+        weight: 1
+      - path: Armature/torso/upperWing_L
+        weight: 1
+      - path: Armature/torso/upperWing_L/middleWing_L
+        weight: 1
+      - path: Armature/torso/upperWing_L/middleWing_L/downWing_L
+        weight: 1
+      - path: Armature/torso/upperWing_R
+        weight: 1
+      - path: Armature/torso/upperWing_R/middleWing_R
+        weight: 1
+      - path: Armature/torso/upperWing_R/middleWing_R/downWing_R
+        weight: 1
+      - path: Armature/wingIK_L
+        weight: 1
+      - path: Armature/wingIK_R
+        weight: 1
+      - path: Armature/wingShoulderIK_L
+        weight: 1
+      - path: Armature/wingShoulderIK_R
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -294,6 +497,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -304,7 +508,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1

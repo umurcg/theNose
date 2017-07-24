@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using MovementEffects;
 
 public class BirdController : MonoBehaviour {
 
     CharacterController cc;
     public float rotateSpeed=1f;
-    public float speed=0.25f;
+    public float speed=2f;
     public float elevSpeed = 0.5f;
     public float maxHeight,maxX,maxZ = 70f;
     public float minHeight,minX,minZ = 0f;
@@ -20,6 +22,14 @@ public class BirdController : MonoBehaviour {
     float firstCamSize;
     Camera cam;
     CameraRotator rotator;
+
+    //For fall and die functionality
+    BirdComponentController bcc;
+    Animator birdAnim;
+    public float groundLevel = 0;
+    public float fallSpeed = 1;
+
+    //bool releaseFall = false;
 
     ////TODO
     //public enum direction {posFor,negFor,posRigh,negRigh,posUp,negUp };
@@ -36,6 +46,8 @@ public class BirdController : MonoBehaviour {
         cam = Camera.main;
         firstCamSize = cam.orthographicSize;
         rotator = cam.gameObject.GetComponent<CameraRotator>();
+        birdAnim = GetComponent<Animator>();
+        bcc = GetComponent<BirdComponentController>();
 	}
 	
 	// Update is called once per frame
@@ -71,10 +83,10 @@ public class BirdController : MonoBehaviour {
         }
 
         //Move
-        cc.Move(transform.forward * ver * speed);
+        cc.Move(transform.forward * ver * speed / 10);
 
         //Rotate around up axis
-        transform.Rotate(Vector3.up * hor, Space.World);
+        transform.Rotate(Vector3.up * hor* rotateSpeed, Space.World);
 
         //Set camera zoom
         float calculatedSize = calculateCamSize(transform.position.y);
@@ -176,5 +188,73 @@ public class BirdController : MonoBehaviour {
         }
     }
 
+    [ContextMenu("fall")]
+    public void fall()
+    {
+        Timing.RunCoroutine(_fall());
+    }
+
+
+    public IEnumerator<float> _fall()
+    {
+        GetComponent<BasicCharAnimations>().enabled = false;      
+        GetComponent<BirdLandingScript>().enabled = false;
+        bcc.StopToWalk();
+        enabled = false;
+
+        //GetComponent<CharacterController>().enabled = true;
+
+        birdAnim.SetBool("Fall",true);
+
+        //yield return Timing.WaitForSeconds(1f);
+
+        //Add enter trigger and sphere collider to understand when bird hit somethink
+        EnterTrigger et = gameObject.AddComponent<EnterTrigger>();
+        et.onlyPlayerCanTrigger = false;
+        SphereCollider sc = gameObject.AddComponent<SphereCollider>();
+        sc.isTrigger = true;
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+
+        yield return 0;
+
+        //while (transform.position.y > groundLevel)
+        while ((!et.enter || !et.lastEnteredObject.isStatic) && (transform.position.y > groundLevel))
+        {
+   
+            yield return 0;
+        }
+
+        Vckrs.printNameTagLayer(et.lastEnteredObject);
+
+        Destroy(sc);
+        Destroy(rb);
+        Destroy(et);
+
+        Debug.Log("Crash");
+        birdAnim.SetTrigger("Crash");
+
+        //while (!releaseFall) yield return 0;
+
+
+        yield break;
+    }
+
+
+    [ContextMenu("release")]
+    public void termianteFall()
+    {
+        Debug.Log("Terminating fall");
+
+        //releaseFall = true;
+        birdAnim.SetBool("Fall", false);
+
+        GetComponent<BasicCharAnimations>().enabled = true;
+        GetComponent<BirdLandingScript>().enabled = true;
+        bcc.ContinueToWalk();
+        enabled = true;
+
+        //releaseFall = false;
+
+    }
 
 }

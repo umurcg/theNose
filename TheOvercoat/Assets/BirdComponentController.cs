@@ -6,7 +6,7 @@ public class BirdComponentController : PlayerComponentController {
 
     BirdController birdController;
     MoveToWithoutAgent birdNma;
-    
+        
 
 	// Use this for initialization
 	protected override void Awake () {

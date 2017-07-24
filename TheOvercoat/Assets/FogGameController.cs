@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using MovementEffects;
 
 public class FogGameController : GameController {
 
@@ -11,8 +13,9 @@ public class FogGameController : GameController {
     public float fullBreath = 100;
     public float suffocationSpeed = 5f;
 
-    [HideInInspector]
-    public bool inFog = false;
+    //[HideInInspector]
+    //public bool inFog = false;
+    public int numberOfEnteredFogCollider = 0;
 
     public PointBarScript bar;
     public GameObject windUI;
@@ -28,7 +31,8 @@ public class FogGameController : GameController {
     {
         base.Awake();
         fogs = GetComponentsInChildren<FogController>();
-        fogs[0].enabled = true;
+        currentFogIndex = 0;
+        fogs[currentFogIndex].enabled = true;
 
         bar.enableBar("Breath");
         bar.setLimits(fullBreath,0.0f);
@@ -38,23 +42,25 @@ public class FogGameController : GameController {
         windUI.transform.position = Canvas3d.transform.position + (Screen.width / 2) * 1 / 5 * windUI.transform.right + (Screen.height / 2) * 1 / 5 * windUI.transform.up;
     }
 
-    //public override void Start()
-    //{
-    //    base.Start();
-    //    finisGame();
-    //}
+    public override void Start()
+    {
+        base.Start();
+        //finisGame();
+        numberOfEnteredFogCollider = 0;
+    }
 
     // Update is called once per frame
     void Update () {
 
         if (breath <= 0)
         {
-            restartGame();
+            die();
             enabled = false;
             return;
         }
 
-        if (inFog)
+        //if (inFog)
+        if(numberOfEnteredFogCollider>0)
         {
             breath -= Time.deltaTime * suffocationSpeed;
             bar.setPoint(breath);
@@ -90,11 +96,33 @@ public class FogGameController : GameController {
     }
 
     [ContextMenu ("Restart")]
-    void restartGame()
+    void die()
     {
-        GetComponent<LoadScene>().Load();
+        Timing.RunCoroutine(_die());
+       
     }
 
+    IEnumerator<float> _die()
+    {
+
+        
+
+        BirdController bc =player.GetComponent<BirdController>();
+
+        yield return Timing.WaitUntilDone( Timing.RunCoroutine(bc._fall()));
+
+        yield return Timing.WaitForSeconds(2f);
+
+        bc.termianteFall();
+
+        yield return 0;
+
+        GetComponent<LoadScene>().Load();
+
+        
+
+        yield break;
+    }
 
     public override void activateController()
     {
@@ -108,5 +136,28 @@ public class FogGameController : GameController {
         gameObject.SetActive(false);
     }
 
+    //We should track fogs that bird is entered 
+    //It shouldnt be boolean because colldiers of fog can be in intersection
+    public void birdIsEnteredInAfog()
+    {
+        numberOfEnteredFogCollider++;
+
+    }
+
+    public void birdIsExitedFog()
+    {
+
+        if(numberOfEnteredFogCollider>0)
+            numberOfEnteredFogCollider--;
+
+    }
+
+    public FogController getActiveFogController()
+    {
+        if (fogs == null) return null;
+
+        return fogs[currentFogIndex];
+
+    }
 
 }

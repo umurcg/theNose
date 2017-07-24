@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class FogController : MonoBehaviour {
 
-    public GameObject fogGameControllerObj;
+    //public GameObject fogGameControllerObj;
  
-    FogGameController fgc;
+    public FogGameController fgc;
 
     public ParticleSystem ps;
 
@@ -17,12 +17,18 @@ public class FogController : MonoBehaviour {
 
     Text gemText;
 
+    WindGem[] winds;
+
+    bool playerIsInCollider = false;
+
     // Use this for initialization
     void Start () {
-        fgc = fogGameControllerObj.GetComponent<FogGameController>();
+        //fgc = fogGameControllerObj.GetComponent<FogGameController>();
         numberOfGem = transform.childCount;
         gemText = fgc.windUI.GetComponentInChildren<Text>();
         gemText.text = "x" + numberOfGem;
+
+        
     }
 	
 	// Update is called once per frame
@@ -34,16 +40,43 @@ public class FogController : MonoBehaviour {
         }
 	}
 
+    private void OnEnable()
+    {
+        winds = GetComponentsInChildren<WindGem>(true);
+
+        enableWinds();
+          
+    }
+
+    private void OnDisable()
+    {
+        disableWinds();
+    }
+        
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="Player" && fgc)
-             fgc.inFog = true;
+        //Debug.Log(other.name + "entered to fog " + gameObject.name);
+        if (other.tag == "Player" && fgc && !playerIsInCollider)
+        {   Debug.Log(other.name + "entered to fog " + gameObject.name);
+            fgc.birdIsEnteredInAfog();
+            playerIsInCollider = true;
+            //fgc.inFog = true;
+
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.tag == "Player"  && !fgc) Debug.Log("FOG GAME CONTROLLER IS NULLLLLLL FUUUUUUUUUUUCK " + gameObject.name);  
+
         if (other.tag == "Player" && fgc)
-            fgc.inFog = false;
+        {
+
+            fgc.birdIsExitedFog();
+            playerIsInCollider = false;
+            //fgc.inFog = false;
+        }
     }
 
     public FogGameController getGameController()
@@ -83,7 +116,8 @@ public class FogController : MonoBehaviour {
         ps.Stop();
         gameObject.SetActive(false);
 
-        fgc.inFog = false;
+        //fgc.inFog = false;
+        fgc.birdIsExitedFog();
         fgc.fogIsDestroyed(this);
 
         Destroy(this);
@@ -93,9 +127,41 @@ public class FogController : MonoBehaviour {
 
     public void gemIsCollected()
     {
+        if (enabled == false) return;
+
         numberOfGem--;
         gemText.text = "x" + numberOfGem;
     }
 
+    void enableWinds()
+    {
+        if (winds == null) return;
+
+        foreach (WindGem wind in winds)
+        {
+            Debug.Log("Activating " + wind.name);
+
+            wind.gameObject.SetActive(true);
+
+        }
+
+    }
+
+    void disableWinds()
+    {
+        if (winds == null) return;
+
+        foreach (WindGem wind in winds)
+        {
+            Debug.Log("Activating " + wind.name);
+
+            wind.gameObject.SetActive(false);
+
+        }
+
+        
+    }    
+
+    
     
 }

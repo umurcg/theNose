@@ -11,6 +11,7 @@ public class CheatScript : MonoBehaviour {
 
     
     CharacterControllerKeyboard cck;
+    BirdController bc;
 
     //Numbers
     KeyCode[] numbers = {
@@ -34,11 +35,7 @@ public class CheatScript : MonoBehaviour {
         //    enabled = false;
         //    return;
         //}
-
-        GameObject player = CharGameController.getActiveCharacter();
-
-        if (player == null)
-               cck = player.GetComponent<CharacterControllerKeyboard>();
+        updateMembers();
 
 	}
 	
@@ -163,12 +160,17 @@ public class CheatScript : MonoBehaviour {
     {
         updateMembers();
 
+
     }
 
     public void updateMembers()
     {
         GameObject player = CharGameController.getActiveCharacter();
-        if(player)  cck = player.GetComponent<CharacterControllerKeyboard>();
+        if (player)
+        {
+            cck = player.GetComponent<CharacterControllerKeyboard>();
+            bc = player.GetComponent<BirdController>();
+        }
     }
 
     //This enables user to set time scale. It is for debugging. But also it can be a cheat in futuer;)
@@ -273,7 +275,16 @@ public class CheatScript : MonoBehaviour {
         }
 
         //Debug.Log("Your speed is " + localSpeed);
-        if (localSpeed > 0) cck.speed = localSpeed;
+        if (localSpeed > 0)
+        {
+            if (cck)
+            {
+                cck.speed = localSpeed;
+            }
+            else if(bc) {
+                bc.speed = localSpeed;
+            }
+        }
 
         yield break;
     }

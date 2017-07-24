@@ -12,6 +12,10 @@ public class EnterTrigger : MonoBehaviour {
     [HideInInspector]
     public bool enter=false;
 
+    [HideInInspector]
+    public GameObject lastEnteredObject = null;
+
+
     //Use this variables if you want to send message when trigger is activated.
     public GameObject messageReciever;
     public string message;
@@ -62,7 +66,8 @@ public class EnterTrigger : MonoBehaviour {
         //IClickAction ic=  GetComponent<IClickAction>();
         //if(ic!=null)
         //ic.Action();
-        
+
+        lastEnteredObject = col.gameObject;
 
         if (col.tag == "Player"||!onlyPlayerCanTrigger){
 
