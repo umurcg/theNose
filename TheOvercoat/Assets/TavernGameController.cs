@@ -102,11 +102,11 @@ public class TavernGameController : GameController {
         {
             Timing.RunCoroutine(_ivanSitsBar());
         }
-        else if(charName!="Bird")
-        {
+        //else if(charName!="Bird")
+        //{
             Timing.RunCoroutine(_justDrink());
             //just drink
-        }
+        //}
     }
 
 
@@ -116,6 +116,15 @@ public class TavernGameController : GameController {
 
         yield return Timing.WaitForSeconds(3);
         sc.callSubtitleWithIndex(4);
+        if (player.name == "Bird")
+        {
+            subtitle.text = player.name + ": " + "tweet tweet cluck clap cock a doo";
+        }
+        else
+        {
+            subtitle.text = player.name + ": " + subtitle.text;
+        }
+
         while (subtitle.text != "") yield return 0;
         yield return Timing.WaitForSeconds(2);
         handlerHolder = blackScreen.script.fadeOut();

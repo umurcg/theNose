@@ -364,6 +364,8 @@ public class CityGameController : MonoBehaviour {
 
             tutorial.startTutorial(TutorailCanvas.Tutorials.Bird);
 
+            horseCariers.SetActive(false);
+
         }
 
         //Enable fog game

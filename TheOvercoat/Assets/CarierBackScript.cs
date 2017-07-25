@@ -9,6 +9,9 @@ public class CarierBackScript : MonoBehaviour {
     Quaternion relativeAngle;
     public float linearDamper=0.5f;
     public float angularDamper=0.5f;
+
+    public bool linearLerp = false;
+    public bool angularLerp = true;
     
 	// Use this for initialization
 	void Start () {
@@ -22,8 +25,31 @@ public class CarierBackScript : MonoBehaviour {
         var wantedPos = relativePos + frontObject.transform.position;
         var wantedRot = frontObject.transform.rotation * relativeAngle;
 
-        transform.position = Vector3.Lerp(transform.position, wantedPos, linearDamper * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, wantedRot, angularDamper * Time.deltaTime);
+        
+
+        if (linearLerp)
+        {
+            transform.position = Vector3.Lerp(transform.position, wantedPos, linearDamper * Time.deltaTime);
+        }
+        else
+        {
+            transform.position =wantedPos;
+
+        }
+
+        if (angularLerp)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, wantedRot, angularDamper * Time.deltaTime);
+        }
+        else
+        {
+            transform.rotation =wantedRot;
+        }
+
+  
+      
+
+
 
 	}
 }

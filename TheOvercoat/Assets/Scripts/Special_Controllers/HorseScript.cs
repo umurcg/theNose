@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MovementEffects;
 using System;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 //This script is special for horse carier.
 //It triggers camera to fly to map view
@@ -30,8 +31,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     public GameObject carierFront;
     public GameObject carierBack;
-    Rigidbody carierBackcc;
-    Rigidbody carierFrontcc;
+    //Rigidbody carierBackcc;
+    //Rigidbody carierFrontcc;
     Rigidbody cc;
 
     CharacterControllerKeyboard cck;
@@ -58,15 +59,19 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     Camera mainCam;
 
+    int originalAreaMask;
+
     // Use this for initialization
     void Awake() {  
         nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
         //mt = wayPoints.GetComponent<myTween>();
         cc = GetComponent<Rigidbody>();
-        carierBackcc = carierBack.GetComponent<Rigidbody>();
-        carierFrontcc = carierFront.GetComponent<Rigidbody>();
+        //carierBackcc = carierBack.GetComponent<Rigidbody>();
+        //carierFrontcc = carierFront.GetComponent<Rigidbody>();
         sc = GetComponent<SubtitleCaller>();
         cck = GetComponent<CharacterControllerKeyboard>();
+
+        originalAreaMask = nma.areaMask;
         
     }
 
@@ -168,7 +173,13 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         //Update camera follower
         //CharGameController.getCamera().GetComponent<CameraFollower>().updateTarget();
 
-        Timing.RunCoroutine(goToNearestPointInAreaMask(nma.areaMask));
+
+        
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(goToNearestPointInAreaMask(originalAreaMask)));
+
+        Debug.Log("went to nearest pos");
+
+        nma.areaMask = originalAreaMask;
 
         yield break;
     }
@@ -260,6 +271,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
         releaseForUserController();
 
+        nma.areaMask = NavMesh.AllAreas;
+
     }
 
     void autoControl()
@@ -348,23 +361,28 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     {
         //Debug.Log("freeze");
         cc.constraints = RigidbodyConstraints.FreezeAll;
-        carierBackcc.constraints = RigidbodyConstraints.FreezeAll;
-        carierFrontcc.constraints = RigidbodyConstraints.FreezeAll;
-        nma.enabled = false;
+        //carierBackcc.constraints = RigidbodyConstraints.FreezeAll;
+        //carierFrontcc.constraints = RigidbodyConstraints.FreezeAll;
+        //nma.enabled = false;
+        nma.isStopped = true;
     }
     public void releaseForNavMeshController()
     {
         //Debug.Log("release");
         cc.constraints = RigidbodyConstraints.None;
-        carierBackcc.constraints = RigidbodyConstraints.None;
-        carierFrontcc.constraints = RigidbodyConstraints.None;
-        nma.enabled = enabled;
+        //carierBackcc.constraints = RigidbodyConstraints.None;
+        //carierFrontcc.constraints = RigidbodyConstraints.None;
+        //nma.enabled = true;
+        nma.isStopped = false;
     }
 
     public void releaseForUserController()
     {
-        carierBackcc.constraints = RigidbodyConstraints.None;
-        carierFrontcc.constraints = RigidbodyConstraints.None;
+        cc.constraints = RigidbodyConstraints.None;
+        //carierBackcc.constraints = RigidbodyConstraints.None;
+        //carierFrontcc.constraints = RigidbodyConstraints.None;
+        //nma.enabled = true;
+        nma.isStopped = true;
     }
 
     public Vector3 giveMePosition()
@@ -415,7 +433,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
     //TODO make it with navmesh
     IEnumerator<float> goToNearestPointInAreaMask(int areaMask)
     {
-        //releaseForNavMeshController();
+        releaseForNavMeshController();
         //int originalAreaMask = nma.areaMask;
 
         //nma.areaMask = NavMesh.AllAreas;
@@ -454,20 +472,31 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
         }
 
-        releaseForUserController();
 
+        //releaseForUserController();
 
-        LookWalkDirection lwd = gameObject.AddComponent<LookWalkDirection>();
-
-        
         if (Vckrs.findNearestPositionOnNavMesh(transform.position, areaMask, 100, out castedPos))
         {
             Debug.Log("going nearest direction");
-            yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs._Tween(gameObject, castedPos, 1f)));
+            
 
         }
 
-        Destroy(lwd);
+        nma.destination=castedPos;
+
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject)));
+
+        //LookWalkDirection lwd = gameObject.AddComponent<LookWalkDirection>();
+
+        
+        //if (Vckrs.findNearestPositionOnNavMesh(transform.position, areaMask, 100, out castedPos))
+        //{
+        //    Debug.Log("going nearest direction");
+        //    yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs._Tween(gameObject, castedPos, 1f)));
+
+        //}
+
+        //Destroy(lwd);
 
 
 
