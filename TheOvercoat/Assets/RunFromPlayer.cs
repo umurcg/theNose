@@ -51,7 +51,7 @@ public class RunFromPlayer : MonoBehaviour {
 
         if (catchTimer > 0)
         {
-            //Debug.Log(catchTimer);
+            Debug.Log(catchTimer);
             catchTimer += Time.deltaTime;
 
             if (catchTimer > catchDuration)
@@ -90,6 +90,8 @@ public class RunFromPlayer : MonoBehaviour {
             Timing.RunCoroutine(_run());
         }
 
+        //Debug.Log("Player is in sphere " + playerInSphere + " obstacle in sphere " + obstacleInSphere);
+
         if (obstacleInSphere && playerInSphere)
         {
             
@@ -118,7 +120,7 @@ public class RunFromPlayer : MonoBehaviour {
             //Stop timer
             catchTimer = 0;
         }
-
+        Debug.Log("Player is in sphere " + playerInSphere + " obstacle in sphere " + obstacleInSphere);
     }
    IEnumerator<float> _run()
     {

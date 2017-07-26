@@ -42,7 +42,7 @@ public class RegisterToSubtitleList : MonoBehaviour {
     void register(Scene scene, LoadSceneMode mode)
     {
         register();
-        Debug.Log("New scene is load so registering to whoistalking again");
+        //Debug.Log("New scene is load so registering to whoistalking again");
     }
 
 

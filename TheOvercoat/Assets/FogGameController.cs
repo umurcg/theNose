@@ -52,6 +52,13 @@ public class FogGameController : GameController {
     // Update is called once per frame
     void Update () {
 
+
+        //Cheat for debug
+        if (Debug.isDebugBuild && Input.GetKeyDown(KeyCode.T))
+        {
+            finisGame();
+        }
+
         if (breath <= 0)
         {
             die();
@@ -92,7 +99,10 @@ public class FogGameController : GameController {
     void finisGame()
     {
         CharGameController.movePlayer(finishBirdPosition.transform.position);
+        Destroy(bar.gameObject);
+        Destroy(windUI);
         gameObject.SetActive(false);
+        
     }
 
     [ContextMenu ("Restart")]

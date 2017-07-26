@@ -341,30 +341,35 @@ public class NoseEncounterGameController : GameController {
         girlCanvas.SetActive(true);
 
         yield return 0;
-        girlCanvas.GetComponent<GirlGameController>().setKovalevPositionToInitialPosition();
+        //girlCanvas.GetComponent<GirlGameController>().setKovalevPositionToInitialPosition();
 
         //yield return Timing.WaitForSeconds(0.5f);
 
 
         //GameObject girlGameKov = girlCanvas.transform.GetChild(0).GetChild(0).gameObject;
         //girlGameKov.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(300, 0, 0));
-        
 
-        MovementWithKeyboard2D mwk2 = girlGameKov.GetComponent<MovementWithKeyboard2D>();
-        mwk2.speed = 0.05f;
 
-        //For movement to left
-        mwk2.scriptInput = -1;
-        yield return Timing.WaitForSeconds(4f);
+        //MovementWithKeyboard2D mwk2 = girlGameKov.GetComponent<MovementWithKeyboard2D>();
+        //mwk2.speed = 0.05f;
 
-        mwk2.scriptInput = 0;
-        mwk2.speed = 0.1f;
+        ////For movement to left
+        //mwk2.scriptInput = -1;
+
+    
+        GirlGameController ggc = girlCanvas.GetComponent<GirlGameController>();
+        //yield return Timing.WaitUntilDone(Timing.RunCoroutine(ggc.moveKovalevToMiddle(0.05f)));
+
+        //yield return Timing.WaitForSeconds(4f);
+
+        //mwk2.scriptInput = 0;
+        //mwk2.speed = 0.1f;
 
         CharacterController gkcc = girlGameKov.GetComponent<CharacterController>();
         gkcc.enabled = false;
         gkcc.enabled = true;
 
-        GirlGameController ggc = girlCanvas.transform.GetComponent<GirlGameController>();
+        //GirlGameController ggc = girlCanvas.transform.GetComponent<GirlGameController>();
         ggc.enabled = true;
 
         yield return Timing.WaitForSeconds(1f);
@@ -528,4 +533,22 @@ public class NoseEncounterGameController : GameController {
         Destroy(gameObject);
         
     }
+
+    //[ContextMenu("Girl game test")]
+    //public void girlGameTest() {
+
+    //    Timing.RunCoroutine(_girlGameTest());
+
+    //}
+
+    //IEnumerator<float> _girlGameTest()
+    //{
+    //    girlCanvas.SetActive(true);
+
+    //    yield return 0;
+
+    //    GirlGameController ggc = girlCanvas.GetComponent<GirlGameController>();
+    //Timing.RunCoroutine(ggc.moveKovalevToMiddle(0.05f));
+    //}
+
 }

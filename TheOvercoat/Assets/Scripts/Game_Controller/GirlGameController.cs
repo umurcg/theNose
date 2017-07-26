@@ -36,6 +36,7 @@ public class GirlGameController : MonoBehaviour {
 
     Camera mainCam;
 
+    MovementWithKeyboard2D mwk;
 
     private void OnEnable()
     {
@@ -67,7 +68,7 @@ public class GirlGameController : MonoBehaviour {
         score = scoreObj.GetComponent<Text>();
         rt = GetComponent<RectTransform>();
 
-        MovementWithKeyboard2D mwk = kovalev.GetComponent<MovementWithKeyboard2D>();
+        mwk = kovalev.GetComponent<MovementWithKeyboard2D>();
         mwk.distanceToCam = distanceToCamera;
 
         if (CharGameController.getCameraType() == CharGameController.cameraType.Ortographic)
@@ -203,10 +204,48 @@ public class GirlGameController : MonoBehaviour {
     public void setKovalevPositionToInitialPosition()
     {
         if(!mainCam) mainCam = CharGameController.getMainCameraComponent();
-        kovalev.transform.position =mainCam.ScreenToWorldPoint(new Vector3(Screen.width, 0, distanceToCamera));
+        kovalev.transform.position =mainCam.ScreenToWorldPoint(new Vector3(Screen.width/2, 0, distanceToCamera));
         //Time.timeScale = 0;
     }
 
+
+    //[ContextMenu ("move middle test")]
+    //public void moveKovalevToMiddleTest()
+    //{
+    //    Timing.RunCoroutine(moveKovalevToMiddle(0.01f));
+    //}
+
+    //public IEnumerator<float> moveKovalevToMiddle(float speed) {
+
+    //    Debug.Log("MOVE KOVALEV MİDDLE");
+
+    //    Vector3 middlePoint = mainCam.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0, distanceToCamera));
+    //    float tolerance = 0.1f;
+
+    //    while (mwk == null)
+    //    {
+    //        Debug.Log("MWK is nulllllll");
+    //        yield return 0;
+
+    //    }
+
+    //    float originalSpeed = mwk.speed;
+    //    mwk.speed = speed;
+    //    mwk.scriptInput = -1;
+    //    Debug.Log(Vector3.Distance(middlePoint, kovalev.transform.position));
+
+
+    //    while (Vector3.Distance(middlePoint, kovalev.transform.position) > tolerance)
+    //    {
+    //        Debug.Log(Vector3.Distance(middlePoint, kovalev.transform.position));
+    //        yield return 0;
+    //    }
+
+    //    mwk.scriptInput = 0;
+    //    mwk.speed = originalSpeed;
+
+    //    yield break;
+    //}
 
 
 }

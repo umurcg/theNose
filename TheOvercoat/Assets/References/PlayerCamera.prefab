@@ -601,13 +601,14 @@ GameObject:
   - component: {fileID: 114000013621621636}
   - component: {fileID: 114000013211572414}
   - component: {fileID: 114222946150160840}
+  - component: {fileID: 114307174114454226}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011842745944
 GameObject:
   m_ObjectHideFlags: 1
@@ -1310,7 +1311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000014117282164
 GameObject:
   m_ObjectHideFlags: 1
@@ -1853,7 +1854,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010109351266}
   m_LocalRotation: {x: -0, y: -0.000000029802319, z: -0, w: 1}
-  m_LocalPosition: {x: 39.5, y: -1.6, z: -83}
+  m_LocalPosition: {x: -65.05, y: -1.6, z: 40.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000011986814120}
@@ -4323,7 +4324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   floor: {fileID: 1000011418524038}
-  wingsIcon: {fileID: 2800000, guid: f00369af42e8e474c919066520b934f2, type: 3}
+  wingsIcon: {fileID: 2800000, guid: fec9727052971564e84362589839f4f3, type: 3}
 --- !u!114 &114000010280481586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4666,9 +4667,9 @@ MonoBehaviour:
   usedGameControllers: []
   sceneList: 
   maxSceneList: 
-  debugSceneList: 010000000200000001000000030000000100000004000000
+  debugSceneList: 010000000200000001000000030000000100000004000000010000000500000001000000050000000100000006000000
   fullGameSceneList: 0100000002000000010000000300000001000000040000000100000005000000010000000500000001000000060000000100000003000000010000000700000001000000
-  setDebugListToLevelIndex: 6
+  setDebugListToLevelIndex: 12
 --- !u!114 &114000012654939820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4782,19 +4783,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2c34a78ad1e6841a231423a35e7155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 1
-  speed: 0.1
+  rotateSpeed: 2
+  speed: 3
   elevSpeed: 0.5
   maxHeight: 70
-  maxX: 280
-  maxZ: 1000
+  maxX: 380
+  maxZ: 700
   minHeight: 0
   minX: -260
-  minZ: -300
+  minZ: -310
   camSizeFactor: 0.25
   camSizeChangeLimit: 10
   pauseMovement: 0
   pauseLimits: 0
+  groundLevel: 0
+  fallSpeed: 10
 --- !u!114 &114000012916099430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4920,7 +4923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coverKovalevFace: 0
-  positionToDoor: 0
+  positionToDoor: 1
   camType: 1
 --- !u!114 &114000013936666282
 MonoBehaviour:
@@ -4990,6 +4993,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4411df4dda85a4e982e71b1699edbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114307174114454226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011785493192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d813d6aff508f04f9696619a2b88898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seperator: 95
+  nameOrderInLanguages: 0000000001000000
 --- !u!114 &114491920431433412
 MonoBehaviour:
   m_ObjectHideFlags: 1

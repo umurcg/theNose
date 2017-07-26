@@ -82,7 +82,7 @@ public class ArrowScript : MonoBehaviour {
         //cylinder.transform.parent = null;
         cylinder.transform.position = Vector3.Lerp(startPoint, endPoint, 0.5f);
         cylinder.transform.up = endPoint - startPoint;
-        cylinder.transform.localScale = new Vector3(radiusOfCylinder, length, radiusOfCylinder);
+        cylinder.transform.localScale = new Vector3(radiusOfCylinder, length/2, radiusOfCylinder);
         //cylinder.transform.parent = transform;
 
         Vector3 dir = endPoint - startPoint;
@@ -100,6 +100,7 @@ public class ArrowScript : MonoBehaviour {
         initialRot = transform.rotation;
 
         rb.AddForce(forceMultiplier*(endPoint - transform.position), ForceMode.Impulse);
+        rb.AddTorque(Vector3.one*3);
         rb.useGravity = true;
         gravity.enabled = true;
         //amar.enabled = true;

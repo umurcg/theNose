@@ -12,8 +12,9 @@ public class assignRandomMeshV2 : MonoBehaviour {
 	// Use this for initialization
 	void Awake   () {
         rcm = commonPeople.GetComponent<RequestCharacterMesh>();
-        GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = rcm.requestRandomMesh(gender);
-
+        Mesh mesh = rcm.requestRandomMesh(gender);
+        GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = mesh;
+        transform.name = mesh.name;
 	}
 	
 

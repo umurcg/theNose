@@ -28,6 +28,7 @@ public class BridGameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+
         debv=GetComponent<DrawEdgesBetweenVertices>();
         initialRot = transform.rotation;
         instantiateButtonAndText();
@@ -63,6 +64,12 @@ public class BridGameController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        if(Debug.isDebugBuild && Input.GetKeyDown(KeyCode.T))
+        {
+            win();
+        }
+
         if (debug)
         {
             debug = false;

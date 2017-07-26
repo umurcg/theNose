@@ -1612,11 +1612,12 @@ public static class StandardShaderUtils
 public class Timer
 {
     float timer = 0;
-    float time = 0;
+    float duration = 0;
+    public bool autoReset = true;
 
     public Timer(float time)
     {
-        this.time = time;
+        this.duration = time;
         timer = time;
     }
 
@@ -1626,7 +1627,10 @@ public class Timer
 
         if (timer <= 0)
         {
-            timer = time;
+            if (autoReset)
+            {
+                timer = duration;
+            }
             return true;
         }
 
@@ -1637,9 +1641,13 @@ public class Timer
     
     public void resetTimet()
     {
-        timer = time;
+        timer = duration;
     }
 
+    public bool isTimeOver()
+    {
+        return timer < 0;
+    }
 
 }
  

@@ -30,6 +30,8 @@ public class DrawEdgesBetweenVertices : MonoBehaviour {
     public string edgeIsDrawnMessage;
     public string allEdgesAreDrawnMessage;
 
+    public Canvas birdGameCanvas;
+
     private void Awake()
     {
         lrs_vertexPairs = new Dictionary<LineRendererCylinder, GameObject[]>();
@@ -68,7 +70,8 @@ public class DrawEdgesBetweenVertices : MonoBehaviour {
                     //Create line renderer
                     selectedVertex = hit.transform.gameObject;
                     GameObject lrObject = new GameObject();
-                    lrObject.transform.parent = selectedVertex.transform;
+                    //lrObject.transform.parent = selectedVertex.transform.parent.parent;
+                    lrObject.transform.parent = birdGameCanvas.transform;
                     LineRendererCylinder lr = lrObject.AddComponent<LineRendererCylinder>();
                     lr.setMaterial(edgeMaterial);
                     lr.SetPosition(0, selectedVertex.transform.position);
@@ -145,13 +148,36 @@ public class DrawEdgesBetweenVertices : MonoBehaviour {
     //Gets uncompleted line renderer of vertex
     LineRendererCylinder getUncompletedLR(GameObject vertex)
     {
-        LineRendererCylinder[] allLR = vertex.GetComponentsInChildren<LineRendererCylinder>();
-        foreach(LineRendererCylinder lr in allLR)
+
+        foreach(KeyValuePair<LineRendererCylinder,GameObject[]> keyVal in lrs_vertexPairs)
         {
-            if (lrs_vertexPairs[lr][1] == null) return lr;
+            GameObject[] vertices = keyVal.Value;
+
+            //If one of the vertex of this line renderer is input
+            if (vertices.Contains(vertex))
+            {
+                
+
+                //And if the other vertex is null
+                if(vertices.Length==1|| vertices[0]==null|| vertices[1]==null){
+
+                    return keyVal.Key;
+
+                }
+
+            }
+
         }
-        Debug.Log("Couldn't find uncompletedLR");
+
         return null;
+
+        //LineRendererCylinder[] allLR = vertex.GetComponentsInChildren<LineRendererCylinder>();
+        //foreach(LineRendererCylinder lr in allLR)
+        //{
+        //    if (lrs_vertexPairs[lr][1] == null) return lr;
+        //}
+        //Debug.Log("Couldn't find uncompletedLR");
+        //return null;
     }
 
     void updateLineRenderePositions()
@@ -171,7 +197,7 @@ public class DrawEdgesBetweenVertices : MonoBehaviour {
         {
             Vector3[] positions = new Vector3[2];
             positions[0] = selectedVertex.transform.position;
-            positions[1] = mainCam.ScreenToWorldPoint(Input.mousePosition);//Input.mousePosition;
+            positions[1] = mainCam.ScreenToWorldPoint(Input.mousePosition+Vector3.forward*GlobalController.cameraForwardDistance);//Input.mousePosition;
             getUncompletedLR(selectedVertex).setStartAndPos(positions[0],positions[1]);
         }
     }

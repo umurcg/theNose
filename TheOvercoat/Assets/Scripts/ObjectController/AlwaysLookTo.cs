@@ -11,7 +11,7 @@ public class AlwaysLookTo : MonoBehaviour {
     public Vector3 aimPos;
     public float speed=1;
 
-    public bool lerps = false;
+    public bool lerps = true;
 
 	// Use this for initialization
 	void Start () {

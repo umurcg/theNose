@@ -99,7 +99,7 @@ public class VertexPair : MonoBehaviour {
             }
         }
 
-        if (selectedVertex!=null) lrc.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (selectedVertex!=null) lrc.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition+Vector3.forward*GlobalController.cameraForwardDistance));
 
         //Update lines in rotation
         if (!edgeIsDrawed && selectedVertex != null)

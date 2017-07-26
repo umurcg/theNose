@@ -148,6 +148,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         IEnumerator<float> handle = Timing.RunCoroutine(mt._tweenMEC(passenger, 2f));
         yield return Timing.WaitUntilDone(handle);
 
+        
         PlayerComponentController pcc = passenger.GetComponent<PlayerComponentController>();
         UnityEngine.AI.NavMeshAgent nmaPas = passenger.GetComponent<UnityEngine.AI.NavMeshAgent>();
 

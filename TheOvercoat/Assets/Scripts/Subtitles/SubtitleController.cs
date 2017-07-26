@@ -185,6 +185,7 @@ public class SubtitleController : MonoBehaviour {
         if (text == null)
         {
             text = SubtitleFade.subtitles["CharacterSubtitle"];
+            Debug.Log("Found and assigned text");
         }
 
         text.fontStyle = FontStyle.Normal;
@@ -380,7 +381,7 @@ public class SubtitleController : MonoBehaviour {
         
 
         //If text asset isn't found then export current text to file if it is not null 
-        if (textAsset == null && subtitleTexts.Length > 0)
+        if (textAsset == null && subtitleTexts!=null && subtitleTexts.Length > 0)
         {
             Debug.Log("Couldn't found text asset. So exporting current subtitleTets to text asset and assigning to again "+this);
             exportToTextFile();

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 
 //This object starts first subtitleController script.
@@ -12,13 +13,21 @@ public class SubtitleCaller : MonoBehaviour,ISubtitleTrigger {
 
     SubtitleController activeController;
 
+    [HideInInspector]
+    public Text characterSubt;
+    [HideInInspector]
+    public Text narratorSubt;
+
     //int currentIndex = 0;
 
 
     // Use this for initialization
     void Start () {
-	
-	}
+
+        characterSubt = SubtitleFade.subtitles["CharacterSubtitle"];
+        narratorSubt = SubtitleFade.subtitles["NarratorSubtitle"];
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

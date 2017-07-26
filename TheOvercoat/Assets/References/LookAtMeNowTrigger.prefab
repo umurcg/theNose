@@ -16,14 +16,16 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013910694214}
-  - 33: {fileID: 33000010223052938}
-  - 135: {fileID: 135000014210737312}
-  - 23: {fileID: 23000012744156702}
-  - 114: {fileID: 114000011816512472}
-  m_Layer: 0
+  - component: {fileID: 4000013910694214}
+  - component: {fileID: 33000010223052938}
+  - component: {fileID: 135000014210737312}
+  - component: {fileID: 23000012744156702}
+  - component: {fileID: 114000011816512472}
+  - component: {fileID: 114320420949358484}
+  - component: {fileID: 114642657667858134}
+  m_Layer: 2
   m_Name: LookAtMeNowTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,10 +41,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6.830366, y: 6.830368, z: 6.830368}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23000012744156702
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -57,7 +59,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -65,12 +69,13 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33000010223052938
 MeshFilter:
@@ -91,6 +96,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimedTag: Bot
+  complainProbability: 50
+  timeBetwenComplains: 100
+--- !u!114 &114320420949358484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012353849610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44eaf29a23848404cbae59010a526696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startAutomatic: 0
+--- !u!114 &114642657667858134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012353849610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAsset: {fileID: 4900000, guid: 669b9033d20b2e84cbde52c13475b740, type: 3}
+  subtitleTexts: []
+  AllSubtitles: 
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+  caller: {fileID: 0}
+  manualTimerArray: []
+  TimeMode: 0
+  narrator: 0
+  timeInhibator: 13
+  clips: []
 --- !u!135 &135000014210737312
 SphereCollider:
   m_ObjectHideFlags: 1
