@@ -23,14 +23,20 @@ public class DrunkManGameSceneController : GameController {
     public GameObject candlePrefab;
     public GameObject allGameObjects;
 
+    public AudioClip scarySound;
+    public AudioClip attackSound;
+
     bool playerIsNear = false;
 
     Light pointLight;
 
-    public GameObject[] gameObjects;
+    public GameObject walkAreaTrigger;
 
     IEnumerator<float> hideAndSeekHandler;
 
+    public TutorailCanvas tc;
+
+    ObjectSpawnerContinously osc;
 
     //These positions are saved at encounter function. 
     //So when player lost game we wiil use them to restart game.
@@ -51,8 +57,10 @@ public class DrunkManGameSceneController : GameController {
         dm = new characterComponents(drunkManGame);
 
         hideAndSeekHandler = Timing.RunCoroutine(_hideAndSeek());
-        //Timing.RunCoroutine(encounter());
-
+        //Timing.RunCoroutine(_encounter());
+        //dm.player.SetActive(true);
+        //allGameObjects.SetActive(true);
+        //GetComponent<ObjectSpawnerContinously>().enabled = true;
 
     }
 	
@@ -96,6 +104,7 @@ public class DrunkManGameSceneController : GameController {
 
             IEnumerator<float> fadeHandler =  Timing.RunCoroutine(Vckrs._fadeObjectIn(drunkManActor, 1f, true));
             IEnumerator<float> lightHandler = Timing.RunCoroutine(Vckrs._changeLight(3f, pointLight, 5));
+            LevelMusicController.playSoundEffect(scarySound, 10, 15,true);
 
             
             yield return Timing.WaitUntilDone(fadeHandler);
@@ -131,6 +140,7 @@ public class DrunkManGameSceneController : GameController {
         //Debug.Log("player is neaaaaaaaaar");
     }
 
+    [ContextMenu ("Attack")]
     public void attack()
     {
         Timing.KillCoroutines(hideAndSeekHandler);
@@ -169,15 +179,37 @@ public class DrunkManGameSceneController : GameController {
 
         drunkManAnim.SetTrigger("hit");
 
+
         //yield return Timing.WaitUntilDone(fadeHandler);
         //yield return Timing.WaitUntilDone(lightHandler);
+
+        playerNma.isStopped = true;
+        pcc.StopToWalk();
 
         while (!drunkManAnim.GetCurrentAnimatorStateInfo(0).IsName("hit") || drunkManAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.7f)
         {
             yield return 0;
         }
 
+
+        LevelMusicController.playSoundEffect(attackSound);
+
         blackScreen.script.setAsBlack();
+
+        dm.player.SetActive(true);
+        allGameObjects.SetActive(true);
+        walkAreaTrigger.SetActive(true);
+
+        osc = GetComponent<ObjectSpawnerContinously>();
+        osc.enabled = true;
+
+        yield return 0;
+
+        List<GameObject> bottles = osc.getSpawnedObjects();
+
+        foreach (var b in bottles) b.transform.tag = "Untagged";
+
+        CharGameController.getHand(CharGameController.hand.RightHand).transform.Find("nose").gameObject.SetActive(false);
 
         candlePrefab=Instantiate(candlePrefab,transform) as GameObject;
         candlePrefab.transform.position = player.transform.position + player.transform.right * 2;
@@ -197,16 +229,21 @@ public class DrunkManGameSceneController : GameController {
         yield return Timing.WaitUntilDone(bshandler);
 
         yield return Timing.WaitForSeconds(2f);
+                
 
+        
         playerAnim.speed = 1;
 
         Timing.WaitForSeconds(2f);
 
+        sc.callSubtitleWithIndex(2);
+
+        while (subtitle.text != "") yield return 0;
+
+
         pcc.ContinueToWalk();
 
-        dm.player.SetActive(true);
-        allGameObjects.SetActive(true);
-        GetComponent<ObjectSpawnerContinously>().enabled = true;
+
 
         yield break;
     }
@@ -226,7 +263,8 @@ public class DrunkManGameSceneController : GameController {
         pcc.StopToWalk();
 
         Timing.RunCoroutine(Vckrs._lookTo(player, dm.player, 1f));
-        
+        Timing.RunCoroutine(Vckrs._lookTo(dm.player, player,  1f));
+
         sc.callSubtitleWithIndex(0);
         while (subtitle.text != "") yield return 0;
 
@@ -248,7 +286,7 @@ public class DrunkManGameSceneController : GameController {
         handler= Timing.RunCoroutine(Vckrs._lookTo(player, dm.player, 1f));
         yield return Timing.WaitUntilDone(handler);
 
-        colObj.unCollect();
+        //colObj.unCollect();
 
         ShootWithBottle swb = GetComponent<ShootWithBottle>();
         handler=Timing.RunCoroutine(swb.shoot(dm.player.transform.position, 30f,nearestBottle));
@@ -258,6 +296,13 @@ public class DrunkManGameSceneController : GameController {
         yield return Timing.WaitForSeconds(1.5f);
 
         Timing.RunCoroutine(startGame());
+
+        osc.enabled = true;
+
+
+        foreach (var b in bottles) b.transform.tag = "ActiveObject";
+
+        tc.startTutorial(TutorailCanvas.Tutorials.Shoot);
 
         yield break;
     }

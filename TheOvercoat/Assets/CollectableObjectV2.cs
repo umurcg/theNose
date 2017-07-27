@@ -73,11 +73,13 @@ public class CollectableObjectV2 : MonoBehaviour, IClickAction{
         {
             transform.parent = rightHand.transform;
             rightHandObj = gameObject;
+            Debug.Log("Collected to right hand "+transform.parent);
         }
         else
         {
             transform.parent = leftHand.transform;
             leftHandObj = gameObject;
+            Debug.Log("Collected to left hand " + transform.parent);
 
         }
 
@@ -115,7 +117,7 @@ public class CollectableObjectV2 : MonoBehaviour, IClickAction{
 
     public void unCollect()
     {
-        //Debug.Log("Uncollected");
+        //Debug.Log("Uncollected "+gameObject.name);
         if(!isCollected()) return;
 
         if (rightHandObj == gameObject) rightHandObj = null;

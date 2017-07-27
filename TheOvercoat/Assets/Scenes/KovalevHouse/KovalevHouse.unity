@@ -119,7 +119,7 @@ Prefab:
     - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
         type: 2}
       propertyPath: debugSceneList.Array.size
-      value: 3
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4000011063175188, guid: dd651778041846143b79e2a904c465fc, type: 2}
       propertyPath: m_LocalPosition.x
@@ -205,6 +205,31 @@ Prefab:
         type: 2}
       propertyPath: debugSceneList.Array.data[11]
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 82843899583827920, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82636277536640992, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: setDebugListToLevelIndex
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: debugSceneList.Array.data[12]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012589669922, guid: dd651778041846143b79e2a904c465fc,
+        type: 2}
+      propertyPath: debugSceneList.Array.data[13]
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd651778041846143b79e2a904c465fc, type: 2}
@@ -2645,6 +2670,7 @@ GameObject:
   - component: {fileID: 868026967}
   - component: {fileID: 868026966}
   - component: {fileID: 868026965}
+  - component: {fileID: 868026970}
   m_Layer: 0
   m_Name: KovalevHeadNoseAttach
   m_TagString: Untagged
@@ -2660,7 +2686,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 868026963}
   m_LocalRotation: {x: -0.7071068, y: -0.000000029802322, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 186}
   m_LocalScale: {x: 371.55765, y: 371.55768, z: 371.55774}
   m_Children:
   - {fileID: 53371770}
@@ -2754,6 +2780,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 868026963}
   m_Mesh: {fileID: 4300000, guid: 08c2e849d61385344a0a1dde77c34c97, type: 3}
+--- !u!114 &868026970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868026963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd0cf2aae5e90849b251545140d8023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScale: 200
+  maxScale: 600
+  scaleSpeed: 150
+  lerpSpeed: 5
+  axisName: Scale
+  scaleLerp: 1
+  initialLerpEffect: 1
 --- !u!4 &959922661 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 52139b6fe570f7c448b904668bbafce1, type: 3}
@@ -3468,7 +3512,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -4941,7 +4985,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400024, guid: 646d7e03922ba414a84809d711ea2fe9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4060154
+      value: -1.255
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 646d7e03922ba414a84809d711ea2fe9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4949,7 +4993,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 646d7e03922ba414a84809d711ea2fe9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.0000515
+      value: 13.034
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 646d7e03922ba414a84809d711ea2fe9, type: 3}
       propertyPath: m_LocalRotation.x

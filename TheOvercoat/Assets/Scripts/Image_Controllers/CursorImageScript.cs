@@ -144,7 +144,7 @@ public class CursorImageScript : MonoBehaviour
         //If external texture is not null then just put it no matter what
         if (externalTexture != null)
         {
-            //Debug.Log("External texture is not null");
+            //Debug.Log("External texture is not null NAME IS "+externalTexture.name);
             setCursor(externalTexture);
             return;
         }
@@ -311,6 +311,7 @@ public class CursorImageScript : MonoBehaviour
 
     public void resetExternalCursor()
     {
+        
         if(externalTexture!=null)
            externalTexture = null;
         //Debug.Log("Reseting external cursor");

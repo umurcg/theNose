@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TriggerTest : MonoBehaviour {
 
+    public bool entered = false;
+    public string enteredTag;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,6 +20,8 @@ public class TriggerTest : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.name + " is entered.");
+        entered = true;
+        enteredTag = other.tag;
     }
 
 
@@ -24,5 +29,7 @@ public class TriggerTest : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         Debug.Log(other.name + " is exited.");
+        entered = false;
+        enteredTag = "";
     }
 }

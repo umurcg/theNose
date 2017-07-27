@@ -13,6 +13,7 @@ public class DrunkManGameController : GameController {
     public DrunkManGameSceneController dmgsc;
     public DrunkManAI dmai;
     public ShootWithBottle swb;
+    
 
     public Vector2 UIPosRatio;
 
@@ -165,18 +166,25 @@ public class DrunkManGameController : GameController {
         yield break;
     }
 
-    [ContextMenu ("Win")]
-    public void win() {
-
-        CallCoroutine bc=bigNose.AddComponent<CallCoroutine>();
+    IEnumerator<float> _win()
+    {
+        CallCoroutine bc = bigNose.AddComponent<CallCoroutine>();
         bc.CallType = CallCoroutine.callType.ClickAction;
         bc.owner = gameObject;
         bc.methodName = "takeNose";
 
         bigNose.transform.tag = "ActiveObject";
 
-        drunkCC.animator.SetTrigger("die");
+        drunkCC.animator.SetTrigger("Die");
         dmai.enabled = false;
+        drunkCC.navmashagent.isStopped = true;
+
+        sc.callSubtitleWithIndex(3);
+
+        while (subtitle.text != "") yield return 0;
+
+        drunkCC.animator.SetTrigger("Die");
+
 
         swb.enabled = false;
 
@@ -190,6 +198,14 @@ public class DrunkManGameController : GameController {
         {
             b.transform.tag = "Untagged";
         }
+
+        yield break;
+    }
+
+    [ContextMenu ("Win")]
+    public void win() {
+
+        Timing.RunCoroutine(_win());
     }
     
     public void takeNose()

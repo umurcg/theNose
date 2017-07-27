@@ -12,6 +12,7 @@ public class Broadcast : MonoBehaviour {
 
     public void addReciever(GameObject obj)
     {
+       
        recievers= Vckrs.addToArray<GameObject>(recievers, obj);
     }
 

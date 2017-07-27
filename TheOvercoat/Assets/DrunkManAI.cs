@@ -142,7 +142,7 @@ public class DrunkManAI : MonoBehaviour {
 
     public void sawPlayer()
     {
-        if (!et.isPlayerInside()) return;
+        if (!et || !et.isPlayerInside()) return;
 
         Debug.Log("Saw player");
         cya.enabled = false;

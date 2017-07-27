@@ -16,6 +16,7 @@ public class CanSeeYou : MonoBehaviour {
     public string message;
 
     public bool destroyAfterMessage = false;
+    public bool disableAfterMessage = false;
     public bool sendWithHittedObject = false;
 
 	// Use this for initialization
@@ -71,6 +72,6 @@ public class CanSeeYou : MonoBehaviour {
             }
         }
         if (destroyAfterMessage) Destroy(this);
-
+        if (disableAfterMessage) enabled = false;
     }
 }

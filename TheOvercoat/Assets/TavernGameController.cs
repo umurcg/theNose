@@ -5,13 +5,15 @@ using MovementEffects;
 
 public class TavernGameController : GameController {
 
-    public GameObject tarkovksy, door, tarkovskyChair,chair, barBuilding, bears;
+    public GameObject tarkovksy, tarkovskyChair,chair, barBuilding, bears;
 
     public Material drunkTransparentMaterial;
     public Material drunkMaterial;
     public Material normalMaterial;
     public GameObject tavernBuilding;
     public GameObject[] drunkBuildings;
+    public BoxCollider enterTrigger;
+    public SkinnedMeshRenderer barDoor;
 
     characterComponents ccTarkovsky;
     WalkLookAnim tarkovskySitScript;
@@ -25,6 +27,17 @@ public class TavernGameController : GameController {
 
         tarkovskySitScript = tarkovskyChair.GetComponent<WalkLookAnim>();
         //tarkovskySitScript.start();
+
+        //If is it day then open bar else close bar
+        if (CharGameController.getSun().GetComponent<DayAndNightCycle>().isNight)
+        {
+            closeBar();
+        }
+        else
+        {
+            openBar();
+        }
+
 	}
 	
 	// Update is called once per frame
@@ -43,7 +56,7 @@ public class TavernGameController : GameController {
   
         //Debug.Log("Tavern game");
         pcc.StopToWalk();
-        Vector3 aim = door.transform.position + door.transform.forward * 3;
+        Vector3 aim = barDoor.transform.position + barDoor.transform.forward * 3;
 
         //tarkovskySitScript.getUp();
 
@@ -228,5 +241,24 @@ public class TavernGameController : GameController {
             }
         }
         barBuilding.GetComponent<Renderer>().material = normalMaterial;
+    }
+
+    [ContextMenu ("Open Bar")]
+    public void openBar()
+    {
+     
+            barDoor.SetBlendShapeWeight(0, 100);
+            enterTrigger.isTrigger = true;
+    
+   
+    }
+
+    [ContextMenu("Close Bar")]
+    public void closeBar()
+    {
+     
+            barDoor.SetBlendShapeWeight(0, 0);
+            enterTrigger.isTrigger = false;
+        
     }
 }

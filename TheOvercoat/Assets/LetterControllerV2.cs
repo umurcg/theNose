@@ -46,7 +46,12 @@ public class LetterControllerV2 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (index >= letter.Length)
+        if(Debug.isDebugBuild&& Input.GetKeyDown(KeyCode.Space))
+        {
+            sendMessage();
+        }
+
+        if (index >= letter.Length && Input.GetMouseButtonDown(0))
         {
             sendMessage();
             return;

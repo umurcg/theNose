@@ -409,6 +409,7 @@ public class KovalevHomeGameController : GameController {
         //Wait kovalev for sit 
         while (!tcWLA.isSitting()) yield return 0;
 
+        pcc.StopToWalk();
         letterToSend.SetActive(true);
 
 
@@ -507,6 +508,7 @@ public class KovalevHomeGameController : GameController {
 
         while (subtitle.text != "") yield return 0;
 
+        pcc.StopToWalk();
         letterRecieved.SetActive(true);
 
         

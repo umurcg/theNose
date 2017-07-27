@@ -12,12 +12,18 @@ public class ScaleObjectWithMouse : MonoBehaviour {
 
     public bool scaleLerp;
 
+    public bool initialLerpEffect = true;
+
     Vector3 aimScale;
 
     // Use this for initialization
     void Start()
     {
 
+
+        aimScale = transform.localScale;
+
+        if (initialLerpEffect) transform.localScale = maxScale*Vector3.one;
     }
 
     // Update is called once per frame

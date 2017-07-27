@@ -92,6 +92,8 @@ public class ShootWithBottle : MonoBehaviour {
 
     public IEnumerator<float> shoot(Vector3 pos, float shootAngle=0f, GameObject bottle=null)
     {
+        //Vckrs.testPosition(pos);
+
         if(bottle==null)
              bottle = handPosition.transform.GetChild(0).gameObject;
          
@@ -125,7 +127,10 @@ public class ShootWithBottle : MonoBehaviour {
         {
             yield return 0;
         }
-        
+
+        //Debug.Log("throoowwwiiing");
+
+       
 
         //// Distance along the y axis between objects
         float yOffset = bottle.transform.position.y - pos.y;
@@ -146,19 +151,30 @@ public class ShootWithBottle : MonoBehaviour {
         rb.isKinematic = false;
         rb.useGravity = true;
 
-        RockScript rc = bottle.GetComponent<RockScript>();
-        rc.enabled = true;
-        rc.reciever = dmgc.gameObject;
 
         BroadCastOnDestroy bcod = bottle.AddComponent<BroadCastOnDestroy>();
         bcod.addReciever(dmgc.dmai.gameObject);
         bcod.addMessage("sawPlayer");
 
+        //Debug.Log("BEFORE YIELD");
+
+        //Time.timeScale = 0;
+
         yield return 0;
+
+        //Debug.Log("Adding force");
 
         rb.AddForce(finalVelocity * rb.mass, ForceMode.Impulse);
 
         cml.enabled = true;
+
+
+        RockScript rc = bottle.GetComponent<RockScript>();
+        rc.enabled = true;
+        rc.reciever = dmgc.gameObject;
+
+        //Debug.Log("SHOOOOTED");
+
 
         yield break;
 

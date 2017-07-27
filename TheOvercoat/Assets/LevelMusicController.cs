@@ -125,23 +125,23 @@ public class LevelMusicController : MonoBehaviour {
     }
 
     //Play a sound affect
-    public static void playSoundEffect(AudioClip clip)
+    public static void playSoundEffect(AudioClip clip, bool fadeEffect=false)
     {
-        Timing.RunCoroutine(_playSoundEffect(clip));
+        Timing.RunCoroutine(_playSoundEffect(clip,true,0,0,fadeEffect));
     }
-    public static void playSoundEffect(AudioClip clip, float duration)
+    public static void playSoundEffect(AudioClip clip, float duration,bool fadeEffect=false)
     {
-        Timing.RunCoroutine(_playSoundEffect(clip,true,duration));
-    }
-
-    public static void playSoundEffect(AudioClip clip, float start, float end)
-    {
-        Timing.RunCoroutine(_playSoundEffect(clip, true, end-start,start));
+        Timing.RunCoroutine(_playSoundEffect(clip,true,duration,0,fadeEffect));
     }
 
+    public static void playSoundEffect(AudioClip clip, float start, float end, bool fadeEffect=false)
+    {
+        Timing.RunCoroutine(_playSoundEffect(clip, true, end-start,start,fadeEffect));
+    }
 
 
-    static IEnumerator<float> _playSoundEffect(AudioClip clip, bool volueDownMusicWhilePlaying=true, float duration=0,float start=0){
+
+    static IEnumerator<float> _playSoundEffect(AudioClip clip, bool volueDownMusicWhilePlaying=true, float duration=0,float start=0, bool fadeEffect=false){
 
         AudioSource source = GlobalController.Instance.afxSource;
         source.clip = clip;
@@ -159,8 +159,8 @@ public class LevelMusicController : MonoBehaviour {
 
         IEnumerator<float> musicDimmer=null;
         float originalVolume=0;
+        float originalAffectVol = source.volume;
 
-        
 
         if (volueDownMusicWhilePlaying) {
             originalVolume = musicSouce.volume;
@@ -168,6 +168,13 @@ public class LevelMusicController : MonoBehaviour {
          }
         
         source.Play();
+
+        if (fadeEffect)
+        {
+       
+            source.volume = 0;
+            Timing.RunCoroutine(Vckrs.sawVolumeChange(source, originalAffectVol, 1f));
+        }
 
         if (duration == 0 || (start+ duration)> source.clip.length)
         {
@@ -194,6 +201,8 @@ public class LevelMusicController : MonoBehaviour {
             Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSouce, originalVolume, 1f));
 
         }
+
+        if (fadeEffect) source.volume = originalAffectVol;
 
         yield break;
     }

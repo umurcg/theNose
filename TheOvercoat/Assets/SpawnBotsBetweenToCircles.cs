@@ -7,15 +7,17 @@ using UnityEngine.AI;
 public class SpawnBotsBetweenToCircles : MonoBehaviour {
 
     public GameObject objectToSpawn;
-    NavMeshAgent objectNma;
+    protected NavMeshAgent objectNma;
     public int numberOfSpawn;
-    List<GameObject> spawnedObjects;
+    protected List<GameObject> spawnedObjects;
     public float radius1;
     public float radius2;
     public bool tryRadius;
 
+    
+
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         objectNma = objectToSpawn.GetComponent<NavMeshAgent>();
 
@@ -33,7 +35,7 @@ public class SpawnBotsBetweenToCircles : MonoBehaviour {
 
 
 
-    GameObject spawneBot()
+    protected virtual GameObject spawneBot()
     {
 
         Vector3 spawnPos = Vckrs.generateRandomPositionBetweenCircles(transform.position, radius1, radius2);

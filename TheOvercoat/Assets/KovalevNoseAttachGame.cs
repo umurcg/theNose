@@ -14,12 +14,15 @@ public class KovalevNoseAttachGame : MonoBehaviour {
     float fallingTimer;
 
     CursorImageScript cis;
+    float cameraForwardDistance = 50;
 
+    Quaternion originalRot;
 
 	// Use this for initialization
 	void Start () {
         rb = nose.GetComponent<Rigidbody>();
         rb.useGravity = false;
+        originalRot = nose.transform.rotation;
 	}
 
     void OnEnable()
@@ -63,13 +66,18 @@ public class KovalevNoseAttachGame : MonoBehaviour {
         if (fallingTimer < 0)
         {
             fallingTimer = 0;
-            
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            nose.transform.rotation = originalRot;
+
+
+
         }
 
-        nose.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        nose.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition+Vector3.forward* cameraForwardDistance);
 
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition+ Vector3.forward * cameraForwardDistance);
 
      
         if(Physics.Raycast(ray,out hit)){
@@ -91,6 +99,7 @@ public class KovalevNoseAttachGame : MonoBehaviour {
         Debug.Log("Release");
         fallingTimer = 5f;
         rb.AddRelativeForce(-8*Vector3.forward, ForceMode.Impulse);
+        rb.AddTorque(Vector3.one * 50);
         numberOfAttachTrial--;
         
     }

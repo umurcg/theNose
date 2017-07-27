@@ -146,7 +146,11 @@ public class MazeGameStarter : GameController, IClickAction {
         //Start maze game
         transform.parent.GetComponent<MazeGameController>().enabled = true;
 
-
+        //Enable can you see me scriprs of police bots
+        for(int i=0;i<spawner.transform.childCount;i++)
+        {
+            spawner.transform.GetChild(i).gameObject.GetComponent<CanSeeYou>().enabled = true;
+        }
 
         yield return 0;
 

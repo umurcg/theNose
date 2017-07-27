@@ -1486,6 +1486,8 @@ public class Vckrs : MonoBehaviour
 
     public static T[] addToArray<T>(T[] array,T item){
 
+        if (array == null) array = new T[0];
+
         T[] newArray = new T[array.Length + 1];
         
         for(int i = 0; i < newArray.Length; i++)
@@ -1523,6 +1525,18 @@ public class Vckrs : MonoBehaviour
         yield break;
 
     }
+
+
+    public static IEnumerator<float> sawVolumeChange(AudioSource souce, float peak, float speed)
+    {
+        float initialVol = souce.volume;
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(smoothVolumeChange(souce, peak, speed)));
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(smoothVolumeChange(souce, initialVol, speed)));
+
+        yield break;
+    }
+
+  
 
 /// <summary>
 /// Assigns material all visible active renderers 

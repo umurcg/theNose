@@ -20,6 +20,7 @@ public class PolicePatrol : MonoBehaviour {
     Vector3 prevPos=Vector3.zero;
     PlayerComponentController pcc;
     Text subtitle;
+    CanSeeYou csy;
 
     // Use this for initialization
     void Start () {
@@ -28,6 +29,7 @@ public class PolicePatrol : MonoBehaviour {
         wis = GetComponent<WalkInsideSphere>();
         sc = GetComponent<SubtitleCaller>();
         pcc = GetComponent<PlayerComponentController>();
+        csy = GetComponent<CanSeeYou>();
 
         //Enable right hand forward bool for light
         GetComponent<Animator>().SetBool("RightHandForward",true);
@@ -90,6 +92,10 @@ public class PolicePatrol : MonoBehaviour {
         }
         
         if (catchMessageObject != null) catchMessageObject.SendMessage(catchMessage, gameObject);
+
+        yield return Timing.WaitForSeconds(3f);
+
+        csy.enabled = true;
     }
 
 
