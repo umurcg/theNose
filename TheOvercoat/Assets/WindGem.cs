@@ -8,6 +8,7 @@ public class WindGem : MonoBehaviour {
 
     public  FogController fc;
     public GameObject explosionParticle;
+    public AudioClip windSound;
     MeshRenderer rend;
 	// Use this for initialization
 	void Start () {
@@ -39,6 +40,7 @@ public class WindGem : MonoBehaviour {
     IEnumerator<float> _destroy()
     {
         explosionParticle.SetActive(true);
+        if (windSound) LevelMusicController.playSoundEffect(windSound,3);
         //yield return Timing.WaitForSeconds(1);
         rend.enabled = false;
         yield return Timing.WaitForSeconds(4f);

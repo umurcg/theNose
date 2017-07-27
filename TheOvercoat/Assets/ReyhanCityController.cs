@@ -32,6 +32,8 @@ public class ReyhanCityController : GameController, IClickAction {
     GameObject takeItButton;
     GameObject leaveItButton;
 
+    public ChurchTellerGameController ctgc;
+
     public override void Start()
     {
         base.Start();
@@ -150,6 +152,8 @@ public class ReyhanCityController : GameController, IClickAction {
         while (sc.getActiveController().enabled) yield return 0;
 
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs.waitUntilStop(hs.gameObject)));
+
+        while (Vector3.Distance(horseDest.transform.position, hs.gameObject.transform.position) > 10) yield return 0;
 
         hs.isPassengerPlayer = true;
         yield return Timing.WaitUntilDone(hs.unmount());
@@ -305,7 +309,7 @@ public class ReyhanCityController : GameController, IClickAction {
 
         spawnedLock = Instantiate(padlock, canvas3D.transform) as GameObject;
 
-        spawnedLock.transform.position = maincam.ScreenToWorldPoint(Vckrs.centerOfScreen());
+        spawnedLock.transform.position = maincam.ScreenToWorldPoint(new Vector3(Vckrs.centerOfScreen().x,Vckrs.centerOfScreen().y,GlobalController.cameraForwardDistance));
         spawnedLock.transform.localScale = Vector3.one * 7;
 
         takeItButton = Instantiate(buttonPrefab, canvas2D.transform) as GameObject;
@@ -338,6 +342,13 @@ public class ReyhanCityController : GameController, IClickAction {
         hang.SetActive(true);
 
         Destroy(renc);
+
+        pcc.ContinueToWalk();
+
+        ctgc.tryToActivate();
+
+        register();
+
         Destroy(gameObject);
 
     }
@@ -351,7 +362,16 @@ public class ReyhanCityController : GameController, IClickAction {
         Destroy(leaveItButton);
 
         Destroy(renc);
+
+        pcc.ContinueToWalk();
+
+        ctgc.tryToActivate();
+
+        register();
+
         Destroy(gameObject);
+
+
 
     }
 

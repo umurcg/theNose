@@ -12,7 +12,9 @@ public class blackScreen : MonoBehaviour {
     public static blackScreen script;
     public bool fadeInAtStart=true;
     public float fadeSpeed = 0.5f;
-   
+
+    RawImage ri;
+
     void Awake()
     {
         if (obj != null || script != null) Destroy(this);
@@ -38,6 +40,9 @@ public class blackScreen : MonoBehaviour {
         ////Set size to device screen
         //RectTransform rt = GetComponent<RectTransform>();
         //rt.sizeDelta = new Vector2(Screen.width, Screen.height);        
+
+       ri = GetComponent<RawImage>();
+
         setAsBlack();
 
 	}
@@ -72,7 +77,9 @@ public class blackScreen : MonoBehaviour {
     //Fade out from scene
     public IEnumerator<float> fadeOut()
     {
-        RawImage ri = GetComponent<RawImage>();
+        if(!ri)
+            ri = GetComponent<RawImage>();
+
         Color color = ri.color;
         color.a = 0;
         ri.color = color;
@@ -82,7 +89,9 @@ public class blackScreen : MonoBehaviour {
 
     public void setAsBlack()
     {
-        RawImage ri = GetComponent<RawImage>();
+        if (!ri)
+            ri = GetComponent<RawImage>();
+
         Color color = ri.color;
         color.a = 1;
         ri.color = color;
@@ -90,10 +99,20 @@ public class blackScreen : MonoBehaviour {
 
     public void setAsTransparent()
     {
-        RawImage ri = GetComponent<RawImage>();
+        if (!ri)
+            ri = GetComponent<RawImage>();
+
         Color color = ri.color;
         color.a = 0;
         ri.color = color;
+    }
+
+    public float getAlpha()
+    {
+        if (!ri)
+            ri = GetComponent<RawImage>();
+
+        return ri.color.a;
     }
 
 }

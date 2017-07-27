@@ -129,6 +129,14 @@ public class HeykelController : MonoBehaviour {
 
 
 
+        //If rock is destroyed here than just terrminate coroutine
+        if (spawnedRock == null)
+        {
+            shooting = false;
+            yield break;
+
+        }
+
         //// Distance along the y axis between objects
         float yOffset = spawnedRock.transform.position.y- player.transform.position.y;
         

@@ -105,6 +105,16 @@ public class SubtitleController : MonoBehaviour {
 
     // Update is called once per frame
     protected virtual void Update () {
+
+        //While developing you can pass subtitles with space key
+#if UNITY_EDITOR
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            finishSubtitle();
+        }
+#endif
+
+
         //Debug.Log("index: "+index+"array: "+subtitleTexts.Length);
 
         if (Time.timeScale == 0)
@@ -131,33 +141,7 @@ public class SubtitleController : MonoBehaviour {
             
             else
             {
-                //Debug.Log("index is exceeds subtitle length");
-                ClickTrigger.disabled = false;
-
-                text.text = "";
-
-                if(pcc!=null&&releaseAfterSub)
-                pcc.ContinueToWalk ();
-
-                
-
-                ISubtitleFinishFunction sff = GetComponent<ISubtitleFinishFunction>();
-                if (sff != null)
-                {
-                    //print("finishFunct");
-                    sff.finishFunction();
-                }
-                    
-
-                if (ifDesroyItself)
-                {
-                    Destroy(gameObject.GetComponent<SubtitleController>());
-     
-                }
-
-                if (caller) caller.eraseActiveController();
-
-                this.enabled = false;
+                finishSubtitle();
             }
         }
         else
@@ -166,6 +150,39 @@ public class SubtitleController : MonoBehaviour {
         }
 
 	}
+
+    private void finishSubtitle()
+    {
+        //Debug.Log("index is exceeds subtitle length");
+        ClickTrigger.disabled = false;
+
+        text.text = "";
+
+        if (pcc != null && releaseAfterSub)
+            pcc.ContinueToWalk();
+
+
+
+        ISubtitleFinishFunction sff = GetComponent<ISubtitleFinishFunction>();
+        if (sff != null)
+        {
+            //print("finishFunct");
+            sff.finishFunction();
+        }
+
+
+        if (ifDesroyItself)
+        {
+            Destroy(gameObject.GetComponent<SubtitleController>());
+
+        }
+
+        if (caller) caller.eraseActiveController();
+
+        index = -1;
+
+        this.enabled = false;
+    }
 
     public virtual void terminateSubtitle()
     {

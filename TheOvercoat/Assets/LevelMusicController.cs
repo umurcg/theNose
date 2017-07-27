@@ -129,11 +129,25 @@ public class LevelMusicController : MonoBehaviour {
     {
         Timing.RunCoroutine(_playSoundEffect(clip));
     }
+    public static void playSoundEffect(AudioClip clip, float duration)
+    {
+        Timing.RunCoroutine(_playSoundEffect(clip,true,duration));
+    }
 
-    static IEnumerator<float> _playSoundEffect(AudioClip clip, bool volueDownMusicWhilePlaying=true){
+    public static void playSoundEffect(AudioClip clip, float start, float end)
+    {
+        Timing.RunCoroutine(_playSoundEffect(clip, true, end-start,start));
+    }
+
+
+
+    static IEnumerator<float> _playSoundEffect(AudioClip clip, bool volueDownMusicWhilePlaying=true, float duration=0,float start=0){
 
         AudioSource source = GlobalController.Instance.afxSource;
         source.clip = clip;
+
+        if (source.clip.length > start) source.time = start;
+
         source.loop = false;
 
         AudioSource musicSouce = GlobalController.Instance.musicSouce;
@@ -155,8 +169,19 @@ public class LevelMusicController : MonoBehaviour {
         
         source.Play();
 
-        while (source.isPlaying) yield return 0;
-
+        if (duration == 0 || (start+ duration)> source.clip.length)
+        {
+            while (source.isPlaying) yield return 0;
+        }
+        else
+        {
+            while (duration > 0)
+            {
+                duration -= Time.deltaTime;
+                yield return 0;
+            }
+        }
+        source.Stop();
         source.clip = null;
         source.loop = false;
 

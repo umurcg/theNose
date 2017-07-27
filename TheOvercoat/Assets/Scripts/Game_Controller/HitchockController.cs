@@ -76,7 +76,7 @@ public class HitchockController : GameController, IClickAction  {
 
             //print((hs.fov));
             //print(Mathf.Exp((hs.fov - minFov) / (maxFov - minFov)));
-            hs.fov += 1 * fovSpeed*Mathf.Exp(2*(hs.fov-minFov)/(maxFov-minFov));
+            hs.fov += 1 * fovSpeed*Time.deltaTime*Mathf.Exp(2*(hs.fov-minFov)/(maxFov-minFov));
 
             //Debug.Log("hitckoooooooooooock");
 

@@ -17,6 +17,7 @@ public class RockScript : MonoBehaviour {
     public GameObject reciever;
     public GameObject particle;
 
+    public AudioClip clip;
 
     // Use this for initialization
     void Start () {
@@ -61,7 +62,9 @@ public class RockScript : MonoBehaviour {
 
         } else if (collision.transform.tag == "Enemy" && reciever!=null)
         {
-            
+            GameObject enemy = collision.gameObject;
+            Timing.RunCoroutine(Vckrs.addImpactForce(enemy, Vckrs.eliminiteY(enemy.transform.position) - Vckrs.eliminiteY(transform.position) * -1));
+
             reciever.SendMessage("damageEnemy", enemyDamage);
             explode();
         } else if (collision.transform.tag == "Sculpture")
@@ -86,6 +89,10 @@ public class RockScript : MonoBehaviour {
             spawnedParticle.transform.position = transform.position;
             spawnedParticle.SetActive(true);
         }
+
+        if (clip) LevelMusicController.playSoundEffect(clip);
+
+
         Destroy(gameObject);
 
     }

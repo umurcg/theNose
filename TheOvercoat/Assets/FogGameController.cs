@@ -123,13 +123,28 @@ public class FogGameController : GameController {
 
         yield return Timing.WaitForSeconds(2f);
 
+        IEnumerator<float> handler = blackScreen.script.fadeOut();
+        yield return Timing.WaitUntilDone(handler);
+
         bc.termianteFall();
+
+        CharGameController.getSun().GetComponent<DayAndNightCycle>().makeDay();
+
+        LoadScene ls= GetComponent<LoadScene>();
+        ls.fade = false;
+
+        ls.Load();
+
+
+
 
         yield return 0;
 
-        GetComponent<LoadScene>().Load();
 
-        
+
+        //yield return   Timing.WaitUntilDone(Timing.RunCoroutine(GetComponent<LoadScene>()._Load()));
+
+
 
         yield break;
     }

@@ -14,7 +14,10 @@ public class GirtyPetGameScript : MonoBehaviour {
     Text pointText;
     float point;
 
-    public float speed = 5;
+    public float ortSpeed = 5;
+    public float persSpeed = 3;
+
+    float speed = 5;
     public float rotationSpeed = 10f;
     public float approachSpeed = 1f;
     public float runAwayMagnitude = 3f;
@@ -57,6 +60,7 @@ public class GirtyPetGameScript : MonoBehaviour {
 
     IEnumerator<float> runHandler;
 
+    float cameraForwardDistance;
   
 
     // Use this for initialization
@@ -76,13 +80,17 @@ public class GirtyPetGameScript : MonoBehaviour {
             pointBarScript.setName(pointBarNameENG_TR[1]);
         }
 
+        speed = (CharGameController.getCameraType() == CharGameController.cameraType.Ortographic) ? ortSpeed : persSpeed;
+        
+
+        cameraForwardDistance = GlobalController.cameraForwardDistance;
 
         anim = GetComponent<Animator>();
 
         mainCamera = CharGameController.getCamera().GetComponent<Camera>();
       
         //Set position to middle of screen
-        transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2,100));
+        transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, cameraForwardDistance));
 
         //Look to cam
         transform.LookAt(mainCamera.gameObject.transform.position-mainCamera.gameObject.transform.forward);
@@ -94,6 +102,7 @@ public class GirtyPetGameScript : MonoBehaviour {
         previousPosition = transform.position;
         previousMousePosition = Input.mousePosition;
 
+        //enabled = false;
         
         
     }
@@ -163,7 +172,7 @@ public class GirtyPetGameScript : MonoBehaviour {
 
 
         //Can pet if distance smaller than minimumDistanceForPetting
-        if (Vector3.Distance(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition+Vector3.forward*100)) < minimumDistanceForPetting)
+        if (Vector3.Distance(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition+Vector3.forward*cameraForwardDistance/2)) < minimumDistanceForPetting)
         {
             //Set cursor to canpet texture
             if (petTexture != null && cis.externalTexture == null) cis.externalTexture = petTexture;
@@ -224,6 +233,7 @@ public class GirtyPetGameScript : MonoBehaviour {
 
     void OnMouseOver()
     {
+        Debug.Log("On Mouse oveer");
         //If player can pet girty onMouseOver should return immediatly
         if (canPet) return;
 
@@ -244,10 +254,10 @@ public class GirtyPetGameScript : MonoBehaviour {
         timer = 0;
         
         //While distance between girty and mouse position is bigger tan sphere collider's 2*r, walk towards mouse 
-        while (Vector3.Distance(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 100))>GetComponent<SphereCollider>().radius*2.5f)
+        while (Vector3.Distance(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * cameraForwardDistance/2))>GetComponent<SphereCollider>().radius*2.5f)
         {
             //Walk towards
-            transform.position = Vector3.MoveTowards(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 100), approachSpeed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * cameraForwardDistance/2), approachSpeed*Time.deltaTime);
 
             //Check for mouse delta. If player moves mouse too much while girty is tryinh to approach run away.
             //Magic number is used for that. Sorryyyyyy. But script is already too complicted
@@ -278,7 +288,7 @@ public class GirtyPetGameScript : MonoBehaviour {
     //Calculates opposite direction for running away from mouse
     Vector3 findOppositeDirectionOfMouse()
     {
-        Vector3 dirIn3d= transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 100);    
+        Vector3 dirIn3d= transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 100 + mainCamera.transform.forward * cameraForwardDistance);    
         Vector3 dirInPlane = Vector3.ProjectOnPlane(dirIn3d, mainCamera.transform.forward);
         return dirInPlane;
     }
@@ -332,19 +342,19 @@ public class GirtyPetGameScript : MonoBehaviour {
     //Checks girty in screen, if not moves it to other side of screen and make it walk to in to screen a little bit
     public void checkObjInScreen(GameObject obj)
     {
-        float tol = 10;
+        float tol = 3;
 
         Vector2 objScreenPos = mainCamera.WorldToScreenPoint(obj.transform.position);
 
         if (objScreenPos.x > Screen.width+tol)
         {
-            obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector3(0, objScreenPos.y,100));
+            obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector3(0, objScreenPos.y,cameraForwardDistance/2));
             stopRun();
             run(transform.position, mainCamera.gameObject.transform.right*tol);
         }
         else if (objScreenPos.x < 0 - tol)
         {
-            obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, objScreenPos.y, 100));
+            obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, objScreenPos.y, cameraForwardDistance/2));
             stopRun();
             run(transform.position, - mainCamera.gameObject.transform.right*tol);
         }
@@ -353,14 +363,14 @@ public class GirtyPetGameScript : MonoBehaviour {
         
         if (objScreenPos.y > Screen.height + tol)
         {
-            obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector3(objScreenPos.x, 0, 100));
+            obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector3(objScreenPos.x, 0, cameraForwardDistance/2));
             stopRun();
             run(transform.position, mainCamera.gameObject.transform.up*tol);
         }
         else if (objScreenPos.y < 0 - tol)
         {
 
-            obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector3(objScreenPos.x, Screen.height, 100));
+            obj.transform.position = mainCamera.ScreenToWorldPoint(new Vector3(objScreenPos.x, Screen.height, cameraForwardDistance/2));
             stopRun();
             run(transform.position, - mainCamera.gameObject.transform.up*tol);
         }

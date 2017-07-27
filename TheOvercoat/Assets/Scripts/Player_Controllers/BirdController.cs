@@ -224,7 +224,7 @@ public class BirdController : MonoBehaviour {
             yield return 0;
         }
 
-        Vckrs.printNameTagLayer(et.lastEnteredObject);
+        //Vckrs.printNameTagLayer(et.lastEnteredObject);
 
         Destroy(sc);
         Destroy(rb);
@@ -247,14 +247,19 @@ public class BirdController : MonoBehaviour {
 
         //releaseFall = true;
         birdAnim.SetBool("Fall", false);
-
         GetComponent<BasicCharAnimations>().enabled = true;
         GetComponent<BirdLandingScript>().enabled = true;
         bcc.ContinueToWalk();
         enabled = true;
+        //GetComponent<BasicCharAnimations>().enabled = true;
+        //GetComponent<BirdLandingScript>().enabled = true;
+        //bcc.ContinueToWalk();
+        //enabled = true;
 
         //releaseFall = false;
 
     }
+
+
 
 }

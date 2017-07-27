@@ -100,6 +100,15 @@ public class SubtitleControllerTime : SubtitleController {
     protected override void Update () {
         //print(timer);
 
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            finishSubtitle();
+           
+        }
+#endif
+
+
         if (timer > 0)
             timer -= Time.deltaTime;
 
@@ -118,30 +127,43 @@ public class SubtitleControllerTime : SubtitleController {
 
             }else if(timer<=0)
             {
-                timer = 0;
-                text.text = "";
-
-                clearNarratorAudio();
-
-                ISubtitleFinishFunction sff = GetComponent<ISubtitleFinishFunction>();
-                if (sff != null)
-                {
-                    //print("finishFunct");
-                    sff.finishFunction();
-                }
-
-
-                if (ifDesroyItself)
-                {
-                    Destroy(gameObject.GetComponent<SubtitleController>());
-
-                }
-                this.enabled = false;
+                finishSubtitle();
             }
 
         }
 
 	}
+
+    private void finishSubtitle()
+    {
+        Debug.Log("Finish subtitle narrator");
+        timer = 0;
+    
+
+        clearNarratorAudio();
+
+        ISubtitleFinishFunction sff = GetComponent<ISubtitleFinishFunction>();
+        if (sff != null)
+        {
+            //print("finishFunct");
+            sff.finishFunction();
+        }
+
+
+        if (ifDesroyItself)
+        {
+            Destroy(gameObject.GetComponent<SubtitleController>());
+
+        }
+
+        text.text = "";
+
+        index = -1;
+
+        
+
+        this.enabled = false;
+    }
 
     void assignTimer()
     {

@@ -15,6 +15,8 @@ public class HeartGameObject : MonoBehaviour {
 
     public GameObject particle;
 
+    public AudioClip collectSound;
+
     //public bool debug;
 
 	// Use this for initialization
@@ -72,6 +74,9 @@ public class HeartGameObject : MonoBehaviour {
                     particle.transform.SetParent(null);
                     Destroy(transform.parent.gameObject);
                 }
+
+                if (collectSound) LevelMusicController.playSoundEffect(collectSound);
+
             }
         }
     }
@@ -133,6 +138,8 @@ public class HeartGameObject : MonoBehaviour {
 
         particle.SetActive(true);
         particle.transform.SetParent(null);
+
+        if (collectSound) LevelMusicController.playSoundEffect(collectSound);
 
         Destroy(transform.parent.gameObject);
         ggc = transform.parent.GetComponent<GirlGameController>();

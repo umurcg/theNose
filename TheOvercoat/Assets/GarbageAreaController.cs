@@ -13,7 +13,7 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
     public GameObject closeButton;
     GameObject reflection;
     PlayerComponentController pcc;
-
+    
     Camera mainCam;
 
     CursorImageScript cis;
@@ -72,10 +72,16 @@ public class GarbageAreaController : MonoBehaviour, IClickAction {
             //Add broadcast script to treasure
             if (gameObject.transform.GetChild(i).name == rgc.treasure.name)
             {
-                Debug.Log("Adding broadcast to treusere");
-                BroadcastOnClick boc = child.AddComponent<BroadcastOnClick>();
-                boc.reciever = rgc.gameObject;
-                boc.message = "foundTreasure";
+                //Debug.Log("Adding broadcast to treusere");
+                //BroadcastOnClick boc = child.AddComponent<BroadcastOnClick>();
+                //boc.reciever = rgc.gameObject;
+                //boc.message = "foundTreasure";
+
+                BroadcastOnClick broad = child.AddComponent<BroadcastOnClick>();
+                broad.reciever = rgc.gameObject;
+                broad.message = "foundTreasure";
+                broad.destroyAfterBC = true;
+                broad.sendMessageWithObject = true;
             }
 
         }

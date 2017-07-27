@@ -10,6 +10,7 @@ public class BotShopping : MonoBehaviour
     public float shopTime;
     public int maximumAudience=1;
     public string animationName;
+    public GameObject lookFocus;
 
     List<GameObject> audience;
     public float probabilityPercent;
@@ -67,6 +68,9 @@ public class BotShopping : MonoBehaviour
 
         nma.SetDestination(transform.position);
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs.waitUntilStop(nma.gameObject)));
+
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs._lookTo(nma.gameObject, lookFocus, 1f)));
+
 
         Animator anim = nma.GetComponent<Animator>();
         if (anim) anim.SetBool(animationName, true);

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SculpturerCatchesKovalev : GameController {
 
     public float camRotateSpeed = 1f;
+    public AudioClip scarySound;
 
     // Use this for initialization
     public override void Start()
@@ -27,6 +28,8 @@ public class SculpturerCatchesKovalev : GameController {
         if (other.tag == "Player")
         {
             Timing.RunCoroutine(fallCameraEffect());
+            LevelMusicController.playSoundEffect(scarySound);
+
         }
     }
 

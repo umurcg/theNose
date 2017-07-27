@@ -5,7 +5,7 @@ using MovementEffects;
 
 public class TutorailCanvas : MonoBehaviour {
 
-    public enum Tutorials {MouseMovement=0,KeyboardMovement=1, CameraRotator=2,InteractiveObjects=3,Subtitle=4,MouseRotate,MouseZoom,Map,Bird,Shoot }
+    public enum Tutorials {MouseMovement=0,KeyboardMovement=1, CameraRotator=2,Subtitle=3, InteractiveObjects = 4, MouseRotate,MouseZoom,Map,Bird,Shoot }
 
     public Tutorials[] basicTutorials;
 

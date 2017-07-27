@@ -25,7 +25,7 @@ public class CanvasCameraSetter : MonoBehaviour {
     {
         canvas = GetComponent<Canvas>();
         GameObject mainCamera = CharGameController.getCamera();
-        if (mainCamera != null && mainCamera.activeSelf)
+        if (mainCamera != null && mainCamera.activeSelf && (mainCamera.transform.parent==null || mainCamera.transform.parent.gameObject.activeSelf))
         {
             //Debug.Log("Assigning main camera");
             canvas.worldCamera = mainCamera.GetComponent<Camera>();

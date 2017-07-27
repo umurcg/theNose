@@ -1242,6 +1242,28 @@ public class Vckrs : MonoBehaviour
 
     }
 
+    //Adds impact effect using character controller
+    public static IEnumerator<float> addImpactForce(GameObject subjectOfForce, Vector3 force, float mass = 1)
+    {
+
+        //Debug.Log(force);
+        //Time.timeScale = 0;
+        Vector3 impact = force / mass;
+        //CharacterController cc = subjectOfForce.GetComponent<CharacterController>();
+
+        while (impact.magnitude > 0)
+        {
+            //cc.Move(impact * Time.deltaTime);
+            subjectOfForce.transform.position += impact * Time.deltaTime;
+            impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
+
+            yield return 0;
+        }
+
+        yield break;
+
+    }
+
 
     public static float randomSign()
     {

@@ -102,9 +102,10 @@ public class TavernGameController : GameController {
         {
             Timing.RunCoroutine(_ivanSitsBar());
         }
+        else { Timing.RunCoroutine(_justDrink()); }
         //else if(charName!="Bird")
         //{
-            Timing.RunCoroutine(_justDrink());
+            //Timing.RunCoroutine(_justDrink());
             //just drink
         //}
     }
@@ -130,6 +131,7 @@ public class TavernGameController : GameController {
         handlerHolder = blackScreen.script.fadeOut();
         yield return Timing.WaitUntilDone(handlerHolder);
 
+        //Debug.Log("making building drunk, not ivan");
         makeAllBuildingsDrunk();
         Timing.RunCoroutine(Vckrs._fadeObject(tavernBuilding, 1f));
 
@@ -151,12 +153,22 @@ public class TavernGameController : GameController {
         yield return Timing.WaitForSeconds(3);
         sc.callSubtitleWithIndex(2);
         while (subtitle.text != "") yield return 0;
+
         yield return Timing.WaitForSeconds(2);
-        handlerHolder= blackScreen.script.fadeOut();
+        handlerHolder = blackScreen.script.fadeOut();
         yield return Timing.WaitUntilDone(handlerHolder);
-                
+
+        while (blackScreen.script.getAlpha() < 0.9f)
+        {
+            Debug.Log("wAİTİNG");
+            yield return 0;
+        }
+
+        //yield return Timing.WaitUntilDone(Timing.RunCoroutine(blackScreen.script.fadeOut()));
+
+        //Debug.Log("making building drunk");
         makeAllBuildingsDrunk();
-        Timing.RunCoroutine(Vckrs._fadeObject(tavernBuilding, 1f));
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs._fadeObject(tavernBuilding, 1f)));
 
         yield return Timing.WaitForSeconds(5);
 

@@ -46,6 +46,8 @@ public class NoseEncounterGameController : GameController {
 
         startNoseGame();
 
+        disableEnableHorses(false);
+
         //debugGirlGame();
 
 
@@ -491,6 +493,10 @@ public class NoseEncounterGameController : GameController {
         {
             yield return 0;
         }
+
+        disableEnableHorses(true);
+
+        gameObject.SetActive(false);
 
 
     }

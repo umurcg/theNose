@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using MovementEffects;
 
-public class BridGameController : MonoBehaviour {
+public class BridGameController : GameController {
         
     public GameObject uiText;
     //public GameObject buttonPrefab;
@@ -27,7 +27,7 @@ public class BridGameController : MonoBehaviour {
     public bool debug;
 
 	// Use this for initialization
-	void Awake () {
+	public override void Awake () {
 
         debv=GetComponent<DrawEdgesBetweenVertices>();
         initialRot = transform.rotation;
@@ -38,7 +38,7 @@ public class BridGameController : MonoBehaviour {
         
         
 	}
-    private void Start()
+    public override void Start()
     {
         textMessage = GetComponent<DynamicLanguageTexts>().getTextForCurrentLanguage();
 
@@ -139,6 +139,7 @@ public class BridGameController : MonoBehaviour {
 
         yield return Timing.WaitForSeconds(1f);
 
+        registerAsUsed();
 
         wizard.GetComponent<WizardController>().loadCity();
 

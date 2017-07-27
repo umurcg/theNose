@@ -9,7 +9,10 @@ using MovementEffects;
 public class ChurchTellerGameController : GameController {
 
     characterComponents ownerCC;
-    
+
+    public GameObject reyhan;
+    bool waitingForReyhanDumptMe = false;
+
 
 	// Use this for initialization
 	public override void Start () {
@@ -140,15 +143,23 @@ public class ChurchTellerGameController : GameController {
     {
         base.activateController();
         //Debug.Log("TAKE ME TO THE TO CHURCH");
-        gameObject.SetActive(true);
-        //gameObject.SetActive(true);
-        //gameObject.SetActive(true);
-        //gameObject.SetActive(true);
-        //gameObject.SetActive(true);
 
-
-
+        if (!reyhan.activeSelf) 
+        {
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            waitingForReyhanDumptMe = true;
+        }
     }
+
+    public void tryToActivate()
+    {
+        if (waitingForReyhanDumptMe) gameObject.SetActive(true);
+    }
+
+
 
     public override void deactivateController()
     {

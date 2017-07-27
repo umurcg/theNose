@@ -20,6 +20,12 @@ public class RainOverMe : MonoBehaviour {
     public float maxTorque = 0.3f;
     public float minTorque = 0.1f;
 
+    public float forwardDistance = 0;
+
+
+    public BoxCollider upperSpawnArea;
+    public BoxCollider middleSpawnArea;
+
 	// Use this for initialization
 	void Start () {
 
@@ -57,11 +63,14 @@ public class RainOverMe : MonoBehaviour {
 
         GameObject spawnedObject = Instantiate(prefabs[Random.Range(0, prefabs.Length)]) as GameObject;
 
-        float upY = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Random.Range(0, Screen.height), GlobalController.cameraForwardDistance)).y;
-        float maxX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width, 0, GlobalController.cameraForwardDistance)).x;
-        float minX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, 0, GlobalController.cameraForwardDistance)).x;
+        //float upY = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Random.Range(0, Screen.height), 0)).y;
+        //float maxX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
+        //float minX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
 
-        spawnedObject.transform.position = new Vector3(Random.Range(minX, maxX), upY + 5, mainChar.transform.position.z);
+        //spawnedObject.transform.position = new Vector3(Random.Range(minX, maxX), upY + 5, mainChar.transform.position.z+forwardDistance);
+
+        spawnedObject.transform.position = Vckrs.generateRandomPositionInBox(middleSpawnArea.gameObject);
+
 
         spawnedObject.SetActive(true);
 
@@ -86,14 +95,16 @@ public class RainOverMe : MonoBehaviour {
         //Get random object
         GameObject spawnedObject = Instantiate(prefabs[Random.Range(0, prefabs.Length)]) as GameObject;
 
-        //Borders
-        float upY = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Random.Range( Screen.height, Screen.height+50), GlobalController.cameraForwardDistance)).y;
-        float maxX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width, 0, GlobalController.cameraForwardDistance)).x;
-        float minX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, 0, GlobalController.cameraForwardDistance)).x;
+        ////Borders
+        //float upY = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Random.Range( Screen.height, Screen.height+50), 0)).y;
+        //float maxX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
+        //float minX = cameraObj.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
+
+        spawnedObject.transform.position = Vckrs.generateRandomPositionInBox(upperSpawnArea.gameObject);
 
         spawnedObject.SetActive(true);
 
-        spawnedObject.transform.position = new Vector3(Random.Range(minX, maxX), upY + 5, mainChar.transform.position.z);
+        //spawnedObject.transform.position = new Vector3(Random.Range(minX, maxX), upY + 5, mainChar.transform.position.z+forwardDistance);
 
         ConstantForce cf = spawnedObject.AddComponent<ConstantForce>();
         cf.force = new Vector3(0, -Random.Range(minLinearForce, maxLinerForce), 0);
@@ -105,7 +116,7 @@ public class RainOverMe : MonoBehaviour {
         //make parent player
         spawnedObject.transform.parent = cameraObj.transform;
 
-        Timing.RunCoroutine(destroyAfterSeconds(spawnedObject, 10f));
+        Timing.RunCoroutine(destroyAfterSeconds(spawnedObject, 30f));
     }
 
     IEnumerator<float> destroyAfterSeconds(GameObject obj,float delay)

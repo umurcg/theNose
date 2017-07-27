@@ -217,14 +217,20 @@ public class BridgeGameController : GameController {
         //Dont load new scene instead fade out and activate singer cafe
         //GetComponent<LoadScene>().Load();
 
-        Timing.RunCoroutine(changeScene());
+        Timing.RunCoroutine(_changeScene());
 
         yield break;
 
 
     }
 
-    public IEnumerator<float> changeScene()
+    [ContextMenu ("Change scene")]
+    public void changeScene()
+    {
+        Timing.RunCoroutine(_changeScene());
+    }
+
+    public IEnumerator<float> _changeScene()
     {
         handlerHolder = blackScreen.script.fadeOut();
         yield return Timing.WaitUntilDone(handlerHolder);

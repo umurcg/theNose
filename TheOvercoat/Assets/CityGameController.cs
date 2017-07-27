@@ -13,7 +13,7 @@ public class CityGameController : MonoBehaviour {
     public GameObject[] exclusiceObjectsForIvanScene;
     public GameObject lookAtMeNowTrigger, NoseGame;
     public GameObject SingerCafe;
-    public GameObject friendTellsChurch;
+    public ChurchTellerGameController friendTellsChurch;
     public GameObject churchBirdPosition;
     public GameObject outroScene;
     public GameObject deadManGameController;
@@ -333,8 +333,8 @@ public class CityGameController : MonoBehaviour {
 
             Debug.Log("Coming from newspaper second time");
 
-            friendTellsChurch.GetComponent<GameController>().isDisabledAtStart = false;
-            friendTellsChurch.GetComponent<GameController>().activateController();  
+            friendTellsChurch.isDisabledAtStart = false;
+            friendTellsChurch.activateController();  
 
             OpenDoorLoad.doors[5].Unlock();
 
@@ -366,10 +366,11 @@ public class CityGameController : MonoBehaviour {
 
             horseCariers.SetActive(false);
 
+
+            //Enable fog game
+            fogGAME.activateController();
         }
 
-        //Enable fog game
-        fogGAME.activateController();
 
     }
 

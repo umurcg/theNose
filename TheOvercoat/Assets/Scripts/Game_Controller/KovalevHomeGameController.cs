@@ -47,7 +47,7 @@ public class KovalevHomeGameController : GameController {
             }
 
             //First check game objects
-            if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("SculpturerGameSculpturerGameController")/*true*/|| khs==kovalevHomeScene.Dream)
+            if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("AtolyeSculpturerGame")/*true*/|| khs==kovalevHomeScene.Dream)
             {
                 khs = kovalevHomeScene.Dream;
                 Timing.RunCoroutine( comingFromSculpturer());
@@ -336,7 +336,9 @@ public class KovalevHomeGameController : GameController {
         od.otherCanOpen = false;
         od.Unlock();
 
+        pcc.StopToWalk();
         sc.callSubtitleWithIndex(21);
+
 
 
         //ksc.disableWC();
@@ -624,6 +626,7 @@ public class KovalevHomeGameController : GameController {
         yield return 0;
         Debug.Log("sCLUPTUREEEEEEER");
 
+
         playerNma.enabled = false;
 
         //Move player to starting position
@@ -635,6 +638,9 @@ public class KovalevHomeGameController : GameController {
         playerAnim.SetTrigger("Lie");
 
         pcc.StopToWalk();
+
+        //MAKE DAY
+        CharGameController.getSun().GetComponent<DayAndNightCycle>().makeDay();
 
         yield return Timing.WaitForSeconds(2f);
         //player.GetComponent<CharacterController>().enabled = false;
@@ -671,6 +677,7 @@ public class KovalevHomeGameController : GameController {
         playerNma.enabled = true;
 
         Door.GetComponent<OpenDoorLoad>().Unlock();
+        
         yield break;
     }
 

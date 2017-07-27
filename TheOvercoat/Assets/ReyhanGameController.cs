@@ -17,7 +17,8 @@ public class ReyhanGameController : GameController {
     public GameObject[] garbageObjects;
     public int numberOfGarbageArea = 5;
     public int numberOfGarbageInArea = 5;
-    public float radiusOfWholeArea = 30f;
+    //public float radiusOfWholeArea = 30f;
+    public GameObject spawnAreas;
     public float radiusOfOneArea = 2f;
     public int navMesharea;
     public Material obajectMaterial;
@@ -27,6 +28,7 @@ public class ReyhanGameController : GameController {
     public GameObject buttonPrefab;
     public float reflectionScaleSize = 30;
     public float spherecColliderRadiusGarbageArea = 3;
+
 
     public GameObject messageReciever;
     public string message;
@@ -76,9 +78,11 @@ public class ReyhanGameController : GameController {
 
     void createGarbage(bool addTreasure)
     {
-        //Vector2 randomPos =Random.insideUnitCircle * radiusOfWholeArea;
-        //Vector3 garbagePos = (new Vector3(randomPos.x, 0, randomPos.y))+ transform.position;
-        Vector3 garbagePos= getRandomPosInCircle(transform.position, radiusOfWholeArea);
+
+        //Vector3 garbagePos= getRandomPosInCircle(transform.position, radiusOfWholeArea);
+        GameObject selectedArea = spawnAreas.transform.GetChild(Random.Range(0, spawnAreas.transform.childCount)).gameObject;
+        Vector3 garbagePos = Vckrs.generateRandomPositionInBox(selectedArea);
+
         //Debug.Log("Garabage pos is " + garbagePos);
         UnityEngine.AI.NavMeshHit hit;
 
@@ -125,11 +129,11 @@ public class ReyhanGameController : GameController {
                 treasure.transform.position = garbObjPos;
                 treasure.transform.rotation = Random.rotation;
 
-                BroadcastOnClick broad = treasure.AddComponent<BroadcastOnClick>();
-                broad.reciever = gameObject;
-                broad.message = "foundTreasure";
-                broad.destroyAfterBC = true;
-
+                //BroadcastOnClick broad = treasure.AddComponent<BroadcastOnClick>();
+                //broad.reciever = gameObject;
+                //broad.message = "foundTreasure";
+                //broad.destroyAfterBC = true;
+                //broad.sendMessageWithObject = true;
                 //treasure.AddComponent<CapsuleCollider>();
 
                 //AssignMaterialToChildren assignMat = treasure.AddComponent<AssignMaterialToChildren>();
@@ -172,14 +176,14 @@ public class ReyhanGameController : GameController {
 
     }
 
-    public void foundTreasure()
+    public void foundTreasure(GameObject treasureOnForground)
     {
-        Timing.RunCoroutine(_foundTreasure());               
+        Timing.RunCoroutine(_foundTreasure(treasureOnForground));               
     }
 
-    IEnumerator<float> _foundTreasure()
+    IEnumerator<float> _foundTreasure(GameObject treasureOnForground)
     {
-        MoveObjectToFocus motf=treasure.AddComponent<MoveObjectToFocus>();
+        MoveObjectToFocus motf= treasureOnForground.AddComponent<MoveObjectToFocus>();
 
         motf.move();
 
@@ -188,6 +192,9 @@ public class ReyhanGameController : GameController {
         while (!Input.GetMouseButtonDown(0)) yield return 0;
 
         messageReciever.SendMessage(message);
+
+
+
         gameObject.SetActive(false);
 
         yield break;
@@ -196,20 +203,20 @@ public class ReyhanGameController : GameController {
 }
 
 
-#if UNITY_EDITOR
-[UnityEditor.CustomEditor(typeof(ReyhanGameController))]
-public class customclassEditor : UnityEditor.Editor
-{
+//#if UNITY_EDITOR
+//[UnityEditor.CustomEditor(typeof(ReyhanGameController))]
+//public class customclassEditor : UnityEditor.Editor
+//{
 
-    private ReyhanGameController script;
+//    private ReyhanGameController script;
 
-    public void OnSceneGUI()
-    {
-        script = this.target as ReyhanGameController;
-        UnityEditor.Handles.color = Color.red;
-        UnityEditor.Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
-                                      , script.transform.forward                       // normal
-                                      , script.radiusOfWholeArea);                              // radius
-    }
-}
-#endif
+//    public void OnSceneGUI()
+//    {
+//        script = this.target as ReyhanGameController;
+//        UnityEditor.Handles.color = Color.red;
+//        UnityEditor.Handles.DrawWireDisc(script.transform.position + (script.transform.forward) // position
+//                                      , script.transform.forward                       // normal
+//                                      , script.radiusOfWholeArea);                              // radius
+//    }
+//}
+//#endif

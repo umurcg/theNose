@@ -132,12 +132,18 @@ public class PauseMenu : MonoBehaviour {
 
     }
 
-    //TODO
+    //TODO think about game controllers
     public void restartFunc()
     {
 
         GlobalController.Instance.removeLastScene();
+                
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        GameObject player = CharGameController.getActiveCharacter();
+        if (player != null) player.GetComponent<PlayerComponentController>().ContinueToWalk();
+
+        CharGameController.getSun().GetComponent<DayAndNightCycle>().makeDay();
     }
 
     public void settingsFunc()

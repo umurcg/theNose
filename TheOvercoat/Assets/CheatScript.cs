@@ -91,7 +91,7 @@ public class CheatScript : MonoBehaviour {
 
             if (bgc) {
                 Debug.Log("Triggering change scen from bgc");
-                Timing.RunCoroutine(bgc.GetComponent<BridgeGameController>().changeScene());
+                Timing.RunCoroutine(bgc.GetComponent<BridgeGameController>()._changeScene());
                 return;
             }else
             {
