@@ -168,7 +168,7 @@ public class KovalevHomeGameController : GameController {
 
         player.GetComponent<CharacterController>().enabled = false;
 
-        yield return Timing.WaitForSeconds(2f);
+        yield return Timing.WaitForSeconds(5f);
 
         //BasicCharAnimations bca = player.GetComponent<BasicCharAnimations>();
         //bca.enabled = false;
@@ -207,6 +207,9 @@ public class KovalevHomeGameController : GameController {
         //KovAgent = player.AddComponent<NavMeshAgent>();
 
         yield return Timing.WaitForSeconds(0.5f);
+
+        sc.callSubtitleWithIndex(22);
+        while (subtitle.text != "") yield return 0;
 
         playerNma.enabled = true;
 
@@ -320,7 +323,12 @@ public class KovalevHomeGameController : GameController {
 
     public void KovalevPickedPaper()
     {
-        if (GlobalController.isScnListContains(GlobalController.Scenes.Church)) return;
+        Timing.RunCoroutine(_KovalevPickedPaper());
+    }
+
+    public IEnumerator<float> _KovalevPickedPaper()
+    {
+        if (GlobalController.isScnListContains(GlobalController.Scenes.Church)) yield break;
 
         Ivan.transform.tag = "Untagged";
 
@@ -339,6 +347,8 @@ public class KovalevHomeGameController : GameController {
         pcc.StopToWalk();
         sc.callSubtitleWithIndex(21);
 
+        while (subtitle.text != "") yield return 0;
+        pcc.ContinueToWalk();
 
 
         //ksc.disableWC();

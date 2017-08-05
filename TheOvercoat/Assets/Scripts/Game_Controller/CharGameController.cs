@@ -283,7 +283,7 @@ public class CharGameController : MonoBehaviour {
         Camera cam = owner.GetComponentInChildren<Camera>();
         if (cam == null)
         {
-            Debug.Log("Couldnt find camera component under owner");
+            //Debug.Log("Couldnt find camera component under owner");
             return null;
         } 
         return cam;

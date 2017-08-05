@@ -1,24 +1,38 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlwaysLookToCamera : MonoBehaviour {
+public class AlwaysLookToCamera : MonoBehaviour, IVisibility {
 
     Camera cam;
     public float lerpSpeed=1;
     public bool lerp = true;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        Renderer rend = GetComponentInChildren<Renderer>();
+        if(rend!=null)
+          rend.gameObject.AddComponent<TellMeVisibility>().setScript(this);
+
+    }
+
+    // Use this for initialization
+    void Start () {
         cam = CharGameController.getMainCameraComponent();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (!cam) cam=Camera.main;
+        if (!cam) cam = CharGameController.getMainCameraComponent();
 
-        if (!cam) return;
+        if (!cam)
+        {
+            //Debug.Log("Cmera is null");
+            return;
+        }
 
         Quaternion aimRot = Quaternion.LookRotation(-cam.transform.forward, cam.transform.up);
         
@@ -33,4 +47,14 @@ public class AlwaysLookToCamera : MonoBehaviour {
 
         //transform.LookAt(cam.transform.position);
 	}
+
+    public void onVisible()
+    {
+        enabled = true;
+    }
+
+    public void onInvisible()
+    {
+        enabled = false;
+    }
 }

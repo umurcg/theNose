@@ -154,7 +154,7 @@ public class ClickTriggerSingleton : MonoBehaviour {
             yield return null;
         }
 
-        //Debug.Log("COllidingssssss");
+        Debug.Log("COllidingssssss");
 
         Timing.KillCoroutines(handler);
         stopToWalk();

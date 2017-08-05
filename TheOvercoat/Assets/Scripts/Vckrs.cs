@@ -1657,6 +1657,8 @@ public class Timer
         timer = time;
     }
 
+   
+
     public bool ticTac(float delta)
     {
         timer -= delta;

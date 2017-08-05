@@ -72,7 +72,7 @@ public class FogController : MonoBehaviour {
 
         if (other.tag == "Player" && fgc)
         {
-
+            Debug.Log(other.name + "exit to fog " + gameObject.name);
             fgc.birdIsExitedFog();
             playerIsInCollider = false;
             //fgc.inFog = false;

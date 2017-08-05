@@ -2,6 +2,8 @@
 using System.Collections;
 using System;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using MovementEffects;
 
 
 //This scripts registers object to subtitle list in whoistalking script
@@ -35,6 +37,7 @@ public class RegisterToSubtitleList : MonoBehaviour {
     private void OnEnable()
     {
         SceneManager.sceneLoaded += register;
+        register();
     }
 
     
@@ -42,15 +45,27 @@ public class RegisterToSubtitleList : MonoBehaviour {
     void register(Scene scene, LoadSceneMode mode)
     {
         register();
-        //Debug.Log("New scene is load so registering to whoistalking again");
+        Debug.Log("New scene is load so registering to whoistalking again");
     }
 
 
     void register()
     {
+        Debug.Log("Registering " + Vckrs.nameTagLayer(gameObject));
+        Timing.RunCoroutine(_register());
+    }
+
+    IEnumerator<float> _register()
+    {
+        while (WhoIsTalking.self == null || GlobalController.Instance==null) yield return 0;
+
         key = getNameForLanguage();
 
-        if (WhoIsTalking.self == null) Debug.Log("Null who is talking " + Vckrs.nameTagLayer(gameObject));
+        //if (WhoIsTalking.self == null)
+        //{
+        //    Debug.Log("Null who is talking " + Vckrs.nameTagLayer(gameObject));
+        //    return;    }
+
 
         WhoIsTalking.self.addCharacterToDict(gameObject, key);
     }

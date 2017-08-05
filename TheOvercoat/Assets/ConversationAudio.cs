@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using MovementEffects;
 
 //Deals with mumbling sounds
 public class ConversationAudio : MonoBehaviour {
@@ -7,14 +9,18 @@ public class ConversationAudio : MonoBehaviour {
     public static ConversationAudio activeScript;
 
     public AudioClip audioClip;
+    
 
     //[HideInInspector]
     static AudioSource source;
-
+    static AudioSource musicSource;
+    static float dimmedValue = 0.3f;
+    static IEnumerator<float> dimmer;
+    static float volumeBeforeDimmer;
     //bool isPlaying;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	    if(CharGameController.cgc==null || audioClip==null)
         {
             enabled = false;
@@ -23,6 +29,7 @@ public class ConversationAudio : MonoBehaviour {
 
         ///Second audio source is for conversation.
         if (!source) source = GlobalController.Instance.afxSource;
+        if (!musicSource) musicSource = GlobalController.Instance.musicSouce;
 
         if (!source)
         {
@@ -32,7 +39,9 @@ public class ConversationAudio : MonoBehaviour {
 
 
 	}
-	
+
+    
+
     public void activateAudioConv()
     {
         if (activeScript==this)
@@ -49,6 +58,11 @@ public class ConversationAudio : MonoBehaviour {
         source.Play();
         
         activeScript = this;
+
+        if (dimmer != null)   Timing.KillCoroutines(dimmer);
+        volumeBeforeDimmer = musicSource.volume;
+        dimmer = Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSource, dimmedValue, 1f));
+
     }
 
 
@@ -65,6 +79,12 @@ public class ConversationAudio : MonoBehaviour {
                 
         source.Stop();
         source.clip = null;
+
+        if (dimmer != null)  Timing.KillCoroutines(dimmer);
+
         
+        dimmer = Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSource, volumeBeforeDimmer, 1f));
+
+
     }
 }

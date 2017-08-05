@@ -23,6 +23,9 @@ public class NoseHeadMergeGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (Debug.isDebugBuild && Input.GetKeyDown(KeyCode.Space)) drawedAllEdges();
+
         if (numberOfDrawedEdges == numberOfPairs)
         {
             drawedAllEdges();

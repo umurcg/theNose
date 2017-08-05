@@ -19,8 +19,20 @@ public class DisableEnableBACInParent : MonoBehaviour {
         }
 
 
+        if (transform.parent == null)
+        {
+            enabled = false;
+            return;
+        }
+
         parentAnim = transform.parent.GetComponent<Animator>();
         bca = transform.parent.GetComponent<BasicCharAnimations>();
+
+        if(!bca || !parentAnim)
+        {
+            enabled = false;
+            return;
+        }
 
 
         if (!rend.isVisible)

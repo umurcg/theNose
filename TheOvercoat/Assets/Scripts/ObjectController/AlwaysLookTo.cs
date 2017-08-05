@@ -6,6 +6,7 @@ public class AlwaysLookTo : MonoBehaviour {
     //This script make object always look to aim.
     //You can use a game oobject for aim or aimPos. GameObject will have priotrize.
     //But why dont you just disable it.
+    public bool aimIsPlayer = false;
 
     public GameObject aim;
     public Vector3 aimPos;
@@ -15,8 +16,8 @@ public class AlwaysLookTo : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        if (aimIsPlayer) aim = CharGameController.getActiveCharacter();
+    }
 	
 	// Update is called once per frame
 	void Update () {

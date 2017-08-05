@@ -42,6 +42,12 @@ public class MainMenu : MonoBehaviour {
                
     }
 
+    private void OnDisable()
+    {
+        CharacterMouseLook cml= CharGameController.getActiveCharacter().GetComponent<CharacterMouseLook>();
+        if(cml) cml.enabled = true;
+    }
+
     // Use this for initialization
     void Start () {
         //TextAsset asdasdasd = Resources.Load("Text") as TextAsset;
@@ -75,7 +81,19 @@ public class MainMenu : MonoBehaviour {
             CharGameController.movePlayer(Vector3.zero);
             GameObject player = CharGameController.getActiveCharacter();
             player.transform.LookAt(menuCamera.transform);
+            CharacterMouseLook cml = player.GetComponent<CharacterMouseLook>();
+            if (cml)
+            {
+                cml.enabled = false;
+            }
+            else
+            {
+                Debug.Log("CML İS null");
+            }
+            //Time.timeScale = 0;
         }
+
+  
     }
 	
 	// Update is called once per frame

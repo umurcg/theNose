@@ -5,6 +5,7 @@ using System.Collections;
 public class assignRandomMeshV2 : MonoBehaviour {
 
     public GameObject commonPeople;
+    public bool changeName = false;
     RequestCharacterMesh rcm;
 
     public RequestCharacterMesh.gender gender;
@@ -14,7 +15,7 @@ public class assignRandomMeshV2 : MonoBehaviour {
         rcm = commonPeople.GetComponent<RequestCharacterMesh>();
         Mesh mesh = rcm.requestRandomMesh(gender);
         GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = mesh;
-        transform.name = mesh.name;
+        if(changeName) transform.name = mesh.name;
 	}
 	
 

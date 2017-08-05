@@ -100,13 +100,13 @@ public class SubtitleControllerTime : SubtitleController {
     protected override void Update () {
         //print(timer);
 
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Debug.isDebugBuild && Input.GetKeyDown(KeyCode.Space))
         {
             finishSubtitle();
            
         }
-#endif
+
 
 
         if (timer > 0)

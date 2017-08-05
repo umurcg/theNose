@@ -107,12 +107,12 @@ public class SubtitleController : MonoBehaviour {
     protected virtual void Update () {
 
         //While developing you can pass subtitles with space key
-#if UNITY_EDITOR
-        if(Input.GetKeyDown(KeyCode.Space))
+
+        if(Debug.isDebugBuild && Input.GetKeyDown(KeyCode.Space))
         {
             finishSubtitle();
         }
-#endif
+
 
 
         //Debug.Log("index: "+index+"array: "+subtitleTexts.Length);
@@ -146,7 +146,7 @@ public class SubtitleController : MonoBehaviour {
         }
         else
         {
-            Debug.Log("index is -1");
+            //Debug.Log("index is -1");
         }
 
 	}

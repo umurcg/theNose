@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour {
 
     //public GameObject continueBut, restartBut, settingsBut, exitBut;
     public GameObject mainButtons, settingsSubMenu;
+    public Button restartButton;
     public Texture2D pauseMenuText;
 
     EnableDisableUI MBedUI;
@@ -28,6 +29,8 @@ public class PauseMenu : MonoBehaviour {
         MBedUI = mainButtons.GetComponent<EnableDisableUI>();
         SBMedUI = settingsSubMenu.GetComponent<EnableDisableUI>();
         cis =CharGameController.getOwner().GetComponent<CursorImageScript>();
+
+        if (GlobalController.Instance.sceneList.Count < 2) restartButton.interactable = false;
     }
 	
 	// Update is called once per frame
@@ -135,6 +138,7 @@ public class PauseMenu : MonoBehaviour {
     //TODO think about game controllers
     public void restartFunc()
     {
+        if (GlobalController.Instance.sceneList.Count < 2) return;
 
         GlobalController.Instance.removeLastScene();
                 
@@ -143,7 +147,10 @@ public class PauseMenu : MonoBehaviour {
         GameObject player = CharGameController.getActiveCharacter();
         if (player != null) player.GetComponent<PlayerComponentController>().ContinueToWalk();
 
-        CharGameController.getSun().GetComponent<DayAndNightCycle>().makeDay();
+        CharGameController.getSun().GetComponent<DayAndNightCycle>().makeDay(true);
+
+        //RESTART MUSIC
+        ///*LevelMusicController*/.
     }
 
     public void settingsFunc()

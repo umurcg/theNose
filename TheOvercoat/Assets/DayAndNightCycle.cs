@@ -67,7 +67,12 @@ public class DayAndNightCycle : MonoBehaviour {
     [ContextMenu ("Make day")]
     public void makeDay(bool instantly = false)
     {
+        
+
         Light l = GetComponent<Light>();
+
+        if (l.intensity == maxIntensity) return;
+
         l.intensity = minIntensity;
         isNight = false;
 
@@ -78,6 +83,8 @@ public class DayAndNightCycle : MonoBehaviour {
         }
         else
         {
+            
+
             Timing.RunCoroutine(_changeLight(speed, l, minIntensity, maxIntensity));
         }
     }

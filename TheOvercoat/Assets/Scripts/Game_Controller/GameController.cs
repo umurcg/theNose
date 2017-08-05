@@ -46,6 +46,7 @@ abstract public class GameController : MonoBehaviour , IClickAction{
         if (isUsed())
         {
             gameIsUsed();
+            return;
 
         }
 

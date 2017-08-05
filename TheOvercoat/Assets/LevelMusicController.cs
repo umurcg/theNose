@@ -18,6 +18,8 @@ public class LevelMusicController : MonoBehaviour {
         public AudioClip nightMusic;
     }
 
+    static IEnumerator<float> musicSourceDimmer=null;
+
 
     //Muisc audio clips according to their scene index
     //public AudioClip[] levelMusics;
@@ -74,6 +76,8 @@ public class LevelMusicController : MonoBehaviour {
             Debug.Log("Music source is null");
             return;
         }
+
+        musicSource.Stop();
 
         GlobalController.Scenes currentScene =(GlobalController.Scenes) SceneManager.GetActiveScene().buildIndex;
 
@@ -139,7 +143,13 @@ public class LevelMusicController : MonoBehaviour {
         Timing.RunCoroutine(_playSoundEffect(clip, true, end-start,start,fadeEffect));
     }
 
-
+    public static void termianteSoundEffect()
+    {
+        AudioSource source = GlobalController.Instance.afxSource;
+        source.Stop();
+        source.clip = null;
+        source.loop = false;
+    }
 
     static IEnumerator<float> _playSoundEffect(AudioClip clip, bool volueDownMusicWhilePlaying=true, float duration=0,float start=0, bool fadeEffect=false){
 
@@ -157,16 +167,23 @@ public class LevelMusicController : MonoBehaviour {
         if (musicSouce == null || musicSouce.volume<dimmedVolume) volueDownMusicWhilePlaying = false;
         
 
-        IEnumerator<float> musicDimmer=null;
-        float originalVolume=0;
+    
+        //float originalVolume=0;
         float originalAffectVol = source.volume;
 
 
+
         if (volueDownMusicWhilePlaying) {
-            originalVolume = musicSouce.volume;
-            musicDimmer = Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSouce, dimmedVolume, 1f));
+
+            if (musicSourceDimmer != null) Timing.KillCoroutines(musicSourceDimmer);
+            
+
+            //originalVolume = musicSouce.volume;
+            musicSourceDimmer = Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSouce, dimmedVolume, 1f));
          }
         
+
+
         source.Play();
 
         if (fadeEffect)
@@ -195,10 +212,10 @@ public class LevelMusicController : MonoBehaviour {
         if (volueDownMusicWhilePlaying)
         {
 
-            if (musicDimmer != null)
-                yield return Timing.WaitUntilDone(musicDimmer);
+            if (musicSourceDimmer != null)
+                yield return Timing.WaitUntilDone(musicSourceDimmer);
 
-            Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSouce, originalVolume, 1f));
+            musicSourceDimmer=Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSouce, GlobalController.Instance.musicLevel, 1f));
 
         }
 

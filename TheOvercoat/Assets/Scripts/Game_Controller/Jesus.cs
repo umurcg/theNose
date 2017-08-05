@@ -49,7 +49,7 @@ public class Jesus : GameController, IClickAction {
 
     IEnumerator<float> _pray()
     {
-        playerNma.SetDestination(transform.position - transform.up * 2);
+        //playerNma.SetDestination(transform.position - transform.up * 2);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(player, 0));
         yield return Timing.WaitUntilDone(handlerHolder);
 

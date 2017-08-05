@@ -14,6 +14,8 @@ public class CafeSingerGameController : GameController {
     float zoomAmount = 20;
     CameraController cc;
 
+    public GameObject acitvecharacter;
+
     // Use this for initialization
     public override void Start () {
         base.Start();
@@ -21,7 +23,11 @@ public class CafeSingerGameController : GameController {
         Debug.Log("Cafe singer start");
 
         //Disable playerCamera object
-        CharGameController.getOwner().SetActive(false);
+        //CharGameController.getOwner().SetActive(false);
+        acitvecharacter = CharGameController.getActiveCharacter();
+        acitvecharacter.SetActive(false);
+        CharGameController.getCamera().SetActive(false);
+
         kovalevCC = new characterComponents(Kovalev);
         cam = CameraObj.GetComponent<Camera>();
 
@@ -39,6 +45,13 @@ public class CafeSingerGameController : GameController {
 
     
     }
+
+    void recoverPlayerAndCam()
+    {
+        acitvecharacter.SetActive(true);
+        CharGameController.getCamera().SetActive(true);
+    }
+    
 
     IEnumerator<float> _start()
     {
@@ -93,10 +106,12 @@ public class CafeSingerGameController : GameController {
             yield return 0;
         }
 
-        
+
 
         //Kovalev mirror talk
-        handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(Kovalev, mirror.transform.parent.gameObject,1f));
+        Vector3 mirrorLookPos =  new Vector3(1, 0, -1);
+        //handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(Kovalev, mirror.transform.parent.gameObject,1f));
+        handlerHolder = Timing.RunCoroutine(Vckrs._lookTo(Kovalev, mirrorLookPos, 1f));
         yield return Timing.WaitUntilDone(handlerHolder);
 
         while (narSubtitle.text != "") yield return 0;
@@ -155,6 +170,9 @@ public class CafeSingerGameController : GameController {
 
         GetComponent<LoadScene>().Load();
 
+        while (blackScreen.script.getAlpha() < 0.9f) yield return 0;
+
+        recoverPlayerAndCam();
         
 
         yield break;

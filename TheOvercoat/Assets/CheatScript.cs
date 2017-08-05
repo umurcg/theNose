@@ -42,6 +42,8 @@ public class CheatScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (!Debug.isDebugBuild) Destroy(this);
+
         //if (Application.isEditor)
         //{
             if (Input.GetKeyDown(KeyCode.T)) Timing.RunCoroutine(setScaleDuringPlay());

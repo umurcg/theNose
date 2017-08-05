@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 //Random movement in box collider
 public class RandomMoveentInBox : MonoBehaviour {
@@ -9,6 +10,9 @@ public class RandomMoveentInBox : MonoBehaviour {
     public float minSpeed=1;
     public float maxSpeed = 5;
     float speed;
+    
+
+    NavMeshAgent nma;
 
     float ratio = 0;
     Vector3 dest;

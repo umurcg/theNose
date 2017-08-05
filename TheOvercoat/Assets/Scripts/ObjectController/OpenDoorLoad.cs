@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using MovementEffects;
+using System;
 
-public class OpenDoorLoad : LoadScene {
+public class OpenDoorLoad : LoadScene, IClickAction {
 
     static public Dictionary<int, OpenDoorLoad> doors = new Dictionary<int, OpenDoorLoad>();
 
@@ -150,17 +151,32 @@ public class OpenDoorLoad : LoadScene {
         yield break;
     }
 
-    void OnTriggerEnter(Collider col)
+    public void Action()
     {
-        if (col.tag == "Player" && !playerCanOpen)
+        if (!playerCanOpen)
         {
             Timing.RunCoroutine(Vckrs.showMessageForSeconds(lockMessageToPlayer, SubtitleFade.subtitles["CharacterSubtitle"], messageDuration));
         }
-
-        if ((col.tag == "Player"&&playerCanOpen)|| (col.tag != "Player"&&otherCanOpen))
+        else
         {
-            if (col.tag == "Player" && playerCanOpen)
-                playerInside = true;
+            playerInside = true;
+            open = true;
+            close = false;
+        }
+
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        //if (col.tag == "Player" && !playerCanOpen)
+        //{
+        //    Timing.RunCoroutine(Vckrs.showMessageForSeconds(lockMessageToPlayer, SubtitleFade.subtitles["CharacterSubtitle"], messageDuration));
+        //}
+
+        if (/*(col.tag == "Player"&&playerCanOpen)||*/ (col.tag != "Player"&&otherCanOpen))
+        {
+            //if (col.tag == "Player" && playerCanOpen)
+            //    playerInside = true;
 
             //print("open");
             open = true;
@@ -322,4 +338,5 @@ public class OpenDoorLoad : LoadScene {
 
     }
 
+   
 }

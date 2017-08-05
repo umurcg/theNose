@@ -3,18 +3,41 @@ using System.Collections;
 
 public class RandomizeUV : MonoBehaviour {
 
+    //public enum renderType {SkinendMesh,Mesh };
+    //public renderType RenderType = renderType.SkinendMesh;
+
     Mesh mesh;
 
-    public float minChange, maxChange;
-
-    SkinnedMeshRenderer smr;
-
+    public float minChange = -1000;
+    public float maxChange = 1000;
+    
+    
     Vector2[] originalUV;
 
 	// Use this for initialization
 	void Start () {
+
+ 
+        SkinnedMeshRenderer smr;
+
         smr = GetComponentInChildren<SkinnedMeshRenderer>();
-        mesh = smr.sharedMesh;
+        if (smr) mesh = smr.sharedMesh;
+
+        if (!mesh)
+        {
+            MeshFilter mf;
+            mf = GetComponentInChildren<MeshFilter>();
+            if (mf) mesh = mf.mesh;
+
+        }
+
+        if (!mesh)
+        {
+            enabled = false;
+            return;
+        }
+
+      
         originalUV = mesh.uv;
         randomize();
 	}

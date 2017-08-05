@@ -39,6 +39,8 @@ public class NoseEncounterGameController : GameController {
     public override void Start () {
         base.Start();
 
+        if (isUsed()) return;
+
         initilasePosition();
 
         hs = Horse.GetComponent<HorseScript>();
@@ -61,17 +63,22 @@ public class NoseEncounterGameController : GameController {
 
     void disableEnableHorses(bool enable)
     {
+        HorseScript[] hss = allHorses.GetComponentsInChildren<HorseScript>();
         if (enable) {
-            for (int i = 0; i < allHorses.transform.childCount; i++)
+
+        
+            for (int i = 0; i < hss.Length; i++)
             {
-                allHorses.transform.GetChild(i).tag = "ActiveObject";
+                hss[i].gameObject.tag = "ActiveObject";
             }
         }else
         {
-            for (int i = 0; i < allHorses.transform.childCount; i++)
+
+            for (int i = 0; i < hss.Length; i++)
             {
-                allHorses.transform.GetChild(i).tag = "Untagged";
+                hss[i].gameObject.tag = "Untagged";
             }
+
         }
     }
 

@@ -135,7 +135,8 @@ public class FogGameController : GameController {
 
         ls.Load();
 
-
+        numberOfEnteredFogCollider = 0;
+        gameObject.SetActive(false);
 
 
         yield return 0;

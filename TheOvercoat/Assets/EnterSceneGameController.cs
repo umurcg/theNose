@@ -81,7 +81,7 @@ public class EnterSceneGameController : GameController{
         if (enabled)
             Timing.RunCoroutine(_intro());
 
-
+        
 
     }
 	
@@ -274,6 +274,10 @@ public class EnterSceneGameController : GameController{
 
         yield return Timing.WaitForSeconds(3);
         head.SetActive(true);
+
+        //Set head position
+        head.transform.position = cam.ScreenToWorldPoint(new Vector3(Screen.width/2,Screen.height/2, 30));
+        
 
         sc.callSubtitleWithIndexTime(2);
         while (narSubtitle.text != "")

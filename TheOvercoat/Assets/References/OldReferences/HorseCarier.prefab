@@ -76,6 +76,8 @@ GameObject:
   - component: {fileID: 114000013077625132}
   - component: {fileID: 208000012558786676}
   - component: {fileID: 114000014063028728}
+  - component: {fileID: 114091510760945434}
+  - component: {fileID: 114112061613774054}
   m_Layer: 0
   m_Name: horse
   m_TagString: ActiveObject
@@ -2742,6 +2744,7 @@ MonoBehaviour:
     type: 2}
   unmountButton: {fileID: 1000011863215994, guid: ba633c273d424684bae8d3dd49c01489,
     type: 2}
+  shoutRandomly: 1
 --- !u!114 &114000011634376970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2815,6 +2818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startAutomatic: 0
+  characterSubt: {fileID: 0}
+  narratorSubt: {fileID: 0}
 --- !u!114 &114000013875668356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2846,6 +2851,48 @@ MonoBehaviour:
   activeObjectTag: ActiveObject
   controlChildren: 0
   controlSiblings: 1
+--- !u!114 &114091510760945434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010247453072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312ac3ec7e9bbe4a9949f862227fdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAsset: {fileID: 4900000, guid: 16f4e168a1012354595ec7c093d5d2fa, type: 3}
+  subtitleTexts:
+  - 'Kovalev: Drive like the devil'
+  - 'Kovalev: Faster, damn you faster!'
+  AllSubtitles: 'Kovalev: Drive like the devil
+
+    Kovalev: Faster, damn you faster!'
+  ifDesroyItself: 0
+  releaseAfterSub: 0
+  caller: {fileID: 0}
+  manualTimerArray:
+  - 5
+  - 5
+  TimeMode: 1
+  narrator: 0
+  timeInhibator: 13
+  clips: []
+--- !u!114 &114112061613774054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010247453072}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f471f0da8854e47a7cbec23a73e226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtIndex: 0
+  maxTimeBetweenTalks: 10
+  minTimeBetweenTalks: 30
 --- !u!114 &114384491413823458
 MonoBehaviour:
   m_ObjectHideFlags: 1

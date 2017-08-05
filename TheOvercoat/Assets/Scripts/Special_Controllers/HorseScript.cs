@@ -61,6 +61,9 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
     int originalAreaMask;
 
+    public bool shoutRandomly = false;
+    TalkRandomly talkRandomly;
+
     // Use this for initialization
     void Awake() {  
         nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -72,6 +75,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         cck = GetComponent<CharacterControllerKeyboard>();
 
         originalAreaMask = nma.areaMask;
+        talkRandomly = GetComponent<TalkRandomly>();
         
     }
 
@@ -114,6 +118,7 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
         Destroy(spawnedUnmountButton);
         unmount();
         freeze();
+        if (isPassengerPlayer && shoutRandomly) talkRandomly.enabled = false;
     }
 
     //Mount and unmount is working
@@ -274,6 +279,8 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
 
         nma.areaMask = NavMesh.AllAreas;
 
+        if (isPassengerPlayer && shoutRandomly) talkRandomly.enabled = true;
+
     }
 
     void autoControl()
@@ -338,8 +345,15 @@ public class HorseScript : MonoBehaviour,IClickAction, IClickActionDifferentPos 
             Debug.Log("Couldn't sample aim");
         }
 
+        if (isPassengerPlayer && shoutRandomly) talkRandomly.enabled=true;
+               
+
         IEnumerator<float> walkHandler = Timing.RunCoroutine(Vckrs.waitUntilStop(gameObject));
         yield return Timing.WaitUntilDone(walkHandler);
+
+        if (isPassengerPlayer && shoutRandomly) talkRandomly.enabled = false;
+
+
 
         freeze();
 

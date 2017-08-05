@@ -39,9 +39,9 @@ public class ReyhanCityController : GameController, IClickAction {
         base.Start();
 
         bool firstGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("NewsPaperR.");
-        bool secondGC = GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName(generateIDWithEpisodeID());
+        bool secondGC = GlobalController.Instance.isGameControllerIsUsed(generateID());
 
-        if (firstGC && !secondGC || debug)
+        if ((firstGC && !secondGC)/* || debug*/)
         {
             activateController();
             Debug.Log("ACTIVATING REYHAN");

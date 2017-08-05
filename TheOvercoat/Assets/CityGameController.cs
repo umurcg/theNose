@@ -351,33 +351,41 @@ public class CityGameController : MonoBehaviour {
         GameObject player = CharGameController.getActiveCharacter();
         if (player.transform.name == "Bird")
         {
-            Timing.RunCoroutine(moveBirdAfterOneFrame());
-
-            //////CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
-            //////cf.updateRelative();
-
-            maze.GetComponent<GameController>().activateController();
-
-            //Set bird as landed
-            BirdLandingScript bls = player.GetComponent<BirdLandingScript>();
-            bls.setAsLandedBaked(true);
-
-            tutorial.startTutorial(TutorailCanvas.Tutorials.Bird);
-
-            horseCariers.SetActive(false);
+            Timing.RunCoroutine(prepareForBird());
 
 
-            //Enable fog game
-            fogGAME.activateController();
         }
 
 
     }
 
-    IEnumerator<float> moveBirdAfterOneFrame()
+    IEnumerator<float> prepareForBird()
     {
+        //////CameraFollower cf = CharGameController.getCamera().GetComponent<CameraFollower>();
+        //////cf.updateRelative();
+
+        GameObject player = CharGameController.getActiveCharacter();
+
+        maze.GetComponent<GameController>().activateController();
+
+        //Set bird as landed
+        BirdLandingScript bls = player.GetComponent<BirdLandingScript>();
+        bls.setAsLandedBaked(true);
+
+        tutorial.startTutorial(TutorailCanvas.Tutorials.Bird);
+
+        horseCariers.SetActive(false);
+
+
+
         yield return 0;
         CharGameController.movePlayer(churchBirdPosition.transform.position);
+
+
+        //Enable fog game
+        fogGAME.activateController();
+
+
     }
 
     void comingFromDoctor()

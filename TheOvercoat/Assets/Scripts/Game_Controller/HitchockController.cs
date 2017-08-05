@@ -62,8 +62,13 @@ public class HitchockController : GameController, IClickAction  {
 
         yield return 0;
 
+
+
+
         Kovalev.transform.position = gameObject.transform.position - 1 * transform.up;
-        Kovalev.transform.LookAt(gameObject.transform.position);
+        //Kovalev.transform.LookAt(gameObject.transform.position);
+        //Kovalev.transform.LookAt(new Vector3(-1,player.transform.position.y,-1));
+        //Vckrs.testPosition(gameObject.transform.position);
 
         //KovMirrorPose.SetActive(false);
 
@@ -79,9 +84,11 @@ public class HitchockController : GameController, IClickAction  {
             hs.fov += 1 * fovSpeed*Time.deltaTime*Mathf.Exp(2*(hs.fov-minFov)/(maxFov-minFov));
 
             //Debug.Log("hitckoooooooooooock");
-
+            Kovalev.transform.LookAt(gameObject.transform.position);
             yield return 0;
         }
+
+        LevelMusicController.termianteSoundEffect();
 
         if (sc == null) Debug.Log("sc is nışş");
 

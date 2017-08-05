@@ -6,6 +6,7 @@ using MovementEffects;
 public class IvanHouseGameController : GameController {
     public GameObject Praskovaya,  BigBread, BreadPH, Nose,  door, bread, aim1;
     public Vector3 ivanFirstPosition;
+    public TutorailCanvas tc;
 
     Animator praskovayaAnim;
     UnityEngine.AI.NavMeshAgent praskovayaNma;
@@ -43,9 +44,11 @@ public class IvanHouseGameController : GameController {
         CharGameController.getCamera().GetComponent<CameraFollower>().fixRelativeToDefault();
         CharGameController.getCamera().SetActive(true);
         base.Start();
-        player.transform.LookAt(Vector3.forward);
 
 
+        
+
+   
         Debug.Log("Start");
                 
         playerNma.enabled = false;
@@ -83,6 +86,13 @@ public class IvanHouseGameController : GameController {
         pcc.StopToWalk();
         //yield return Timing.WaitUntilDone(handlerHolder);
 
+
+        player.transform.LookAt(transform.position-Vector3.right);
+        yield return 0;
+        //Time.timeScale = 0;
+
+
+
         yield return Timing.WaitForSeconds(6);
 
 
@@ -92,6 +102,8 @@ public class IvanHouseGameController : GameController {
         praskovayaNma.SetDestination(player.transform.position - Vector3.right *2);
         handlerHolder = Timing.RunCoroutine(Vckrs.waitUntilStop(Praskovaya));
         yield return Timing.WaitUntilDone(handlerHolder);
+
+        tc.startBasicTutorial();
 
         //Talk
         sc.callSubtitleWithIndex(0);

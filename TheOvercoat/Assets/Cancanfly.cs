@@ -67,15 +67,15 @@ public class Cancanfly : GameController,IClickAction {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isUsed()) return;
+        if (!isUsed() || other.tag!="Player") return;
 
-        sc.callSubtitleWithIndexTime(0);
+        sc.callRandomSubtTime(0);
         pcc.ContinueToWalk();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!isUsed()) return;
+        if (!isUsed() || other.tag != "Player") return;
 
         sc.termianteCurrentController();
 

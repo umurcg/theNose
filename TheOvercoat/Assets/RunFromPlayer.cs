@@ -27,7 +27,8 @@ public class RunFromPlayer : MonoBehaviour {
     public bool sendMessage;
 
     //int numberOfObstacleInCollider;
-    bool obstacleInSphere = false;
+    //bool obstacleInSphere = false;
+    int numberOfObstacleInSphere = 0;
     bool playerInSphere = false;
 
 
@@ -79,7 +80,8 @@ public class RunFromPlayer : MonoBehaviour {
         if (col.transform.tag == "Obstacle")
         {
             //Debug.Log("Obstacle In Sphere");
-            obstacleInSphere = true;
+            //obstacleInSphere = true;
+            numberOfObstacleInSphere++;
         }
 
         //Debug.Log("Entered");
@@ -92,7 +94,7 @@ public class RunFromPlayer : MonoBehaviour {
 
         //Debug.Log("Player is in sphere " + playerInSphere + " obstacle in sphere " + obstacleInSphere);
 
-        if (obstacleInSphere && playerInSphere)
+        if (numberOfObstacleInSphere>0 && playerInSphere)
         {
             
             catchTimer = 0.0001f;
@@ -105,7 +107,8 @@ public class RunFromPlayer : MonoBehaviour {
         if (col.transform.tag == "Obstacle")
         {
             //Debug.Log("Obstacle is not in Sphere");
-            obstacleInSphere = false;
+            //obstacleInSphere = false;
+            numberOfObstacleInSphere--;
         }
 
         //Debug.Log("Entered");
@@ -115,12 +118,12 @@ public class RunFromPlayer : MonoBehaviour {
             playerInSphere = false;
         }
 
-        if (!obstacleInSphere || !playerInSphere)
+        if (numberOfObstacleInSphere==0 || !playerInSphere)
         {
             //Stop timer
             catchTimer = 0;
         }
-        Debug.Log("Player is in sphere " + playerInSphere + " obstacle in sphere " + obstacleInSphere);
+        Debug.Log("Player is in sphere " + playerInSphere + " obstacle in sphere " + (numberOfObstacleInSphere>0));
     }
    IEnumerator<float> _run()
     {

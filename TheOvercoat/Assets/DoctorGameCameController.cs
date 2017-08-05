@@ -30,6 +30,8 @@ public class DoctorGameCameController : GameController {
 
         yield return Timing.WaitForSeconds(2f);
 
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(Vckrs._lookTo(player, doctorCC.player, 1f)));
+
         sc.callSubtitleWithIndex(0);
         while (subtitle.text != "") yield return 0;
 
@@ -72,6 +74,8 @@ public class DoctorGameCameController : GameController {
     IEnumerator<float> _mergedHeadAndNose()
     {
         GameObject smallNose=CharGameController.getNosePos().transform.GetChild(0).gameObject;
+        GameObject handNose = CharGameController.getHand(CharGameController.hand.RightHand).transform.Find("nose").gameObject;
+        handNose.SetActive(false);
         smallNose.SetActive(true);
         noseHead.SetActive(false);
 
