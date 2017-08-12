@@ -232,6 +232,12 @@ public class WhoIsTalking : MonoBehaviour
     //Else it calculates nearest character to player and returns it.
     public GameObject getCharacter(string key)
     {
+
+        if (player == null) {
+            player = CharGameController.getActiveCharacter();
+            Debug.Log("Player is buuuuuuuul");
+        }
+
         if (!characters.ContainsKey(key) || characters[key].Count==0) return null;
 
         if (characters[key].Count == 1) return characters[key][0];

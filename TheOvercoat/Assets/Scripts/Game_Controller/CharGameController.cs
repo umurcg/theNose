@@ -179,6 +179,7 @@ public class CharGameController : MonoBehaviour {
             Debug.Log("There is no characte game controller instance");
             return null;
         }
+
         int childCount = cgc.transform.childCount;
         for (int i = 0; i < childCount; i++)
         {
@@ -190,6 +191,13 @@ public class CharGameController : MonoBehaviour {
                 return child.gameObject;
             }
         }
+
+        //If still coudlnt found character then find it with tag.
+        GameObject foundPlayr=GameObject.FindGameObjectWithTag("Player");
+
+        if (foundPlayr != null) return foundPlayr;
+
+
         //Debug.Log("Retturning null");
         return null;
 

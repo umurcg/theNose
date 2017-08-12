@@ -14,8 +14,8 @@ public class LevelMusicController : MonoBehaviour {
     {
         
         public GlobalController.Scenes scene;
-        public AudioClip dayMusic;
-        public AudioClip nightMusic;
+        public AudioClip[] dayMusic;
+        public AudioClip[] nightMusic;
     }
 
     static IEnumerator<float> musicSourceDimmer=null;
@@ -83,25 +83,29 @@ public class LevelMusicController : MonoBehaviour {
 
         sceneAndMusic currentStruct = getSceneAndMusicElementByScene(currentScene);
 
-        if ((currentStruct.scene == GlobalController.Scenes.None) || (currentStruct.dayMusic == null && currentStruct.nightMusic == null)) return;     
+        if ((currentStruct.scene == GlobalController.Scenes.None) || (currentStruct.dayMusic.Length==0 && currentStruct.nightMusic.Length == 0)) return;     
 
-        if (currentStruct.dayMusic==null && currentStruct.nightMusic != null)
+        if (currentStruct.dayMusic.Length==0 && currentStruct.nightMusic.Length > 0)
         {
-            musicSource.clip = currentStruct.nightMusic;
+            musicSource.clip = currentStruct.nightMusic.Length==1 ? currentStruct.nightMusic[0] : currentStruct.nightMusic[Random.Range(0,currentStruct.nightMusic.Length)];
             
         }else if (currentStruct.dayMusic != null && currentStruct.nightMusic == null)
         {
-            musicSource.clip = currentStruct.dayMusic;
-            
-        }else if (currentStruct.dayMusic != null && currentStruct.nightMusic != null)
+            musicSource.clip = currentStruct.dayMusic.Length == 1 ? currentStruct.dayMusic[0] : currentStruct.dayMusic[Random.Range(0, currentStruct.dayMusic.Length)];
+            //musicSource.clip = currentStruct.dayMusic;
+
+        }
+        else if (currentStruct.dayMusic != null && currentStruct.nightMusic != null)
         {
             if (CharGameController.getSun() != null && CharGameController.getSun().GetComponent<DayAndNightCycle>().isNight)
             {
-                musicSource.clip = currentStruct.nightMusic;
+                musicSource.clip = currentStruct.nightMusic.Length == 1 ? currentStruct.nightMusic[0] : currentStruct.nightMusic[Random.Range(0, currentStruct.nightMusic.Length)];
+                //musicSource.clip = currentStruct.nightMusic;
             }
             else
             {
-                musicSource.clip = currentStruct.dayMusic;
+                musicSource.clip = currentStruct.dayMusic.Length == 1 ? currentStruct.dayMusic[0] : currentStruct.dayMusic[Random.Range(0, currentStruct.dayMusic.Length)];
+                //musicSource.clip = currentStruct.dayMusic;
             }
         }
 

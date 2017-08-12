@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class CreditScript : MonoBehaviour {
 
-    public TextAsset credits;
+    public TextAsset creditsTR, creditsENG;
+    TextAsset credits;
     string[] lines;
     public GameObject canvas;
     public GameObject textPrefab;
@@ -13,7 +14,6 @@ public class CreditScript : MonoBehaviour {
     public float instantiateFrequency = 1f;
     public float destroyAfterSeconds = 5f;
     public float textScale = 5;
-
     public float initialDelat = 5f;
 
     public Camera cam;
@@ -28,6 +28,22 @@ public class CreditScript : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+
+        GlobalController.Language language= GlobalController.Instance.getLangueSetting();
+
+        if (language == GlobalController.Language.ENG && creditsENG!=null)
+        {
+            credits = creditsENG;
+        }
+        else if(language==GlobalController.Language.TR && creditsTR!=null)
+        {
+            credits = creditsTR;
+        }else{
+
+            enabled = false;
+            return;
+        }
+
         string allText = credits.text;
         lines = allText.Split('\n');
         puaseMenu.enabled = false;

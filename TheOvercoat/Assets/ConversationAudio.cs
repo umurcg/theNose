@@ -56,6 +56,7 @@ public class ConversationAudio : MonoBehaviour {
         source.clip = audioClip;
         source.time = Random.Range(0, source.clip.length);
         source.Play();
+        source.loop = true;
         
         activeScript = this;
 
@@ -79,10 +80,9 @@ public class ConversationAudio : MonoBehaviour {
                 
         source.Stop();
         source.clip = null;
+        source.loop = false;
 
-        if (dimmer != null)  Timing.KillCoroutines(dimmer);
-
-        
+        if (dimmer != null)  Timing.KillCoroutines(dimmer);        
         dimmer = Timing.RunCoroutine(Vckrs.smoothVolumeChange(musicSource, volumeBeforeDimmer, 1f));
 
 

@@ -157,8 +157,10 @@ GameObject:
   - component: {fileID: 4000012380335614}
   - component: {fileID: 95000010818204132}
   - component: {fileID: 114000010138820852}
+  - component: {fileID: 114126893014453522}
+  - component: {fileID: 114530946464379244}
   m_Layer: 0
-  m_Name: HorseRider
+  m_Name: Horse Rider_Arabaci
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2893,6 +2895,18 @@ MonoBehaviour:
   subtIndex: 0
   maxTimeBetweenTalks: 10
   minTimeBetweenTalks: 30
+--- !u!114 &114126893014453522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010504228964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864c9a06a1786ae4085c0922df88226e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 091248d2dac51c54c9f726811d5b3de6, type: 3}
 --- !u!114 &114384491413823458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2909,6 +2923,19 @@ MonoBehaviour:
   angularDamper: 2
   linearLerp: 0
   angularLerp: 1
+--- !u!114 &114530946464379244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010504228964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d813d6aff508f04f9696619a2b88898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seperator: 95
+  nameOrderInLanguages: 0000000001000000
 --- !u!114 &114733715871888902
 MonoBehaviour:
   m_ObjectHideFlags: 1

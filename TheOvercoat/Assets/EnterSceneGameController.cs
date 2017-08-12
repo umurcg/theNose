@@ -10,6 +10,8 @@ public class EnterSceneGameController : GameController{
     public GameObject  building, ivan, kovalev, head, aims,cameraObj, sun, bigBook, tutorials;
     public Terrain mainTerrain;
 
+    public AudioClip enterSceneAudio;
+
     float originalBaseMapDistance;
 
     public float orthographicZoomAmount, perspectiveZoomAmount;
@@ -83,6 +85,8 @@ public class EnterSceneGameController : GameController{
 
         
 
+        
+
     }
 	
     void OnDisable()
@@ -104,7 +108,8 @@ public class EnterSceneGameController : GameController{
         //Force to default cursor while this scene is not interactive
         CharGameController.getOwner().GetComponent<CursorImageScript>().forceToDefault = true;
 
-
+        LevelMusicController lmc = CharGameController.getOwner().GetComponent<LevelMusicController>();
+        lmc.setMusicManually(enterSceneAudio);
 
 
         //yield return Timing.WaitForSeconds(25);
