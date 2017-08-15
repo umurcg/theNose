@@ -79,6 +79,7 @@ public class MainMenu : MonoBehaviour {
 
             //Move player to 000
             CharGameController.movePlayer(Vector3.zero);
+            CharGameController.getCamera().gameObject.SetActive(false);
             GameObject player = CharGameController.getActiveCharacter();
             player.transform.LookAt(menuCamera.transform);
             CharacterMouseLook cml = player.GetComponent<CharacterMouseLook>();

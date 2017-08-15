@@ -285,8 +285,10 @@ public class CityGameController : MonoBehaviour {
             spawnedTrigger.transform.localPosition = Vector3.zero;
 
 
-            if(NoseGame!=null)
-            Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
+            if (NoseGame != null) NoseGame.SetActive(true);
+
+
+            //Timing.RunCoroutine(ActivateIn(NoseGame, 10f/*,characterObj*/));
         }
     }
 
@@ -464,7 +466,7 @@ public class CityGameController : MonoBehaviour {
 
     void activateKovalevStories()
     {
-        bool isNight = CharGameController.getSun().GetComponent<DayAndNightCycle>().isNight;
+        bool isNight = CharGameController.getSun()!=null &&  CharGameController.getSun().GetComponent<DayAndNightCycle>().isNight;
 
         if (isNight)
         {

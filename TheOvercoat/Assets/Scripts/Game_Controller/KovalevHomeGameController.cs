@@ -47,7 +47,7 @@ public class KovalevHomeGameController : GameController {
             }
 
             //First check game objects
-            if (GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("AtolyeSculpturerGame")/*true*/|| khs==kovalevHomeScene.Dream)
+            if ((GlobalController.Instance.isGameControllerIsUsedSceneNameAndGameObjectName("AtolyeSculpturerGame")/*true*/ && !GlobalController.isScnListContains(GlobalController.Scenes.Church)) || khs==kovalevHomeScene.Dream)
             {
                 khs = kovalevHomeScene.Dream;
                 Timing.RunCoroutine( comingFromSculpturer());

@@ -29,7 +29,7 @@ public class TavernGameController : GameController {
         //tarkovskySitScript.start();
 
         //If is it day then open bar else close bar
-        if (CharGameController.getSun().GetComponent<DayAndNightCycle>().isNight)
+        if (CharGameController.getSun()!=null && CharGameController.getSun().GetComponent<DayAndNightCycle>().isNight)
         {
             closeBar();
         }

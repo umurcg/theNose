@@ -46,9 +46,11 @@ public class NoseEncounterGameController : GameController {
         hs = Horse.GetComponent<HorseScript>();
         noseCC = new characterComponents(Nose);
 
-        startNoseGame();
+      
 
         disableEnableHorses(false);
+
+        startNoseGame();
 
         //debugGirlGame();
 
@@ -126,6 +128,8 @@ public class NoseEncounterGameController : GameController {
     IEnumerator<float> _start()
     {
         yield return 0;
+
+        yield return Timing.WaitForSeconds(10);
 
         //Lock all open doors
         lockUnlockAllDoors(true);

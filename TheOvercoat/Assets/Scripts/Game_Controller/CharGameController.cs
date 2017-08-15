@@ -115,20 +115,20 @@ public class CharGameController : MonoBehaviour {
         }
 
 
-        //If both case didn't happened then check if scene has only one door. If it is then move player to that door
-        if (OpenDoorLoad.doors.Count == 1)
-        {
-            foreach(KeyValuePair<int,OpenDoorLoad> door in OpenDoorLoad.doors)
-            {
-                setPlayerPositionToDoor(door.Value);
+        ////If both case didn't happened then check if scene has only one door. If it is then move player to that door
+        //if (OpenDoorLoad.doors.Count == 1)
+        //{
+        //    foreach(KeyValuePair<int,OpenDoorLoad> door in OpenDoorLoad.doors)
+        //    {
+        //        setPlayerPositionToDoor(door.Value);
 
 
-                if (nma) nma.enabled = true;
-                return;
-            }
+        //        if (nma) nma.enabled = true;
+        //        return;
+        //    }
            
 
-        }
+        //}
 
 
 

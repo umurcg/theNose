@@ -49,12 +49,12 @@ public class EnterSceneGameController : GameController{
         if(blackScreen.script!=null)
             blackScreen.script.fadeInAtStart = false;  //race condition
 
-        if (player != null)
-        {
-            this.enabled = false;
-            Debug.Log("No player");
-            return;
-        }
+        //if (player != null)
+        //{
+        //    this.enabled = false;
+        //    Debug.Log("No player");
+        //    return;
+        //}
 
         ivanNma = ivan.GetComponent<UnityEngine.AI.NavMeshAgent>();
         kovalevNma = kovalev.GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -383,11 +383,12 @@ public class EnterSceneGameController : GameController{
         base.activateController();
         //gameObject.SetActive(true);
         
-        enabled = true;
+
         cameraObj.SetActive(true);
         ivan.SetActive(true);
         kovalev.SetActive(true);
         sun.SetActive(true);
+        enabled = true;
     }
     public override void deactivateController() {
 

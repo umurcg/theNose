@@ -144,14 +144,16 @@ public class ChurchTellerGameController : GameController {
         base.activateController();
         //Debug.Log("TAKE ME TO THE TO CHURCH");
 
-        if (!reyhan.activeSelf) 
-        {
-            gameObject.SetActive(true);
-        }
-        else
-        {
-            waitingForReyhanDumptMe = true;
-        }
+        gameObject.SetActive(true);
+
+        //if (!reyhan.activeSelf) 
+        //{
+        //    gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    waitingForReyhanDumptMe = true;
+        //}
     }
 
     public void tryToActivate()

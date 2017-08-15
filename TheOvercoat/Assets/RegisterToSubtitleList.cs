@@ -45,13 +45,13 @@ public class RegisterToSubtitleList : MonoBehaviour {
     void register(Scene scene, LoadSceneMode mode)
     {
         register();
-        Debug.Log("New scene is load so registering to whoistalking again");
+        //Debug.Log("New scene is load so registering to whoistalking again");
     }
 
 
     void register()
     {
-        Debug.Log("Registering " + Vckrs.nameTagLayer(gameObject));
+        //Debug.Log("Registering " + Vckrs.nameTagLayer(gameObject));
         Timing.RunCoroutine(_register());
     }
 

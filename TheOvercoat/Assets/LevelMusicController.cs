@@ -12,13 +12,13 @@ public class LevelMusicController : MonoBehaviour {
     [System.Serializable]
     public struct sceneAndMusic
     {
-        
+
         public GlobalController.Scenes scene;
         public AudioClip[] dayMusic;
         public AudioClip[] nightMusic;
     }
 
-    static IEnumerator<float> musicSourceDimmer=null;
+    static IEnumerator<float> musicSourceDimmer = null;
 
 
     //Muisc audio clips according to their scene index
@@ -27,11 +27,14 @@ public class LevelMusicController : MonoBehaviour {
     public sceneAndMusic[] SceneAndMusic;
 
     AudioSource musicSource;
-        
+
+
+    //UJntil finishing all musics, level musics will be selected randomly.
+    public AudioClip[] finishedMusics;
 
 	// Use this for initialization
-	void Start () {
-                
+	void Start () {   
+
         updateMusic();
 
 	}
@@ -71,11 +74,18 @@ public class LevelMusicController : MonoBehaviour {
     void updateMusic()
     {
         assignMusicSource();
+
+
+
         if (musicSource == null)
         {
             Debug.Log("Music source is null");
             return;
         }
+
+        musicSource.clip = finishedMusics[Random.Range(0, finishedMusics.Length)];
+        musicSource.Play();
+        return;
 
         musicSource.Stop();
 

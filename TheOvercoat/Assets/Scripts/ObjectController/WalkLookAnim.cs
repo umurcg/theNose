@@ -85,7 +85,7 @@ public class WalkLookAnim : MonoBehaviour, IClickAction {
         //    }
         //}
 
-        if(subject.transform.tag=="Player"){
+        if(subject!=null && subject.transform.tag=="Player"){
             if (sitting && !lockSit)
             {
                 //If trying to move
