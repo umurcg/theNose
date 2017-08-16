@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5886119a5c7b34d8872ab527ca3e1b, type: 3}
+  m_Name: UnityBuildSettings
+  m_EditorClassIdentifier: 
+  _basicSettings:
+    baseBuildFolder: D:\GameDev\TestBuild
+    buildPath: $YEAR-$MONTH-$DAY/$BUILD/$RELEASE_TYPE/$PLATFORM/$ARCHITECTURE/$DISTRIBUTION
+    openFolderPostBuild: 1
+  _productParameters:
+    buildCounter: 0
+    lastGeneratedVersion: 
+    version: 1.0.$DAYSSINCE("January 1, 2015").$SECONDS
+    autoGenerate: 1
+  _releaseTypeList:
+    releaseTypes:
+    - typeName: v1.0.0
+      bundleIndentifier: 
+      productName: The Nose
+      developmentBuild: 0
+      allowDebugging: 0
+      enableHeadlessMode: 0
+      customDefines: 
+      sceneList:
+        enabledScenes:
+        - filePath: Assets/Scenes/MainMenu.unity
+        - filePath: Assets/Scenes/City.unity
+        - filePath: Assets/Scenes/IvanHouse/IvanHouse.unity
+        - filePath: Assets/Scenes/KovalevHouse/KovalevHouse.unity
+        - filePath: Assets/Scenes/Karakol/PoliceStation.unity
+        - filePath: Assets/Scenes/NewsPaper/NewsPaper.unity
+        - filePath: Assets/Scenes/Church/Church.unity
+        - filePath: Assets/Scenes/Doctor/Doctor.unity
+        - filePath: Assets/Scenes/PrisonerGame/PrisonerGame.unity
+        - filePath: Assets/Scenes/Atolye/Atolye.unity
+        - filePath: Assets/Scenes/OsmanBey/OsmanBey.unity
+    - typeName: v1.0.0_dev
+      bundleIndentifier: 
+      productName: The Nose
+      developmentBuild: 1
+      allowDebugging: 1
+      enableHeadlessMode: 0
+      customDefines: 
+      sceneList:
+        enabledScenes:
+        - filePath: Assets/Scenes/MainMenu.unity
+        - filePath: Assets/Scenes/City.unity
+        - filePath: Assets/Scenes/IvanHouse/IvanHouse.unity
+        - filePath: Assets/Scenes/KovalevHouse/KovalevHouse.unity
+        - filePath: Assets/Scenes/Karakol/PoliceStation.unity
+        - filePath: Assets/Scenes/NewsPaper/NewsPaper.unity
+        - filePath: Assets/Scenes/Church/Church.unity
+        - filePath: Assets/Scenes/Doctor/Doctor.unity
+        - filePath: Assets/Scenes/PrisonerGame/PrisonerGame.unity
+        - filePath: Assets/Scenes/Atolye/Atolye.unity
+        - filePath: Assets/Scenes/OsmanBey/OsmanBey.unity
+  _platformList:
+    platforms:
+    - enabled: 1
+      distributionList:
+        distributions: []
+      architectures:
+      - target: 25
+        name: Linux Universal
+        enabled: 1
+      - target: 17
+        name: Linux x86
+        enabled: 0
+      - target: 24
+        name: Linux x64
+        enabled: 0
+      variants: []
+      platformName: Linux
+      binaryNameFormat: '{0}.x86'
+      dataDirNameFormat: '{0}_Data'
+      targetGroup: 1
+    - enabled: 1
+      distributionList:
+        distributions: []
+      architectures:
+      - target: 2
+        name: OSX Universal
+        enabled: 1
+      - target: 4
+        name: OSX Intel
+        enabled: 0
+      - target: 27
+        name: OSX Intel64
+        enabled: 0
+      variants: []
+      platformName: OSX
+      binaryNameFormat: '{0}.app'
+      dataDirNameFormat: '{0}.app/Contents'
+      targetGroup: 1
+    - enabled: 1
+      distributionList:
+        distributions: []
+      architectures:
+      - target: 5
+        name: Windows x86
+        enabled: 1
+      - target: 19
+        name: Windows x64
+        enabled: 1
+      variants: []
+      platformName: PC
+      binaryNameFormat: '{0}.exe'
+      dataDirNameFormat: '{0}_Data'
+      targetGroup: 1
+  _projectConfigurations:
+    configSet:
+      _Buckets: 0c000000060000000b000000ffffffff0d0000000700000000000000ffffffff0a0000000f000000ffffffffffffffffffffffff090000000e00000002000000ffffffff
+      _HashCodes: 9444322ec4e6e427146e723ce474ce612de0507feddf507f03ca8a0ffffb234ceabb32011acafa0b6a00d077ba35912b975dd612575dd6126d96a168d597e46100000000
+      _Next: ffffffffffffffffffffffffffffffffffffffffffffffff03000000ffffffff0100000008000000ffffffffffffffff0400000005000000ffffffffffffffff00000000
+      _Count: 16
+      _Version: 16
+      _FreeList: -1
+      _FreeCount: 0
+      _Keys:
+      - v1.0.0/Linux/Linux Universal
+      - v1.0.0/Linux
+      - v1.0.0/OSX/OSX Universal
+      - v1.0.0/OSX
+      - v1.0.0/PC/Windows x86
+      - v1.0.0/PC/Windows x64
+      - v1.0.0/PC
+      - v1.0.0
+      - v1.0.0_dev/Linux/Linux Universal
+      - v1.0.0_dev/Linux
+      - v1.0.0_dev/OSX/OSX Universal
+      - v1.0.0_dev/OSX
+      - v1.0.0_dev/PC/Windows x86
+      - v1.0.0_dev/PC/Windows x64
+      - v1.0.0_dev/PC
+      - v1.0.0_dev
+      - 
+      _Values:
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - v1.0.0/Linux/Linux Universal
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - v1.0.0/OSX/OSX Universal
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - v1.0.0/PC/Windows x86
+        - v1.0.0/PC/Windows x64
+      - enabled: 1
+        childKeys:
+        - v1.0.0/Linux
+        - v1.0.0/OSX
+        - v1.0.0/PC
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - v1.0.0_dev/Linux/Linux Universal
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - v1.0.0_dev/OSX/OSX Universal
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - v1.0.0_dev/PC/Windows x86
+        - v1.0.0_dev/PC/Windows x64
+      - enabled: 1
+        childKeys:
+        - v1.0.0_dev/Linux
+        - v1.0.0_dev/OSX
+        - v1.0.0_dev/PC
+      - enabled: 1
+        childKeys: []
+    showViewOptions: 0
+    showConfigs: 0
+    showBuildInfo: 0
+    hideDisabled: 0
+    treeView: 0
+    selectedKeyChain: 
+  _preBuildActions:
+    buildActions: []
+  _postBuildActions:
+    buildActions: []
