@@ -44,7 +44,7 @@ using System.Linq;
 
         //Debug.Log(mesh.triangles.Length+ " removged "+numberOfRemovedFaces);
         //TODO remove magic number
-        if (mesh.triangles.Length <= 720)
+        if (mesh.triangles.Length <= 850)
         {
 
             finish();

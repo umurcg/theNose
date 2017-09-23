@@ -150,6 +150,7 @@ public class MainMenu : MonoBehaviour {
 
         GlobalController.Instance.clearSceneList();
         //SceneManager.LoadScene((int)GlobalController.Instance.fullGameSceneList[0]);
+        hideMainButtons();
         load.Scene = GlobalController.Instance.fullGameSceneList[0];
         load.Load();
 
@@ -397,7 +398,8 @@ public class MainMenu : MonoBehaviour {
 
         //Time.timeScale = 0;
         Timing.RunCoroutine(_loadScene((GlobalController.Scenes)sceneToLoad,episodeID));
-        
+        hideMainButtons();
+
     }
 
     void hideUnhideMainButtons(bool hide)

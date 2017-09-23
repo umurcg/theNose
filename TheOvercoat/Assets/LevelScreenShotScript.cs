@@ -27,7 +27,7 @@ public class LevelScreenShotScript : MonoBehaviour {
 
 
          
-        Application.CaptureScreenshot(directory,multiplier);
+        ScreenCapture.CaptureScreenshot(directory,multiplier);
 
         
         Debug.Log("Screen shot is saved to " + directory);

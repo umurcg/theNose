@@ -26,7 +26,7 @@ public class IvanCityGameController : GameController {
 
     IEnumerator<float> _narratorSpeech()
     {
-        pcc.StopToWalk();
+        ////pcc.StopToWalk();
         yield return Timing.WaitForSeconds(3f);
 
         sc.callSubtitleWithIndexTime(0);

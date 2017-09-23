@@ -295,7 +295,7 @@ public class CheatScript : MonoBehaviour {
     {
 
         string directory = "_"+System.DateTime.Now.ToString() + ".jpg";
-        Application.CaptureScreenshot(directory,4);
+        ScreenCapture.CaptureScreenshot(directory,4);
         Debug.Log("Screen shot is saved to " + directory);
     }
 

@@ -44,6 +44,10 @@ public class BirdsEyeView : MonoBehaviour {
     CursorImageScript cis;
     public Texture2D cursor;
 
+	GameObject player;
+    GameObject playerLocation;
+
+
     void Awake()
     {    
 
@@ -57,7 +61,8 @@ public class BirdsEyeView : MonoBehaviour {
         //Timing.RunCoroutine(disableEnable());
 
         cis = CharGameController.getOwner().GetComponent<CursorImageScript>();
-        
+
+
 
     }
 
@@ -113,7 +118,7 @@ public class BirdsEyeView : MonoBehaviour {
         }
         else
         {
-            if (!cameraInMovement && Input.GetButtonDown("Map"))
+            if (!cameraInMovement && Input.GetButtonDown("Map") && !areStreetsActive())
             {
                 //Debug.Log("Map");
                 getBackToOriginal(Vector3.zero);
@@ -291,6 +296,23 @@ public class BirdsEyeView : MonoBehaviour {
                 Debug.Log(doorName + " is not locked");
             }
         }
+        player = CharGameController.getActiveCharacter();
+
+        if (player != null)
+        {
+            //Create point for player location
+            string playerName = player.name;
+            //Vector3 doorPos = player.transform.position;
+            playerLocation = Instantiate(uiTextPrefab, mainCanvas.transform, false) as GameObject;
+            playerLocation.GetComponentInChildren<Text>().text = playerName;
+            //Debug.Log(doorName);
+            //UIDoorName.transform.position = GetComponent<Camera>().WorldToScreenPoint(doorPos);
+            //doorNames.Add(UIDoorName, doorPos);
+        }
+        else
+        {
+            Debug.Log("Cant create player locaiton point because player is null");
+        }
 
         updateDoorNamesPositions();
     }
@@ -304,6 +326,14 @@ public class BirdsEyeView : MonoBehaviour {
             pos.z = 0;
             doorName.Key.transform.position = pos;
         }
+
+        //Update player location
+        if (playerLocation != null && player != null)
+        {
+            Vector3 pos= GetComponent<Camera>().WorldToScreenPoint(player.transform.position);
+            pos.z = 0;
+            playerLocation.transform.position = pos;
+        }
     }
 
     void clearUI()
@@ -313,6 +343,9 @@ public class BirdsEyeView : MonoBehaviour {
             Destroy(doorName.Key);
         }
         doorNames.Clear();
+
+        //Destroy player locatrion point
+        if (playerLocation != null) Destroy(playerLocation);
     }
 
     void setStreetsActive(bool b)

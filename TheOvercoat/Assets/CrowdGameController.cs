@@ -47,6 +47,9 @@ public class CrowdGameController : GameController, IClickAction {
         while (subtitle.text != "") yield return 0;
 
         Timing.RunCoroutine(Vckrs._lookTo(nearestObject,originalRotationLook, 1f));
+
+        transform.tag = "Untagged";
+
         enabled = false;
 
         yield break;

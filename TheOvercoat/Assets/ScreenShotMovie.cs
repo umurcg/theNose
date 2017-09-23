@@ -34,6 +34,6 @@ public class ScreenShotMovie : MonoBehaviour
         var name = string.Format("{0}/shot {1:D04}.png", realFolder, Time.frameCount);
 
         // Capture the screenshot
-        Application.CaptureScreenshot(name, sizeMultiplier);
+        ScreenCapture.CaptureScreenshot(name, sizeMultiplier);
     }
 }
